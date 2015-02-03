@@ -118,6 +118,12 @@ a:hover{text-decoration: none; cursor:pointer;}
 	color:rgba(0,0,0,.7);
 	border-color:rgba(0,0,0,.3);
 }
+/* Bloc Dividers */
+
+.b-divider{
+	border-top:1px solid rgba(0,0,0,.1);
+	border-bottom:1px solid rgba(0,0,0,.1);
+}
 
 
 /* Custom bloc styling */
@@ -125,16 +131,16 @@ a:hover{text-decoration: none; cursor:pointer;}
 #nav-bloc{
 	background-color:#2bbae4;
 }
-#hero-bloc,#library-title-bloc,#library-filter-bloc,#library-highlight-bloc,#library-invitation-bloc,#crowdfunding-title-bloc,#crowdfunding-filter-bloc,#crowdfunding-highlight-bloc,#library-page-title-bloc,#library-page-recent-title-bloc,#library-page-recent-content-bloc,#library-page-search-bloc,#library-page-active-title-bloc,#library-page-group-1-spacer-bloc,#bloc-19,#library-page-group-3-spacer-bloc,#library-page-group-4-spacer-bloc{
+#hero-bloc,#library-title-bloc,#library-filter-bloc,#library-highlight-bloc,#library-invitation-bloc,#crowdfunding-title-bloc,#crowdfunding-filter-bloc,#crowdfunding-highlight-bloc,#library-page-title-bloc,#library-page-recent-title-bloc,#library-page-recent-content-bloc,#library-page-search-bloc,#library-page-active-title-bloc,#library-page-group-1-spacer-bloc,#bloc-19,#library-page-group-3-spacer-bloc,#library-page-group-4-spacer-bloc,#development-page-title-bloc,#bloc-25,#bloc-26,#bloc-27,#crowdfunding-page-title-bloc,#bloc-29,#bloc-31,#bloc-32,#bloc-33,#bloc-34,#bloc-35{
 	background-color:#ffffff;
 }
-#development-title-bloc,#development-highlight-bloc,#library-page-group-1-bloc,#bloc-20,#bloc-22,#footer-bloc{
+#development-title-bloc,#development-highlight-bloc,#library-page-group-1-bloc,#bloc-20,#bloc-22,#bloc-30,#footer-bloc{
 	background-color:#6b6764;
 }
 #library-page-group-2-header-bloc{
 	background-color:#0e5076;
 }
-#library-highlight-bloc h4,#library-highlight-bloc h4,#library-highlight-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4,#library-page-recent-content-bloc h4,#library-page-recent-content-bloc h4,#library-page-recent-content-bloc h4,#library-page-search-bloc h4,#bloc-19 h3{
+#library-highlight-bloc h4,#library-highlight-bloc h4,#library-highlight-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4,#library-page-recent-content-bloc h4,#library-page-recent-content-bloc h4,#library-page-recent-content-bloc h4,#library-page-search-bloc h4,#bloc-19 h3,#bloc-25 h4,#bloc-26 h4,#bloc-27 h4,#bloc-32 h3,#bloc-32 h3,#bloc-33 h3,#bloc-33 h3,#bloc-34 h3,#bloc-34 h3,#bloc-35 h3,#bloc-35 h3{
 	color:#2bbae4;
 }
 #development-title-bloc h4,#development-title-bloc h4,#development-highlight-bloc h4,#development-highlight-bloc h4,#development-highlight-bloc h4{
