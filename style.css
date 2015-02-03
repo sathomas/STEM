@@ -125,13 +125,16 @@ a:hover{text-decoration: none; cursor:pointer;}
 #nav-bloc{
 	background-color:#2bbae4;
 }
-#hero-bloc,#library-title-bloc,#library-highlight-bloc,#library-invitation-bloc,#crowdfunding-title-bloc,#crowdfunding-highlight-bloc{
+#hero-bloc,#library-title-bloc,#library-filter-bloc,#library-highlight-bloc,#library-invitation-bloc,#crowdfunding-title-bloc,#crowdfunding-filter-bloc,#crowdfunding-highlight-bloc,#library-page-title-bloc,#library-page-recent-title-bloc,#library-page-recent-content-bloc,#library-page-search-bloc,#library-page-active-title-bloc,#library-page-group-1-spacer-bloc,#bloc-19,#library-page-group-3-spacer-bloc,#library-page-group-4-spacer-bloc{
 	background-color:#ffffff;
 }
-#development-title-bloc,#development-highlight-bloc,#footer-bloc{
+#development-title-bloc,#development-highlight-bloc,#library-page-group-1-bloc,#bloc-20,#bloc-22,#footer-bloc{
 	background-color:#6b6764;
 }
-#library-highlight-bloc h4,#library-highlight-bloc h4,#library-highlight-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4{
+#library-page-group-2-header-bloc{
+	background-color:#0e5076;
+}
+#library-highlight-bloc h4,#library-highlight-bloc h4,#library-highlight-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4,#library-invitation-bloc h4,#library-page-recent-content-bloc h4,#library-page-recent-content-bloc h4,#library-page-recent-content-bloc h4,#library-page-search-bloc h4,#bloc-19 h3{
 	color:#2bbae4;
 }
 #development-title-bloc h4,#development-title-bloc h4,#development-highlight-bloc h4,#development-highlight-bloc h4,#development-highlight-bloc h4{
@@ -225,6 +228,9 @@ a:hover{text-decoration: none; cursor:pointer;}
 
 /* Bric adjustment margins */
 
+.mg-clear{
+	margin:0;
+}
 .mg-sm{
 	margin-top:10px;
 	margin-bottom:5px;
@@ -260,6 +266,22 @@ a:hover{text-decoration: none; cursor:pointer;}
 .icon-md{
 	font-size:30px!important;
 }
+.icon-round{
+	margin:0 auto;
+	border:2px solid transparent;
+	border-radius: 50%;
+	padding: 32px 30px 26px 30px;
+	min-width:80px;
+}
+.icon-round.icon-md{
+	min-width:92px;
+}
+.icon-round.icon-lg{
+	min-width:122px;
+}
+.icon-round.icon-xl{
+	min-width:162px;
+}
 
 /* Icon colour styles */
 
@@ -278,6 +300,12 @@ a:hover{text-decoration: none; cursor:pointer;}
 
 
 
+/*Forms*/
+
+.form-control{
+	border-color:rgba(0,0,0,.1);
+	box-shadow:none;
+}
 
 /*iFrame*/
 
