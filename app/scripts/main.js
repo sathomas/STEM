@@ -6,6 +6,9 @@ window.Stem = {
     Collections: {},
     Views: {},
     Routers: {},
+    config: {
+        donorsChooseApiKey: 'DONORSCHOOSE'
+    },
     init: function () {
         'use strict';
         console.log('Hello from Backbone!');
