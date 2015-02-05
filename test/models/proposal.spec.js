@@ -96,12 +96,12 @@ describe("Proposal Model", function () {
         this.ProposalModel = new Stem.Models.Proposal();
     })
 
-    it('should generate correct URL to access DonorsChoose', function() {
+    it('should generate the correct URL to access DonorsChoose', function() {
         this.ProposalModel.set('id', '12345');
         this.ProposalModel.url().should.equal('http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&id=12345');
     })
 
-    it('should parse response from DonorsChoose', function() {
+    it('should parse the response from DonorsChoose', function() {
         this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', donorsChooseResponse);
         this.ProposalModel.set('id', donorsChooseResponse.proposals[0].id);
         this.ProposalModel.fetch();
