@@ -18,7 +18,7 @@ Stem.Models = Stem.Models || {};
         // built-in AJAX handling. We'll have to override the
         // default `sync` method.
 
-        sync: function(method, collection, options) {
+        sync: function(method, model, options) {
 
             // Although this isn't a big deal, as long as we're
             // overriding the `sync` method, let's go ahead and
@@ -34,12 +34,13 @@ Stem.Models = Stem.Models || {};
             // do is tell jQuery to use JSONP instead of JSON.
 
             options.dataType = 'jsonp';
-            return Backbone.sync(method, collection, options);
+            return Backbone.sync(method, model, options);
         },
 
         // Since DonorsChoose doesn't follow Rails conventiosn, we
         // have to define our own function that returns the URL for
-        // a specific model.
+        // a specific model. We also use the function to insert the
+        // API key into the URL.
 
         url: function() {
 
@@ -88,22 +89,28 @@ Stem.Models = Stem.Models || {};
 
         parse: function(response, options)  {
 
-            // All DonorsChoose responses follow the same format and
-            // consist of
+            // Parse can be called in one of two ways. Most commonly
+            // it will be called when a collection is fetched from
+            // the server. In that case, the collection's AJAX
+            // handling will have already stripped away the excess
+            // stuff that DonorsChoose adds. We don't need to
+            // do any additional processing. If the model is
+            // populated directly from the server's response,
+            // however, we'll have to deal with that response
+            // format. All DonorsChoose responses follow the same
+            // format and consist of
             //
             // 1. query metadata
             // 2. an array of `proposals`
             //
             // That's true even in this case when we're requesting a
-            // specific proposal. For robustness, we'll make sure that
-            // the response is formatted as we expect. If it isn't,
-            // we return an empty object; the `validate` function can
-            // then detect the error.
+            // specific proposal. If there's a `proposals` array
+            // in the input parameter, we'll assume that the
+            // data came directly from the server. Otherwise,
+            // we'll assume it's already be re-formatted.
 
-            return response.proprosals
-                && _(response.proprosals).isArray()
-                && response.proposals.length ?
-                    response.proposals[0] : {};
+            return response.proposals && _(response.proposals).isArray() ?
+                response.proposals[0] : response;
         }
     });
 

@@ -93,12 +93,10 @@ describe("Proposal Model", function () {
     };
 
     beforeEach(function() {
-        this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', donorsChooseResponse);
         this.ProposalModel = new Stem.Models.Proposal();
     })
 
     afterEach(function() {
-        this.ajaxStub.restore();
     })
 
     it('should generate correct URL to access DonorsChoose', function() {
@@ -106,10 +104,17 @@ describe("Proposal Model", function () {
         this.ProposalModel.url().should.equal('http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&id=12345');
     })
 
-    it.skip('should parse response from DonorsChoose', function() {
-        this.ProposalModel.set('id', donorsChooseResponse.proposals[0].id)
-            .fetch()
-            .get('title').should.equal(donorsChooseResponse.proposals[0].title);
+    it('should parse response from DonorsChoose', function() {
+        this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', donorsChooseResponse);
+        this.ProposalModel.set('id', donorsChooseResponse.proposals[0].id);
+        this.ProposalModel.fetch();
+        this.ProposalModel.get('title').should.equal(donorsChooseResponse.proposals[0].title);
+        this.ajaxStub.restore();
+    })
+
+    it('should not parse directly supplied attributes', function() {
+        var proposalModel = new Stem.Models.Proposal(donorsChooseResponse.proposals[0]);
+        proposalModel.get('title').should.equal(donorsChooseResponse.proposals[0].title);
     })
 
     it('should validate the required properties of the model', function() {
