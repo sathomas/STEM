@@ -96,9 +96,6 @@ describe("Proposal Model", function () {
         this.ProposalModel = new Stem.Models.Proposal();
     })
 
-    afterEach(function() {
-    })
-
     it('should generate correct URL to access DonorsChoose', function() {
         this.ProposalModel.set('id', '12345');
         this.ProposalModel.url().should.equal('http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&id=12345');
