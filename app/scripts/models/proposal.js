@@ -48,9 +48,9 @@ Stem.Models = Stem.Models || {};
             // just a search URL with the keyword `id` set to the
             // proposal's `id` value.
 
-            return 'http://api.donorschoose.org/common/json_feed.html'
-                + '?' + 'APIKey=' + Stem.config.donorsChooseApiKey
-                + '&' + 'id=' + this.get('id');
+            return 'http://api.donorschoose.org/common/json_feed.html' +
+                '?' + 'APIKey=' + Stem.config.donorsChooseApiKey +
+                '&' + 'id=' + this.get('id');
         },
 
         initialize: function() {
@@ -64,21 +64,21 @@ Stem.Models = Stem.Models || {};
         // we'll validate the model. By doing so, we'll effectively
         // ignore any proposals that we can't display.
 
-        validate: function(attrs, options) {
+        validate: function(attrs) {
             if (!_(attrs.title).isString()) {
-                return "Proposal doesn't have a valid title";
+                return 'Proposal doesn\'t have a valid title';
             }
             if (!_(attrs.thumbImageURL).isString()) {
-                return "Proposal doesn't have a valid thumbnail image";
+                return 'Proposal doesn\'t have a valid thumbnail image';
             }
             if (!_(attrs.shortDescription).isString()) {
-                return "Proposal doesn't have a valid description";
+                return 'Proposal doesn\'t have a valid description';
             }
             if (!_(attrs.schoolName).isString()) {
-                return "Proposal doesn't have a valid school";
+                return 'Proposal doesn\'t have a valid school';
             }
             if (!_(attrs.city).isString()) {
-                return "Proposal doesn't have a valid city";
+                return 'Proposal doesn\'t have a valid city';
             }
 
         },
@@ -87,7 +87,7 @@ Stem.Models = Stem.Models || {};
         // to supply a parse function to extract the actual model
         // information from the response.
 
-        parse: function(response, options)  {
+        parse: function(response)  {
 
             // Parse can be called in one of two ways. Most commonly
             // it will be called when a collection is fetched from

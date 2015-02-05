@@ -1,4 +1,4 @@
-/*global Stem, Backbone, _*/
+/*global Stem, Backbone*/
 
 /*
  * Backbone collection for a set of proposals from DonorsChoose.org.
@@ -62,7 +62,7 @@ Stem.Collections = Stem.Collections || {};
 
             // The ' object is optional.
 
-            var options = options || {};
+            var settings = options || {};
 
             // We store the processed values in an
             // `options` property of the collection.
@@ -78,9 +78,9 @@ Stem.Collections = Stem.Collections || {};
                 'Mathematics':           '8'
             };
 
-            if (options.subject && subjects[options.subject]) {
+            if (settings.subject && subjects[settings.subject]) {
 
-                this.options.subject = subjects[options.subject];
+                this.options.subject = subjects[settings.subject];
 
             } else {
 
@@ -98,8 +98,8 @@ Stem.Collections = Stem.Collections || {};
                 'adult':      '5'
             };
 
-            if (options.grade && grades[options.grade]) {
-                this.options.grade = grades[options.grade];
+            if (settings.grade && grades[settings.grade]) {
+                this.options.grade = grades[settings.grade];
             }
 
             var sortBy = {
@@ -111,11 +111,11 @@ Stem.Collections = Stem.Collections || {};
                 'newest':     '7'
             };
 
-            if (options.sortBy && sortBy[options.sortBy]) {
-                this.options.sortBy = sortBy[options.sortBy];
+            if (settings.sortBy && sortBy[settings.sortBy]) {
+                this.options.sortBy = sortBy[settings.sortBy];
             }
-            this.options.maxSize = options.maxSize;
-            this.options.keywords = options.keywords;
+            this.options.maxSize = settings.maxSize;
+            this.options.keywords = settings.keywords;
 
         },
 
@@ -154,21 +154,21 @@ Stem.Collections = Stem.Collections || {};
             // just a search URL. We include some fixed filters that
             // will apply for all searches.
 
-            return 'http://api.donorschoose.org/common/json_feed.html'
-                + '?' + 'APIKey=' + Stem.config.donorsChooseApiKey
-                + '&' + 'state=GA'
-                + '&' + 'subject4=' + this.options.subject
-                + (this.options.grade    ? ('&' + 'gradeType=' + this.options.grade) : '')
-                + (this.options.keywords ? ('&' + 'keywords="' + encodeURIComponent(this.options.keywords) + '"') : '')
-                + (this.options.maxSize  ? ('&' + 'max=' + this.options.maxSize) : '')
-                + (this.options.sortBy   ? ('&' + 'sortBy=' + this.options.sortBy) : '');
+            return 'http://api.donorschoose.org/common/json_feed.html' +
+                '?' + 'APIKey=' + Stem.config.donorsChooseApiKey +
+                '&' + 'state=GA' +
+                '&' + 'subject4=' + this.options.subject +
+                (this.options.grade    ? ('&' + 'gradeType=' + this.options.grade) : '') +
+                (this.options.keywords ? ('&' + 'keywords="' + encodeURIComponent(this.options.keywords) + '"') : '') +
+                (this.options.maxSize  ? ('&' + 'max=' + this.options.maxSize) : '') +
+                (this.options.sortBy   ? ('&' + 'sortBy=' + this.options.sortBy) : '');
         },
 
         // Since DonorsChoose doesn't follow Rails conventions, we have
         // to supply a parse function to extract the actual model
         // information from the response.
 
-        parse: function(response, options)  {
+        parse: function(response)  {
 
             // All DonorsChoose responses follow the same format and
             // consist of
