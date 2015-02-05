@@ -7,7 +7,7 @@ describe('ProposalAsHighlight View', function () {
         this.Proposal = new Stem.Models.Proposal({
             'id':               '1',
             'title':            'Title',
-            'thumbImageURL':    'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
+            'imageURL':    'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
             'shortDescription': 'Short Description',
             'schoolName':       'School Name',
             'city':             'City'
@@ -26,7 +26,7 @@ describe('ProposalAsHighlight View', function () {
 
     it('should render the thumbnail as an <img> image', function() {
         var $el = this.ProposalAsHighlightView.render().$el;
-        $el.find('img').attr('src').should.equal(this.Proposal.get('thumbImageURL'));
+        $el.find('img').attr('src').should.equal(this.Proposal.get('imageURL'));
     })
 
     it('should render the description as the first paragraph', function() {
