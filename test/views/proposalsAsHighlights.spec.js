@@ -4,15 +4,15 @@
 describe('ProposalsAsHighlights View', function () {
 
     // The following is the actual response of DonorsChoose to the GET request
-    // `http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&state=GA&subject4=-4&max=3`
+    // `http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&state=GA&subject4=-4&max=4`
     // as captured on 2015-02-05.
 
     var donorsChooseResponse = {
       "searchTerms": "Math &amp; Science &gt; GA",
       "searchURL": "http://www.donorschoose.org/donors/search.html?state=GA&subject4=-4&utm_source=api&utm_medium=feed&utm_content=searchlink&utm_campaign=DONORSCHOOSE",
-      "totalProposals": "479",
+      "totalProposals": "477",
       "index": "0",
-      "max": "3",
+      "max": "4",
       "breadcrumb": [
         [
           "state",
@@ -26,7 +26,7 @@ describe('ProposalsAsHighlights View', function () {
         ],
         [
           "max",
-          "3",
+          "4",
           ""
         ]
       ],
@@ -115,7 +115,7 @@ describe('ProposalsAsHighlights View', function () {
           "fundURL": "https://secure.donorschoose.org/donors/givingCart.html?proposalid=1390243&donationAmount=45&utm_source=api&utm_medium=feed&utm_content=fundlink&utm_campaign=DONORSCHOOSE",
           "imageURL": "https://a248.e.akamai.net/f/248/48906/1h/s3.amazonaws.com/donorschoose-storage/dc_prod/images/user/small/u2593620_sm.jpg?timestamp=1412867950204",
           "thumbImageURL": "https://a248.e.akamai.net/f/248/48906/1h/s3.amazonaws.com/donorschoose-storage/dc_prod/images/user/thumbnail/u2593620_thmb.jpg?timestamp=1412867950204",
-          "title": "Who's Afraid Of Math? Not Us!",
+          "title": "Who&#039;s Afraid Of Math? Not Us!",
           "shortDescription": "\"I'm not good at math.\"<br />We've all heard it. Countless times. From children and adults alike. They are afraid of math. But, why be afraid? It's only numbers. They can't hurt you! In my class, we...",
           "fulfillmentTrailer": "My students need five tablets (and cases) to practice math facts and other skills though various apps.",
           "snippets": [
@@ -152,12 +152,12 @@ describe('ProposalsAsHighlights View', function () {
               "name": "Horace Mann (partner)"
             },
             {
-              "id": 14,
-              "name": "Kia (partner)"
-            },
-            {
               "id": 3,
               "name": "Special Education"
+            },
+            {
+              "id": 14,
+              "name": "Kia (partner)"
             }
           ],
           "schoolName": "R L Norton Elementary School",
@@ -261,6 +261,91 @@ describe('ProposalsAsHighlights View', function () {
           },
           "expirationDate": "2015-02-15",
           "fundingStatus": "needs funding"
+        },
+        {
+          "id": "1439748",
+          "proposalURL": "http://www.donorschoose.org/project/ipads-for-ilearning/1439748/?utm_source=api&utm_medium=feed&utm_content=bodylink&utm_campaign=DONORSCHOOSE",
+          "fundURL": "https://secure.donorschoose.org/donors/givingCart.html?proposalid=1439748&donationAmount=45&utm_source=api&utm_medium=feed&utm_content=fundlink&utm_campaign=DONORSCHOOSE",
+          "imageURL": "https://a248.e.akamai.net/f/248/48906/1h/s3.amazonaws.com/donorschoose-storage/dc_prod/images/user/small/u2646089_sm.jpg?timestamp=1417576600142",
+          "thumbImageURL": "https://a248.e.akamai.net/f/248/48906/1h/s3.amazonaws.com/donorschoose-storage/dc_prod/images/user/thumbnail/u2646089_thmb.jpg?timestamp=1417576600142",
+          "title": "ipads for ilearning",
+          "shortDescription": "Do you want to see your child fully engaged while learning? In my classroom we have started using our electronic devices to capture the students learning and interests. I have a classroom of 28...",
+          "fulfillmentTrailer": "My students need 2 ipad mini's and protective covers.",
+          "snippets": [
+
+          ],
+          "percentFunded": "74",
+          "numDonors": "19",
+          "costToComplete": "228.99",
+          "completedMatching": {
+            "matchingKey": "DISNEYP15",
+            "ownerRegion": "West",
+            "name": "Disney",
+            "type": "PROMO",
+            "logoURL": "https://a248.e.akamai.net/f/248/48906/2d/secure.donorschoose.org/images/logos/disney_small.jpg",
+            "faqURL": "http://www.donorschoose.org/donors/matching_grant_popup.html?matchingKey=DISNEYP15",
+            "amount": "0.00",
+            "completed": "true",
+            "description": "<p align=\"center\"><img src=\"https://a248.e.akamai.net/f/248/48906/2d/secure.donorschoose.org/images/logos/disney_small.jpg\"></p> \r\n\r\n<p>Disney is amplifying the impact of teachers who rally support for creativity projects in their classrooms. To be eligible for the DISNEY code, projects must demonstrate innovation and imagination and be for grades K-8 in at least one of the following subject areas: Literacy & Language, Music & The Arts, Math & Science, Health & Sports.</p>\r\n\r\n<p>Teachers, <a target=\"_blank\" href=\"http://help.donorschoose.org/hc/en-us/articles/204310233\">here is how it works</a>. Disney is committed to nurturing creative thinking skills to inspire kids to create the future they imagine. We are excited to support DonorsChoose.org to help educators continue to activate their classrooms through creativity projects.</p>"
+          },
+          "matchingFund": {
+            "matchingKey": "",
+            "ownerRegion": "",
+            "name": "",
+            "type": "",
+            "logoURL": "",
+            "faqURL": "",
+            "amount": "0.00",
+            "description": ""
+          },
+          "totalPrice": "889.69",
+          "freeShipping": "true",
+          "teacherId": "2646089",
+          "teacherName": "Mrs. Thompson",
+          "gradeLevel": {
+            "id": "2",
+            "name": "Grades 3-5"
+          },
+          "povertyLevel": "",
+          "teacherTypes": [
+
+          ],
+          "schoolTypes": [
+            {
+              "id": 1,
+              "name": "Charter"
+            }
+          ],
+          "schoolName": "Starling Elementary",
+          "schoolUrl": "http://www.donorschoose.org/school/starling-elementary/97279/",
+          "city": "Grayson",
+          "zip": "30017",
+          "state": "GA",
+          "stateFullName": "Georgia",
+          "latitude": "33.903369000000000",
+          "longitude": "-83.964585000000000",
+          "zone": {
+            "id": "313",
+            "name": "Georgia"
+          },
+          "subject": {
+            "id": "10",
+            "name": "Literacy",
+            "groupId": "6"
+          },
+          "additionalSubjects": [
+            {
+              "id": "8",
+              "name": "Mathematics",
+              "groupId": "4"
+            }
+          ],
+          "resource": {
+            "id": "2",
+            "name": "Technology"
+          },
+          "expirationDate": "2015-04-02",
+          "fundingStatus": "needs funding"
         }
       ]
     };
@@ -284,15 +369,15 @@ describe('ProposalsAsHighlights View', function () {
     })
 
     it('should render the appropriate number of rows', function() {
-        this.ProposalsAsHighlightsView.render().$el.find('.row').length.should.equal(donorsChooseResponse.proposals.length%3+1);
+        this.ProposalsAsHighlightsView.render().$el.find('.row').length.should.equal(Math.floor((donorsChooseResponse.proposals.length-1)/4)+1);
     })
 
-    it('should render three model views within each row', function() {
+    it('should render multiple model views within each row', function() {
         var nRows = this.ProposalsAsHighlightsView.render().$el.find('.row').length,
             nProposals = donorsChooseResponse.proposals.length;
         this.ProposalsAsHighlightsView.render().$el.find('.row').each(function(idx) {
-            $(this).find('.col-sm-4').length.should.equal(
-                (idx === nRows-1) && (nProposals % 3) ? (nProposals % 3) : 3
+            $(this).find('.col-sm-3').length.should.equal(
+                (idx === nRows-1) && (nProposals % 4) ? (nProposals % 4) : 4
             );
         })
     })
