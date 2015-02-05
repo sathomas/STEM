@@ -1,9 +1,49 @@
-/*global Stem, Backbone*/
+/*global Stem, Backbone, _*/
 
 /*
  * Backbone collection for a set of proposals from DonorsChoose.org.
  * Detals for the API and returned JSON object can be found at
  * the [DonorsChoose site](http://data.donorschoose.org/docs/overview/).
+ *
+ * Unlike typical Backbone collections, the Proposals collection
+ * supports a set of options that determine how the collections
+ * accesses the DonorsChoose API. Those options are passed, in
+ * a JavaScript object, as the second parameter to the constructor
+ *
+ *     var proposals = new Stem.Collections.Proposals([], options);
+ *
+ * The supported options are:
+ *
+ *  - `subject`: the educational subject for proposals. If
+ *     unspecified, uses general Math and Science. Supported
+ *     values are:
+ *       - `"Health & Life Science"`
+ *       - `"Applied Science"`
+ *       - `"Environmental Science"`
+ *       - `"Mathematics"`
+ *  - `grade`: the grade level for proposals. If unspecified,
+ *     all grade levels are considered. Supported values
+ *     are:
+ *       - `"primary"`: primary school pre-K to 2nd grade
+ *       - `"elementary"`: elemenrary school (grades 3 to 5)
+ *       - `"middle"`: middle school (grades 6 to 8)
+ *       - `"high"`: high school
+ *       - `"adult"`: adult
+ *  - `keywords`: include a keyword search in the request.
+ *  - `maxSize`: the maximum number of proposals to retrieve for
+ *     the collection. If unspecified, uses the API's default
+ *     (currently 10, but may change in the future). The API
+ *     also places a limit on this parameter. (Currently the
+ *     limit is 50.)
+ *  - `sortBy`: define the sorting criteria for the request.
+ *     If unspecified, the API's default sorting is retained.
+ *     Supported values are:
+ *       - `"urgency"`
+ *       - `"poverty"`
+ *       - `"cost"`
+ *       - `"popularity"`
+ *       - `"expiration"`
+ *       - `"newest"`
  */
 
 Stem.Collections = Stem.Collections || {};
@@ -14,6 +54,70 @@ Stem.Collections = Stem.Collections || {};
     Stem.Collections.Proposals = Backbone.Collection.extend({
 
         model: Stem.Models.Proposal,
+
+        // Since we're accepting options for the collection,
+        // we need an `initialize` method to handle them.
+
+        initialize: function(models, options) {
+
+            // The ' object is optional.
+
+            var options = options || {};
+
+            // We store the processed values in an
+            // `options` property of the collection.
+
+            this.options = {};
+
+            // Extract supported option values
+
+            var subjects = {
+                'Health & Life Science': '4',
+                'Applied Science':       '6',
+                'Environmental Science': '7',
+                'Mathematics':           '8'
+            };
+
+            if (options.subject && subjects[options.subject]) {
+
+                this.options.subject = subjects[options.subject];
+
+            } else {
+
+                // If no subject is specified, default to
+                // general math and science.
+
+                this.options.subject = '-4';
+            }
+
+            var grades = {
+                'primary':    '1',
+                'elementary': '2',
+                'middle':     '3',
+                'high':       '4',
+                'adult':      '5'
+            };
+
+            if (options.grade && grades[options.grade]) {
+                this.options.grade = grades[options.grade];
+            }
+
+            var sortBy = {
+                'urgency':    '0',
+                'poverty':    '1',
+                'cost':       '2',
+                'popularity': '4',
+                'expiration': '5',
+                'newest':     '7'
+            };
+
+            if (options.sortBy && sortBy[options.sortBy]) {
+                this.options.sortBy = sortBy[options.sortBy];
+            }
+            this.options.maxSize = options.maxSize;
+            this.options.keywords = options.keywords;
+
+        },
 
         // DonorsChoose doesn't (currently) enable Cross-Origin
         // requests to their API, so we can't use Backbone's
@@ -52,8 +156,12 @@ Stem.Collections = Stem.Collections || {};
 
             return 'http://api.donorschoose.org/common/json_feed.html'
                 + '?' + 'APIKey=' + Stem.config.donorsChooseApiKey
-                + '&' + 'state=GA'       // restrict to Georgia
-                + '&' + 'subject4=-4';   // restrict to Math/Science
+                + '&' + 'state=GA'
+                + '&' + 'subject4=' + this.options.subject
+                + (this.options.grade    ? ('&' + 'gradeType=' + this.options.grade) : '')
+                + (this.options.keywords ? ('&' + 'keywords="' + encodeURIComponent(this.options.keywords) + '"') : '')
+                + (this.options.maxSize  ? ('&' + 'max=' + this.options.maxSize) : '')
+                + (this.options.sortBy   ? ('&' + 'sortBy=' + this.options.sortBy) : '');
         },
 
         // Since DonorsChoose doesn't follow Rails conventions, we have
