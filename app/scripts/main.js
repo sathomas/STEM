@@ -6,9 +6,18 @@ window.Stem = {
     Collections: {},
     Views: {},
     Routers: {},
+    config: {
+        donorsChooseApiKey: 'DONORSCHOOSE'
+    },
     init: function () {
         'use strict';
-        console.log('Hello from Backbone!');
+        // Stub/demo code for now
+        var proposals = new Stem.Collections.Proposals([], {maxSize: 3});
+        proposals.fetch({reset: true});
+         var view = new Stem.Views.ProposalsAsHighlights({collection: proposals});
+        view.render();
+        $('body').append(view.el);
+
     }
 };
 
