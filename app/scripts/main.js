@@ -14,7 +14,7 @@ window.Stem = {
         // Stub/demo code for now
         var proposals = new Stem.Collections.Proposals([], {maxSize: 4});
         proposals.fetch({reset: true});
-         var view = new Stem.Views.ProposalsAsHighlights({collection: proposals});
+        var view = new Stem.Views.ProposalsAsHighlights({collection: proposals});
         view.render();
         $('#crowdfunding').append(view.el);
 
