@@ -1,7 +1,7 @@
-/*global beforeEach, describe, it, _  */
-'use strict';
+/*global beforeEach, describe, it, _, Stem  */
 
 describe("Proposal Model", function () {
+    'use strict';
 
     // The following is the actual response of DonorsChoose to the GET request
     // `http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&id=1390243`
@@ -112,24 +112,24 @@ describe("Proposal Model", function () {
     it('should not parse directly supplied attributes', function() {
         var proposalModel = new Stem.Models.Proposal(donorsChooseResponse.proposals[0]);
         proposalModel.get('title').should.equal(donorsChooseResponse.proposals[0].title);
-    })
+    });
 
     it('should validate the required properties of the model', function() {
-        this.ProposalModel.isValid().should.be.false;
-        this.ProposalModel.set('title', '').isValid().should.be.false;
-        this.ProposalModel.set('imageURL', '').isValid().should.be.false;
-        this.ProposalModel.set('shortDescription', '').isValid().should.be.false;
-        this.ProposalModel.set('schoolName', '').isValid().should.be.false;
-        this.ProposalModel.set('city', '').isValid().should.be.false;
-        this.ProposalModel.set('fulfillmentTrailer', '').isValid().should.be.false;
-        this.ProposalModel.set('proposalURL', '').isValid().should.be.false;
-        this.ProposalModel.set('povertyLevel', '').isValid().should.be.false;
-        this.ProposalModel.set('totalPrice', '').isValid().should.be.false;
-        this.ProposalModel.set('costToComplete', '').isValid().should.be.false;
-        this.ProposalModel.set('gradeLevel', {}).isValid().should.be.false;
-        this.ProposalModel.set('gradeLevel', {id: '1'}).isValid().should.be.true;
-        this.ProposalModel.set('gradeLevel', {id: '5'}).isValid().should.be.false;
-    })
+        this.ProposalModel.isValid().should.be.false();
+        this.ProposalModel.set('title', '').isValid().should.be.false();
+        this.ProposalModel.set('imageURL', '').isValid().should.be.false();
+        this.ProposalModel.set('shortDescription', '').isValid().should.be.false();
+        this.ProposalModel.set('schoolName', '').isValid().should.be.false();
+        this.ProposalModel.set('city', '').isValid().should.be.false();
+        this.ProposalModel.set('fulfillmentTrailer', '').isValid().should.be.false();
+        this.ProposalModel.set('proposalURL', '').isValid().should.be.false();
+        this.ProposalModel.set('povertyLevel', '').isValid().should.be.false();
+        this.ProposalModel.set('totalPrice', '').isValid().should.be.false();
+        this.ProposalModel.set('costToComplete', '').isValid().should.be.false();
+        this.ProposalModel.set('gradeLevel', {}).isValid().should.be.false();
+        this.ProposalModel.set('gradeLevel', {id: '1'}).isValid().should.be.true();
+        this.ProposalModel.set('gradeLevel', {id: '5'}).isValid().should.be.false();
+    });
 
     it('should throw an error if model write is requested', function() {
         this.ProposalModel.set({
@@ -148,6 +148,6 @@ describe("Proposal Model", function () {
             }
         });
         _(this.ProposalModel.save).bind(this.ProposalModel).should.throw(/read-only/);
-    })
+    });
 
 });

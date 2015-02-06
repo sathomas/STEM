@@ -1,7 +1,7 @@
 /*global beforeEach, describe, it, $  */
-'use strict';
 
 describe('ProposalsAsHighlights View', function () {
+    'use strict';
 
     // The following is the actual response of DonorsChoose to the GET request
     // `http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&state=GA&subject4=-4&max=4`
@@ -366,11 +366,11 @@ describe('ProposalsAsHighlights View', function () {
 
     it('render method should return the view (for chaining)', function() {
         this.ProposalsAsHighlightsView.render().should.equal(this.ProposalsAsHighlightsView);
-    })
+    });
 
     it('should render the appropriate number of rows', function() {
         this.ProposalsAsHighlightsView.render().$el.find('.row').length.should.equal(Math.floor((donorsChooseResponse.proposals.length-1)/4)+1);
-    })
+    });
 
     it('should render multiple model views within each row', function() {
         var nRows = this.ProposalsAsHighlightsView.render().$el.find('.row').length,
@@ -379,13 +379,13 @@ describe('ProposalsAsHighlights View', function () {
             $(this).find('.col-sm-3').length.should.equal(
                 (idx === nRows-1) && (nProposals % 4) ? (nProposals % 4) : 4
             );
-        })
-    })
+        });
+    });
 
     it('should render the model views in order', function() {
         this.ProposalsAsHighlightsView.render().$el.find('.col-sm-4').each(function(idx) {
-            $(this).find('h3').text().should.equal(donorsChooseResponse.proposals[idx].title)
+            $(this).find('h3').text().should.equal(donorsChooseResponse.proposals[idx].title);
         });
-    })
+    });
 
 });

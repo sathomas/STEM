@@ -1,7 +1,7 @@
-/*global beforeEach, describe, it, $  */
-'use strict';
+/*global beforeEach, describe, it, Stem  */
 
 describe('ProposalAsHighlight View', function () {
+    'use strict';
 
     beforeEach(function () {
         this.Proposal = new Stem.Models.Proposal({
@@ -22,17 +22,17 @@ describe('ProposalAsHighlight View', function () {
 
     it('render method should return the view (for chaining)', function() {
         this.ProposalAsHighlightView.render().should.equal(this.ProposalAsHighlightView);
-    })
+    });
 
     it('should render the title as an <h4> header', function() {
         var $el = this.ProposalAsHighlightView.render().$el;
         $el.find('h4').text().should.equal(this.Proposal.get('title'));
-    })
+    });
 
     it('should render the thumbnail as an <img> image', function() {
         var $el = this.ProposalAsHighlightView.render().$el;
         $el.find('img').attr('src').should.equal(this.Proposal.get('imageURL'));
-    })
+    });
 
     it('should render the description as the first paragraph', function() {
         var $el = this.ProposalAsHighlightView.render().$el;
