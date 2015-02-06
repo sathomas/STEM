@@ -54,23 +54,23 @@ Stem.Views = Stem.Views || {};
 
             this.collection.each(function (proposal, idx) {
 
-                // We render the individual proposals in rows of three,
-                // so whenever the index is a multiple of three, we
+                // We render the individual proposals in rows of four,
+                // so whenever the index is a multiple of four, we
                 // start a new row.
 
-                if (idx % 3 === 0) {
+                if (idx % 4 === 0) {
                     $('<div>').addClass('row').appendTo(this.$el);
                 }
 
                 // Create a view for the individual proposal, render
                 // it, and add the Bootstrap class that designates it
-                // as a row of 3. When creating the view, we're passing
+                // as a row of 4. When creating the view, we're passing
                 // in an explicit parent element instead of letting
                 // the model view create it's own parent (which is the
                 // default). We do that for a couple of reasons.
                 //
                 // First, we want to make sure that the element has
-                // the appropriate Bootstrap class for rendering three
+                // the appropriate Bootstrap class for rendering four
                 // in a row. There's no need for the proposal view
                 // to know how many are in a row, so we handle it
                 // here.
@@ -86,7 +86,7 @@ Stem.Views = Stem.Views || {};
 
                 var proposalView = new Stem.Views.ProposalAsHighlight({
                     model: proposal,
-                    el: $('<div>').addClass('col-sm-4').get(0)
+                    el: $('<div>').addClass('col-sm-3').get(0)
                 }).render();
 
                 // Append the newly rendered proposal view to the

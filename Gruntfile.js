@@ -201,6 +201,13 @@ module.exports = function (grunt) {
                         'styles/fonts/{,*/}*.*',
                     ]
                 }, {
+                    expand: true,
+                    dot: true,
+                    flatten: true,
+                    cwd: '<%= yeoman.app %>',
+                    src: 'bower_components/bootstrap/fonts/*.*',
+                    dest: '<%= yeoman.dist %>/fonts/'
+                }, {
                     src: 'node_modules/apache-server-configs/dist/.htaccess',
                     dest: '<%= yeoman.dist %>/.htaccess'
                 }]
