@@ -1,10 +1,31 @@
 {
   "name": "stem",
+  "description": "Web application for Georgia K-12 STEM Incubator project",
   "version": "0.0.0",
+  "contributors": [
+    {
+      "name": "Stephen Thomas",
+      "email": "stephen.thomas@et.gatech.edu"
+    },
+    {
+      "name": "Stuart Freeman",
+      "email": "stuart.freeman@et.gatech.edu"
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sathomas/STEM"
+  },
+  "bugs": {
+    "url": "https://github.com/sathomas/STEM/issues"
+  },
   "scripts": {
     "test": "grunt test"
   },
-  "dependencies": {},
+  "dependencies": {
+    
+  },
   "devDependencies": {
     "apache-server-configs": "^2.8.0",
     "grunt": "^0.4.5",
