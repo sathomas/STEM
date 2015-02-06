@@ -1,4 +1,4 @@
-/*global Stem, Backbone*/
+/*global Stem, Backbone, _*/
 
 /*
  * Backbone collection for a set of proposals from DonorsChoose.org.
@@ -162,6 +162,27 @@ Stem.Collections = Stem.Collections || {};
                 (this.options.keywords ? ('&' + 'keywords="' + encodeURIComponent(this.options.keywords) + '"') : '') +
                 (this.options.maxSize  ? ('&' + 'max=' + this.options.maxSize) : '') +
                 (this.options.sortBy   ? ('&' + 'sortBy=' + this.options.sortBy) : '');
+        },
+
+        // When fetching a collection from the server, Backbone
+        // does not, by default, validate the models in the returned
+        // response (since it assumes the server is always valid).
+        // We, however, use validation to filter out models that aren't
+        // appropriate for our application. For example we use
+        // validation to remove proposals that are for `"adult"`
+        // classes since those don't fit with a K-12 incubator.
+        // To force model validation, we override the standard
+        // `fetch` method.
+
+        fetch: function(options) {
+
+            // Make sure that `validate` is true in the
+            // options passed to the standard `fetch` method.
+
+            return Backbone.Collection.prototype.fetch.call(
+                this,
+                _({}).extend(options, {validate: true})
+            );
         },
 
         // Since DonorsChoose doesn't follow Rails conventions, we have
