@@ -12,4 +12,4 @@
 	Language: English
 	Standards: HTML5, CSS3
 	Components: Modernizr, jQuery, Underscore, Backbone
-	Software: Grunt, TextMate, VIM
+	Software: Blanket, Chai, Grunt, Mocha, TextMate, VIM
