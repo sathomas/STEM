@@ -125,7 +125,10 @@ describe("Proposal Model", function () {
         this.ProposalModel.set('proposalURL', '').isValid().should.be.false;
         this.ProposalModel.set('povertyLevel', '').isValid().should.be.false;
         this.ProposalModel.set('totalPrice', '').isValid().should.be.false;
-        this.ProposalModel.set('costToComplete', '').isValid().should.be.true;
+        this.ProposalModel.set('costToComplete', '').isValid().should.be.false;
+        this.ProposalModel.set('gradeLevel', {}).isValid().should.be.false;
+        this.ProposalModel.set('gradeLevel', {id: '1'}).isValid().should.be.true;
+        this.ProposalModel.set('gradeLevel', {id: '5'}).isValid().should.be.false;
     })
 
     it('should throw an error if model write is requested', function() {
@@ -139,7 +142,10 @@ describe("Proposal Model", function () {
             'proposalURL': '',
             'povertyLevel': '',
             'totalPrice': '',
-            'costToComplete': ''
+            'costToComplete': '',
+            'gradeLevel': {
+                'id': '1'
+            }
         });
         _(this.ProposalModel.save).bind(this.ProposalModel).should.throw(/read-only/);
     })

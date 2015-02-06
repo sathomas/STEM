@@ -95,6 +95,12 @@ Stem.Models = Stem.Models || {};
             if (!_(attrs.proposalURL).isString()) {
                 return 'Proposal doesn\'t have a valid proposal URL';
             }
+            if (!_(attrs.gradeLevel).isObject() || !_(attrs.gradeLevel.id).isString()) {
+                return 'Proposal doesn\'t have a valid grade level';
+            }
+            if (attrs.gradeLevel.id === '5') {
+                return 'Proposal is for adult education';
+            }
         },
 
         // Since DonorsChoose doesn't follow Rails conventions, we have
