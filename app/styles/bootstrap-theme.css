@@ -85,8 +85,9 @@ body{
 /* Hero */
 
 .hero {
+    background-attachment: fixed;
     background-image:url("../images/photo.jpg");
-    background-position: 50% 50%;
+    background-position: 50% 0;
     background-repeat: no-repeat;
     -webkit-background-size: 100%;
        -moz-background-size: 100%;
@@ -114,7 +115,6 @@ body{
     padding-top: 10%;
     padding-bottom: 30px;
     text-align: center;
-    text-shadow: 2px 3px 5px black;
     font-size: 56px;
     font-size: 5vw;
 }
@@ -125,7 +125,6 @@ body{
     font-weight: 300;
     margin-left: 15%;
     margin-right: 15%;
-    text-shadow: 2px 3px 5px black;
 }
 
 /* Sections */
