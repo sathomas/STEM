@@ -120,7 +120,12 @@ describe("Proposal Model", function () {
         this.ProposalModel.set('imageURL', '').isValid().should.be.false;
         this.ProposalModel.set('shortDescription', '').isValid().should.be.false;
         this.ProposalModel.set('schoolName', '').isValid().should.be.false;
-        this.ProposalModel.set('city', '').isValid().should.be.true;
+        this.ProposalModel.set('city', '').isValid().should.be.false;
+        this.ProposalModel.set('fulfillmentTrailer', '').isValid().should.be.false;
+        this.ProposalModel.set('proposalURL', '').isValid().should.be.false;
+        this.ProposalModel.set('povertyLevel', '').isValid().should.be.false;
+        this.ProposalModel.set('totalPrice', '').isValid().should.be.false;
+        this.ProposalModel.set('costToComplete', '').isValid().should.be.true;
     })
 
     it('should throw an error if model write is requested', function() {
@@ -129,7 +134,12 @@ describe("Proposal Model", function () {
             'imageURL': '',
             'shortDescription': '',
             'schoolName': '',
-            'city': ''
+            'city': '',
+            'fulfillmentTrailer': '',
+            'proposalURL': '',
+            'povertyLevel': '',
+            'totalPrice': '',
+            'costToComplete': ''
         });
         _(this.ProposalModel.save).bind(this.ProposalModel).should.throw(/read-only/);
     })

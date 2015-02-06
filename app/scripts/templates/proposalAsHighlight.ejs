@@ -1,3 +1,11 @@
 <img src="<%= imageURL %>" class="img-responsive">
-<h3><%= title %></h3>
+<h4><%= title %></h4>
 <p><%= shortDescription %></p>
+<p><%= fulfillmentTrailer %></p>
+<div class="well well-sm">
+Total cost: $<% print(Math.round(+totalPrice)) %> / $<% print(Math.round(+costToComplete)) %> to go <br/>
+<%= schoolName %><br/>
+<% if(povertyLevel) print('(' + povertyLevel + ')<br/>') %>
+<%= city %>, GA
+</div>
+<p><a href=<%= proposalURL %>">Give to this class »</a></p>

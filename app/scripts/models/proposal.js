@@ -80,7 +80,21 @@ Stem.Models = Stem.Models || {};
             if (!_(attrs.city).isString()) {
                 return 'Proposal doesn\'t have a valid city';
             }
-
+            if (!_(attrs.fulfillmentTrailer).isString()) {
+                return 'Proposal doesn\'t have a valid fulfillment trailer';
+            }
+            if (!_(attrs.totalPrice).isString()) {
+                return 'Proposal doesn\'t have a valid total price';
+            }
+            if (!_(attrs.costToComplete).isString()) {
+                return 'Proposal doesn\'t have a valid cost to complete';
+            }
+            if (!_(attrs.fulfillmentTrailer).isString()) {
+                return 'Proposal doesn\'t have a valid fulfillment trailer';
+            }
+            if (!_(attrs.proposalURL).isString()) {
+                return 'Proposal doesn\'t have a valid proposal URL';
+            }
         },
 
         // Since DonorsChoose doesn't follow Rails conventions, we have

@@ -112,9 +112,20 @@ body{
 .hero h1 {
     margin-top: 0;
     padding-top: 10%;
+    padding-bottom: 30px;
     text-align: center;
     text-shadow: 2px 3px 5px black;
+    font-size: 56px;
     font-size: 5vw;
+}
+
+.hero p {
+    font-size: 22px;
+    font-size: 2vw;
+    font-weight: 300;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-shadow: 2px 3px 5px black;
 }
 
 /* Sections */
@@ -125,13 +136,76 @@ section {
 
 section h2 {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+}
+
+section h3 {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+section h3,
+section h4 {
+    color: rgb(43, 186, 228);
+}
+section p {
+    font-weight: 300;
+}
+
+section > .row > p {
+    font-size: 1.3em;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+section img {
+    width: 100%;
+}
+
+section .well.well-sm {
+    border: none;
+    border-radius: 0;
+}
+
+section a {
+    text-decoration: underline;
+    color: #005580;
+}
+
+section a:hover,
+section a:focus {
+    color: #003854;
 }
 
 section:nth-of-type(even) {
     background-color: rgb(107, 103, 100);
     color: white;
 }
+
+section:nth-of-type(even) h3,
+section:nth-of-type(even) h4 {
+    color: rgb(227, 225, 50);
+}
+
+section:nth-of-type(even) a {
+    text-decoration: underline;
+    color: #C3CB26;
+}
+
+section:nth-of-type(even) a:hover,
+section:nth-of-type(even) a:focus {
+    color: #C3CB26;
+}
+
+
+@media (min-width: 1200px) {
+    section .col-sm-3 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
 
 /* Footer */
 
@@ -149,7 +223,7 @@ footer .icon {
     display: inline-block;
     border: 2px solid white;
     border-radius: 50px;
-    font-size: 2em;
+    font-size: 1.6em;
     margin-bottom: 25px;
 }
 
