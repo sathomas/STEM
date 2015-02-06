@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>proposal.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="proposals.html">
+                proposals.js
+              </a>
+            
+              
+              <a class="source" href="main.html">
+                main.js
+              </a>
+            
+              
+              <a class="source" href="proposal.html">
+                proposal.js
+              </a>
+            
+              
+              <a class="source" href="proposalAsHighlight.html">
+                proposalAsHighlight.js
+              </a>
+            
+              
+              <a class="source" href="proposalsAsHighlights.html">
+                proposalsAsHighlights.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>proposal.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, _*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Backbone model for a single proposal from DonorsChoose.org.
+Detals for the API and returned JSON object can be found at
+the <a href="http://data.donorschoose.org/docs/overview/">DonorsChoose site</a>.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Stem.Models = Stem.Models || {};
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+
+    Stem.Models.Proposal = Backbone.Model.extend({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>DonorsChoose doesn’t (currently) enable Cross-Origin
+requests to their API, so we can’t use Backbone’s
+built-in AJAX handling. We’ll have to override the
+default <code>sync</code> method.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        sync: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(method, model, options)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Although this isn’t a big deal, as long as we’re
+overriding the <code>sync</code> method, let’s go ahead and
+block any write requests, since the DonorsChoose
+API is read-only.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (method !== <span class="hljs-string">'read'</span>) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-string">'Attempt to write read-only Proposal model'</span>;
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Fortunately, jQuery has pretty simple support
+for JSONP and DonorsChoose supports that, so
+we can take advantage of both. All we have to
+do is tell jQuery to use JSONP instead of JSON.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            options.dataType = <span class="hljs-string">'jsonp'</span>;
+            <span class="hljs-keyword">return</span> Backbone.sync(method, model, options);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Since DonorsChoose doesn’t follow Rails conventiosn, we
+have to define our own function that returns the URL for
+a specific model. We also use the function to insert the
+API key into the URL.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>The DonorsChoose URL for a specific proposal is really
+just a search URL with the keyword <code>id</code> set to the
+proposal’s <code>id</code> value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">return</span> <span class="hljs-string">'http://api.donorschoose.org/common/json_feed.html'</span> +
+                <span class="hljs-string">'?'</span> + <span class="hljs-string">'APIKey='</span> + Stem.config.donorsChooseApiKey +
+                <span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'id='</span> + <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'id'</span>);
+        },
+
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        },
+
+        defaults: {
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Since it’s not clear that DonorsChoose will always
+provide all of the proprosal properties that we need,
+we’ll validate the model. By doing so, we’ll effectively
+ignore any proposals that we can’t display.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        validate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(attrs)</span> </span>{
+            <span class="hljs-keyword">if</span> (!_(attrs.title).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid title'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.imageURL).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid thumbnail image'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.shortDescription).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid description'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.schoolName).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid school'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.city).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid city'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.fulfillmentTrailer).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid fulfillment trailer'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.totalPrice).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid total price'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.costToComplete).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid cost to complete'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.fulfillmentTrailer).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid fulfillment trailer'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.proposalURL).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid proposal URL'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.gradeLevel).isObject() || !_(attrs.gradeLevel.id).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid grade level'</span>;
+            }
+            <span class="hljs-keyword">if</span> (attrs.gradeLevel.id === <span class="hljs-string">'5'</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal is for adult education'</span>;
+            }
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Since DonorsChoose doesn’t follow Rails conventions, we have
+to supply a parse function to extract the actual model
+information from the response.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span>  </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Parse can be called in one of two ways. Most commonly
+it will be called when a collection is fetched from
+the server. In that case, the collection’s AJAX
+handling will have already stripped away the excess
+stuff that DonorsChoose adds. We don’t need to
+do any additional processing. If the model is
+populated directly from the server’s response,
+however, we’ll have to deal with that response
+format. All DonorsChoose responses follow the same
+format and consist of</p>
+<ol>
+<li>query metadata</li>
+<li>an array of <code>proposals</code></li>
+</ol>
+<p>That’s true even in this case when we’re requesting a
+specific proposal. If there’s a <code>proposals</code> array
+in the input parameter, we’ll assume that the
+data came directly from the server. Otherwise,
+we’ll assume it’s already be re-formatted.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">return</span> response.proposals &amp;&amp; _(response.proposals).isArray() ?
+                response.proposals[<span class="hljs-number">0</span>] : response;
+        }
+    });
+
+})();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

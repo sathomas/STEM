@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>proposals.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="proposals.html">
+                proposals.js
+              </a>
+            
+              
+              <a class="source" href="main.html">
+                main.js
+              </a>
+            
+              
+              <a class="source" href="proposal.html">
+                proposal.js
+              </a>
+            
+              
+              <a class="source" href="proposalAsHighlight.html">
+                proposalAsHighlight.js
+              </a>
+            
+              
+              <a class="source" href="proposalsAsHighlights.html">
+                proposalsAsHighlights.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>proposals.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Backbone collection for a set of proposals from DonorsChoose.org.
+Detals for the API and returned JSON object can be found at
+the <a href="http://data.donorschoose.org/docs/overview/">DonorsChoose site</a>.</p>
+<p>Unlike typical Backbone collections, the Proposals collection
+supports a set of options that determine how the collections
+accesses the DonorsChoose API. Those options are passed, in
+a JavaScript object, as the second parameter to the constructor</p>
+<pre><code><span class="hljs-keyword">var</span> proposals = <span class="hljs-keyword">new</span> Stem.Collections.Proposals([], options);
+</code></pre><p>The supported options are:</p>
+<ul>
+<li><code>subject</code>: the educational subject for proposals. If
+ unspecified, uses general Math and Science. Supported
+ values are:<ul>
+<li><code>&quot;Health &amp; Life Science&quot;</code></li>
+<li><code>&quot;Applied Science&quot;</code></li>
+<li><code>&quot;Environmental Science&quot;</code></li>
+<li><code>&quot;Mathematics&quot;</code></li>
+</ul>
+</li>
+<li><code>grade</code>: the grade level for proposals. If unspecified,
+ all grade levels are considered. Supported values
+ are:<ul>
+<li><code>&quot;primary&quot;</code>: primary school pre-K to 2nd grade</li>
+<li><code>&quot;elementary&quot;</code>: elemenrary school (grades 3 to 5)</li>
+<li><code>&quot;middle&quot;</code>: middle school (grades 6 to 8)</li>
+<li><code>&quot;high&quot;</code>: high school</li>
+</ul>
+</li>
+<li><code>keywords</code>: include a keyword search in the request.</li>
+<li><code>maxSize</code>: the maximum number of proposals to retrieve for
+ the collection. If unspecified, uses the API’s default
+ (currently 10, but may change in the future). The API
+ also places a limit on this parameter. (Currently the
+ limit is 50.)</li>
+<li><code>sortBy</code>: define the sorting criteria for the request.
+ If unspecified, the API’s default sorting is retained.
+ Supported values are:<ul>
+<li><code>&quot;urgency&quot;</code></li>
+<li><code>&quot;poverty&quot;</code></li>
+<li><code>&quot;cost&quot;</code></li>
+<li><code>&quot;popularity&quot;</code></li>
+<li><code>&quot;expiration&quot;</code></li>
+<li><code>&quot;newest&quot;</code></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Stem.Collections = Stem.Collections || {};
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+
+    Stem.Collections.Proposals = Backbone.Collection.extend({
+
+        model: Stem.Models.Proposal,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Since we’re accepting options for the collection,
+we need an <code>initialize</code> method to handle them.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(models, options)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>The ‘ object is optional.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> settings = options || {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>We store the processed values in an
+<code>options</code> property of the collection.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.options = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Extract supported option values</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> subjects = {
+                <span class="hljs-string">'Health &amp; Life Science'</span>: <span class="hljs-string">'4'</span>,
+                <span class="hljs-string">'Applied Science'</span>:       <span class="hljs-string">'6'</span>,
+                <span class="hljs-string">'Environmental Science'</span>: <span class="hljs-string">'7'</span>,
+                <span class="hljs-string">'Mathematics'</span>:           <span class="hljs-string">'8'</span>
+            };
+
+            <span class="hljs-keyword">if</span> (settings.subject &amp;&amp; subjects[settings.subject]) {
+
+                <span class="hljs-keyword">this</span>.options.subject = subjects[settings.subject];
+
+            } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>If no subject is specified, default to
+general math and science.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.options.subject = <span class="hljs-string">'-4'</span>;
+            }
+
+            <span class="hljs-keyword">var</span> grades = {
+                <span class="hljs-string">'primary'</span>:    <span class="hljs-string">'1'</span>,
+                <span class="hljs-string">'elementary'</span>: <span class="hljs-string">'2'</span>,
+                <span class="hljs-string">'middle'</span>:     <span class="hljs-string">'3'</span>,
+                <span class="hljs-string">'high'</span>:       <span class="hljs-string">'4'</span>,
+                <span class="hljs-string">'adult'</span>:      <span class="hljs-string">'5'</span>
+            };
+
+            <span class="hljs-keyword">if</span> (settings.grade &amp;&amp; grades[settings.grade]) {
+                <span class="hljs-keyword">this</span>.options.grade = grades[settings.grade];
+            }
+
+            <span class="hljs-keyword">var</span> sortBy = {
+                <span class="hljs-string">'urgency'</span>:    <span class="hljs-string">'0'</span>,
+                <span class="hljs-string">'poverty'</span>:    <span class="hljs-string">'1'</span>,
+                <span class="hljs-string">'cost'</span>:       <span class="hljs-string">'2'</span>,
+                <span class="hljs-string">'popularity'</span>: <span class="hljs-string">'4'</span>,
+                <span class="hljs-string">'expiration'</span>: <span class="hljs-string">'5'</span>,
+                <span class="hljs-string">'newest'</span>:     <span class="hljs-string">'7'</span>
+            };
+
+            <span class="hljs-keyword">if</span> (settings.sortBy &amp;&amp; sortBy[settings.sortBy]) {
+                <span class="hljs-keyword">this</span>.options.sortBy = sortBy[settings.sortBy];
+            }
+            <span class="hljs-keyword">this</span>.options.maxSize = settings.maxSize;
+            <span class="hljs-keyword">this</span>.options.keywords = settings.keywords;
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>DonorsChoose doesn’t (currently) enable Cross-Origin
+requests to their API, so we can’t use Backbone’s
+built-in AJAX handling. We’ll have to override the
+default <code>sync</code> method.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        sync: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(method, collection, options)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Although this isn’t a big deal, as long as we’re
+overriding the <code>sync</code> method, let’s go ahead and
+block any write requests, since the DonorsChoose
+API is read-only.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (method !== <span class="hljs-string">'read'</span>) {
+                <span class="hljs-keyword">throw</span> <span class="hljs-string">'Attempt to write read-only Proposals collection'</span>;
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Fortunately, jQuery has pretty simple support
+for JSONP and DonorsChoose supports that, so
+we can take advantage of both. All we have to
+do is tell jQuery to use JSONP instead of JSON.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            options.dataType = <span class="hljs-string">'jsonp'</span>;
+            <span class="hljs-keyword">return</span> Backbone.sync(method, collection, options);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Since DonorsChoose doesn’t follow Rails conventiosn, we
+have to define our own function that returns the URL for
+the collection. We also use the function to insert the
+API key into the URL.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>The DonorsChoose URL for a specific proposal is really
+just a search URL. We include some fixed filters that
+will apply for all searches.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">return</span> <span class="hljs-string">'http://api.donorschoose.org/common/json_feed.html'</span> +
+                <span class="hljs-string">'?'</span> + <span class="hljs-string">'APIKey='</span> + Stem.config.donorsChooseApiKey +
+                <span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'state=GA'</span> +
+                <span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'subject4='</span> + <span class="hljs-keyword">this</span>.options.subject +
+                (<span class="hljs-keyword">this</span>.options.grade    ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'gradeType='</span> + <span class="hljs-keyword">this</span>.options.grade) : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.keywords ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'keywords="'</span> + <span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-keyword">this</span>.options.keywords) + <span class="hljs-string">'"'</span>) : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.maxSize  ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'max='</span> + <span class="hljs-keyword">this</span>.options.maxSize) : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.sortBy   ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'sortBy='</span> + <span class="hljs-keyword">this</span>.options.sortBy) : <span class="hljs-string">''</span>);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Since DonorsChoose doesn’t follow Rails conventions, we have
+to supply a parse function to extract the actual model
+information from the response.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span>  </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>All DonorsChoose responses follow the same format and
+consist of</p>
+<ol>
+<li>query metadata</li>
+<li>an array of <code>proposals</code></li>
+</ol>
+<p>We simply need to extract the proposals array.
+(There’s no real benefit to checking for errors,
+since Backbone can cope with undefined or non-array
+returns.)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">return</span> response.proposals;
+        }
+
+    });
+
+})();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
