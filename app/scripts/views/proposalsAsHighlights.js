@@ -98,7 +98,7 @@ Stem.Views = Stem.Views || {};
 
             }, this);
 
-            // return `this` for chaining
+            // Return `this` for chaining.
 
             return this;
         }

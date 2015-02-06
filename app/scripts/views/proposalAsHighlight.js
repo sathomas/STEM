@@ -35,7 +35,7 @@ Stem.Views = Stem.Views || {};
 
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
-            // return `this` for chaining
+            // Return `this` for chaining.
             return this;
         }
 
