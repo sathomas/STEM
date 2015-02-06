@@ -68,7 +68,7 @@ Stem.Models = Stem.Models || {};
             if (!_(attrs.title).isString()) {
                 return 'Proposal doesn\'t have a valid title';
             }
-            if (!_(attrs.thumbImageURL).isString()) {
+            if (!_(attrs.imageURL).isString()) {
                 return 'Proposal doesn\'t have a valid thumbnail image';
             }
             if (!_(attrs.shortDescription).isString()) {
@@ -80,7 +80,27 @@ Stem.Models = Stem.Models || {};
             if (!_(attrs.city).isString()) {
                 return 'Proposal doesn\'t have a valid city';
             }
-
+            if (!_(attrs.fulfillmentTrailer).isString()) {
+                return 'Proposal doesn\'t have a valid fulfillment trailer';
+            }
+            if (!_(attrs.totalPrice).isString()) {
+                return 'Proposal doesn\'t have a valid total price';
+            }
+            if (!_(attrs.costToComplete).isString()) {
+                return 'Proposal doesn\'t have a valid cost to complete';
+            }
+            if (!_(attrs.fulfillmentTrailer).isString()) {
+                return 'Proposal doesn\'t have a valid fulfillment trailer';
+            }
+            if (!_(attrs.proposalURL).isString()) {
+                return 'Proposal doesn\'t have a valid proposal URL';
+            }
+            if (!_(attrs.gradeLevel).isObject() || !_(attrs.gradeLevel.id).isString()) {
+                return 'Proposal doesn\'t have a valid grade level';
+            }
+            if (attrs.gradeLevel.id === '5') {
+                return 'Proposal is for adult education';
+            }
         },
 
         // Since DonorsChoose doesn't follow Rails conventions, we have
