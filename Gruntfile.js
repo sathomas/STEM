@@ -231,6 +231,14 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        docco: {
+            dist: {
+                src: ['app/scripts/**/*.js'],
+                options: {
+                    output: 'dist/docs/js/'
+                }
+            }
         }
     });
 
@@ -300,7 +308,8 @@ module.exports = function (grunt) {
         'uglify',
         'copy',
         'rev',
-        'usemin'
+        'usemin',
+        'docco:dist'
     ]);
 
     grunt.registerTask('default', [
