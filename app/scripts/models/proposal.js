@@ -1,10 +1,8 @@
 /*global Stem, Backbone, _*/
 
-/*
- * Backbone model for a single proposal from DonorsChoose.org.
- * Detals for the API and returned JSON object can be found at
- * the [DonorsChoose site](http://data.donorschoose.org/docs/overview/).
- */
+// Backbone model for a single proposal from DonorsChoose.org.
+// Detals for the API and returned JSON object can be found at
+// the [DonorsChoose site](http://data.donorschoose.org/docs/overview/).
 
 Stem.Models = Stem.Models || {};
 

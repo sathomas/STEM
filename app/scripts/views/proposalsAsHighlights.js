@@ -1,10 +1,8 @@
 /*global Stem, Backbone, JST, $*/
 
-/*
- * Backbone view for a collection of proposals from
- * DonorsChoose.org rendered as a set of highlights
- * (i.e. "Editor's Choices").
- */
+// Backbone view for a collection of proposals from
+// DonorsChoose.org rendered as a set of highlights
+// (i.e. "Featured Selections").
 
 Stem.Views = Stem.Views || {};
 

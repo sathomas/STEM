@@ -1,50 +1,47 @@
 /*global Stem, Backbone*/
 
-/*
- * Backbone collection for a set of proposals from DonorsChoose.org.
- * Detals for the API and returned JSON object can be found at
- * the [DonorsChoose site](http://data.donorschoose.org/docs/overview/).
- *
- * Unlike typical Backbone collections, the Proposals collection
- * supports a set of options that determine how the collections
- * accesses the DonorsChoose API. Those options are passed, in
- * a JavaScript object, as the second parameter to the constructor
- *
- *     var proposals = new Stem.Collections.Proposals([], options);
- *
- * The supported options are:
- *
- *  - `subject`: the educational subject for proposals. If
- *     unspecified, uses general Math and Science. Supported
- *     values are:
- *       - `"Health & Life Science"`
- *       - `"Applied Science"`
- *       - `"Environmental Science"`
- *       - `"Mathematics"`
- *  - `grade`: the grade level for proposals. If unspecified,
- *     all grade levels are considered. Supported values
- *     are:
- *       - `"primary"`: primary school pre-K to 2nd grade
- *       - `"elementary"`: elemenrary school (grades 3 to 5)
- *       - `"middle"`: middle school (grades 6 to 8)
- *       - `"high"`: high school
- *       - `"adult"`: adult
- *  - `keywords`: include a keyword search in the request.
- *  - `maxSize`: the maximum number of proposals to retrieve for
- *     the collection. If unspecified, uses the API's default
- *     (currently 10, but may change in the future). The API
- *     also places a limit on this parameter. (Currently the
- *     limit is 50.)
- *  - `sortBy`: define the sorting criteria for the request.
- *     If unspecified, the API's default sorting is retained.
- *     Supported values are:
- *       - `"urgency"`
- *       - `"poverty"`
- *       - `"cost"`
- *       - `"popularity"`
- *       - `"expiration"`
- *       - `"newest"`
- */
+// Backbone collection for a set of proposals from DonorsChoose.org.
+// Detals for the API and returned JSON object can be found at
+// the [DonorsChoose site](http://data.donorschoose.org/docs/overview/).
+//
+// Unlike typical Backbone collections, the Proposals collection
+// supports a set of options that determine how the collections
+// accesses the DonorsChoose API. Those options are passed, in
+// a JavaScript object, as the second parameter to the constructor
+//
+//     var proposals = new Stem.Collections.Proposals([], options);
+//
+// The supported options are:
+//
+//  - `subject`: the educational subject for proposals. If
+//     unspecified, uses general Math and Science. Supported
+//     values are:
+//       - `"Health & Life Science"`
+//       - `"Applied Science"`
+//       - `"Environmental Science"`
+//       - `"Mathematics"`
+//  - `grade`: the grade level for proposals. If unspecified,
+//     all grade levels are considered. Supported values
+//     are:
+//       - `"primary"`: primary school pre-K to 2nd grade
+//       - `"elementary"`: elemenrary school (grades 3 to 5)
+//       - `"middle"`: middle school (grades 6 to 8)
+//       - `"high"`: high school
+//  - `keywords`: include a keyword search in the request.
+//  - `maxSize`: the maximum number of proposals to retrieve for
+//     the collection. If unspecified, uses the API's default
+//     (currently 10, but may change in the future). The API
+//     also places a limit on this parameter. (Currently the
+//     limit is 50.)
+//  - `sortBy`: define the sorting criteria for the request.
+//     If unspecified, the API's default sorting is retained.
+//     Supported values are:
+//       - `"urgency"`
+//       - `"poverty"`
+//       - `"cost"`
+//       - `"popularity"`
+//       - `"expiration"`
+//       - `"newest"`
 
 Stem.Collections = Stem.Collections || {};
 
