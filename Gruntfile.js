@@ -120,11 +120,12 @@ module.exports = function (grunt) {
                 'test/spec/{,*/}*.js'
             ]
         },
-        mocha: {
+        blanket_mocha: {
             all: {
                 options: {
-                    run: false,
-                    urls: ['http://localhost:<%= connect.test.options.port %>/index.html']
+                    run: true,
+                    urls: ['http://localhost:<%= connect.test.options.port %>/index.html'],
+                    threshold: 95
                 }
             }
         },
@@ -284,7 +285,7 @@ module.exports = function (grunt) {
                 'createDefaultTemplate',
                 'jst',
                 'connect:test',
-                'mocha',
+                'blanket_mocha',
             ];
 
         if(!isConnected) {
