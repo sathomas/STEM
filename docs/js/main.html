@@ -95,7 +95,7 @@
             
             <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> proposals = <span class="hljs-keyword">new</span> Stem.Collections.Proposals([], {maxSize: <span class="hljs-number">4</span>});
         proposals.fetch({reset: <span class="hljs-literal">true</span>});
-         <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> Stem.Views.ProposalsAsHighlights({collection: proposals});
+        <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> Stem.Views.ProposalsAsHighlights({collection: proposals});
         view.render();
         $(<span class="hljs-string">'#crowdfunding'</span>).append(view.el);
 

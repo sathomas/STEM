@@ -66,7 +66,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, _*/</span></pre></div></div>
             
         </li>
         
@@ -374,6 +374,51 @@ will apply for all searches.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
+              <p>When fetching a collection from the server, Backbone
+does not, by default, validate the models in the returned
+response (since it assumes the server is always valid).
+We, however, use validation to filter out models that aren’t
+appropriate for our application. For example we use
+validation to remove proposals that are for <code>&quot;adult&quot;</code>
+classes since those don’t fit with a K-12 incubator.
+To force model validation, we override the standard
+<code>fetch</code> method.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        fetch: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(options)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Make sure that <code>validate</code> is true in the
+options passed to the standard <code>fetch</code> method.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">return</span> Backbone.Collection.prototype.fetch.call(
+                <span class="hljs-keyword">this</span>,
+                _({}).extend(options, {validate: <span class="hljs-literal">true</span>})
+            );
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
               <p>Since DonorsChoose doesn’t follow Rails conventions, we have
 to supply a parse function to extract the actual model
 information from the response.</p>
@@ -386,11 +431,11 @@ information from the response.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>All DonorsChoose responses follow the same format and
 consist of</p>
