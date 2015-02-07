@@ -1,0 +1,15 @@
+/* TEAM */
+	Developer: Stephen Thomas
+	Contact: stephen.thomas [at] gatech.edu
+	Twitter: @stephen_thomas
+	From: Atlanta, GA, USA
+
+	Developer: Stuart Freeman
+	Contact: stuart.freeman [at] et.gatech.edu
+	From: Atlanta, GA, USA
+
+/* SITE */
+	Language: English
+	Standards: HTML5, CSS3
+	Components: Modernizr, jQuery, Underscore, Backbone
+	Software: Blanket, Chai, Grunt, Mocha, TextMate, VIM
