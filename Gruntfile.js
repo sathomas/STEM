@@ -1,4 +1,3 @@
-/*global require*/
 'use strict';
 var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
