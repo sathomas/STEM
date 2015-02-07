@@ -1,4 +1,4 @@
-'use strict';
+/*global require*/
 var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
