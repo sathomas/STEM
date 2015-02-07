@@ -11,7 +11,7 @@ window.Stem = {
     },
     init: function () {
         'use strict';
-        // Stub/demo code for now
+        // Stub/demo code for now, just add the DonorsChoose integration
         var proposals = new Stem.Collections.Proposals([], {maxSize: 4});
         proposals.fetch({reset: true});
         var view = new Stem.Views.ProposalsAsHighlights({collection: proposals});
