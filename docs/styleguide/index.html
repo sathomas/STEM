@@ -1,0 +1,462 @@
+<!doctype html>
+<html class="sg">
+
+<head>
+  <meta charset="utf-8">
+  <title>Georgia K-12 STEM Incubator Style Guide</title>
+  <link rel="stylesheet" href="styleguide.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="sg">
+  <div>
+    <h1 id="style-guide-for-georgia-k-12-stem-incubator" class="sg">Style Guide for Georgia K-12 STEM Incubator</h1>
+    <p class="sg">CSS stylesheet for Georgia K-12 STEM Incubator. Based (heavily) on
+      <a href="www.getskeleton.com" class="sg">Skeleton</a>, version 2.0.4, by Dave Gamache. Style guide generated automatically by
+      <a href="https://github.com/styledown/styledown" class="sg">styledown</a>
+      from comments embedded in the stylesheet.</p>
+    <p class="sg">The left side of this page describes the various style elements and gives guidance for their use. The right side shows an example of the corresponding element. To see the markup for any example, click on the ellipses (
+      <code class="sg">...</code>) below the example.</p>
+    <section class="sg-section sg-section-html-page-structure">
+      <h2 id="html-page-structure" class="sg">HTML Page Structure</h2>
+      <p class="sg">We use a straightforward semantic markup with the three standard compononents of
+        <code class="sg">&lt;nav&gt;</code>,
+        <code class="sg">&lt;main&gt;</code>, and
+        <code class="sg">&lt;footer&gt;</code>.</p>
+      <section class="sg-block sg-section-section">
+        <div class="sg-text">
+          <h3 id="section" class="sg">Section</h3>
+          <p class="sg">Because the site is actually just a single page application, there are multiple &quot;apparent&quot; pages within the single HTML file. Each virtual page is a single
+            <code class="sg">&lt;section&gt;</code>within the
+            <code class="sg">&lt;main&gt;</code>content.</p>
+          <p class="sg">By default, all sections other than the first are hidden by CSS. There&apos;s an exception, however, if the user&apos;s browser does not support JavaScript. In that case we display all the sections so the user can at least scroll to see all of the static content. To override the default behavior on any particular section, add the class
+            <code class="sg">hide</code>or
+            <code class="sg">show</code>
+            as appropriate.</p>
+          <blockquote class="sg">
+            <p class="sg">Note: We &quot;hide&quot; sections by positioning them offscreen, not by setting their display property to
+              <code class="sg">none</code>. This keeps all sections accessible to screen readers.</p>
+          </blockquote>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <section class="show">
+              This section is always visible.
+            </section>
+            <section class="hide">
+              This section is never visible.
+            </section>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;show&quot;</span>&gt;</span>
+  This section is always visible.
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;hide&quot;</span>&gt;</span>
+  This section is never visible.
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-article">
+        <div class="sg-text">
+          <h3 id="article" class="sg">Article</h3>
+          <p class="sg">A section can optionally be divided into multiple
+            <code class="sg">&lt;article&gt;</code>elements. When articles are used, they will be alternately styled according to the light and dark themes. (See Themes section below.)</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <section>
+              <article>
+                This is the first article.
+              </article>
+              <article>
+                This is the second article.
+              </article>
+            </section>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">article</span>&gt;</span>
+    This is the first article.
+  <span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">article</span>&gt;</span>
+    This is the second article.
+  <span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-dynamic-content">
+        <div class="sg-text">
+          <h3 id="dynamic-content" class="sg">Dynamic Content</h3>
+          <p class="sg">To keep the site at least minimally usable for users without JavaScript, all content that&apos;s dynamically generated by JavaScript should be enclosed in a container with the
+            <code class="sg">dynamic</code>
+            class. In a no-JavaScript environment, that content will be hidden (includng from screen readers). Use the
+            <code class="sg">dynamic</code>class for static content that only makes sense when there is dynamic content to go with it (for example, static headings for dynamic content).</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <article class="dynamic">
+              <h6>Heading for Content</h6>
+              <!-- dynamically-generated content here -->
+            </article>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dynamic&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>Heading for Content<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span>
+  <span class="hljs-comment">&lt;!-- dynamically-generated content here --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-grid">
+      <h2 id="grid" class="sg">Grid</h2>
+      <p class="sg">Within sections (and articles) we use a standard 12-column grid for overall layout, in a responsive, mobile-first architecture. The breakpoints are:</p>
+      <ul class="sg">
+        <li class="sg">default (no media query) for smartphones</li>
+        <li class="sg">
+          <code class="sg">@media (min-width: 400px) {}</code>large smartphones/phablets</li>
+        <li class="sg">
+          <code class="sg">@media (min-width: 550px) {}</code>tablets</li>
+        <li class="sg">
+          <code class="sg">@media (min-width: 750px) {}</code>small desktops</li>
+        <li class="sg">
+          <code class="sg">@media (min-width: 1000px) {}</code>large desktops</li>
+        <li class="sg">
+          <code class="sg">@media (min-width: 1200px) {}</code>HD desktops</li>
+      </ul>
+      <p class="sg">The grid remains a single column for smartphones and large smartphones/phablets and becomes multiple columns for tablets and larger.</p>
+      <section class="sg-block sg-section-container">
+        <div class="sg-text">
+          <h3 id="container" class="sg">Container</h3>
+          <p class="sg">The
+            <code class="sg">container</code>class encapsulates all grid-based content. It centers the content and applies margins.
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="container">
+              Contents here, starting with rows
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
+  Contents here, starting with rows
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-row">
+        <div class="sg-text">
+          <h3 id="row" class="sg">Row</h3>
+          <p class="sg">The
+            <code class="sg">row</code>class encapsulates a single row in the grid. Content within the row will be vertically aligned, subject to wrapping.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="container">
+              <div class="row">
+                Columns go here
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span>&gt;</span>
+    Columns go here
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-column">
+        <div class="sg-text">
+          <h3 id="column" class="sg">Column</h3>
+          <p class="sg">The
+            <code class="sg">column</code>and
+            <code class="sg">columns</code>classes identify grid columns. They are combined with modifier classes to indicate how many columns (out of twelve) the content should cover. In addition to plain old integers (
+            <code class="sg">one column</code>), the grid supports columns defined as fractions of the row (
+            <code class="sg">one-third column</code>).</p>
+          <blockquote class="sg">
+            <p class="sg">Note: offset columns are also defined but currently disabled in the stylesheet to avoid bothering the browser with unused rules. They&apos;re simply commented out in the CSS, though, so that they can be easily re-enabled without having to re-calculate the percentages.</p>
+          </blockquote>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="container">
+              <div class="row">
+                <div class="three columns" style="background-color:lightgray">3/12 (1/4) of row</div>
+                <div class="nine columns" style="background-color:lightgray">9/12 (3/4) of row</div>
+              </div>
+              <div class="row" style="margin-top:0.2em">
+                <div class="one-third column" style="background-color:lightgray">1/3 of row</div>
+                <div class="two-thirds column" style="background-color:lightgray">2/3 of row</div>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;three columns&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray&quot;</span>&gt;</span>3/12 (1/4) of row<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;nine columns&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray&quot;</span>&gt;</span>9/12 (3/4) of row<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;margin-top:0.2em&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;one-third column&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray&quot;</span>&gt;</span>1/3 of row<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;two-thirds column&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray&quot;</span>&gt;</span>2/3 of row<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-typography">
+      <h2 id="typography" class="sg">Typography</h2>
+      <p class="sg">The site&apos;s primary font is
+        <a href="https://www.theleagueofmoveabletype.com/raleway" class="sg">Raleway</a>
+        from
+        <a href="http://www.google.com/fonts/specimen/Raleway" class="sg">Google fonts</a>. Standard sans serif fallbacks are defined as well. The style sheets use relative ems (
+        <code class="sg">rem</code>) measurements based on
+        <code class="sg">10px</code>sizing, so, for example,
+        <code class="sg">1.5rem = 15px</code>. For browsers that don&apos;t support
+        <code class="sg">rem</code>units, we don&apos;t define any fallbacks so all content will revert to the browser defaults. (We do, however, ensure that the default size is
+        <code class="sg">15px</code>.)</p>
+      <section class="sg-block sg-section-base">
+        <div class="sg-text">
+          <h3 id="base" class="sg">Base</h3>
+          <p class="sg">Standard font size is 15px (1.5rem) with a 24px line height.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <p>
+              The quick brown fox jumped over the lazy dog.
+              <br>The quick brown fox jumped over the lazy dog.
+            </p>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+  The quick brown fox jumped over the lazy dog.
+  <span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>The quick brown fox jumped over the lazy dog.
+<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-headings">
+        <div class="sg-text">
+          <h3 id="headings" class="sg">Headings</h3>
+          <p class="sg">Headings use a slightly lighter font weight and specific line heights and letter spacings tailored for the Raleway font (but no so extreme as to be illegible if a font fallback is required). We start with relatively modest font sizes for mobile devices and then increase the sizes a bit for tablets and larger.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <h1>This is a first level heading</h1>
+            <h2>This is a second level heading</h2>
+            <h3>This is a third level heading</h3>
+            <h4>This is a fourth level heading</h4>
+            <h5>This is a fifth level heading</h5>
+            <h6>This is a sixth level heading</h6>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>This is a first level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>This is a second level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>This is a third level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">h4</span>&gt;</span>This is a fourth level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">h5</span>&gt;</span>This is a fifth level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h5</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>This is a sixth level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-themes">
+      <h2 id="themes" class="sg">Themes</h2>
+      <p class="sg">The site uses two complementary themes, a light theme and a dark theme. By default, most of the site is styled with the light theme. The only elements that default to the dark theme are even-numbered articles and the footer.</p>
+      <section class="sg-block sg-section-background-and-color">
+        <div class="sg-text">
+          <h3 id="background-and-color" class="sg">Background and Color</h3>
+          <p class="sg">The default theme for any element can be overridden by adding a
+            <code class="sg">dark</code>or
+            <code class="sg">light</code>class.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <p>This is the light theme</p>
+            <p class="dark">This is the dark theme</p>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>This is the light theme<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dark&quot;</span>&gt;</span>This is the dark theme<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-accent-color">
+        <div class="sg-text">
+          <h3 id="accent-color" class="sg">Accent Color</h3>
+          <p class="sg">Each theme has its own accent color that is automatically applied to some elements. (See below for details.) The accent color can be applied to arbitrary element by adding the
+            <code class="sg">accent</code>class.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <p>
+              This is the
+              <span class="accent">accent color</span>
+              for the light theme
+            </p>
+            <p class="dark">
+              This is the
+              <span class="accent">accent color</span>
+              for the dark theme
+            </p>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+  This is the
+  <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;accent&quot;</span>&gt;</span>accent color<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  for the light theme
+<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dark&quot;</span>&gt;</span>
+  This is the
+  <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;accent&quot;</span>&gt;</span>accent color<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  for the dark theme
+<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-heading-themes">
+        <div class="sg-text">
+          <h3 id="heading-themes" class="sg">Heading Themes</h3>
+          <p class="sg">Heading levels 3-6 automatically use the theme&apos;s accent color when they&apos;re within an article. This can be overriden (reverting the heading to its natural color) by adding the class
+            <code class="sg">noaccent</code>.</p>
+          <blockquote class="sg">
+            <p class="sg">Note: Heading levels 1 and 2 are not normally accented.
+            </p>
+          </blockquote>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <article class="light">
+              <h6>This is a heading within an article</h6>
+            </article>
+            <article class="light">
+              <h6 class="noaccent">This is an unaccented heading within an article</h6>
+            </article>
+            <article class="dark">
+              <h6>This is a heading within a dark-themed article</h6>
+            </article>
+            <article class="dark">
+              <h6 class="noaccent">This is an unaccented heading within a dark-themed article</h6>
+            </article>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;light&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>This is a heading within an article<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;light&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h6</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;noaccent&quot;</span>&gt;</span>This is an unaccented heading within an article<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dark&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>This is a heading within a dark-themed article<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dark&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h6</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;noaccent&quot;</span>&gt;</span>This is an unaccented heading within a dark-themed article<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-links">
+        <div class="sg-text">
+          <h3 id="links" class="sg">Links</h3>
+          <p class="sg">Links use the appropriate accent color and are underlined. Links within headings use the default heading color and are only underlined on hover.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <article class="light">
+              <p>
+                This is a
+                <a href="#">standard link</a>
+                within an article
+              </p>
+            </article>
+            <article class="dark">
+              <p>
+                This is a
+                <a href="#">standard link</a>
+                within a dark-themed article
+              </p>
+            </article>
+            <article>
+              <h2>
+                This is a
+                <a href="#">standard link</a>
+                within a second level heading
+              </h2>
+              <h3>
+                This is a
+                <a href="#">standard link</a>
+                within a third level heading
+              </h3>
+            </article>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;light&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+    This is a
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>standard link<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    within an article
+  <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dark&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+    This is a
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>standard link<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    within a dark-themed article
+  <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">article</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>
+    This is a
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>standard link<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    within a second level heading
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span>&gt;</span>
+    This is a
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>standard link<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    within a third level heading
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-footer">
+        <div class="sg-text">
+          <h3 id="footer" class="sg">Footer</h3>
+          <p class="sg">By default, the footer is styled using the dark theme. Links within the footer, however, default to the normal (non-accented) color and change to the accented color on hover. Although this scheme de-emphasizes links within the footer, it can make those links hard to discover. For this reason, it is recommended that footer links include some other affordance (e.g. an icon) to indicate clickability. The footer includes a top border in the light color to separate it from dark-themed content that may precede it. To style the footer using the light theme, add a
+            <code class="sg">light</code>class.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="dark">
+              This is content in the dark theme.
+            </div>
+            <footer>
+              This is
+              <a href="#">a link</a>
+              within a footer.
+            </footer>
+            <div class="light">
+              This is content in the light theme.
+            </div>
+            <footer class="light">
+              This is
+              <a href="#">a link</a>
+              within a footer.
+            </footer>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dark&quot;</span>&gt;</span>
+  This is content in the dark theme.
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">footer</span>&gt;</span>
+  This is
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>a link<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  within a footer.
+<span class="hljs-tag">&lt;/<span class="hljs-title">footer</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;light&quot;</span>&gt;</span>
+  This is content in the light theme.
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">footer</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;light&quot;</span>&gt;</span>
+  This is
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>a link<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  within a footer.
+<span class="hljs-tag">&lt;/<span class="hljs-title">footer</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-utilities">
+      <h2 id="utilities" class="sg">Utilities</h2>
+      <p class="sg">A few useful utilities.</p>
+      <section class="sg-block sg-section-clearfix">
+        <div class="sg-text">
+          <h3 id="clearfix" class="sg">Clearfix</h3>
+          <p class="sg">Add the
+            <code class="sg">clearfix</code>class to any element that needs to clear all floats.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div style="float:left">This is a floating div</div>
+            <div class="clearfix">This clears the floating div</div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;float:left&quot;</span>&gt;</span>This is a floating div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;clearfix&quot;</span>&gt;</span>This clears the floating div<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+  </div>
+  <script src="https://cdn.rawgit.com/styledown/styledown/v1.0.2/data/styledown.js"></script>
+</body>
+
+</html>
