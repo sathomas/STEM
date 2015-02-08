@@ -6,7 +6,8 @@
     "backbone": "~1.1.0",
     "modernizr": "~2.8.3",
     "bootstrap": "~3.3.2",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "normalize.css": "~3.0.2"
   },
   "devDependencies": {}
 }

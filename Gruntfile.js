@@ -220,9 +220,16 @@ module.exports = function (grunt) {
                     cwd: '<%= yeoman.app %>',
                     src: 'bower_components/bootstrap/fonts/*.*',
                     dest: '<%= yeoman.dist %>/fonts/'
-                }, {
-                    src: 'node_modules/apache-server-configs/dist/.htaccess',
-                    dest: '<%= yeoman.dist %>/.htaccess'
+                }]
+            },
+            docs: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    flatten: true,
+                    cwd: '<%= yeoman.app %>',
+                    src: 'styles/*.css',
+                    dest: '<%= yeoman.dist %>/docs/styleguide'
                 }]
             }
         },
@@ -244,6 +251,18 @@ module.exports = function (grunt) {
                     ]
                 }
             }
+        },
+        styledown: {
+          dist: {
+            files: {
+                'dist/docs/styleguide/index.html': ['app/styles/main.css']
+            },
+            options: {
+              css: 'main.css',
+              title: 'Georgia K-12 STEM Incubator Style Guide',
+              sg_css: 'styleguide.css'
+            }
+          }
         },
         docco: {
             dist: {
@@ -311,6 +330,12 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.registerTask('docs', [
+        'docco:dist',
+        'styledown:dist',
+        'copy:docs'
+    ]);
+
     grunt.registerTask('build', [
         'clean:dist',
         'createDefaultTemplate',
@@ -324,7 +349,7 @@ module.exports = function (grunt) {
         'copy',
         'rev',
         'usemin',
-        'docco:dist'
+        'docs'
     ]);
 
     grunt.registerTask('default', [

@@ -45,6 +45,7 @@
     "grunt-mocha": "^0.4.11",
     "grunt-open": "^0.2.3",
     "grunt-rev": "^0.1.0",
+    "grunt-styledown": "0.0.2",
     "grunt-usemin": "^2.4.0",
     "jshint-stylish": "^1.0.0",
     "load-grunt-tasks": "^0.6.0",
