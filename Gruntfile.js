@@ -120,6 +120,19 @@ module.exports = function (grunt) {
                 'test/spec/{,*/}*.js'
             ]
         },
+        csslint: {
+          options: {
+            'box-sizing': false,
+            'font-sizes': false,
+            import: false,
+          },
+          all: {
+            src: [
+              '<%= yeoman.app %>/styles/*.css',
+              '!<%= yeoman.app %>/styles/styleguide.css',
+            ]
+          },
+        },
         blanket_mocha: {
             all: {
                 options: {
@@ -229,7 +242,14 @@ module.exports = function (grunt) {
                     flatten: true,
                     cwd: '<%= yeoman.app %>',
                     src: 'styles/*.css',
-                    dest: '<%= yeoman.dist %>/docs/styleguide'
+                    dest: '<%= yeoman.dist %>/docs/styleguide/css/'
+                },{
+                    expand: true,
+                    dot: true,
+                    flatten: true,
+                    cwd: '<%= yeoman.app %>',
+                    src: 'images/*.*',
+                    dest: '<%= yeoman.dist %>/docs/styleguide/images/'
                 }]
             }
         },
@@ -258,9 +278,9 @@ module.exports = function (grunt) {
                 'dist/docs/styleguide/index.html': ['app/styles/main.css']
             },
             options: {
-              css: 'main.css',
+              css: 'css/main.css',
               title: 'Georgia K-12 STEM Incubator Style Guide',
-              sg_css: 'styleguide.css'
+              sg_css: 'css/styleguide.css'
             }
           }
         },
@@ -336,6 +356,11 @@ module.exports = function (grunt) {
         'copy:docs'
     ]);
 
+    grunt.registerTask('lint', [
+        'jshint',
+        'csslint'
+    ]);
+
     grunt.registerTask('build', [
         'clean:dist',
         'createDefaultTemplate',
@@ -353,7 +378,7 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('default', [
-        'jshint',
+        'lint',
         'test',
         'build'
     ]);
