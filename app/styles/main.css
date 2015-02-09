@@ -456,7 +456,7 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
  * can be overriden (reverting the heading to its
  * natural color) by adding the class `noaccent`.
  * Because the accent color is also used for links,
- * it is _strongly recommended_ that all headings
+ * it is strongly recommended that all headings
  * also act as links.
  *
  * > Note: Heading levels 1 and 2 are not normally
@@ -686,9 +686,215 @@ footer a:focus, footer a:hover {
 
 /**
  * Navigation Bar:
- * The responsive navigation bar at the top
- * of all "pages" on the site.
+ * The responsive navigation bar at the top of all "pages"
+ * on the site. The navigation must be wrapped in a `<div>`
+ * of class `header`, and it must include an `<input>` of
+ * type `checkbox` and an associated empty label before
+ * the unordered list of menu items. An optional `h1` allows
+ * branding. Links within that heading are displayed identically
+ * to standard heading text (no underline or hover). See the
+ * example for details.
+ *
+ *     @example:
+ *     <div class="header">
+ *         <h1>
+ *             <a href="#">Site Name</a>
+ *         </h1>
+ *     	   <nav>
+ *     	       <input type="checkbox" id="nav-toggle"/>
+ *     	       <label for="nav-toggle"></label>
+ *             <ul>
+ *                 <li><a href="#">First Selection</a></li>
+ *                 <li><a href="#">Second Selection</a></li>
+ *                 <li><a href="#">Third Selection</a></li>
+ *             </ul>
+ *         </nav>
+ *     </div>
  */
+
+/*
+ * The styles below are derived from
+ * [Navigataur](https://coderwall.com/p/sujd_w/navigataur-a-pure-css-responsive-navigation-menu)
+ * by Mike King. There are a couple of conventions that
+ * are different than other styles in this stylesheet.
+ * Unlike regular content, the navigation bar relies on `px`
+ * units for precise positioning. Also, the style definitions
+ * are desktop-first rather than mobile-first to help make the
+ * code more understandable.
+ */
+
+/*
+ * Start with generic and desktop styles.
+ */
+
+/*
+ * For now the navigation bar uses the light accent
+ * color as a background, but it could use a different
+ * color without affecting the theme.
+ */
+.header {
+	background-color: #2bbae4 /* light: accent */;
+	min-height: 100px;
+	height: 100%;
+	padding: 0 20px;
+}
+
+/*
+ * Optional branding is marked up as an `h1`.
+ */
+.header h1 {
+	color: #ffffff;
+    float: left;
+    font-size: 36px;
+    padding: 30px 0 0;
+}
+
+.header h1 a {
+    text-decoration: none;
+}
+
+nav {
+    display: block;
+    float: right;
+}
+
+nav label {
+	z-index: 2;
+}
+
+nav ul {
+    margin: 15px 0;
+    padding: 0;
+}
+
+nav, nav ul, nav li, nav li > a {
+	height: 100%;
+}
+
+nav li > a {
+    color: #ffffff;
+	display: block;
+	font-size: 16px;
+	line-height: 1;
+	padding: 32px 20px;
+	text-decoration: none;
+}
+
+/*
+ * Visual changes for mobile viewports
+ */
+
+@media only screen and (max-width: 750px){
+	nav ul {
+		background: #2bbae4 /* light: accent */;
+		border-top: 1px solid #1a6f88; /* much darker version of background */
+	}
+
+    nav li:not(:first-child) {
+        border-top: 1px solid #25a1c5; /* slightly darker version of background */
+    }
+
+	nav ul, nav li, nav li > a {
+		height: auto;
+	}
+
+	nav li > a {
+		padding: 15px 15px;
+	}
+
+	nav li > a:hover, nav li > a:focus {
+        text-decoration: none;
+	}
+
+	nav label:after {
+        color: #ffffff;
+		content: 'Menu';
+		display: block;
+		font-size: 16px;
+		margin: 33px 0;
+		padding: 10px;
+		text-align: center;
+		width: 100px;
+	}
+
+	#nav-toggle:checked + label:after{
+		content: 'Close Menu';
+	}
+}
+
+/*
+ * The following rules implement the responsive
+ * behavior of the navigation bar. You probably
+ * don't want to change them unless you're
+ * fixing a bug in them.
+ */
+
+/*
+ * As above, start with the desktop version.
+ */
+
+.header {
+    position: relative;
+}
+
+#nav-toggle, nav label {
+    display: none;
+}
+
+nav li {
+    float:left;
+    list-style: none;
+}
+
+/*
+ * Be sure to clear all floats.
+ */
+
+.header:before, .header:after {
+    content: "";
+    display: table;
+}
+
+.header:after {
+    clear: both;
+}
+
+/*
+ * Now adjust for mobile views
+ */
+
+@media only screen and (max-width: 750px) {
+	nav ul {
+        display: none;
+        margin: 0;
+        opacity: 0;
+        position: absolute;
+        right: 0;
+        width: 100%;
+    }
+	nav li {
+        display: block;
+        margin: 0;
+        width: 100%;
+    }
+	nav li > a {
+        display: block;
+        text-decoration: none;
+        width: 100%;
+    }
+	nav label {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+                user-select: none;
+    }
+	#nav-toggle:checked ~ ul {
+        display: block;
+        opacity: 1;
+    }
+}
 
 /**
  * Hero:
