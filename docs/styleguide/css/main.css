@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,600);
 /* Load Raleway from Google fonts - `@import` statements have to preceed
-   even comments within CSS. This only works if this stylesheet is first. */
+   all CSS statements, even comments. */
 
 
 /**
@@ -12,10 +12,18 @@
  * by [styledown](https://github.com/styledown/styledown)
  * from comments embedded in the stylesheet.
  *
- * The left side of this page describes the various style
- * elements and gives guidance for their use. The right
- * side shows an example of the corresponding element.
- * To see the markup for any example, click on the ellipses
+ * If you're reading the CSS source code, you can view
+ * the live style guide on the
+ * [STEM Incubator site](http://sathomas.me/STEM/docs/styleguide/).
+ * If you're reading the style guide and have no other
+ * access to the source code, you can see the fully
+ * commented CSS file by viewing the page source.
+ *
+ * In the style guide, the left side of this page
+ * describes the various style elements and gives
+ * guidance for their use. The right side shows an
+ * example of the corresponding element. To see the
+ * markup for any example, click on the ellipses
  * (`...`) below the example.
  */
 
@@ -110,13 +118,15 @@ article {
  * static headings for dynamic content).
  *
  *     @example:
- *     <article class="dynamic">
- *         <h6>Heading for Content</h6>
- *         <!-- dynamically-generated content here -->
- *     </article>
+ *     <div class="no-js">
+ *         <article class="dynamic">
+ *             <h6>Heading for Content</h6>
+ *             <!-- dynamically-generated content here -->
+ *         </article>
+ *     </div>
  */
 
-html.no-js .dynamic {
+.no-js .dynamic {
     display: none;
 }
 
@@ -445,6 +455,9 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
  * accent color when they're within an article. This
  * can be overriden (reverting the heading to its
  * natural color) by adding the class `noaccent`.
+ * Because the accent color is also used for links,
+ * it is _strongly recommended_ that all headings
+ * also act as links.
  *
  * > Note: Heading levels 1 and 2 are not normally
  * accented.
@@ -511,9 +524,10 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
  * is recommended that footer links include some
  * other affordance (e.g. an icon) to indicate
  * clickability. The footer includes a top border in
- * the light color to separate it from dark-themed
- * content that may precede it. To style the footer
- * using the light theme, add a `light` class.
+ * the theme color to separate it from same-themed
+ * content that may immediately precede it.
+ * To style the footer using the light theme, add
+ * a `light` class.
  *
  *     @example:
  *     <div class="dark">
@@ -534,6 +548,25 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
  *     </footer>
  */
 
+/*
+ * Because browser support for CSS variables is
+ * essentially non-existent and we have to re-use
+ * the same colors for several styles, all colors
+ * have a comment identifying them. That comment
+ * is available for global search-and-replace.
+ */
+
+/*
+ * In many of the selectors that follow, we're
+ * explicitly ignoring `<article>` elements
+ * with the `hero` class. In general, it's
+ * probably not a good idea to make the hero
+ * element an article since it doesn't really
+ * have any meaningful content, but we'll go
+ * ahead and add the necessary filters just in
+ * case, as that's probably an easy mistake to
+ * make.
+ */
 
 body,
 .light,
@@ -542,23 +575,23 @@ article.light:not(.hero):nth-of-type(even) h3,
 article.light:not(.hero):nth-of-type(even) h4,
 article.light:not(.hero):nth-of-type(even) h5,
 article.light:not(.hero):nth-of-type(even) h6 {
-    background-color: #ffffff;
-    color: #403D3B;  /* repeated in footer.light border-top */
+    background-color: #ffffff /* light: background */;
+    color: #403D3B /* light: color */;
 }
 
 article:not(.hero):nth-of-type(even),
 footer,
 .dark {
-    background-color: #6b6764;
-    color: #ffffff;  /* repeated in footer border-top */
+    background-color: #6b6764 /* dark: background */;
+    color: #ffffff /* dark: color */;
 }
 
 footer {
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid #ffffff /* dark: color */;
 }
 
 footer.light {
-    border-top: 1px solid #403D3B;
+    border-top: 1px solid #403D3B /* light: color */;
 }
 
 .accent,
@@ -570,7 +603,7 @@ a,
 footer.light a:hover, footer.light a:focus,
 footer .light a:hover, footer .light a:focus,
 footer a.light:hover, footer a.light:focus {
-    color: #2bbae4;
+    color: #2bbae4 /* light: accent */;
 }
 
 article:not(.hero):nth-of-type(even).accent,
@@ -595,7 +628,7 @@ article:not(.hero):nth-of-type(even) a,
 footer.accent, footer .accent,
 footer a:hover, footer a:focus,
 .dark.accent, .dark .accent, .dark a, a.dark {
-    color: #e3e132;
+    color: #e3e132 /* dark: accent */;
 }
 
 a, a:hover, a:focus, a:visited {
@@ -625,7 +658,7 @@ h6 a:hover, h6 a:focus {
 }
 
 footer {
-    border-top: 1px solid #ffffff;
+    border-top: 1px solid #ffffff /* dark: color */;
 }
 
 footer a {
@@ -636,6 +669,52 @@ footer a {
 footer a:focus, footer a:hover {
     text-decoration: none;
 }
+
+
+/**
+ * ## Components
+ *
+ * Higher level components on the site generally
+ * strive for very semantic markup to keep the
+ * HTML as clean and simple as possible. (This
+ * is especially helpful since much of the site
+ * is dynamic and the underlying HTML actually
+ * originates in JavaScript templates.) The cost,
+ * of course, is a bit of added complexity in
+ * the CSS.
+ */
+
+/**
+ * Navigation Bar:
+ * The responsive navigation bar at the top
+ * of all "pages" on the site.
+ */
+
+/**
+ * Hero:
+ * The "hero" panel intended for the top (just
+ * below the navigation) of the landing page.
+ */
+
+/**
+ * Cropped Images:
+ * Since we have little control over the dimensions
+ * of images loaded from third-party sites (such as
+ * DonorsChoose), we use a wrapper to size and crop
+ * them in a consistent manner across the site.
+ */
+
+/**
+ * Featured Selection:
+ * Featured selections highlight a particular
+ * content element, e.g. as an "Editor's Choice".
+ */
+
+/**
+ * Simple Block:
+ * Simple blocks are used on the landing page to
+ * summarize and highlight individual services.
+ */
 
 /**
  * ## Utilities

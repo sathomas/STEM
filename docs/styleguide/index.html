@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <title>Georgia K-12 STEM Incubator Style Guide</title>
-  <link rel="stylesheet" href="styleguide.css">
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="css/styleguide.css">
+  <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body class="sg">
@@ -15,7 +15,9 @@
       <a href="www.getskeleton.com" class="sg">Skeleton</a>, version 2.0.4, by Dave Gamache. Style guide generated automatically by
       <a href="https://github.com/styledown/styledown" class="sg">styledown</a>
       from comments embedded in the stylesheet.</p>
-    <p class="sg">The left side of this page describes the various style elements and gives guidance for their use. The right side shows an example of the corresponding element. To see the markup for any example, click on the ellipses (
+    <p class="sg">If you&apos;re reading the CSS source code, you can view the live style guide on the
+      <a href="http://sathomas.me/STEM/docs/styleguide/" class="sg">STEM Incubator site</a>. If you&apos;re reading the style guide and have no other access to the source code, you can see the fully commented CSS file by viewing the page source.</p>
+    <p class="sg">In the style guide, the left side of this page describes the various style elements and gives guidance for their use. The right side shows an example of the corresponding element. To see the markup for any example, click on the ellipses (
       <code class="sg">...</code>) below the example.</p>
     <section class="sg-section sg-section-html-page-structure">
       <h2 id="html-page-structure" class="sg">HTML Page Structure</h2>
@@ -90,14 +92,18 @@
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <article class="dynamic">
-              <h6>Heading for Content</h6>
-              <!-- dynamically-generated content here -->
-            </article>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dynamic&quot;</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>Heading for Content<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span>
-  <span class="hljs-comment">&lt;!-- dynamically-generated content here --&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span></pre>
+            <div class="no-js">
+              <article class="dynamic">
+                <h6>Heading for Content</h6>
+                <!-- dynamically-generated content here -->
+              </article>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-js&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;dynamic&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>Heading for Content<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- dynamically-generated content here --&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
       </section>
     </section>
@@ -297,7 +303,8 @@
         <div class="sg-text">
           <h3 id="heading-themes" class="sg">Heading Themes</h3>
           <p class="sg">Heading levels 3-6 automatically use the theme&apos;s accent color when they&apos;re within an article. This can be overriden (reverting the heading to its natural color) by adding the class
-            <code class="sg">noaccent</code>.</p>
+            <code class="sg">noaccent</code>. Because the accent color is also used for links, it is
+            <em class="sg">strongly recommended</em>that all headings also act as links.</p>
           <blockquote class="sg">
             <p class="sg">Note: Heading levels 1 and 2 are not normally accented.
             </p>
@@ -395,7 +402,7 @@
       <section class="sg-block sg-section-footer">
         <div class="sg-text">
           <h3 id="footer" class="sg">Footer</h3>
-          <p class="sg">By default, the footer is styled using the dark theme. Links within the footer, however, default to the normal (non-accented) color and change to the accented color on hover. Although this scheme de-emphasizes links within the footer, it can make those links hard to discover. For this reason, it is recommended that footer links include some other affordance (e.g. an icon) to indicate clickability. The footer includes a top border in the light color to separate it from dark-themed content that may precede it. To style the footer using the light theme, add a
+          <p class="sg">By default, the footer is styled using the dark theme. Links within the footer, however, default to the normal (non-accented) color and change to the accented color on hover. Although this scheme de-emphasizes links within the footer, it can make those links hard to discover. For this reason, it is recommended that footer links include some other affordance (e.g. an icon) to indicate clickability. The footer includes a top border in the theme color to separate it from same-themed content that may immediately precede it. To style the footer using the light theme, add a
             <code class="sg">light</code>class.</p>
         </div>
         <div class="sg-example">
@@ -433,6 +440,31 @@
   within a footer.
 <span class="hljs-tag">&lt;/<span class="hljs-title">footer</span>&gt;</span></pre>
         </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-components">
+      <h2 id="components" class="sg">Components</h2>
+      <p class="sg">Higher level components on the site generally strive for very semantic markup to keep the HTML as clean and simple as possible. (This is especially helpful since much of the site is dynamic and the underlying HTML actually originates in JavaScript templates.) The cost, of course, is a bit of added complexity in the CSS.</p>
+      <section class="sg-block sg-section-navigation-bar">
+        <h3 id="navigation-bar" class="sg">Navigation Bar</h3>
+        <p class="sg">The responsive navigation bar at the top of all &quot;pages&quot; on the site.</p>
+      </section>
+      <section class="sg-block sg-section-hero">
+        <h3 id="hero" class="sg">Hero</h3>
+        <p class="sg">The &quot;hero&quot; panel intended for the top (just below the navigation) of the landing page.</p>
+      </section>
+      <section class="sg-block sg-section-cropped-images">
+        <h3 id="cropped-images" class="sg">Cropped Images</h3>
+        <p class="sg">Since we have little control over the dimensions of images loaded from third-party sites (such as DonorsChoose), we use a wrapper to size and crop them in a consistent manner across the site.</p>
+      </section>
+      <section class="sg-block sg-section-featured-selection">
+        <h3 id="featured-selection" class="sg">Featured Selection</h3>
+        <p class="sg">Featured selections highlight a particular content element, e.g. as an &quot;Editor&apos;s Choice&quot;.</p>
+      </section>
+      <section class="sg-block sg-section-simple-block">
+        <h3 id="simple-block" class="sg">Simple Block</h3>
+        <p class="sg">Simple blocks are used on the landing page to summarize and highlight individual services.</p>
       </section>
     </section>
 
