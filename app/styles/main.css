@@ -865,11 +865,14 @@ nav li {
 
 @media only screen and (max-width: 750px) {
 	nav ul {
-        display: none;
         margin: 0;
-        opacity: 0;
+        max-height: 0;
+        overflow-y: hidden;
         position: absolute;
         right: 0;
+        -webkit-transition: max-height 250ms;
+           -moz-transition: max-height 250ms;
+                transition: max-height 250ms;
         width: 100%;
     }
 	nav li {
@@ -891,8 +894,7 @@ nav li {
                 user-select: none;
     }
 	#nav-toggle:checked ~ ul {
-        display: block;
-        opacity: 1;
+        max-height: 140px;
     }
 }
 
