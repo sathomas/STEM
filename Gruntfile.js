@@ -106,8 +106,7 @@ module.exports = function (grunt) {
         },
         clean: {
             dist: ['.tmp', '<%= yeoman.dist %>/*'],
-            server: '.tmp',
-            coveralls: 'test/output/lcov.info'
+            server: '.tmp'
         },
         jshint: {
             options: {
@@ -129,17 +128,6 @@ module.exports = function (grunt) {
                 },
                 dest: 'test/output/lcov.info'
             }
-        },
-        coveralls: {
-          options: {
-            // LCOV coverage file relevant to every target
-            src: 'test/output/lcov.info',
-
-            // When true, grunt-coveralls will only print a warning rather than
-            // an error, to prevent CI builds from failing unnecessarily (e.g. if
-            // coveralls.io is down). Optional, defaults to false.
-            force: true
-          }
         },
         // not enabled since usemin task does concat and uglify
         // check index.html to edit your build targets
@@ -294,12 +282,10 @@ module.exports = function (grunt) {
         isConnected = Boolean(isConnected);
         var testTasks = [
                 'clean:server',
-                'clean:coveralls',
                 'createDefaultTemplate',
                 'jst',
                 'connect:test',
-                'blanket_mocha',
-                'coveralls'
+                'blanket_mocha'
             ];
 
         if(!isConnected) {

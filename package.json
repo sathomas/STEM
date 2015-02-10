@@ -40,7 +40,6 @@
     "grunt-contrib-jst": "^0.6.0",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-coveralls": "^1.0.0",
     "grunt-docco": "^0.3.3",
     "grunt-mocha": "^0.4.11",
     "grunt-open": "^0.2.3",
