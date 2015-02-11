@@ -1,4 +1,4 @@
-'use strict';
+/*global require*/
 var LIVERELOAD_PORT = 35729;
 var SERVER_PORT = 9000;
 var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
@@ -114,18 +114,19 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             all: [
-                'Gruntfile.js',
                 '<%= yeoman.app %>/scripts/{,*/}*.js',
                 '!<%= yeoman.app %>/scripts/vendor/*',
                 'test/spec/{,*/}*.js'
             ]
         },
-        mocha: {
+        blanket_mocha: {
             all: {
                 options: {
-                    run: true,
-                    urls: ['http://localhost:<%= connect.test.options.port %>/index.html']
-                }
+                    run: false,
+                    urls: ['http://localhost:<%= connect.test.options.port %>/index.html'],
+                    threshold: 95
+                },
+                dest: 'test/output/lcov.info'
             }
         },
         // not enabled since usemin task does concat and uglify
@@ -284,7 +285,7 @@ module.exports = function (grunt) {
                 'createDefaultTemplate',
                 'jst',
                 'connect:test',
-                'mocha',
+                'blanket_mocha'
             ];
 
         if(!isConnected) {
