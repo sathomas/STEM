@@ -1,15 +1,13 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,600);
-/* Load Raleway from Google fonts - `@import` statements have to preceed
-   all CSS statements, even comments. */
+/* `@import` statements have to preceed all CSS statements, even comments. */
 
 
 /**
  * # Style Guide for Georgia K-12 STEM Incubator
  *
- * CSS stylesheet for Georgia K-12 STEM Incubator. Based
- * (heavily) on [Skeleton](www.getskeleton.com), version
- * 2.0.4, by Dave Gamache. Style guide generated automatically
- * by [styledown](https://github.com/styledown/styledown)
+ * CSS stylesheet for Georgia K-12 STEM Incubator. Style
+ * guide generated automatically by
+ * [styledown](https://github.com/styledown/styledown)
  * from comments embedded in the stylesheet.
  *
  * If you're reading the CSS source code, you can view
@@ -25,7 +23,35 @@
  * example of the corresponding element. To see the
  * markup for any example, click on the ellipses
  * (`...`) below the example.
+ *
+ * ## Contents
+ *
+ * - [HTML Page Structure](#html-page-strucure)
+ *     - [Section](#section)
+ *     - [Article](#article)
+ *     - [Dynamic Content](#dynamic-content)
+ * - [Grid](#grid)
+ *     - [Container](#container)
+ *     - [Row](#row)
+ *     - [Column](#column)
+ * - [Typography](#typography)
+ *     - [Base](#base)
+ *     - [Headings](#content)
+ *     - [Content](#content)
+ *     - [Footer](#footer)
+ * - [Components](#components)
+ *     - [Buttons](#buttons)
+ *     - [Call to Action](#call-to-action)
+ *     - [Navigation Bar](#navigation-bar)
+ * - [Themes](#themes)
+ *     - [Teachers Theme](#teachers-theme)
+ *     - [Schools Theme](#schools-theme)
+ *     - [Industry Theme](#industry-theme)
+ *     - [Neutral Theme](#neutral-theme)
  */
+
+
+/* ===================================================== */
 
 /**
  * ## HTML Page Structure
@@ -34,6 +60,9 @@
  * three standard compononents of `<nav>`, `<main>`,
  * and `<footer>`.
  */
+
+/* ===================================================== */
+
 
 /**
  * Section:
@@ -82,12 +111,11 @@ section.show {
     position: static;
 }
 
+
 /**
  * Article:
  * A section can optionally be divided into multiple
- * `<article>` elements. When articles are used, they
- * will be alternately styled according to the light
- * and dark themes. (See Themes section below.)
+ * `<article>` elements.
  *
  *     @example:
  *     <section>
@@ -103,6 +131,7 @@ section.show {
 article {
     width: 100%;
 }
+
 
 /**
  * Dynamic Content:
@@ -130,30 +159,31 @@ article {
     display: none;
 }
 
+
+/* ===================================================== */
+
 /**
  * ## Grid
  *
  * Within sections (and articles) we use a standard
  * 12-column grid for overall layout, in a responsive,
- * mobile-first architecture. The breakpoints are:
+ * mobile-first architecture. In general, media queries
+ * should be tailored for particular content items, but the
+ * primary breakpoints for the grid are at 500x and
+ * 1000px.
  *
  * - default (no media query) for smartphones
- * - `@media (min-width:  400px) {}` large smartphones/phablets
- * - `@media (min-width:  550px) {}` tablets
- * - `@media (min-width:  750px) {}` small desktops
- * - `@media (min-width: 1000px) {}` large desktops
- * - `@media (min-width: 1200px) {}` HD desktops
- *
- * The grid remains a single column for smartphones and
- * large smartphones/phablets and becomes multiple
- * columns for tablets and larger.
+ * - `@media (min-width:  500px) {}` large smartphone/phablet
+ * - `@media (min-width: 1000px) {}` desktop
  */
+
+/* ===================================================== */
+
 
 /**
  * Container:
  * The `container` class encapsulates all grid-based
- * content. It centers the content and applies
- * margins.
+ * content.
  *
  *     @example:
  *     <div class="container">
@@ -161,37 +191,12 @@ article {
  *     </div>
  */
 
-/* Generic and mobile-first rules */
 .container {
-    box-sizing: border-box;
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 0 20px;     /* minimal padding */
-    position: relative;
-    width: 100%;         /* full width */
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
-/* Clear floats */
-.container:after {
-    clear: both;
-    content: "";
-    display: table;
-}
-
-/* Large smartphones/phablets */
-@media (min-width: 400px) {
-    .container {
-        padding: 0;     /* use width to increase */
-        width: 85%;     /* the gutters */
-    }
-}
-
-/* Tablets and above */
-@media (min-width: 550px) {
-    .container {
-        width: 80%;    /* lower % for gutters */
-    }
-}
 
 /**
  * Row:
@@ -207,12 +212,32 @@ article {
  *     </div>
  */
 
-/* All we need to do for rows is clear all floats */
-.row:after {
-    clear: both;
-    content: "";
-    display: table;
+/*
+ * We're using flexbox for the grid since the page
+ * layout is challenging for other grid approaches
+ * (inline-block or floats). That does leave IE9
+ * (and maybe IE10) behind.
+ */
+
+.row {
+    align-items: stretch;
+    display: -webkit-flex;
+    display:     -ms-flexbox;
+    display:         flex;
+    -webkit-box-orient: horizontal;
+       -moz-box-orient: horizontal;
+        -ms-box-orient: horizontal;
+    -webkit-box-direction: normal;
+       -moz-box-direction: normal;
+        -ms-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
 }
+
 
 /**
  * Column:
@@ -223,105 +248,123 @@ article {
  * integers (`one column`), the grid supports columns
  * defined as fractions of the row (`one-third column`).
  *
- * > Note: offset columns are also defined but
- * currently disabled in the stylesheet to avoid
- * bothering the browser with unused rules. They're
- * simply commented out in the CSS, though, so that
- * they can be easily re-enabled without having to
- * re-calculate the percentages.
- *
  *     @example:
  *     <div class="container">
  *         <div class="row">
- *             <div class="three columns" style="background-color:lightgray">3/12 (1/4) of row</div>
- *             <div class="nine columns" style="background-color:lightgray">9/12 (3/4) of row</div>
+ *             <div class="three columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     3/12 (1/4) of row
+ *                 </div>
+ *             </div>
+ *             <div class="nine columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     9/12 (3/4) of row
+ *                 </div>
+ *             </div>
  *         </div>
  *         <div class="row" style="margin-top:0.2em">
- *             <div class="one-third column" style="background-color:lightgray">1/3 of row</div>
- *             <div class="two-thirds column" style="background-color:lightgray">2/3 of row</div>
+ *             <div class="two-thirds column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     2/3 of row
+ *                 </div>
+ *             </div>
+ *             <div class="one-third column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     1/3 of row
+ *                 </div>
+ *             </div>
  *         </div>
  *     </div>
  */
 
-/* Generic and mobile-first rules */
+/*
+ * Start with generic and mobile-first rules. For those screen sizes
+ * all columns are full-width.
+ */
+
 .column,
 .columns {
-  box-sizing: border-box;
-  float: left;
-  width: 100%;    /* any column is full-width */
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    -webkit-flex-grow: 1;
+        -ms-flex-grow: 1;
+            flex-grow: 1;
+    -webkit-flex-shrink: 1;
+        -ms-flex-shrink: 1;
+            flex-shrink: 1;
+    -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
 }
 
-/* Tablets and above */
-@media (min-width: 550px) {
-    .column,
-    .columns {
-        margin-left: 4%;   /* spacing between columns */
-    }
-    .column:first-child,
-    .columns:first-child {
-        margin-left: 0;    /* no spacing needed on left-most */
-    }
+/*
+ * At tablet sizes, columns can shrink to half of the screen
+ * width.
+ */
+
+@media (min-width: 500px) {
 
     /* simple column definitions */
     .one.column,
-    .one.columns          { width: 4.66666666667%; }
-    .two.columns          { width: 13.3333333333%; }
-    .three.columns        { width: 22%;            }
-    .four.columns         { width: 30.6666666667%; }
-    .five.columns          { width: 39.3333333333%; }
-    .six.columns          { width: 48%;            }
-    .seven.columns        { width: 56.6666666667%; }
-    .eight.columns        { width: 65.3333333333%; }
-    .nine.columns         { width: 74.0%;          }
-    .ten.columns          { width: 82.6666666667%; }
-    .eleven.columns       { width: 91.3333333333%; }
-    .twelve.columns       { width: 100%; margin-left: 0; }
+    .one.columns,
+    .two.columns,
+    .three.columns,
+    .four.columns,
+    .five.columns,
+    .six.columns          { -webkit-flex-basis: 50%; -ms-flex-preferred-size: 50%; flex-basis: 50%; }
+    .seven.columns,
+    .eight.columns,
+    .nine.columns,
+    .ten.columns,
+    .eleven.columns,
+    .twelve.columns       { -webkit-flex-basis: 100%; -ms-flex-preferred-size: 100%; flex-basis: 100%; }
 
     /* fractional column definitions */
-    .one-full.column      { width: 100%; margin-left: 0; }
-    .one-half.column      { width: 48%; }
-    .one-third.column     { width: 30.6666666667%; }
-    .two-thirds.column    { width: 65.3333333333%; }
-    .one-fourth.column    { width: 22%;            }
-    .three-fourths.column { width: 74.0%;          }
+    .one-third.column,
+    .one-fourth.column,
+    .one-sixth.column,
+    .one-half.column      { -webkit-flex-basis: 50%; -ms-flex-preferred-size: 50%; flex-basis: 50%; }
+    .two-thirds.column,
+    .three-fourths.column,
+    .one-full.column      { -webkit-flex-basis: 100%; -ms-flex-preferred-size: 100%; flex-basis: 100%; }
 
-    /* column offsets - disabled until we need them */
-    /*
-    .offset-by-one.column,
-    .offset-by-one.columns            { margin-left: 8.66666666667%; }
-    .offset-by-two.column,
-    .offset-by-two.columns            { margin-left: 17.3333333333%; }
-    .offset-by-three.column,
-    .offset-by-three.columns          { margin-left: 26%;            }
-    .offset-by-four.column,
-    .offset-by-four.columns           { margin-left: 34.6666666667%; }
-    .offset-by-five.column,
-    .offset-by-five.columns            { margin-left: 43.3333333333%; }
-    .offset-by-six.column,
-    .offset-by-six.columns            { margin-left: 52%;            }
-    .offset-by-seven.column,
-    .offset-by-seven.columns          { margin-left: 60.6666666667%; }
-    .offset-by-eight.column,
-    .offset-by-eight.columns          { margin-left: 69.3333333333%; }
-    .offset-by-nine.column,
-    .offset-by-nine.columns           { margin-left: 78.0%;          }
-    .offset-by-ten.column,
-    .offset-by-ten.columns            { margin-left: 86.6666666667%; }
-    .offset-by-eleven.column,
-    .offset-by-eleven.columns         { margin-left: 95.3333333333%; }
-
-    .offset-by-one-half.column,
-    .offset-by-one-half.columns       { margin-left: 52%;            }
-    .offset-by-one-third.column,
-    .offset-by-one-third.columns      { margin-left: 34.6666666667%; }
-    .offset-by-two-thirds.column,
-    .offset-by-two-thirds.columns     { margin-left: 69.3333333333%; }
-    .offset-by-one-fourth.column,
-    .offset-by-one-fourth.columns     { margin-left: 26%;            }
-    .offset-by-three-fourths.column,
-    .offset-by-three-fourths.columns  { margin-left: 78.0%;          }
-    */
 }
+
+/*
+ * Desktops get the full grid
+ */
+
+@media (min-width: 1000px) {
+
+    /* simple column definitions */
+    .one.column,
+    .one.columns          { -webkit-flex-basis: 8.33333333333%; -ms-flex-preferred-size: 8.33333333333%; flex-basis: 8.33333333333%; }
+    .two.columns          { -webkit-flex-basis: 16.6666666667%; -ms-flex-preferred-size: 16.6666666667%; flex-basis: 16.6666666667%; }
+    .three.columns        { -webkit-flex-basis: 25%; -ms-flex-preferred-size: 25%; flex-basis: 25%; }
+    .four.columns         { -webkit-flex-basis: 33.3333333333%; -ms-flex-preferred-size: 33.3333333333%; flex-basis: 33.3333333333%; }
+    .five.columns          { -webkit-flex-basis: 91.6666666667%; -ms-flex-preferred-size: 41.6666666667%; flex-basis: 41.6666666667%; }
+    .six.columns          { -webkit-flex-basis: 50%; -ms-flex-preferred-size: 50%; flex-basis: 50%; }
+    .seven.columns        { -webkit-flex-basis: 58.3333333333%; -ms-flex-preferred-size: 58.3333333333%; flex-basis: 58.3333333333%; }
+    .eight.columns        { -webkit-flex-basis: 66.6666666667%; -ms-flex-preferred-size: 66.6666666667%; flex-basis: 66.6666666667%; }
+    .nine.columns         { -webkit-flex-basis: 75%; -ms-flex-preferred-size: 75%; flex-basis: 75%; }
+    .ten.columns          { -webkit-flex-basis: 83.3333333333%; -ms-flex-preferred-size: 83.3333333333%; flex-basis: 83.3333333333%; }
+    .eleven.columns       { -webkit-flex-basis: 91.6666666667%; -ms-flex-preferred-size: 91.6666666667%; flex-basis: 91.6666666667%; }
+    .twelve.columns       { -webkit-flex-basis: 100%; -ms-flex-preferred-size: 100%; flex-basis: 100%; }
+
+    /* fractional column definitions */
+    .one-full.column      { -webkit-flex-basis: 100%; -ms-flex-preferred-size: 100%; flex-basis: 100%; }
+    .one-half.column      { -webkit-flex-basis: 50%; -ms-flex-preferred-size: 50%; flex-basis: 50%; }
+    .one-third.column     { -webkit-flex-basis: 33.3333333333%; -ms-flex-preferred-size: 33.3333333333%; flex-basis: 33.3333333333%; }
+    .two-thirds.column    { -webkit-flex-basis: 66.6666666667%; -ms-flex-preferred-size: 66.6666666667%; flex-basis: 66.6666666667%; }
+    .one-fourth.column    { -webkit-flex-basis: 25%; -ms-flex-preferred-size: 25%; flex-basis: 25%; }
+    .three-fourths.column { -webkit-flex-basis: 75%; -ms-flex-preferred-size: 75%; flex-basis: 75%; }
+    .one-sixth.column     { -webkit-flex-basis: 16.6666666667%; -ms-flex-preferred-size: 16.6666666667%; flex-basis: 16.6666666667%; }
+
+}
+
+
+/* ===================================================== */
 
 /**
  * ## Typography
@@ -336,10 +379,14 @@ article {
  * default size is `15px`.)
  */
 
+/* ===================================================== */
+
+
 /* Force base font size of 10px for document */
 html {
     font-size: 62.5%;
 }
+
 
 /**
  * Base:
@@ -349,7 +396,7 @@ html {
  *     @example:
  *     <p>
  *        The quick brown fox jumped over the lazy dog.<br/>
- *        The quick brown fox jumped over the lazy dog.
+ *        Sixty zippers were quickly picked from the woven jute bag.
  *     </p>
  */
 
@@ -365,11 +412,12 @@ p {
     margin-top: 0;
 }
 
+
 /**
  * Headings:
  * Headings use a slightly lighter font weight and specific line
  * heights and letter spacings tailored for the Raleway font
- * (but no so extreme as to be illegible if a font fallback
+ * (but not so extreme as to be illegible if a font fallback
  * is required). We start with relatively modest font sizes
  * for mobile devices and then increase the sizes a bit for
  * tablets and larger.
@@ -398,8 +446,8 @@ h4 { font-size: 2.4rem; line-height: 1.35; letter-spacing: -.08rem; }
 h5 { font-size: 1.8rem; line-height: 1.5;  letter-spacing: -.05rem; }
 h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
 
-/* Tablet and larger */
-@media (min-width: 550px) {
+/* Desktop */
+@media (min-width: 1000px) {
     h1 { font-size: 5.0rem; }
     h2 { font-size: 4.2rem; }
     h3 { font-size: 3.6rem; }
@@ -408,268 +456,86 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
     h6 { font-size: 1.5rem; }
 }
 
-/**
- * ## Themes
- *
- * The site uses two complementary themes, a light
- * theme and a dark theme. By default, most of the
- * site is styled with the light theme. The only
- * elements that default to the dark theme are
- * even-numbered articles and the footer.
- */
 
 /**
- * Background and Color:
- * The default theme for any element can be overridden
- * by adding a `dark` or `light` class.
+ * Content:
+ * The grid does not include any margins or padding to
+ * support full-width images and color blocks. In most
+ * cases, adding some spacing around actual content is
+ * desirable. To do that, simply add the `inset` class
+ * to the content.
  *
  *     @example:
- *     <p>This is the light theme</p>
- *     <p class="dark">This is the dark theme</p>
+ *     <p>This is a full-width content</p>
+ *     <p class="inset">This is a content with whitespace</p>
  */
 
-/**
- * Accent Color:
- * Each theme has its own accent color that is
- * automatically applied to some elements. (See
- * below for details.) The accent color can be
- * applied to arbitrary element by adding the
- * `accent` class.
- *
- *     @example:
- *     <p>
- *         This is the
- *         <span class="accent">accent color</span>
- *         for the light theme
- *     </p>
- *     <p class="dark">
- *         This is the
- *         <span class="accent">accent color</span>
- *         for the dark theme
- *     </p>
+/*
+ * By default (on a mobile device), padding
+ * is pretty minimal to allow for more content.
  */
 
-/**
- * Heading Themes:
- * Heading levels 3-6 automatically use the theme's
- * accent color when they're within an article. This
- * can be overriden (reverting the heading to its
- * natural color) by adding the class `noaccent`.
- * Because the accent color is also used for links,
- * it is strongly recommended that all headings
- * also act as links.
- *
- * > Note: Heading levels 1 and 2 are not normally
- * accented.
- *
- *     @example:
- *     <article class="light">
- *         <h6>This is a heading within an article</h6>
- *     </article>
- *     <article class="light">
- *         <h6 class="noaccent">This is an unaccented heading within an article</h6>
- *     </article>
- *     <article class="dark">
- *         <h6>This is a heading within a dark-themed article</h6>
- *     </article>
- *     <article class="dark">
- *         <h6 class="noaccent">This is an unaccented heading within a dark-themed article</h6>
- *     </article>
+.inset {
+    padding: 10px;
+}
+
+/*
+ * With tablets and larger, we can afford to
+ * be more generous with the white space.
  */
+
+@media (min-width: 500px) {
+    .inset { padding: 30px; }
+}
+
 
 /**
  * Links:
- * Links use the appropriate accent color and are underlined.
- * Links within headings use the default heading color and
- * are only underlined on hover.
+ * By default, links are styled using the same
+ * color as normal content, although the link
+ * text is underlined. Themes may define their
+ * own particular link styles.
  *
  *     @example:
- *     <article class="light">
- *         <p>
- *             This is a
- *             <a href="#">standard link</a>
- *             within an article
- *         </p>
- *     </article>
- *     <article class="dark">
- *         <p>
- *             This is a
- *             <a href="#">standard link</a>
- *             within a dark-themed article
- *         </p>
- *     </article>
- *     <article>
- *         <h2>
- *             This is a
- *             <a href="#">standard link</a>
- *             within a second level heading
- *         </h2>
- *         <h3>
- *             This is a
- *             <a href="#">standard link</a>
- *             within a third level heading
- *         </h3>
- *     </article>
+ *     <p>
+ *       This paragraph contains
+ *       <a href="#">a link</a>
+ *     </p>
  */
+
+a {
+    color: inherit;
+}
+
 
 /**
  * Footer:
- * By default, the footer is styled using
- * the dark theme. Links within the footer,
- * however, default to the normal (non-accented)
- * color and change to the accented color on
- * hover. Although this scheme de-emphasizes
- * links within the footer, it can make those
- * links hard to discover. For this reason, it
- * is recommended that footer links include some
- * other affordance (e.g. an icon) to indicate
- * clickability. The footer includes a top border in
- * the theme color to separate it from same-themed
- * content that may immediately precede it.
- * To style the footer using the light theme, add
- * a `light` class.
+ * Footer content is centered. Small
+ * text is reduced a bit more than
+ * the default.
  *
  *     @example:
- *     <div class="dark">
- *         This is content in the dark theme.
- *     </div>
  *     <footer>
- *         This is
- *         <a href="#">a link</a>
- *         within a footer.
- *     </footer>
- *     <div class="light">
- *         This is content in the light theme.
- *     </div>
- *     <footer class="light">
- *         This is
- *         <a href="#">a link</a>
- *         within a footer.
+ *       <p>This is footer text</p>
+ *       <p><small>This is small footer text</small></p>
  *     </footer>
  */
 
-/*
- * Because browser support for CSS variables is
- * essentially non-existent and we have to re-use
- * the same colors for several styles, all colors
- * have a comment identifying them. That comment
- * is available for global search-and-replace.
- */
-
-/*
- * In many of the selectors that follow, we're
- * explicitly ignoring `<article>` elements
- * with the `hero` class. In general, it's
- * probably not a good idea to make the hero
- * element an article since it doesn't really
- * have any meaningful content, but we'll go
- * ahead and add the necessary filters just in
- * case, as that's probably an easy mistake to
- * make.
- */
-
-body,
-.light,
-article.light:not(.hero):nth-of-type(even)
-article.light:not(.hero):nth-of-type(even) h3,
-article.light:not(.hero):nth-of-type(even) h4,
-article.light:not(.hero):nth-of-type(even) h5,
-article.light:not(.hero):nth-of-type(even) h6 {
-    background-color: #ffffff /* light: background */;
-    color: #403D3B /* light: color */;
+footer p {
+    padding: 30px;
+    text-align: center;
 }
 
-article:not(.hero):nth-of-type(even),
-footer,
-.dark {
-    background-color: #6b6764 /* dark: background */;
-    color: #ffffff /* dark: color */;
+footer p:last-of-type {
+    margin-bottom: 0;
 }
 
-footer {
-    border-top: 1px solid #ffffff /* dark: color */;
+footer small {
+    font-size: 60%;
 }
 
-footer.light {
-    border-top: 1px solid #403D3B /* light: color */;
-}
 
-.accent,
-article:not(.hero) h3:not(.noaccent),
-article:not(.hero) h4:not(.noaccent),
-article:not(.hero) h5:not(.noaccent),
-article:not(.hero) h6:not(.noaccent),
-a,
-footer.light a:hover, footer.light a:focus,
-footer .light a:hover, footer .light a:focus,
-footer a.light:hover, footer a.light:focus {
-    color: #2bbae4 /* light: accent */;
-}
-
-article:not(.hero):nth-of-type(even).accent,
-article:not(.hero):nth-of-type(even) .accent,
-article:not(.hero):nth-of-type(even) h3:not(.noaccent),
-article:not(.hero):nth-of-type(even) h4:not(.noaccent),
-article:not(.hero):nth-of-type(even) h5:not(.noaccent),
-article:not(.hero):nth-of-type(even) h6:not(.noaccent),
-article.dark:not(.hero) h3:not(.noaccent),
-article.dark:not(.hero) h4:not(.noaccent),
-article.dark:not(.hero) h5:not(.noaccent),
-article.dark:not(.hero) h6:not(.noaccent),
-article:not(.hero) .dark h3:not(.noaccent),
-article:not(.hero) .dark h4:not(.noaccent),
-article:not(.hero) .dark h5:not(.noaccent),
-article:not(.hero) .dark h6:not(.noaccent),
-article:not(.hero) h3.dark:not(.noaccent),
-article:not(.hero) h4.dark:not(.noaccent),
-article:not(.hero) h5.dark:not(.noaccent),
-article:not(.hero) h6.dark:not(.noaccent),
-article:not(.hero):nth-of-type(even) a,
-footer.accent, footer .accent,
-footer a:hover, footer a:focus,
-.dark.accent, .dark .accent, .dark a, a.dark {
-    color: #e3e132 /* dark: accent */;
-}
-
-a, a:hover, a:focus, a:visited {
-    text-decoration: underline;
-}
-
-h1 a, h2 a {
-    color: inherit;
-}
-
-h1 a, h1 a:visited,
-h2 a, h2 a:visited,
-h3 a, h3 a:visited,
-h4 a, h4 a:visited,
-h5 a, h5 a:visited,
-h6 a, h6 a:visited {
-    text-decoration: none;
-}
-
-h1 a:hover, h1 a:focus,
-h2 a:hover, h2 a:focus,
-h3 a:hover, h3 a:focus,
-h4 a:hover, h4 a:focus,
-h5 a:hover, h5 a:focus,
-h6 a:hover, h6 a:focus {
-    text-decoration: underline;
-}
-
-footer {
-    border-top: 1px solid #ffffff /* dark: color */;
-}
-
-footer a {
-    color: inherit;
-    text-decoration: none;
-}
-
-footer a:focus, footer a:hover {
-    text-decoration: none;
-}
-
+/* ===================================================== */
 
 /**
  * ## Components
@@ -684,171 +550,206 @@ footer a:focus, footer a:hover {
  * the CSS.
  */
 
+/* ===================================================== */
+
+
+/**
+ * Buttons:
+ * Buttons styles apply not only to `<button>`
+ * elements, but also to `<a class="button">`
+ * links, as well as appropriate `<input>`
+ * elements. The only default styles defined
+ * determine the textual content of the buttons.
+ * Thematic styles such as colors and borders
+ * are left to individual themes.
+ *
+ *     @example:
+ *     <button>Button</button>
+ *     <a href="#" class=button>Link button</a>
+ *     <input type="submit" value="Submit input">
+ *     <input type="reset" value="Reset input">
+ *     <input type="button" value="Button input">
+ */
+
+.button, button,
+input[type="submit"], input[type="reset"], input[type="button"] {
+    background-color: transparent;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    height: 38px;
+    line-height: 38px;
+    letter-spacing: .1rem;
+    padding: 0 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+
+/**
+ * Call to Action:
+ * The "call to action" component is a special component
+ * used, for example, on the main landing page. The
+ * component is vertically justified and stretched to
+ * completely fill the vertical space for the row.
+ * The last (parent) element within the call-to-action
+ * container should include a button and a responsive
+ * image container. The particular image is determined
+ * by the theme applied to the container.
+ *
+ * To support responsive images, the image container
+ * is marked up as a `<div>` of class `image`. Within
+ * that `<div>` is a `<span>` of class `image-spacer`.
+ * The inner `span` makes it possible to change the
+ * image based on media queries. That would, for example
+ * allow delivery of low-resolution images to mobile
+ * devices. It's also used by the themes to deliver
+ * different images based on the grid construction.
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             <div class="one-sixth column theme-industry call-to-action">
+ *                 <div class="inset">
+ *                     <p>Text Content</p>
+ *                 </div>
+ *                 <div>
+ *                     <a class="button" href="#industry">More</a>
+ *                     <div class="image" role="image">
+ *                         <span class="image-spacer"><!-- --></span>
+ *                     </div>
+ *                 </div>
+ *             </div>
+ *             <div class="ten columns">
+ *             </div>
+ *         </div>
+ *     </div>
+ */
+
+.call-to-action {
+    align-items: stretch;
+    display: -webkit-flex;
+    display:     -ms-flexbox;
+    display:         flex;
+    -webkit-box-orient: vertical;
+       -moz-box-orient: vertical;
+        -ms-box-orient: vertical;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+       -moz-box-pack: justify;
+        -ms-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.call-to-action a.button,
+.call-to-action button {
+    margin: 0 10px 20px 10px;
+}
+
+.call-to-action .image {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.call-to-action .image-spacer {
+    display: block;
+    height: 0;
+}
+
+@media (min-width: 500px) {
+    .call-to-action a.button { margin: 0 30px 30px 30px; }
+}
+
+
 /**
  * Navigation Bar:
  * The responsive navigation bar at the top of all "pages"
  * on the site. The navigation must be wrapped in a `<div>`
  * of class `header`, and it must include an `<input>` of
  * type `checkbox` and an associated empty label before
- * the unordered list of menu items. An optional `h1` allows
+ * the unordered list of menu items. The `h1` heading is for
  * branding. Links within that heading are displayed identically
  * to standard heading text (no underline or hover). See the
  * example for details.
  *
+ * Note: The CSS-only implementation is fully functional
+ * without JavaScript, but it does overlay the expanded menu
+ * on top of the main content rather than pushing the main
+ * content down. If the latter behavior is desired, a small
+ * bit of JavaScript is required. When the `#nav-toggle` input
+ * is checked, add the `nav-expanded` class to the `main`
+ * element; remove the class when the input is not checked.
+ * The rules below synchronize the behavior of the main
+ * element with the navigation bar. (The class is ignored
+ * when the navigation bar is full width, so there is no
+ * need to check for window resize events.) Here is sample
+ * code for implementing this behavior:
+ *
  *     @example:
- *     <div class="header">
+ *     <div class="header theme-teachers dark">
  *         <h1>
- *             <a href="#">Site Name</a>
+ *             <span><a href="#">The Georgia<br/>STEM Incubator</a></span>
  *         </h1>
- *     	   <nav>
- *     	       <input type="checkbox" id="nav-toggle"/>
- *     	       <label for="nav-toggle"></label>
+ *         <nav>
+ *             <input type="checkbox" id="nav-toggle" />
+ *             <label for="nav-toggle"></label>
  *             <ul>
- *                 <li><a href="#">First Selection</a></li>
- *                 <li><a href="#">Second Selection</a></li>
- *                 <li><a href="#">Third Selection</a></li>
+ *                 <li class="theme-teachers">
+ *                     <a href="#teachers">Teachers</a>
+ *                 </li>
+ *                 <li class="theme-schools">
+ *                     <a href="#schools">Schools</a>
+ *                 </li>
+ *                 <li class="theme-industry">
+ *                     <a href="#industry">Industry</a>
+ *                 </li>
  *             </ul>
  *         </nav>
  *     </div>
  */
 
+/**
+ * ```
+ * window.addEventListener('load', function() {
+ *   document.getElementById('nav-toggle')
+ *     .addEventListener('change', function() {
+ *       document.getElementsByTagName('main')[0]
+ *         .classList.toggle('nav-expanded');
+ *     });
+ * });
+ * ```
+ */
+
 /*
- * The styles below are derived from
- * [Navigataur](https://coderwall.com/p/sujd_w/navigataur-a-pure-css-responsive-navigation-menu)
- * by Mike King. There are a couple of conventions that
- * are different than other styles in this stylesheet.
- * Unlike regular content, the navigation bar relies on `px`
- * units for precise positioning. Also, the style definitions
- * are desktop-first rather than mobile-first to help make the
- * code more understandable.
+ * The styles below differ from other styles in this stylesheet
+ * in a couple of ways. Unlike regular content, the navigation
+ * bar relies on `px` units for precise positioning. Also, the
+ * style definitions are desktop-first rather than mobile-first to
+ * help make the code more understandable.
  */
 
 /*
  * Start with generic and desktop styles.
  */
 
-/*
- * For now the navigation bar uses the light accent
- * color as a background, but it could use a different
- * color without affecting the theme.
- */
 .header {
-	background-color: #2bbae4 /* light: accent */;
-	min-height: 100px;
-	height: 100%;
-	padding: 0 20px;
-}
-
-/*
- * Optional branding is marked up as an `h1`.
- */
-.header h1 {
-	color: #ffffff;
-    float: left;
-    font-size: 36px;
-    padding: 30px 0 0;
-}
-
-.header h1 a {
-    text-decoration: none;
-}
-
-nav {
-    display: block;
-    float: right;
-}
-
-nav label {
-	z-index: 2;
-}
-
-nav ul {
-    margin: 15px 0;
-    padding: 0;
-}
-
-nav, nav ul, nav li, nav li > a {
-	height: 100%;
-}
-
-nav li > a {
-    color: #ffffff;
-	display: block;
-	font-size: 16px;
-	line-height: 1;
-	padding: 32px 20px;
-	text-decoration: none;
-}
-
-/*
- * Visual changes for mobile viewports
- */
-
-@media only screen and (max-width: 750px){
-	nav ul {
-		background: #2bbae4 /* light: accent */;
-		border-top: 1px solid #1a6f88; /* much darker version of background */
-	}
-
-    nav li:not(:first-child) {
-        border-top: 1px solid #25a1c5; /* slightly darker version of background */
-    }
-
-	nav ul, nav li, nav li > a {
-		height: auto;
-	}
-
-	nav li > a {
-		padding: 15px 15px;
-	}
-
-	nav li > a:hover, nav li > a:focus {
-        text-decoration: none;
-	}
-
-	nav label:after {
-        color: #ffffff;
-		content: 'Menu';
-		display: block;
-		font-size: 16px;
-		margin: 33px 0;
-		padding: 10px;
-		text-align: center;
-		width: 100px;
-	}
-
-	#nav-toggle:checked + label:after{
-		content: 'Close Menu';
-	}
-}
-
-/*
- * The following rules implement the responsive
- * behavior of the navigation bar. You probably
- * don't want to change them unless you're
- * fixing a bug in them.
- */
-
-/*
- * As above, start with the desktop version.
- */
-
-.header {
+	height: 75px;
     position: relative;
 }
-
-#nav-toggle, nav label {
-    display: none;
-}
-
-nav li {
-    float:left;
-    list-style: none;
-}
-
-/*
- * Be sure to clear all floats.
- */
 
 .header:before, .header:after {
     content: "";
@@ -859,291 +760,404 @@ nav li {
     clear: both;
 }
 
-/*
- * Now adjust for mobile views
- */
+.header h1 {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+	color: #ffffff;
+    float: left;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 0;
+    padding-left: 30px;
+    padding-top: 10px;
+    width: 50%;
+}
 
-@media only screen and (max-width: 750px) {
-	nav ul {
-        margin: 0;
-        max-height: 0;
-        overflow-y: hidden;
-        position: absolute;
-        right: 0;
-        -webkit-transition: max-height 250ms;
-           -moz-transition: max-height 250ms;
-                transition: max-height 250ms;
-        width: 100%;
+.header h1 span {
+    border: 1px solid white;
+    display: inline-block;
+    padding: 1px 5px;
+}
+
+.header h1 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav {
+    display: block;
+    float: right;
+    width: 50%;
+}
+
+input[id=nav-toggle], nav label {
+    display: none;
+}
+
+nav label {
+	z-index: 2;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    float:left;
+    list-style: none;
+    text-align: center;
+    width: 33.3333333333%;
+}
+
+nav, nav ul, nav li, nav li > a {
+	height: 100%;
+}
+
+nav li > a {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #ffffff;
+	display: block;
+	font-size: 16px;
+	line-height: 1;
+	padding: 30px 0 0 0;
+	text-decoration: none;
+}
+
+main {
+    -webkit-transition: padding-top 250ms linear;
+       -moz-transition: padding-top 250ms linear;
+         -o-transition: padding-top 250ms linear;
+            transition: padding-top 250ms linear;
+}
+
+@media (max-width: 999px) {
+
+    .nav-expanded {
+        padding-top: 168px;
+        -webkit-transition: padding-top 250ms ease-in;
+           -moz-transition: padding-top 250ms ease-in;
+             -o-transition: padding-top 250ms ease-in;
+                transition: padding-top 250ms ease-in;
     }
-	nav li {
-        display: block;
-        margin: 0;
-        width: 100%;
+
+    .header h1 {
+        overflow-x: visible;
+        white-space: nowrap;
     }
-	nav li > a {
-        display: block;
-        text-decoration: none;
-        width: 100%;
+
+    nav {
+        width: auto;
     }
+
 	nav label {
         cursor: pointer;
         display: block;
         position: relative;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
                 user-select: none;
     }
-	#nav-toggle:checked ~ ul {
-        max-height: 140px;
+
+	nav label:after {
+        color: #ffffff;
+		content: 'Menu';
+		display: block;
+		font-size: 16px;
+    	line-height: 1;
+		padding: 30px 20px 29px 0;
+		text-align: center;
+	}
+
+	input[id=nav-toggle]:checked + label:after {
+		content: 'Close Menu';
+	}
+
+	nav ul {
+        border-top: 1px solid white;
+        margin: 0;
+        max-height: 0;
+        overflow-y: hidden;
+        position: absolute;
+        right: 0;
+        -webkit-transition: max-height 250ms linear;
+           -moz-transition: max-height 250ms linear;
+             -o-transition: max-height 250ms linear;
+                transition: max-height 250ms linear;
+        width: 100%;
+        z-index: 1;
+	}
+
+	input[id=nav-toggle]:checked ~ ul {
+        max-height: 168px;
+        -webkit-transition: max-height 250ms ease-in;
+           -moz-transition: max-height 250ms ease-in;
+             -o-transition: max-height 250ms ease-in;
+                transition: max-height 250ms ease-in;
     }
+
+	nav li {
+        display: block;
+        text-align: right;
+        width: 100%;
+    }
+
+	nav ul, nav li, nav li > a {
+		height: auto;
+	}
+
+	nav li > a {
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+        display: block;
+        padding: 20px;
+        text-decoration: none;
+        width: 100%;
+	}
+
+	nav li > a:hover, nav li > a:focus {
+        text-decoration: none;
+	}
+
 }
 
-/**
- * Hero:
- * The "hero" panel intended for the top (just
- * below the navigation) of the landing page.
- */
+@media (max-width: 499px) {
+    .header h1 { padding-left: 10px; }
+	nav label:after { padding-right: 10px; }
+    nav li > a { padding-right: 10px; }
+
+}
+
+
+/* ===================================================== */
 
 /**
- * Cropped Images:
- * Since we have little control over the dimensions
- * of images loaded from third-party sites (such as
- * DonorsChoose), we use a wrapper to size and crop
- * them in a consistent manner across the site.
- */
-
-/**
- * Featured Selection:
- * Featured selections highlight a particular
- * content element, e.g. as an "Editor's Choice".
- */
-
-/**
- * Simple Block:
- * Simple blocks are used on the landing page to
- * summarize and highlight individual services.
- */
-
-/**
- * ## Utilities
+ * ## Themes
  *
- * A few useful utilities.
+ * Three different complementary themes determine
+ * the color schemes for the site. Those themes
+ * represent teachers, schools, and industry. The
+ * appropriate themes are automatically applied
+ * to content within the designated section (based
+ * on the section's `id` value.) They can also be
+ * applied outside of the specfic section (e.g. on
+ * the landing page) with a class of `theme-teachers`,
+ * `theme-schools`, or `theme-industry`.
  */
 
+/* ===================================================== */
+
+
 /**
- * Clearfix:
- * Add the `clearfix` class to any element that
- * needs to clear all floats.
+ * Teachers Theme:
  *
  *     @example:
- *     <div style="float:left">This is a floating div</div>
- *     <div class="clearfix">This clears the floating div</div>
+ *     <div class="theme-teachers">
+ *         This is the theme for the teachers section
+ *     </div>
+ *     <div class="theme-teachers dark">
+ *         This is the dark theme for the teachers section
+ *     </div>
  */
 
-.clearfix {
-    clear: both;
-    content: "";
-    display: table;
+.theme-teachers {
+    background-color: #009EAF;
+    color: white;
+}
+
+.theme-teachers.dark, .theme-teachers .dark,
+nav li.theme-teachers,
+nav li.theme-teachers > a {
+    background-color: #013E45;
+    color: #009EAF;
+}
+
+nav li.theme-teachers > a:hover,
+nav li.theme-teachers > a:focus {
+    color: white;
+}
+
+.theme-teachers .button, .theme-teachers button,
+.theme-teachers input[type="submit"], input[type="submit"],
+.theme-teachers input[type="reset"], input[type="reset"],
+.theme-teachers input[type="button"], input[type="button"] {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.theme-teachers .button:hover, .theme-teachers button:hover,
+.theme-teachers input[type="submit"]:hover,
+.theme-teachers input[type="reset"]:hover,
+.theme-teachers input[type="button"]:hover,
+.theme-teachers .button:focus, .theme-teachers button:focus,
+.theme-teachers input[type="submit"]:focus,
+.theme-teachers input[type="reset"]:focus,
+.theme-teachers input[type="button"]:focus {
+    color: #009EAF;
+}
+
+.theme-teachers.call-to-action .image { background-image: url(../images/teachers-lowres.jpg); }
+.theme-teachers.call-to-action .image-spacer { padding-top: 66.5625%; }
+
+@media (min-width: 700px) {
+    .theme-teachers.call-to-action .image { background-image: url(../images/teachers-small.jpg); }
+    .theme-teachers.call-to-action .image-spacer { padding-top: 33.28125%; }
+}
+
+@media (min-width: 1000px) {
+    .theme-teachers.call-to-action .image { background-image: url(../images/teachers.jpg); }
+    .theme-teachers.call-to-action .image-spacer { padding-top: 66.5625%; }
 }
 
 
+/**
+ * Schools Theme:
+ *
+ *     @example:
+ *     <div class="theme-schools">
+ *         This is the theme for the schools section
+ *     </div>
+ *     <div class="theme-schools dark">
+ *         This is the dark theme for the schools section
+ *     </div>
+ */
 
-/*
- * The following code is from the Skeleton
- * stylesheet but is commented out as
- * unnecessary for now.
+.theme-schools {
+    background-color: #00AB0F;
+    color: white;
+}
 
-.button,
-button,
-input[type="submit"],
-input[type="reset"],
-input[type="button"] {
-  display: inline-block;
-  height: 38px;
-  padding: 0 30px;
-  color: #555;
-  text-align: center;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 38px;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: transparent;
-  border-radius: 4px;
-  border: 1px solid #bbb;
-  cursor: pointer;
-  box-sizing: border-box; }
-.button:hover,
-button:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-input[type="button"]:hover,
-.button:focus,
-button:focus,
-input[type="submit"]:focus,
-input[type="reset"]:focus,
-input[type="button"]:focus {
-  color: #333;
-  border-color: #888;
-  outline: 0; }
-.button.button-primary,
-button.button-primary,
-input[type="submit"].button-primary,
-input[type="reset"].button-primary,
-input[type="button"].button-primary {
-  color: #FFF;
-  background-color: #33C3F0;
-  border-color: #33C3F0; }
-.button.button-primary:hover,
-button.button-primary:hover,
-input[type="submit"].button-primary:hover,
-input[type="reset"].button-primary:hover,
-input[type="button"].button-primary:hover,
-.button.button-primary:focus,
-button.button-primary:focus,
-input[type="submit"].button-primary:focus,
-input[type="reset"].button-primary:focus,
-input[type="button"].button-primary:focus {
-  color: #FFF;
-  background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+.theme-schools.dark, .theme-schools .dark,
+nav li.theme-schools,
+nav li.theme-schools > a {
+    background-color: #00430C;
+    color: #00AB0F;
+}
 
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="password"],
-textarea,
-select {
-  height: 38px;
-  padding: 6px 10px;
-  background-color: #fff;
-  border: 1px solid #D1D1D1;
-  border-radius: 4px;
-  box-shadow: none;
-  box-sizing: border-box; }
+nav li.theme-schools > a:hover,
+nav li.theme-schools > a:focus {
+    color: white;
+}
 
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="text"],
-input[type="tel"],
-input[type="url"],
-input[type="password"],
-textarea {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none; }
-textarea {
-  min-height: 65px;
-  padding-top: 6px;
-  padding-bottom: 6px; }
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="search"]:focus,
-input[type="text"]:focus,
-input[type="tel"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-textarea:focus,
-select:focus {
-  border: 1px solid #33C3F0;
-  outline: 0; }
-label,
-legend {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; }
-fieldset {
-  padding: 0;
-  border-width: 0; }
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline; }
-label > .label-body {
-  display: inline-block;
-  margin-left: .5rem;
-  font-weight: normal; }
+.theme-schools .button, .theme-schools button,
+.theme-schools input[type="submit"],
+.theme-schools input[type="reset"]
+.theme-schools input[type="button"] {
+    background-color: white;
+    border: none;
+    color: black;
+}
 
-ul {
-  list-style: circle inside; }
-ol {
-  list-style: decimal inside; }
-ol, ul {
-  padding-left: 0;
-  margin-top: 0; }
-ul ul,
-ul ol,
-ol ol,
-ol ul {
-  margin: 1.5rem 0 1.5rem 3rem;
-  font-size: 90%; }
-li {
-  margin-bottom: 1rem; }
+.theme-schools .button:hover, .theme-schools button:hover,
+.theme-schools input[type="submit"]:hover,
+.theme-schools input[type="reset"]:hover,
+.theme-schools input[type="button"]:hover,
+.theme-schools .button:focus, .theme-schools button:focus,
+.theme-schools input[type="submit"]:focus,
+.theme-schools input[type="reset"]:focus,
+.theme-schools input[type="button"]:focus {
+    color: #00AB0F;
+}
 
-code {
-  padding: .2rem .5rem;
-  margin: 0 .2rem;
-  font-size: 90%;
-  white-space: nowrap;
-  background: #F1F1F1;
-  border: 1px solid #E1E1E1;
-  border-radius: 4px; }
-pre > code {
-  display: block;
-  padding: 1rem 1.5rem;
-  white-space: pre; }
+.theme-schools.call-to-action .image { background-image: url(../images/schools-small.jpg); }
+.theme-schools.call-to-action .image-spacer { padding-top: 66.51884701%; }
 
-th,
-td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #E1E1E1; }
-th:first-child,
-td:first-child {
-  padding-left: 0; }
-th:last-child,
-td:last-child {
-  padding-right: 0; }
+@media (min-width: 1000px) {
+    .theme-schools.call-to-action .image { background-image: url(../images/schools.jpg); }
+    .theme-schools.call-to-action .image-spacer { padding-top: 266.07538803%; }
+}
 
-button,
-.button {
-  margin-bottom: 1rem; }
-input,
-textarea,
-select,
-fieldset {
-  margin-bottom: 1.5rem; }
-pre,
-blockquote,
-dl,
-figure,
-table,
-p,
-ul,
-ol,
-form {
-  margin-bottom: 2.5rem; }
 
-.u-full-width {
-  width: 100%;
-  box-sizing: border-box; }
-.u-max-full-width {
-  max-width: 100%;
-  box-sizing: border-box; }
-.u-pull-right {
-  float: right; }
-.u-pull-left {
-  float: left; }
+/**
+ * Industry Theme:
+ *
+ *     @example:
+ *     <div class="theme-industry">
+ *         This is the theme for the industry section
+ *     </div>
+ *     <div class="theme-industry dark">
+ *         This is the dark theme for the industry section
+ *     </div>
+ */
 
-hr {
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
-  border-width: 0;
-  border-top: 1px solid #E1E1E1; }
+.theme-industry {
+    background-color: #005493;
+    color: white;
+}
 
-*/
+.theme-industry.dark, .theme-industry .dark,
+nav li.theme-industry,
+nav li.theme-industry > a {
+    background-color: #00213A;
+    color: #2EA1CC;
+}
+
+nav li.theme-industry > a:hover,
+nav li.theme-industry > a:focus {
+    color: white;
+}
+
+.theme-industry .button, .theme-industry button,
+.theme-industry input[type="submit"],
+.theme-industry input[type="reset"],
+.theme-industry input[type="button"] {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.theme-industry .button:hover, .theme-industry button:hover,
+.theme-industry input[type="submit"]:hover,
+.theme-industry input[type="reset"]:hover,
+.theme-industry input[type="button"]:hover,
+.theme-industry .button:focus, .theme-industry button:focus,
+.theme-industry input[type="submit"]:focus,
+.theme-industry input[type="reset"]:focus,
+.theme-industry input[type="button"]:focus {
+    color: #005493;
+}
+
+.theme-industry.call-to-action .image { background-image: url(../images/industry-small.jpg); }
+.theme-industry.call-to-action .image-spacer { padding-top: 66.5480427%; }
+
+@media (min-width: 1000px) {
+    .theme-industry.call-to-action .image { background-image: url(../images/industry.jpg); }
+    .theme-industry.call-to-action .image-spacer { padding-top: 266.19217082%; }
+}
+
+
+/**
+ * Neutral Theme:
+ *
+ *     @example:
+ *     <div class="theme-neutral light">
+ *         This is the light theme for the neutral section
+ *     </div>
+ *     <div class="theme-neutral">
+ *         This is the theme for the neutral section
+ *     </div>
+ *     <div class="theme-neutral dark">
+ *         This is the dark theme for the neutral section
+ *     </div>
+ */
+
+.theme-neutral {
+    background-color: #DBDBDA;
+    color: #424242;
+}
+
+.theme-neutral.light, .theme-neutral .light {
+    background-color: #EFEDEB;
+}
+
+.theme-neutral.dark, .theme-neutral .dark {
+    background-color: #424242;
+    color: #EFEDEB;
+}

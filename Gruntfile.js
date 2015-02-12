@@ -122,8 +122,11 @@ module.exports = function (grunt) {
         },
         csslint: {
           options: {
+            'adjoining-classes': false,
             'box-sizing': false,
             'font-sizes': false,
+            'qualified-headings': false,
+            'unique-headings': false,
             import: false,
           },
           all: {
@@ -188,8 +191,7 @@ module.exports = function (grunt) {
                 files: {
                     '<%= yeoman.dist %>/styles/main.css': [
                         '.tmp/styles/{,*/}*.css',
-                        // '<%= yeoman.app %>/styles/{,*/}*.css'
-                        '<%= yeoman.app %>/styles/bootstrap-theme.css'
+                        '<%= yeoman.app %>/styles/main.css'
                     ]
                 }
             }

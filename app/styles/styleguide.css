@@ -248,3 +248,16 @@ code.sg:first-child {
  * hover behavior
  */
 
+
+/* style tweaks */
+
+.sg-section-contents ul {
+    list-style-type: none;
+    margin: 0;
+    padding-left: 20px;
+}
+
+.sg-section-contents a {
+    text-decoration: none;
+}
+
