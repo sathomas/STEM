@@ -401,6 +401,10 @@ footer p {
     text-align: center;
 }
 
+footer p:last-of-type {
+    margin-bottom: 0;
+}
+
 footer a {
     color: inherit;
 }
