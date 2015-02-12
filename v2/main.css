@@ -1,6 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,600);
-/* Load Raleway from Google fonts - `@import` statements have to preceed
-   all CSS statements, even comments. */
+/* `@import` statements have to preceed all CSS statements, even comments. */
 
 
 /**
@@ -24,6 +23,33 @@
  * example of the corresponding element. To see the
  * markup for any example, click on the ellipses
  * (`...`) below the example.
+ *
+ * ## Contents
+ *
+ * - [HTML Page Structure](#html-page-strucure)
+ *     - [Section](#section)
+ *     - [Article](#article)
+ *     - [Dynamic Content](#dynamic-content)
+ * - [Grid](#grid)
+ *     - [Container](#container)
+ *     - [Row](#row)
+ *     - [Column](#column)
+ * - [Typography](#typography)
+ *     - [Base](#base)
+ *     - [Headings](#content)
+ *     - [Content](#content)
+ *     - [Footer](#footer)
+ * - [Components](#components)
+ *     - [Buttons](#buttons)
+ *     - [Call to Action](#call-to-action)
+ *     - [Navigation Bar](#navigation-bar)
+ * - [Themes](#themes)
+ *     - [Teachers Theme](#teachers-theme)
+ *     - [Schools Theme](#schools-theme)
+ *     - [Industry Theme](#industry-theme)
+ *     - [Neutral Theme](#neutral-theme)
+ * - [Utilities](#utilities)
+ *     - [Clearfix](#clearfix)
  */
 
 /**
@@ -132,7 +158,14 @@ article {
  *
  * Within sections (and articles) we use a standard
  * 12-column grid for overall layout, in a responsive,
- * mobile-first architecture. The breakpoints are:
+ * mobile-first architecture. In general, media queries
+ * should be tailored for particular content items, but the
+ * primary breakpoints for the grid are at 500x and
+ * 1000px.
+ *
+ * - default (no media query) for smartphones
+ * - `@media (min-width:  500px) {}` large smartphone/phablet
+ * - `@media (min-width: 1000px) {}` desktop
  */
 
 /**
@@ -146,7 +179,6 @@ article {
  *     </div>
  */
 
-/* Generic and mobile-first rules */
 .container {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -165,6 +197,13 @@ article {
  *             Columns go here
  *         </div>
  *     </div>
+ */
+
+/*
+ * We're using flexbox for the grid since the page
+ * layout is challenging for other grid approaches
+ * (inline-block or floats). That does leave IE9
+ * (and maybe IE10) behind.
  */
 
 .row {
