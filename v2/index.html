@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Georgia K-12 STEM Incubator</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="normalize.css">
+        <link rel="stylesheet" href="main.css">
+        <script src="modernizr.js"></script>
+    </head>
+    <body>
+
+        <!--
+        =======================
+        HTML Markup Starts Here
+        =======================
+        -->
+
+        <!--
+        ==============
+        Navigation Bar
+        ==============
+        -->
+
+        <div class="header theme-teachers dark">
+            <h1>
+                <a href="#">Georgia STEM</a>
+            </h1>
+            <nav>
+                <input type="checkbox" id="nav-toggle" />
+                <label for="nav-toggle"></label>
+                <ul>
+                    <li class="theme-teachers">
+                        <a href="#teachers">Teachers</a>
+                    </li>
+                    <li class="theme-schools">
+                        <a href="#schools">Schools</a>
+                    </li>
+                    <li class="theme-industry">
+                        <a href="#industry">Industry</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!--
+        =================
+        Main Page Content
+        =================
+        -->
+
+        <main>
+
+            <!--
+            ====================
+            General Landing Page
+            ====================
+            -->
+
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="two-thirds column theme-teachers call-to-action">
+                            <div class="inset">
+                                <h3>Get support from other teachers just like you</h3>
+                                <p>Units, shared resources, discussion groups, workshops and courses</p>
+                            </div>
+                            <div>
+                                <a class="button" href="#teachers">Discover</a>
+                                <div class="image" role="image"><span class="image-spacer"></span></div>
+                            </div>
+                        </div>
+                        <div class="one-sixth column theme-schools call-to-action">
+                            <div class="inset">
+                                <p>Inspire discussion and help shape better teacher support systems</p>
+                            </div>
+                            <div>
+                                <a class="button" href="#schools">More</a>
+                                <div class="image" role="image"><span class="image-spacer"></span></div>
+                            </div>
+                        </div>
+                        <div class="one-sixth column theme-industry call-to-action">
+                            <div class="inset">
+                                <p>Build partnerships and better connect with schools and programs</p>
+                            </div>
+                            <div>
+                                <a class="button" href="#industry">More</a>
+                                <div class="image" role="image"><span class="image-spacer"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="two-thirds column theme-neutral light">
+                            <div class="inset">
+                                <h4>About Georgia STEM</h4>
+                                <p>
+                                    It is imperative the Georgia produce more highly qualified STEM
+                                    graduates and increase its STEM workforce development and STEM-based
+                                    economic development. The State’s economy is dependent on a
+                                    workforce with strong STEM knowledge and skills that can foster
+                                    innovation and productivity. The National Governors Association
+                                    has emphasized the importance of STEM because ‟the global economy
+                                    has flattened the world in terms of skills and technology. A new
+                                    workforce of problem-solvers, innovators, and inventors who are
+                                    self-reliant and able to think logically is one of the critical
+                                    foundations that drive a state economy’s innovation capacity.”
+                                </p>
+                            </div>
+                        </div>
+                        <div class="one-third column theme-neutral">
+                            <div class="inset">
+                                <h4>Contact Georgia STEM</h4>
+                                <p>
+                                    <strong>Georgia STEM</strong><br/>
+                                    Center for Education Integrating Science, Mathematics, and Computing<br/>
+                                </p>
+                                <p>
+                                    817 W. Peachtree Street, NW, Suite 300<br/>
+                                    Atlanta, GA 30308<br/>
+                                    Ph: 404-894-0777<br/>
+                                    Fx: 404-894-9675
+                                </p>
+                                <p>
+                                    <strong><a href="mailto:">Email us</a></strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--
+            =============
+            Teachers Page
+            =============
+            -->
+
+            <section id="teachers">
+            </section>
+
+            <!--
+            ============
+            Schools Page
+            ============
+            -->
+
+            <section id="schools">
+            </section>
+
+            <!--
+            =============
+            Industry Page
+            =============
+            -->
+
+            <section id="industry">
+            </section>
+
+        </main>
+
+        <!--
+        =================
+        Footer
+        =================
+        -->
+
+        <footer class="theme-neutral dark">
+            <p>
+                <small>
+                    Images copyright
+                    <a href="https://www.flickr.com/photos/cybrarian77/6284181389/">cybrarian77</a>,
+                    <a href="https://www.flickr.com/photos/ctsenatedems/10043241965">CT Senate Democrats</a>, and
+                    <a href="https://www.flickr.com/photos/kentuckycountrydayschool/4089873006">Kentuck Country Day</a>.
+                    Licensed under Creative Commons.
+                </small>
+            </p>
+		</footer>
+
+        <!--
+        =====================
+        HTML Markup Ends Here
+        =====================
+        -->
+
+        <script>
+            window.addEventListener('load', function() {
+                var navToggle = document.getElementById('nav-toggle'),
+                    main = document.getElementsByTagName('main')[0];
+                navToggle.addEventListener('change', function() {
+                    main.classList.toggle('nav-expanded')
+                });
+            })
+        </script>
+
+
+</body>
+</html>
