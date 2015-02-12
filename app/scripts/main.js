@@ -11,13 +11,7 @@ window.Stem = {
     },
     init: function () {
         'use strict';
-        // Stub/demo code for now, just add the DonorsChoose integration
-        var proposals = new Stem.Collections.Proposals([], {maxSize: 4});
-        proposals.fetch({reset: true});
-        var view = new Stem.Views.ProposalsAsHighlights({collection: proposals});
-        view.render();
-        $('#crowdfunding').append(view.el);
-
+        // Nothing to do yet
     }
 };
 
@@ -25,3 +19,13 @@ $(document).ready(function () {
     'use strict';
     Stem.init();
 });
+
+window.addEventListener('load', function() {
+    'use strict';
+    var navToggle = document.getElementById('nav-toggle'),
+        main = document.getElementsByTagName('main')[0];
+    navToggle.addEventListener('change', function() {
+        main.classList.toggle('nav-expanded');
+    });
+});
+
