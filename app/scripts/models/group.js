@@ -7,7 +7,7 @@ Stem.Models = Stem.Models || {};
 
     Stem.Models.Group = Backbone.Model.extend({
 
-        url: 'https://stemincubator.oaeproject.org/api/group/',
+        url: 'https://stemincubator.oae-qa1.oaeproject.org/api/group/',
 
         parse: function(response)  {
             return response;

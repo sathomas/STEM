@@ -16,7 +16,7 @@ Stem.Collections = Stem.Collections || {};
         model: Stem.Models.Group,
 
         // We'll get OAE groups by searching for 20 of them in our tenant
-        url: 'https://stemincubator.oaeproject.org/api/search/general?limit=20&q=&resourceTypes=group&scope=_tenant',
+        url: 'https://stemincubator.oae-qa1.oaeproject.org/api/search/general?limit=20&q=&resourceTypes=group&scope=_tenant',
 
         // Since OAE doesn't follow Rails conventions, we have
         // to supply a parse function to extract the actual model

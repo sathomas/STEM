@@ -8,6 +8,6 @@ describe('Group Model', function () {
     });
 
     it('should generate the correct URL to access an OAE group', function() {
-        this.GroupModel.url.should.equal('https://stemincubator.oaeproject.org/api/group/');
+        this.GroupModel.url.should.equal('https://stemincubator.oae-qa1.oaeproject.org/api/group/');
     });
 });

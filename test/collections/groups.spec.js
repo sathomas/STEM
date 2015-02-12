@@ -32,7 +32,7 @@ describe('Groups Collection', function () {
     });
 
     it('should have the correct URL for OAE', function() {
-        this.GroupsCollection.url.should.equal('https://stemincubator.oaeproject.org/api/search/general?limit=20&q=&resourceTypes=group&scope=_tenant');
+        this.GroupsCollection.url.should.equal('https://stemincubator.oae-qa1.oaeproject.org/api/search/general?limit=20&q=&resourceTypes=group&scope=_tenant');
     });
 
     it('should parse the response from OAE', function() {
