@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway:400,300,600);
 /* `@import` statements have to preceed all CSS statements, even comments. */
+/*csslint adjoining-classes:false, box-sizing:false, font-sizes:false, qualified-headings:false, unique-headings:false, import:false */
 
 
 /**

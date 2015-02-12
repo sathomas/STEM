@@ -127,7 +127,7 @@ module.exports = function (grunt) {
             'font-sizes': false,
             'qualified-headings': false,
             'unique-headings': false,
-            import: false,
+            'import': false,
           },
           all: {
             src: [
