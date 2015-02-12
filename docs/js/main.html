@@ -94,22 +94,25 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Stub/demo code for now, just add the DonorsChoose integration</p>
+              <p>Nothing to do yet</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-keyword">var</span> proposals = <span class="hljs-keyword">new</span> Stem.Collections.Proposals([], {maxSize: <span class="hljs-number">4</span>});
-        proposals.fetch({reset: <span class="hljs-literal">true</span>});
-        <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> Stem.Views.ProposalsAsHighlights({collection: proposals});
-        view.render();
-        $(<span class="hljs-string">'#crowdfunding'</span>).append(view.el);
-
-    }
+            <div class="content"><div class='highlight'><pre>    }
 };
 
 $(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
     Stem.init();
+});
+
+<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+    <span class="hljs-keyword">var</span> navToggle = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'nav-toggle'</span>),
+        main = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">'main'</span>)[<span class="hljs-number">0</span>];
+    navToggle.addEventListener(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        main.classList.toggle(<span class="hljs-string">'nav-expanded'</span>);
+    });
 });</pre></div></div>
             
         </li>
