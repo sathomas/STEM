@@ -230,13 +230,6 @@ article {
  * integers (`one column`), the grid supports columns
  * defined as fractions of the row (`one-third column`).
  *
- * > Note: offset columns are also defined but
- * currently disabled in the stylesheet to avoid
- * bothering the browser with unused rules. They're
- * simply commented out in the CSS, though, so that
- * they can be easily re-enabled without having to
- * re-calculate the percentages.
- *
  *     @example:
  *     <div class="container">
  *         <div class="row">
@@ -244,16 +237,15 @@ article {
  *             <div class="nine columns" style="background-color:lightgray">9/12 (3/4) of row</div>
  *         </div>
  *         <div class="row" style="margin-top:0.2em">
- *             <div class="one-third column" style="background-color:lightgray">1/3 of row</div>
- *             <div class="two-thirds column" style="background-color:lightgray">2/3 of row</div>
+ *             <div class="two-third column" style="background-color:lightgray">2/3 of row</div>
+ *             <div class="one-thirds column" style="background-color:lightgray">1/3 of row</div>
  *         </div>
  *     </div>
  */
 
 /*
  * Start with generic and mobile-first rules. For those screen sizes
- * all columns are full-width. We use the excess padding/negative
- * margin rules to force all columns in a row to be of equal height.
+ * all columns are full-width.
  */
 
 .column,
@@ -305,7 +297,10 @@ article {
 
 }
 
-/* Desktops */
+/*
+ * Desktops get the full grid
+ */
+
 @media (min-width: 1000px) {
 
     /* simple column definitions */
@@ -360,7 +355,7 @@ html {
  *     @example:
  *     <p>
  *        The quick brown fox jumped over the lazy dog.<br/>
- *        The quick brown fox jumped over the lazy dog.
+ *        Sixty zippers were quickly picked from the woven jute bag.
  *     </p>
  */
 
@@ -380,7 +375,7 @@ p {
  * Headings:
  * Headings use a slightly lighter font weight and specific line
  * heights and letter spacings tailored for the Raleway font
- * (but no so extreme as to be illegible if a font fallback
+ * (but not so extreme as to be illegible if a font fallback
  * is required). We start with relatively modest font sizes
  * for mobile devices and then increase the sizes a bit for
  * tablets and larger.
@@ -423,18 +418,31 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
  * Content:
  */
 
+/*
+ * By default (on a mobile device), padding
+ * is pretty minimal to allow for more content.
+ */
+
 .inset {
     padding: 10px;
 }
 
-.inset a {
-    color: inherit;
-}
+/*
+ * With tablets and larger, we can afford to
+ * be more generous with the white space.
+ */
 
 @media (min-width: 500px) {
     .inset { padding: 30px; }
 }
 
+/**
+ * Links:
+ */
+
+a {
+    color: inherit;
+}
 
 /**
  * Footer:
@@ -525,7 +533,7 @@ input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focu
 }
 
 .call-to-action a.button {
-    margin: 0 10px 10px 10px;
+    margin: 0 10px 20px 10px;
 }
 
 .call-to-action .image {
