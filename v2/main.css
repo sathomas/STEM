@@ -385,12 +385,17 @@ h6 { font-size: 1.5rem; line-height: 1.6;  letter-spacing: 0; }
  */
 
 .inset {
-    padding: 30px;
+    padding: 10px;
 }
 
 .inset a {
     color: inherit;
 }
+
+@media (min-width: 500px) {
+    .inset { padding: 30px; }
+}
+
 
 /**
  * Footer:
@@ -481,7 +486,7 @@ input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focu
 }
 
 .call-to-action a.button {
-    margin: 0 30px 30px 30px;
+    margin: 0 10px 10px 10px;
 }
 
 .call-to-action .image {
@@ -498,6 +503,10 @@ input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focu
 .call-to-action .image-spacer {
     display: block;
     height: 0;
+}
+
+@media (min-width: 500px) {
+    .call-to-action a.button { margin: 0 30px 30px 30px; }
 }
 
 /**
@@ -582,11 +591,18 @@ input[type="submit"]:focus, input[type="reset"]:focus, input[type="button"]:focu
             box-sizing: border-box;
 	color: #ffffff;
     float: left;
-    font-size: 35px;
-    line-height: 1;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 0;
     padding-left: 30px;
-    padding-top: 20px;
+    padding-top: 10px;
     width: 50%;
+}
+
+.header h1 span {
+    border: 1px solid white;
+    display: inline-block;
+    padding: 1px 5px;
 }
 
 .header h1 a {
@@ -632,7 +648,7 @@ nav li > a {
 	display: block;
 	font-size: 16px;
 	line-height: 1;
-	padding: 35px 0 0 0;
+	padding: 30px 0 0 0;
 	text-decoration: none;
 }
 
@@ -675,7 +691,7 @@ main {
 		display: block;
 		font-size: 16px;
     	line-height: 1;
-		padding: 35px 20px 24px 0;
+		padding: 30px 20px 29px 0;
 		text-align: center;
 	}
 
@@ -684,7 +700,7 @@ main {
 	}
 
 	nav ul {
-        border-top: 1px solid #009EAF;
+        border-top: 1px solid white;
         margin: 0;
         max-height: 0;
         overflow-y: hidden;
@@ -730,12 +746,13 @@ main {
 
 }
 
-@media (max-width: 359px) {
-    .header h1 {
-        font-size: 25px;
-        padding-top: 30px;
-    }
+@media (max-width: 499px) {
+    .header h1 { padding-left: 10px; }
+	nav label:after { padding-right: 10px; }
+    nav li > a { padding-right: 10px; }
+
 }
+
 
 /**
  * ## Themes
