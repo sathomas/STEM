@@ -24,6 +24,16 @@
               </a>
             
               
+              <a class="source" href="featured.html">
+                featured.js
+              </a>
+            
+              
+              <a class="source" href="style-helpers.html">
+                style-helpers.js
+              </a>
+            
+              
               <a class="source" href="index.html">
                 index.js
               </a>
@@ -36,6 +46,11 @@
               
               <a class="source" href="proposal.html">
                 proposal.js
+              </a>
+            
+              
+              <a class="source" href="app.html">
+                app.js
               </a>
             
               
@@ -71,19 +86,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, $*/</span>
-
-
-<span class="hljs-built_in">window</span>.Stem = {
-    Models: {},
-    Collections: {},
-    Views: {},
-    Routers: {},
-    config: {
-        donorsChooseApiKey: <span class="hljs-string">'DONORSCHOOSE'</span>
-    },
-    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">        'use strict'</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, $*/</span></pre></div></div>
             
         </li>
         
@@ -94,25 +97,93 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Nothing to do yet</p>
+              <p>Main JavaScript file for STEM Incubator site. Code in
+this file mostly just sets things up for the app and
+then launches it. This file also includes configuration
+information.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    }
-};
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Everything in the application is namespaced under the
+global variable <code>Stem</code>. Invidual components (e.g. models,
+views, collections, etc.) add themselves to this
+namespace as part of their definition.</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-built_in">window</span>.Stem = {
+    Collections: {},
+    Models: {},
+    Routers: {},
+    Views: {},</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Global configuration items (e.g. API keys) are
+defined in the <code>config</code> property.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    config: {
+        donorsChooseApiKey: <span class="hljs-string">'DONORSCHOOSE'</span>
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>The <code>init()</code> function is called when it’s time
+to start the application.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">        'use strict'</span>;
+        <span class="hljs-keyword">new</span> Stem.Routers.App();
+    }
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Wait for jQuery’s <code>ready</code> event to start the application.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
 $(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
     Stem.init();
-});
-
-<span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'load'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">    'use strict'</span>;
-    <span class="hljs-keyword">var</span> navToggle = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'nav-toggle'</span>),
-        main = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">'main'</span>)[<span class="hljs-number">0</span>];
-    navToggle.addEventListener(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-        main.classList.toggle(<span class="hljs-string">'nav-expanded'</span>);
-    });
 });</pre></div></div>
             
         </li>

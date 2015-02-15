@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>proposalAsHighlight.js</title>
+  <title>style-helpers.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -71,7 +71,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>proposalAsHighlight.js</h1>
+                  <h1>style-helpers.js</h1>
               </div>
           </li>
         
@@ -86,7 +86,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, JST*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global $*/</span></pre></div></div>
             
         </li>
         
@@ -97,28 +97,13 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Backbone view for a single proposal from DonorsChoose.org
-rendered as a highlight (i.e. “Editor’s Choice”).</p>
+              <p>Generic JavaScript utilities that enhance the CSS
+styles for the site. The CSS is designed so that
+these functions aren’t essential (e.g. for users
+with JavaScript disabled), but they enhance the
+overall experience when available.</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-Stem.Views = Stem.Views || {};
-
-(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">    'use strict'</span>;
-
-    Stem.Views.ProposalAsHighlight = Backbone.View.extend({
-
-        template: JST[<span class="hljs-string">'app/scripts/templates/proposalAsHighlight.ejs'</span>],
-
-        tagName: <span class="hljs-string">'div'</span>,
-
-        id: <span class="hljs-string">''</span>,
-
-        className: <span class="hljs-string">''</span>,
-
-        events: {},</pre></div></div>
             
         </li>
         
@@ -129,22 +114,13 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Since this view is (for now) read-only, we stub out
-the <code>initialize</code> function as unnecessary. We’re leaving
-the boilerplate as a comment, though, to make it easier
-to add support for a dynamic model later, should that
-be required.</p>
+              <p>Nothing happens until jQuery says the document is ready.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-comment">/*
-        initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
-        },
-        */</span>
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()));</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;</pre></div></div>
             
         </li>
         
@@ -155,16 +131,23 @@ be required.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Return <code>this</code> for chaining.</p>
+              <p>Look for changes to the <code>nav-toogle</code> checkbox
+and update the <code>main</code> element with appropriate
+data attributes. The CSS rules can use these
+to adjust positioning of the main content to
+account for expanded or collapsed menu bars on
+mobile viewports.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-        }
+            <div class="content"><div class='highlight'><pre>
+    $(<span class="hljs-string">'#nav-toggle'</span>).on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+        $(<span class="hljs-string">'main'</span>).attr(<span class="hljs-string">'data-nav-expanded'</span>, $(<span class="hljs-string">'#nav-toggle'</span>).prop(<span class="hljs-string">'checked'</span>));
 
     });
 
-})();</pre></div></div>
+});</pre></div></div>
             
         </li>
         

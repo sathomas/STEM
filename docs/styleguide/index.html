@@ -64,16 +64,25 @@
             <li class="sg">
               <a href="#footer" class="sg">Footer</a>
             </li>
+            <li class="sg">
+              <a href="#buttons" class="sg">Buttons</a>
+            </li>
           </ul>
         </li>
         <li class="sg">
           <a href="#components" class="sg">Components</a>
           <ul class="sg">
             <li class="sg">
-              <a href="#buttons" class="sg">Buttons</a>
+              <a href="#call-to-action" class="sg">Call to Action</a>
             </li>
             <li class="sg">
-              <a href="#call-to-action" class="sg">Call to Action</a>
+              <a href="#horizontal-selection" class="sg">Horizontal Selection</a>
+            </li>
+            <li class="sg">
+              <a href="#vertical-selection" class="sg">Vertical Selection</a>
+            </li>
+            <li class="sg">
+              <a href="#featured" class="sg">Featured</a>
             </li>
             <li class="sg">
               <a href="#navigation-bar" class="sg">Navigation Bar</a>
@@ -94,6 +103,17 @@
             </li>
             <li class="sg">
               <a href="#neutral-theme" class="sg">Neutral Theme</a>
+            </li>
+            <li class="sg">
+              <a href="#brand-theme" class="sg">Brand Theme</a>
+            </li>
+          </ul>
+        </li>
+        <li class="sg">
+          <a href="#utilities" class="sg">Utilities</a>
+          <ul class="sg">
+            <li class="sg">
+              <a href="#center" class="sg">Center</a>
             </li>
           </ul>
         </li>
@@ -141,7 +161,7 @@
         <div class="sg-text">
           <h3 id="article" class="sg">Article</h3>
           <p class="sg">A section can optionally be divided into multiple
-            <code class="sg">&lt;article&gt;</code>elements.</p>
+            <code class="sg">&lt;article&gt;</code>elements. The article adds vertical spacing to the contents, but does not affect horizontal spacing.</p>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
@@ -357,7 +377,8 @@
         <div class="sg-text">
           <h3 id="content" class="sg">Content</h3>
           <p class="sg">The grid does not include any margins or padding to support full-width images and color blocks. In most cases, adding some spacing around actual content is desirable. To do that, simply add the
-            <code class="sg">inset</code>class to the content.</p>
+            <code class="sg">inset</code>class to the content. There is also
+            <code class="sg">inset-horizontal</code>that only applies horizontal (left/right) whitespace.</p>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
@@ -405,11 +426,6 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">footer</span>&gt;</span></pre>
         </div>
       </section>
-    </section>
-
-    <section class="sg-section sg-section-components">
-      <h2 id="components" class="sg">Components</h2>
-      <p class="sg">Higher level components on the site generally strive for very semantic markup to keep the HTML as clean and simple as possible. (This is especially helpful since much of the site is dynamic and the underlying HTML actually originates in JavaScript templates.) The cost, of course, is a bit of added complexity in the CSS.</p>
       <section class="sg-block sg-section-buttons">
         <div class="sg-text">
           <h3 id="buttons" class="sg">Buttons</h3>
@@ -428,13 +444,27 @@
             <input type="submit" value="Submit input">
             <input type="reset" value="Reset input">
             <input type="button" value="Button input">
+            <button class="button--link">Button</button>
           </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">button</span>&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">button</span>&gt;</span>Link button<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Submit input&quot;</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;reset&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Reset input&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Button input&quot;</span>&gt;</span></pre>
+<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Button input&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;button--link&quot;</span>&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre>
         </div>
       </section>
+    </section>
+
+    <section class="sg-section sg-section-components">
+      <h2 id="components" class="sg">Components</h2>
+      <p class="sg">Higher level components on the site generally strive for very semantic markup to keep the HTML as clean and simple as possible. (This is especially helpful since much of the site is dynamic and the underlying HTML actually originates in JavaScript templates.) The cost, of course, is a bit of added complexity in the CSS.</p>
+      <p class="sg">In the CSS rules themselves, you&apos;ll notice that we&apos;re using the Block Element Modifier (BEM) convention originally documented by
+        <a href="https://bem.info" class="sg">Yandex</a>
+        for the more complex components (but not for simple, generic rules). If you&apos;re unfamiliar with that convention, note that plain class names refer to blocks, double underscores refer to elements (of the parent block), and double dashes refer to modifiers of the parent block. The difference between elements and modifiers is much like the difference between nouns and adjectives. For example:
+      </p><pre class="sg"><code class="sg">.person {}
+.person__arm {}
+.person--tall {}
+</code></pre>
       <section class="sg-block sg-section-call-to-action">
         <div class="sg-text">
           <h3 id="call-to-action" class="sg">Call to Action</h3>
@@ -456,11 +486,11 @@
                     <p>Text Content</p>
                   </div>
                   <div>
-                    <a class="button" href="#industry">More</a>
-                    <div class="image" role="image">
-                      <span class="image-spacer">
-                        <!-- -->
-                      </span>
+                    <div class="inset">
+                      <a class="button" href="#">More</a>
+                    </div>
+                    <div class="call-to-action__image" role="image">
+                      <span class="call-to-action__image-spacer"></span>
                     </div>
                   </div>
                 </div>
@@ -475,11 +505,11 @@
         <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Text Content<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#industry&quot;</span>&gt;</span>More<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;image&quot;</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;image&quot;</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;image-spacer&quot;</span>&gt;</span>
-            <span class="hljs-comment">&lt;!-- --&gt;</span>
-          <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;inset&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>More<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;call-to-action__image&quot;</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;image&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;call-to-action__image-spacer&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -488,6 +518,104 @@
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
+      </section>
+      <section class="sg-block sg-section-horizontal-selection">
+        <div class="sg-text">
+          <h3 id="horizontal-selection" class="sg">Horizontal Selection</h3>
+          <p class="sg">A horizontal selection presents a set of choices to the user in a horizontal layout. It can use either radio buttons (if the choice is exclusive) or checkboxes as the underlying markup. The labels associated with the individual input elements must immediately follow those elements in the markup.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <form class="horizontal-selection">
+              <fieldset>
+                <label class="horizontal-selection__label">
+                  Main label:
+                </label>
+                <input type="checkbox" id="cb1">
+                <label class="horizontal-selection__item-label" for="cb1">
+                  Choice 1
+                </label>
+                <input type="checkbox" id="cb2">
+                <label class="horizontal-selection__item-label" for="cb2">
+                  Choice 2
+                </label>
+                <input type="checkbox" id="cb3">
+                <label class="horizontal-selection__item-label" for="cb3">
+                  Choice 3
+                </label>
+              </fieldset>
+            </form>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;horizontal-selection&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;horizontal-selection__label&quot;</span>&gt;</span>
+      Main label:
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;cb1&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;horizontal-selection__item-label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;cb1&quot;</span>&gt;</span>
+      Choice 1
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;cb2&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;horizontal-selection__item-label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;cb2&quot;</span>&gt;</span>
+      Choice 2
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;cb3&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;horizontal-selection__item-label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;cb3&quot;</span>&gt;</span>
+      Choice 3
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-vertical-selection">
+        <div class="sg-text">
+          <h3 id="vertical-selection" class="sg">Vertical Selection</h3>
+          <p class="sg">A vertical selection presents a set of choices to the user in a horizontal layout. It can use either radio buttons (if the choice is exclusive) or checkboxes as the underlying markup. The labels associated with the individual input elements must immediately follow those elements in the markup.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <form class="vertical-selection">
+              <fieldset>
+                <label class="vertical-selection__label">
+                  Main label:
+                </label>
+                <input type="checkbox" id="cb1">
+                <label class="vertical-selection__item-label" for="cb1">
+                  Choice 1
+                </label>
+                <input type="checkbox" id="cb2">
+                <label class="vertical-selection__item-label" for="cb2">
+                  Choice 2
+                </label>
+                <input type="checkbox" id="cb3">
+                <label class="vertical-selection__item-label" for="cb3">
+                  Choice 3
+                </label>
+              </fieldset>
+            </form>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;vertical-selection&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;vertical-selection__label&quot;</span>&gt;</span>
+      Main label:
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;cb1&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;vertical-selection__item-label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;cb1&quot;</span>&gt;</span>
+      Choice 1
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;cb2&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;vertical-selection__item-label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;cb2&quot;</span>&gt;</span>
+      Choice 2
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;cb3&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;vertical-selection__item-label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;cb3&quot;</span>&gt;</span>
+      Choice 3
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-featured">
+        <h3 id="featured" class="sg">Featured</h3>
+        <p class="sg">The featured component highlights four separate objects and offers users the chance to view additional details about each.</p>
       </section>
       <section class="sg-block sg-section-navigation-bar">
         <div class="sg-text">
@@ -500,21 +628,17 @@
             <code class="sg">checkbox</code>and an associated empty label before the unordered list of menu items. The
             <code class="sg">h1</code>heading is for branding. Links within that heading are displayed identically to standard heading text (no underline or hover). See the example for details.</p>
           <p class="sg">Note: The CSS-only implementation is fully functional without JavaScript, but it does overlay the expanded menu on top of the main content rather than pushing the main content down. If the latter behavior is desired, a small bit of JavaScript is required. When the
-            <code class="sg">#nav-toggle</code>input is checked, add the
-            <code class="sg">nav-expanded</code>class to the
-            <code class="sg">main</code>
-            element; remove the class when the input is not checked. The rules below synchronize the behavior of the main element with the navigation bar. (The class is ignored when the navigation bar is full width, so there is no need to check for window resize events.) Here is sample code for implementing this behavior:</p><pre class="sg"><code class="sg">window.addEventListener(&apos;load&apos;, function() {
-  document.getElementById(&apos;nav-toggle&apos;)
-    .addEventListener(&apos;change&apos;, function() {
-      document.getElementsByTagName(&apos;main&apos;)[0]
-        .classList.toggle(&apos;nav-expanded&apos;);
-    });
+            <code class="sg">#nav-toggle</code>input is checked, set the
+            <code class="sg">data-nav-expanded</code>attribute equal to
+            <code class="sg">true</code>on the
+            <code class="sg">main</code>element; remove the attribute or set it to false when the input is not checked. The rules below synchronize the behavior of the main element with the navigation bar. (The attribute is ignored when the navigation bar is full width, so there is no need to check for window resize events.) Here is sample code for implementing this behavior with jQuery:</p><pre class="sg"><code class="sg">$(&apos;#nav-toggle&apos;).on(&apos;change&apos;, function() {
+    $(&apos;main&apos;).attr(&apos;data-nav-expanded&apos;, $(&apos;#nav-toggle&apos;).prop(&apos;checked&apos;));
 });
 </code></pre>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <div class="header theme-teachers dark">
+            <div class="header">
               <h1>
                 <span>
                   <a href="#">The Georgia
@@ -525,19 +649,19 @@
                 <input type="checkbox" id="nav-toggle">
                 <label for="nav-toggle"></label>
                 <ul>
-                  <li class="theme-teachers">
+                  <li class="navlink__teachers">
                     <a href="#teachers">Teachers</a>
                   </li>
-                  <li class="theme-schools">
+                  <li class="navlink__schools">
                     <a href="#schools">Schools</a>
                   </li>
-                  <li class="theme-industry">
+                  <li class="navlink__industry">
                     <a href="#industry">Industry</a>
                   </li>
                 </ul>
               </nav>
             </div>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;header theme-teachers dark&quot;</span>&gt;</span>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;header&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>The Georgia
@@ -548,13 +672,13 @@
     <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;nav-toggle&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;nav-toggle&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-teachers&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navlink__teachers&quot;</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#teachers&quot;</span>&gt;</span>Teachers<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-schools&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navlink__schools&quot;</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#schools&quot;</span>&gt;</span>Schools<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-industry&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;navlink__industry&quot;</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#industry&quot;</span>&gt;</span>Industry<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
@@ -566,11 +690,13 @@
 
     <section class="sg-section sg-section-themes">
       <h2 id="themes" class="sg">Themes</h2>
-      <p class="sg">Three different complementary themes determine the color schemes for the site. Those themes represent teachers, schools, and industry. The appropriate themes are automatically applied to content within the designated section (based on the section&apos;s
-        <code class="sg">id</code>value.) They can also be applied outside of the specfic section (e.g. on the landing page) with a class of
+      <p class="sg">Three different complementary themes determine the color schemes for the site. Those themes represent teachers, schools, and industry. They can be applied with a class of
         <code class="sg">theme-teachers</code>,
         <code class="sg">theme-schools</code>, or
-        <code class="sg">theme-industry</code>.</p>
+        <code class="sg">theme-industry</code>as appropriate. A neutral theme
+        <code class="sg">theme-neutral</code>is also available. Themese support a
+        <code class="sg">--light</code>or
+        <code class="sg">--dark</code>modifier to adjust the color scheme appropriately.</p>
       <section class="sg-block sg-section-teachers-theme">
         <div class="sg-text">
           <h3 id="teachers-theme" class="sg">Teachers Theme</h3>
@@ -580,13 +706,13 @@
             <div class="theme-teachers">
               This is the theme for the teachers section
             </div>
-            <div class="theme-teachers dark">
+            <div class="theme-teachers--dark">
               This is the dark theme for the teachers section
             </div>
           </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-teachers&quot;</span>&gt;</span>
   This is the theme for the teachers section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-teachers dark&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-teachers--dark&quot;</span>&gt;</span>
   This is the dark theme for the teachers section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
@@ -600,13 +726,13 @@
             <div class="theme-schools">
               This is the theme for the schools section
             </div>
-            <div class="theme-schools dark">
+            <div class="theme-schools--dark">
               This is the dark theme for the schools section
             </div>
           </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-schools&quot;</span>&gt;</span>
   This is the theme for the schools section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-schools dark&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-schools--dark&quot;</span>&gt;</span>
   This is the dark theme for the schools section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
@@ -620,16 +746,19 @@
             <div class="theme-industry">
               This is the theme for the industry section
             </div>
-            <div class="theme-industry dark">
+            <div class="theme-industry--dark">
               This is the dark theme for the industry section
             </div>
           </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-industry&quot;</span>&gt;</span>
   This is the theme for the industry section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-industry dark&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-industry--dark&quot;</span>&gt;</span>
   This is the dark theme for the industry section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
+      </section>
+      <section class="sg-block sg-section-navigation-bar-themes">
+        <h3 id="navigation-bar-themes" class="sg">Navigation Bar Themes</h3>
       </section>
       <section class="sg-block sg-section-neutral-theme">
         <div class="sg-text">
@@ -637,23 +766,46 @@
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <div class="theme-neutral light">
+            <div class="theme-neutral--light">
               This is the light theme for the neutral section
             </div>
             <div class="theme-neutral">
               This is the theme for the neutral section
             </div>
-            <div class="theme-neutral dark">
+            <div class="theme-neutral--dark">
               This is the dark theme for the neutral section
             </div>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-neutral light&quot;</span>&gt;</span>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-neutral--light&quot;</span>&gt;</span>
   This is the light theme for the neutral section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-neutral&quot;</span>&gt;</span>
   This is the theme for the neutral section
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-neutral dark&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;theme-neutral--dark&quot;</span>&gt;</span>
   This is the dark theme for the neutral section
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-brand-theme">
+        <h3 id="brand-theme" class="sg">Brand Theme</h3>
+        <p class="sg">A special theme for the placeholder branding/logo.</p>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-utilities">
+      <h2 id="utilities" class="sg">Utilities</h2>
+      <p class="sg">Generic classes that can be added to any content.</p>
+      <section class="sg-block sg-section-center">
+        <div class="sg-text">
+          <h3 id="center" class="sg">Center</h3>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="center">
+              This text is centered horizontally
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;center&quot;</span>&gt;</span>
+  This text is centered horizontally
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
       </section>
