@@ -28,7 +28,7 @@ window.Stem = {
 
     init: function () {
         'use strict';
-        // Nothing to do yet
+        new Stem.Routers.App();
     }
 };
 
