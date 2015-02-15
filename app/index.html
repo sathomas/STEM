@@ -7,8 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- ========== Custom Fonts from CDNs ========== -->
-        <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css"
+               href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
+        <link rel="stylesheet" type="text/css"
+              href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
         <!-- ========== Third Party Style Sheets ========== -->
         <!-- build:css styles/vendor.css -->
@@ -17,7 +19,7 @@
 
         <!-- ========== Custom Style Sheets ========== -->
         <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" type="text/css" href="styles/main.css">
         <!-- endbuild -->
 
         <!-- ========== Third Party JavaScript for Head ========== -->
@@ -40,21 +42,23 @@
         ==============
         -->
 
-        <div class="header theme-teachers dark">
-            <h1>
-                <span><a href="#">The Georgia<br/>STEM Incubator</a></span>
+        <div class="header">
+            <h1 class="header__brand theme-brand--dark">
+                <span class="brand__border theme-brand__border--dark">
+                    <a href="#">The Georgia<br/>STEM Incubator</a>
+                </span>
             </h1>
             <nav>
                 <input type="checkbox" id="nav-toggle" />
                 <label for="nav-toggle"></label>
                 <ul>
-                    <li class="theme-teachers">
+                    <li class="navlink__teachers">
                         <a href="#teachers">Teachers</a>
                     </li>
-                    <li class="theme-schools">
+                    <li class="navlink__schools">
                         <a href="#schools">Schools</a>
                     </li>
-                    <li class="theme-industry">
+                    <li class="navlink__industry">
                         <a href="#industry">Industry</a>
                     </li>
                 </ul>
@@ -75,10 +79,10 @@
             ====================
             -->
 
-            <section>
+            <section id="landing">
                 <div class="container">
                     <div class="row">
-                        <div class="two-thirds column theme-teachers call-to-action">
+                        <div class="call-to-action two-thirds column theme-teachers">
                             <div class="inset">
                                 <h3>Support from other teachers just like you</h3>
                                 <p>
@@ -88,11 +92,15 @@
                                 </p>
                             </div>
                             <div>
-                                <a class="button" href="#teachers">Discover</a>
-                                <div class="image" role="image"><span class="image-spacer"></span></div>
+                                <div class="inset-horizontal">
+                                    <a class="button" href="#teachers">Discover</a>
+                                </div>
+                                <div class="call-to-action__image" role="image">
+                                    <span class="call-to-action__image-spacer"></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="one-sixth column theme-schools call-to-action">
+                        <div class="call-to-action one-sixth column theme-schools">
                             <div class="inset">
                                 <p>
                                     Find professional learning opportunities,
@@ -100,25 +108,34 @@
                                 </p>
                             </div>
                             <div>
-                                <a class="button" href="#schools">More</a>
-                                <div class="image" role="image"><span class="image-spacer"></span></div>
+                                <div class="inset-horizontal">
+                                    <a class="button" href="#schools">More</a>
+                                </div>
+                                <div class="call-to-action__image" role="image">
+                                    <span class="call-to-action__image-spacer"></span>
+                                </div>
                             </div>
                         </div>
-                        <div class="one-sixth column theme-industry call-to-action">
+                        <div class="call-to-action one-sixth column theme-industry">
                             <div class="inset">
                                 <p>
-                                    Partner with schools, build your community­minded brand,
-                                    promote change for a new generation of workforce
+                                    Partner with schools, build your community­ minded
+                                    brand, promote change for a new generation of
+                                    workforce
                                 </p>
                             </div>
                             <div>
-                                <a class="button" href="#industry">More</a>
-                                <div class="image" role="image"><span class="image-spacer"></span></div>
+                                <div class="inset-horizontal">
+                                    <a class="button" href="#industry">More</a>
+                                </div>
+                                <div class="call-to-action__image" role="image">
+                                    <span class="call-to-action__image-spacer"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="two-thirds column theme-neutral light">
+                        <div class="two-thirds column theme-neutral--light">
                             <div class="inset">
                                 <h4>About the STEM Incubator</h4>
                                 <p>
@@ -150,6 +167,476 @@
             -->
 
             <section id="teachers">
+                <div class="container">
+                    <div class="row">
+                        <div class="one-full column theme-neutral--light">
+                            <article>
+                                <h3 class="center">Explore teacher resources</h3>
+                                <form class="horizontal-selection dynamic theme-teachers-highlight center">
+                                    <fieldset>
+                                        <label class="horizontal-selection__label">
+                                            I teach:
+                                        </label>
+                                        <input type="checkbox" id="cb-elementary"/>
+                                        <label class="horizontal-selection__item-label" for="cb-elementary">
+                                            Elementary
+                                        </label>
+                                        <input type="checkbox" id="cb-middle-school"/>
+                                        <label class="horizontal-selection__item-label" for="cb-middle-school">
+                                            Middle School
+                                        </label>
+                                        <input type="checkbox" id="cb-high-school"/>
+                                        <label class="horizontal-selection__item-label" for="cb-high-school">
+                                            High School
+                                        </label>
+                                   </fieldset>
+                                </form>
+                            </article>
+                        </div>
+                    </div>
+                    <div id="teachers-featured" class="row featured theme-neutral"
+                         data-featured-selection="0">
+
+                        <div class="one-fourth column featured__item" data-featured-item="1">
+                            <div class="featured__image" role="image">
+                                <span class="featured__image-spacer"></span>
+                            </div>
+                            <div class="featured__text">
+                                <h3 class="featured__title">Content</h3>
+                                <p>
+                                    Find, download, share, and discuss
+                                    learning materials from schools around
+                                    Georgia and other teachers just like you.
+                                </p>
+
+                                <!--
+                                Use an anchor tag with a direct link to the
+                                OAE in case JavaScript is disabled. The app
+                                will override the default behavior when it
+                                runs.
+                                -->
+                                <a class="button button--large button--link"
+                                   data-featured-toggle="1"
+                                   href="https://stemincubator.oae-qa1.oaeproject.org/search/?types=content">
+                                    Show me
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="one-fourth column featured__details" data-featured-details="1">
+                            <form class="vertical-selection theme-teachers-highlight">
+                                <fieldset>
+                                    <label class="vertical-selection__label">Subjects:</label>
+                                    <input type="checkbox" id="cb-math"/>
+                                    <label class="vertical-selection__item-label" for="cb-math">Math</label>
+                                    <input type="checkbox" id="cb-science"/>
+                                    <label class="vertical-selection__item-label" for="cb-science">Science</label>
+                                    <input type="checkbox" id="cb-computers"/>
+                                    <label class="vertical-selection__item-label" for="cb-computers">Computers</label>
+                               </fieldset>
+                            </form>
+                        </div>
+                        <div class="three-fourths column featured__details" data-featured-details="1">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
+                            <h3 class="featured__details__heading">Selected Content</h3>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of content</h4>
+                                    <p>
+                                        Description of the content as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                        Description of the content as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of content</h4>
+                                    <p>
+                                        Description of the content as pulled directly
+                                        from the API of the OAE tenant.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of content</h4>
+                                    <p>
+                                        Description of the content as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of content</h4>
+                                    <p>
+                                        Description of the content as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="one-fourth column featured__item" data-featured-item="2">
+                            <div class="featured__image" role="image">
+                                <span class="featured__image-spacer"></span>
+                            </div>
+                            <div class="featured__text">
+                                <h3 class="featured__title">Professional Learning</h3>
+                                <p>
+                                    Find and register for online courses,
+                                    workshops, and other professional
+                                    learning opportunities.
+                                </p>
+                                <a class="button button--large button--link"
+                                   data-featured-toggle="2"
+                                   href="#">
+                                    Show me
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="one-fourth column featured__details" data-featured-details="2">
+                            <form class="vertical-selection theme-teachers-highlight">
+                                <fieldset>
+                                    <label class="vertical-selection__label">Learning Options:</label>
+                                    <input type="checkbox" id="cb-online"/>
+                                    <label class="vertical-selection__item-label" for="cb-online">Online course</label>
+                                    <input type="checkbox" id="cb-workshop"/>
+                                    <label class="vertical-selection__item-label" for="cb-workshop">In-person workshop</label>
+                                    <input type="checkbox" id="cb-summer"/>
+                                    <label class="vertical-selection__item-label" for="cb-summer">Summer institute</label>
+                               </fieldset>
+                            </form>
+                        </div>
+                        <div class="three-fourths column featured__details" data-featured-details="2">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
+                            <h3 class="featured__details__heading">Selected Learning Opportunities</h3>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of workshop</h4>
+                                    <p>
+                                        Description of the workshop as pulled directly
+                                        from the API of Brightspace. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                        Description of the workshop as pulled directly
+                                        from the API of Brightspace. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of workshop</h4>
+                                    <p>
+                                        Description of the workshop as pulled directly
+                                        from the API of Brightspace.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of workshop</h4>
+                                    <p>
+                                        Description of the workshop as pulled directly
+                                        from the API of Brightspace. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of workshop</h4>
+                                    <p>
+                                        Description of the workshop as pulled directly
+                                        from the API of Brightspace. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="one-fourth column featured__item" data-featured-item="3">
+                            <div class="featured__image" role="image">
+                                <span class="featured__image-spacer"></span>
+                            </div>
+                            <div class="featured__text">
+                                <h3 class="featured__title">Groups</h3>
+                                <p>
+                                    Work with a collaborative team, connect
+                                    with other organizations and programs,
+                                    or compare notes with peers on topics
+                                    of shared interest.
+                                </p>
+
+                                <!--
+                                Use an anchor tag with a direct link to the
+                                OAE in case JavaScript is disabled. The app
+                                will override the default behavior when it
+                                runs.
+                                -->
+                                <a class="button button--large button--link"
+                                   data-featured-toggle="3"
+                                   href="https://stemincubator.oae-qa1.oaeproject.org/search/?types=group">
+                                    Show me
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="one-fourth column featured__details" data-featured-details="3">
+                            <form class="vertical-selection theme-teachers-highlight">
+                                <fieldset>
+                                    <label class="vertical-selection__label">Subjects:</label>
+                                    <input type="checkbox" id="cb-math2"/>
+                                    <label class="vertical-selection__item-label" for="cb-math2">Math</label>
+                                    <input type="checkbox" id="cb-science2"/>
+                                    <label class="vertical-selection__item-label" for="cb-science2">Science</label>
+                                    <input type="checkbox" id="cb-computers2"/>
+                                    <label class="vertical-selection__item-label" for="cb-computers2">Computers</label>
+                               </fieldset>
+                            </form>
+                        </div>
+                        <div class="three-fourths column featured__details" data-featured-details="3">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
+                            <h3 class="featured__details__heading">Selected Groups</h3>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of group</h4>
+                                    <p>
+                                        Description of the group as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                        Description of the group as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of group</h4>
+                                    <p>
+                                        Description of the group as pulled directly
+                                        from the API of the OAE tenant.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of group</h4>
+                                    <p>
+                                        Description of the group as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Title of group</h4>
+                                    <p>
+                                        Description of the group as pulled directly
+                                        from the API of the OAE tenant. It could be
+                                        long or brief as appropriate. Presumably it
+                                        will be confined to a single paragraph.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">More details</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="one-fourth column featured__item" data-featured-item="4">
+                            <div class="featured__image" role="image">
+                                <span class="featured__image-spacer"></span>
+                            </div>
+                            <div class="featured__text">
+                                <h3 class="featured__title">Crowdfund your project</h3>
+                                <p>
+                                    See how other teachers in your area
+                                    are getting their class projects
+                                    funded, and submit your own.
+                                </p>
+
+                                <!--
+                                Use an anchor tag with a direct link to Donors
+                                Choose in case JavaScript is disabled. The app
+                                will override the default behavior when it
+                                runs.
+                                -->
+                                <a class="button button--large button--link"
+                                   data-featured-toggle="4"
+                                   href="http://www.donorschoose.org/teachers">
+                                    Tell me more
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="one-fourth column featured__details" data-featured-details="4">
+                            <div class="inset">
+                                <img class="featured__details__logo" src="images/donorschoose.svg">
+                                <p>
+                                    DonorsChoose.org lets you share your classroom needs
+                                    with a thriving community eager to help. Supporters
+                                    have brought teachers' ideas to life in more than
+                                    half of all U.S. public schools.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="three-fourths column featured__details" data-featured-details="4">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
+                            <h3 class="featured__details__heading">Successful Projects in Georgia</h3>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Name of project</h4>
+                                    <p>
+                                        Description of the project as pulled directly
+                                        from the API of DonorsChoose.org.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">$550 Funded</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Name of project</h4>
+                                    <p>
+                                        Description of the project as pulled directly
+                                        from the API of DonorsChoose.org.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">$550 Funded</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Name of project</h4>
+                                    <p>
+                                        Description of the project as pulled directly
+                                        from the API of DonorsChoose.org.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">$550 Funded</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="featured__details__item">
+                                <div class="featured__details__image">
+                                    <img src="images/placeholder.png" width="100" height="100"/>
+                                </div>
+                                <div class="featured__details__text">
+                                    <h4 class="featured__details__title">Name of project</h4>
+                                    <p>
+                                        Description of the project as pulled directly
+                                        from the API of DonorsChoose.org.
+                                    </p>
+                                    <p>
+                                        <a href="#" class="button button--link">$550 Funded</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </section>
 
             <!--
@@ -159,6 +646,7 @@
             -->
 
             <section id="schools">
+                <p class="inset">No content here for now</p>
             </section>
 
             <!--
@@ -168,6 +656,7 @@
             -->
 
             <section id="industry">
+                <p class="inset">No content here for now</p>
             </section>
 
         </main>
@@ -178,13 +667,19 @@
         =================
         -->
 
-        <footer class="theme-neutral dark">
+        <footer class="theme-neutral--dark">
             <p>
                 <small>
                     Images copyright
-                    <a href="https://www.flickr.com/photos/cybrarian77/6284181389/">cybrarian77</a>,
-                    <a href="https://www.flickr.com/photos/ctsenatedems/10043241965">CT Senate Democrats</a>, and
-                    <a href="https://www.flickr.com/photos/kentuckycountrydayschool/4089873006">Kentuck Country Day</a>.
+                    <a href="https://www.flickr.com/photos/cybrarian77/6284181389/">
+                        cybrarian77
+                    </a>,
+                    <a href="https://www.flickr.com/photos/ctsenatedems/10043241965">
+                        CT Senate Democrats
+                    </a>, and
+                    <a href="https://www.flickr.com/photos/kentuckycountrydayschool/4089873006">
+                        Kentuck Country Day
+                    </a>.
                     Licensed under Creative Commons.
                 </small>
             </p>
@@ -200,6 +695,7 @@
         <!-- build:js scripts/vendor.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/underscore.string/dist/underscore.string.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <!-- endbuild -->
 
@@ -208,10 +704,12 @@
         <script src="scripts/main.js"></script>
         <script src="scripts/templates.js"></script>
         <script src="scripts/components/style-helpers.js"></script>
+        <script src="scripts/components/featured.js"></script>
         <script src="scripts/models/proposal.js"></script>
         <script src="scripts/collections/proposals.js"></script>
         <script src="scripts/views/proposalAsHighlight.js"></script>
         <script src="scripts/views/proposalsAsHighlights.js"></script>
+        <script src="scripts/routes/app.js"></script>
         <!-- endbuild -->
 
 </body>
