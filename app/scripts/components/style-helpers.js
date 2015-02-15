@@ -13,17 +13,14 @@ $(document).ready(function () {
 
     // Look for changes to the `nav-toogle` checkbox
     // and update the `main` element with appropriate
-    // classes. The CSS rules can use these class changes
+    // data attributes. The CSS rules can use these
     // to adjust positioning of the main content to
     // account for expanded or collapsed menu bars on
     // mobile viewports.
 
     $('#nav-toggle').on('change', function() {
 
-        // We can simply toggle the class, since the page
-        // always loads with the menu bar collapsed.
-
-        $('main').toggleClass('nav-expanded');
+        $('main').attr('data-nav-expanded', $('#nav-toggle').prop('checked'));
 
     });
 
