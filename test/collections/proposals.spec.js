@@ -1,4 +1,5 @@
-/*global Stem, beforeEach, describe, it  */
+/* jshint sub: true */
+/* global Stem, beforeEach, describe, it, sinon */
 
 describe('Proposals Collection', function () {
 
