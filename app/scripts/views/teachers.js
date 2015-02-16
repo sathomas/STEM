@@ -33,7 +33,7 @@ Stem.Views = Stem.Views || {};
             // Create a collection of content objects
 
             this.content = new Stem.Collections.Content([], {
-                limit: 5
+                limit: 99
             });
 
             // Populate it from the OAE. We want to trigger

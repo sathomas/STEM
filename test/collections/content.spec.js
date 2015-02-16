@@ -176,9 +176,12 @@ describe('Content Collection', function () {
         };
     }
 
-    beforeEach(function () {
+    before(function() {
+        var ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', contentResponse);
         this.ContentCollection = new Stem.Collections.Content();
-    });
+        this.ContentCollection.fetch();
+        ajaxStub.restore();
+    })
 
     it('should generate the correct default URL to access the OAE', function() {
         parseURL(this.ContentCollection.url())['protocol'].should.equal(Stem.config.oae.protocol);
@@ -197,18 +200,23 @@ describe('Content Collection', function () {
     });
 
     it('should parse the response from the OAE', function() {
-        this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', contentResponse);
-        this.ContentCollection.fetch();
         this.ContentCollection.length.should.equal(8);
-        this.ajaxStub.restore();
     });
 
     it('should create models from the OAE response', function() {
-        this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', contentResponse);
-        this.ContentCollection.fetch();
         this.ContentCollection.at(0).get('description').should.equal(contentResponse.results[0].description);
         this.ContentCollection.at(1).get('description').should.equal(contentResponse.results[1].description);
-        this.ajaxStub.restore();
+    });
+
+    it('should identify all included subjects', function() {
+        this.ContentCollection.getSubjects().length.should.equal(1);
+        this.ContentCollection.getSubjects()[0].should.equal('Math');
+    });
+
+    it('should support filtering', function() {
+        this.ContentCollection.refine(function(model) {
+            return model.get('subjects').length;
+        }).length.should.equal(7);
     });
 
 });

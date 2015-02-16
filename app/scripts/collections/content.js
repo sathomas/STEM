@@ -73,6 +73,59 @@ Stem.Collections = Stem.Collections || {};
             // array of models and return it directly.
 
             return response.results ? response.results : response;
+        },
+
+        // Return an array of all the subjects associated with
+        // the models in the collection.
+
+        getSubjects: function() {
+
+            // Start with an empty list of subjects.
+
+            var subjects = [];
+
+            // Iterate through the models.
+
+            this.models.forEach(function(model) {
+
+                // Iterate through each model's subjects.
+
+                model.get('subjects').forEach(function(subject) {
+
+                    // If the subject isn't already counted,
+                    // add it to the array.
+
+                    if (!subjects.some(function(test) {
+                        return test === subject;
+                    })) {
+
+                        subjects.push(subject);
+                    }
+
+                })
+            });
+
+            return subjects;
+        },
+
+        // Create a new collection that's a filtered version
+        // of the current one. (It would be clearer if we
+        // called this method `filter`, but that's already
+        // taken by Underscore.) The syntax is the same as
+        // Underscore's `filter`.
+
+        refine: function(predicate, context) {
+
+            // Use the built-in Underscore filter to
+            // get an array of models that pass the
+            // filter condition(s).
+
+            var results = this.filter(predicate, context);
+
+            // Create a new collection (and return it).
+
+            return new Stem.Collections.Content(results)
+
         }
 
     });
