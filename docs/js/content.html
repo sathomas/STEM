@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>completedProposalAsFeaturedDetailsItem.js</title>
+  <title>content.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -106,7 +106,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>completedProposalAsFeaturedDetailsItem.js</h1>
+                  <h1>content.js</h1>
               </div>
           </li>
         
@@ -121,7 +121,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, JST*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone*/</span></pre></div></div>
             
         </li>
         
@@ -132,29 +132,18 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Backbone view that renders a completed proposal
-from DonorsChoose as an individual item in a
-feature details component.</p>
+              <p>Backbone model for a single content object from the
+Open Academic Environment.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-Stem.Views = Stem.Views || {};
+Stem.Models = Stem.Models || {};
 
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Views.CompletedProposalAsFeaturedDetailsItem = Backbone.View.extend({
-
-        template: JST[<span class="hljs-string">'app/scripts/templates/completedProposalAsFeaturedDetailsItem.ejs'</span>],
-
-        tagName: <span class="hljs-string">'div'</span>,
-
-        id: <span class="hljs-string">''</span>,
-
-        className: <span class="hljs-string">'featured__details__item'</span>,
-
-        events: {},</pre></div></div>
+    Stem.Models.Content = Backbone.Model.extend({</pre></div></div>
             
         </li>
         
@@ -165,38 +154,23 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Since this view is (for now) read-only, we stub out
-the <code>initialize</code> function as unnecessary. We’re leaving
-the boilerplate as a comment, though, to make it easier
-to add support for a dynamic model later, should that
-be required.</p>
+              <p>The only thing we need to provide for this
+model (other than Backbone defaults) is the
+URL to access it. Unlike typical Backbone
+implementations, it’s more likely that any
+collections of this model will be acquired
+through a different REST endpoint (e.g.
+search). We define the REST endpoint for the
+full content object in case those other
+endpoints only provide a summary. In such
+cases, calling <code>fetch()</code> on a model will
+update it with the complete profile.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        <span class="hljs-comment">/*
-        initialize: function () {
-            this.listenTo(this.model, 'change', this.render);
-            return this;
-        },
-        */</span>
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()));</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>Return <code>this</code> for chaining.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+            <div class="content"><div class='highlight'><pre>
+        url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host + <span class="hljs-string">'/api/content/'</span> + <span class="hljs-keyword">this</span>.id;
         }
 
     });

@@ -19,6 +19,11 @@
           <div id="jump_page">
             
               
+              <a class="source" href="content.html">
+                content.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -44,6 +49,11 @@
               </a>
             
               
+              <a class="source" href="content.html">
+                content.js
+              </a>
+            
+              
               <a class="source" href="proposal.html">
                 proposal.js
               </a>
@@ -61,6 +71,16 @@
               
               <a class="source" href="completedProposalsAsFeaturedDetails.html">
                 completedProposalsAsFeaturedDetails.js
+              </a>
+            
+              
+              <a class="source" href="contentAsFeaturedDetails.html">
+                contentAsFeaturedDetails.js
+              </a>
+            
+              
+              <a class="source" href="contentAsFeaturedDetailsItem.html">
+                contentAsFeaturedDetailsItem.js
               </a>
             
               
@@ -101,7 +121,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, JST*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, $, Backbone, JST*/</span></pre></div></div>
             
         </li>
         
@@ -165,6 +185,42 @@ view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
+              <p>Create a collection of content objects</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.content = <span class="hljs-keyword">new</span> Stem.Collections.Content([], {
+                limit: <span class="hljs-number">5</span>
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Populate it from the OAE. We want to trigger
+a reset when the fetch is complete so that any
+associated views will update automatically.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.content.fetch({reset: <span class="hljs-literal">true</span>});</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
               <p>Create the collection of completed proposals.</p>
 
             </div>
@@ -178,11 +234,11 @@ view.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Retrieve the data from DonorsChoose. We
 want to trigger a reset when the fetch is
@@ -193,6 +249,7 @@ update automatically.</p>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.completedProposals.fetch({reset: <span class="hljs-literal">true</span>});
+
         },
 
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
@@ -200,11 +257,11 @@ update automatically.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Rendering this view is really nothing
 more than creating and rendering the
@@ -213,6 +270,13 @@ appropriate child views.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> contentDetailList = <span class="hljs-keyword">new</span> Stem.Views.ContentAsFeaturedDetails({
+                collection: <span class="hljs-keyword">this</span>.content,
+                el: $(<span class="hljs-string">'#content-details'</span>)[<span class="hljs-number">0</span>]
+            });
+
+            contentDetailList.render();
+
             <span class="hljs-keyword">var</span> proposalDetailList = <span class="hljs-keyword">new</span> Stem.Views.CompletedProposalsAsFeaturedDetails({
                 collection: <span class="hljs-keyword">this</span>.completedProposals,
                 el: $(<span class="hljs-string">'#proposals-details'</span>)[<span class="hljs-number">0</span>]

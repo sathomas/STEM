@@ -971,6 +971,10 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     width: 90%;
 }
 
+.featured__details__main p {
+    padding-left: 10px;
+}
+
 img.featured__details__logo[src="images/donorschoose.svg"] {
     max-width: 220px;
 
@@ -1527,6 +1531,10 @@ main {
     .theme-teachers .call-to-action__image-spacer { padding-top: 66.5625%; }
 }
 
+.theme-teachers-highlight a:focus,
+.theme-teachers-highlight a:hover,
+.theme-teachers-highlight button.button__link:focus,
+.theme-teachers-highlight button.button__link:hover,
 .theme-teachers-highlight label.horizontal-selection__item-label:focus,
 .theme-teachers-highlight label.horizontal-selection__item-label:hover,
 label.horizontal-selection__item-label.theme-teachers-highlight:focus,
