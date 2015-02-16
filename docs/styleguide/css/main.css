@@ -971,12 +971,22 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     width: 90%;
 }
 
+img.featured__details__logo[src="images/donorschoose.svg"] {
+    max-width: 220px;
+
+}
+
 .featured__details__close {
     color: #bbbbbb;
     cursor: pointer;
-    float: right;
     font-size: 4rem;
-    padding-right: 20px;
+    position: absolute;
+    right: 15px;
+}
+
+
+@media (min-width: 500px) {
+    .featured__details__close { right: 20px; }
 }
 
 .featured__details__close:hover,

@@ -54,13 +54,28 @@
               </a>
             
               
+              <a class="source" href="proposalAsFeaturedDetailsItem.html">
+                proposalAsFeaturedDetailsItem.js
+              </a>
+            
+              
               <a class="source" href="proposalAsHighlight.html">
                 proposalAsHighlight.js
               </a>
             
               
+              <a class="source" href="proposalsAsFeaturedDetails.html">
+                proposalsAsFeaturedDetails.js
+              </a>
+            
+              
               <a class="source" href="proposalsAsHighlights.html">
                 proposalsAsHighlights.js
+              </a>
+            
+              
+              <a class="source" href="teachers.html">
+                teachers.js
               </a>
             
           </div>
@@ -238,8 +253,11 @@ ignore any proposals that we can’t display.</p>
             <span class="hljs-keyword">if</span> (!_(attrs.title).isString()) {
                 <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid title'</span>;
             }
-            <span class="hljs-keyword">if</span> (!_(attrs.imageURL).isString()) {
+            <span class="hljs-keyword">if</span> (!_(attrs.thumbImageURL).isString()) {
                 <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid thumbnail image'</span>;
+            }
+            <span class="hljs-keyword">if</span> (!_(attrs.imageURL).isString()) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid image'</span>;
             }
             <span class="hljs-keyword">if</span> (!_(attrs.shortDescription).isString()) {
                 <span class="hljs-keyword">return</span> <span class="hljs-string">'Proposal doesn\'t have a valid description'</span>;

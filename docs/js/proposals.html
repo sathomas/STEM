@@ -54,13 +54,28 @@
               </a>
             
               
+              <a class="source" href="proposalAsFeaturedDetailsItem.html">
+                proposalAsFeaturedDetailsItem.js
+              </a>
+            
+              
               <a class="source" href="proposalAsHighlight.html">
                 proposalAsHighlight.js
               </a>
             
               
+              <a class="source" href="proposalsAsFeaturedDetails.html">
+                proposalsAsFeaturedDetails.js
+              </a>
+            
+              
               <a class="source" href="proposalsAsHighlights.html">
                 proposalsAsHighlights.js
+              </a>
+            
+              
+              <a class="source" href="teachers.html">
+                teachers.js
               </a>
             
           </div>
@@ -131,6 +146,8 @@ a JavaScript object, as the second parameter to the constructor</p>
  (currently 10, but may change in the future). The API
  also places a limit on this parameter. (Currently the
  limit is 50.)</li>
+<li><code>historical</code>: If true, request data from completed
+ proposals.</li>
 <li><code>sortBy</code>: define the sorting criteria for the request.
  If unspecified, the API’s default sorting is retained.
  Supported values are:<ul>
@@ -182,7 +199,7 @@ we need an <code>initialize</code> method to handle them.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>The ‘ object is optional.</p>
+              <p>The <code>options</code> object is optional.</p>
 
             </div>
             
@@ -277,6 +294,7 @@ general math and science.</p>
             }
             <span class="hljs-keyword">this</span>.options.maxSize = settings.maxSize;
             <span class="hljs-keyword">this</span>.options.keywords = settings.keywords;
+            <span class="hljs-keyword">this</span>.options.historical = settings.historical;
 
         },</pre></div></div>
             
@@ -379,10 +397,11 @@ will apply for all searches.</p>
                 <span class="hljs-string">'?'</span> + <span class="hljs-string">'APIKey='</span> + Stem.config.donorsChooseApiKey +
                 <span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'state=GA'</span> +
                 <span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'subject4='</span> + <span class="hljs-keyword">this</span>.options.subject +
-                (<span class="hljs-keyword">this</span>.options.grade    ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'gradeType='</span> + <span class="hljs-keyword">this</span>.options.grade) : <span class="hljs-string">''</span>) +
-                (<span class="hljs-keyword">this</span>.options.keywords ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'keywords="'</span> + <span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-keyword">this</span>.options.keywords) + <span class="hljs-string">'"'</span>) : <span class="hljs-string">''</span>) +
-                (<span class="hljs-keyword">this</span>.options.maxSize  ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'max='</span> + <span class="hljs-keyword">this</span>.options.maxSize) : <span class="hljs-string">''</span>) +
-                (<span class="hljs-keyword">this</span>.options.sortBy   ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'sortBy='</span> + <span class="hljs-keyword">this</span>.options.sortBy) : <span class="hljs-string">''</span>);
+                (<span class="hljs-keyword">this</span>.options.grade      ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'gradeType='</span> + <span class="hljs-keyword">this</span>.options.grade) : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.keywords   ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'keywords="'</span> + <span class="hljs-built_in">encodeURIComponent</span>(<span class="hljs-keyword">this</span>.options.keywords) + <span class="hljs-string">'"'</span>) : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.maxSize    ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'max='</span> + <span class="hljs-keyword">this</span>.options.maxSize) : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.historical ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'historical=true'</span>) : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.sortBy     ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'sortBy='</span> + <span class="hljs-keyword">this</span>.options.sortBy) : <span class="hljs-string">''</span>);
         },</pre></div></div>
             
         </li>

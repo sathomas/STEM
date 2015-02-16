@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>main.js</title>
+  <title>teachers.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -86,7 +86,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>main.js</h1>
+                  <h1>teachers.js</h1>
               </div>
           </li>
         
@@ -101,7 +101,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, $*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, JST*/</span></pre></div></div>
             
         </li>
         
@@ -112,12 +112,33 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Main JavaScript file for STEM Incubator site. Code in
-this file mostly just sets things up for the app and
-then launches it. This file also includes configuration
-information.</p>
+              <p>Backbone view for the teacher-focused
+page of the application. This view is
+a parent view for various components
+and does not have an associated model
+or collection.</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Stem.Views = Stem.Views || {};
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+
+    Stem.Views.Teachers = Backbone.View.extend({
+
+        template: JST[<span class="hljs-string">'app/scripts/templates/teachers.ejs'</span>],
+
+        tagName: <span class="hljs-string">'div'</span>,
+
+        id: <span class="hljs-string">''</span>,
+
+        className: <span class="hljs-string">''</span>,
+
+        events: {},
+
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -128,19 +149,12 @@ information.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Everything in the application is namespaced under the
-global variable <code>Stem</code>. Invidual components (e.g. models,
-views, collections, etc.) add themselves to this
-namespace as part of their definition.</p>
+              <p>Kick off the initialization process by
+requesting data from the various
+collections that will be a part of the
+view.</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-<span class="hljs-built_in">window</span>.Stem = {
-    Collections: {},
-    Models: {},
-    Routers: {},
-    Views: {},</pre></div></div>
             
         </li>
         
@@ -151,15 +165,15 @@ namespace as part of their definition.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Global configuration items (e.g. API keys) are
-defined in the <code>config</code> property.</p>
+              <p>Create the collection of proposals.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    config: {
-        donorsChooseApiKey: <span class="hljs-string">'DONORSCHOOSE'</span>
-    },</pre></div></div>
+            <span class="hljs-keyword">this</span>.proposals = <span class="hljs-keyword">new</span> Stem.Collections.Proposals([], {
+                historical: <span class="hljs-literal">true</span>,
+                maxSize:    <span class="hljs-number">5</span>
+            });</pre></div></div>
             
         </li>
         
@@ -170,17 +184,15 @@ defined in the <code>config</code> property.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>The <code>init()</code> function is called when it’s time
-to start the application.</p>
+              <p>Retrieve the data from DonorsChoose</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">        'use strict'</span>;
-        <span class="hljs-keyword">new</span> Stem.Routers.App();
-    }
-};</pre></div></div>
+            <span class="hljs-keyword">this</span>.proposals.fetch({reset: <span class="hljs-literal">true</span>});
+        },
+
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -191,15 +203,25 @@ to start the application.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Wait for jQuery’s <code>ready</code> event to start the application.</p>
+              <p>Rendering this view is really nothing
+more than creating and rendering the
+appropriate child views.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">    'use strict'</span>;
-    Stem.init();
-});</pre></div></div>
+            <span class="hljs-keyword">var</span> proposalDetailList = <span class="hljs-keyword">new</span> Stem.Views.ProposalsAsFeaturedDetails({
+                collection: <span class="hljs-keyword">this</span>.proposals,
+                el: $(<span class="hljs-string">'#proposals-details'</span>)[<span class="hljs-number">0</span>]
+            });
+
+            proposalDetailList.render();
+
+        }
+
+    });
+
+})();</pre></div></div>
             
         </li>
         
