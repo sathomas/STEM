@@ -751,7 +751,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
  * those elements in the markup.
  *
  *     @example:
- *     <form class="horizontal-selection">
+ *     <form class="horizontal-selection theme-teachers-highlight">
  *         <fieldset>
  *             <label class="horizontal-selection__label">
  *                 Main label:
@@ -830,7 +830,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
  * those elements in the markup.
  *
  *     @example:
- *     <form class="vertical-selection">
+ *     <form class="vertical-selection theme-teachers-highlight">
  *         <fieldset>
  *             <label class="vertical-selection__label">
  *                 Main label:
@@ -971,12 +971,22 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     width: 90%;
 }
 
+img.featured__details__logo[src="images/donorschoose.svg"] {
+    max-width: 220px;
+
+}
+
 .featured__details__close {
     color: #bbbbbb;
     cursor: pointer;
-    float: right;
     font-size: 4rem;
-    padding-right: 20px;
+    position: absolute;
+    right: 15px;
+}
+
+
+@media (min-width: 500px) {
+    .featured__details__close { right: 20px; }
 }
 
 .featured__details__close:hover,
@@ -1034,7 +1044,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     margin-bottom: 0.5rem;
 }
 
-.featured__details p {
+.featured__details__main p {
     line-height: 1.4;
     margin-bottom: 0.5rem;
 }
@@ -1207,8 +1217,10 @@ div.featured__details[data-featured-details="4"]
  *
  *     @example:
  *     <div class="header">
- *         <h1>
- *             <span><a href="#">The Georgia<br/>STEM Incubator</a></span>
+ *         <h1 class="header__brand theme-brand--dark">
+ *              <span class="brand__border theme-brand__border--dark">
+ *                  <a href="#">The Georgia<br/>STEM Incubator</a>
+ *              </span>
  *         </h1>
  *         <nav>
  *             <input type="checkbox" id="nav-toggle" />

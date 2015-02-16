@@ -255,6 +255,10 @@ describe('Proposals Collection', function () {
         parseURL((new Stem.Collections.Proposals([], {keywords: 'one two'})).url()).queries['keywords'].should.equal('"one two"');
     })
 
+    it('should ask for historical data in the request URL', function() {
+        parseURL((new Stem.Collections.Proposals([], {historical: true})).url()).queries['historical'].should.equal('true');
+    })
+
     it('should include specified size limit in the request URL', function() {
         parseURL((new Stem.Collections.Proposals([], {maxSize: 5})).url()).queries['max'].should.equal('5');
     })

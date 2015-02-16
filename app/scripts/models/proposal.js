@@ -66,8 +66,11 @@ Stem.Models = Stem.Models || {};
             if (!_(attrs.title).isString()) {
                 return 'Proposal doesn\'t have a valid title';
             }
-            if (!_(attrs.imageURL).isString()) {
+            if (!_(attrs.thumbImageURL).isString()) {
                 return 'Proposal doesn\'t have a valid thumbnail image';
+            }
+            if (!_(attrs.imageURL).isString()) {
+                return 'Proposal doesn\'t have a valid image';
             }
             if (!_(attrs.shortDescription).isString()) {
                 return 'Proposal doesn\'t have a valid description';

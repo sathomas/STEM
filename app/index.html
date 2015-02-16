@@ -224,6 +224,7 @@
                         </div>
 
                         <div class="one-fourth column featured__details" data-featured-details="1">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
                             <form class="vertical-selection theme-teachers-highlight">
                                 <fieldset>
                                     <label class="vertical-selection__label">Subjects:</label>
@@ -237,7 +238,6 @@
                             </form>
                         </div>
                         <div class="three-fourths column featured__details" data-featured-details="1">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
                             <h3 class="featured__details__heading">Selected Content</h3>
                             <div class="featured__details__item">
                                 <div class="featured__details__image">
@@ -331,6 +331,7 @@
                         </div>
 
                         <div class="one-fourth column featured__details" data-featured-details="2">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
                             <form class="vertical-selection theme-teachers-highlight">
                                 <fieldset>
                                     <label class="vertical-selection__label">Learning Options:</label>
@@ -344,7 +345,6 @@
                             </form>
                         </div>
                         <div class="three-fourths column featured__details" data-featured-details="2">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
                             <h3 class="featured__details__heading">Selected Learning Opportunities</h3>
                             <div class="featured__details__item">
                                 <div class="featured__details__image">
@@ -446,6 +446,7 @@
                         </div>
 
                         <div class="one-fourth column featured__details" data-featured-details="3">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
                             <form class="vertical-selection theme-teachers-highlight">
                                 <fieldset>
                                     <label class="vertical-selection__label">Subjects:</label>
@@ -459,7 +460,6 @@
                             </form>
                         </div>
                         <div class="three-fourths column featured__details" data-featured-details="3">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
                             <h3 class="featured__details__heading">Selected Groups</h3>
                             <div class="featured__details__item">
                                 <div class="featured__details__image">
@@ -559,7 +559,9 @@
                             </div>
                         </div>
 
-                        <div class="one-fourth column featured__details" data-featured-details="4">
+                        <div class="one-fourth column featured__details featured__details__sidebar"
+                             data-featured-details="4">
+                            <span class="featured__details__close" data-featured-close>&times;</span>
                             <div class="inset">
                                 <img class="featured__details__logo" src="images/donorschoose.svg">
                                 <p>
@@ -568,10 +570,25 @@
                                     have brought teachers' ideas to life in more than
                                     half of all U.S. public schools.
                                 </p>
+                                <a class="button button--large button--link"
+                                   href="https://secure.donorschoose.org/wizard/addressWizard.html">
+                                    Propose a project
+                                </a>
                             </div>
                         </div>
-                        <div class="three-fourths column featured__details" data-featured-details="4">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
+                        <div id='proposals-details'
+                             class="three-fourths column featured__details featured__details__main"
+                             data-featured-details="4">
+
+                            <!--
+                            All of the content within this container should be replaced by
+                            dynamic data when the application runs. We're leaving the
+                            boilerplate in place, however, for demo purposes. If, during
+                            a demo, the DonorsChoose API goes down, then there will still
+                            be something to show. This boilerplate should definitely be
+                            removed from any production version, though.
+                            -->
+
                             <h3 class="featured__details__heading">Successful Projects in Georgia</h3>
                             <div class="featured__details__item">
                                 <div class="featured__details__image">
@@ -707,9 +724,10 @@
         <script src="scripts/components/featured.js"></script>
         <script src="scripts/models/proposal.js"></script>
         <script src="scripts/collections/proposals.js"></script>
-        <script src="scripts/views/proposalAsHighlight.js"></script>
-        <script src="scripts/views/proposalsAsHighlights.js"></script>
         <script src="scripts/routes/app.js"></script>
+        <script src="scripts/views/teachers.js"></script>
+        <script src="scripts/views/completedProposalAsFeaturedDetailsItem.js"></script>
+        <script src="scripts/views/completedProposalsAsFeaturedDetails.js"></script>
         <!-- endbuild -->
 
 </body>

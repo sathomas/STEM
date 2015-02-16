@@ -93,6 +93,14 @@ Stem.Routers = Stem.Routers || {};
             });
 
             Backbone.history.start();
+
+            // Now create and render the views for
+            // each section. It's okay to render
+            // them now because they'll remain
+            // hidden until the user navigates
+            // to them.
+
+            this.teacher = new Stem.Views.Teachers().render();
         }
     });
 
