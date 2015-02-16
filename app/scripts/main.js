@@ -20,7 +20,11 @@ window.Stem = {
     // defined in the `config` property.
 
     config: {
-        donorsChooseApiKey: 'DONORSCHOOSE'
+        donorsChooseApiKey: 'DONORSCHOOSE',
+        oae: {
+            host: 'stemincubator.oae-qa1.oaeproject.org',
+            protocol: 'https://'
+        }
     },
 
     // The `init()` function is called when it's time
