@@ -1,7 +1,8 @@
-/*global beforeEach, describe, it  */
-'use strict';
+/*global Stem, beforeEach, describe, it  */
 
 describe('Proposals Collection', function () {
+
+    'use strict';
 
     // The following is the actual response of DonorsChoose to the GET request
     // `http://api.donorschoose.org/common/json_feed.html?APIKey=DONORSCHOOSE&state=GA&subject4=-4&max=2`
@@ -225,7 +226,7 @@ describe('Proposals Collection', function () {
 
     beforeEach(function () {
         this.ProposalsCollection = new Stem.Collections.Proposals();
-    })
+    });
 
     it('should generate the correct default URL to access DonorsChoose', function() {
         parseURL(this.ProposalsCollection.url())['protocol'].should.equal('http:');
@@ -234,14 +235,14 @@ describe('Proposals Collection', function () {
         parseURL(this.ProposalsCollection.url()).queries['APIKey'].should.equal('DONORSCHOOSE');
         parseURL(this.ProposalsCollection.url()).queries['state'].should.equal('GA');
         parseURL(this.ProposalsCollection.url()).queries['subject4'].should.equal('-4');
-    })
+    });
 
     it('should generate the correct URL for specific subjects', function() {
         parseURL((new Stem.Collections.Proposals([], {subject: 'Health & Life Science'})).url()).queries['subject4'].should.equal('4');
         parseURL((new Stem.Collections.Proposals([], {subject: 'Applied Science'})).url()).queries['subject4'].should.equal('6');
         parseURL((new Stem.Collections.Proposals([], {subject: 'Environmental Science'})).url()).queries['subject4'].should.equal('7');
         parseURL((new Stem.Collections.Proposals([], {subject: 'Mathematics'})).url()).queries['subject4'].should.equal('8');
-    })
+    });
 
     it('should generate the correct URL for specific grade levels', function() {
         parseURL((new Stem.Collections.Proposals([], {grade: 'primary'})).url()).queries['gradeType'].should.equal('1');
@@ -249,19 +250,19 @@ describe('Proposals Collection', function () {
         parseURL((new Stem.Collections.Proposals([], {grade: 'middle'})).url()).queries['gradeType'].should.equal('3');
         parseURL((new Stem.Collections.Proposals([], {grade: 'high'})).url()).queries['gradeType'].should.equal('4');
         parseURL((new Stem.Collections.Proposals([], {grade: 'adult'})).url()).queries['gradeType'].should.equal('5');
-    })
+    });
 
     it('should include specified keywords in the request URL', function() {
         parseURL((new Stem.Collections.Proposals([], {keywords: 'one two'})).url()).queries['keywords'].should.equal('"one two"');
-    })
+    });
 
     it('should ask for historical data in the request URL', function() {
         parseURL((new Stem.Collections.Proposals([], {historical: true})).url()).queries['historical'].should.equal('true');
-    })
+    });
 
     it('should include specified size limit in the request URL', function() {
         parseURL((new Stem.Collections.Proposals([], {maxSize: 5})).url()).queries['max'].should.equal('5');
-    })
+    });
 
     it('should include specified sort option in the request URL', function() {
         parseURL((new Stem.Collections.Proposals([], {sortBy: 'urgency'})).url()).queries['sortBy'].should.equal('0');
@@ -270,14 +271,14 @@ describe('Proposals Collection', function () {
         parseURL((new Stem.Collections.Proposals([], {sortBy: 'popularity'})).url()).queries['sortBy'].should.equal('4');
         parseURL((new Stem.Collections.Proposals([], {sortBy: 'expiration'})).url()).queries['sortBy'].should.equal('5');
         parseURL((new Stem.Collections.Proposals([], {sortBy: 'newest'})).url()).queries['sortBy'].should.equal('7');
-    })
+    });
 
     it('should parse the response from DonorsChoose', function() {
         this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', donorsChooseResponse);
         this.ProposalsCollection.fetch();
         this.ProposalsCollection.length.should.equal(2);
         this.ajaxStub.restore();
-    })
+    });
 
     it('should create models from the DonorsChoose response', function() {
         this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', donorsChooseResponse);
@@ -285,13 +286,13 @@ describe('Proposals Collection', function () {
         this.ProposalsCollection.at(0).get('title').should.equal(donorsChooseResponse.proposals[0].title);
         this.ProposalsCollection.at(1).get('title').should.equal(donorsChooseResponse.proposals[1].title);
         this.ajaxStub.restore();
-    })
+    });
 
     it('should throw an error if collection write is requested', function() {
         this.ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', donorsChooseResponse);
         this.ProposalsCollection.fetch();
         _(this.ProposalsCollection.sync).bind(this.ProposalsCollection).should.throw(/read-only/);
         this.ajaxStub.restore();
-    })
+    });
 
 });

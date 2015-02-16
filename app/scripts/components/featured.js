@@ -1,3 +1,5 @@
+/*global jQuery, $*/
+
 /*!
  * jQuery plug-in to control a features component of the
  * Georgia K-12 STEM Incubator project.

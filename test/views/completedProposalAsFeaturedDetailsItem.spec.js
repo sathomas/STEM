@@ -39,16 +39,16 @@ describe('CompletedProposalAsFeaturedDetailsItem View', function () {
     it('should render the description as the first paragraph', function() {
         var $el = this.CompletedProposalAsFeaturedDetailsItem.render().$el;
         $el.find('p').first().text().should.equal(this.Proposal.get('shortDescription'));
-    })
+    });
 
     it('should include a link to the project with appropriate styling classes', function() {
         var $el = this.CompletedProposalAsFeaturedDetailsItem.render().$el;
         $el.find('a').attr('href').should.equal(this.Proposal.get('proposalURL'));
         $el.find('a').hasClass('button button--link').should.be.true();
-    })
+    });
 
     it('should include rouned total price in link text', function() {
         var $el = this.CompletedProposalAsFeaturedDetailsItem.render().$el;
         $el.find('a').text().should.have.string('$' + Math.round(+this.Proposal.get('totalPrice')) + ' ');
-    })
+    });
 });

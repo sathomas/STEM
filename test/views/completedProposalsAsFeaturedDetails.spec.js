@@ -1,4 +1,4 @@
-/*global beforeEach, describe, it, $  */
+/*global Stem, sinon, beforeEach, describe, it, $  */
 
 describe('CompletedProposalsAsFeaturedDetails View', function () {
     'use strict';
