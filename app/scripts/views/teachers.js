@@ -30,6 +30,18 @@ Stem.Views = Stem.Views || {};
             // collections that will be a part of the
             // view.
 
+            // Create a collection of content objects
+
+            this.content = new Stem.Collections.Content([], {
+                limit: 5
+            });
+
+            // Populate it from the OAE. We want to trigger
+            // a reset when the fetch is complete so that any
+            // associated views will update automatically.
+
+            this.content.fetch({reset: true});
+
             // Create the collection of completed proposals.
 
             this.completedProposals = new Stem.Collections.Proposals([], {
@@ -43,6 +55,7 @@ Stem.Views = Stem.Views || {};
             // update automatically.
 
             this.completedProposals.fetch({reset: true});
+
         },
 
         render: function () {
@@ -50,6 +63,13 @@ Stem.Views = Stem.Views || {};
             // Rendering this view is really nothing
             // more than creating and rendering the
             // appropriate child views.
+
+            var contentDetailList = new Stem.Views.ContentAsFeaturedDetails({
+                collection: this.content,
+                el: $('#content-details')[0]
+            });
+
+            contentDetailList.render();
 
             var proposalDetailList = new Stem.Views.CompletedProposalsAsFeaturedDetails({
                 collection: this.completedProposals,

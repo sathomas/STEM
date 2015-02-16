@@ -23,7 +23,7 @@ Stem.Models = Stem.Models || {};
         // update it with the complete profile.
 
         url: function() {
-            return 'https://' + Stem.config.oaeHost + '/api/content/' + this.id;
+            return Stem.config.oae.protocol + '//' + Stem.config.oae.host + '/api/content/' + this.id;
         }
 
     });

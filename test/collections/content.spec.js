@@ -181,8 +181,8 @@ describe('Content Collection', function () {
     });
 
     it('should generate the correct default URL to access the OAE', function() {
-        parseURL(this.ContentCollection.url())['protocol'].should.equal('https:');
-        parseURL(this.ContentCollection.url())['host'].should.equal(Stem.config.oaeHost);
+        parseURL(this.ContentCollection.url())['protocol'].should.equal(Stem.config.oae.protocol);
+        parseURL(this.ContentCollection.url())['host'].should.equal(Stem.config.oae.host);
         parseURL(this.ContentCollection.url())['pathname'].should.equal('/api/search/general');
         parseURL(this.ContentCollection.url()).queries['resourceTypes'].should.equal('content');
         parseURL(this.ContentCollection.url()).queries['scope'].should.equal('_tenant');

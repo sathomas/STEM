@@ -2,7 +2,7 @@
 <div class="featured__details__listing"></div>
 <p>
     <a class="button button--large button--link"
-       href="<% print('https://' + Stem.config.oaeHost + '/search/?types=content' %>">
+       href="<% print(Stem.config.oae.protocol + '//' + Stem.config.oae.host + '/search/?types=content') %>">
         Show me more
     </a>
 <p>

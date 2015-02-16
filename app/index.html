@@ -224,7 +224,8 @@
                             </div>
                         </div>
 
-                        <div class="one-fourth column featured__details" data-featured-details="1">
+                        <div class="one-fourth column featured__details featured__details__sidebar"
+                             data-featured-details="1">
                             <span class="featured__details__close" data-featured-close>&times;</span>
                             <form class="vertical-selection">
                                 <fieldset>
@@ -238,7 +239,19 @@
                                </fieldset>
                             </form>
                         </div>
-                        <div class="three-fourths column featured__details" data-featured-details="1">
+                        <div id="content-details"
+                             class="three-fourths column featured__details featured__details__main"
+                             data-featured-details="1">
+
+                            <!--
+                            All of the content within this container should be replaced by
+                            dynamic data when the application runs. We're leaving the
+                            boilerplate in place, however, for demo purposes. If, during
+                            a demo, the OAE API goes down, then there will still be
+                            something to show. This boilerplate should definitely be
+                            removed from any production version, though.
+                            -->
+
                             <h3 class="featured__details__heading">Selected Content</h3>
                             <div class="featured__details__item">
                                 <div class="featured__details__image">
@@ -580,7 +593,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div id='proposals-details'
+                        <div id="proposals-details"
                              class="three-fourths column featured__details featured__details__main"
                              data-featured-details="4">
 

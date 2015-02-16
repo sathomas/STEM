@@ -19,7 +19,7 @@ describe('ContentAsFeaturedDetailsItem View', function () {
 
     it('should render the thumbnail as an <img>', function() {
         var $el = this.ContentAsFeaturedDetailsItemView.render().$el;
-        $el.find('img').attr('src').should.equal('https://' + Stem.config.oaeHost + this.Content.get('thumbnailUrl'));
+        $el.find('img').attr('src').should.equal(Stem.config.oae.protocol + '//' + Stem.config.oae.host + this.Content.get('thumbnailUrl'));
     });
 
     it('should render the title as an <h4> header with appropriate styling class', function() {
@@ -35,7 +35,7 @@ describe('ContentAsFeaturedDetailsItem View', function () {
 
     it('should include a link to the project with appropriate styling classes', function() {
         var $el = this.ContentAsFeaturedDetailsItemView.render().$el;
-        $el.find('a').attr('href').should.equal('https://' + Stem.config.oaeHost + this.Content.get('profilePath'));
+        $el.find('a').attr('href').should.equal(Stem.config.oae.protocol + '//' + Stem.config.oae.host + this.Content.get('profilePath'));
         $el.find('a').hasClass('button button--link').should.be.true();
     });
 

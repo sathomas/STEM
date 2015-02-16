@@ -51,7 +51,7 @@ Stem.Collections = Stem.Collections || {};
 
         url: function() {
 
-            return 'https://' + Stem.config.oaeHost +
+            return Stem.config.oae.protocol + '//' + Stem.config.oae.host +
                 '/api/search/general?resourceTypes=content&scope=_tenant' +
                 (this.options.limit    ? ('&' + 'limit=' + this.options.limit)    : '') +
                 (this.options.keywords ? ('&' + 'q='     + this.options.keywords) : '');
