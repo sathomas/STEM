@@ -54,18 +54,18 @@
               </a>
             
               
-              <a class="source" href="proposalAsFeaturedDetailsItem.html">
-                proposalAsFeaturedDetailsItem.js
+              <a class="source" href="completedProposalAsFeaturedDetailsItem.html">
+                completedProposalAsFeaturedDetailsItem.js
+              </a>
+            
+              
+              <a class="source" href="completedProposalsAsFeaturedDetails.html">
+                completedProposalsAsFeaturedDetails.js
               </a>
             
               
               <a class="source" href="proposalAsHighlight.html">
                 proposalAsHighlight.js
-              </a>
-            
-              
-              <a class="source" href="proposalsAsFeaturedDetails.html">
-                proposalsAsFeaturedDetails.js
               </a>
             
               
@@ -165,12 +165,12 @@ view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Create the collection of proposals.</p>
+              <p>Create the collection of completed proposals.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.proposals = <span class="hljs-keyword">new</span> Stem.Collections.Proposals([], {
+            <span class="hljs-keyword">this</span>.completedProposals = <span class="hljs-keyword">new</span> Stem.Collections.Proposals([], {
                 historical: <span class="hljs-literal">true</span>,
                 maxSize:    <span class="hljs-number">5</span>
             });</pre></div></div>
@@ -184,12 +184,15 @@ view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Retrieve the data from DonorsChoose</p>
+              <p>Retrieve the data from DonorsChoose. We
+want to trigger a reset when the fetch is
+complete so that any associated views will
+update automatically.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.proposals.fetch({reset: <span class="hljs-literal">true</span>});
+            <span class="hljs-keyword">this</span>.completedProposals.fetch({reset: <span class="hljs-literal">true</span>});
         },
 
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
@@ -210,8 +213,8 @@ appropriate child views.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> proposalDetailList = <span class="hljs-keyword">new</span> Stem.Views.ProposalsAsFeaturedDetails({
-                collection: <span class="hljs-keyword">this</span>.proposals,
+            <span class="hljs-keyword">var</span> proposalDetailList = <span class="hljs-keyword">new</span> Stem.Views.CompletedProposalsAsFeaturedDetails({
+                collection: <span class="hljs-keyword">this</span>.completedProposals,
                 el: $(<span class="hljs-string">'#proposals-details'</span>)[<span class="hljs-number">0</span>]
             });
 
