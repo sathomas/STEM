@@ -1527,22 +1527,37 @@ main {
     .theme-teachers .call-to-action__image-spacer { padding-top: 66.5625%; }
 }
 
+.theme-teachers-highlight label.horizontal-selection__item-label:focus,
+.theme-teachers-highlight label.horizontal-selection__item-label:hover,
+label.horizontal-selection__item-label.theme-teachers-highlight:focus,
+label.horizontal-selection__item-label.theme-teachers-highlight:hover,
+.theme-teachers-highlight label.vertical-selection__item-label:focus,
+.theme-teachers-highlight label.vertical-selection__item-label:hover,
+label.vertical-selection__item-label.theme-teachers-highlight:focus,
+label.vertical-selection__item-label.theme-teachers-highlight:hover {
+    color: #009EAF;
+}
+
 .theme-teachers-highlight.horizontal-selection input:checked + label,
 .theme-teachers-highlight .horizontal-selection input:checked + label,
 .theme-teachers-highlight.vertical-selection input:checked + label,
-.theme-teachers-highlight .vertical-selection input:checked + label {
+.theme-teachers-highlight .vertical-selection input:checked + label,
+.horizontal-selection input:checked + label.theme-teachers-highlight,
+.vertical-selection input:checked + label.theme-teachers-highlight {
     background: #C5DEDF;
     background: rgba(0, 159, 175, 0.2);
     color: #009EAF;
 }
 
 .theme-teachers-highlight.horizontal-selection input:checked + label,
-.theme-teachers-highlight .horizontal-selection input:checked + label {
+.theme-teachers-highlight .horizontal-selection input:checked + label,
+.horizontal-selection input:checked + label.theme-teachers-highlight {
     border-bottom: 3px solid #009EAF;
 }
 
 .theme-teachers-highlight.vertical-selection input:checked + label,
-.theme-teachers-highlight .vertical-selection input:checked + label {
+.theme-teachers-highlight .vertical-selection input:checked + label,
+.vertical-selection input:checked + label.theme-teachers-highlight {
     border-right: 3px solid #009EAF;
 }
 
