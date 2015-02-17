@@ -36,11 +36,9 @@ Stem.Views = Stem.Views || {};
                 limit: 99
             });
 
-            // Populate it from the OAE. We want to trigger
-            // a reset when the fetch is complete so that any
-            // associated views will update automatically.
+            // Populate it from the OAE.
 
-            this.content.fetch({reset: true});
+            this.content.fetch();
 
             // Create the collection of completed proposals.
 
@@ -49,12 +47,9 @@ Stem.Views = Stem.Views || {};
                 maxSize:    5
             });
 
-            // Retrieve the data from DonorsChoose. We
-            // want to trigger a reset when the fetch is
-            // complete so that any associated views will
-            // update automatically.
+            // Retrieve the data from DonorsChoose.
 
-            this.completedProposals.fetch({reset: true});
+            this.completedProposals.fetch();
 
         },
 

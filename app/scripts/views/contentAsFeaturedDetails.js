@@ -23,14 +23,11 @@ Stem.Views = Stem.Views || {};
 
         initialize: function () {
 
-            // We want to watch for `reset` events on the collection.
-            // For now, that's the only event we care about because
-            // our collections aren't dynamic. (Once they're fetched
-            // from the OAE, they don't change.) In order to
-            // trigger this event, the `{reset: true}` options should
-            // be passed as arguments to the collection's `fetch()`
-            // method.
-
+            // We want to watch for `reset` and `sync` events on the
+            // collection. For now, those are the only event we care
+            // about because our collections aren't dynamic. (Once they're
+            // fetched from the OAE, they don't change.)
+            //
             // Note that we don't need to listen for `change` events.
             // Backbone fires `change` events on a collection whenever
             // a model within that collection changes. Since our
@@ -41,7 +38,7 @@ Stem.Views = Stem.Views || {};
             // we're not directly rendering any aspect of the individual
             // models within this view.
 
-            this.listenTo(this.collection, 'reset', this.render);
+            this.listenTo(this.collection, 'reset sync', this.render);
         },
 
         render: function () {
