@@ -106,25 +106,6 @@ Stem.Collections = Stem.Collections || {};
             });
 
             return subjects;
-        },
-
-        // Create a new collection that's a filtered version
-        // of the current one. (It would be clearer if we
-        // called this method `filter`, but that's already
-        // taken by Underscore.) The syntax is the same as
-        // Underscore's `filter`.
-
-        refine: function(predicate, context) {
-
-            // Use the built-in Underscore filter to
-            // get an array of models that pass the
-            // filter condition(s).
-
-            var results = this.filter(predicate, context);
-
-            // Create a new collection (and return it).
-
-            return new Stem.Collections.Content(results)
 
         }
 

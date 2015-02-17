@@ -213,10 +213,4 @@ describe('Content Collection', function () {
         this.ContentCollection.getSubjects()[0].should.equal('Math');
     });
 
-    it('should support filtering', function() {
-        this.ContentCollection.refine(function(model) {
-            return model.get('subjects').length;
-        }).length.should.equal(7);
-    });
-
 });
