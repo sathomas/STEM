@@ -35,8 +35,10 @@ Stem.Models = Stem.Models || {};
             // First make sure we have values for all
             // required properties.
 
-            response.description = response.description || '';
-            response.displayName = response.displayName || '';
+            response.description  = response.description  || '';
+            response.displayName  = response.displayName  || '';
+            response.thumbnailUrl = response.thumbnailUrl || '';
+            response.profilePath   = response.profilePath   || '';
 
             // Define an array that lists the grade levels
             // we support.
