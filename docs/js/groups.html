@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>contentAsFeaturedDetails.js</title>
+  <title>groups.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -146,7 +146,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>contentAsFeaturedDetails.js</h1>
+                  <h1>groups.js</h1>
               </div>
           </li>
         
@@ -161,7 +161,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, JST*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone*/</span></pre></div></div>
             
         </li>
         
@@ -172,31 +172,33 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Backbone view for a collection of content from
-the OAE rendered as a set of detailed items in
-a featured list.</p>
+              <p>Backbone collection for a set of group objects from the
+Open Academic Environment.</p>
+<p>Unlike typical Backbone collections, the Groups collection
+supports a set of options that determine how the collections
+accesses the OAE search API. Those options are passed, in
+a JavaScript object, as the second parameter to the constructor</p>
+<pre><code><span class="hljs-keyword">var</span> content = <span class="hljs-keyword">new</span> Stem.Collections.Groups([], options);
+</code></pre><p>The supported options are:</p>
+<ul>
+<li><code>keywords</code>: include a keyword search in the request.</li>
+<li><code>limit</code>: the maximum number of objects to retrieve for
+ the collection. If unspecified, uses the API’s default
+ (currently 12, but may change in the future).</li>
+</ul>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-Stem.Views = Stem.Views || {};
+
+Stem.Collections = Stem.Collections || {};
 
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Views.ContentAsFeaturedDetails = Backbone.View.extend({
+    Stem.Collections.Groups = Backbone.Collection.extend({
 
-        template: JST[<span class="hljs-string">'app/scripts/templates/contentAsFeaturedDetails.ejs'</span>],
-
-        tagName: <span class="hljs-string">'div'</span>,
-
-        id: <span class="hljs-string">''</span>,
-
-        className: <span class="hljs-string">''</span>,
-
-        events: {},
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        model: Stem.Models.Group,</pre></div></div>
             
         </li>
         
@@ -207,29 +209,13 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>We want to watch for <code>reset</code> and <code>sync</code> events on the
-collection. For now, those are the only event we care
-about because our collections aren’t dynamic. (Once they’re
-fetched from the OAE, they don’t change.)</p>
-<p>Note that we don’t need to listen for <code>change</code> events.
-Backbone fires <code>change</code> events on a collection whenever
-a model within that collection changes. Since our
-models (like our collections) are static once they’re
-fetched from the OAE, this event should not occur. Even
-if that changes in the future, we let the individual
-model views update themselves with any changes since
-we’re not directly rendering any aspect of the individual
-models within this view.</p>
+              <p>Since we’re accepting options for the collection,
+we need an <code>initialize</code> method to handle them.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset sync'</span>, <span class="hljs-keyword">this</span>.render);
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-keyword">var</span> $el = <span class="hljs-keyword">this</span>.$el;</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(models, options)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -240,12 +226,12 @@ models within this view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>First render the overall template</p>
+              <p>The <code>options</code> object is optional.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $el.html(<span class="hljs-keyword">this</span>.template());</pre></div></div>
+            <span class="hljs-keyword">var</span> settings = options || {};</pre></div></div>
             
         </li>
         
@@ -256,12 +242,18 @@ models within this view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Then add the individual content items</p>
+              <p>We store the processed values in an
+<code>options</code> property of the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(content)</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.options = {};
+
+            <span class="hljs-keyword">this</span>.options.limit = settings.limit;
+            <span class="hljs-keyword">this</span>.options.keywords = settings.keywords;
+
+        },</pre></div></div>
             
         </li>
         
@@ -272,14 +264,20 @@ models within this view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Create a view for the model.</p>
+              <p>Since we’re using a search endpoint instead of Rails CRUD
+conventions to retrieve the collection, we have to define
+our own function that returns the URL for the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> contentView = <span class="hljs-keyword">new</span> Stem.Views.ContentAsFeaturedDetailsItem({
-                    model: content
-                });</pre></div></div>
+        url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host +
+                <span class="hljs-string">'/api/search/general?resourceTypes=group&amp;scope=_tenant'</span> +
+                (<span class="hljs-keyword">this</span>.options.limit    ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'limit='</span> + <span class="hljs-keyword">this</span>.options.limit)    : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>.options.keywords ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'q='</span>     + <span class="hljs-keyword">this</span>.options.keywords) : <span class="hljs-string">''</span>);
+        },</pre></div></div>
             
         </li>
         
@@ -290,12 +288,17 @@ models within this view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Render it.</p>
+              <p>Since we’re using a general search query, we have
+to supply a parse function to extract the actual model
+information from the response. We also have to account
+for the possibility of a collection being created
+directly from an array of models. In the latter case,
+we <em>won’t</em> have to parse anything.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                contentView.render();</pre></div></div>
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span>  </span>{</pre></div></div>
             
         </li>
         
@@ -306,14 +309,17 @@ models within this view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>And add it to the DOM.</p>
+              <p>The search API returns models in the <code>results</code>
+property of the response. If that property
+exists, return the models it contains. Otherwise
+we assume that the “response” is already an
+array of models and return it directly.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                $el.find(<span class="hljs-string">'.featured__details__listing'</span>).append(contentView.el);
-
-            });</pre></div></div>
+            <span class="hljs-keyword">return</span> response.results ? response.results : response;
+        },</pre></div></div>
             
         </li>
         
@@ -324,12 +330,90 @@ models within this view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>Return the view for method chaining.</p>
+              <p>Return an array of all the subjects associated with
+the models in the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        getSubjects: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Start with an empty list of subjects.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> subjects = [];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Iterate through the models.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.models.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Iterate through each model’s subjects.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                model.get(<span class="hljs-string">'subjects'</span>).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(subject)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>If the subject isn’t already counted,
+add it to the array.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    <span class="hljs-keyword">if</span> (!subjects.some(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(test)</span> </span>{
+                        <span class="hljs-keyword">return</span> test === subject;
+                    })) {
+
+                        subjects.push(subject);
+                    }
+
+                });
+
+            });
+
+            <span class="hljs-keyword">return</span> subjects;
+
         }
 
     });

@@ -24,8 +24,18 @@
               </a>
             
               
+              <a class="source" href="groups.html">
+                groups.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
+              </a>
+            
+              
+              <a class="source" href="subjects.html">
+                subjects.js
               </a>
             
               
@@ -54,8 +64,18 @@
               </a>
             
               
+              <a class="source" href="group.html">
+                group.js
+              </a>
+            
+              
               <a class="source" href="proposal.html">
                 proposal.js
+              </a>
+            
+              
+              <a class="source" href="subject.html">
+                subject.js
               </a>
             
               
@@ -84,6 +104,16 @@
               </a>
             
               
+              <a class="source" href="groupAsFeaturedDetailsItem.html">
+                groupAsFeaturedDetailsItem.js
+              </a>
+            
+              
+              <a class="source" href="groupsAsFeaturedDetails.html">
+                groupsAsFeaturedDetails.js
+              </a>
+            
+              
               <a class="source" href="proposalAsHighlight.html">
                 proposalAsHighlight.js
               </a>
@@ -91,6 +121,16 @@
               
               <a class="source" href="proposalsAsHighlights.html">
                 proposalsAsHighlights.js
+              </a>
+            
+              
+              <a class="source" href="subjectAsSelectionItem.html">
+                subjectAsSelectionItem.js
+              </a>
+            
+              
+              <a class="source" href="subjectsAsSelection.html">
+                subjectsAsSelection.js
               </a>
             
               
@@ -167,13 +207,11 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>We want to watch for <code>reset</code> events on the collection.
-For now, that’s the only event we care about because
-our collections aren’t dynamic. (Once they’re fetched
-from DonorsChoose, they don’t change.) In order to
-trigger this event, the <code>{reset: true}</code> options should
-be passed as arguments to the collection’s <code>fetch()</code>
-method.</p>
+              <p>We want to watch for <code>reset</code> and <code>sync</code> events on
+the collection. For now, those are the only events we
+care about because our collections aren’t dynamic.
+(Once they’re fetched from DonorsChoose, they don’t
+change.)</p>
 
             </div>
             
@@ -199,7 +237,7 @@ of the individual models within this view.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset'</span>, <span class="hljs-keyword">this</span>.render);
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset sync'</span>, <span class="hljs-keyword">this</span>.render);
         },
 
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>

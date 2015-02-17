@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>contentAsFeaturedDetails.js</title>
+  <title>groupAsFeaturedDetailsItem.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -146,7 +146,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>contentAsFeaturedDetails.js</h1>
+                  <h1>groupAsFeaturedDetailsItem.js</h1>
               </div>
           </li>
         
@@ -172,31 +172,30 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Backbone view for a collection of content from
-the OAE rendered as a set of detailed items in
-a featured list.</p>
+              <p>Backbone view that renders a group object from
+the OAE as an individual item in a feature details
+component.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
+
 Stem.Views = Stem.Views || {};
 
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Views.ContentAsFeaturedDetails = Backbone.View.extend({
+    Stem.Views.GroupAsFeaturedDetailsItem = Backbone.View.extend({
 
-        template: JST[<span class="hljs-string">'app/scripts/templates/contentAsFeaturedDetails.ejs'</span>],
+        template: JST[<span class="hljs-string">'app/scripts/templates/groupAsFeaturedDetailsItem.ejs'</span>],
 
         tagName: <span class="hljs-string">'div'</span>,
 
         id: <span class="hljs-string">''</span>,
 
-        className: <span class="hljs-string">''</span>,
+        className: <span class="hljs-string">'featured__details__item'</span>,
 
-        events: {},
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        events: {},</pre></div></div>
             
         </li>
         
@@ -207,29 +206,23 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>We want to watch for <code>reset</code> and <code>sync</code> events on the
-collection. For now, those are the only event we care
-about because our collections aren’t dynamic. (Once they’re
-fetched from the OAE, they don’t change.)</p>
-<p>Note that we don’t need to listen for <code>change</code> events.
-Backbone fires <code>change</code> events on a collection whenever
-a model within that collection changes. Since our
-models (like our collections) are static once they’re
-fetched from the OAE, this event should not occur. Even
-if that changes in the future, we let the individual
-model views update themselves with any changes since
-we’re not directly rendering any aspect of the individual
-models within this view.</p>
+              <p>Since this view is (for now) read-only, we stub out
+the <code>initialize</code> function as unnecessary. We’re leaving
+the boilerplate as a comment, though, to make it easier
+to add support for a dynamic model later, should that
+be required.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset sync'</span>, <span class="hljs-keyword">this</span>.render);
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-comment">/*
+        initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+            return this;
         },
+        */</span>
 
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-keyword">var</span> $el = <span class="hljs-keyword">this</span>.$el;</pre></div></div>
+            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()));</pre></div></div>
             
         </li>
         
@@ -240,96 +233,11 @@ models within this view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>First render the overall template</p>
+              <p>Return <code>this</code> for chaining.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            $el.html(<span class="hljs-keyword">this</span>.template());</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>Then add the individual content items</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(content)</span> </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
-              </div>
-              <p>Create a view for the model.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> contentView = <span class="hljs-keyword">new</span> Stem.Views.ContentAsFeaturedDetailsItem({
-                    model: content
-                });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <p>Render it.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                contentView.render();</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
-              </div>
-              <p>And add it to the DOM.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                $el.find(<span class="hljs-string">'.featured__details__listing'</span>).append(contentView.el);
-
-            });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p>Return the view for method chaining.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
         }
 
     });
