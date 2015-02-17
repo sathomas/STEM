@@ -23,7 +23,7 @@ window.Stem = {
         donorsChooseApiKey: 'DONORSCHOOSE',
         oae: {
             host: 'stemincubator.oae-qa1.oaeproject.org',
-            protocol: 'https:'
+            protocol: 'http:'
         }
     },
 

@@ -102,7 +102,8 @@ Stem.Collections = Stem.Collections || {};
                         subjects.push(subject);
                     }
 
-                })
+                });
+
             });
 
             return subjects;

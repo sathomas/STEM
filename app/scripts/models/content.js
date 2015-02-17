@@ -99,7 +99,7 @@ Stem.Models = Stem.Models || {};
                 })) {
                     allGrades.forEach(function(grade) {
                         response[grade] = true;
-                    })
+                    });
                 }
 
                 // Finally, the third part of the
