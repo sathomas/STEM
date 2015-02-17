@@ -33,6 +33,8 @@
 //     (currently 10, but may change in the future). The API
 //     also places a limit on this parameter. (Currently the
 //     limit is 50.)
+//  - `historical`: If true, request data from completed
+//     proposals.
 //  - `sortBy`: define the sorting criteria for the request.
 //     If unspecified, the API's default sorting is retained.
 //     Supported values are:
@@ -57,7 +59,7 @@ Stem.Collections = Stem.Collections || {};
 
         initialize: function(models, options) {
 
-            // The ' object is optional.
+            // The `options` object is optional.
 
             var settings = options || {};
 
@@ -113,6 +115,7 @@ Stem.Collections = Stem.Collections || {};
             }
             this.options.maxSize = settings.maxSize;
             this.options.keywords = settings.keywords;
+            this.options.historical = settings.historical;
 
         },
 
@@ -155,10 +158,11 @@ Stem.Collections = Stem.Collections || {};
                 '?' + 'APIKey=' + Stem.config.donorsChooseApiKey +
                 '&' + 'state=GA' +
                 '&' + 'subject4=' + this.options.subject +
-                (this.options.grade    ? ('&' + 'gradeType=' + this.options.grade) : '') +
-                (this.options.keywords ? ('&' + 'keywords="' + encodeURIComponent(this.options.keywords) + '"') : '') +
-                (this.options.maxSize  ? ('&' + 'max=' + this.options.maxSize) : '') +
-                (this.options.sortBy   ? ('&' + 'sortBy=' + this.options.sortBy) : '');
+                (this.options.grade      ? ('&' + 'gradeType=' + this.options.grade) : '') +
+                (this.options.keywords   ? ('&' + 'keywords="' + encodeURIComponent(this.options.keywords) + '"') : '') +
+                (this.options.maxSize    ? ('&' + 'max=' + this.options.maxSize) : '') +
+                (this.options.historical ? ('&' + 'historical=true') : '') +
+                (this.options.sortBy     ? ('&' + 'sortBy=' + this.options.sortBy) : '');
         },
 
         // When fetching a collection from the server, Backbone

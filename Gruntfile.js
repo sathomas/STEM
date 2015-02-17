@@ -204,17 +204,11 @@ module.exports = function (grunt) {
                     cwd: '<%= yeoman.app %>',
                     dest: '<%= yeoman.dist %>',
                     src: [
+                        'CNAME',
                         '*.{ico,txt}',
-                        'images/{,*/}*.{webp,gif}',
+                        'images/{,*/}*.{webp,gif,svg}',
                         'styles/fonts/{,*/}*.*',
                     ]
-                }, {
-                    expand: true,
-                    dot: true,
-                    flatten: true,
-                    cwd: '<%= yeoman.app %>',
-                    src: 'bower_components/bootstrap/fonts/*.*',
-                    dest: '<%= yeoman.dist %>/fonts/'
                 }]
             },
             docs: {
