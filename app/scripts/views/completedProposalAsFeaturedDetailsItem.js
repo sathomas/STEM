@@ -1,22 +1,19 @@
 /*global Stem, Backbone, JST*/
 
-// Backbone view for a single proposal from DonorsChoose.org
-// rendered as a highlight (i.e. "Editor's Choice").
-
 Stem.Views = Stem.Views || {};
 
 (function () {
     'use strict';
 
-    Stem.Views.ProposalAsHighlight = Backbone.View.extend({
+    Stem.Views.CompletedProposalAsFeaturedDetailsItem = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/proposalAsHighlight.ejs'],
+        template: JST['app/scripts/templates/completedProposalAsFeaturedDetailsItem.ejs'],
 
         tagName: 'div',
 
         id: '',
 
-        className: '',
+        className: 'featured__details__item',
 
         events: {},
 
