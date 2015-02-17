@@ -1,13 +1,33 @@
-/*global beforeEach, describe, it, Stem  */
+/*global describe, it, Stem  */
 
 describe('Group Model', function () {
     'use strict';
 
-    beforeEach(function () {
-        this.GroupModel = new Stem.Models.Group();
+    it('should provide the correct API for a full group profile', function() {
+        var GroupModel = new Stem.Models.Group({id: 'g:si:mJUHSXeP'});
+        GroupModel.url().should.equal(
+            Stem.config.oae.protocol + '//' +
+            Stem.config.oae.host +
+            '/api/group/g:si:mJUHSXeP'
+        );
     });
 
-    it('should generate the correct URL to access an OAE group', function() {
-        this.GroupModel.url.should.equal('http://stemincubator.oae-qa1.oaeproject.org/api/group/');
+    it('should parse grade levels from the displayName', function() {
+        new Stem.Models.Group({displayName: 'Title - elementary - math'}, {parse: true}).get('elementary').should.be.true();
+        new Stem.Models.Group({displayName: 'Title - elementary - math'}, {parse: true}).get('middle').should.be.false();
+        new Stem.Models.Group({displayName: 'Title - elementary - math'}, {parse: true}).get('high').should.be.false();
+        new Stem.Models.Group({displayName: 'Title - elementary, high - math'}, {parse: true}).get('elementary').should.be.true();
+        new Stem.Models.Group({displayName: 'Title - elementary, high - math'}, {parse: true}).get('middle').should.be.false();
+        new Stem.Models.Group({displayName: 'Title - elementary, high - math'}, {parse: true}).get('high').should.be.true();
+        new Stem.Models.Group({displayName: 'Title -  - math'}, {parse: true}).get('elementary').should.be.true();
+        new Stem.Models.Group({displayName: 'Title -  - math'}, {parse: true}).get('middle').should.be.true();
+        new Stem.Models.Group({displayName: 'Title -  - math'}, {parse: true}).get('high').should.be.true();
     });
+
+    it('should parse subjects from the displayName', function() {
+        new Stem.Models.Group({displayName: 'Title - elementary - Math'}, {parse: true}).get('subjects').should.include('Math');
+        new Stem.Models.Group({displayName: 'Title -  - Math, Science'}, {parse: true}).get('subjects').should.include('Math');
+        new Stem.Models.Group({displayName: 'Title -  - Math, Science'}, {parse: true}).get('subjects').should.include('Science');
+    });
+
 });

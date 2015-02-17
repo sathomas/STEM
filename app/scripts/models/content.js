@@ -54,7 +54,7 @@ Stem.Models = Stem.Models || {};
                 // First, split `displayName` up by
                 // dashes.
 
-                var tokens = response.displayName.split('-')
+                var tokens = response.displayName.split(' - ')
                     .map(function(token) {
                          return token.trim();
                     });
