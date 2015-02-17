@@ -1,4 +1,4 @@
-/*global beforeEach, describe, it */
+/*global beforeEach, describe, Stem */
 
 describe('Subjects Collection', function () {
     'use strict';

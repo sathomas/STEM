@@ -1,5 +1,5 @@
 /* jshint sub: true */
-/* global Stem, $, beforeEach, describe, it, sinon */
+/* global Stem, $, before, describe, it, sinon */
 
 describe('Content Collection', function () {
 
@@ -174,14 +174,14 @@ describe('Content Collection', function () {
             queries: queries,
             hash: parser.hash
         };
-    }
+    };
 
     before(function() {
         var ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', contentResponse);
         this.ContentCollection = new Stem.Collections.Content();
         this.ContentCollection.fetch();
         ajaxStub.restore();
-    })
+    });
 
     it('should generate the correct default URL to access the OAE', function() {
         parseURL(this.ContentCollection.url())['protocol'].should.equal(Stem.config.oae.protocol);
