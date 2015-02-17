@@ -143,7 +143,7 @@ Stem.Collections = Stem.Collections || {};
             return Backbone.sync(method, collection, options);
         },
 
-        // Since DonorsChoose doesn't follow Rails conventiosn, we
+        // Since DonorsChoose doesn't follow Rails conventions, we
         // have to define our own function that returns the URL for
         // the collection. We also use the function to insert the
         // API key into the URL.

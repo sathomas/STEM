@@ -166,13 +166,13 @@
             =============
             -->
 
-            <section id="teachers">
+            <section id="teachers" class="theme-teachers-highlight">
                 <div class="container">
                     <div class="row">
                         <div class="one-full column theme-neutral--light">
                             <article>
                                 <h3 class="center">Explore teacher resources</h3>
-                                <form class="horizontal-selection dynamic theme-teachers-highlight center">
+                                <form id="grade-selection" class="horizontal-selection dynamic center">
                                     <fieldset>
                                         <label class="horizontal-selection__label">
                                             I teach:
@@ -181,12 +181,12 @@
                                         <label class="horizontal-selection__item-label" for="cb-elementary">
                                             Elementary
                                         </label>
-                                        <input type="checkbox" id="cb-middle-school"/>
-                                        <label class="horizontal-selection__item-label" for="cb-middle-school">
+                                        <input type="checkbox" id="cb-middle"/>
+                                        <label class="horizontal-selection__item-label" for="cb-middle">
                                             Middle School
                                         </label>
-                                        <input type="checkbox" id="cb-high-school"/>
-                                        <label class="horizontal-selection__item-label" for="cb-high-school">
+                                        <input type="checkbox" id="cb-high"/>
+                                        <label class="horizontal-selection__item-label" for="cb-high">
                                             High School
                                         </label>
                                    </fieldset>
@@ -224,9 +224,11 @@
                             </div>
                         </div>
 
-                        <div class="one-fourth column featured__details" data-featured-details="1">
+                        <div id="content-subjects"
+                             class="one-fourth column featured__details featured__details__sidebar"
+                             data-featured-details="1">
                             <span class="featured__details__close" data-featured-close>&times;</span>
-                            <form class="vertical-selection theme-teachers-highlight">
+                            <form class="vertical-selection">
                                 <fieldset>
                                     <label class="vertical-selection__label">Subjects:</label>
                                     <input type="checkbox" id="cb-math"/>
@@ -238,7 +240,19 @@
                                </fieldset>
                             </form>
                         </div>
-                        <div class="three-fourths column featured__details" data-featured-details="1">
+                        <div id="content-details"
+                             class="three-fourths column featured__details featured__details__main"
+                             data-featured-details="1">
+
+                            <!--
+                            All of the content within this container should be replaced by
+                            dynamic data when the application runs. We're leaving the
+                            boilerplate in place, however, for demo purposes. If, during
+                            a demo, the OAE API goes down, then there will still be
+                            something to show. This boilerplate should definitely be
+                            removed from any production version, though.
+                            -->
+
                             <h3 class="featured__details__heading">Selected Content</h3>
                             <div class="featured__details__item">
                                 <div class="featured__details__image">
@@ -334,7 +348,7 @@
 
                         <div class="one-fourth column featured__details" data-featured-details="2">
                             <span class="featured__details__close" data-featured-close>&times;</span>
-                            <form class="vertical-selection theme-teachers-highlight">
+                            <form class="vertical-selection">
                                 <fieldset>
                                     <label class="vertical-selection__label">Learning Options:</label>
                                     <input type="checkbox" id="cb-online"/>
@@ -450,7 +464,7 @@
 
                         <div class="one-fourth column featured__details" data-featured-details="3">
                             <span class="featured__details__close" data-featured-close>&times;</span>
-                            <form class="vertical-selection theme-teachers-highlight">
+                            <form class="vertical-selection">
                                 <fieldset>
                                     <label class="vertical-selection__label">Subjects:</label>
                                     <input type="checkbox" id="cb-math2"/>
@@ -580,7 +594,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div id='proposals-details'
+                        <div id="proposals-details"
                              class="three-fourths column featured__details featured__details__main"
                              data-featured-details="4">
 
@@ -718,6 +732,7 @@
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/underscore.string/dist/underscore.string.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
+        <script src="bower_components/backbone-filtered-collection/backbone-filtered-collection.js"></script>
         <!-- endbuild -->
 
         <!-- ========== Main Application JavaScript ========== -->
@@ -726,12 +741,20 @@
         <script src="scripts/templates.js"></script>
         <script src="scripts/components/style-helpers.js"></script>
         <script src="scripts/components/featured.js"></script>
+        <script src="scripts/models/content.js"></script>
         <script src="scripts/models/proposal.js"></script>
+        <script src="scripts/models/subject.js"></script>
+        <script src="scripts/collections/content.js"></script>
         <script src="scripts/collections/proposals.js"></script>
-        <script src="scripts/routes/app.js"></script>
+        <script src="scripts/collections/subjects.js"></script>
         <script src="scripts/views/teachers.js"></script>
         <script src="scripts/views/completedProposalAsFeaturedDetailsItem.js"></script>
         <script src="scripts/views/completedProposalsAsFeaturedDetails.js"></script>
+        <script src="scripts/views/contentAsFeaturedDetailsItem.js"></script>
+        <script src="scripts/views/contentAsFeaturedDetails.js"></script>
+        <script src="scripts/views/subjectAsSelectionItem.js"></script>
+        <script src="scripts/routes/app.js"></script>
+        <script src="scripts/views/subjectsAsSelection.js"></script>
         <!-- endbuild -->
 
 </body>
