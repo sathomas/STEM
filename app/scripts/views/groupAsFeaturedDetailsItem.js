@@ -1,17 +1,18 @@
 /*global Stem, Backbone, JST*/
 
-// Backbone view that renders a completed proposal
-// from DonorsChoose as an individual item in a
-// feature details component.
+// Backbone view that renders a group object from
+// the OAE as an individual item in a feature details
+// component.
+
 
 Stem.Views = Stem.Views || {};
 
 (function () {
     'use strict';
 
-    Stem.Views.CompletedProposalAsFeaturedDetailsItem = Backbone.View.extend({
+    Stem.Views.GroupAsFeaturedDetailsItem = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/completedProposalAsFeaturedDetailsItem.ejs'],
+        template: JST['app/scripts/templates/groupAsFeaturedDetailsItem.ejs'],
 
         tagName: 'div',
 

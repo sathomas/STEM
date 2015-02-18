@@ -1,11 +1,14 @@
 /*global Stem, Backbone*/
 
+// Backbone model for a single content object from the
+// Open Academic Environment.
+
 Stem.Models = Stem.Models || {};
 
 (function () {
     'use strict';
 
-    Stem.Models.Group = Backbone.Model.extend({
+    Stem.Models.Content = Backbone.Model.extend({
 
         // The only thing we need to provide for this
         // model (other than Backbone defaults) is the
@@ -14,14 +17,14 @@ Stem.Models = Stem.Models || {};
         // collections of this model will be acquired
         // through a different REST endpoint (e.g.
         // search). We define the REST endpoint for the
-        // full group object in case those other
+        // full content object in case those other
         // endpoints only provide a summary. In such
         // cases, calling `fetch()` on a model will
         // update it with the complete profile.
 
         url: function() {
             return Stem.config.oae.protocol + '//' +
-                   Stem.config.oae.host + '/api/group/' + this.id;
+                   Stem.config.oae.host + '/api/content/' + this.id;
         },
 
         // We need to parse the response from the server

@@ -1,14 +1,14 @@
 /*global Stem, Backbone*/
 
-// Backbone collection for a set of group objects from the
+// Backbone collection for a set of content objects from the
 // Open Academic Environment.
 //
-// Unlike typical Backbone collections, the Groups collection
+// Unlike typical Backbone collections, the Content collection
 // supports a set of options that determine how the collections
 // accesses the OAE search API. Those options are passed, in
 // a JavaScript object, as the second parameter to the constructor
 //
-//     var content = new Stem.Collections.Groups([], options);
+//     var content = new Stem.Collections.Content([], options);
 //
 // The supported options are:
 //
@@ -17,15 +17,14 @@
 //     the collection. If unspecified, uses the API's default
 //     (currently 12, but may change in the future).
 
-
 Stem.Collections = Stem.Collections || {};
 
 (function () {
     'use strict';
 
-    Stem.Collections.Groups = Backbone.Collection.extend({
+    Stem.Collections.Content = Backbone.Collection.extend({
 
-        model: Stem.Models.Group,
+        model: Stem.Models.Content,
 
         // Since we're accepting options for the collection,
         // we need an `initialize` method to handle them.
@@ -53,11 +52,10 @@ Stem.Collections = Stem.Collections || {};
         url: function() {
 
             return Stem.config.oae.protocol + '//' + Stem.config.oae.host +
-                '/api/search/general?resourceTypes=group&scope=_tenant' +
+                '/api/search/general?resourceTypes=content&scope=_tenant' +
                 (this.options.limit    ? ('&' + 'limit=' + this.options.limit)    : '') +
                 (this.options.keywords ? ('&' + 'q='     + this.options.keywords) : '');
         },
-
 
         // Since we're using a general search query, we have
         // to supply a parse function to extract the actual model

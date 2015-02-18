@@ -37,6 +37,6 @@ describe('ProposalAsHighlight View', function () {
     it('should render the description as the first paragraph', function() {
         var $el = this.ProposalAsHighlightView.render().$el;
         $el.find('p').first().text().should.equal(this.Proposal.get('shortDescription'));
-    })
+    });
 
 });
