@@ -1,4 +1,4 @@
-/*global beforeEach, describe, it, _, Stem  */
+/*global beforeEach, describe, it, $, _, Stem  */
 
 describe("Proposal Model", function () {
     'use strict';
