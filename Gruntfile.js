@@ -207,7 +207,8 @@ module.exports = function (grunt) {
                         'CNAME',
                         '*.{ico,txt}',
                         'images/{,*/}*.{webp,gif,svg}',
-                        'styles/fonts/{,*/}*.*',
+                        'fonts/{,*/}*.*',
+                        'styles/fonts/{,*/}*.*'
                     ]
                 }]
             },

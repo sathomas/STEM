@@ -220,9 +220,9 @@ Stem.Views = Stem.Views || {};
         // Update the group filters whenever a user makes a
         // change to the selection.
 
-        updateGroupFilters: function(selected) {
+        updateGroupFilters: function() {
 
-            this.filters.group.tags = this.groupTagSet.getSelectedTags();;
+            this.filters.group.tags = this.groupTagSet.getSelectedTags();
             this.filteredGroups.refilter();
 
         },
@@ -338,12 +338,20 @@ Stem.Views = Stem.Views || {};
 
             // Rendering this view is really nothing
             // much more than creating and rendering
-            // the appropriate child views.
-
+            // the appropriate child views. We do perform
+            // a small bit of trickery with the first
+            // view by overriding the main label. Normally
+            // the view gets this value from the model,
+            // and since we're showing the same model in
+            // many views, we don't want to change the
+            // model's value.
+            
             new Stem.Views.TagSetAsHorizontalSelection({
                 el: $('#grade-selection')[0],
                 model: this.gradeTagSet
-            }).render();
+            }).render().$el.
+                find('label.horizontal-selection__label').
+                text('I teach:');
 
             new Stem.Views.TagSetAsVerticalSelection({
                 el: $('#content-tags')[0],
