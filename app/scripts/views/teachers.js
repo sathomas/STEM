@@ -13,6 +13,8 @@ Stem.Views = Stem.Views || {};
 
     Stem.Views.Teachers = Backbone.View.extend({
 
+        // ## filters
+        //
         // We use an object to keep track of the current
         // state of filtering for teachers details. There
         // is a general filter for grade level that applies
@@ -29,21 +31,54 @@ Stem.Views = Stem.Views || {};
                 tags: []
             }
         },
+        
+        // ## filterModel()
+        //
+        // Utility function to check a model against a set
+        // of filters. Grade level filtering is assumed; 
+        // an optional tag array can also be supplied.
+        
+        filterModel: function(model, tags) {
+            
+            var gradeFilters = this.gradeTagSet.getSelectedTags();
+                        
+            // The grade level matches if either:
+            // - there are no grade level filters defined, or
+            // - at least one of the grade level filters matches
+            //   at least one of the content grade levels
 
-        initialize: function () {
+            var gradeOk = (gradeFilters.length === 0) ||
+                (model.get('primary') &&
+                _(gradeFilters).indexOf('K-2')  !== -1) ||
+                (model.get('elementary') &&
+                _(gradeFilters).indexOf('3-5')  !== -1) ||
+                (model.get('middle')     &&
+                _(gradeFilters).indexOf('6-8')  !== -1) ||
+                (model.get('high')       &&
+                _(gradeFilters).indexOf('9-12') !== -1);
 
-            // Store a reference to this view in a local variable to
-            // create a closure for anonymous callbacks.
 
-            var view = this;
+            // The tags match if either:
+            // - there are no tag filters defined, or
+            // - at least one of the tags in the model
+            //   matches at least one of the tags in the
+            //   filter.
 
-            // Kick off the initialization process by
-            // requesting data from the various
-            // collections that will be a part of the
-            // view.
+            var tagsOk = (!_.isArray(tags)) || (tags.length === 0) ||
+                _(model.get('tags')).any(function(tag) {
+                    return tags.indexOf(tag) !== -1;
+                });
 
-            // -------------- Content --------------
+            return gradeOk && tagsOk;
 
+        },
+        
+        // ## setupContent()
+        //
+        // Set up the models and collections for content.
+        
+        setupContent: function() {
+            
             // Create a collection of content objects
 
             this.content = new Stem.Collections.Content([], {
@@ -74,8 +109,53 @@ Stem.Views = Stem.Views || {};
 
             this.content.fetch();
 
-            // -------------- Groups --------------
+        },
+        
+        // ## updateContentTags()
+        //
+        // Update the list of valid tags for content whenever
+        // the content collection itself changes.
 
+        updateContentTags: function() {
+
+            // Reset the content tags collection with
+            // an updated array of models.
+
+            this.contentTags.reset(
+
+                // Create models from the tag now
+                // available in the content collection.
+                // Initially no tags are selected.
+
+                this.content.getTags().map(function(tag) {
+                    return new Stem.Models.Tag({
+                        'selected': false,
+                        'label': tag
+                    });
+                })
+
+            );
+
+        },
+
+        // ## updateContentFilters()
+        //
+        // Update the content filters whenever a user makes a
+        // change to the selection.
+
+        updateContentFilters: function() {
+
+            this.filters.content.tags = this.contentTagSet.getSelectedTags();
+            this.filteredContent.refilter();
+
+        },
+
+        // ## setupGroups
+        //
+        // Set up the models and collections for groups.
+        
+        setupGroups: function() {
+            
             // Create a collection of group objects
 
             this.groups = new Stem.Collections.Groups([], {
@@ -106,7 +186,52 @@ Stem.Views = Stem.Views || {};
 
             this.groups.fetch();
 
-            // -------------- Proposals --------------
+        },
+        
+        // ## updateGroupTags()
+        //
+        // Update the list of valid tags for groups whenever
+        // the group collection itself changes.
+
+        updateGroupTags: function() {
+
+            // Reset the content tags collection with
+            // an updated array of models.
+
+            this.groupTags.reset(
+
+                // Create models from the tags now
+                // available in the groups collection.
+                // Initially no tags are selected.
+
+                this.groups.getTags().map(function(tag) {
+                    return new Stem.Models.Tag({
+                        'selected': false,
+                        'label':  tag
+                    });
+                })
+
+            );
+
+        },
+
+        // ## updateGroupFilters()
+        //
+        // Update the group filters whenever a user makes a
+        // change to the selection.
+
+        updateGroupFilters: function(selected) {
+
+            this.filters.group.tags = this.groupTagSet.getSelectedTags();;
+            this.filteredGroups.refilter();
+
+        },
+
+        // ## setupProposals
+        //
+        // Set up the models and collections for proposals.
+        
+        setupProposals: function() {
 
             // Create the collection of completed proposals.
 
@@ -119,41 +244,84 @@ Stem.Views = Stem.Views || {};
 
             this.completedProposals.fetch();
 
+        },
+        
+        // ## setupGradeLevels
+        //
+        // Set up the models and collections for managing grade levels.
+        
+        setupGradeLevels: function() {
+
+            // Create a model to store the grade level. For
+            // maximum flexibility we allow no grade levels
+            // and multiple grade levels. We implement this
+            // as a tag set.
+            
+            // Create a collection of tags for content.
+
+            this.gradeTags = new Stem.Collections.Tags([
+                new Stem.Models.Tag({
+                    'selected': false,
+                    'label': 'K-2'
+                }),
+                new Stem.Models.Tag({
+                    'selected': false,
+                    'label': '3-5'
+                }),
+                new Stem.Models.Tag({
+                    'selected': false,
+                    'label': '6-8'
+                }),
+                new Stem.Models.Tag({
+                    'selected': false,
+                    'label': '9-12'
+                })
+            ]);
+            
+            // And create a model for the set of content tags.
+            
+            this.gradeTagSet = new Stem.Models.TagSet({
+                tags: this.gradeTags,
+                title: 'Grade level'
+            });
+            
+            // Update the tag filters whenever the user changes grades.
+
+            this.gradeTags.on('change', this.updateContentFilters, this)
+                          .on('change', this.updateGroupFilters, this);
+
+        },
+        
+        // ## initialize()
+        //
+        // Initialize the view.
+
+        initialize: function () {
+
+            var view = this;
+            
+            // Kick off the initialization process by
+            // requesting data from the various
+            // collections that will be a part of the
+            // view.
+            
+            this.setupContent();
+            this.setupGroups();
+            this.setupProposals();
+
+
             // Now that we've started gathering the data
             // for the view, we can set up the high-level
             // user interactions.
+            
+            this.setupGradeLevels();
 
             // Create a filtered content collection to reflect
             // the user's selections.
 
             this.filteredContent = new FilteredCollection(this.content);
             this.filteredContent.filterBy(function(model) {
-
-                // The grade level matches if either:
-                // - there are no grade level filters defined, or
-                // - at least one of the grade level filters matches
-                //   at least one of the content grade levels
-
-                var gradeOk = (view.filters.grade.length === 0) ||
-                    (model.get('elementary') &&
-                    _(view.filters.grade).indexOf('elementary') !== -1) ||
-                    (model.get('middle')     &&
-                    _(view.filters.grade).indexOf('middle')     !== -1) ||
-                    (model.get('high')       &&
-                    _(view.filters.grade).indexOf('high')       !== -1);
-
-                // The tags match if either:
-                // - there are no tag filters defined, or
-                // - at least one of the tags in the model
-                //   matches at least one of the tags in the
-                //   filter.
-
-                var tagsOk = (view.filters.content.tags.length === 0) ||
-                    _(model.get('tags')).any(function(tag) {
-                        return view.filters.content.tags.indexOf(tag) !== -1;
-                    });
-
-                return gradeOk && tagsOk;
+                return view.filterModel(model, view.filters.content.tags);
             });
 
             // Create a filtered groups collection to reflect
@@ -161,141 +329,8 @@ Stem.Views = Stem.Views || {};
 
             this.filteredGroups = new FilteredCollection(this.groups);
             this.filteredGroups.filterBy(function(model) {
-
-                // The grade level matches if either:
-                // - there are no grade level filters defined, or
-                // - at least one of the grade level filters matches
-                //   at least one of the content grade levels
-
-                var gradeOk = (view.filters.grade.length === 0) ||
-                    (model.get('elementary') &&
-                    _(view.filters.grade).indexOf('elementary') !== -1) ||
-                    (model.get('middle')     &&
-                    _(view.filters.grade).indexOf('middle')     !== -1) ||
-                    (model.get('high')       &&
-                    _(view.filters.grade).indexOf('high')       !== -1);
-
-                // The tags match if either:
-                // - there are no tag filters defined, or
-                // - at least one of the subjecs in the model
-                //   matches at least one of the tags in the
-                //   filter.
-
-                var tagsOk = (view.filters.group.tags.length === 0) ||
-                    _(model.get('tags')).any(function(tag) {
-                        return view.filters.group.tags.indexOf(tag) !== -1;
-                    });
-
-                return gradeOk && tagsOk;
+                return view.filterModel(model, view.filters.group.tags);
             });
-
-            // Listen for user interactions that change the filtering
-            // conditions.
-
-            $('input', '#grade-selection').on('change', function() {
-
-                // When something changes in the grade selection,
-                // reset the corresponding filters.
-
-                view.filters.grade = [];
-                if ($('#cb-elementary').is(':checked')) {
-                    view.filters.grade.push('elementary');
-                }
-                if ($('#cb-middle').is(':checked')) {
-                    view.filters.grade.push('middle');
-                }
-                if ($('#cb-high').is(':checked')) {
-                    view.filters.grade.push('high');
-                }
-
-                // Trigger the filtered collections to refresh. This
-                // will trigger `reset` events on the collections,
-                // which the views can use to re-render.
-
-                view.filteredContent.refilter();
-                view.filteredGroups.refilter();
-
-            });
-
-        },
-
-        // Define a function to update the list of valid
-        // tags for content whenever the content
-        // collection itself changes.
-
-        updateContentTags: function() {
-
-            // Reset the content tags collection with
-            // an updated array of models.
-
-            this.contentTags.reset(
-
-                // Create models from the tag now
-                // available in the content collection.
-                // We need to explicitly give each tag a
-                // unique identifier since we're not
-                // getting these values from a server.
-                // Initially no tags are selected.
-
-                this.content.getTags().map(function(tag) {
-                    return new Stem.Models.Tag({
-                        'id': _.uniqueId('content_tag_'),
-                        'selected': false,
-                        'label': tag
-                    });
-                })
-
-            );
-
-        },
-
-        // Define a function to update the list of valid
-        // tags for groups whenever the gropus
-        // collection itself changes.
-
-        updateGroupTags: function() {
-
-            // Reset the content tags collection with
-            // an updated array of models.
-
-            this.groupTags.reset(
-
-                // Create models from the tags now
-                // available in the groups collection.
-                // We need to explicitly give each tag a
-                // unique identifier since we're not
-                // getting these values from a server.
-                // Initially no tags are selected.
-
-                this.groups.getTags().map(function(tag) {
-                    return new Stem.Models.Tag({
-                        'id':       _.uniqueId('group_tag_'),
-                        'selected': false,
-                        'label':  tag
-                    });
-                })
-
-            );
-
-        },
-
-        // Update the content filters whenever a user makes a
-        // change to the selection.
-
-        updateContentFilters: function() {
-
-            this.filters.content.tags = this.contentTagSet.getSelectedTags();
-            this.filteredContent.refilter();
-
-        },
-
-        // Update the group filters whenever a user makes a
-        // change to the selection.
-
-        updateGroupFilters: function(selected) {
-
-            this.filters.group.tags = this.groupTagSet.getSelectedTags();;
-            this.filteredGroups.refilter();
 
         },
 
@@ -305,40 +340,45 @@ Stem.Views = Stem.Views || {};
             // much more than creating and rendering
             // the appropriate child views.
 
-            var contentTagSetView = new Stem.Views.TagSetAsVerticalSelection({
+            new Stem.Views.TagSetAsHorizontalSelection({
+                el: $('#grade-selection')[0],
+                model: this.gradeTagSet
+            }).render();
+
+            new Stem.Views.TagSetAsVerticalSelection({
                 el: $('#content-tags')[0],
                 model: this.contentTagSet
-            });
+            }).render();
 
-            contentTagSetView.render();
+            new Stem.Views.TagSetAsVerticalSelection({
+                el: $('#content-grades')[0],
+                model: this.gradeTagSet
+            }).render();
 
-            var contentDetailView = new Stem.Views.ContentAsFeaturedDetails({
+            new Stem.Views.ContentAsFeaturedDetails({
                 collection: this.filteredContent,
                 el: $('#content-details')[0]
-            });
+            }).render();
 
-            contentDetailView.render();
-
-            var groupTagtSetView = new Stem.Views.TagSetAsVerticalSelection({
+            new Stem.Views.TagSetAsVerticalSelection({
                 el: $('#group-tags')[0],
                 model: this.groupTagSet
-            });
+            }).render();
 
-            groupTagtSetView.render();
+            new Stem.Views.TagSetAsVerticalSelection({
+                el: $('#group-grades')[0],
+                model: this.gradeTagSet
+            }).render();
 
-            var groupDetailView = new Stem.Views.GroupsAsFeaturedDetails({
+            new Stem.Views.GroupsAsFeaturedDetails({
                 collection: this.filteredGroups,
                 el: $('#group-details')[0]
-            });
+            }).render();
 
-            groupDetailView.render();
-
-            var proposalDetailView = new Stem.Views.CompletedProposalsAsFeaturedDetails({
+            new Stem.Views.CompletedProposalsAsFeaturedDetails({
                 collection: this.completedProposals,
                 el: $('#proposals-details')[0]
-            });
-
-            proposalDetailView.render();
+            }).render();
 
         }
 

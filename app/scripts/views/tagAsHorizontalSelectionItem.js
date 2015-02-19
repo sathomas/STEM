@@ -8,10 +8,15 @@ Stem.Views = Stem.Views || {};
 (function () {
     'use strict';
 
-    Stem.Views.TagAsVerticalSelectionItem = Backbone.View.extend({
+    Stem.Views.TagAsHorizontalSelectionItem = Backbone.View.extend({
 
-        template: JST['app/scripts/templates/tagAsVerticalSelectionItem.ejs'],
+        template: JST['app/scripts/templates/tagAsHorizontalSelectionItem.ejs'],
 
+        // Wrap the view in a `<span>` instead of the default
+        // `<div>` to avoid `display:block;`.
+
+        tagName: 'span',
+        
         // We listen for change events on our `<input>` element.
 
         events: {

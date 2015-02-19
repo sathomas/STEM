@@ -1593,7 +1593,7 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
 .theme-teachers-highlight.vertical-selection input:checked + label,
 .theme-teachers-highlight .vertical-selection input:checked + label,
 .vertical-selection input:checked + label.theme-teachers-highlight {
-    border-right: 3px solid #009EAF;
+    border-left: 3px solid #009EAF;
 }
 
 /**
