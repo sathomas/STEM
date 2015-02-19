@@ -34,8 +34,8 @@
               </a>
             
               
-              <a class="source" href="subjects.html">
-                subjects.js
+              <a class="source" href="tags.html">
+                tags.js
               </a>
             
               
@@ -74,8 +74,13 @@
               </a>
             
               
-              <a class="source" href="subject.html">
-                subject.js
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tagSet.html">
+                tagSet.js
               </a>
             
               
@@ -124,13 +129,33 @@
               </a>
             
               
-              <a class="source" href="subjectAsSelectionItem.html">
-                subjectAsSelectionItem.js
+              <a class="source" href="tagAsHorizontalSelectionItem.html">
+                tagAsHorizontalSelectionItem.js
               </a>
             
               
-              <a class="source" href="subjectsAsSelection.html">
-                subjectsAsSelection.js
+              <a class="source" href="tagAsVerticalSelectionItem.html">
+                tagAsVerticalSelectionItem.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsHorizontalSelection.html">
+                tagSetAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsVerticalSelection.html">
+                tagSetAsVerticalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsHorizontalSelection.html">
+                tagsAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsVerticalSelection.html">
+                tagsAsVerticalSelection.js
               </a>
             
               
@@ -330,13 +355,13 @@ array of models and return it directly.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>Return an array of all the subjects associated with
+              <p>Return an array of all the tags associated with
 the models in the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        getSubjects: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+        getTags: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -347,12 +372,12 @@ the models in the collection.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Start with an empty list of subjects.</p>
+              <p>Start with an empty list of tags.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> subjects = [];</pre></div></div>
+            <span class="hljs-keyword">var</span> tags = [];</pre></div></div>
             
         </li>
         
@@ -379,12 +404,12 @@ the models in the collection.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>Iterate through each model’s subjects.</p>
+              <p>Iterate through each model’s tags.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                model.get(<span class="hljs-string">'subjects'</span>).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(subject)</span> </span>{</pre></div></div>
+                model.get(<span class="hljs-string">'tags'</span>).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -395,24 +420,24 @@ the models in the collection.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>If the subject isn’t already counted,
+              <p>If the tag isn’t already included,
 add it to the array.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                    <span class="hljs-keyword">if</span> (!subjects.some(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(test)</span> </span>{
-                        <span class="hljs-keyword">return</span> test === subject;
+                    <span class="hljs-keyword">if</span> (!tags.some(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(test)</span> </span>{
+                        <span class="hljs-keyword">return</span> test === tag;
                     })) {
 
-                        subjects.push(subject);
+                        tags.push(tag);
                     }
 
                 });
 
             });
 
-            <span class="hljs-keyword">return</span> subjects;
+            <span class="hljs-keyword">return</span> tags;
 
         }
 

@@ -34,8 +34,8 @@
               </a>
             
               
-              <a class="source" href="subjects.html">
-                subjects.js
+              <a class="source" href="tags.html">
+                tags.js
               </a>
             
               
@@ -74,8 +74,13 @@
               </a>
             
               
-              <a class="source" href="subject.html">
-                subject.js
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tagSet.html">
+                tagSet.js
               </a>
             
               
@@ -124,13 +129,33 @@
               </a>
             
               
-              <a class="source" href="subjectAsSelectionItem.html">
-                subjectAsSelectionItem.js
+              <a class="source" href="tagAsHorizontalSelectionItem.html">
+                tagAsHorizontalSelectionItem.js
               </a>
             
               
-              <a class="source" href="subjectsAsSelection.html">
-                subjectsAsSelection.js
+              <a class="source" href="tagAsVerticalSelectionItem.html">
+                tagAsVerticalSelectionItem.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsHorizontalSelection.html">
+                tagSetAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsVerticalSelection.html">
+                tagSetAsVerticalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsHorizontalSelection.html">
+                tagsAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsVerticalSelection.html">
+                tagsAsVerticalSelection.js
               </a>
             
               
@@ -197,10 +222,11 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>We use an object to keep track of the current
+              <h2 id="filters">filters</h2>
+<p>We use an object to keep track of the current
 state of filtering for teachers details. There
 is a general filter for grade level that applies
-(almost) everywhere, and there are subject-level
+(almost) everywhere, and there are tag-level
 filters that apply separately to content and to
 groups.</p>
 
@@ -210,14 +236,12 @@ groups.</p>
         filters: {
             grade: [],
             content: {
-                subject: []
+                tags: []
             },
             group: {
-                subject: []
+                tags: []
             }
-        },
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        },</pre></div></div>
             
         </li>
         
@@ -228,13 +252,17 @@ groups.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Store a reference to this view in a local variable to
-create a closure for anonymous callbacks.</p>
+              <h2 id="filtermodel-">filterModel()</h2>
+<p>Utility function to check a model against a set
+of filters. Grade level filtering is assumed; 
+an optional tag array can also be supplied.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">this</span>;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        
+        filterModel: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model, tags)</span> </span>{
+            
+            <span class="hljs-keyword">var</span> gradeFilters = <span class="hljs-keyword">this</span>.gradeTagSet.getSelectedTags();</pre></div></div>
             
         </li>
         
@@ -245,12 +273,25 @@ create a closure for anonymous callbacks.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Kick off the initialization process by
-requesting data from the various
-collections that will be a part of the
-view.</p>
+              <p>The grade level matches if either:</p>
+<ul>
+<li>there are no grade level filters defined, or</li>
+<li>at least one of the grade level filters matches
+at least one of the content grade levels</li>
+</ul>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> gradeOk = (gradeFilters.length === <span class="hljs-number">0</span>) ||
+                (model.get(<span class="hljs-string">'primary'</span>) &amp;&amp;
+                _(gradeFilters).indexOf(<span class="hljs-string">'K-2'</span>)  !== -<span class="hljs-number">1</span>) ||
+                (model.get(<span class="hljs-string">'elementary'</span>) &amp;&amp;
+                _(gradeFilters).indexOf(<span class="hljs-string">'3-5'</span>)  !== -<span class="hljs-number">1</span>) ||
+                (model.get(<span class="hljs-string">'middle'</span>)     &amp;&amp;
+                _(gradeFilters).indexOf(<span class="hljs-string">'6-8'</span>)  !== -<span class="hljs-number">1</span>) ||
+                (model.get(<span class="hljs-string">'high'</span>)       &amp;&amp;
+                _(gradeFilters).indexOf(<span class="hljs-string">'9-12'</span>) !== -<span class="hljs-number">1</span>);</pre></div></div>
             
         </li>
         
@@ -261,9 +302,25 @@ view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>——————— Content ———————</p>
+              <p>The tags match if either:</p>
+<ul>
+<li>there are no tag filters defined, or</li>
+<li>at least one of the tags in the model
+matches at least one of the tags in the
+filter.</li>
+</ul>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> tagsOk = (!_.isArray(tags)) || (tags.length === <span class="hljs-number">0</span>) ||
+                _(model.get(<span class="hljs-string">'tags'</span>)).any(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{
+                    <span class="hljs-keyword">return</span> tags.indexOf(tag) !== -<span class="hljs-number">1</span>;
+                });
+
+            <span class="hljs-keyword">return</span> gradeOk &amp;&amp; tagsOk;
+
+        },</pre></div></div>
             
         </li>
         
@@ -273,6 +330,23 @@ view.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <h2 id="setupcontent-">setupContent()</h2>
+<p>Set up the models and collections for content.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        
+        setupContent: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Create a collection of content objects</p>
 
@@ -286,35 +360,18 @@ view.</p>
         </li>
         
         
-        <li id="section-8">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
-              </div>
-              <p>Create a collection of subjects for content</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.contentSubjects = <span class="hljs-keyword">new</span> Stem.Collections.Subjects();</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>Update the subjects whenever the underlying
-collection changes.</p>
+              <p>Create a collection of tags for content.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.content.on(<span class="hljs-string">'sync reset'</span>, <span class="hljs-keyword">this</span>.updateContentSubjects, <span class="hljs-keyword">this</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.contentTags = <span class="hljs-keyword">new</span> Stem.Collections.Tags();</pre></div></div>
             
         </li>
         
@@ -325,12 +382,15 @@ collection changes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Update the subject filters whenever the user changes one.</p>
+              <p>And create a model for the set of content tags.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.contentSubjects.on(<span class="hljs-string">'selection:change'</span>, <span class="hljs-keyword">this</span>.updateContentFilters, <span class="hljs-keyword">this</span>);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">this</span>.contentTagSet = <span class="hljs-keyword">new</span> Stem.Models.TagSet({
+                tags: <span class="hljs-keyword">this</span>.contentTags,
+                title: <span class="hljs-string">'Subjects'</span>
+            });</pre></div></div>
             
         </li>
         
@@ -341,12 +401,13 @@ collection changes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p>Populate the collections with content from the OAE.</p>
+              <p>Update the tags whenever the underlying
+collection changes.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.content.fetch();</pre></div></div>
+            <span class="hljs-keyword">this</span>.content.on(<span class="hljs-string">'sync reset'</span>, <span class="hljs-keyword">this</span>.updateContentTags, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -357,9 +418,12 @@ collection changes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>——————— Groups ———————</p>
+              <p>Update the tag filters whenever the user changes one.</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.contentTags.on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateContentFilters, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -369,6 +433,126 @@ collection changes.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Populate the collections with content from the OAE.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.content.fetch();
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <h2 id="updatecontenttags-">updateContentTags()</h2>
+<p>Update the list of valid tags for content whenever
+the content collection itself changes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        updateContentTags: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Reset the content tags collection with
+an updated array of models.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.contentTags.reset(</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Create models from the tag now
+available in the content collection.
+Initially no tags are selected.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.content.getTags().map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                        <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
+                        <span class="hljs-string">'label'</span>: tag
+                    });
+                })
+
+            );
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <h2 id="updatecontentfilters-">updateContentFilters()</h2>
+<p>Update the content filters whenever a user makes a
+change to the selection.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        updateContentFilters: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-keyword">this</span>.filters.content.tags = <span class="hljs-keyword">this</span>.contentTagSet.getSelectedTags();
+            <span class="hljs-keyword">this</span>.filteredContent.refilter();
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <h2 id="setupgroups">setupGroups</h2>
+<p>Set up the models and collections for groups.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        
+        setupGroups: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Create a collection of group objects</p>
 
@@ -382,89 +566,199 @@ collection changes.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
-              <p>Create a collection of subjects for groups</p>
+              <p>Create a collection of tags for groups</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.groupSubjects = <span class="hljs-keyword">new</span> Stem.Collections.Subjects();</pre></div></div>
+            <span class="hljs-keyword">this</span>.groupTags = <span class="hljs-keyword">new</span> Stem.Collections.Tags();</pre></div></div>
             
         </li>
         
         
-        <li id="section-15">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
-              <p>Update the subjects whenever the underlying
+              <p>And create a model for the set of group tags.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">this</span>.groupTagSet = <span class="hljs-keyword">new</span> Stem.Models.TagSet({
+                tags: <span class="hljs-keyword">this</span>.groupTags,
+                title: <span class="hljs-string">'Topics'</span>
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Update the tags whenever the underlying
 collection changes.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.groups.on(<span class="hljs-string">'sync reset'</span>, <span class="hljs-keyword">this</span>.updateGroupSubjects, <span class="hljs-keyword">this</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.groups.on(<span class="hljs-string">'sync reset'</span>, <span class="hljs-keyword">this</span>.updateGroupTags, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
         
-        <li id="section-16">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
-              <p>Update the subject filters whenever the user changes one.</p>
+              <p>Update the tag filters whenever the user changes one.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.groupSubjects.on(<span class="hljs-string">'selection:change'</span>, <span class="hljs-keyword">this</span>.updateGroupFilters, <span class="hljs-keyword">this</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.groupTags.on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateGroupFilters, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
         
-        <li id="section-17">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Populate the collections with content from the OAE.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.groups.fetch();</pre></div></div>
+            <span class="hljs-keyword">this</span>.groups.fetch();
+
+        },</pre></div></div>
             
         </li>
         
         
-        <li id="section-18">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
-              <p>——————— Proposals ———————</p>
+              <h2 id="updategrouptags-">updateGroupTags()</h2>
+<p>Update the list of valid tags for groups whenever
+the group collection itself changes.</p>
 
             </div>
             
+            <div class="content"><div class='highlight'><pre>
+        updateGroupTags: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
         </li>
         
         
-        <li id="section-19">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Reset the content tags collection with
+an updated array of models.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.groupTags.reset(</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Create models from the tags now
+available in the groups collection.
+Initially no tags are selected.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.groups.getTags().map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{
+                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                        <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
+                        <span class="hljs-string">'label'</span>:  tag
+                    });
+                })
+
+            );
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <h2 id="updategroupfilters-">updateGroupFilters()</h2>
+<p>Update the group filters whenever a user makes a
+change to the selection.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        updateGroupFilters: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-keyword">this</span>.filters.group.tags = <span class="hljs-keyword">this</span>.groupTagSet.getSelectedTags();
+            <span class="hljs-keyword">this</span>.filteredGroups.refilter();
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <h2 id="setupproposals">setupProposals</h2>
+<p>Set up the models and collections for proposals.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        
+        setupProposals: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Create the collection of completed proposals.</p>
 
@@ -479,267 +773,20 @@ collection changes.</p>
         </li>
         
         
-        <li id="section-20">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
-              </div>
-              <p>Retrieve the data from DonorsChoose.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.completedProposals.fetch();</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-21">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
-              </div>
-              <p>Now that we’ve started gathering the data
-for the view, we can set up the high-level
-user interactions.</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p>Create a filtered content collection to reflect
-the user’s selections.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.filteredContent = <span class="hljs-keyword">new</span> FilteredCollection(<span class="hljs-keyword">this</span>.content);
-            <span class="hljs-keyword">this</span>.filteredContent.filterBy(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-23">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
-              </div>
-              <p>The grade level matches if either:</p>
-<ul>
-<li>there are no grade level filters defined, or</li>
-<li>at least one of the grade level filters matches
-at least one of the content grade levels</li>
-</ul>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> gradeOk = (view.filters.grade.length === <span class="hljs-number">0</span>) ||
-                    (model.get(<span class="hljs-string">'elementary'</span>) &amp;&amp;
-                    _(view.filters.grade).indexOf(<span class="hljs-string">'elementary'</span>) !== -<span class="hljs-number">1</span>) ||
-                    (model.get(<span class="hljs-string">'middle'</span>)     &amp;&amp;
-                    _(view.filters.grade).indexOf(<span class="hljs-string">'middle'</span>)     !== -<span class="hljs-number">1</span>) ||
-                    (model.get(<span class="hljs-string">'high'</span>)       &amp;&amp;
-                    _(view.filters.grade).indexOf(<span class="hljs-string">'high'</span>)       !== -<span class="hljs-number">1</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-24">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
-              </div>
-              <p>The subject matches if either:</p>
-<ul>
-<li>there are no subject filters defined, or</li>
-<li>there are no subjects in the model, or</li>
-<li>at least one of the subjects in the model
-matches at least one of the sujects in the
-filter.</li>
-</ul>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> subjectOk = (view.filters.content.subject.length === <span class="hljs-number">0</span>) ||
-                    (model.get(<span class="hljs-string">'subjects'</span>).length === <span class="hljs-number">0</span>) ||
-                    _(model.get(<span class="hljs-string">'subjects'</span>)).any(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(subject)</span> </span>{
-                        <span class="hljs-keyword">return</span> view.filters.content.subject.indexOf(subject) !== -<span class="hljs-number">1</span>;
-                    });
-
-                <span class="hljs-keyword">return</span> gradeOk &amp;&amp; subjectOk;
-            });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-25">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
-              </div>
-              <p>Create a filtered groups collection to reflect
-the user’s selections.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.filteredGroups = <span class="hljs-keyword">new</span> FilteredCollection(<span class="hljs-keyword">this</span>.groups);
-            <span class="hljs-keyword">this</span>.filteredGroups.filterBy(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-26">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
-              </div>
-              <p>The grade level matches if either:</p>
-<ul>
-<li>there are no grade level filters defined, or</li>
-<li>at least one of the grade level filters matches
-at least one of the content grade levels</li>
-</ul>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> gradeOk = (view.filters.grade.length === <span class="hljs-number">0</span>) ||
-                    (model.get(<span class="hljs-string">'elementary'</span>) &amp;&amp;
-                    _(view.filters.grade).indexOf(<span class="hljs-string">'elementary'</span>) !== -<span class="hljs-number">1</span>) ||
-                    (model.get(<span class="hljs-string">'middle'</span>)     &amp;&amp;
-                    _(view.filters.grade).indexOf(<span class="hljs-string">'middle'</span>)     !== -<span class="hljs-number">1</span>) ||
-                    (model.get(<span class="hljs-string">'high'</span>)       &amp;&amp;
-                    _(view.filters.grade).indexOf(<span class="hljs-string">'high'</span>)       !== -<span class="hljs-number">1</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-27">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
-              </div>
-              <p>The subject matches if either:</p>
-<ul>
-<li>there are no subject filters defined, or</li>
-<li>there are no subjects in the model, or</li>
-<li>at least one of the subjects in the model
-matches at least one of the sujects in the
-filter.</li>
-</ul>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> subjectOk = (view.filters.group.subject.length === <span class="hljs-number">0</span>) ||
-                    (model.get(<span class="hljs-string">'subjects'</span>).length === <span class="hljs-number">0</span>) ||
-                    _(model.get(<span class="hljs-string">'subjects'</span>)).any(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(subject)</span> </span>{
-                        <span class="hljs-keyword">return</span> view.filters.group.subject.indexOf(subject) !== -<span class="hljs-number">1</span>;
-                    });
-
-                <span class="hljs-keyword">return</span> gradeOk &amp;&amp; subjectOk;
-            });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-28">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
-              </div>
-              <p>Listen for user interactions that change the filtering
-conditions.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-string">'input'</span>, <span class="hljs-string">'#grade-selection'</span>).on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-29">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
-              </div>
-              <p>When something changes in the grade selection,
-reset the corresponding filters.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                view.filters.grade = [];
-                <span class="hljs-keyword">if</span> ($(<span class="hljs-string">'#cb-elementary'</span>).is(<span class="hljs-string">':checked'</span>)) {
-                    view.filters.grade.push(<span class="hljs-string">'elementary'</span>);
-                }
-                <span class="hljs-keyword">if</span> ($(<span class="hljs-string">'#cb-middle'</span>).is(<span class="hljs-string">':checked'</span>)) {
-                    view.filters.grade.push(<span class="hljs-string">'middle'</span>);
-                }
-                <span class="hljs-keyword">if</span> ($(<span class="hljs-string">'#cb-high'</span>).is(<span class="hljs-string">':checked'</span>)) {
-                    view.filters.grade.push(<span class="hljs-string">'high'</span>);
-                }</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-30">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
-              </div>
-              <p>Trigger the filtered collections to refresh. This
-will trigger <code>reset</code> events on the collections,
-which the views can use to re-render.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                view.filteredContent.refilter();
-                view.filteredGroups.refilter();
-
-            });
-
-        },</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
-              <p>Define a function to update the list of valid
-subjects for content whenever the content
-collection itself changes.</p>
+              <p>Retrieve the data from DonorsChoose.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        updateContentSubjects: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.completedProposals.fetch();
+
+        },</pre></div></div>
             
         </li>
         
@@ -750,13 +797,13 @@ collection itself changes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
-              <p>Reset the content subjects collection with
-an updated array of models.</p>
+              <h2 id="setupgradelevels">setupGradeLevels</h2>
+<p>Set up the models and collections for managing grade levels.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.contentSubjects.reset(</pre></div></div>
+            <div class="content"><div class='highlight'><pre>        
+        setupGradeLevels: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -767,27 +814,12 @@ an updated array of models.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
-              <p>Create models from the subjects now
-available in the content collection.
-We need to explicitly give each subject a
-unique identifier since we’re not
-getting these values from a server.
-Initially no subjects are selected.</p>
+              <p>Create a model to store the grade level. For
+maximum flexibility we allow no grade levels
+and multiple grade levels. We implement this
+as a tag set.</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">this</span>.content.getSubjects().map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(subject)</span> </span>{
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Stem.Models.Subject({
-                        <span class="hljs-string">'id'</span>:       _.uniqueId(<span class="hljs-string">'content_subject_'</span>),
-                        <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
-                        <span class="hljs-string">'subject'</span>:  subject
-                    });
-                })
-
-            );
-
-        },</pre></div></div>
             
         </li>
         
@@ -798,14 +830,29 @@ Initially no subjects are selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
-              <p>Define a function to update the list of valid
-subjects for groups whenever the gropus
-collection itself changes.</p>
+              <p>Create a collection of tags for content.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        updateGroupSubjects: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.gradeTags = <span class="hljs-keyword">new</span> Stem.Collections.Tags([
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                    <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
+                    <span class="hljs-string">'label'</span>: <span class="hljs-string">'K-2'</span>
+                }),
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                    <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
+                    <span class="hljs-string">'label'</span>: <span class="hljs-string">'3-5'</span>
+                }),
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                    <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
+                    <span class="hljs-string">'label'</span>: <span class="hljs-string">'6-8'</span>
+                }),
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                    <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
+                    <span class="hljs-string">'label'</span>: <span class="hljs-string">'9-12'</span>
+                })
+            ]);</pre></div></div>
             
         </li>
         
@@ -816,13 +863,15 @@ collection itself changes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
-              <p>Reset the content subjects collection with
-an updated array of models.</p>
+              <p>And create a model for the set of content tags.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.groupSubjects.reset(</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">this</span>.gradeTagSet = <span class="hljs-keyword">new</span> Stem.Models.TagSet({
+                tags: <span class="hljs-keyword">this</span>.gradeTags,
+                title: <span class="hljs-string">'Grade level'</span>
+            });</pre></div></div>
             
         </li>
         
@@ -833,25 +882,13 @@ an updated array of models.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
-              <p>Create models from the subjects now
-available in the groups collection.
-We need to explicitly give each subject a
-unique identifier since we’re not
-getting these values from a server.
-Initially no subjects are selected.</p>
+              <p>Update the tag filters whenever the user changes grades.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">this</span>.groups.getSubjects().map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(subject)</span> </span>{
-                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Stem.Models.Subject({
-                        <span class="hljs-string">'id'</span>:       _.uniqueId(<span class="hljs-string">'group_subject_'</span>),
-                        <span class="hljs-string">'selected'</span>: <span class="hljs-literal">false</span>,
-                        <span class="hljs-string">'subject'</span>:  subject
-                    });
-                })
-
-            );
+            <span class="hljs-keyword">this</span>.gradeTags.on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateContentFilters, <span class="hljs-keyword">this</span>)
+                          .on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateGroupFilters, <span class="hljs-keyword">this</span>);
 
         },</pre></div></div>
             
@@ -864,13 +901,15 @@ Initially no subjects are selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
-              <p>Update the content filters whenever a user makes a
-change to the selection.</p>
+              <h2 id="initialize-">initialize()</h2>
+<p>Initialize the view.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        updateContentFilters: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(selected)</span> </span>{</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">this</span>;</pre></div></div>
             
         </li>
         
@@ -881,17 +920,17 @@ change to the selection.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
-              <p>The new filters setting is the argument
-to the event handler. All we do is save
-it and trigger a re-filter.</p>
+              <p>Kick off the initialization process by
+requesting data from the various
+collections that will be a part of the
+view.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.filters.content.subject = selected;
-            <span class="hljs-keyword">this</span>.filteredContent.refilter();
-
-        },</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">this</span>.setupContent();
+            <span class="hljs-keyword">this</span>.setupGroups();
+            <span class="hljs-keyword">this</span>.setupProposals();</pre></div></div>
             
         </li>
         
@@ -902,13 +941,14 @@ it and trigger a re-filter.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
-              <p>Update the group filters whenever a user makes a
-change to the selection.</p>
+              <p>Now that we’ve started gathering the data
+for the view, we can set up the high-level
+user interactions.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-        updateGroupFilters: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(selected)</span> </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">this</span>.setupGradeLevels();</pre></div></div>
             
         </li>
         
@@ -919,19 +959,16 @@ change to the selection.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
-              <p>The new filters setting is the argument
-to the event handler. All we do is save
-it and trigger a re-filter.</p>
+              <p>Create a filtered content collection to reflect
+the user’s selections.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.filters.group.subject = selected;
-            <span class="hljs-keyword">this</span>.filteredGroups.refilter();
-
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.filteredContent = <span class="hljs-keyword">new</span> FilteredCollection(<span class="hljs-keyword">this</span>.content);
+            <span class="hljs-keyword">this</span>.filteredContent.filterBy(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{
+                <span class="hljs-keyword">return</span> view.filterModel(model, view.filters.content.tags);
+            });</pre></div></div>
             
         </li>
         
@@ -942,47 +979,84 @@ it and trigger a re-filter.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
-              <p>Rendering this view is really nothing
-much more than creating and rendering
-the appropriate child views.</p>
+              <p>Create a filtered groups collection to reflect
+the user’s selections.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> contentSubjectList = <span class="hljs-keyword">new</span> Stem.Views.SubjectsAsSelection({
-                collection: <span class="hljs-keyword">this</span>.contentSubjects,
-                el: $(<span class="hljs-string">'#content-subjects'</span>)[<span class="hljs-number">0</span>]
+            <span class="hljs-keyword">this</span>.filteredGroups = <span class="hljs-keyword">new</span> FilteredCollection(<span class="hljs-keyword">this</span>.groups);
+            <span class="hljs-keyword">this</span>.filteredGroups.filterBy(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{
+                <span class="hljs-keyword">return</span> view.filterModel(model, view.filters.group.tags);
             });
 
-            contentSubjectList.render();
+        },
 
-            <span class="hljs-keyword">var</span> contentDetailList = <span class="hljs-keyword">new</span> Stem.Views.ContentAsFeaturedDetails({
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-42">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-42">&#182;</a>
+              </div>
+              <p>Rendering this view is really nothing
+much more than creating and rendering
+the appropriate child views. We do perform
+a small bit of trickery with the first
+view by overriding the main label. Normally
+the view gets this value from the model,
+and since we’re showing the same model in
+many views, we don’t want to change the
+model’s value.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">new</span> Stem.Views.TagSetAsHorizontalSelection({
+                el: $(<span class="hljs-string">'#grade-selection'</span>)[<span class="hljs-number">0</span>],
+                model: <span class="hljs-keyword">this</span>.gradeTagSet
+            }).render().$el.
+                find(<span class="hljs-string">'label.horizontal-selection__label'</span>).
+                text(<span class="hljs-string">'I teach:'</span>);
+
+            <span class="hljs-keyword">new</span> Stem.Views.TagSetAsVerticalSelection({
+                el: $(<span class="hljs-string">'#content-tags'</span>)[<span class="hljs-number">0</span>],
+                model: <span class="hljs-keyword">this</span>.contentTagSet
+            }).render();
+
+            <span class="hljs-keyword">new</span> Stem.Views.TagSetAsVerticalSelection({
+                el: $(<span class="hljs-string">'#content-grades'</span>)[<span class="hljs-number">0</span>],
+                model: <span class="hljs-keyword">this</span>.gradeTagSet
+            }).render();
+
+            <span class="hljs-keyword">new</span> Stem.Views.ContentAsFeaturedDetails({
                 collection: <span class="hljs-keyword">this</span>.filteredContent,
                 el: $(<span class="hljs-string">'#content-details'</span>)[<span class="hljs-number">0</span>]
-            });
+            }).render();
 
-            contentDetailList.render();
+            <span class="hljs-keyword">new</span> Stem.Views.TagSetAsVerticalSelection({
+                el: $(<span class="hljs-string">'#group-tags'</span>)[<span class="hljs-number">0</span>],
+                model: <span class="hljs-keyword">this</span>.groupTagSet
+            }).render();
 
-            <span class="hljs-keyword">var</span> groupSubjectList = <span class="hljs-keyword">new</span> Stem.Views.SubjectsAsSelection({
-                collection: <span class="hljs-keyword">this</span>.groupSubjects,
-                el: $(<span class="hljs-string">'#group-subjects'</span>)[<span class="hljs-number">0</span>]
-            });
+            <span class="hljs-keyword">new</span> Stem.Views.TagSetAsVerticalSelection({
+                el: $(<span class="hljs-string">'#group-grades'</span>)[<span class="hljs-number">0</span>],
+                model: <span class="hljs-keyword">this</span>.gradeTagSet
+            }).render();
 
-            groupSubjectList.render();
-
-            <span class="hljs-keyword">var</span> groupDetailList = <span class="hljs-keyword">new</span> Stem.Views.GroupsAsFeaturedDetails({
+            <span class="hljs-keyword">new</span> Stem.Views.GroupsAsFeaturedDetails({
                 collection: <span class="hljs-keyword">this</span>.filteredGroups,
                 el: $(<span class="hljs-string">'#group-details'</span>)[<span class="hljs-number">0</span>]
-            });
+            }).render();
 
-            groupDetailList.render();
-
-            <span class="hljs-keyword">var</span> proposalDetailList = <span class="hljs-keyword">new</span> Stem.Views.CompletedProposalsAsFeaturedDetails({
+            <span class="hljs-keyword">new</span> Stem.Views.CompletedProposalsAsFeaturedDetails({
                 collection: <span class="hljs-keyword">this</span>.completedProposals,
                 el: $(<span class="hljs-string">'#proposals-details'</span>)[<span class="hljs-number">0</span>]
-            });
-
-            proposalDetailList.render();
+            }).render();
 
         }
 

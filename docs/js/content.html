@@ -34,8 +34,8 @@
               </a>
             
               
-              <a class="source" href="subjects.html">
-                subjects.js
+              <a class="source" href="tags.html">
+                tags.js
               </a>
             
               
@@ -74,8 +74,13 @@
               </a>
             
               
-              <a class="source" href="subject.html">
-                subject.js
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tagSet.html">
+                tagSet.js
               </a>
             
               
@@ -124,13 +129,33 @@
               </a>
             
               
-              <a class="source" href="subjectAsSelectionItem.html">
-                subjectAsSelectionItem.js
+              <a class="source" href="tagAsHorizontalSelectionItem.html">
+                tagAsHorizontalSelectionItem.js
               </a>
             
               
-              <a class="source" href="subjectsAsSelection.html">
-                subjectsAsSelection.js
+              <a class="source" href="tagAsVerticalSelectionItem.html">
+                tagAsVerticalSelectionItem.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsHorizontalSelection.html">
+                tagSetAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsVerticalSelection.html">
+                tagSetAsVerticalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsHorizontalSelection.html">
+                tagsAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsVerticalSelection.html">
+                tagsAsVerticalSelection.js
               </a>
             
               
@@ -224,7 +249,7 @@ update it with the complete profile.</p>
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>We need to parse the response from the server
-to extract the grade level and subject from
+to extract the grade level and tags from
 the overloaded title. While we’re at it, we
 also clean up the response a bit to avoid
 nasty surprises.</p>
@@ -269,7 +294,7 @@ we support.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> allGrades = [<span class="hljs-string">'elementary'</span>, <span class="hljs-string">'middle'</span>, <span class="hljs-string">'high'</span>];</pre></div></div>
+            <span class="hljs-keyword">var</span> allGrades = [<span class="hljs-string">'primary'</span>, <span class="hljs-string">'elementary'</span>, <span class="hljs-string">'middle'</span>, <span class="hljs-string">'high'</span>];</pre></div></div>
             
         </li>
         
@@ -337,7 +362,10 @@ these tokens.</p>
               <p>The second part of the original
 <code>displayName</code> holds the grade
 levels. Multiple grade levels are
-permitted, separated by commas.</p>
+permitted, separated by commas.
+We also replace common abbreviations
+with the more descriptive version to
+match the model properties.</p>
 
             </div>
             
@@ -346,7 +374,12 @@ permitted, separated by commas.</p>
 
                     <span class="hljs-keyword">var</span> grades = tokens[<span class="hljs-number">1</span>].split(<span class="hljs-string">','</span>)
                         .map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span> </span>{
-                             <span class="hljs-keyword">return</span> token.trim().toLowerCase();
+	                        token = token.trim().toLowerCase();
+	                        <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'k-2'</span>)       { token = <span class="hljs-string">'primary'</span>;    }
+	                        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'3-5'</span>)  { token = <span class="hljs-string">'elementary'</span>; }
+	                        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'6-8'</span>)  { token = <span class="hljs-string">'middle'</span>;     }
+	                        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'9-12'</span>) { token = <span class="hljs-string">'high'</span>;       }
+                            <span class="hljs-keyword">return</span> token;
                         });</pre></div></div>
             
         </li>
@@ -410,8 +443,8 @@ all grades.</p>
               </div>
               <p>Finally, the third part of the
 original <code>displayName</code> holds the
-subjects. Again, there may be
-multiple subjects separated by
+tags. Again, there may be
+multiple tags separated by
 commas. This time, though, we’re
 not going to interpret the values.
 We just store them as an array.</p>
@@ -427,18 +460,18 @@ We just store them as an array.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>To handle the case of no subjects
+              <p>To handle the case of no tags
 cleanly, start with an empty array.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                response.subjects = [];
+                response.tags = [];
 
                 <span class="hljs-keyword">if</span> (tokens.length &gt; <span class="hljs-number">2</span>) {
 
                     tokens[<span class="hljs-number">2</span>].split(<span class="hljs-string">','</span>).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span> </span>{
-                        response.subjects.push(token.trim());
+                        response.tags.push(token.trim());
                     });
 
                 }

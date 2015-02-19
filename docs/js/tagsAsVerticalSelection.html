@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>subjectAsSelectionItem.js</title>
+  <title>tagsAsVerticalSelection.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -34,8 +34,8 @@
               </a>
             
               
-              <a class="source" href="subjects.html">
-                subjects.js
+              <a class="source" href="tags.html">
+                tags.js
               </a>
             
               
@@ -74,8 +74,13 @@
               </a>
             
               
-              <a class="source" href="subject.html">
-                subject.js
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tagSet.html">
+                tagSet.js
               </a>
             
               
@@ -124,13 +129,33 @@
               </a>
             
               
-              <a class="source" href="subjectAsSelectionItem.html">
-                subjectAsSelectionItem.js
+              <a class="source" href="tagAsHorizontalSelectionItem.html">
+                tagAsHorizontalSelectionItem.js
               </a>
             
               
-              <a class="source" href="subjectsAsSelection.html">
-                subjectsAsSelection.js
+              <a class="source" href="tagAsVerticalSelectionItem.html">
+                tagAsVerticalSelectionItem.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsHorizontalSelection.html">
+                tagSetAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsVerticalSelection.html">
+                tagSetAsVerticalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsHorizontalSelection.html">
+                tagsAsHorizontalSelection.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsVerticalSelection.html">
+                tagsAsVerticalSelection.js
               </a>
             
               
@@ -146,7 +171,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>subjectAsSelectionItem.js</h1>
+                  <h1>tagsAsVerticalSelection.js</h1>
               </div>
           </li>
         
@@ -172,8 +197,8 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Basic Backbone view that renders
-a subject model as a selection option.</p>
+              <p>Trivial Backbone view that renders a tags
+collection in a vertically arranged selection.</p>
 
             </div>
             
@@ -183,9 +208,9 @@ Stem.Views = Stem.Views || {};
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Views.SubjectAsSelectionItem = Backbone.View.extend({
+    Stem.Views.TagsAsVerticalSelection = Backbone.View.extend({
 
-        template: JST[<span class="hljs-string">'app/scripts/templates/subjectAsSelectionItem.ejs'</span>],</pre></div></div>
+        template: JST[<span class="hljs-string">'app/scripts/templates/tagsAsVerticalSelection.ejs'</span>],</pre></div></div>
             
         </li>
         
@@ -196,14 +221,23 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>We listen for change events on our <code>&lt;input&gt;</code> element.</p>
+              <p>Once the view is created, we need to listen
+for reset events in order to update the
+view contents. Resets occur, for example,
+once data is loaded asynchronously.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        events: {
-            <span class="hljs-string">'change input'</span>: <span class="hljs-string">'change'</span>
-        },</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'sync reset'</span>, <span class="hljs-keyword">this</span>.render);
+
+        },
+
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-keyword">var</span> $el = <span class="hljs-keyword">this</span>.$el;</pre></div></div>
             
         </li>
         
@@ -214,14 +248,12 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>We don’t need to process the change events ourselves,
-but we do want to trigger an overvall event to any
-parent that’s listening.</p>
+              <p>First render the overall template.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        change: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            $el.html(<span class="hljs-keyword">this</span>.template());</pre></div></div>
             
         </li>
         
@@ -232,12 +264,12 @@ parent that’s listening.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Get the current selected state.</p>
+              <p>Then add the individual tags.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> selected = <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).is(<span class="hljs-string">':checked'</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -248,13 +280,14 @@ parent that’s listening.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Update the model with the current state of
-the selection.</p>
+              <p>Create a view for the tag model.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.model.set(<span class="hljs-string">'selected'</span>, selected);</pre></div></div>
+                <span class="hljs-keyword">var</span> tagView = <span class="hljs-keyword">new</span> Stem.Views.TagAsVerticalSelectionItem({
+                    model: tag
+                });</pre></div></div>
             
         </li>
         
@@ -265,19 +298,12 @@ the selection.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>We trigger the custom event <code>selection:change</code>
-and pass it the model as well as an argument
-that indicates whether the selection is now
-checked or not.</p>
+              <p>Render it.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.trigger(<span class="hljs-string">'selection:change'</span>, <span class="hljs-keyword">this</span>.model, selected);
-
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+                tagView.render();</pre></div></div>
             
         </li>
         
@@ -288,12 +314,14 @@ checked or not.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>Render the model using the template.</p>
+              <p>Add it to the element we’re building.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()));</pre></div></div>
+                $el.append(tagView.el);
+
+            });</pre></div></div>
             
         </li>
         

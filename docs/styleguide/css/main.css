@@ -423,6 +423,20 @@ html {
  *     </p>
  */
 
+
+@font-face {
+    font-family: 'Raleway SemiBold lnum';
+    src: url('../fonts/Raleway-SemiBold-webfont.eot');
+    src: url('../fonts/Raleway-SemiBold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Raleway-SemiBold-webfont.woff2') format('woff2'),
+         url('../fonts/Raleway-SemiBold-webfont.woff') format('woff'),
+         url('../fonts/Raleway-SemiBold-webfont.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
 body {
     color: #222;
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -597,6 +611,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     border: none;
     box-sizing: border-box;
     display: inline-block;
+    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
     font-weight: 600;
     height: 38px;
@@ -841,6 +856,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
             box-sizing: border-box;
     cursor: pointer;
     padding: 5px;
+    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
     height: 38px;
     line-height: 38px;
@@ -919,6 +935,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     clear: both;
     cursor: pointer;
     float: left;
+    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.7rem;
     font-weight: 600;
     height: 30px;
@@ -1009,6 +1026,10 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     font-size: 4rem;
     position: absolute;
     right: 15px;
+}
+
+.featured__details__action {
+    padding-left: 10px;   
 }
 
 
@@ -1589,7 +1610,7 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
 .theme-teachers-highlight.vertical-selection input:checked + label,
 .theme-teachers-highlight .vertical-selection input:checked + label,
 .vertical-selection input:checked + label.theme-teachers-highlight {
-    border-right: 3px solid #009EAF;
+    border-left: 3px solid #009EAF;
 }
 
 /**
