@@ -1804,6 +1804,10 @@ div.header[data-section="industry"] {
     background-color: #EFEDEB;
 }
 
+.theme-neutral--white {
+    background-color: white;
+}
+
 .theme-neutral--light .muted {
 	color: #636363;
 }
