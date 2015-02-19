@@ -16,17 +16,17 @@ Stem.Views = Stem.Views || {};
         // We use an object to keep track of the current
         // state of filtering for teachers details. There
         // is a general filter for grade level that applies
-        // (almost) everywhere, and there are subject-level
+        // (almost) everywhere, and there are tag-level
         // filters that apply separately to content and to
         // groups.
 
         filters: {
             grade: [],
             content: {
-                subject: []
+                tags: []
             },
             group: {
-                subject: []
+                tags: []
             }
         },
 
@@ -50,18 +50,25 @@ Stem.Views = Stem.Views || {};
                 limit: 99
             });
 
-            // Create a collection of subjects for content
+            // Create a collection of tags for content.
 
-            this.contentSubjects = new Stem.Collections.Subjects();
+            this.contentTags = new Stem.Collections.Tags();
+            
+            // And create a model for the set of content tags.
+            
+            this.contentTagSet = new Stem.Models.TagSet({
+                tags: this.contentTags,
+                title: 'Subjects'
+            });
 
-            // Update the subjects whenever the underlying
+            // Update the tags whenever the underlying
             // collection changes.
 
-            this.content.on('sync reset', this.updateContentSubjects, this);
+            this.content.on('sync reset', this.updateContentTags, this);
 
-            // Update the subject filters whenever the user changes one.
+            // Update the tag filters whenever the user changes one.
 
-            this.contentSubjects.on('selection:change', this.updateContentFilters, this);
+            this.contentTags.on('change', this.updateContentFilters, this);
 
             // Populate the collections with content from the OAE.
 
@@ -75,18 +82,25 @@ Stem.Views = Stem.Views || {};
                 limit: 99
             });
 
-            // Create a collection of subjects for groups
+            // Create a collection of tags for groups
 
-            this.groupSubjects = new Stem.Collections.Subjects();
+            this.groupTags = new Stem.Collections.Tags();
 
-            // Update the subjects whenever the underlying
+            // And create a model for the set of group tags.
+            
+            this.groupTagSet = new Stem.Models.TagSet({
+                tags: this.groupTags,
+                title: 'Topics'
+            });
+
+            // Update the tags whenever the underlying
             // collection changes.
 
-            this.groups.on('sync reset', this.updateGroupSubjects, this);
+            this.groups.on('sync reset', this.updateGroupTags, this);
 
-            // Update the subject filters whenever the user changes one.
+            // Update the tag filters whenever the user changes one.
 
-            this.groupSubjects.on('selection:change', this.updateGroupFilters, this);
+            this.groupTags.on('change', this.updateGroupFilters, this);
 
             // Populate the collections with content from the OAE.
 
@@ -128,20 +142,18 @@ Stem.Views = Stem.Views || {};
                     (model.get('high')       &&
                     _(view.filters.grade).indexOf('high')       !== -1);
 
-                // The subject matches if either:
-                // - there are no subject filters defined, or
-                // - there are no subjects in the model, or
-                // - at least one of the subjects in the model
-                //   matches at least one of the sujects in the
+                // The tags match if either:
+                // - there are no tag filters defined, or
+                // - at least one of the tags in the model
+                //   matches at least one of the tags in the
                 //   filter.
 
-                var subjectOk = (view.filters.content.subject.length === 0) ||
-                    (model.get('subjects').length === 0) ||
-                    _(model.get('subjects')).any(function(subject) {
-                        return view.filters.content.subject.indexOf(subject) !== -1;
+                var tagsOk = (view.filters.content.tags.length === 0) ||
+                    _(model.get('tags')).any(function(tag) {
+                        return view.filters.content.tags.indexOf(tag) !== -1;
                     });
 
-                return gradeOk && subjectOk;
+                return gradeOk && tagsOk;
             });
 
             // Create a filtered groups collection to reflect
@@ -163,20 +175,18 @@ Stem.Views = Stem.Views || {};
                     (model.get('high')       &&
                     _(view.filters.grade).indexOf('high')       !== -1);
 
-                // The subject matches if either:
-                // - there are no subject filters defined, or
-                // - there are no subjects in the model, or
-                // - at least one of the subjects in the model
-                //   matches at least one of the sujects in the
+                // The tags match if either:
+                // - there are no tag filters defined, or
+                // - at least one of the subjecs in the model
+                //   matches at least one of the tags in the
                 //   filter.
 
-                var subjectOk = (view.filters.group.subject.length === 0) ||
-                    (model.get('subjects').length === 0) ||
-                    _(model.get('subjects')).any(function(subject) {
-                        return view.filters.group.subject.indexOf(subject) !== -1;
+                var tagsOk = (view.filters.group.tags.length === 0) ||
+                    _(model.get('tags')).any(function(tag) {
+                        return view.filters.group.tags.indexOf(tag) !== -1;
                     });
 
-                return gradeOk && subjectOk;
+                return gradeOk && tagsOk;
             });
 
             // Listen for user interactions that change the filtering
@@ -210,28 +220,28 @@ Stem.Views = Stem.Views || {};
         },
 
         // Define a function to update the list of valid
-        // subjects for content whenever the content
+        // tags for content whenever the content
         // collection itself changes.
 
-        updateContentSubjects: function() {
+        updateContentTags: function() {
 
-            // Reset the content subjects collection with
+            // Reset the content tags collection with
             // an updated array of models.
 
-            this.contentSubjects.reset(
+            this.contentTags.reset(
 
-                // Create models from the subjects now
+                // Create models from the tag now
                 // available in the content collection.
-                // We need to explicitly give each subject a
+                // We need to explicitly give each tag a
                 // unique identifier since we're not
                 // getting these values from a server.
-                // Initially no subjects are selected.
+                // Initially no tags are selected.
 
-                this.content.getSubjects().map(function(subject) {
-                    return new Stem.Models.Subject({
-                        'id':       _.uniqueId('content_subject_'),
+                this.content.getTags().map(function(tag) {
+                    return new Stem.Models.Tag({
+                        'id': _.uniqueId('content_tag_'),
                         'selected': false,
-                        'subject':  subject
+                        'label': tag
                     });
                 })
 
@@ -240,28 +250,28 @@ Stem.Views = Stem.Views || {};
         },
 
         // Define a function to update the list of valid
-        // subjects for groups whenever the gropus
+        // tags for groups whenever the gropus
         // collection itself changes.
 
-        updateGroupSubjects: function() {
+        updateGroupTags: function() {
 
-            // Reset the content subjects collection with
+            // Reset the content tags collection with
             // an updated array of models.
 
-            this.groupSubjects.reset(
+            this.groupTags.reset(
 
-                // Create models from the subjects now
+                // Create models from the tags now
                 // available in the groups collection.
-                // We need to explicitly give each subject a
+                // We need to explicitly give each tag a
                 // unique identifier since we're not
                 // getting these values from a server.
-                // Initially no subjects are selected.
+                // Initially no tags are selected.
 
-                this.groups.getSubjects().map(function(subject) {
-                    return new Stem.Models.Subject({
-                        'id':       _.uniqueId('group_subject_'),
+                this.groups.getTags().map(function(tag) {
+                    return new Stem.Models.Tag({
+                        'id':       _.uniqueId('group_tag_'),
                         'selected': false,
-                        'subject':  subject
+                        'label':  tag
                     });
                 })
 
@@ -272,13 +282,9 @@ Stem.Views = Stem.Views || {};
         // Update the content filters whenever a user makes a
         // change to the selection.
 
-        updateContentFilters: function(selected) {
+        updateContentFilters: function() {
 
-            // The new filters setting is the argument
-            // to the event handler. All we do is save
-            // it and trigger a re-filter.
-
-            this.filters.content.subject = selected;
+            this.filters.content.tags = this.contentTagSet.getSelectedTags();
             this.filteredContent.refilter();
 
         },
@@ -288,11 +294,7 @@ Stem.Views = Stem.Views || {};
 
         updateGroupFilters: function(selected) {
 
-            // The new filters setting is the argument
-            // to the event handler. All we do is save
-            // it and trigger a re-filter.
-
-            this.filters.group.subject = selected;
+            this.filters.group.tags = this.groupTagSet.getSelectedTags();;
             this.filteredGroups.refilter();
 
         },
@@ -303,40 +305,40 @@ Stem.Views = Stem.Views || {};
             // much more than creating and rendering
             // the appropriate child views.
 
-            var contentSubjectList = new Stem.Views.SubjectsAsSelection({
-                collection: this.contentSubjects,
-                el: $('#content-subjects')[0]
+            var contentTagSetView = new Stem.Views.TagSetAsVerticalSelection({
+                el: $('#content-tags')[0],
+                model: this.contentTagSet
             });
 
-            contentSubjectList.render();
+            contentTagSetView.render();
 
-            var contentDetailList = new Stem.Views.ContentAsFeaturedDetails({
+            var contentDetailView = new Stem.Views.ContentAsFeaturedDetails({
                 collection: this.filteredContent,
                 el: $('#content-details')[0]
             });
 
-            contentDetailList.render();
+            contentDetailView.render();
 
-            var groupSubjectList = new Stem.Views.SubjectsAsSelection({
-                collection: this.groupSubjects,
-                el: $('#group-subjects')[0]
+            var groupTagtSetView = new Stem.Views.TagSetAsVerticalSelection({
+                el: $('#group-tags')[0],
+                model: this.groupTagSet
             });
 
-            groupSubjectList.render();
+            groupTagtSetView.render();
 
-            var groupDetailList = new Stem.Views.GroupsAsFeaturedDetails({
+            var groupDetailView = new Stem.Views.GroupsAsFeaturedDetails({
                 collection: this.filteredGroups,
                 el: $('#group-details')[0]
             });
 
-            groupDetailList.render();
+            groupDetailView.render();
 
-            var proposalDetailList = new Stem.Views.CompletedProposalsAsFeaturedDetails({
+            var proposalDetailView = new Stem.Views.CompletedProposalsAsFeaturedDetails({
                 collection: this.completedProposals,
                 el: $('#proposals-details')[0]
             });
 
-            proposalDetailList.render();
+            proposalDetailView.render();
 
         }
 

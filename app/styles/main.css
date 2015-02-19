@@ -1011,6 +1011,10 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     right: 15px;
 }
 
+.featured__details__action {
+    padding-left: 10px;   
+}
+
 
 @media (min-width: 500px) {
     .featured__details__close { right: 20px; }
