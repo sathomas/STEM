@@ -35,7 +35,7 @@
  *     - [Column](#column)
  * - [Typography](#typography)
  *     - [Base](#base)
- *     - [Headings](#content)
+ *     - [Headings](#headings)
  *     - [Content](#content)
  *     - [Footer](#footer)
  *     - [Buttons](#buttons)
@@ -121,6 +121,7 @@ section.hide {
     left: -9999em;
     opacity: 0;
     position: absolute;
+    top: -9999em;
 }
 
 html.js section.show,
@@ -434,6 +435,9 @@ p {
     margin-top: 0;
 }
 
+.compressed {
+	margin-bottom: 0.2rem;	
+}
 
 /**
  * Headings:
@@ -543,8 +547,7 @@ a {
 
 /**
  * Footer:
- * Footer content is centered. Small
- * text is reduced a bit more than
+ * Small text is reduced a bit more than
  * the default.
  *
  *     @example:
@@ -554,19 +557,17 @@ a {
  *     </footer>
  */
 
-footer p {
-    padding: 30px;
-    text-align: center;
-}
-
-footer p:last-of-type {
-    margin-bottom: 0;
-}
-
 footer small {
-    font-size: 60%;
+    font-size: 80%;
 }
 
+footer p {
+	font-weight: 300;
+}
+
+footer a {
+	text-decoration: none;
+}
 
 /**
  * Buttons:
@@ -619,6 +620,42 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     text-decoration: underline;
 }
 
+
+/**
+ * Images:
+ * The class `medium-logo` gives logos (e.g.
+ * of partner sites) a consistent appearance.
+ */
+
+
+.medium-logo {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    display: block;
+    margin-bottom: 1em;
+    max-width: 400px;
+    padding: 5px 30px 25px 0;
+    width: 90%;
+}
+
+.medium-logo--flush {
+	padding-bottom: 5px;
+}
+
+.medium-logo img {
+	width: 90%;
+}
+
+
+/**
+ * Icons:
+ */
+
+.icon-larger {
+	font-size: 1.3em;
+	padding-right: 0.5em;
+}
 
 
 /* ===================================================== */
@@ -958,22 +995,12 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     opacity: 0;
     position: absolute;
     padding-bottom: 30px;
+    top: -9999em;
     -webkit-transition: opacity 400ms linear;
        -moz-transition: opacity 400ms linear;
         -ms-transition: opacity 400ms linear;
          -o-transition: opacity 400ms linear;
             transition: opacity 400ms linear;
-}
-
-.featured__details__logo {
-    display: block;
-    margin-bottom: 30px;
-    width: 90%;
-}
-
-img.featured__details__logo[src="images/donorschoose.svg"] {
-    max-width: 220px;
-
 }
 
 .featured__details__close {
@@ -1756,10 +1783,38 @@ div.header[data-section="industry"] {
     background-color: #EFEDEB;
 }
 
+.theme-neutral--light .muted {
+	color: #636363;
+}
+
+
 .theme-neutral--dark {
     background-color: #424242;
     color: #EFEDEB;
 }
+
+
+.theme-neutral--dark .button, .theme-neutral--dark button,
+.theme-neutral--dark input[type="submit"], input[type="submit"],
+.theme-neutral--dark input[type="reset"], input[type="reset"],
+.theme-neutral--dark input[type="button"], input[type="button"] {
+    background-color: #DBDBDA;
+    border: none;
+    color: #636363;
+}
+
+.theme-neutral--dark .button:hover, .theme-neutral--dark button:hover,
+.theme-neutral--dark input[type="submit"]:hover,
+.theme-neutral--dark input[type="reset"]:hover,
+.theme-neutral--dark input[type="button"]:hover,
+.theme-neutral--dark .button:focus, .theme-teachers button:focus,
+.theme-neutral--dark input[type="submit"]:focus,
+.theme-neutral--dark input[type="reset"]:focus,
+.theme-neutral--dark input[type="button"]:focus {
+    color: #424242;
+}
+
+
 
 .featured.theme-neutral,
 .featured.theme-neutral .featured__image {

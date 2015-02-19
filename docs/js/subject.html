@@ -172,11 +172,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Trivial Backbone model for a subject. The
-stock Backbone model is sufficient, so there’s
-actually no code needed here. We just define
-the model so it can be used in collections
-and views.</p>
+              <p>Trivial Backbone model for a subject.</p>
 
             </div>
             
@@ -186,8 +182,26 @@ Stem.Models = Stem.Models || {};
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Models.Subject = Backbone.Model.extend({
+    Stem.Models.Subject = Backbone.Model.extend({</pre></div></div>
+            
+        </li>
         
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Define the default properties of a model.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        
+        defaults: {
+            selected: <span class="hljs-literal">false</span>
+        },
+
     });
 
 })();</pre></div></div>
