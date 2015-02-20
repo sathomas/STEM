@@ -67,11 +67,6 @@ Stem.Views = Stem.Views || {};
                 this.$el.find('.featured__details__action a').
                     removeClass('button--link');
 
-                // Make sure the action options are visible.
-
-                this.$el.find('.featured__details__action').
-                    show();
-
                 // Remove the "no content" message.
 
                 this.$el.find('.featured__details__listing').
@@ -84,10 +79,10 @@ Stem.Views = Stem.Views || {};
             } else {
 
                 // Since no content matches, there aren't
-                // any actions that make sense.
+                // any direct actions that make sense.
 
-                this.$el.find('.featured__details__action').
-                    hide();
+                this.$el.find('.featured__details__action a').
+                    text('Search for more');
 
             }
 
@@ -140,7 +135,8 @@ Stem.Views = Stem.Views || {};
                 // OAE website) by changing its style.
 
                 this.$el.find('.featured__details__action a').
-                    addClass('button--link');
+                    addClass('button--link').
+                    text('Search for more');
 
             }
 

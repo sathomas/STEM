@@ -1123,6 +1123,10 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     margin-bottom: 0.5rem;
 }
 
+.featured__details__main p.featured__details__placeholder {
+    margin-bottom: 1.5rem;
+}
+
 .featured__item a[data-featured-toggle] {
     -webkit-transition: opacity 400ms linear;
        -moz-transition: opacity 400ms linear;
