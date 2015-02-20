@@ -426,11 +426,7 @@ html {
 
 @font-face {
     font-family: 'Raleway SemiBold lnum';
-    src: url('../fonts/Raleway-SemiBold-webfont.eot');
-    src: url('../fonts/Raleway-SemiBold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/Raleway-SemiBold-webfont.woff2') format('woff2'),
-         url('../fonts/Raleway-SemiBold-webfont.woff') format('woff'),
-         url('../fonts/Raleway-SemiBold-webfont.ttf') format('truetype');
+    src: url('../fonts/Raleway-SemiBold-lnum-webfont.woff') format('woff');
     font-weight: 600;
     font-style: normal;
 
@@ -450,7 +446,7 @@ p {
 }
 
 .compressed {
-	margin-bottom: 0.2rem;	
+	margin-bottom: 0.2rem;
 }
 
 /**
@@ -659,7 +655,9 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 }
 
 .medium-logo img {
-	width: 90%;
+    display: block;
+	max-width: 400px;
+    width: 90%;
 }
 
 
@@ -1029,7 +1027,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 }
 
 .featured__details__action {
-    padding-left: 10px;   
+    padding-left: 10px;
 }
 
 
@@ -1660,11 +1658,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #00AB0F;
 }
 
-.theme-schools .call-to-action__image { background-image: url(../images/schools-small.jpg); }
+.theme-schools .call-to-action__image { background-image: url(../images/schools-small.png); }
 .theme-schools .call-to-action__image-spacer { padding-top: 66.51884701%; }
 
 @media (min-width: 1000px) {
-    .theme-schools .call-to-action__image { background-image: url(../images/schools.jpg); }
+    .theme-schools .call-to-action__image { background-image: url(../images/schools.png); }
     .theme-schools .call-to-action__image-spacer { padding-top: 266.07538803%; }
 }
 
@@ -1716,11 +1714,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #005493;
 }
 
-.theme-industry .call-to-action__image { background-image: url(../images/industry-small.jpg); }
+.theme-industry .call-to-action__image { background-image: url(../images/industry-small.png); }
 .theme-industry .call-to-action__image-spacer { padding-top: 66.5480427%; }
 
 @media (min-width: 1000px) {
-    .theme-industry .call-to-action__image { background-image: url(../images/industry.jpg); }
+    .theme-industry .call-to-action__image { background-image: url(../images/industry.png); }
     .theme-industry .call-to-action__image-spacer { padding-top: 266.19217082%; }
 }
 
