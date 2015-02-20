@@ -449,6 +449,19 @@ p {
 	margin-bottom: 0.2rem;
 }
 
+.constrained {
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    max-width: 100%;
+    max-height: 4.5em;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 /**
  * Headings:
  * Headings use a slightly lighter font weight and specific line
@@ -606,6 +619,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
             border-radius: 3px;
     border: none;
     box-sizing: border-box;
+    cursor: pointer;
     display: inline-block;
     font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
@@ -617,8 +631,17 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+    -webkit-transition: background-color 400ms linear;
+       -moz-transition: background-color 400ms linear;
+        -ms-transition: background-color 400ms linear;
+         -o-transition: background-color 400ms linear;
+            transition: background-color 400ms linear;
+    -webkit-transition: color 400ms linear;
+       -moz-transition: color 400ms linear;
+        -ms-transition: color 400ms linear;
+         -o-transition: color 400ms linear;
+            transition: color 400ms linear;
     white-space: nowrap;
-    cursor: pointer;
 }
 
 .button--link {
@@ -1047,10 +1070,15 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     margin: 30px 10px;
 }
 
+.featured__details__listing {
+    margin: 30px 10px 0 10px;
+}
+
+
 .featured__details__item {
     overflow: hidden;
     padding-bottom: 30px;
-    padding-left: 120px;
+    padding-left: 110px;
 }
 
 .featured__details__item:after {
@@ -1803,6 +1831,7 @@ div.header[data-section="industry"] {
 }
 
 .theme-neutral--white {
+
     background-color: white;
 }
 
@@ -1814,6 +1843,36 @@ div.header[data-section="industry"] {
 .theme-neutral--dark {
     background-color: #424242;
     color: #EFEDEB;
+}
+
+.theme-neutral .button, .theme-neutral button,
+.theme-neutral input[type="submit"], input[type="submit"],
+.theme-neutral input[type="reset"], input[type="reset"],
+.theme-neutral input[type="button"], input[type="button"] {
+    background-color: #424242;
+    color: #DBDBDA;
+}
+
+.theme-neutral .button:hover, .theme-neutral button:hover,
+.theme-neutral input[type="submit"]:hover,
+.theme-neutral input[type="reset"]:hover,
+.theme-neutral input[type="button"]:hover,
+.theme-neutral .button:focus, .theme-neutral button:focus,
+.theme-neutral input[type="submit"]:focus,
+.theme-neutral input[type="reset"]:focus,
+.theme-neutral input[type="button"]:focus {
+    color: #EFEDEB;
+}
+
+.theme-neutral .button.button--link {
+    background-color: transparent;
+    border: none;
+    color: #424242;
+}
+
+.theme-neutral .button.button--link:hover,
+.theme-neutral .button.button--link:focus {
+    color: black;
 }
 
 
