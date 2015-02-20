@@ -13,13 +13,14 @@ Stem.Views = Stem.Views || {};
 
         template: JST['app/scripts/templates/contentAsFeaturedDetails.ejs'],
 
-        tagName: 'div',
+        // We watch for clicks on the "Show me more" button
+        // to add more items to the list.
 
-        id: '',
+        events: {
 
-        className: '',
+            'click .featured__details__action a': 'showMore'
 
-        events: {},
+        },
 
         initialize: function () {
 
@@ -41,17 +42,74 @@ Stem.Views = Stem.Views || {};
             this.listenTo(this.collection, 'reset sync', this.render);
         },
 
+        // The general `render()` method is called to set up
+        // the view.
+
         render: function () {
 
-            var $el = this.$el;
+            // We use a property to keep track of how many items
+            // we've rendered. Initially none have been rendered.
+
+            this.numRendered = 0;
 
             // First render the overall template
 
-            $el.html(this.template());
+            this.$el.html(this.template());
 
             // Then add the individual content items
 
-            this.collection.each(function (content) {
+            if (this.collection.length > 0) {
+
+                // Since there is content to render, change
+                // the "Show me more" button from it's default
+                // link style to a regular button style.
+
+                this.$el.find('.featured__details__action a').
+                    removeClass('button--link');
+
+                // Make sure the action options are visible.
+
+                this.$el.find('.featured__details__action').
+                    show();
+
+                // Remove the "no content" message.
+
+                this.$el.find('.featured__details__listing').
+                    empty();
+
+                // Go ahead and render the items.
+
+                this.renderMore();
+
+            } else {
+
+                // Since no content matches, there aren't
+                // any actions that make sense.
+
+                this.$el.find('.featured__details__action').
+                    hide();
+
+            }
+
+            // Return the view for method chaining.
+
+            return this;
+
+        },
+
+        // The `renderMore()` method adds more items to the
+        // view incrementally.
+
+        renderMore: function() {
+
+            _(this.collection.filter(function(content, idx) {
+
+                // Only add five items at a time.
+
+                return idx >= this.numRendered &&
+                       idx < (this.numRendered + 5);
+
+            }, this)).each(function(content) {
 
                 // Create a view for the model.
 
@@ -65,13 +123,54 @@ Stem.Views = Stem.Views || {};
 
                 // And add it to the DOM.
 
-                $el.find('.featured__details__listing').append(contentView.el);
+                this.$el.find('.featured__details__listing').append(contentView.el);
 
-            });
+                // Keep track of how many items we've rendered
 
-            // Return the view for method chaining.
+                this.numRendered++;
 
-            return this;
+            }, this);
+
+            // Have we rendered all that are available?
+
+            if (this.numRendered == this.collection.length) {
+
+                // If we've shown all that we have available,
+                // turn the button back into a link (to the
+                // OAE website) by changing its style.
+
+                this.$el.find('.featured__details__action a').
+                    addClass('button--link');
+
+            }
+
+        },
+
+        // The `showMore()` method responds to users' clicks
+        // on the "Show me more" button/
+
+        showMore: function() {
+
+            // If we've already exhausted all the content that
+            // we have locally, then let the browser continue
+            // processing the click. In doing so, it will
+            // follow the link to the OAE where the user can
+            // perform additional searches.
+
+            if (this.numRendered >= this.collection.length) {
+
+                return true;
+
+            }
+
+            // We've still got some to add, so do it.
+
+            this.renderMore();
+
+            // Return `false` to prevent the browser from
+            // following the link.
+
+            return false;
         }
 
     });
