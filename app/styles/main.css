@@ -1687,11 +1687,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #00AB0F;
 }
 
-.theme-schools .call-to-action__image { background-image: url(../images/schools-small.png); }
+.theme-schools .call-to-action__image { background-image: url(../images/schools-small.jpg); }
 .theme-schools .call-to-action__image-spacer { padding-top: 66.51884701%; }
 
 @media (min-width: 1000px) {
-    .theme-schools .call-to-action__image { background-image: url(../images/schools.png); }
+    .theme-schools .call-to-action__image { background-image: url(../images/schools.jpg); }
     .theme-schools .call-to-action__image-spacer { padding-top: 266.07538803%; }
 }
 
@@ -1743,11 +1743,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #005493;
 }
 
-.theme-industry .call-to-action__image { background-image: url(../images/industry-small.png); }
+.theme-industry .call-to-action__image { background-image: url(../images/industry-small.jpg); }
 .theme-industry .call-to-action__image-spacer { padding-top: 66.5480427%; }
 
 @media (min-width: 1000px) {
-    .theme-industry .call-to-action__image { background-image: url(../images/industry.png); }
+    .theme-industry .call-to-action__image { background-image: url(../images/industry.jpg); }
     .theme-industry .call-to-action__image-spacer { padding-top: 266.19217082%; }
 }
 
