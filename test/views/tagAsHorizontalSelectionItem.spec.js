@@ -1,4 +1,4 @@
-/*global beforeEach, afterEach, describe, it, sinon, Stem, $ */
+/*global beforeEach, afterEach, describe, it, Stem, $ */
 
 describe('TagAsHorizontalSelectionItem View', function () {
     'use strict';

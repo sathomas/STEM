@@ -1,4 +1,4 @@
-/*global beforeEach, afterEach, describe, it, sinon, Stem, $ */
+/*global beforeEach, afterEach, describe, it, Stem, $ */
 
 describe('TagSetAsHorizontalSelection View', function () {
     'use strict';
@@ -12,7 +12,7 @@ describe('TagSetAsHorizontalSelection View', function () {
         this.TagSet = new Stem.Models.TagSet({
             tags: this.Tags,
             title: 'title'
-        })
+        });
         this.TagSetAsHorizontalSelectionView = new Stem.Views.TagSetAsHorizontalSelection({
             model: this.TagSet,
             el: this.$Scaffolding

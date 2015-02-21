@@ -128,7 +128,7 @@ Stem.Views = Stem.Views || {};
 
             // Have we rendered all that are available?
 
-            if (this.numRendered == this.collection.length) {
+            if (this.numRendered === this.collection.length) {
 
                 // If we've shown all that we have available,
                 // turn the button back into a link (to the

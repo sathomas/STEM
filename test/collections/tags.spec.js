@@ -15,6 +15,6 @@ describe('Tags Collection', function () {
         this.TagsCollection.getSelectedTags().length.should.equal(2);
         this.TagsCollection.getSelectedTags().should.include('label 2');
         this.TagsCollection.getSelectedTags().should.include('label 3');
-    })
+    });
 
 });

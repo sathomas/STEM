@@ -21,6 +21,6 @@ describe('TagSet Model', function () {
         this.TagSetModel.getSelectedTags().length.should.equal(2);
         this.TagSetModel.getSelectedTags().should.include('label 2');
         this.TagSetModel.getSelectedTags().should.include('label 3');
-    })
+    });
 
 });
