@@ -1,4 +1,4 @@
-/*global Stem, Backbone, JST */
+/*global Stem, Backbone, _, JST */
 
 // Basic Backbone view that renders
 // a subject model as a selection option.

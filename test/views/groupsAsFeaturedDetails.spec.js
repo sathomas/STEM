@@ -1,4 +1,4 @@
-/*global beforeEach, afterEach, describe, it, Stem */
+/*global beforeEach, afterEach, describe, it, $, Stem */
 
 describe('GroupsAsFeaturedDetails View', function () {
     'use strict';

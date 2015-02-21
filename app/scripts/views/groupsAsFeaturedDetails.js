@@ -1,4 +1,4 @@
-/*global Stem, Backbone, JST*/
+/*global Stem, Backbone, _, JST*/
 
 // Backbone view for a collection of groups from
 // the OAE rendered as a set of detailed items in

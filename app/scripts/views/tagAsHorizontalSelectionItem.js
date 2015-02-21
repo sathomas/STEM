@@ -1,4 +1,4 @@
-/*global Stem, Backbone, JST */
+/*global Stem, Backbone, _, JST */
 
 // Basic Backbone view that renders
 // a subject model as a selection option.
@@ -16,7 +16,7 @@ Stem.Views = Stem.Views || {};
         // `<div>` to avoid `display:block;`.
 
         tagName: 'span',
-        
+
         // We listen for change events on our `<input>` element.
 
         events: {

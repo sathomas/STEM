@@ -1,4 +1,4 @@
-/*global Stem, Backbone, JST*/
+/*global Stem, _, Backbone, JST*/
 
 // Backbone view for a collection of content from
 // the OAE rendered as a set of detailed items in
