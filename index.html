@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="styles/30583ed3.vendor.css">
 
         <!-- ========== Custom Style Sheets ========== -->
-        <link rel="stylesheet" href="styles/dbda8d60.main.css">
+        <link rel="stylesheet" href="styles/202956d3.main.css">
 
         <!-- ========== Third Party JavaScript for Head ========== -->
         <script src="scripts/vendor/d1e46096.modernizr.js"></script>
@@ -34,13 +34,13 @@
         ==============
         -->
 
-        <div class="header">
+        <header class="header" role="banner">
             <h1 class="header__brand theme-brand--dark">
                 <span class="brand__border theme-brand__border--dark">
                     <a href="#">The Georgia<br>STEM Incubator</a>
                 </span>
             </h1>
-            <nav>
+            <nav role="navigation">
                 <input type="checkbox" id="nav-toggle">
                 <label for="nav-toggle"></label>
                 <ul>
@@ -55,7 +55,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>
+        </header>
 
         <!--
         =================
@@ -63,7 +63,7 @@
         =================
         -->
 
-        <main>
+        <main role="main">
 
             <!--
             ====================
@@ -71,7 +71,8 @@
             ====================
             -->
 
-            <section id="landing">
+            <section id="landing" aria-labelledby="landing-page-heading">
+                <h2 id="landing-page-heading" class="sr-only">Overview Section</h2>
                 <div class="container">
                     <div class="row">
                         <div class="call-to-action two-thirds column theme-teachers">
@@ -190,7 +191,8 @@
             =============
             -->
 
-            <section id="teachers" class="theme-teachers-highlight">
+            <section id="teachers" class="theme-teachers-highlight" aria-labelledby="teachers-page-heading">
+                <h2 id="teachers-page-heading" class="sr-only">Teachers' Section</h2>
                 <div class="container">
                     <div class="row">
                         <div class="one-full column theme-neutral--light">
@@ -448,7 +450,10 @@
             ============
             -->
 
-            <section id="schools">
+            <section id="schools" class="theme-schools-highlight" aria-labelledby="schools-page-heading">
+                <h2 id="schools-page-heading" class="sr-only">
+                    School Administrators' Section
+                </h2>
                 <p class="inset">No content here for now</p>
             </section>
 
@@ -458,7 +463,10 @@
             =============
             -->
 
-            <section id="industry">
+            <section id="industry" class="theme-industry-highlight" aria-labelledby="industry-page-heading">
+                <h2 id="industry-page-heading" class="sr-only">
+                    Industry Partners' Section
+                </h2>
                 <p class="inset">No content here for now</p>
             </section>
 
@@ -470,7 +478,7 @@
         =================
         -->
 
-        <footer class="theme-neutral--dark container">
+        <footer class="theme-neutral--dark container" role="contentinfo">
 	    	<div class="row">
 
 		    	<div class="one-sixth column inset">
@@ -546,7 +554,7 @@
         <script src="scripts/146d0e22.vendor.js"></script>
 
         <!-- ========== Main Application JavaScript ========== -->
-        <script src="scripts/6e0af41f.main.js"></script>
+        <script src="scripts/c06f70fe.main.js"></script>
 
 </body>
 </html>
