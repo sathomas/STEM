@@ -185,10 +185,10 @@ describe('Groups Collection', function () {
     });
 
     it('should identify all included subjects', function() {
-        this.GroupsCollection.getSubjects().length.should.equal(3);
-        this.GroupsCollection.getSubjects().should.include('Math');
-        this.GroupsCollection.getSubjects().should.include('Science');
-        this.GroupsCollection.getSubjects().should.include('ELA');
+        this.GroupsCollection.getTags().length.should.equal(3);
+        this.GroupsCollection.getTags().should.include('Math');
+        this.GroupsCollection.getTags().should.include('Science');
+        this.GroupsCollection.getTags().should.include('ELA');
     });
 
 });

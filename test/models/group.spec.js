@@ -25,9 +25,9 @@ describe('Group Model', function () {
     });
 
     it('should parse subjects from the displayName', function() {
-        new Stem.Models.Group({displayName: 'Title - elementary - Math'}, {parse: true}).get('subjects').should.include('Math');
-        new Stem.Models.Group({displayName: 'Title -  - Math, Science'}, {parse: true}).get('subjects').should.include('Math');
-        new Stem.Models.Group({displayName: 'Title -  - Math, Science'}, {parse: true}).get('subjects').should.include('Science');
+        new Stem.Models.Group({displayName: 'Title - elementary - Math'}, {parse: true}).get('tags').should.include('Math');
+        new Stem.Models.Group({displayName: 'Title -  - Math, Science'}, {parse: true}).get('tags').should.include('Math');
+        new Stem.Models.Group({displayName: 'Title -  - Math, Science'}, {parse: true}).get('tags').should.include('Science');
     });
 
 });

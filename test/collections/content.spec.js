@@ -209,8 +209,8 @@ describe('Content Collection', function () {
     });
 
     it('should identify all included subjects', function() {
-        this.ContentCollection.getSubjects().length.should.equal(1);
-        this.ContentCollection.getSubjects()[0].should.equal('Math');
+        this.ContentCollection.getTags().length.should.equal(1);
+        this.ContentCollection.getTags()[0].should.equal('Math');
     });
 
 });

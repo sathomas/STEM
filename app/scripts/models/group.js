@@ -25,7 +25,7 @@ Stem.Models = Stem.Models || {};
         },
 
         // We need to parse the response from the server
-        // to extract the grade level and subject from
+        // to extract the grade level and tags from
         // the overloaded title. While we're at it, we
         // also clean up the response a bit to avoid
         // nasty surprises.
@@ -103,21 +103,21 @@ Stem.Models = Stem.Models || {};
 
                 // Finally, the third part of the
                 // original `displayName` holds the
-                // subjects. Again, there may be
-                // multiple subjects separated by
+                // tags. Again, there may be
+                // multiple tags separated by
                 // commas. This time, though, we're
                 // not going to interpret the values.
                 // We just store them as an array.
 
-                // To handle the case of no subjects
+                // To handle the case of no tags
                 // cleanly, start with an empty array.
 
-                response.subjects = [];
+                response.tags = [];
 
                 if (tokens.length > 2) {
 
                     tokens[2].split(',').forEach(function(token) {
-                        response.subjects.push(token.trim());
+                        response.tags.push(token.trim());
                     });
 
                 }

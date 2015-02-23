@@ -77,38 +77,38 @@ Stem.Collections = Stem.Collections || {};
             return response.results ? response.results : response;
         },
 
-        // Return an array of all the subjects associated with
+        // Return an array of all the tags associated with
         // the models in the collection.
 
-        getSubjects: function() {
+        getTags: function() {
 
-            // Start with an empty list of subjects.
+            // Start with an empty list of tags.
 
-            var subjects = [];
+            var tags = [];
 
             // Iterate through the models.
 
             this.models.forEach(function(model) {
 
-                // Iterate through each model's subjects.
+                // Iterate through each model's tags.
 
-                model.get('subjects').forEach(function(subject) {
+                model.get('tags').forEach(function(tag) {
 
-                    // If the subject isn't already counted,
+                    // If the tag isn't already included,
                     // add it to the array.
 
-                    if (!subjects.some(function(test) {
-                        return test === subject;
+                    if (!tags.some(function(test) {
+                        return test === tag;
                     })) {
 
-                        subjects.push(subject);
+                        tags.push(tag);
                     }
 
                 });
 
             });
 
-            return subjects;
+            return tags;
 
         }
 

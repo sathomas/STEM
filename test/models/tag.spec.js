@@ -1,14 +1,14 @@
 /*global beforeEach, describe, it, Stem */
 
-describe('Subject Model', function () {
+describe('Tag Model', function () {
     'use strict';
 
     beforeEach(function () {
-        this.SubjectModel = new Stem.Models.Subject();
+        this.TagModel = new Stem.Models.Tag();
     });
 
     it('should default to not selected', function() {
-        this.SubjectModel.get('selected').should.be.false();
+        this.TagModel.get('selected').should.be.false();
     });
 
 });

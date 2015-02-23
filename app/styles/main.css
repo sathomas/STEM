@@ -1,4 +1,4 @@
-/*csslint adjoining-classes:false, box-sizing:false, font-sizes:false, qualified-headings:false, unique-headings:false */
+/*csslint adjoining-classes:false, box-sizing:false, font-sizes:false, qualified-headings:false, unique-headings:false, bulletproof-font-face:false */
 
 
 /**
@@ -35,7 +35,7 @@
  *     - [Column](#column)
  * - [Typography](#typography)
  *     - [Base](#base)
- *     - [Headings](#content)
+ *     - [Headings](#headings)
  *     - [Content](#content)
  *     - [Footer](#footer)
  *     - [Buttons](#buttons)
@@ -121,6 +121,7 @@ section.hide {
     left: -9999em;
     opacity: 0;
     position: absolute;
+    top: -9999em;
 }
 
 html.js section.show,
@@ -422,6 +423,16 @@ html {
  *     </p>
  */
 
+
+@font-face {
+    font-family: 'Raleway SemiBold lnum';
+    src: url('../fonts/Raleway-SemiBold-lnum-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
 body {
     color: #222;
     font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -432,6 +443,24 @@ body {
 
 p {
     margin-top: 0;
+}
+
+.compressed {
+	margin-bottom: 0.2rem;
+}
+
+.constrained {
+    -webkit-box-orient: vertical;
+       -moz-box-orient: vertical;
+        -ms-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    max-width: 100%;
+    max-height: 4.5em;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -543,8 +572,7 @@ a {
 
 /**
  * Footer:
- * Footer content is centered. Small
- * text is reduced a bit more than
+ * Small text is reduced a bit more than
  * the default.
  *
  *     @example:
@@ -554,19 +582,17 @@ a {
  *     </footer>
  */
 
-footer p {
-    padding: 30px;
-    text-align: center;
-}
-
-footer p:last-of-type {
-    margin-bottom: 0;
-}
-
 footer small {
-    font-size: 60%;
+    font-size: 80%;
 }
 
+footer p {
+	font-weight: 300;
+}
+
+footer a {
+	text-decoration: none;
+}
 
 /**
  * Buttons:
@@ -595,7 +621,9 @@ input[type="submit"], input[type="reset"], input[type="button"] {
             border-radius: 3px;
     border: none;
     box-sizing: border-box;
+    cursor: pointer;
     display: inline-block;
+    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
     font-weight: 600;
     height: 38px;
@@ -605,8 +633,12 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
+    -webkit-transition: background-color 400ms linear, color 400ms linear;
+       -moz-transition: background-color 400ms linear, color 400ms linear;
+        -ms-transition: background-color 400ms linear, color 400ms linear;
+         -o-transition: background-color 400ms linear, color 400ms linear;
+            transition: background-color 400ms linear, color 400ms linear;
     white-space: nowrap;
-    cursor: pointer;
 }
 
 .button--link {
@@ -619,6 +651,44 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     text-decoration: underline;
 }
 
+
+/**
+ * Images:
+ * The class `medium-logo` gives logos (e.g.
+ * of partner sites) a consistent appearance.
+ */
+
+
+.medium-logo {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    display: block;
+    margin-bottom: 1em;
+    max-width: 400px;
+    padding: 5px 30px 25px 0;
+    width: 90%;
+}
+
+.medium-logo--flush {
+	padding-bottom: 5px;
+}
+
+.medium-logo img {
+    display: block;
+	max-width: 400px;
+    width: 90%;
+}
+
+
+/**
+ * Icons:
+ */
+
+.icon-larger {
+	font-size: 1.3em;
+	padding-right: 0.5em;
+}
 
 
 /* ===================================================== */
@@ -804,6 +874,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
             box-sizing: border-box;
     cursor: pointer;
     padding: 5px;
+    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
     height: 38px;
     line-height: 38px;
@@ -882,6 +953,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     clear: both;
     cursor: pointer;
     float: left;
+    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.7rem;
     font-weight: 600;
     height: 30px;
@@ -958,22 +1030,12 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     opacity: 0;
     position: absolute;
     padding-bottom: 30px;
+    top: -9999em;
     -webkit-transition: opacity 400ms linear;
        -moz-transition: opacity 400ms linear;
         -ms-transition: opacity 400ms linear;
          -o-transition: opacity 400ms linear;
             transition: opacity 400ms linear;
-}
-
-.featured__details__logo {
-    display: block;
-    margin-bottom: 30px;
-    width: 90%;
-}
-
-img.featured__details__logo[src="images/donorschoose.svg"] {
-    max-width: 220px;
-
 }
 
 .featured__details__close {
@@ -982,6 +1044,10 @@ img.featured__details__logo[src="images/donorschoose.svg"] {
     font-size: 4rem;
     position: absolute;
     right: 15px;
+}
+
+.featured__details__action {
+    padding-left: 10px;
 }
 
 
@@ -1001,10 +1067,15 @@ img.featured__details__logo[src="images/donorschoose.svg"] {
     margin: 30px 10px;
 }
 
+.featured__details__listing {
+    margin: 30px 10px 0 10px;
+}
+
+
 .featured__details__item {
     overflow: hidden;
     padding-bottom: 30px;
-    padding-left: 120px;
+    padding-left: 110px;
 }
 
 .featured__details__item:after {
@@ -1047,6 +1118,10 @@ img.featured__details__logo[src="images/donorschoose.svg"] {
 .featured__details__main p {
     line-height: 1.4;
     margin-bottom: 0.5rem;
+}
+
+.featured__details__main .featured__details__placeholder {
+    margin-bottom: 1.5rem;
 }
 
 .featured__item a[data-featured-toggle] {
@@ -1562,7 +1637,7 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
 .theme-teachers-highlight.vertical-selection input:checked + label,
 .theme-teachers-highlight .vertical-selection input:checked + label,
 .vertical-selection input:checked + label.theme-teachers-highlight {
-    border-right: 3px solid #009EAF;
+    border-left: 3px solid #009EAF;
 }
 
 /**
@@ -1612,11 +1687,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #00AB0F;
 }
 
-.theme-schools .call-to-action__image { background-image: url(../images/schools-small.jpg); }
+.theme-schools .call-to-action__image { background-image: url(../images/schools-small.png); }
 .theme-schools .call-to-action__image-spacer { padding-top: 66.51884701%; }
 
 @media (min-width: 1000px) {
-    .theme-schools .call-to-action__image { background-image: url(../images/schools.jpg); }
+    .theme-schools .call-to-action__image { background-image: url(../images/schools.png); }
     .theme-schools .call-to-action__image-spacer { padding-top: 266.07538803%; }
 }
 
@@ -1668,11 +1743,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #005493;
 }
 
-.theme-industry .call-to-action__image { background-image: url(../images/industry-small.jpg); }
+.theme-industry .call-to-action__image { background-image: url(../images/industry-small.png); }
 .theme-industry .call-to-action__image-spacer { padding-top: 66.5480427%; }
 
 @media (min-width: 1000px) {
-    .theme-industry .call-to-action__image { background-image: url(../images/industry.jpg); }
+    .theme-industry .call-to-action__image { background-image: url(../images/industry.png); }
     .theme-industry .call-to-action__image-spacer { padding-top: 266.19217082%; }
 }
 
@@ -1756,10 +1831,73 @@ div.header[data-section="industry"] {
     background-color: #EFEDEB;
 }
 
+.theme-neutral--white {
+
+    background-color: white;
+}
+
+.theme-neutral--light .muted {
+	color: #636363;
+}
+
+
 .theme-neutral--dark {
     background-color: #424242;
     color: #EFEDEB;
 }
+
+.theme-neutral .button, .theme-neutral button,
+.theme-neutral input[type="submit"], input[type="submit"],
+.theme-neutral input[type="reset"], input[type="reset"],
+.theme-neutral input[type="button"], input[type="button"] {
+    background-color: #424242;
+    color: #DBDBDA;
+}
+
+.theme-neutral .button:hover, .theme-neutral button:hover,
+.theme-neutral input[type="submit"]:hover,
+.theme-neutral input[type="reset"]:hover,
+.theme-neutral input[type="button"]:hover,
+.theme-neutral .button:focus, .theme-neutral button:focus,
+.theme-neutral input[type="submit"]:focus,
+.theme-neutral input[type="reset"]:focus,
+.theme-neutral input[type="button"]:focus {
+    color: #EFEDEB;
+}
+
+.theme-neutral .button.button--link {
+    background-color: transparent;
+    border: none;
+    color: #424242;
+}
+
+.theme-neutral .button.button--link:hover,
+.theme-neutral .button.button--link:focus {
+    color: black;
+}
+
+
+.theme-neutral--dark .button, .theme-neutral--dark button,
+.theme-neutral--dark input[type="submit"], input[type="submit"],
+.theme-neutral--dark input[type="reset"], input[type="reset"],
+.theme-neutral--dark input[type="button"], input[type="button"] {
+    background-color: #DBDBDA;
+    border: none;
+    color: #636363;
+}
+
+.theme-neutral--dark .button:hover, .theme-neutral--dark button:hover,
+.theme-neutral--dark input[type="submit"]:hover,
+.theme-neutral--dark input[type="reset"]:hover,
+.theme-neutral--dark input[type="button"]:hover,
+.theme-neutral--dark .button:focus, .theme-teachers button:focus,
+.theme-neutral--dark input[type="submit"]:focus,
+.theme-neutral--dark input[type="reset"]:focus,
+.theme-neutral--dark input[type="button"]:focus {
+    color: #424242;
+}
+
+
 
 .featured.theme-neutral,
 .featured.theme-neutral .featured__image {
