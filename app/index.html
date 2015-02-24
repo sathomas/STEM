@@ -595,7 +595,8 @@
 
         <!-- ========== Development-only JavaScript ========== -->
         <!-- build:remove -->
-        <script src="bower_components/less.js/dist/less.js"></script>
+        <script src="bower_components/less.js/dist/less.js" data-env="development"></script>
+        <script>less.watch();</script>
         <!-- endbuild -->
 
         <!-- ========== Main Application JavaScript ========== -->
