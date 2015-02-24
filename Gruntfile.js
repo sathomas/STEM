@@ -19,10 +19,28 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
 
+    var path = require('path');
+
     // configurable paths
     var yeomanConfig = {
         app: 'app',
         dist: 'dist'
+    };
+
+    var lessCreateConfig = function (context, block) {
+        var cfg = {files: []},
+            outfile = path.join(context.outDir, block.dest),
+            filesDef = {};
+        filesDef.dest = outfile;
+        filesDef.src = [];
+
+        context.inFiles.forEach(function (inFile) {
+            filesDef.src.push(path.join(context.inDir, inFile));
+        });
+
+        cfg.files.push(filesDef);
+        context.outFiles = [block.dest];
+        return cfg;
     };
 
     grunt.initConfig({
@@ -144,14 +162,30 @@ module.exports = function (grunt) {
         useminPrepare: {
             html: '<%= yeoman.app %>/index.html',
             options: {
-                dest: '<%= yeoman.dist %>'
+                dest: '<%= yeoman.dist %>',
+                flow: {
+                    steps: {
+                        'js': ['concat', 'uglifyjs'],
+                        'css': ['concat', 'cssmin'],
+                        'less': [{
+                            name: 'less',
+                            createConfig: lessCreateConfig
+                        }]
+                    },
+                    post: {}
+                }
             }
         },
         usemin: {
             html: ['<%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
-                dirs: ['<%= yeoman.dist %>']
+                dirs: ['<%= yeoman.dist %>'],
+                blockReplacements: {
+                    less: function (block) {
+                        return '<link rel="stylesheet" href="' + block.dest + '">';
+                    }
+                }
             }
         },
         imagemin: {
@@ -342,6 +376,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'imagemin',
         'htmlmin',
+        'less',
         'concat',
         'cssmin',
         'uglify',

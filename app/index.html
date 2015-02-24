@@ -18,8 +18,8 @@
         <!-- endbuild -->
 
         <!-- ========== Custom Style Sheets ========== -->
-        <!-- build:css(.tmp) styles/main.css -->
-        <link rel="stylesheet" type="text/css" href="styles/main.css">
+        <!-- build:less styles/main.css -->
+        <link rel="stylesheet/less" type="text/css" href="styles/main.less">
         <!-- endbuild -->
 
         <!-- ========== Third Party JavaScript for Head ========== -->
@@ -591,6 +591,11 @@
         <script src="bower_components/underscore.string/dist/underscore.string.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/backbone-filtered-collection/backbone-filtered-collection.js"></script>
+        <!-- endbuild -->
+
+        <!-- ========== Development-only JavaScript ========== -->
+        <!-- build:remove -->
+        <script src="bower_components/less.js/dist/less.js"></script>
         <!-- endbuild -->
 
         <!-- ========== Main Application JavaScript ========== -->
