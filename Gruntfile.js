@@ -19,10 +19,28 @@ module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
 
+    var path = require('path');
+
     // configurable paths
     var yeomanConfig = {
         app: 'app',
         dist: 'dist'
+    };
+
+    var lessCreateConfig = function (context, block) {
+        var cfg = {files: []},
+            outfile = path.join(context.outDir, block.dest),
+            filesDef = {};
+        filesDef.dest = outfile;
+        filesDef.src = [];
+
+        context.inFiles.forEach(function (inFile) {
+            filesDef.src.push(path.join(context.inDir, inFile));
+        });
+
+        cfg.files.push(filesDef);
+        context.outFiles = [block.dest];
+        return cfg;
     };
 
     grunt.initConfig({
@@ -39,6 +57,7 @@ module.exports = function (grunt) {
                 files: [
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
+                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.less',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                     '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
@@ -110,7 +129,6 @@ module.exports = function (grunt) {
         },
         jshint: {
             options: {
-                jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish')
             },
             all: [
@@ -118,6 +136,14 @@ module.exports = function (grunt) {
                 '!<%= yeoman.app %>/scripts/vendor/*',
                 'test/{,*/}*.js'
             ]
+        },
+        less: {
+            options: {
+                plugins: [
+                    new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]}),
+                    new (require('less-plugin-clean-css'))()
+                ],
+            }
         },
         csslint: {
           all: {
@@ -145,14 +171,30 @@ module.exports = function (grunt) {
         useminPrepare: {
             html: '<%= yeoman.app %>/index.html',
             options: {
-                dest: '<%= yeoman.dist %>'
+                dest: '<%= yeoman.dist %>',
+                flow: {
+                    steps: {
+                        'js': ['concat', 'uglifyjs'],
+                        'css': ['concat', 'cssmin'],
+                        'less': [{
+                            name: 'less',
+                            createConfig: lessCreateConfig
+                        }]
+                    },
+                    post: {}
+                }
             }
         },
         usemin: {
             html: ['<%= yeoman.dist %>/{,*/}*.html'],
             css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
             options: {
-                dirs: ['<%= yeoman.dist %>']
+                dirs: ['<%= yeoman.dist %>'],
+                blockReplacements: {
+                    less: function (block) {
+                        return '<link rel="stylesheet" href="' + block.dest + '">';
+                    }
+                }
             }
         },
         imagemin: {
@@ -343,6 +385,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'imagemin',
         'htmlmin',
+        'less',
         'concat',
         'cssmin',
         'uglify',

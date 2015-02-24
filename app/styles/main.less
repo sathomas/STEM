@@ -633,11 +633,6 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    -webkit-transition: background-color 400ms linear, color 400ms linear;
-       -moz-transition: background-color 400ms linear, color 400ms linear;
-        -ms-transition: background-color 400ms linear, color 400ms linear;
-         -o-transition: background-color 400ms linear, color 400ms linear;
-            transition: background-color 400ms linear, color 400ms linear;
     white-space: nowrap;
 }
 
@@ -1055,7 +1050,7 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     .featured__details__close { right: 20px; }
 }
 
-.featured__details__close:hover,
+.no-touch .featured__details__close:hover,
 .featured__details__close:focus {
     color: inherit;
 }
@@ -1510,7 +1505,8 @@ main {
         width: 100%;
 	}
 
-	nav li > a:hover, nav li > a:focus {
+	.no-touch nav li > a:hover,
+	nav li > a:focus {
         text-decoration: none;
 	}
 
@@ -1564,7 +1560,7 @@ main {
     color: #009EAF;
 }
 
-.theme-teachers--dark a:hover,
+.no-touch .theme-teachers--dark a:hover,
 .theme-teachers--dark a:focus {
     color: white;
 }
@@ -1578,11 +1574,13 @@ main {
     color: black;
 }
 
-.theme-teachers .button:hover, .theme-teachers button:hover,
-.theme-teachers input[type="submit"]:hover,
-.theme-teachers input[type="reset"]:hover,
-.theme-teachers input[type="button"]:hover,
-.theme-teachers .button:focus, .theme-teachers button:focus,
+.no-touch .theme-teachers .button:hover,
+.no-touch .theme-teachers button:hover,
+.no-touch .theme-teachers input[type="submit"]:hover,
+.no-touch .theme-teachers input[type="reset"]:hover,
+.no-touch .theme-teachers input[type="button"]:hover,
+.theme-teachers .button:focus,
+.theme-teachers button:focus,
 .theme-teachers input[type="submit"]:focus,
 .theme-teachers input[type="reset"]:focus,
 .theme-teachers input[type="button"]:focus {
@@ -1603,17 +1601,17 @@ main {
 }
 
 .theme-teachers-highlight a:focus,
-.theme-teachers-highlight a:hover,
+.no-touch .theme-teachers-highlight a:hover,
 .theme-teachers-highlight button.button__link:focus,
-.theme-teachers-highlight button.button__link:hover,
+.no-touch .theme-teachers-highlight button.button__link:hover,
 .theme-teachers-highlight label.horizontal-selection__item-label:focus,
-.theme-teachers-highlight label.horizontal-selection__item-label:hover,
+.no-touch .theme-teachers-highlight label.horizontal-selection__item-label:hover,
 label.horizontal-selection__item-label.theme-teachers-highlight:focus,
-label.horizontal-selection__item-label.theme-teachers-highlight:hover,
+.no-touch label.horizontal-selection__item-label.theme-teachers-highlight:hover,
 .theme-teachers-highlight label.vertical-selection__item-label:focus,
-.theme-teachers-highlight label.vertical-selection__item-label:hover,
+.no-touch .theme-teachers-highlight label.vertical-selection__item-label:hover,
 label.vertical-selection__item-label.theme-teachers-highlight:focus,
-label.vertical-selection__item-label.theme-teachers-highlight:hover {
+.no-touch label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #009EAF;
 }
 
@@ -1662,7 +1660,7 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #00AB0F;
 }
 
-.theme-schools--dark a:hover,
+.no-touch .theme-schools--dark a:hover,
 .theme-schools--dark a:focus {
     color: white;
 }
@@ -1676,22 +1674,24 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: black;
 }
 
-.theme-schools .button:hover, .theme-schools button:hover,
-.theme-schools input[type="submit"]:hover,
-.theme-schools input[type="reset"]:hover,
-.theme-schools input[type="button"]:hover,
-.theme-schools .button:focus, .theme-schools button:focus,
+.no-touch .theme-schools .button:hover,
+.no-touch .theme-schools button:hover,
+.no-touch .theme-schools input[type="submit"]:hover,
+.no-touch .theme-schools input[type="reset"]:hover,
+.no-touch .theme-schools input[type="button"]:hover,
+.theme-schools .button:focus,
+.theme-schools button:focus,
 .theme-schools input[type="submit"]:focus,
 .theme-schools input[type="reset"]:focus,
 .theme-schools input[type="button"]:focus {
     color: #00AB0F;
 }
 
-.theme-schools .call-to-action__image { background-image: url(../images/schools-small.png); }
+.theme-schools .call-to-action__image { background-image: url(../images/schools-small.jpg); }
 .theme-schools .call-to-action__image-spacer { padding-top: 66.51884701%; }
 
 @media (min-width: 1000px) {
-    .theme-schools .call-to-action__image { background-image: url(../images/schools.png); }
+    .theme-schools .call-to-action__image { background-image: url(../images/schools.jpg); }
     .theme-schools .call-to-action__image-spacer { padding-top: 266.07538803%; }
 }
 
@@ -1718,7 +1718,7 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #2EA1CC;
 }
 
-.theme-industry--dark a:hover,
+.no-touch .theme-industry--dark a:hover,
 .theme-industry--dark a:focus {
     color: white;
 }
@@ -1732,10 +1732,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: black;
 }
 
-.theme-industry .button:hover, .theme-industry button:hover,
-.theme-industry input[type="submit"]:hover,
-.theme-industry input[type="reset"]:hover,
-.theme-industry input[type="button"]:hover,
+.no-touch .theme-industry .button:hover,
+.no-touch .theme-industry button:hover,
+.no-touch .theme-industry input[type="submit"]:hover,
+.no-touch .theme-industry input[type="reset"]:hover,
+.no-touch .theme-industry input[type="button"]:hover,
 .theme-industry .button:focus, .theme-industry button:focus,
 .theme-industry input[type="submit"]:focus,
 .theme-industry input[type="reset"]:focus,
@@ -1743,11 +1744,11 @@ label.vertical-selection__item-label.theme-teachers-highlight:hover {
     color: #005493;
 }
 
-.theme-industry .call-to-action__image { background-image: url(../images/industry-small.png); }
+.theme-industry .call-to-action__image { background-image: url(../images/industry-small.jpg); }
 .theme-industry .call-to-action__image-spacer { padding-top: 66.5480427%; }
 
 @media (min-width: 1000px) {
-    .theme-industry .call-to-action__image { background-image: url(../images/industry.png); }
+    .theme-industry .call-to-action__image { background-image: url(../images/industry.jpg); }
     .theme-industry .call-to-action__image-spacer { padding-top: 266.19217082%; }
 }
 
@@ -1854,11 +1855,13 @@ div.header[data-section="industry"] {
     color: #DBDBDA;
 }
 
-.theme-neutral .button:hover, .theme-neutral button:hover,
-.theme-neutral input[type="submit"]:hover,
-.theme-neutral input[type="reset"]:hover,
-.theme-neutral input[type="button"]:hover,
-.theme-neutral .button:focus, .theme-neutral button:focus,
+.no-touch .theme-neutral .button:hover,
+.no-touch .theme-neutral button:hover,
+.no-touch .theme-neutral input[type="submit"]:hover,
+.no-touch .theme-neutral input[type="reset"]:hover,
+.no-touch .theme-neutral input[type="button"]:hover,
+.theme-neutral .button:focus,
+.theme-neutral button:focus,
 .theme-neutral input[type="submit"]:focus,
 .theme-neutral input[type="reset"]:focus,
 .theme-neutral input[type="button"]:focus {
@@ -1871,7 +1874,7 @@ div.header[data-section="industry"] {
     color: #424242;
 }
 
-.theme-neutral .button.button--link:hover,
+.no-touch .theme-neutral .button.button--link:hover,
 .theme-neutral .button.button--link:focus {
     color: black;
 }
@@ -1886,11 +1889,13 @@ div.header[data-section="industry"] {
     color: #636363;
 }
 
-.theme-neutral--dark .button:hover, .theme-neutral--dark button:hover,
-.theme-neutral--dark input[type="submit"]:hover,
-.theme-neutral--dark input[type="reset"]:hover,
-.theme-neutral--dark input[type="button"]:hover,
-.theme-neutral--dark .button:focus, .theme-teachers button:focus,
+.no-touch .theme-neutral--dark .button:hover,
+.no-touch .theme-neutral--dark button:hover,
+.no-touch .theme-neutral--dark input[type="submit"]:hover,
+.no-touch .theme-neutral--dark input[type="reset"]:hover,
+.no-touch .theme-neutral--dark input[type="button"]:hover,
+.theme-neutral--dark .button:focus,
+.theme-teachers button:focus,
 .theme-neutral--dark input[type="submit"]:focus,
 .theme-neutral--dark input[type="reset"]:focus,
 .theme-neutral--dark input[type="button"]:focus {
@@ -1983,3 +1988,21 @@ div.header[data-section="industry"] {
     text-align: center;
 }
 
+
+/**
+ * Screen Readers:
+ * The `sr-only` class designates content that
+ * is intended only for screen readers and other
+ * assistive devices. The content is not normally
+ * visible to regular web browsers.
+ */
+
+.sr-only {
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}

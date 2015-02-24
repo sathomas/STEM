@@ -10,5 +10,7 @@
     "underscore.string": "~3.0.3",
     "backbone-filtered-collection": "~0.4.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "less.js": "~2.4.0"
+  }
 }
