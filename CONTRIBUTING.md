@@ -8,7 +8,7 @@ As a single-page application, this project has very little static HTML, and itâ€
 
 ### CSS
 
-To expedite the prototype development, the project currently uses [Bootstrap](http://getbootstrap.com) with custom overrides as its CSS framework. This approach is very much temporary, however. We expect to move to a leaner and better organized CSS framework very soon.
+To expedite the prototype development, the project currently uses a single CSS file. We're in the process of swapping it out for a more modular and maintainable approach based on [LESS](http://lesscss.org).
 
 ### JavaScript
 
@@ -17,7 +17,7 @@ The application relies on the standard boilerplates created by [Yeoman](http://y
 1. `yo backbone:model <model name>` to create boilerplate application and unit test code for a new model. (Similar commands for new collections and views.)
 2. `yo serve` to start a local server for code development.
 3. `yo serve:test` to start a local server for unit test development.
-4. `yo jshint` to check code for style, formatting, etc.
+4. `yo lint` to check code for style, formatting, etc.
 5. `yo test` to execute unit tests.
 6. `yo build` to create the production version.
 
@@ -27,4 +27,4 @@ In general, models are singular nouns (e.g. `Proposal`) , collections are plural
 
 #### Documentation
 
-Much of the code is documented using [literate programming](http://en.wikipedia.org/wiki/Literate_programming). We use [docco](http://jashkenas.github.io/docco/) to automatically generate [live documentation](http://sathomas.me/STEM/docs/js/main.html) as part of the build process.
+Much of the code is documented using [literate programming](http://en.wikipedia.org/wiki/Literate_programming). We use [docco](http://jashkenas.github.io/docco/) to automatically generate [live documentation](http://demo.stemincubator.org/docs/js/) as part of the build process. A rudimentary CSS-based style guide is also [avaiable](http://demo.stemincubator.org/docs/styleguide/), but that is expected to undergo significant revision as the styles are migrated to LESS.
