@@ -10,6 +10,10 @@ As a single-page application, this project has very little static HTML, and itâ€
 
 To expedite the prototype development, the project currently uses a single CSS file. We're in the process of swapping it out for a more modular and maintainable approach based on [LESS](http://lesscss.org).
 
+#### Documentation
+
+A rudimentary CSS-based style guide is [avaiable](http://demo.stemincubator.org/docs/styleguide/), but that is expected to undergo significant revision as the styles are migrated to LESS.
+
 ### JavaScript
 
 The application relies on the standard boilerplates created by [Yeoman](http://yeoman.io), specifically the [Backbone generator](https://github.com/yeoman/generator-backbone). A typical workflow for adding new code is:
@@ -27,4 +31,4 @@ In general, models are singular nouns (e.g. `Proposal`) , collections are plural
 
 #### Documentation
 
-Much of the code is documented using [literate programming](http://en.wikipedia.org/wiki/Literate_programming). We use [docco](http://jashkenas.github.io/docco/) to automatically generate [live documentation](http://demo.stemincubator.org/docs/js/) as part of the build process. A rudimentary CSS-based style guide is also [avaiable](http://demo.stemincubator.org/docs/styleguide/), but that is expected to undergo significant revision as the styles are migrated to LESS.
+Much of the code is documented using [literate programming](http://en.wikipedia.org/wiki/Literate_programming). We use [docco](http://jashkenas.github.io/docco/) to automatically generate [live documentation](http://demo.stemincubator.org/docs/js/) as part of the build process.
