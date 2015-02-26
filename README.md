@@ -18,7 +18,3 @@ Any update to this repository triggers an automated execution of all of the proj
 
 The completed build will be available in the `dist` folder.
 
-## Acknowledgements
-
-The landing page image of a [Science Class](https://www.flickr.com/photos/pmorgan/3344693/in/photolist-i9g8-pdEX9G-9YZ89W-851WfX-4t3RvJ-4MP8xi-9deLWQ-pXEDu-e3aJLR-e3g85C-e3ashg-9dbEuz-9deM8U-9deL4C-aQ2pBk-aQ2puK-SZ8FB-akY8rV-5EeZ4b-8xG7Lt-5q7umX-8xK9MY-5rJw1X-7sKnDQ-phvDEF-e4QnqR-dnpd15-2GwHRT-AGrWX-auJkao-4oLYq9-6M1QKU-bzfwyk-bmkEjW-9qYJ9A-7KTK6p-8dmtTD-8dmu36-9bUc4s-4oM1Vb-bBsVxm-5NRQJo-b7CdWH-9dePBE-efcVbM-en6mLM-bzjYZs-4o8npj-nVZXB6-b2TrKg/) is copyright Peter Morgan, licensed under [Creative Commons](https://creativecommons.org/licenses/by-nc-nd/2.0/).
-
