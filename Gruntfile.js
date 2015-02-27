@@ -27,6 +27,7 @@ module.exports = function (grunt) {
         dist: 'dist'
     };
 
+    // compile LESS in browser
     var lessCreateConfig = function (context, block) {
         var cfg = {files: []},
             outfile = path.join(context.outDir, block.dest),
@@ -57,12 +58,17 @@ module.exports = function (grunt) {
                 files: [
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.less',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                     '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
                     'test/spec/**/*.js'
                 ]
+            },
+            less: {
+                files: [
+                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.less'
+                ],
+                tasks: ['less'],
             },
             jst: {
                 files: [
@@ -143,6 +149,11 @@ module.exports = function (grunt) {
                     new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]}),
                     new (require('less-plugin-clean-css'))()
                 ],
+            },
+            all: {
+                files: {
+                    "<%= yeoman.app %>/styles/main.css": "<%= yeoman.app %>/styles/main.less"
+                }
             }
         },
         csslint: {
@@ -381,11 +392,11 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'createDefaultTemplate',
+        'less',
         'jst',
         'useminPrepare',
         'imagemin',
         'htmlmin',
-        'less',
         'concat',
         'cssmin',
         'uglify',
