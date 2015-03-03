@@ -105,14 +105,14 @@
 .column,
 .columns {
     box-sizing: border-box;
+    flex-basis: 100%;
     flex-grow: 1;
     flex-shrink: 1;
-    flex-basis: 100%;
 }
 
 /*
  * At tablet sizes, columns can shrink to half of the row
- * width. That lets up use modifiers to define how much of
+ * width. That lets us use modifiers to define how much of
  * the screen columns can consume. It's pretty basic, though,
  * as a number of columns either consumes the entire width
  * or half of it. Note that we define the modifiers as
