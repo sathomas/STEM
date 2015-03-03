@@ -56,6 +56,117 @@
 
 
 /**
+ * Content:
+ * The grid does not include any margins or padding to
+ * support full-width images and color blocks. In most
+ * cases, adding some spacing around actual content is
+ * desirable. To do that, simply add the `inset` class
+ * to the content. There is also `inset-horizontal` that
+ * only applies horizontal (left/right) whitespace.
+ *
+ *     @example:
+ *     <p>This is a full-width content</p>
+ *     <p class="inset">This is a content with whitespace</p>
+ */
+
+/*
+ * By default (on a mobile device), padding
+ * is pretty minimal to allow for more content.
+ */
+
+p {
+    margin-top: 0;
+}
+
+.compressed {
+	margin-bottom: 0.2rem;
+}
+
+.constrained {
+    -webkit-box-orient: vertical;
+       -moz-box-orient: vertical;
+        -ms-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    max-width: 100%;
+    max-height: 4.5em;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.inset {
+    padding: 10px;
+}
+
+.inset-horizontal {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/*
+ * With tablets and larger, we can afford to
+ * be more generous with the white space.
+ */
+
+@media (min-width: 500px) {
+    .inset { padding: 30px; }
+    .inset-horizontal {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+
+/**
+ * Links:
+ * By default, links are styled using the same
+ * color as normal content, although the link
+ * text is underlined. Themes may define their
+ * own particular link styles.
+ *
+ *     @example:
+ *     <p>
+ *       This paragraph contains
+ *       <a href="#">a link</a>
+ *     </p>
+ */
+
+a {
+    color: inherit;
+}
+
+
+/**
+ * Footer:
+ * Small text is reduced a bit more than
+ * the default.
+ *
+ *     @example:
+ *     <footer>
+ *       <p>This is footer text</p>
+ *       <p><small>This is small footer text</small></p>
+ *     </footer>
+ */
+
+footer small {
+    font-size: 80%;
+}
+
+footer p {
+	font-weight: 300;
+}
+
+footer a {
+	text-decoration: none;
+}
+
+
+
+/**
  * Buttons:
  * Buttons styles apply not only to `<button>`
  * elements, but also to `<a class="button">`
@@ -76,6 +187,7 @@
 
 .button, button,
 input[type="submit"], input[type="reset"], input[type="button"] {
+    .lnum;
     background-color: transparent;
     -webkit-border-radius: 3px;
        -moz-border-radius: 3px;
@@ -84,7 +196,6 @@ input[type="submit"], input[type="reset"], input[type="button"] {
     box-sizing: border-box;
     cursor: pointer;
     display: inline-block;
-    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 11px;
     font-weight: 600;
     height: 38px;
@@ -325,12 +436,10 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 }
 
 .horizontal-selection__item-label {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    .lnum;
+    box-sizing: border-box;
     cursor: pointer;
     padding: 5px;
-    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 600;
     height: 38px;
     line-height: 38px;
@@ -403,13 +512,11 @@ input[type="submit"], input[type="reset"], input[type="button"] {
 }
 
 .vertical-selection__item-label {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    .lnum;
+    box-sizing: border-box;
     clear: both;
     cursor: pointer;
     float: left;
-    font-family: 'Raleway SemiBold lnum', "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 1.7rem;
     font-weight: 600;
     height: 30px;
