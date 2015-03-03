@@ -146,9 +146,8 @@ module.exports = function (grunt) {
         less: {
             options: {
                 plugins: [
-                    new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]}),
-                    new (require('less-plugin-clean-css'))()
-                ],
+                    new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
+                ]
             },
             all: {
                 files: {
@@ -351,6 +350,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'less',
             'createDefaultTemplate',
             'jst',
             'connect:livereload',
@@ -379,6 +379,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('docs', [
+        'less',
         'docco:dist',
         'styledown:dist',
         'copy:docs'
@@ -386,6 +387,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('lint', [
         'jshint',
+        'less',
         'csslint'
     ]);
 
