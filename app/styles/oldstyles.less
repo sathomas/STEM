@@ -75,25 +75,6 @@ p {
 
 
 /**
- * Links:
- * By default, links are styled using the same
- * color as normal content, although the link
- * text is underlined. Themes may define their
- * own particular link styles.
- *
- *     @example:
- *     <p>
- *       This paragraph contains
- *       <a href="#">a link</a>
- *     </p>
- */
-
-a {
-    color: inherit;
-}
-
-
-/**
  * Footer:
  * Small text is reduced a bit more than
  * the default.
@@ -117,59 +98,6 @@ footer a {
 	text-decoration: none;
 }
 
-
-
-/**
- * Buttons:
- * Buttons styles apply not only to `<button>`
- * elements, but also to `<a class="button">`
- * links, as well as appropriate `<input>`
- * elements. The only default styles defined
- * determine the textual content of the buttons.
- * Thematic styles such as colors and borders
- * are left to individual themes.
- *
- *     @example:
- *     <button>Button</button>
- *     <a href="#" class=button>Link button</a>
- *     <input type="submit" value="Submit input">
- *     <input type="reset" value="Reset input">
- *     <input type="button" value="Button input">
- *     <button class="button--link">Button</button>
- */
-
-.button, button,
-input[type="submit"], input[type="reset"], input[type="button"] {
-    .lnum;
-    background-color: transparent;
-    -webkit-border-radius: 3px;
-       -moz-border-radius: 3px;
-            border-radius: 3px;
-    border: none;
-    box-sizing: border-box;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    height: 38px;
-    line-height: 38px;
-    letter-spacing: .1rem;
-    padding: 0 30px;
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    white-space: nowrap;
-}
-
-.button--link {
-    display: inline;
-    font-size: 1.5rem;
-    line-height: 1.6;
-    letter-spacing: 0;
-    padding: 0;
-    text-align: left;
-    text-decoration: underline;
-}
 
 
 /**
@@ -1389,14 +1317,14 @@ div.header[data-section="industry"] {
     color: #EFEDEB;
 }
 
-.theme-neutral .button.button--link {
+.theme-neutral .button.button-link {
     background-color: transparent;
     border: none;
     color: #424242;
 }
 
-.no-touch .theme-neutral .button.button--link:hover,
-.theme-neutral .button.button--link:focus {
+.no-touch .theme-neutral .button.button-link:hover,
+.theme-neutral .button.button-link:focus {
     color: black;
 }
 

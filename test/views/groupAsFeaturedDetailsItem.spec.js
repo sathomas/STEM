@@ -36,7 +36,7 @@ describe('GroupAsFeaturedDetailsItem View', function () {
     it('should include a link to the group with appropriate styling classes', function() {
         var $el = this.GroupAsFeaturedDetailsItemView.render().$el;
         $el.find('a').attr('href').should.equal(Stem.config.oae.protocol + '//' + Stem.config.oae.host + this.Group.get('profilePath'));
-        $el.find('a').hasClass('button button--link').should.be.true();
+        $el.find('a').hasClass('button button-link').should.be.true();
     });
 
 
