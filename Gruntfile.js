@@ -322,9 +322,12 @@ module.exports = function (grunt) {
         },
         docco: {
             dist: {
-                src: ['app/scripts/**/*.js'],
+                src: [
+                    '<%= yeoman.app %>/scripts/**/*.js',
+                    '!<%= yeoman.app %>/scripts/keys.js'
+                ],
                 options: {
-                    output: 'dist/docs/js/'
+                    output: '<%= yeoman.dist %>/docs/js/'
                 }
             }
         }
