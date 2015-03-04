@@ -262,6 +262,15 @@ module.exports = function (grunt) {
                         'fonts/{,*/}*.*',
                         'styles/fonts/{,*/}*.*'
                     ]
+                },{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>',
+                    flatten: true,
+                    dest: '<%= yeoman.dist %>/fonts',
+                    src: [
+                        'CNAME',
+                        'bower_components/fontawesome/fonts/*.*'
+                    ]
                 }]
             },
             docs: {
