@@ -1,0 +1,1529 @@
+
+/*
+ * Old styles that used to be part of the main.css
+ * file. These are likely to be revised significantly
+ * based on updated designs, so they haven't been
+ * converted to modular LESS. Eventually they'll
+ * either be phased out or converted.
+ */
+
+
+/**
+ * Content:
+ * The grid does not include any margins or padding to
+ * support full-width images and color blocks. In most
+ * cases, adding some spacing around actual content is
+ * desirable. To do that, simply add the `inset` class
+ * to the content. There is also `inset-horizontal` that
+ * only applies horizontal (left/right) whitespace.
+ *
+ *     @example:
+ *     <p>This is a full-width content</p>
+ *     <p class="inset">This is a content with whitespace</p>
+ */
+
+/*
+ * By default (on a mobile device), padding
+ * is pretty minimal to allow for more content.
+ */
+
+p {
+    margin-top: 0;
+}
+
+.compressed {
+	margin-bottom: 0.2rem;
+}
+
+.constrained {
+    -webkit-box-orient: vertical;
+       -moz-box-orient: vertical;
+        -ms-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    max-width: 100%;
+    max-height: 4.5em;
+    margin: 0 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.inset {
+    padding: 10px;
+}
+
+.inset-horizontal {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+/*
+ * With tablets and larger, we can afford to
+ * be more generous with the white space.
+ */
+
+@media (min-width: 500px) {
+    .inset { padding: 30px; }
+    .inset-horizontal {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+
+/**
+ * Links:
+ * By default, links are styled using the same
+ * color as normal content, although the link
+ * text is underlined. Themes may define their
+ * own particular link styles.
+ *
+ *     @example:
+ *     <p>
+ *       This paragraph contains
+ *       <a href="#">a link</a>
+ *     </p>
+ */
+
+a {
+    color: inherit;
+}
+
+
+/**
+ * Footer:
+ * Small text is reduced a bit more than
+ * the default.
+ *
+ *     @example:
+ *     <footer>
+ *       <p>This is footer text</p>
+ *       <p><small>This is small footer text</small></p>
+ *     </footer>
+ */
+
+footer small {
+    font-size: 80%;
+}
+
+footer p {
+	font-weight: 300;
+}
+
+footer a {
+	text-decoration: none;
+}
+
+
+
+/**
+ * Buttons:
+ * Buttons styles apply not only to `<button>`
+ * elements, but also to `<a class="button">`
+ * links, as well as appropriate `<input>`
+ * elements. The only default styles defined
+ * determine the textual content of the buttons.
+ * Thematic styles such as colors and borders
+ * are left to individual themes.
+ *
+ *     @example:
+ *     <button>Button</button>
+ *     <a href="#" class=button>Link button</a>
+ *     <input type="submit" value="Submit input">
+ *     <input type="reset" value="Reset input">
+ *     <input type="button" value="Button input">
+ *     <button class="button--link">Button</button>
+ */
+
+.button, button,
+input[type="submit"], input[type="reset"], input[type="button"] {
+    .lnum;
+    background-color: transparent;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    height: 38px;
+    line-height: 38px;
+    letter-spacing: .1rem;
+    padding: 0 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.button--link {
+    display: inline;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    letter-spacing: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+}
+
+
+/**
+ * Images:
+ * The class `medium-logo` gives logos (e.g.
+ * of partner sites) a consistent appearance.
+ */
+
+
+.medium-logo {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    display: block;
+    margin-bottom: 1em;
+    max-width: 400px;
+    padding: 5px 30px 25px 0;
+    width: 90%;
+}
+
+.medium-logo--flush {
+	padding-bottom: 5px;
+}
+
+.medium-logo img {
+    display: block;
+	max-width: 400px;
+    width: 90%;
+}
+
+
+/**
+ * Icons:
+ */
+
+.icon-larger {
+	font-size: 1.3em;
+	padding-right: 0.5em;
+}
+
+
+/* ===================================================== */
+
+/**
+ * ## Components
+ *
+ * Higher level components on the site generally
+ * strive for very semantic markup to keep the
+ * HTML as clean and simple as possible. (This
+ * is especially helpful since much of the site
+ * is dynamic and the underlying HTML actually
+ * originates in JavaScript templates.) The cost,
+ * of course, is a bit of added complexity in
+ * the CSS.
+ *
+ * In the CSS rules themselves, you'll notice that we're
+ * using the Block Element Modifier (BEM) convention
+ * originally documented by [Yandex](https://bem.info)
+ * for the more complex components (but not for simple,
+ * generic rules). If you're unfamiliar with that convention,
+ * note that plain class names refer to blocks, double
+ * underscores refer to elements (of the parent block), and
+ * double dashes refer to modifiers of the parent block. The
+ * difference between elements and modifiers is much like
+ * the difference between nouns and adjectives. For
+ * example:
+ *
+ * ```
+ * .person {}
+ * .person__arm {}
+ * .person--tall {}
+ * ```
+ *
+ */
+
+/* ===================================================== */
+
+
+/**
+ * Call to Action:
+ * The "call to action" component is a special component
+ * used, for example, on the main landing page. The
+ * component is vertically justified and stretched to
+ * completely fill the vertical space for the row.
+ * The last (parent) element within the call-to-action
+ * container should include a button and a responsive
+ * image container. The particular image is determined
+ * by the theme applied to the container.
+ *
+ * To support responsive images, the image container
+ * is marked up as a `<div>` of class `image`. Within
+ * that `<div>` is a `<span>` of class `image-spacer`.
+ * The inner `span` makes it possible to change the
+ * image based on media queries. That would, for example
+ * allow delivery of low-resolution images to mobile
+ * devices. It's also used by the themes to deliver
+ * different images based on the grid construction.
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             <div class="one-sixth column theme-industry call-to-action">
+ *                 <div class="inset">
+ *                     <p>Text Content</p>
+ *                 </div>
+ *                 <div>
+ *                     <div class="inset">
+ *                         <a class="button" href="#">More</a>
+ *                     </div>
+ *                     <div class="call-to-action__image" role="image">
+ *                         <span class="call-to-action__image-spacer"></span>
+ *                     </div>
+ *                 </div>
+ *             </div>
+ *             <div class="ten columns">
+ *             </div>
+ *         </div>
+ *     </div>
+ */
+
+.call-to-action {
+    align-items: stretch;
+    display: -webkit-flex;
+    display:     -ms-flexbox;
+    display:         flex;
+    -webkit-box-orient: vertical;
+       -moz-box-orient: vertical;
+        -ms-box-orient: vertical;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+       -moz-box-pack: justify;
+        -ms-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+.call-to-action__image {
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0;
+    margin-top: 10px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+@media (min-width: 500px) {
+    .call-to-action__image { margin-top: 30px; }
+}
+
+.call-to-action__image-spacer {
+    display: block;
+    height: 0;
+}
+
+
+/**
+ * Horizontal Selection:
+ * A horizontal selection presents a set of choices to the
+ * user in a horizontal layout. It can use either radio
+ * buttons (if the choice is exclusive) or checkboxes as
+ * the underlying markup. The labels associated with
+ * the individual input elements must immediately follow
+ * those elements in the markup.
+ *
+ *     @example:
+ *     <form class="horizontal-selection theme-teachers-highlight">
+ *         <fieldset>
+ *             <label class="horizontal-selection__label">
+ *                 Main label:
+ *             </label>
+ *             <input type = "checkbox" id = "cb1"/>
+ *             <label class="horizontal-selection__item-label" for = "cb1">
+ *                 Choice 1
+ *             </label>
+ *             <input type = "checkbox" id = "cb2"/>
+ *             <label class="horizontal-selection__item-label" for = "cb2">
+ *                 Choice 2
+ *             </label>
+ *             <input type = "checkbox" id = "cb3"/>
+ *             <label class="horizontal-selection__item-label" for = "cb3">
+ *                 Choice 3
+ *             </label>
+ *        </fieldset>
+ *     </form>
+ */
+
+.horizontal-selection fieldset {
+    border: none;
+}
+
+.horizontal-selection__label {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: -.05rem;
+    margin: 0;
+    padding-right: 20px;
+    white-space: nowrap;
+}
+
+@media (min-width: 1000px) {
+    .horizontal-selection__label {
+        display: inline;
+    }
+}
+
+.horizontal-selection input {
+    margin-left: -9999px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.horizontal-selection__item-label {
+    .lnum;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: 600;
+    height: 38px;
+    line-height: 38px;
+    letter-spacing: .1rem;
+    margin: 5px 10px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@media (min-width: 500px) {
+    .horizontal-selection__item-label {
+        font-size: 1.7rem;
+    }
+}
+
+
+/**
+ * Vertical Selection:
+ * A vertical selection presents a set of choices to the
+ * user in a horizontal layout. It can use either radio
+ * buttons (if the choice is exclusive) or checkboxes as
+ * the underlying markup. The labels associated with
+ * the individual input elements must immediately follow
+ * those elements in the markup.
+ *
+ *     @example:
+ *     <form class="vertical-selection theme-teachers-highlight">
+ *         <fieldset>
+ *             <label class="vertical-selection__label">
+ *                 Main label:
+ *             </label>
+ *             <input type = "checkbox" id = "cb1"/>
+ *             <label class="vertical-selection__item-label" for = "cb1">
+ *                 Choice 1
+ *             </label>
+ *             <input type = "checkbox" id = "cb2"/>
+ *             <label class="vertical-selection__item-label" for = "cb2">
+ *                 Choice 2
+ *             </label>
+ *             <input type = "checkbox" id = "cb3"/>
+ *             <label class="vertical-selection__item-label" for = "cb3">
+ *                 Choice 3
+ *             </label>
+ *        </fieldset>
+ *     </form>
+ */
+
+.vertical-selection fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.vertical-selection__label {
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: -.05rem;
+    margin: 30px 10px 10px 10px;
+}
+
+.vertical-selection input {
+    display: block;
+}
+
+.vertical-selection input {
+    margin-left: -9999px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.vertical-selection__item-label {
+    .lnum;
+    box-sizing: border-box;
+    clear: both;
+    cursor: pointer;
+    float: left;
+    font-size: 1.7rem;
+    font-weight: 600;
+    height: 30px;
+    line-height: 20px;
+    letter-spacing: .1rem;
+    margin: 10px;
+    padding: 5px;
+    text-transform: uppercase;
+}
+
+
+/**
+ * Featured:
+ * The featured component highlights four separate
+ * objects and offers users the chance to view
+ * additional details about each.
+ */
+
+.featured {
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+}
+
+.featured__item {
+    padding-bottom: 30px;
+    -webkit-transition: background-color 400ms linear;
+       -moz-transition: background-color 400ms linear;
+        -ms-transition: background-color 400ms linear;
+         -o-transition: background-color 400ms linear;
+            transition: background-color 400ms linear;
+}
+
+.featured__image {
+    background-color: black;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    border-style: solid;
+    border-width: 10px;
+    display: inline-block;
+    font-size: 0;
+    line-height: 0;
+    -webkit-transition: border-color 400ms linear;
+       -moz-transition: border-color 400ms linear;
+        -ms-transition: border-color 400ms linear;
+         -o-transition: border-color 400ms linear;
+            transition: border-color 400ms linear;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.featured__image-spacer {
+    display: block;
+    height: 0;
+    padding-top: 100%;
+}
+
+.featured__text {
+    padding: 5px 10px;
+}
+
+.featured__title {
+    font-size: 2.4rem;
+    letter-spacing: -.05rem;
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.featured__details {
+    left: -9999em;
+    opacity: 0;
+    position: absolute;
+    padding-bottom: 30px;
+    top: -9999em;
+    -webkit-transition: opacity 400ms linear;
+       -moz-transition: opacity 400ms linear;
+        -ms-transition: opacity 400ms linear;
+         -o-transition: opacity 400ms linear;
+            transition: opacity 400ms linear;
+}
+
+.featured__details__close {
+    color: #bbbbbb;
+    cursor: pointer;
+    font-size: 4rem;
+    position: absolute;
+    right: 15px;
+}
+
+.featured__details__action {
+    padding-left: 10px;
+}
+
+
+@media (min-width: 500px) {
+    .featured__details__close { right: 20px; }
+}
+
+.no-touch .featured__details__close:hover,
+.featured__details__close:focus {
+    color: inherit;
+}
+
+.featured__details__heading {
+    font-size: 2.4rem;
+    font-weight: 300;
+    letter-spacing: -.05rem;
+    margin: 30px 10px;
+}
+
+.featured__details__listing {
+    margin: 30px 10px 0 10px;
+}
+
+
+.featured__details__item {
+    overflow: hidden;
+    padding-bottom: 30px;
+    padding-left: 110px;
+}
+
+.featured__details__item:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.featured__details__image {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    float: left;
+    margin-bottom: -99999px;
+    margin-left: -120px;
+    padding-bottom: 99999px;
+    padding-left: 10px;
+    width: 110px;
+}
+
+.featured__details__text {
+    float: left;
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+    padding-right: 10px;
+}
+
+@media (min-width: 500px) {
+    .featured__details__text {
+        padding-right: 30px;
+    }
+}
+
+.featured__details__title {
+    font-size: 2rem;
+    letter-spacing: -.05rem;
+    margin-bottom: 0.5rem;
+}
+
+.featured__details__main p {
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.featured__details__main .featured__details__placeholder {
+    margin-bottom: 1.5rem;
+}
+
+.featured__item a[data-featured-toggle] {
+    -webkit-transition: opacity 400ms linear;
+       -moz-transition: opacity 400ms linear;
+        -ms-transition: opacity 400ms linear;
+         -o-transition: opacity 400ms linear;
+            transition: opacity 400ms linear;
+}
+
+.featured[data-featured-selection="1"] .featured__item a[data-featured-toggle="1"] {
+    opacity: 0;
+}
+
+.featured[data-featured-selection="2"] .featured__item a[data-featured-toggle="2"] {
+    opacity: 0;
+}
+
+.featured[data-featured-selection="3"] .featured__item a[data-featured-toggle="3"] {
+    opacity: 0;
+}
+
+.featured[data-featured-selection="4"] .featured__item a[data-featured-toggle="4"] {
+    opacity: 0;
+}
+
+.featured[data-featured-selection="1"] div.featured__details[data-featured-details="1"] {
+    left: auto;
+    opacity: 1;
+    position: static;
+}
+
+.featured[data-featured-selection="2"] div.featured__details[data-featured-details="2"] {
+    left: auto;
+    opacity: 1;
+    position: static;
+}
+
+.featured[data-featured-selection="3"] div.featured__details[data-featured-details="3"] {
+    left: auto;
+    opacity: 1;
+    position: static;
+}
+
+.featured[data-featured-selection="4"] div.featured__details[data-featured-details="4"] {
+    left: auto;
+    opacity: 1;
+    position: static;
+}
+
+/*
+ * Order the components, starting with mobile.
+ */
+
+div.featured__item[data-featured-item="1"]
+    { -webkit-box-ordinal-group: 2; -moz-box-ordinal-group: 2; -ms-box-ordinal-group: 2;
+      -webkit-order: 1; -ms-flex-order: 1; order: 1; }
+div.featured__details[data-featured-details="1"]
+    { -webkit-box-ordinal-group: 3; -moz-box-ordinal-group: 3; -ms-box-ordinal-group: 3;
+      -webkit-order: 2; -ms-flex-order: 2; order: 2; }
+div.featured__item[data-featured-item="2"]
+    { -webkit-box-ordinal-group: 4; -moz-box-ordinal-group: 4; -ms-box-ordinal-group: 4;
+      -webkit-order: 3; -ms-flex-order: 3; order: 3; }
+div.featured__details[data-featured-details="2"]
+    { -webkit-box-ordinal-group: 5; -moz-box-ordinal-group: 5; -ms-box-ordinal-group: 5;
+      -webkit-order: 4; -ms-flex-order: 4; order: 4; }
+div.featured__item[data-featured-item="3"]
+    { -webkit-box-ordinal-group: 6; -moz-box-ordinal-group: 6; -ms-box-ordinal-group: 6;
+      -webkit-order: 5; -ms-flex-order: 5; order: 5; }
+div.featured__details[data-featured-details="3"]
+    { -webkit-box-ordinal-group: 7; -moz-box-ordinal-group: 7; -ms-box-ordinal-group: 7;
+      -webkit-order: 6; -ms-flex-order: 6; order: 6; }
+div.featured__item[data-featured-item="4"]
+    { -webkit-box-ordinal-group: 8; -moz-box-ordinal-group: 8; -ms-box-ordinal-group: 8;
+      -webkit-order: 7; -ms-flex-order: 7; order: 7; }
+div.featured__details[data-featured-details="4"]
+    { -webkit-box-ordinal-group: 9; -moz-box-ordinal-group: 9; -ms-box-ordinal-group: 9;
+      -webkit-order: 8; -ms-flex-order: 8; order: 8; }
+
+/*
+ * Adjust for tablets.
+ */
+
+@media (min-width: 500px) {
+    div.featured__item[data-featured-item="1"]
+        { -webkit-box-ordinal-group: 2; -moz-box-ordinal-group: 2; -ms-box-ordinal-group: 2;
+          -webkit-order: 1; -ms-flex-order: 1; order: 1; }
+    div.featured__item[data-featured-item="2"]
+        { -webkit-box-ordinal-group: 3; -moz-box-ordinal-group: 3; -ms-box-ordinal-group: 3;
+          -webkit-order: 2; -ms-flex-order: 2; order: 2; }
+    div.featured__details[data-featured-details="1"]
+        { -webkit-box-ordinal-group: 4; -moz-box-ordinal-group: 4; -ms-box-ordinal-group: 4;
+          -webkit-order: 3; -ms-flex-order: 3; order: 3; }
+    div.featured__details[data-featured-details="2"]
+        { -webkit-box-ordinal-group: 5; -moz-box-ordinal-group: 5; -ms-box-ordinal-group: 5;
+          -webkit-order: 4; -ms-flex-order: 4; order: 4; }
+    div.featured__item[data-featured-item="3"]
+        { -webkit-box-ordinal-group: 6; -moz-box-ordinal-group: 6; -ms-box-ordinal-group: 6;
+          -webkit-order: 5; -ms-flex-order: 5; order: 5; }
+    div.featured__item[data-featured-item="4"]
+        { -webkit-box-ordinal-group: 7; -moz-box-ordinal-group: 7; -ms-box-ordinal-group: 7;
+          -webkit-order: 6; -ms-flex-order: 6; order: 6; }
+    div.featured__details[data-featured-details="3"]
+        { -webkit-box-ordinal-group: 8; -moz-box-ordinal-group: 8; -ms-box-ordinal-group: 8;
+          -webkit-order: 7; -ms-flex-order: 7; order: 7; }
+    div.featured__details[data-featured-details="4"]
+        { -webkit-box-ordinal-group: 9; -moz-box-ordinal-group: 9; -ms-box-ordinal-group: 9;
+          -webkit-order: 8; -ms-flex-order: 8; order: 8; }
+}
+
+
+/*
+ * Adjust for desktops.
+ */
+
+@media (min-width: 1000px) {
+    div.featured__item[data-featured-item="1"]
+        { -webkit-box-ordinal-group: 2; -moz-box-ordinal-group: 2; -ms-box-ordinal-group: 2;
+          -webkit-order: 1; -ms-flex-order: 1; order: 1; }
+    div.featured__item[data-featured-item="2"]
+        { -webkit-box-ordinal-group: 3; -moz-box-ordinal-group: 3; -ms-box-ordinal-group: 3;
+          -webkit-order: 2; -ms-flex-order: 2; order: 2; }
+    div.featured__item[data-featured-item="3"]
+        { -webkit-box-ordinal-group: 4; -moz-box-ordinal-group: 4; -ms-box-ordinal-group: 4;
+          -webkit-order: 3; -ms-flex-order: 3; order: 3; }
+    div.featured__item[data-featured-item="4"]
+        { -webkit-box-ordinal-group: 5; -moz-box-ordinal-group: 5; -ms-box-ordinal-group: 5;
+          -webkit-order: 4; -ms-flex-order: 4; order: 4; }
+    div.featured__details[data-featured-details="1"]
+        { -webkit-box-ordinal-group: 6; -moz-box-ordinal-group: 6; -ms-box-ordinal-group: 6;
+          -webkit-order: 5; -ms-flex-order: 5; order: 5; }
+    div.featured__details[data-featured-details="2"]
+        { -webkit-box-ordinal-group: 7; -moz-box-ordinal-group: 7; -ms-box-ordinal-group: 7;
+          -webkit-order: 6; -ms-flex-order: 6; order: 6; }
+    div.featured__details[data-featured-details="3"]
+        { -webkit-box-ordinal-group: 8; -moz-box-ordinal-group: 8; -ms-box-ordinal-group: 8;
+          -webkit-order: 7; -ms-flex-order: 7; order: 7; }
+    div.featured__details[data-featured-details="4"]
+        { -webkit-box-ordinal-group: 9; -moz-box-ordinal-group: 9; -ms-box-ordinal-group: 9;
+          -webkit-order: 8; -ms-flex-order: 8; order: 8; }
+}
+
+
+/**
+ * Navigation Bar:
+ * The responsive navigation bar at the top of all "pages"
+ * on the site. The navigation must be wrapped in a `<div>`
+ * of class `header`, and it must include an `<input>` of
+ * type `checkbox` and an associated empty label before
+ * the unordered list of menu items. The `h1` heading is for
+ * branding. Links within that heading are displayed identically
+ * to standard heading text (no underline or hover). See the
+ * example for details.
+ *
+ * Note: The CSS-only implementation is fully functional
+ * without JavaScript, but it does overlay the expanded menu
+ * on top of the main content rather than pushing the main
+ * content down. If the latter behavior is desired, a small
+ * bit of JavaScript is required. When the `#nav-toggle` input
+ * is checked, set the `data-nav-expanded` attribute equal to
+ * `true` on the `main` element; remove the attribute or set
+ * it to false when the input is not checked. The rules below
+ * synchronize the behavior of the main element with the
+ * navigation bar. (The attribute is ignored when the
+ * navigation bar is full width, so there is no need to check
+ * for window resize events.) Here is sample code for
+ * implementing this behavior with jQuery:
+ *
+ *     @example:
+ *     <div class="header">
+ *         <h1 class="header__brand theme-brand--dark">
+ *              <span class="brand__border theme-brand__border--dark">
+ *                  <a href="#">The Georgia<br/>STEM Incubator</a>
+ *              </span>
+ *         </h1>
+ *         <nav>
+ *             <input type="checkbox" id="nav-toggle" />
+ *             <label for="nav-toggle"></label>
+ *             <ul>
+ *                 <li class="navlink__teachers">
+ *                     <a href="#teachers">Teachers</a>
+ *                 </li>
+ *                 <li class="navlink__schools">
+ *                     <a href="#schools">Schools</a>
+ *                 </li>
+ *                 <li class="navlink__industry">
+ *                     <a href="#industry">Industry</a>
+ *                 </li>
+ *             </ul>
+ *         </nav>
+ *     </div>
+ */
+
+/**
+ * ```
+ * $('#nav-toggle').on('change', function() {
+ *     $('main').attr('data-nav-expanded', $('#nav-toggle').prop('checked'));
+ * });
+ * ```
+ */
+
+/*
+ * The styles below differ from other styles in this stylesheet
+ * in a couple of ways. Unlike regular content, the navigation
+ * bar relies on `px` units for precise positioning. Also, the
+ * style definitions are desktop-first rather than mobile-first to
+ * help make the code more understandable.
+ */
+
+/*
+ * Start with generic and desktop styles.
+ */
+
+.header {
+	height: 75px;
+    position: relative;
+    -webkit-transition: background-color 400ms linear;
+       -moz-transition: background-color 400ms linear;
+         -o-transition: background-color 400ms linear;
+            transition: background-color 400ms linear;
+}
+
+.header:before, .header:after {
+    content: "";
+    display: table;
+}
+
+.header:after {
+    clear: both;
+}
+
+.header__brand {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    float: left;
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 0;
+    padding-left: 30px;
+    padding-top: 10px;
+    width: 50%;
+}
+
+.brand__border {
+    display: inline-block;
+    padding: 1px 5px;
+}
+
+.header__brand a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav {
+    display: block;
+    float: right;
+    width: 50%;
+}
+
+input[id=nav-toggle], nav label {
+    display: none;
+}
+
+nav label {
+	z-index: 2;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    float:left;
+    list-style: none;
+    text-align: center;
+    -webkit-transition: background-color 400ms linear;
+       -moz-transition: background-color 400ms linear;
+         -o-transition: background-color 400ms linear;
+            transition: background-color 400ms linear;
+    width: 33.3333333333%;
+}
+
+nav, nav ul, nav li, nav li > a {
+	height: 100%;
+}
+
+nav li > a {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+	display: block;
+	font-size: 16px;
+	line-height: 1;
+	padding: 30px 0 0 0;
+	text-decoration: none;
+}
+
+main {
+    -webkit-transition: padding-top 250ms linear;
+       -moz-transition: padding-top 250ms linear;
+         -o-transition: padding-top 250ms linear;
+            transition: padding-top 250ms linear;
+}
+
+@media (max-width: 999px) {
+
+    main[data-nav-expanded=true] {
+        padding-top: 168px;
+        -webkit-transition: padding-top 250ms ease-in;
+           -moz-transition: padding-top 250ms ease-in;
+             -o-transition: padding-top 250ms ease-in;
+                transition: padding-top 250ms ease-in;
+    }
+
+    nav {
+        width: auto;
+    }
+
+	nav label {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+    }
+
+	nav label:after {
+        color: #ffffff;
+		content: 'Menu';
+		display: block;
+		font-size: 16px;
+    	line-height: 1;
+		padding: 30px 20px 29px 0;
+		text-align: center;
+	}
+
+	input[id=nav-toggle]:checked + label:after {
+		content: 'Close Menu';
+	}
+
+	nav ul {
+        border-top: 1px solid white;
+        margin: 0;
+        max-height: 0;
+        overflow-y: hidden;
+        position: absolute;
+        right: 0;
+        -webkit-transition: max-height 250ms linear;
+           -moz-transition: max-height 250ms linear;
+             -o-transition: max-height 250ms linear;
+                transition: max-height 250ms linear;
+        width: 100%;
+        z-index: 1;
+	}
+
+	input[id=nav-toggle]:checked ~ ul {
+        max-height: 168px;
+        -webkit-transition: max-height 250ms ease-in;
+           -moz-transition: max-height 250ms ease-in;
+             -o-transition: max-height 250ms ease-in;
+                transition: max-height 250ms ease-in;
+    }
+
+	nav li {
+        display: block;
+        text-align: right;
+        width: 100%;
+    }
+
+	nav ul, nav li, nav li > a {
+		height: auto;
+	}
+
+	nav li > a {
+        -webkit-box-sizing: border-box;
+           -moz-box-sizing: border-box;
+                box-sizing: border-box;
+        display: block;
+        padding: 20px;
+        text-decoration: none;
+        width: 100%;
+	}
+
+	.no-touch nav li > a:hover,
+	nav li > a:focus {
+        text-decoration: none;
+	}
+
+}
+
+@media (max-width: 499px) {
+    .header__brand { padding-left: 10px; }
+	nav label:after { padding-right: 10px; }
+    nav li > a { padding-right: 10px; }
+
+}
+
+
+/* ===================================================== */
+
+/**
+ * ## Themes
+ *
+ * Three different complementary themes determine
+ * the color schemes for the site. Those themes
+ * represent teachers, schools, and industry. They
+ * can be applied with a class of `theme-teachers`,
+ * `theme-schools`, or `theme-industry` as appropriate.
+ * A neutral theme `theme-neutral` is also available.
+ * Themese support a `--light` or `--dark` modifier
+ * to adjust the color scheme appropriately.
+ */
+
+/* ===================================================== */
+
+
+/**
+ * Teachers Theme:
+ *
+ *     @example:
+ *     <div class="theme-teachers">
+ *         This is the theme for the teachers section
+ *     </div>
+ *     <div class="theme-teachers--dark">
+ *         This is the dark theme for the teachers section
+ *     </div>
+ */
+
+.theme-teachers {
+    background-color: #009EAF;
+    color: white;
+}
+
+.theme-teachers--dark {
+    background-color: #013E45;
+    color: #009EAF;
+}
+
+.no-touch .theme-teachers--dark a:hover,
+.theme-teachers--dark a:focus {
+    color: white;
+}
+
+.theme-teachers .button, .theme-teachers button,
+.theme-teachers input[type="submit"], input[type="submit"],
+.theme-teachers input[type="reset"], input[type="reset"],
+.theme-teachers input[type="button"], input[type="button"] {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.no-touch .theme-teachers .button:hover,
+.no-touch .theme-teachers button:hover,
+.no-touch .theme-teachers input[type="submit"]:hover,
+.no-touch .theme-teachers input[type="reset"]:hover,
+.no-touch .theme-teachers input[type="button"]:hover,
+.theme-teachers .button:focus,
+.theme-teachers button:focus,
+.theme-teachers input[type="submit"]:focus,
+.theme-teachers input[type="reset"]:focus,
+.theme-teachers input[type="button"]:focus {
+    color: #009EAF;
+}
+
+.theme-teachers .call-to-action__image { background-image: url(../images/teachers-lowres.jpg); }
+.theme-teachers .call-to-action__image-spacer { padding-top: 66.5625%; }
+
+@media (min-width: 700px) {
+    .theme-teachers .call-to-action__image { background-image: url(../images/teachers-small.jpg); }
+    .theme-teachers .call-to-action__image-spacer { padding-top: 33.28125%; }
+}
+
+@media (min-width: 1000px) {
+    .theme-teachers .call-to-action__image { background-image: url(../images/teachers.jpg); }
+    .theme-teachers .call-to-action__image-spacer { padding-top: 66.5625%; }
+}
+
+.theme-teachers-highlight a:focus,
+.no-touch .theme-teachers-highlight a:hover,
+.theme-teachers-highlight button.button__link:focus,
+.no-touch .theme-teachers-highlight button.button__link:hover,
+.theme-teachers-highlight label.horizontal-selection__item-label:focus,
+.no-touch .theme-teachers-highlight label.horizontal-selection__item-label:hover,
+label.horizontal-selection__item-label.theme-teachers-highlight:focus,
+.no-touch label.horizontal-selection__item-label.theme-teachers-highlight:hover,
+.theme-teachers-highlight label.vertical-selection__item-label:focus,
+.no-touch .theme-teachers-highlight label.vertical-selection__item-label:hover,
+label.vertical-selection__item-label.theme-teachers-highlight:focus,
+.no-touch label.vertical-selection__item-label.theme-teachers-highlight:hover {
+    color: #009EAF;
+}
+
+.theme-teachers-highlight.horizontal-selection input:checked + label,
+.theme-teachers-highlight .horizontal-selection input:checked + label,
+.theme-teachers-highlight.vertical-selection input:checked + label,
+.theme-teachers-highlight .vertical-selection input:checked + label,
+.horizontal-selection input:checked + label.theme-teachers-highlight,
+.vertical-selection input:checked + label.theme-teachers-highlight {
+    background: #C5DEDF;
+    background: rgba(0, 159, 175, 0.2);
+    color: #009EAF;
+}
+
+.theme-teachers-highlight.horizontal-selection input:checked + label,
+.theme-teachers-highlight .horizontal-selection input:checked + label,
+.horizontal-selection input:checked + label.theme-teachers-highlight {
+    border-bottom: 3px solid #009EAF;
+}
+
+.theme-teachers-highlight.vertical-selection input:checked + label,
+.theme-teachers-highlight .vertical-selection input:checked + label,
+.vertical-selection input:checked + label.theme-teachers-highlight {
+    border-left: 3px solid #009EAF;
+}
+
+/**
+ * Schools Theme:
+ *
+ *     @example:
+ *     <div class="theme-schools">
+ *         This is the theme for the schools section
+ *     </div>
+ *     <div class="theme-schools--dark">
+ *         This is the dark theme for the schools section
+ *     </div>
+ */
+
+.theme-schools {
+    background-color: #00AB0F;
+    color: white;
+}
+
+.theme-schools--dark {
+    background-color: #00430C;
+    color: #00AB0F;
+}
+
+.no-touch .theme-schools--dark a:hover,
+.theme-schools--dark a:focus {
+    color: white;
+}
+
+.theme-schools .button, .theme-schools button,
+.theme-schools input[type="submit"],
+.theme-schools input[type="reset"]
+.theme-schools input[type="button"] {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.no-touch .theme-schools .button:hover,
+.no-touch .theme-schools button:hover,
+.no-touch .theme-schools input[type="submit"]:hover,
+.no-touch .theme-schools input[type="reset"]:hover,
+.no-touch .theme-schools input[type="button"]:hover,
+.theme-schools .button:focus,
+.theme-schools button:focus,
+.theme-schools input[type="submit"]:focus,
+.theme-schools input[type="reset"]:focus,
+.theme-schools input[type="button"]:focus {
+    color: #00AB0F;
+}
+
+.theme-schools .call-to-action__image { background-image: url(../images/schools-small.jpg); }
+.theme-schools .call-to-action__image-spacer { padding-top: 66.51884701%; }
+
+@media (min-width: 1000px) {
+    .theme-schools .call-to-action__image { background-image: url(../images/schools.jpg); }
+    .theme-schools .call-to-action__image-spacer { padding-top: 266.07538803%; }
+}
+
+
+/**
+ * Industry Theme:
+ *
+ *     @example:
+ *     <div class="theme-industry">
+ *         This is the theme for the industry section
+ *     </div>
+ *     <div class="theme-industry--dark">
+ *         This is the dark theme for the industry section
+ *     </div>
+ */
+
+.theme-industry {
+    background-color: #005493;
+    color: white;
+}
+
+.theme-industry--dark {
+    background-color: #00213A;
+    color: #2EA1CC;
+}
+
+.no-touch .theme-industry--dark a:hover,
+.theme-industry--dark a:focus {
+    color: white;
+}
+
+.theme-industry .button, .theme-industry button,
+.theme-industry input[type="submit"],
+.theme-industry input[type="reset"],
+.theme-industry input[type="button"] {
+    background-color: white;
+    border: none;
+    color: black;
+}
+
+.no-touch .theme-industry .button:hover,
+.no-touch .theme-industry button:hover,
+.no-touch .theme-industry input[type="submit"]:hover,
+.no-touch .theme-industry input[type="reset"]:hover,
+.no-touch .theme-industry input[type="button"]:hover,
+.theme-industry .button:focus, .theme-industry button:focus,
+.theme-industry input[type="submit"]:focus,
+.theme-industry input[type="reset"]:focus,
+.theme-industry input[type="button"]:focus {
+    color: #005493;
+}
+
+.theme-industry .call-to-action__image { background-image: url(../images/industry-small.jpg); }
+.theme-industry .call-to-action__image-spacer { padding-top: 66.5480427%; }
+
+@media (min-width: 1000px) {
+    .theme-industry .call-to-action__image { background-image: url(../images/industry.jpg); }
+    .theme-industry .call-to-action__image-spacer { padding-top: 266.19217082%; }
+}
+
+
+/**
+ * Navigation Bar Themes:
+ */
+
+.header {
+    background-color: #013E45;
+    color: #009EAF;
+}
+
+.navlink__teachers {
+    background-color: #013E45;
+    color: #009EAF;
+}
+
+.navlink__schools {
+    background-color: #00430C;
+    color: #00AB0F;
+}
+
+.navlink__industry {
+    background-color: #00213A;
+    color: #2EA1CC;
+}
+
+div.header[data-section="teachers"] {
+    background-color: #009EAF;
+    color: white;
+}
+
+[data-section="teachers"] .navlink__teachers {
+    background-color: #009EAF;
+    color: white;
+}
+
+div.header[data-section="schools"] {
+    background-color: #00AB0F;
+    color: white;
+}
+
+[data-section="schools"] .navlink__schools {
+    background-color: #00AB0F;
+    color: white;
+}
+
+div.header[data-section="industry"] {
+    background-color: #005493;
+    color: white;
+}
+
+[data-section="industry"] .navlink__industry {
+    background-color: #005493;
+    color: white;
+}
+
+
+/**
+ * Neutral Theme:
+ *
+ *     @example:
+ *     <div class="theme-neutral--light">
+ *         This is the light theme for the neutral section
+ *     </div>
+ *     <div class="theme-neutral">
+ *         This is the theme for the neutral section
+ *     </div>
+ *     <div class="theme-neutral--dark">
+ *         This is the dark theme for the neutral section
+ *     </div>
+ */
+
+.theme-neutral {
+    background-color: #DBDBDA;
+    color: #424242;
+}
+
+.theme-neutral--light {
+    background-color: #EFEDEB;
+}
+
+.theme-neutral--white {
+
+    background-color: white;
+}
+
+.theme-neutral--light .muted {
+	color: #636363;
+}
+
+
+.theme-neutral--dark {
+    background-color: #424242;
+    color: #EFEDEB;
+}
+
+.theme-neutral .button, .theme-neutral button,
+.theme-neutral input[type="submit"], input[type="submit"],
+.theme-neutral input[type="reset"], input[type="reset"],
+.theme-neutral input[type="button"], input[type="button"] {
+    background-color: #424242;
+    color: #DBDBDA;
+}
+
+.no-touch .theme-neutral .button:hover,
+.no-touch .theme-neutral button:hover,
+.no-touch .theme-neutral input[type="submit"]:hover,
+.no-touch .theme-neutral input[type="reset"]:hover,
+.no-touch .theme-neutral input[type="button"]:hover,
+.theme-neutral .button:focus,
+.theme-neutral button:focus,
+.theme-neutral input[type="submit"]:focus,
+.theme-neutral input[type="reset"]:focus,
+.theme-neutral input[type="button"]:focus {
+    color: #EFEDEB;
+}
+
+.theme-neutral .button.button--link {
+    background-color: transparent;
+    border: none;
+    color: #424242;
+}
+
+.no-touch .theme-neutral .button.button--link:hover,
+.theme-neutral .button.button--link:focus {
+    color: black;
+}
+
+
+.theme-neutral--dark .button, .theme-neutral--dark button,
+.theme-neutral--dark input[type="submit"], input[type="submit"],
+.theme-neutral--dark input[type="reset"], input[type="reset"],
+.theme-neutral--dark input[type="button"], input[type="button"] {
+    background-color: #DBDBDA;
+    border: none;
+    color: #636363;
+}
+
+.no-touch .theme-neutral--dark .button:hover,
+.no-touch .theme-neutral--dark button:hover,
+.no-touch .theme-neutral--dark input[type="submit"]:hover,
+.no-touch .theme-neutral--dark input[type="reset"]:hover,
+.no-touch .theme-neutral--dark input[type="button"]:hover,
+.theme-neutral--dark .button:focus,
+.theme-teachers button:focus,
+.theme-neutral--dark input[type="submit"]:focus,
+.theme-neutral--dark input[type="reset"]:focus,
+.theme-neutral--dark input[type="button"]:focus {
+    color: #424242;
+}
+
+
+
+.featured.theme-neutral,
+.featured.theme-neutral .featured__image {
+    border-color: #DBDBDA;
+}
+
+.featured.theme-neutral .featured__details {
+    background-color: #EFEDEB;
+}
+
+/*
+.featured[data-featured-selection="1"].theme-neutral {
+    border-left-color: #EFEDEB;
+}
+
+.featured[data-featured-selection="4"].theme-neutral {
+    border-right-color: #EFEDEB;
+}
+*/
+
+.featured[data-featured-selection="1"].theme-neutral div.featured__item[data-featured-item="1"] {
+    background-color: #EFEDEB;
+}
+.featured[data-featured-selection="2"].theme-neutral div.featured__item[data-featured-item="2"] {
+    background-color: #EFEDEB;
+}
+.featured[data-featured-selection="3"].theme-neutral div.featured__item[data-featured-item="3"] {
+    background-color: #EFEDEB;
+}
+.featured[data-featured-selection="4"].theme-neutral div.featured__item[data-featured-item="4"] {
+    background-color: #EFEDEB;
+}
+
+.featured[data-featured-selection="1"].theme-neutral .featured__item[data-featured-item="1"] .featured__image {
+    border-color: #EFEDEB;
+}
+.featured[data-featured-selection="2"].theme-neutral .featured__item[data-featured-item="2"] .featured__image {
+    border-color: #EFEDEB;
+}
+.featured[data-featured-selection="3"].theme-neutral .featured__item[data-featured-item="3"] .featured__image {
+    border-color: #EFEDEB;
+}
+.featured[data-featured-selection="4"].theme-neutral .featured__item[data-featured-item="4"] .featured__image {
+    border-color: #EFEDEB;
+}
+
+
+/**
+ * Brand Theme:
+ * A special theme for the placeholder branding/logo.
+ */
+
+.theme-brand--dark {
+    color: white;
+}
+
+.theme-brand__border--dark {
+    border: 1px solid white;
+}
+
+
+/* ===================================================== */
+
+/**
+ * ## Utilities
+ *
+ * Generic classes that can be added to any content.
+ */
+
+/* ===================================================== */
+
+
+/**
+ * Center:
+ *
+ *     @example:
+ *     <div class="center">
+ *         This text is centered horizontally
+ *     </div>
+ */
+
+.center {
+    text-align: center;
+}
+
+
+/**
+ * Screen Readers:
+ * The `sr-only` class designates content that
+ * is intended only for screen readers and other
+ * assistive devices. The content is not normally
+ * visible to regular web browsers.
+ */
+
+.sr-only {
+    border: 0;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
