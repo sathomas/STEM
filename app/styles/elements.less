@@ -2,16 +2,17 @@
  * ## Base Elements
  *
  * Styles for basic HTML elements such as anchors
- * and buttons.
+ * and buttons. These rules are essentially additional
+ * resets above and beyond normalize.css, as actual
+ * styles should be defined in blocks based on the
+ * BEM approach.
  */
 
 
 /**
  * Links:
- * By default, links are styled using the same
- * color as normal content, although the link
- * text is underlined. Themes may define their
- * own particular link styles.
+ * Reset links to the same color as the underlying
+ * content.
  *
  *     @example:
  *     <p>
@@ -20,6 +21,7 @@
  *     </p>
  */
 
+/*
 a,
 a:link,
 a:visited,
@@ -28,6 +30,7 @@ a:focus,
 a:active {
     color: inherit;
 }
+*/
 
 
 /**
@@ -57,11 +60,7 @@ a:active {
  *     <button class="button-link">Button as Link</button>
  */
 
-button,
-.button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+.button {
     .lnum;
     background-color: transparent;
     border: none;
@@ -79,6 +78,13 @@ input[type="submit"] {
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    .button;
 }
 
 .button-link {

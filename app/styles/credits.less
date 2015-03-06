@@ -1,0 +1,63 @@
+/**
+ * ## Credits
+ *
+ * The credits block on the landing page
+ */
+
+.credits {
+    background-color: @color-theme-0-light;
+    color:            @color-theme-0-dark;
+    margin: 0;
+    text-align: center;
+}
+
+.credits__funding {
+    padding: @block-spacing;
+    @media @tablet {
+        padding: @block-spacing-tablet;
+    }
+}
+
+.credits__text {
+    margin: auto;
+    max-width: 40em;
+    padding: @block-spacing;
+    @media @tablet {
+        padding: @block-spacing-tablet;
+    }
+    text-align: center;
+}
+
+.credits__rule {
+    border: 1px solid @color-theme-0-medium;
+    margin-bottom: @block-spacing;
+    @media @tablet {
+        margin-bottom: @block-spacing-tablet;
+    }
+    margin-top: 0;
+    width: 75%;
+}
+
+.credits__heading {
+    text-align: center;
+}
+
+.credits__service {
+    display: inline-block;
+    padding: 0 @block-spacing @block-spacing @block-spacing;
+    @media @tablet {
+        padding: 0 @block-spacing-tablet @block-spacing-tablet @block-spacing-tablet;
+    }
+}
+
+.credits__image-link {
+    display: block;
+}
+
+.credits__image {
+    max-width: 400px;
+}
+
+.credits__image--small {
+    max-width: 150px;
+}

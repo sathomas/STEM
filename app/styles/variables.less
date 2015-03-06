@@ -1,20 +1,16 @@
 /*
- * ## Colors
+ * ## Variables
  *
- * Colors defined as variables for re-use
- * throughout the styles.
+ * LESS/CSS variables re-used in multiple
+ * rules.
  */
 
 
 /*
- * Theme Colors:
+ * ### Theme Colors:
+ *
  * The site relies on three distinct themes,
  * plus an extensive neutral theme.
- *
- *     @example:
- *     <div class="container">
- *         Contents here, starting with rows
- *     </div>
  */
 
 @color-theme-1-primary-bg: #009EAF;
@@ -43,3 +39,36 @@
 @color-theme-0-semidark: #636363;
 @color-theme-0-dark:     #424242;
 @color-theme-0-black:    #000000;
+
+
+/*
+ * ### Media Query Breakpoints:
+ *
+ * The site is mobile-first, with media queries
+ * for tablet-ish and desktop-ish devices.
+ */
+
+@tablet:  ~"only screen and (min-width: 500px)";
+@desktop: ~"only screen and (min-width: 1000px)";
+
+
+/*
+ * ### Block spacing:
+ *
+ * Gutters and spacing between content blocks
+ */
+
+@block-spacing: 10px;
+@block-spacing-tablet:30px;
+@block-spacing-desktop: 30px;
+
+
+/*
+ * ### Border Radii:
+ *
+ * Standard border radius values for controls.
+ */
+
+@border-radius: 3px;
+@border-radius-large: 5px;
+

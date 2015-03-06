@@ -3,14 +3,7 @@
  *
  * Within sections (and articles) we use a standard
  * 12-column grid for overall layout, in a responsive,
- * mobile-first architecture. In general, media queries
- * should be tailored for particular content items, but the
- * primary breakpoints for the grid are at 500x and
- * 1000px.
- *
- * - default (no media query) for smartphones
- * - `@media (min-width:  500px) {}` large smartphone/phablet
- * - `@media (min-width: 1000px) {}` desktop
+ * mobile-first architecture.
  */
 
 
@@ -122,29 +115,19 @@
  * the grid definitions to be used as mixins in LESS styles.
  */
 
-@media (min-width: 500px) {
+@media @tablet {
 
     .one.column,
     .one.columns,
-    .one-column,
     .two.columns,
-    .two-columns,
     .three.columns,
-    .three-columns,
     .four.columns,
-    .four-columns,
     .five.columns,
-    .five-columns,
     .six.columns,
-    .six-columns,
     .one-sixth.column,
-    .one-sixth-column,
     .one-fourth.column,
-    .one-fourth-column,
     .one-third.column,
-    .one-third-column,
-    .one-half.column,
-    .one-half-column
+    .one-half.column
         { flex-basis: 50%; }
 }
 
@@ -154,52 +137,130 @@
  * full glory.
  */
 
-@media (min-width: 1000px) {
+@media @desktop {
 
     .one.column,
-    .one.columns,
-    .one-column
+    .one.columns
         { flex-basis: 8.33333333333%; }
     .two.columns,
-    .two-columns,
-    .one-sixth.column,
-    .one-sixth-column
+    .one-sixth.column
         { flex-basis: 16.6666666667%; }
     .three.columns,
-    .three-columns,
-    .one-fourth.column,
-    .one-fourth-column
+    .one-fourth.column
         { flex-basis: 25%; }
     .four.columns,
-    .four-columns,
-    .one-third.column,
-    .one-third-column
+    .one-third.column
         { flex-basis: 33.3333333333%; }
-    .five.columns,
-    .five-columns
+    .five.columns
         { flex-basis: 41.6666666667%; }
     .six.columns,
-    .six-columns,
-    .one-half.column,
-    .one-half-column
+    .one-half.column
         { flex-basis: 50%; }
-    .seven.columns,
-    .seven-columns
+    .seven.columns
         { flex-basis: 58.3333333333%; }
     .eight.columns,
-    .eight-columns,
-    .two-thirds.column,
-    .two-thirds-column
+    .two-thirds.column
         { flex-basis: 66.6666666667%; }
     .nine.columns,
-    .nine-columns,
-    .three-fourths.column,
-    .three-fourths-column
+    .three-fourths.column
         { flex-basis: 75%; }
-    .ten.columns,
-    .ten-columns
+    .ten.columns
         { flex-basis: 83.3333333333%; }
-    .eleven.columns,
-    .eleven-columns
+    .eleven.columns
         { flex-basis: 91.6666666667%; }
 }
+
+
+/*
+ * The grid definitions are LESS mixins, not
+ * direct classes. This avoids having to use
+ * generic class names in the markup so the
+ * HTML remains semantic.
+ */
+
+.row {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.one-column() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 8.33333333333%; }
+}
+
+.two-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 16.6666666667%; }
+}
+
+.three-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 25%; }
+}
+
+.four-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 33.3333333333%; }
+}
+
+.five-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 41.6666666667%; }
+}
+
+.six-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 50%; }
+}
+
+.seven-columns() {
+    .column;
+    @media @desktop { flex-basis: 58.3333333333%; }
+}
+
+.eight-columns() {
+    .column;
+    @media @desktop { flex-basis: 66.6666666667%; }
+}
+
+.nine-columns() {
+    .column;
+    @media @desktop { flex-basis: 75%; }
+}
+
+.ten-columns() {
+    .column;
+    @media @desktop { flex-basis: 83.3333333333%; }
+}
+
+.eleven-columns() {
+    .column;
+    @media @desktop { flex-basis: 91.6666666667%; }
+}
+
+.twelve-columns() {
+    .column;
+}
+
+.one-sixth-column()     { .two-columns; }
+.one-fourth-column()    { .three-columns; }
+.one-third-column()     { .four-columns; }
+.one-half-column()      { .six-columns; }
+.two-thirds-column()    { .eight-columns; }
+.three-fourths-column() { .nine-columns; }
+.five-sixths-column()   { .ten-columns; }
+.one-full-column()      { .twelve-columns; }
