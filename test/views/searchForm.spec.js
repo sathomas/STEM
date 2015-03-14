@@ -1,7 +1,7 @@
-/*global beforeEach, afterEach, describe, it, Stem  */
-'use strict';
+/*global beforeEach, afterEach, describe, it, sinon, Stem, $  */
 
 describe('SearchForm View', function () {
+    'use strict';
 
     beforeEach(function () {
         this.$Scaffolding = $('<div>').addClass('scaffolding')
@@ -14,7 +14,8 @@ describe('SearchForm View', function () {
             query: 'Query'
         });
         this.SearchFormView = new Stem.Views.SearchForm({
-            model: this.SearchModel
+            model: this.SearchModel,
+            theme: 'theme'
         });
         this.SearchFormView.render();
         this.$Scaffolding.append(this.SearchFormView.$el);
@@ -36,6 +37,11 @@ describe('SearchForm View', function () {
         $el.attr('role').should.equal('search');
     });
 
+    it('should apply a custom theme', function() {
+        var $el = this.SearchFormView.$el;
+        $el.hasClass('theme').should.be.true();
+    });
+
     it('should add a label with appropriate text and classes', function() {
         var $el = this.SearchFormView.$el;
         $el.find('label').text().should.equal(this.SearchModel.get('label'));
@@ -50,6 +56,17 @@ describe('SearchForm View', function () {
         $el.find('input[type="search"].search__input--small').length.should.equal(1);
         $el.find('input[type="search"].search__input').not('.search__input--small').attr('placeholder').should.equal(this.SearchModel.get('placeholder'));
         $el.find('input[type="search"].search__input--small').attr('placeholder').should.equal(this.SearchModel.get('shortPlaceholder'));
+    });
+
+    it('should add submit buttons for multiple viewports with appropriate classes', function() {
+        var $el = this.SearchFormView.$el;
+        $el.find('button').length.should.equal(2);
+        $el.find('button.search__submit').length.should.equal(2);
+        $el.find('button.search__submit--small').length.should.equal(1);
+        $el.find('button.search__submit').not('.search__submit--small').text().should.equal('Search');
+        $el.find('button.search__submit--small i').length.should.equal(1);
+        $el.find('button.search__submit--small i').hasClass('fa').should.be.true();
+        $el.find('button.search__submit--small i').hasClass('fa-search').should.be.true();
     });
 
     it('should set the query value', function() {
@@ -67,6 +84,21 @@ describe('SearchForm View', function () {
         $el.find('input[type="search"]').each(function() {
             $(this).val().should.equal(model.get('query'));
         });
+    });
+
+    it('should update the model when the input changes', function() {
+        var $el = this.SearchFormView.$el;
+        $el.find('input[type="search"]').first().val('New Query').trigger('input');
+        this.SearchModel.get('query').should.equal('New Query');
+    });
+
+    it('should trigger an event on submission', function() {
+        var $el = this.SearchFormView.$el;
+        var handler = sinon.spy();
+        this.SearchFormView.on('submit', handler);
+        $el.find('button').first().trigger('click');
+        handler.callCount.should.equal(1);
+        this.SearchFormView.off('submit', handler);
     });
 
 });

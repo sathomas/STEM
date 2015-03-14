@@ -19,7 +19,8 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-//            '':         'landing'
+            '':         'landing',
+            'search':   'search'
         },
 
         // We use a convenience function to
@@ -60,16 +61,8 @@ Stem.Routers = Stem.Routers || {};
             this.loadPage('landing');
         },
 
-        teachers: function() {
-            this.loadPage('teachers');
-        },
-
-        schools: function() {
-            this.loadPage('schools');
-        },
-
-        industry: function() {
-            this.loadPage('industry');
+        search: function() {
+            this.loadPage('teachers-search');
         },
 
         initialize: function() {
@@ -96,6 +89,8 @@ Stem.Routers = Stem.Routers || {};
             // them now because they'll remain
             // hidden until the user navigates
             // to them.
+
+            this.teacherSearch = new Stem.Views.TeacherSearch().render();
 
         }
     });

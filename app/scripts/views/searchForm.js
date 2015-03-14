@@ -23,8 +23,8 @@ Stem.Views = Stem.Views || {};
         // click on the search link to initiate a search.
 
         events: {
-            'change input': 'changed',
-            'click a': 'clicked'
+            'input input': 'changed',
+            'submit': 'submitted'
         },
 
         // Default values for options.
@@ -43,13 +43,12 @@ Stem.Views = Stem.Views || {};
 
             // Save any options passed to constructor.
 
-            this.options = _.extend(this.defaults, options);
+            this.options = _.extend({}, this.defaults, options);
 
-            // If the model changes, update the view
-            // by re-rendering it. (The inefficiency is
-            // fine for a simple view like this.)
+            // If the model changes, we might need to
+            // update the view.
 
-            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'change', this.modelUpdated);
 
             // Return view for method chaining.
 
@@ -65,6 +64,7 @@ Stem.Views = Stem.Views || {};
                 .attr('role','search');
 
             // Set the initial query parameters
+
             if (this.model.get('query')) {
                 this.$el.find('input').val(this.model.get('query'));
             }
@@ -73,7 +73,7 @@ Stem.Views = Stem.Views || {};
             // as a class.
 
             if (this.options.theme) {
-                this.$el.addClass(this.options.theme)
+                this.$el.addClass(this.options.theme);
             }
 
             // If the label should be visible, remove
@@ -108,13 +108,34 @@ Stem.Views = Stem.Views || {};
         // pass it up the chain so the search
         // can be executed.
 
-        clicked: function() {
+        submitted: function() {
 
-            // Nothing to do yet.
+            // Trigger a submit event on this view.
+
+            this.trigger('submit');
 
             // Prevent further event handling.
 
             return false;
+
+        },
+
+        // If the model has changed due to,
+        // another view, we update this view.
+
+        modelUpdated: function() {
+
+            var query = this.model.get('query');
+
+            // Only update the view if it's out-of-date
+            // to avoid messing with the users' focus
+            // while they're typing.
+
+            if (this.query !== this.$el.find('input').val()) {
+
+                this.$el.find('input').val(query);
+
+            }
 
         }
 

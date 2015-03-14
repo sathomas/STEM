@@ -1,7 +1,7 @@
 /*global beforeEach, describe, it, Stem */
-'use strict';
 
 describe('Search Model', function () {
+    'use strict';
 
     beforeEach(function () {
         this.SearchModel = new Stem.Models.Search();

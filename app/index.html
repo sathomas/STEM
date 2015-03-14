@@ -238,33 +238,17 @@ of course, means that JavaScript is available.
                         class="discovery__heading discovery__heading--theme-1">
                         Supporting teachers
                     </h3>
-                    <form action="https://stemincubator.oaeproject.org/search/"
-                          id="teachers-search" method="get" target="_top" role="search"
-                          class="search">
-                        <label class="search__label">
-                            Search for resources
-                        </label>
-                        <input id="teachers-search-input" name="teachers-search-input"
-                               placeholder="Search the Georgia STEM Incubator" type="search"
-                               class="search__input"/><!--
-                        --><a id='search-button' type='submit'
-                                class="search__submit
-                                       search__submit--theme-1">
-                            Search
-                        </a>
-                        <input id="teachers-search-input-small"
-                               name="teachers-search-input-small"
-                               placeholder="Search" type="search"
-                               class="search__input
-                                      search__input--small"/><!--
-                        --><a id='search-button-small' type='submit'
-                                class="search__submit
-                                       search__submit--small
-                                       search__submit--theme-1">
-                            <i class="search__submit__icon
-                                      fa fa-search"></i>
-                        </a>
-                    </form>
+
+                    <!--
+
+                    The following `<div>` is just a placeholder for the actual
+                    search for that JavaScript will insert for the teacher's
+                    discovery panel.
+
+                    -->
+
+                    <div id="teachers-discovery-search-form"></div>
+
                     <div class="discovery__options">
                         <div class="discovery__option">
                             <i class="discovery__option__icon fa fa-certificate"></i>
@@ -384,7 +368,7 @@ of course, means that JavaScript is available.
             -->
 
             <section id="teachers-search" aria-labelledby="teachers-search-heading"
-                     class="show util--js-only">
+                     class="util--js-only">
 
                 <!--
 
@@ -401,33 +385,17 @@ of course, means that JavaScript is available.
                 </h2>
 
                 <article id="teachers" class="discovery discovery--lead">
-                    <form action="https://stemincubator.oaeproject.org/search/"
-                          id="teachers-search-secondary" method="get" target="_top" role="search"
-                          class="discovery__search-form">
-                        <label class="discovery__search-form__label util--sr-only">
-                            Search for resources, people, or learning opportunities
-                        </label>
-                        <input id="teachers-search-secondary-input" name="teachers-search-secondary-input"
-                               placeholder="Search the Georgia STEM Incubator" type="search"
-                               class="discovery__search-form__input"/><!--
-                        --><a id='teachers-search-secondary-button' type='submit'
-                                class="discovery__search-form__submit
-                                       discovery__search-form__submit--theme-1">
-                            Search
-                        </a>
-                        <input id="teachers-search-secondary-input-small"
-                               name="teachers-search-secondary-input-small"
-                               placeholder="Search" type="search"
-                               class="discovery__search-form__input
-                                      discovery__search-form__input--small"/><!--
-                        --><a id='teachers-search-secondary-button-small' type='submit'
-                                class="discovery__search-form__submit
-                                       discovery__search-form__submit--small
-                                       discovery__search-form__submit--theme-1">
-                            <i class="discovery__search-form__submit__icon
-                                      fa fa-search"></i>
-                        </a>
-                    </form>
+
+                    <!--
+
+                    The following `<div>` is just a placeholder for the actual
+                    search for that JavaScript will insert for the teacher's
+                    discovery panel.
+
+                    -->
+
+                    <div id="teachers-search-form"></div>
+
                 </article>
 
             </section>
@@ -558,6 +526,7 @@ of course, means that JavaScript is available.
         <script src="scripts/collections/proposals.js"></script>
         <script src="scripts/views/searchForm.js"></script>
         <script src="scripts/routes/app.js"></script>
+        <script src="scripts/views/teacherSearch.js"></script>
         <!-- endbuild -->
 
 </body>
