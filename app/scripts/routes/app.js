@@ -19,10 +19,7 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-            '':         'landing',
-            'teachers': 'teachers',
-            'schools':  'schools',
-            'industry': 'industry'
+            '':         'landing'
         },
 
         // We use a convenience function to
@@ -46,7 +43,7 @@ Stem.Routers = Stem.Routers || {};
 
             $('.header').attr('data-section', id);
 
-            // CLose the navigation menu (in case it was
+            // Close the navigation menu (in case it was
             // used to trigger the page change).
 
             $('#nav-toggle').prop('checked', 0);
@@ -100,7 +97,6 @@ Stem.Routers = Stem.Routers || {};
             // hidden until the user navigates
             // to them.
 
-            this.teacher = new Stem.Views.Teachers().render();
         }
     });
 

@@ -1,0 +1,33 @@
+/**
+ * ## About
+ *
+ * An "about this site" block on the landing page
+ */
+
+.about {
+    background-color: @color-theme-0-white;
+    color:            @color-theme-0-dark;
+    margin: 0;
+    padding: @block-spacing 0;
+    @media @tablet {
+        padding: @block-spacing-tablet 0;
+    }
+    @media @desktop {
+        padding: @block-spacing-desktop 0;
+    }
+    text-align: center;
+}
+
+.about__heading {
+    .h4
+}
+
+.about__text {
+    margin: auto;
+    max-width: 40em;
+    padding: @block-spacing;
+    @media @tablet {
+        padding: @block-spacing-tablet;
+    }
+    text-align: center;
+}

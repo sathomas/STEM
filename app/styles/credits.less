@@ -8,6 +8,10 @@
     background-color: @color-theme-0-light;
     color:            @color-theme-0-dark;
     margin: 0;
+    padding-bottom: @block-spacing;
+    @media @tablet {
+        padding-bottom: @block-spacing-tablet;
+    }
     text-align: center;
 }
 
@@ -30,6 +34,7 @@
 
 .credits__rule {
     border: 1px solid @color-theme-0-medium;
+    box-sizing: border-box;
     margin-bottom: @block-spacing;
     @media @tablet {
         margin-bottom: @block-spacing-tablet;
@@ -56,8 +61,10 @@
 
 .credits__image {
     max-width: 400px;
+    width: 75%;
 }
 
 .credits__image--small {
     max-width: 150px;
+    width: 90%;
 }
