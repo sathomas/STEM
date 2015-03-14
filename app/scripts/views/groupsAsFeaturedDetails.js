@@ -65,7 +65,7 @@ Stem.Views = Stem.Views || {};
                 // link style to a regular button style.
 
                 this.$el.find('.featured__details__action a').
-                    removeClass('button--link');
+                    removeClass('button-link');
 
                 // Remove the "no groups" message.
 
@@ -135,7 +135,7 @@ Stem.Views = Stem.Views || {};
                 // OAE website) by changing its style.
 
                 this.$el.find('.featured__details__action a').
-                    addClass('button--link').
+                    addClass('button-link').
                     text('Search for more');
 
             }

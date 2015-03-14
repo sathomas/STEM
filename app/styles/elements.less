@@ -1,0 +1,92 @@
+/**
+ * ## Base Elements
+ *
+ * Styles for basic HTML elements such as anchors
+ * and buttons. These rules are essentially additional
+ * resets above and beyond normalize.css, as actual
+ * styles should be defined in blocks based on the
+ * BEM approach.
+ */
+
+
+/**
+ * Links:
+ * Reset links to the same color as the underlying
+ * content.
+ *
+ *     @example:
+ *     <p>
+ *       This paragraph contains
+ *       <a href="#">a link</a>
+ *     </p>
+ */
+
+/*
+a,
+a:link,
+a:visited,
+a:hover,
+a:focus,
+a:active {
+    color: inherit;
+}
+*/
+
+
+/**
+ * Buttons:
+ * Buttons styles apply not only to `<button>`
+ * elements, but also to `<a class="button">`
+ * links, as well as appropriate `<input>`
+ * elements. The only default styles defined
+ * determine the textual content of the buttons.
+ * Thematic styles such as colors and borders
+ * are left to individual themes.
+ *
+ * The `button-link` class styles a button like
+ * an anchor tag. It is useful to change a button
+ * (for accessing content within the site) to
+ * a link style (for leaving the site) when, for
+ * example, local content is exhausted. This may
+ * be more convenient thaN replacing the `<button>`
+ * with a full anchor tag `<a>`.
+ *
+ *     @example:
+ *     <button>Button</button>
+ *     <a href="#" class=button>Link button</a>
+ *     <input type="submit" value="Submit input">
+ *     <input type="reset" value="Reset input">
+ *     <input type="button" value="Button input">
+ *     <button class="button-link">Button as Link</button>
+ */
+
+.button {
+    .lnum;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    height: 38px;
+    line-height: 38px;
+    letter-spacing: .1rem;
+    padding: 0 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.button-link {
+    display: inline;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    letter-spacing: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+}
+

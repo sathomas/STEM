@@ -36,7 +36,7 @@ describe('ContentAsFeaturedDetailsItem View', function () {
     it('should include a link to the content with appropriate styling classes', function() {
         var $el = this.ContentAsFeaturedDetailsItemView.render().$el;
         $el.find('a').attr('href').should.equal(Stem.config.oae.protocol + '//' + Stem.config.oae.host + this.Content.get('profilePath'));
-        $el.find('a').hasClass('button button--link').should.be.true();
+        $el.find('a').hasClass('button button-link').should.be.true();
     });
 
 });

@@ -44,7 +44,7 @@ describe('CompletedProposalAsFeaturedDetailsItem View', function () {
     it('should include a link to the project with appropriate styling classes', function() {
         var $el = this.CompletedProposalAsFeaturedDetailsItem.render().$el;
         $el.find('a').attr('href').should.equal(this.Proposal.get('proposalURL'));
-        $el.find('a').hasClass('button button--link').should.be.true();
+        $el.find('a').hasClass('button button-link').should.be.true();
     });
 
     it('should include rouned total price in link text', function() {

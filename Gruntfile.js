@@ -27,6 +27,7 @@ module.exports = function (grunt) {
         dist: 'dist'
     };
 
+    // compile LESS in browser
     var lessCreateConfig = function (context, block) {
         var cfg = {files: []},
             outfile = path.join(context.outDir, block.dest),
@@ -57,12 +58,17 @@ module.exports = function (grunt) {
                 files: [
                     '<%= yeoman.app %>/*.html',
                     '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.css',
-                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.less',
                     '{.tmp,<%= yeoman.app %>}/scripts/{,*/}*.js',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
                     '<%= yeoman.app %>/scripts/templates/*.{ejs,mustache,hbs}',
                     'test/spec/**/*.js'
                 ]
+            },
+            less: {
+                files: [
+                    '{.tmp,<%= yeoman.app %>}/styles/{,*/}*.less'
+                ],
+                tasks: ['less'],
             },
             jst: {
                 files: [
@@ -140,9 +146,13 @@ module.exports = function (grunt) {
         less: {
             options: {
                 plugins: [
-                    new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]}),
-                    new (require('less-plugin-clean-css'))()
-                ],
+                    new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]})
+                ]
+            },
+            all: {
+                files: {
+                    "<%= yeoman.app %>/styles/main.css": "<%= yeoman.app %>/styles/main.less"
+                }
             }
         },
         csslint: {
@@ -252,6 +262,15 @@ module.exports = function (grunt) {
                         'fonts/{,*/}*.*',
                         'styles/fonts/{,*/}*.*'
                     ]
+                },{
+                    expand: true,
+                    cwd: '<%= yeoman.app %>',
+                    flatten: true,
+                    dest: '<%= yeoman.dist %>/fonts',
+                    src: [
+                        'CNAME',
+                        'bower_components/fontawesome/fonts/*.*'
+                    ]
                 }]
             },
             docs: {
@@ -269,6 +288,13 @@ module.exports = function (grunt) {
                     cwd: '<%= yeoman.app %>',
                     src: 'images/*.*',
                     dest: '<%= yeoman.dist %>/docs/styleguide/images/'
+                },{
+                    expand: true,
+                    dot: true,
+                    flatten: true,
+                    cwd: '<%= yeoman.app %>',
+                    src: 'fonts/*.*',
+                    dest: '<%= yeoman.dist %>/docs/styleguide/fonts/'
                 }]
             }
         },
@@ -305,9 +331,12 @@ module.exports = function (grunt) {
         },
         docco: {
             dist: {
-                src: ['app/scripts/**/*.js'],
+                src: [
+                    '<%= yeoman.app %>/scripts/**/*.js',
+                    '!<%= yeoman.app %>/scripts/keys.js'
+                ],
                 options: {
-                    output: 'dist/docs/js/'
+                    output: '<%= yeoman.dist %>/docs/js/'
                 }
             }
         }
@@ -340,6 +369,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'less',
             'createDefaultTemplate',
             'jst',
             'connect:livereload',
@@ -368,6 +398,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('docs', [
+        'less',
         'docco:dist',
         'styledown:dist',
         'copy:docs'
@@ -375,17 +406,18 @@ module.exports = function (grunt) {
 
     grunt.registerTask('lint', [
         'jshint',
+        'less',
         'csslint'
     ]);
 
     grunt.registerTask('build', [
         'clean:dist',
         'createDefaultTemplate',
+        'less',
         'jst',
         'useminPrepare',
         'imagemin',
         'htmlmin',
-        'less',
         'concat',
         'cssmin',
         'uglify',

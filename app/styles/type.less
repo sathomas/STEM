@@ -1,0 +1,411 @@
+/**
+ * ## Typography
+ *
+ * The site's primary font is [Raleway](https://www.theleagueofmoveabletype.com/raleway)
+ * from [Font Squirrel](http://www.fontsquirrel.com/fonts/raleway).
+ * Standard sans serif fallbacks are defined as well. The style sheets
+ * use relative ems (`rem`) measurements based on `10px` sizing, so,
+ * for example, `1.5rem = 15px`. For browsers that don't support
+ * `rem` units, we don't define any fallbacks so all content will
+ * revert to the browser defaults. (We do, however, ensure that the
+ * default size is `15px`.)
+ */
+
+
+/*
+ * Since we're only supporting modern browsers for this demo site,
+ * we only bother with WOFF format. We've also commented out those
+ * weights that aren't (currently) used. Even though browsers don't
+ * download unused font families, they *do* download all defined
+ * weights of families that are used.
+ */
+
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   normal;
+//  font-weight:  900;
+//  src:          url('../fonts/raleway-lnum-900-black.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-900-black.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  900;
+//  src:          url('../fonts/raleway-lnum-900-black-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-900-black-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   normal;
+//  font-weight:  800;
+//  src:          url('../fonts/raleway-lnum-800-extrabold.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-800-extrabold.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  800;
+//  src:          url('../fonts/raleway-lnum-800-extrabold-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-800-extrabold-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   normal;
+//  font-weight:  700;
+//  src:          url('../fonts/raleway-lnum-700-bold.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-700-bold.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  700;
+//  src:          url('../fonts/raleway-lnum-700-bold-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-700-bold-italic.woff') format('woff');
+//}
+@font-face {
+  font-family: 'Raleway lnum';
+  font-style:   normal;
+  font-weight:  600;
+  src:          url('../fonts/raleway-lnum-600-semibold.woff2') format('woff2'),
+                url('../fonts/raleway-lnum-600-semibold.woff') format('woff');
+}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  600;
+//  src:          url('../fonts/raleway-lnum-600-semibold-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-600-semibold-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   normal;
+//  font-weight:  500;
+//  src:          url('../fonts/raleway-lnum-500-medium.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-500-medium.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  500;
+//  src:          url('../fonts/raleway-lnum-500-medium-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-500-medium-italic.woff') format('woff');
+//}
+@font-face {
+  font-family: 'Raleway lnum';
+  font-style:   normal;
+  font-weight:  400;
+  src:          url('../fonts/raleway-lnum-400-regular.woff2') format('woff2'),
+                url('../fonts/raleway-lnum-400-regular.woff') format('woff');
+}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  400;
+//  src:          url('../fonts/raleway-lnum-400-regular-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-400-regular-italic.woff') format('woff');
+//}
+@font-face {
+  font-family: 'Raleway lnum';
+  font-style:   normal;
+  font-weight:  300;
+  src:          url('../fonts/raleway-lnum-300-light.woff2') format('woff2'),
+                url('../fonts/raleway-lnum-300-light.woff') format('woff');
+}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  300;
+//  src:          url('../fonts/raleway-lnum-300-light-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-300-light-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   normal;
+//  font-weight:  200;
+//  src:          url('../fonts/raleway-lnum-200-extralight.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-200-extralight.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  200;
+//  src:          url('../fonts/raleway-lnum-200-extralight-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-200-extralight-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   normal;
+//  font-weight:  100;
+//  src:          url('../fonts/raleway-lnum-100-thin.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-100-thin.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway lnum';
+//  font-style:   italic;
+//  font-weight:  100;
+//  src:          url('../fonts/raleway-lnum-100-thin-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-lnum-100-thin-italic.woff') format('woff');
+//}
+
+
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   normal;
+//  font-weight:  900;
+//  src:          url('../fonts/raleway-900-black.woff2') format('woff2'),
+//                url('../fonts/raleway-900-black.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  900;
+//  src:          url('../fonts/raleway-900-black-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-900-black-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   normal;
+//  font-weight:  800;
+//  src:          url('../fonts/raleway-800-extrabold.woff2') format('woff2'),
+//                url('../fonts/raleway-800-extrabold.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  800;
+//  src:          url('../fonts/raleway-800-extrabold-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-800-extrabold-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   normal;
+//  font-weight:  700;
+//  src:          url('../fonts/raleway-700-bold.woff2') format('woff2'),
+//                url('../fonts/raleway-700-bold.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  700;
+//  src:          url('../fonts/raleway-700-bold-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-700-bold-italic.woff') format('woff');
+//}
+@font-face {
+  font-family: 'Raleway';
+  font-style:   normal;
+  font-weight:  600;
+  src:          url('../fonts/raleway-600-semibold.woff2') format('woff2'),
+                url('../fonts/raleway-600-semibold.woff') format('woff');
+}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  600;
+//  src:          url('../fonts/raleway-600-semibold-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-600-semibold-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   normal;
+//  font-weight:  500;
+//  src:          url('../fonts/raleway-500-medium.woff2') format('woff2'),
+//                url('../fonts/raleway-500-medium.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  500;
+//  src:          url('../fonts/raleway-500-medium-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-500-medium-italic.woff') format('woff');
+//}
+@font-face {
+  font-family: 'Raleway';
+  font-style:   normal;
+  font-weight:  400;
+  src:          url('../fonts/raleway-400-regular.woff2') format('woff2'),
+                url('../fonts/raleway-400-regular.woff') format('woff');
+}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  400;
+//  src:          url('../fonts/raleway-400-regular-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-400-regular-italic.woff') format('woff');
+//}
+@font-face {
+  font-family: 'Raleway';
+  font-style:   normal;
+  font-weight:  300;
+  src:          url('../fonts/raleway-300-light.woff2') format('woff2'),
+                url('../fonts/raleway-300-light.woff') format('woff');
+}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  300;
+//  src:          url('../fonts/raleway-300-light-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-300-light-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   normal;
+//  font-weight:  200;
+//  src:          url('../fonts/raleway-200-extralight.woff2') format('woff2'),
+//                url('../fonts/raleway-200-extralight.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  200;
+//  src:          url('../fonts/raleway-200-extralight-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-200-extralight-italic.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   normal;
+//  font-weight:  100;
+//  src:          url('../fonts/raleway-100-thin.woff2') format('woff2'),
+//                url('../fonts/raleway-100-thin.woff') format('woff');
+//}
+//@font-face {
+//  font-family: 'Raleway';
+//  font-style:   italic;
+//  font-weight:  100;
+//  src:          url('../fonts/raleway-100-thin-italic.woff2') format('woff2'),
+//                url('../fonts/raleway-100-thin-italic.woff') format('woff');
+//}
+
+
+
+/* Force base font size of 10px for document */
+
+html {
+    font-size: 62.5%;
+}
+
+
+/**
+ * Base:
+ * Standard font size is 15px (1.5rem) with a 24px
+ * line height.
+ *
+ *     @example:
+ *     <p>
+ *        The quick brown fox jumped over the lazy dog.<br/>
+ *        Sixty zippers were quickly picked from the woven jute bag.
+ *     </p>
+ */
+
+
+body {
+    color: #222;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 150%; /* don't use rems here only; for browers without rem support */
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+
+/**
+ * Lining Numbers:
+ * The standard font uses old style numbers. To force
+ * lining numbers, add the class `lnum` (which is the
+ * commom typographers' abbreviation for lining numbers).
+ *
+ *     @example:
+ *     <p>
+ *        These are standard numbers: 0123456789
+ *     </p>
+ *     <p class='lnum'>
+ *        These are lining numbers: 0123456789
+ *     </p>
+ */
+
+/*
+ * Until browsers support open type features (I'm
+ * looking at you Safari.), we have to do this with
+ * a separate font file. Yuck. We do fall back to
+ * old style numbers and turn on the feature as a
+ * backup.
+ */
+
+.lnum {
+    font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+
+/**
+ * Headings:
+ * Headings use a slightly lighter font weight and specific line
+ * heights and letter spacings tailored for the Raleway font
+ * (but not so extreme as to be illegible if a font fallback
+ * is required). We start with relatively modest font sizes
+ * for mobile devices and then increase the sizes a bit for
+ * tablets and larger.
+ *
+ *     @example:
+ *     <h1>This is a first level heading</h1>
+ *     <h2>This is a second level heading</h2>
+ *     <h3>This is a third level heading</h3>
+ *     <h4>This is a fourth level heading</h4>
+ *     <h5>This is a fifth level heading</h5>
+ *     <h6>This is a sixth level heading</h6>
+ */
+
+/* Generic heading styles */
+.heading() {
+    font-weight: 300;
+    margin-bottom: 2rem;
+    margin-top: 0;
+}
+
+.h1 {
+    .heading();
+    font-size: 4.0rem;
+    @media @desktop { font-size: 5.0rem; }
+    letter-spacing: -.1rem;
+    line-height: 1.2;
+}
+.h2 {
+    .heading();
+    font-size: 3.6rem;
+    @media @desktop { font-size: 4.2rem; }
+    letter-spacing: -.1rem;
+    line-height: 1.25;
+}
+.h3 {
+    .heading();
+    font-size: 3.0rem;
+    @media @desktop { font-size: 3.6rem; }
+    letter-spacing: -.1rem;
+    line-height: 1.3;
+}
+.h4 {
+    .heading();
+    font-size: 2.4rem;
+    @media @desktop { font-size: 3.0rem; }
+    letter-spacing: -.08rem;
+    line-height: 1.35;
+}
+.h5 {
+    .heading();
+    font-size: 1.8rem;
+    @media @desktop { font-size: 2.4rem; }
+    letter-spacing: -.05rem;
+    line-height: 1.5;
+}
+.h6 {
+    .heading();
+    font-size: 1.5rem;
+    @media @desktop { font-size: 1.5rem; }
+    letter-spacing: 0;
+    line-height: 1.6;
+}
+
+h1 { .h1 }
+h2 { .h2 }
+h3 { .h3 }
+h4 { .h4 }
+h5 { .h5 }
+h6 { .h6 }

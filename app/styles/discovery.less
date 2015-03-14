@@ -1,0 +1,253 @@
+/**
+ * ## Discovery
+ *
+ * Discovery blocks on the landing page and
+ * the navigation that selectively displays
+ * them.
+ */
+
+.discovery-nav {
+    .row;
+    display: none;
+    @media @desktop { display: flex; }
+    min-height: 520px;
+}
+
+.discovery-nav__radio {
+    .zero-columns;
+    display: none;
+}
+
+.discovery-nav__label {
+    .one-sixth-column;
+    align-items: flex-start;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: @block-spacing @block-spacing ~"calc(10.3% + @{block-spacing})" @block-spacing;
+    @media @tablet { padding: @block-spacing-tablet @block-spacing-tablet ~"calc(10.3% + @{block-spacing-tablet})" @block-spacing-tablet; }
+    @media @desktop { padding: @block-spacing-desktop @block-spacing-desktop ~"calc(10.3% + @{block-spacing-desktop})" @block-spacing-desktop; }
+}
+
+.discovery-nav__label__more {
+    .lnum;
+    background-color: @color-theme-0-white;
+    border: none;
+    border-radius: @border-radius;
+    box-sizing: border-box;
+    color: @color-theme-0-black;
+    cursor: pointer;
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    height: 38px;
+    line-height: 38px;
+    letter-spacing: .1rem;
+    margin-top: @block-spacing-desktop;
+    padding: 0 30px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.discovery-nav__radio:checked + .discovery-nav__label {
+    .two-thirds-column;
+    align-items: flex-end;
+    background-position: top;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    font-size: 3rem;
+    justify-content: center;
+    padding-bottom: @block-spacing;
+    @media @tablet { padding-bottom: @block-spacing-tablet; }
+    @media @desktop { padding-bottom: @block-spacing-desktop; }
+    position: relative;
+    text-align: center;
+    vertical-align: bottom;
+    .discovery-nav__label__more { display: none; }
+}
+
+.discovery-nav__label--theme-1 {
+    background-color: @color-theme-1-primary-bg;
+    background-image: url(../images/theme-1.jpg);
+    color:            @color-theme-1-primary-fg;
+}
+
+.discovery-nav__label--theme-2 {
+    background-color: @color-theme-2-primary-bg;
+    background-image: url(../images/theme-2.jpg);
+    color:            @color-theme-2-primary-fg;
+}
+
+.discovery-nav__label--theme-3 {
+    background-color: @color-theme-3-primary-bg;
+    background-image: url(../images/theme-3.jpg);
+    color:            @color-theme-3-primary-fg;
+}
+
+
+.discovery {
+    background-color: @color-theme-0-light;
+    color:            @color-theme-0-dark;
+    margin: 0;
+    padding-bottom:   @block-spacing;
+    @media @tablet  { padding-bottom: @block-spacing-tablet;  }
+    @media @desktop { padding-bottom: @block-spacing-desktop; }
+    text-align: center;
+}
+
+.discovery__heading {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+    padding: @block-spacing;
+    @media @desktop {
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+    }
+}
+
+.discovery__heading--theme-1 {
+    background-color: @color-theme-1-primary-bg;
+    color:            @color-theme-1-primary-fg;
+}
+
+.discovery__heading--theme-2 {
+    background-color: @color-theme-2-primary-bg;
+    color:            @color-theme-2-primary-fg;
+}
+
+.discovery__heading--theme-3 {
+    background-color: @color-theme-3-primary-bg;
+    color:            @color-theme-3-primary-fg;
+}
+
+.discovery__search-form {
+    padding: @block-spacing;
+    @media @tablet  { padding: @block-spacing-tablet;  }
+    @media @desktop { padding: @block-spacing-desktop; }
+}
+
+
+.discovery__search-form__label {
+    .h4;
+    display: block;
+    width: 100%;
+}
+
+.discovery__search-form__input {
+    border: 1px solid  @color-theme-0-medium;
+    border-radius: @border-radius-large;
+    border-bottom-right-radius: 0;
+    border-right: none;
+    border-top-right-radius: 0;
+    display: none;
+    @media @desktop { display: inline-block; }
+    box-sizing: border-box;
+    font-size: 2rem;
+    height: 4rem;
+    max-width: 600px;
+    margin: 0 auto @block-spacing auto;
+    padding: 0 10px 0 20px;
+    width: calc(100% - 41px);
+}
+
+.discovery__search-form__input--small {
+    display: inline-block;
+    @media @desktop { display: none; }
+    width: calc(100% - 31px);
+}
+
+.discovery__search-form__submit {
+    .lnum;
+    border: 1px solid transparent;
+    border-radius: @border-radius-large;
+    border-bottom-left-radius: 0;
+    border-left: none;
+    border-top-left-radius: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: none;
+    @media @desktop { display: inline-block; }
+    font-size: 1.8rem;
+    font-weight: 600;
+    height: 4rem;
+    letter-spacing: .1rem;
+    line-height: 2.2;
+    margin: 0 auto;
+    padding: 0 1em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: 120px;
+}
+
+.discovery__search-form__submit--small {
+    box-sizing: border-box;
+    display: inline-block;
+    @media @desktop { display: none; }
+    padding: 0 10px;
+    width: 40px;
+}
+
+.discovery__search-form__submit--theme-1 {
+    background-color: @color-theme-1-primary-bg;
+    color:            @color-theme-1-primary-fg;
+}
+
+.discovery__options {
+}
+
+.discovery__option {
+    display: inline-block;
+    padding: 0 @block-spacing;
+    @media @tablet  { padding: 0 @block-spacing-tablet; }
+    @media @desktop { padding: 0 @block-spacing-desktop; }
+}
+
+.discovery__option__icon {
+    display: block;
+    font-size: 4rem;
+    opacity: 0.5;
+    padding: @block-spacing 0;
+    @media @tablet  { padding: @block-spacing-tablet 0; }
+    @media @desktop { padding: @block-spacing-desktop 0; }
+}
+
+.discovery__option__button {
+    .lnum;
+    border: 1px solid transparent;
+    border-radius: @border-radius-large;
+    box-sizing: border-box;
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    height: 4rem;
+    letter-spacing: .1rem;
+    line-height: 2;
+    margin: 0 auto;
+    padding: 0 1em;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.discovery__option__button--theme-1 {
+    background-color: @color-theme-1-primary-bg;
+    color:            @color-theme-1-primary-fg;
+}
+
+.discovery__option__text {
+    font-size: 2rem;
+    margin: @block-spacing auto;
+    @media @tablet  { margin: @block-spacing-tablet auto; }
+    @media @desktop { margin: @block-spacing-desktop auto; }
+    max-width: 10em;
+}

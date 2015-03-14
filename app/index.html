@@ -1,29 +1,53 @@
 <!doctype html>
+
+<!--
+Note that `no-js` is a required class for the `<html>` element.
+The CSS styles depend on this class to enable rules that
+apply with JavaScript is disabled or not available. Modernizr.js
+will remove the class if it is able to run successfully (which,
+of course, means that JavaScript is available.
+-->
+
 <html class="no-js">
+
     <head>
+        <!--
+        ==================
+        HTML5 Head Content
+        ==================
+        -->
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Georgia K-12 STEM Incubator</title>
+        <title>Georgia STEM Incubator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- ========== Custom Fonts from CDNs ========== -->
-        <link rel="stylesheet" type="text/css"
-              href="http://fonts.googleapis.com/css?family=Raleway:400,300,600">
-        <link rel="stylesheet" type="text/css"
-              href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <!-- ========== Style Sheets ========== -->
 
-        <!-- ========== Third Party Style Sheets ========== -->
-        <!-- build:css styles/vendor.css -->
+        <!--
+        In production builds, usemin will concatenate and minify
+        the individual stylesheets listed below. As this point
+        we're not going the further step and inlining above-the-fold
+        styles. That decision can be revisited once the initial
+        design is complete and the size of the full CSS stylesheet
+        is known.
+        -->
+
+        <!-- build:css styles/styles.css -->
         <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
+        <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
+        <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 
-        <!-- ========== Custom Style Sheets ========== -->
-        <!-- build:less styles/main.css -->
-        <link rel="stylesheet/less" type="text/css" href="styles/main.less">
-        <!-- endbuild -->
+        <!--
+        In production builds, usemin will concatenate and minify
+        any individual scripts listed below. Since any scripts
+        loaded here block rendering, we want to keep this as minimal
+        as possible.
+        -->
 
-        <!-- ========== Third Party JavaScript for Head ========== -->
-        <!-- build:js scripts/vendor/modernizr.js -->
+        <!-- ========== Synchronous JavaScript (required in <head>) ========== -->
+        <!-- build:js scripts/scripts.1.js -->
         <script src="bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
 
@@ -34,32 +58,79 @@
         =======================
         HTML Markup Starts Here
         =======================
+
+        This site is constructed as a single page web application, which means
+        that all the content for all of the sites "pages" is in this single
+        HTML file. What appear to the user as "pages" are simply `<section>`
+        elements in this file. A single `<header>` and `<footer>` enclose all
+        of the sections.
+
         -->
 
         <!--
-        ==============
-        Navigation Bar
-        ==============
+        =================================
+        Header (including Navigation Bar)
+        =================================
+
+        The site `<header>` includes a branding element and main navigation.
+        The branding element is clickable (to return to the "landing page"),
+        and the navigation supports each of the three major user personas.
+        Initially, the navigation links are hashtags to `id`s within the
+        landing page panels. This linkage allows the site to function
+        (a) if JavaScript fails or has been disabled by the user, and (b)
+        on devices whose screen width is too small to implement the
+        full tab panel.
+
         -->
 
-        <header class="header" role="banner">
-            <h1 class="header__brand theme-brand--dark">
-                <span class="brand__border theme-brand__border--dark">
-                    <a href="#">The Georgia<br/>STEM Incubator</a>
+        <header role="banner" class="header header--theme-1-dark">
+            <h1 class="header__brand">
+                <span class="header__brand__border">
+                    <a href="#" class="header__brand__link">
+                        The Georgia<br/>STEM Incubator
+                    </a>
                 </span>
             </h1>
-            <nav role="navigation">
-                <input type="checkbox" id="nav-toggle" />
-                <label for="nav-toggle"></label>
-                <ul>
-                    <li class="navlink__teachers">
-                        <a href="#teachers">Teachers</a>
+            <nav role="navigation" class="header__navbar">
+
+                <!--
+
+                To control the collapse/expand state of the navigation
+                bar in a smaller viewport, we use a hidden checkbox.
+                This approach is pure CSS, so we don't need any
+                JavaScript code to deal with the navbar. (There is,
+                however, a small JavaScript enhancement that improves
+                the experience just a bit. It's not required, though.)
+
+                -->
+
+                <input type="checkbox" id="nav-toggle" aria-hidden="true"
+                       class="header__navbar__checkbox"/>
+                <label for="nav-toggle" aria-hidden="true"
+                       class="header__navbar__label"></label>
+
+                <!--
+
+                The navigation menu options themselves are simply an
+                unordered list. CSS turns the list into a navbar.
+
+                -->
+
+                <ul class="header__navbar__list">
+                    <li class="header__navbar__item header__navbar__item--theme-1-dark">
+                        <a href="#teachers" class="header__navbar__link">
+                            Teachers
+                        </a>
                     </li>
-                    <li class="navlink__schools">
-                        <a href="#schools">Administrators</a>
+                    <li class="header__navbar__item header__navbar__item--theme-2-dark">
+                        <a href="#schools" class="header__navbar__link">
+                            Administrators
+                        </a>
                     </li>
-                    <li class="navlink__industry">
-                        <a href="#industry">Partners</a>
+                    <li class="header__navbar__item header__navbar__item--theme-3-dark">
+                        <a href="#industry" class="header__navbar__link">
+                            Partners
+                        </a>
                     </li>
                 </ul>
             </nav>
@@ -69,6 +140,11 @@
         =================
         Main Page Content
         =================
+
+        The main page content follows the header. As noted above, that content
+        is a series of `<section>` elements, where each section acts (to the
+        user) as a distinct web page.
+
         -->
 
         <main role="main">
@@ -80,502 +156,301 @@
             -->
 
             <section id="landing" aria-labelledby="landing-page-heading">
-                <h2 id="landing-page-heading" class="sr-only">Overview Section</h2>
-                <div class="container">
-                    <div class="row">
-                        <div class="call-to-action two-thirds column theme-teachers">
-                            <div class="inset">
-                                <h3>Support from other teachers just like you</h3>
-                                <p>
-                                    Download units, share and discuss resources,
-                                    participate in professional learning, and
-                                    crowdfund your school project
-                                </p>
-                            </div>
-                            <div>
-                                <div class="inset-horizontal">
-                                    <a class="button" href="#teachers">Discover</a>
-                                </div>
-                                <div class="call-to-action__image" role="image">
-                                    <span class="call-to-action__image-spacer"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="call-to-action one-sixth column theme-schools">
-                            <div class="inset">
-                                <p>
-                                    Find professional learning opportunities,
-                                    build partnerships, collaborate across the state
-                                </p>
-                            </div>
-                            <div>
-                                <div class="inset-horizontal">
-                                    <a class="button" href="#schools">More</a>
-                                </div>
-                                <div class="call-to-action__image" role="image">
-                                    <span class="call-to-action__image-spacer"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="call-to-action one-sixth column theme-industry">
-                            <div class="inset">
-                                <p>
-                                    Partner with schools, build your community­ minded
-                                    brand, promote change for a new generation of
-                                    workforce
-                                </p>
-                            </div>
-                            <div>
-                                <div class="inset-horizontal">
-                                    <a class="button" href="#industry">More</a>
-                                </div>
-                                <div class="call-to-action__image" role="image">
-                                    <span class="call-to-action__image-spacer"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="two-thirds column theme-neutral--light">
-                            <div class="inset">
-                                <h4>About the STEM Incubator</h4>
-                                <p>
-                                    The movement to advance STEM education in Georgia is
-                                    gaining momentum, but it can still be difficult to find
-                                    potential partners and quality resources. The
-                                    Incubator's mission is to spur innovation in STEM
-                                    education through reflective practice, professional
-                                    learning, and collaboration.
-                                </p>
-                            </div>
-                            <div class="theme-neutral--white">
-                                <div class="inset">
-                                    <h4>
-    	                                <span class="muted">Funded by</span><br/>
-    	                                The Governor’s Office of Student Achievement
-    	                            </h4>
-                                    <div class="medium-logo medium-logo--flush">
-    	                                <a href="http://www.donorschoose.org">
-    		                                <img src="images/gosa.svg">
-    	                                </a>
-                                    </div>
-                                    <p>
-    	                                The Governor's Office of Student Achievement (GOSA)
-    	                                strives to increase student achievement and school
-    	                                completion across Georgia through meaningful,
-    	                                transparent, and objective analysis and communication
-    	                                of statewide data.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="one-third column theme-neutral">
-                            <div class="inset">
-                                <h4>Powered by</h4>
-                                <div class="medium-logo">
-	                                <a href="http://oaeproject.org">
-	                                	<img src="images/oae.svg">
-	                                </a>
-	                            </div>
-                                <div class="medium-logo">
-	                                <a href="http://www.brightspace.com">
-		                                <img src="images/brightspace.svg">
-		                            </a>
-	                            </div>
-                                <div class="medium-logo">
-	                                <a href="http://www.donorschoose.org">
-		                                <img src="images/donorschoose.svg">
-	                                </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
-            <!--
-            =============
-            Teachers Page
-            =============
-            -->
+                <!--
 
-            <section id="teachers" class="theme-teachers-highlight"
-                     aria-labelledby="teachers-page-heading">
-                <h2 id="teachers-page-heading" class="sr-only">Teachers' Section</h2>
-                <div class="container">
-                    <div class="row">
-                        <div class="one-full column theme-neutral--light">
-                            <article>
-                                <h3 class="center">Explore teacher resources</h3>
-                                <form id="grade-selection" class="horizontal-selection center">
-                                </form>
-                            </article>
-                        </div>
-                    </div>
-                    <div id="teachers-featured" class="row featured theme-neutral"
-                         data-featured-selection="0">
+                We provide a heading for the section to orient users relying
+                on screen readers, since, for them, it won't be obvious that
+                the site is organized as sections representing separate pages.
+                To visual users, however, the organization should be apparent,
+                so the heading is only required for screen readers.
 
-                        <!--
-                        -------------
-                           Content
-                        -------------
-                        -->
+                This pattern repeats for all sections and articles in the page,
+                although some headings are not always hidden from visual users.
 
-                        <div class="one-fourth column featured__item" data-featured-item="1">
-                            <div class="featured__image" role="image"
-                                 style="background-image:url(images/content.jpg)">
-                                <span class="featured__image-spacer"></span>
-                            </div>
-                            <div class="featured__text">
-                                <h3 class="featured__title">Resources</h3>
-                                <p>
-                                    Find, download, share, and discuss
-                                    learning materials from schools around
-                                    Georgia and other teachers just like you.
-                                </p>
+                -->
 
-                                <!--
-                                Use an anchor tag with a direct link to the
-                                OAE in case JavaScript is disabled. The app
-                                will override the default behavior when it
-                                runs.
-                                -->
-                                <a class="button button--large button--link"
-                                   data-featured-toggle="1"
-                                   href="https://stemincubator.oae-qa1.oaeproject.org/search/?types=content">
-                                    Show me
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="one-fourth column featured__details featured__details__sidebar"
-                             data-featured-details="1">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
-                            <div id="content-tags"></div>
-                            <div id="content-grades"></div>
-                        </div>
-                        <div id="content-details"
-                             class="three-fourths column featured__details featured__details__main"
-                             data-featured-details="1">
-                        </div>
-
-                        <!--
-                        ---------------------------
-                           Professional Learning
-                        ---------------------------
-                        -->
-
-                        <div class="one-fourth column featured__item" data-featured-item="2">
-                            <div class="featured__image" role="image"
-                                 style="background-image:url(images/workshops.jpg)">
-                                <span class="featured__image-spacer"></span>
-                            </div>
-                            <div class="featured__text">
-                                <h3 class="featured__title">Professional Learning</h3>
-                                <p>
-                                    Find and register for online courses,
-                                    workshops, and other professional
-                                    learning opportunities.
-                                </p>
-                                <a class="button button--large button--link"
-                                   data-featured-toggle="2"
-                                   href="https://gatech.brightspace.com">
-                                    Show me
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="one-fourth column featured__details" data-featured-details="2">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
-                            <form class="vertical-selection">
-                                <fieldset>
-                                    <label class="vertical-selection__label">Learning Options:</label>
-                                    <input type="checkbox" id="cb-online"/>
-                                    <label class="vertical-selection__item-label" for="cb-online">Online course</label>
-                                    <input type="checkbox" id="cb-workshop"/>
-                                    <label class="vertical-selection__item-label" for="cb-workshop">In-person workshop</label>
-                                    <input type="checkbox" id="cb-summer"/>
-                                    <label class="vertical-selection__item-label" for="cb-summer">Summer institute</label>
-                               </fieldset>
-                            </form>
-                        </div>
-                        <div class="three-fourths column featured__details" data-featured-details="2">
-                            <h3 class="featured__details__heading">Selected Learning Opportunities</h3>
-                            <div class="featured__details__item">
-                                <div class="featured__details__image">
-                                    <img src="images/placeholder.png" width="100" height="100"/>
-                                </div>
-                                <div class="featured__details__text">
-                                    <h4 class="featured__details__title">Title of workshop</h4>
-                                    <p>
-                                        Description of the workshop as pulled directly
-                                        from the API of Brightspace. It could be
-                                        long or brief as appropriate. Presumably it
-                                        will be confined to a single paragraph.
-                                        Description of the workshop as pulled directly
-                                        from the API of Brightspace. It could be
-                                        long or brief as appropriate. Presumably it
-                                        will be confined to a single paragraph.
-                                    </p>
-                                    <p>
-                                        <a href="#" class="button button--link">More details</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="featured__details__item">
-                                <div class="featured__details__image">
-                                    <img src="images/placeholder.png" width="100" height="100"/>
-                                </div>
-                                <div class="featured__details__text">
-                                    <h4 class="featured__details__title">Title of workshop</h4>
-                                    <p>
-                                        Description of the workshop as pulled directly
-                                        from the API of Brightspace.
-                                    </p>
-                                    <p>
-                                        <a href="#" class="button button--link">More details</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="featured__details__item">
-                                <div class="featured__details__image">
-                                    <img src="images/placeholder.png" width="100" height="100"/>
-                                </div>
-                                <div class="featured__details__text">
-                                    <h4 class="featured__details__title">Title of workshop</h4>
-                                    <p>
-                                        Description of the workshop as pulled directly
-                                        from the API of Brightspace. It could be
-                                        long or brief as appropriate. Presumably it
-                                        will be confined to a single paragraph.
-                                    </p>
-                                    <p>
-                                        <a href="#" class="button button--link">More details</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="featured__details__item">
-                                <div class="featured__details__image">
-                                    <img src="images/placeholder.png" width="100" height="100"/>
-                                </div>
-                                <div class="featured__details__text">
-                                    <h4 class="featured__details__title">Title of workshop</h4>
-                                    <p>
-                                        Description of the workshop as pulled directly
-                                        from the API of Brightspace. It could be
-                                        long or brief as appropriate. Presumably it
-                                        will be confined to a single paragraph.
-                                    </p>
-                                    <p>
-                                        <a href="#" class="button button--link">More details</a>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--
-                        --------------
-                            Groups
-                        --------------
-                        -->
-
-                        <div class="one-fourth column featured__item" data-featured-item="3">
-                            <div class="featured__image" role="image"
-                                 style="background-image:url(images/groups.jpg)">
-                                <span class="featured__image-spacer"></span>
-                            </div>
-                            <div class="featured__text">
-                                <h3 class="featured__title">People</h3>
-                                <p>
-                                    Find a partner, work with a collaborative team,
-                                    or compare notes with peers on topics of shared
-                                    interest.
-                                </p>
-
-                                <!--
-                                Use an anchor tag with a direct link to the
-                                OAE in case JavaScript is disabled. The app
-                                will override the default behavior when it
-                                runs.
-                                -->
-                                <a class="button button--large button--link"
-                                   data-featured-toggle="3"
-                                   href="https://stemincubator.oae-qa1.oaeproject.org/search/?types=group">
-                                    Show me
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="one-fourth column featured__details featured__details__sidebar"
-                             data-featured-details="3">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
-                            <div id="group-tags"></div>
-                            <div id="group-grades"></div>
-                        </div>
-                        <div id="group-details"
-                             class="three-fourths column featured__details featured__details__main"
-                             data-featured-details="3">
-                        </div>
-
-                        <!--
-                        -------------
-                           Funding
-                        -------------
-                        -->
-
-                        <div class="one-fourth column featured__item" data-featured-item="4">
-                            <div class="featured__image" role="image"
-                                 style="background-image:url(images/crowdfunding.jpg)">
-                                <span class="featured__image-spacer"></span>
-                            </div>
-                            <div class="featured__text">
-                                <h3 class="featured__title">Fund your project</h3>
-                                <p>
-                                    See how other teachers in your area
-                                    are getting their class projects
-                                    funded, and submit your own.
-                                </p>
-
-                                <!--
-                                Use an anchor tag with a direct link to Donors
-                                Choose in case JavaScript is disabled. The app
-                                will override the default behavior when it
-                                runs.
-                                -->
-                                <a class="button button--large button--link"
-                                   data-featured-toggle="4"
-                                   href="http://www.donorschoose.org/teachers">
-                                    Tell me more
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="one-fourth column featured__details featured__details__sidebar"
-                             data-featured-details="4">
-                            <span class="featured__details__close" data-featured-close>&times;</span>
-                            <div class="inset">
-                                <img class="medium-logo medium-logo--flush" src="images/donorschoose.svg">
-                                <p>
-                                    DonorsChoose.org lets you share your classroom needs
-                                    with a thriving community eager to help. Supporters
-                                    have brought teachers' ideas to life in more than
-                                    half of all U.S. public schools.
-                                </p>
-                                <a class="button button--large button--link"
-                                   href="https://secure.donorschoose.org/wizard/addressWizard.html">
-                                    Propose a project
-                                </a>
-                            </div>
-                        </div>
-                        <div id="proposals-details"
-                             class="three-fourths column featured__details featured__details__main"
-                             data-featured-details="4">
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
-            <!--
-            ============
-            Schools Page
-            ============
-            -->
-
-            <section id="schools" class="theme-schools-highlight"
-                     aria-labelledby="schools-page-heading">
-                <h2 id="schools-page-heading" class="sr-only">
-                    School Administrators' Section
+                <h2 id="landing-page-heading" class="util--sr-only">
+                    Overview Section
                 </h2>
-                <p class="inset">No content here for now</p>
-            </section>
 
-            <!--
-            =============
-            Industry Page
-            =============
-            -->
+                <!--
 
-            <section id="industry" class="theme-industry-highlight"
-                     aria-labelledby="industry-page-heading">
-                <h2 id="industry-page-heading" class="sr-only">
-                    Industry Partners' Section
-                </h2>
-                <p class="inset">No content here for now</p>
+                The landing page (when displayed on a desktop viewport) has
+                an internal navigation block to control the display of a
+                selected discovery block. That navigation block is functionally
+                a set of radio boxes that operate as tabs. (The discovery
+                blocks themselves are the tab panels.) Although it would be
+                possible to control the panel visibility with just CSS, doing
+                so would require some serious contortions to the markup
+                structure. If JavaScript isn't available, we're better off
+                simply making all the tab panels visible (they'll stack
+                vertically) anyway. As a result, we can keep the markup sane
+                and separate the tabs from the tab panels.
+
+                -->
+
+                <nav role="navigation" class="discovery-nav">
+                    <input type="radio" name="discovery-nav" id="discovery-nav-teachers"
+                           class="discovery-nav__radio"
+                           checked="checked"/>
+                    <label for="discovery-nav-teachers"
+                           class="discovery-nav__label discovery-nav__label--theme-1">
+                        <span class="discovery-nav__label__text">
+                            Support from other teachers just like you
+                        </span>
+                        <span class="discovery-nav__label__more">More</span>
+                    </label>
+                    <input type="radio" name="discovery-nav" id="discovery-nav-schools"
+                           class="discovery-nav__radio"/>
+                    <label for="discovery-nav-schools"
+                           class="discovery-nav__label discovery-nav__label--theme-2">
+                        <span>
+                            Find professional learning opportunities,
+                            build partnerships, collaborate across the
+                            state
+                        </span>
+                        <span class="discovery-nav__label__more">More</span>
+                    </label>
+                    <input type="radio" name="discovery-nav" id="discovery-nav-industry"
+                           class="discovery-nav__radio"/>
+                    <label for="discovery-nav-industry"
+                           class="discovery-nav__label discovery-nav__label--theme-3">
+                        <span>
+                            Partner with schools, build your community-minded
+                            brand, promote change for a new generation of
+                            workforce
+                        </span>
+                        <span class="discovery-nav__label__more">More</span>
+                    </label>
+                </nav>
+
+                <!--
+
+                The landing page section consists of several blocks of content.
+                Each of these content blocks is contained within an `<article>`
+                element.
+
+                -->
+
+                <article id="teachers" class="discovery" aria-labelledby="teachers-heading">
+                    <h3 id="teachers-heading"
+                        class="discovery__heading discovery__heading--theme-1">
+                        Supporting teachers
+                    </h3>
+                    <form action="https://stemincubator.oaeproject.org/search/"
+                          id="teachers-search" method="get" target="_top" role="search"
+                          class="discovery__search-form">
+                        <label class="discovery__search-form__label">
+                            Search for resources
+                        </label>
+                        <input id="teachers-search-input" name="teachers-search-input"
+                               placeholder="Search the Georgia STEM Incubator" type="search"
+                               class="discovery__search-form__input"/><!--
+                        --><a id='search-button' type='submit'
+                                class="discovery__search-form__submit
+                                       discovery__search-form__submit--theme-1">
+                            Search
+                        </a>
+                        <input id="teachers-search-input-small"
+                               name="teachers-search-input-small"
+                               placeholder="Search" type="search"
+                               class="discovery__search-form__input
+                                      discovery__search-form__input--small"/><!--
+                        --><a id='search-button-small' type='submit'
+                                class="discovery__search-form__submit
+                                       discovery__search-form__submit--small
+                                       discovery__search-form__submit--theme-1">
+                            <i class="discovery__search-form__submit__icon
+                                      fa fa-search"></i>
+                        </a>
+                    </form>
+                    <div class="discovery__options">
+                        <div class="discovery__option">
+                            <i class="discovery__option__icon fa fa-certificate"></i>
+                            <a class="discovery__option__button
+                                      discovery__option__button--theme-1"
+                               href="https://gatech.brightspace.com">
+                                Find a course
+                            </a>
+                            <p class="discovery__option__text">
+                                Participate in professional learning
+                            </p>
+                        </div>
+                        <div class="discovery__option">
+                            <i class="discovery__option__icon fa fa-comments-o"></i>
+                            <a class="discovery__option__button
+                                      discovery__option__button--theme-1"
+                               href="https://stemincubator.oaeproject.org">
+                                Join the network
+                            </a>
+                            <p class="discovery__option__text">
+                                Share and discuss resources
+                            </p>
+                        </div>
+                        <div class="discovery__option">
+                            <i class="discovery__option__icon fa fa-money"></i>
+                            <a class="discovery__option__button
+                                      discovery__option__button--theme-1"
+                               href="https://secure.donorschoose.org/wizard/addressWizard.html">
+                                Request funding
+                            </a>
+                            <p class="discovery__option__text">
+                                Crowdfund your school project
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+
+                <article id="schools" class="discovery" aria-labelledby="schools-heading">
+                    <h3 id="schools-heading"
+                        class="discovery__heading discovery__heading--theme-2">
+                        Supporting administrators
+                    </h3>
+                </article>
+
+                <article id="industry" class="discovery" aria-labelledby="industry-heading">
+                    <h3 id="industry-heading"
+                        class="discovery__heading discovery__heading--theme-3">
+                        Supporting partners
+                    </h3>
+                </article>
+
+                <article class="about" aria-labelledby="about-heading">
+                    <h3 id="about-heading" class="about__heading">
+                        About the Georgia STEM Incubator
+                    </h3>
+                    <p class="about__text">
+                        The movement to advance STEM education in Georgia is gaining
+                        momentum, but it can still be difficult to find potential
+                        partners and quality resources. The Incubator's mission is
+                        to spur innovation in STEM education through reflective
+                        practice, professional learning, and collaboration.
+                    </p>
+                </article>
+
+                <article class="credits" aria-labelledby="credits-heading">
+                    <h3 id="credits-heading" class="util--sr-only">
+                        Credits
+                    </h3>
+                    <div class="credits__funding">
+                        <h4 class="credits__heading">Funded by</h4>
+                        <a href="https://gosa.georgia.gov" class="credits__image-link">
+                            <img src="images/gosa.svg" class="credits__image" />
+                        </a>
+                        <p class="credits__text">
+                            The Governor's Office of Student Achievement (GOSA)
+                            strives to increase student achievement and school
+                            completion across Georgia through meaningful,
+                            transparent, and objective analysis and communication
+                            of statewide data.
+                        </p>
+                    </div>
+                    <hr class="credits__rule" />
+                    <div class="credits__services">
+                        <h4 class="credits__heading">Powered by</h4>
+                        <div class="credits__service">
+                            <a href="http://oaeproject.org" class="credits__image-link">
+                            	<img src="images/oae.svg"
+                            	     class="credits__image credits__image--small" />
+                            </a>
+                        </div>
+                        <div class="credits__service">
+                            <a href="http://www.brightspace.com" class="credits__image-link">
+                                <img src="images/brightspace.svg"
+                                     class="credits__image credits__image--small" />
+                            </a>
+                        </div>
+                        <div class="credits__service">
+                            <a href="http://www.donorschoose.org" class="credits__image-link">
+                                <img src="images/donorschoose.svg"
+                                     class="credits__image credits__image--small" />
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
             </section>
 
         </main>
 
         <!--
-        =================
+        ======
         Footer
-        =================
+        ======
+
+        Nothing special in the footer. Most of this content is boilerplate or
+        placeholder for now, pending further business-level decisions on the
+        project (e.g. will there be a newsletter?)
+
         -->
 
-        <footer class="theme-neutral--dark container" role="contentinfo">
-	    	<div class="row">
+        <footer role="contentinfo" class="footer">
 
-		    	<div class="one-sixth column inset">
-			    	<h5><a href="#">Home</a></h5>
-			    	<p class="compressed">Resources</p>
-			    	<p class="compressed">About</p>
-			    	<p class="compressed">Funded by</p>
-			    	<p class="compressed">Powered by</p>
-		    	</div>
-		    	<div class="one-sixth column inset">
-			    	<h5><a href="#teachers">Teachers</a></h5>
-			    	<p class="compressed">Elementary</p>
-			    	<p class="compressed">Middle School</p>
-			    	<p class="compressed">High School</p>
-		    	</div>
-		    	<div class="one-sixth column inset">
-			    	<h5><a href="#schools">Administrators</a></h5>
-			    	<p class="compressed">Leadership</p>
-			    	<p class="compressed">Administration</p>
-		    	</div>
-		    	<div class="one-sixth column inset">
-			    	<h5><a href="#industry">Partners</a></h5>
-			    	<p class="compressed">Leaders</p>
-			    	<p class="compressed">Local Businesses</p>
-		    	</div>
-		    	<div class="one-third column inset">
-			    	<p>
-				    	<a class="button button--large" href="#">
-					    	<span class="icon-larger ion-social-twitter"></span>
-					    	Follow us on Twitter
-					    </a>
-			    	</p>
-			    	<p>
-				    	<a class="button button--large" href="#">
-					    	<span class="icon-larger ion-ios-paper"></span>
-					    	Sign up for our newsletter
-					    </a>
-			    	</p>
-			    	<p>
-				    	<a class="button button--large" href="#">
-					    	<span class="icon-larger ion-coffee"></span>
-					    	Join our community
-					    </a>
-			    	</p>
-		    	</div>
-
-		    	<div class="one-full column inset">
-	                <small>
-		                Copyright 2015 © All rights reserved The Governor’s Office of Student Achievement.
-	                    Images copyright
-	                    <a href="https://www.flickr.com/photos/cybrarian77/6284181389/">
-	                        cybrarian77
-	                    </a>,
-	                    <a href="https://www.flickr.com/photos/ctsenatedems/10043241965">
-	                        CT Senate Democrats
-	                    </a>, and
-	                    <a href="https://www.flickr.com/photos/kentuckycountrydayschool/4089873006">
-	                        Kentucky Country Day
-	                    </a>.
-	                    Licensed under Creative Commons.
-	                </small>
-				</div>
+	    	<div class="footer__one-sixth-column">
+		    	<h5 class="footer__column-heading"><a href="#" class="footer__column-heading-link">Home</a></h5>
+		    	<p class="footer__topic">Resources</p>
+		    	<p class="footer__topic">About</p>
+		    	<p class="footer__topic">Funded by</p>
+		    	<p class="footer__topic">Powered by</p>
 	    	</div>
+	    	<div class="footer__one-sixth-column">
+		    	<h5 class="footer__column-heading"><a href="#teachers" class="footer__column-heading-link">Teachers</a></h5>
+		    	<p class="footer__topic">Elementary</p>
+		    	<p class="footer__topic">Middle School</p>
+		    	<p class="footer__topic">High School</p>
+	    	</div>
+	    	<div class="footer__one-sixth-column">
+		    	<h5 class="footer__column-heading"><a href="#schools" class="footer__column-heading-link">Administrators</a></h5>
+		    	<p class="footer__topic">Leadership</p>
+		    	<p class="footer__topic">Administration</p>
+	    	</div>
+	    	<div class="footer__one-sixth-column">
+		    	<h5 class="footer__column-heading"><a href="#industry" class="footer__column-heading-link">Partners</a></h5>
+		    	<p class="footer__topic">Leaders</p>
+		    	<p class="footer__topic">Local Businesses</p>
+	    	</div>
+	    	<div class="footer__one-third-column">
+		    	<p>
+			    	<a class="footer__button" href="#">
+				    	<i class="fa fa-twitter footer__button__icon"></i>
+				    	Follow us on Twitter
+				    </a>
+		    	</p>
+		    	<p>
+			    	<a class="footer__button" href="#">
+				    	<i class="fa fa-newspaper-o footer__button__icon"></i>
+				    	Sign up for our newsletter
+				    </a>
+		    	</p>
+		    	<p>
+			    	<a class="footer__button" href="#">
+				    	<i class="fa fa-coffee footer__button__icon"></i>
+				    	Join our community
+				    </a>
+		    	</p>
+	    	</div>
+
+	    	<div class="footer__one-full-column">
+                <p class="footer__copyright">
+	                Copyright 2015 ©
+	                <a href="https://gosa.georgia.gov" class="footer__copyright-link">The Governor’s Office of Student Achievement</a>.
+	                All rights reserved.
+                    Images copyright
+                    <a href="https://www.flickr.com/photos/cybrarian77/6284181389/" class="footer__copyright-link">
+                        cybrarian77
+                    </a>,
+                    <a href="https://www.flickr.com/photos/ctsenatedems/10043241965" class="footer__copyright-link">
+                        CT Senate Democrats
+                    </a>, and
+                    <a href="https://www.flickr.com/photos/kentuckycountrydayschool/4089873006" class="footer__copyright-link">
+                        Kentucky Country Day
+                    </a>.
+                    Licensed under Creative Commons.
+                </p>
+			</div>
+
 		</footer>
 
         <!--
@@ -584,24 +459,21 @@
         =====================
         -->
 
-        <!-- ========== Third Party Asynchronous JavaScript ========== -->
-        <!-- build:js scripts/vendor.js -->
+        <!--
+        In production builds, usemin will concatenate and minify
+        any individual scripts listed below. The bulk of the JavaScript
+        should be loaded here so as not to block initial rendering.
+        -->
+
+        <!-- ========== Asynchronous JavaScript (after <body>) ========== -->
+        <!-- build:js({/,.tmp,app}) scripts/scripts.2.js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/underscore/underscore.js"></script>
         <script src="bower_components/underscore.string/dist/underscore.string.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/backbone-filtered-collection/backbone-filtered-collection.js"></script>
-        <!-- endbuild -->
-
-        <!-- ========== Development-only JavaScript ========== -->
-        <!-- build:remove -->
-        <script src="bower_components/less.js/dist/less.js" data-env="development"></script>
-        <script>less.watch();</script>
-        <!-- endbuild -->
-
-        <!-- ========== Main Application JavaScript ========== -->
-        <!-- build:js({.tmp,app}) scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/keys.js"></script>
         <script src="scripts/templates.js"></script>
         <script src="scripts/components/featured.js"></script>
         <script src="scripts/components/style-helpers.js"></script>
@@ -614,19 +486,6 @@
         <script src="scripts/collections/groups.js"></script>
         <script src="scripts/collections/proposals.js"></script>
         <script src="scripts/collections/tags.js"></script>
-        <script src="scripts/views/completedProposalAsFeaturedDetailsItem.js"></script>
-        <script src="scripts/views/completedProposalsAsFeaturedDetails.js"></script>
-        <script src="scripts/views/contentAsFeaturedDetailsItem.js"></script>
-        <script src="scripts/views/contentAsFeaturedDetails.js"></script>
-        <script src="scripts/views/groupAsFeaturedDetailsItem.js"></script>
-        <script src="scripts/views/groupsAsFeaturedDetails.js"></script>
-        <script src="scripts/views/tagAsVerticalSelectionItem.js"></script>
-        <script src="scripts/views/tagsAsVerticalSelection.js"></script>
-        <script src="scripts/views/tagSetAsVerticalSelection.js"></script>
-        <script src="scripts/views/tagAsHorizontalSelectionItem.js"></script>
-        <script src="scripts/views/tagsAsHorizontalSelection.js"></script>
-        <script src="scripts/views/tagSetAsHorizontalSelection.js"></script>
-        <script src="scripts/views/teachers.js"></script>
         <script src="scripts/routes/app.js"></script>
         <!-- endbuild -->
 

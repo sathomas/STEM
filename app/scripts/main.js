@@ -16,10 +16,15 @@ window.Stem = {
     Routers: {},
     Views: {},
 
-    // Global configuration items (e.g. API keys) are
-    // defined in the `config` property.
+    // Global configuration items are defined in the
+    // `config` property. Sensitive data (e.g. production
+    // API keys) should not be specified here, but,
+    // rather, set in the `keys.js` file which is
+    // excluded from the public repository.
 
     config: {
+        // Demo key for DonorsChoose; replaced by
+        // production key in `keys.js`.
         donorsChooseApiKey: 'DONORSCHOOSE',
         oae: {
             host: 'stemincubator.oae-qa1.oaeproject.org',
