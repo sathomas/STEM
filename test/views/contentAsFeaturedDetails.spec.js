@@ -66,7 +66,7 @@ describe('ContentAsFeaturedDetails View', function () {
     it('should include a views for the (first 5) models', function() {
         var $el = this.ContentAsFeaturedDetailsView.render().$el;
         $el.find('.featured__details__listing > *').length.should.equal(5);
-        $el.find('a').last().hasClass('button--link').should.be.false();
+        $el.find('a').last().hasClass('button-link').should.be.false();
     });
 
     it('should include a link to more content', function() {
@@ -78,7 +78,7 @@ describe('ContentAsFeaturedDetails View', function () {
         var $el = this.ContentAsFeaturedDetailsView.render().$el;
         $el.find('a').last().click();
         $el.find('.featured__details__listing > *').length.should.equal(6);
-        $el.find('a').last().hasClass('button--link').should.be.true();
+        $el.find('a').last().hasClass('button-link').should.be.true();
     });
 
     it('should adjust button label with empty collection', function() {

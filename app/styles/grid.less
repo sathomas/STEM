@@ -1,0 +1,271 @@
+/**
+ * ## Grid
+ *
+ * Within sections (and articles) we use a standard
+ * 12-column grid for overall layout, in a responsive,
+ * mobile-first architecture.
+ */
+
+
+/**
+ * Container:
+ * The `container` class encapsulates all grid-based
+ * content.
+ *
+ *     @example:
+ *     <div class="container">
+ *         Contents here, starting with rows
+ *     </div>
+ */
+
+.container {
+    box-sizing: border-box;
+}
+
+
+/**
+ * Row:
+ * The `row` class encapsulates a single row
+ * in the grid. Content within the row will
+ * be vertically aligned, subject to wrapping.
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             Columns go here
+ *         </div>
+ *     </div>
+ */
+
+/*
+ * We're using flexbox for the grid since the page
+ * layout is challenging for other grid approaches
+ * (inline-block or floats). That does leave IE9
+ * (and maybe IE10) behind.
+ */
+
+.row {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+/**
+ * Column:
+ * The `column` and `columns` classes identify grid
+ * columns. They are combined with modifier classes
+ * to indicate how many columns (out of twelve) the
+ * content should cover. In addition to plain old
+ * integers (`one column`), the grid supports columns
+ * defined as fractions of the row (`one-third column`).
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             <div class="three columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     3/12 (1/4) of row
+ *                 </div>
+ *             </div>
+ *             <div class="nine columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     9/12 (3/4) of row
+ *                 </div>
+ *             </div>
+ *         </div>
+ *         <div class="row" style="margin-top:0.2em">
+ *             <div class="two-thirds column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     2/3 of row
+ *                 </div>
+ *             </div>
+ *             <div class="one-third column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     1/3 of row
+ *                 </div>
+ *             </div>
+ *         </div>
+ *     </div>
+ */
+
+/*
+ * Start with generic and mobile-first rules. For those screen sizes
+ * all columns are full-width, and no modifiers are relevant.
+ */
+
+.column,
+.columns {
+    box-sizing: border-box;
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+/*
+ * At tablet sizes, columns can shrink to half of the row
+ * width. That lets us use modifiers to define how much of
+ * the screen columns can consume. It's pretty basic, though,
+ * as a number of columns either consumes the entire width
+ * or half of it. Note that we define the modifiers as
+ * double class selectors (for ease of readability in the
+ * markup, e.g. 'class="two columns"`) and also as a
+ * single class (e.g. `two-columns`); the latter allows
+ * the grid definitions to be used as mixins in LESS styles.
+ */
+
+@media @tablet {
+
+    .one.column,
+    .one.columns,
+    .two.columns,
+    .three.columns,
+    .four.columns,
+    .five.columns,
+    .six.columns,
+    .one-sixth.column,
+    .one-fourth.column,
+    .one-third.column,
+    .one-half.column
+        { flex-basis: 50%; }
+}
+
+/*
+ * Desktops get the full grid, so we can
+ * flesh out the column modifiers to their
+ * full glory.
+ */
+
+@media @desktop {
+
+    .one.column,
+    .one.columns
+        { flex-basis: 8.33333333333%; }
+    .two.columns,
+    .one-sixth.column
+        { flex-basis: 16.6666666667%; }
+    .three.columns,
+    .one-fourth.column
+        { flex-basis: 25%; }
+    .four.columns,
+    .one-third.column
+        { flex-basis: 33.3333333333%; }
+    .five.columns
+        { flex-basis: 41.6666666667%; }
+    .six.columns,
+    .one-half.column
+        { flex-basis: 50%; }
+    .seven.columns
+        { flex-basis: 58.3333333333%; }
+    .eight.columns,
+    .two-thirds.column
+        { flex-basis: 66.6666666667%; }
+    .nine.columns,
+    .three-fourths.column
+        { flex-basis: 75%; }
+    .ten.columns
+        { flex-basis: 83.3333333333%; }
+    .eleven.columns
+        { flex-basis: 91.6666666667%; }
+}
+
+
+/*
+ * The grid definitions are LESS mixins, not
+ * direct classes. This avoids having to use
+ * generic class names in the markup so the
+ * HTML remains semantic.
+ */
+
+.row {
+    align-items: stretch;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-basis: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.zero-columns() {
+    .column;
+    flex-basis: 0;
+}
+
+.one-column() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 8.33333333333%; }
+}
+
+.two-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 16.6666666667%; }
+}
+
+.three-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 25%; }
+}
+
+.four-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 33.3333333333%; }
+}
+
+.five-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 41.6666666667%; }
+}
+
+.six-columns() {
+    .column;
+    @media @tablet  { flex-basis: 50%; }
+    @media @desktop { flex-basis: 50%; }
+}
+
+.seven-columns() {
+    .column;
+    @media @desktop { flex-basis: 58.3333333333%; }
+}
+
+.eight-columns() {
+    .column;
+    @media @desktop { flex-basis: 66.6666666667%; }
+}
+
+.nine-columns() {
+    .column;
+    @media @desktop { flex-basis: 75%; }
+}
+
+.ten-columns() {
+    .column;
+    @media @desktop { flex-basis: 83.3333333333%; }
+}
+
+.eleven-columns() {
+    .column;
+    @media @desktop { flex-basis: 91.6666666667%; }
+}
+
+.twelve-columns() {
+    .column;
+}
+
+.one-sixth-column()     { .two-columns; }
+.one-fourth-column()    { .three-columns; }
+.one-third-column()     { .four-columns; }
+.one-half-column()      { .six-columns; }
+.two-thirds-column()    { .eight-columns; }
+.three-fourths-column() { .nine-columns; }
+.five-sixths-column()   { .ten-columns; }
+.one-full-column()      { .twelve-columns; }
