@@ -19,7 +19,7 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-            '':         'landing'
+//            '':         'landing'
         },
 
         // We use a convenience function to
