@@ -19,8 +19,8 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-            '':         'landing',
-            'search':   'search'
+            '':               'landing',
+            'search/:query':  'search'
         },
 
         // We use a convenience function to
@@ -61,11 +61,14 @@ Stem.Routers = Stem.Routers || {};
             this.loadPage('landing');
         },
 
-        search: function() {
+        search: function(query) {
+            this.teacherSearch.setQuery(decodeURIComponent(query));
             this.loadPage('teachers-search');
         },
 
         initialize: function() {
+
+            var app = this;
 
             // Since JavaScript is (obviously) up
             // and running, we don't have to rely
@@ -82,15 +85,25 @@ Stem.Routers = Stem.Routers || {};
                 $(this).attr('id', oldId + '_page');
             });
 
-            Backbone.history.start();
-
             // Now create and render the views for
             // each section. It's okay to render
             // them now because they'll remain
             // hidden until the user navigates
             // to them.
 
-            this.teacherSearch = new Stem.Views.TeacherSearch().render();
+            this.teacherSearch = new Stem.Views.TeacherSearch();
+            this.teacherSearch.render();
+
+            this.teacherSearch.on('search', function(query) {
+                query = encodeURIComponent(query);
+                app.navigate('search/' + query);
+                app.search(query);
+            });
+
+            // Everything's ready, so start enable
+            // the router by starting history.
+
+            Backbone.history.start();
 
         }
     });

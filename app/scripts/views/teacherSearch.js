@@ -31,16 +31,19 @@ Stem.Views = Stem.Views || {};
 
         render: function () {
 
+            var model = this.searchQuery,
+                view = this;
+
             // Create separate views for both of the search forms
             // and insert them into the page.
 
             this.discoverySearch = new Stem.Views.SearchForm({
-                model: this.searchQuery,
+                model: model,
                 theme: 'theme-1'
             });
 
             this.mainSearch = new Stem.Views.SearchForm({
-                model: this.searchQuery,
+                model: model,
                 showLabel: false,
                 theme: 'theme-1'
             });
@@ -51,10 +54,25 @@ Stem.Views = Stem.Views || {};
             $('#teachers-search-form')
                 .replaceWith(this.mainSearch.render().$el);
 
+            // If the discovery search form is submitted,
+            // navigate to the full search page.
+
+            this.discoverySearch.on('submit', function() {
+                view.trigger('search', model.get('query'));
+            });
+
 
             // Return view for method chaining.
 
             return this;
+
+        },
+
+        // Custom method to set the search query.
+
+        setQuery: function (query) {
+
+            this.searchQuery.set('query', query);
 
         }
 

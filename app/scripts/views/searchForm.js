@@ -108,7 +108,7 @@ Stem.Views = Stem.Views || {};
         // pass it up the chain so the search
         // can be executed.
 
-        submitted: function() {
+        submitted: function(ev) {
 
             // Trigger a submit event on this view.
 
@@ -116,6 +116,7 @@ Stem.Views = Stem.Views || {};
 
             // Prevent further event handling.
 
+            ev.preventDefault();
             return false;
 
         },
