@@ -81,9 +81,13 @@ of course, means that JavaScript is available.
         on devices whose screen width is too small to implement the
         full tab panel.
 
+        The theme for the header is set using a `data-` attribrute instead
+        of a class because we expect JavaScript to manipulate it when
+        switching pages.
+
         -->
 
-        <header role="banner" class="header header--theme-1-dark">
+        <header role="banner" class="header" data-theme="theme-1-dark">
             <h1 class="header__brand">
                 <span class="header__brand__border">
                     <a href="#" class="header__brand__link">
@@ -384,7 +388,15 @@ of course, means that JavaScript is available.
                     Search Result for Teachers
                 </h2>
 
-                <article id="teachers" class="discovery discovery--lead">
+                <!--
+
+                The first "article" in this section is just a repeat of the
+                main search bar. (Repeat because the same search field is
+                present on the main landing page.)
+
+                -->
+
+                <article class="discovery discovery--lead">
 
                     <!--
 
@@ -397,6 +409,91 @@ of course, means that JavaScript is available.
                     <div id="teachers-search-form"></div>
 
                 </article>
+
+                <!--
+
+                Now we present the search results.
+
+                -->
+
+                <article class="results" data-theme="theme-1">
+
+                    <!--
+
+                    The first block is a set of controls to let the
+                    user filter and manage the search results.
+
+                    -->
+
+                    <div id="teachers-results-filter" class="results-filter">
+                        <ul class="results-filter__list">
+                            <li class="results-filter__list-item">
+                                <input type="radio" id="teachers-search-results-1"
+                                       name="teachers-search-results"
+                                       class="results-filter__list-item__input"
+                                       checked="checked" />
+                                <label for="teachers-search-results-1"
+                                       class="results-filter__list-item__label" >
+                                    <i class="results-filter__list-item__icon
+                                              fa fa-cloud-download"></i>
+                                    Resources and units
+                                </label>
+                                <div class="results-filter__list-item__content">
+                                </div>
+                            </li>
+                            <li class="results-filter__list-item">
+                                <input type="radio" id="teachers-search-results-2"
+                                       name="teachers-search-results"
+                                       class="results-filter__list-item__input" />
+                                <label for="teachers-search-results-2"
+                                       class="results-filter__list-item__label" >
+                                    <i class="results-filter__list-item__icon
+                                              fa fa-certificate"></i>
+                                    Professional learning
+                                </label>
+                                <div class="results-filter__list-item__content">
+                                </div>
+                            </li>
+                            <li class="results-filter__list-item">
+                                <input type="radio" id="teachers-search-results-3"
+                                       name="teachers-search-results"
+                                       class="results-filter__list-item__input" />
+                                <label for="teachers-search-results-3"
+                                       class="results-filter__list-item__label" >
+                                    <i class="results-filter__list-item__icon
+                                              fa fa-comments-o"></i>
+                                    People and groups
+                                </label>
+                                <div class="results-filter__list-item__content">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="results-main">
+                        <h3 class="results-main__header">Resources and units</h3>
+                        <ul id="teacher-search-results-main-list" class="results-main__list"></ul>
+                        <div class="results-main__more">
+                            <button class="button results-main__button">
+                                Show more
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="teacher-search-results-secondary" class="results-secondary">
+                        <div class="results-secondary-block">
+                            <h4 class="results-secondary__header">People and groups</h4>
+                            <ul class="results-secondary__list"></ul>
+                            <div class="results-secondary__more">
+                                <button class="button results-secondary__button">
+                                    Show more
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </article>
+
 
             </section>
 
@@ -521,12 +618,20 @@ of course, means that JavaScript is available.
         <script src="scripts/models/content.js"></script>
         <script src="scripts/models/group.js"></script>
         <script src="scripts/models/proposal.js"></script>
+        <script src="scripts/models/tag.js"></script>
+        <script src="scripts/models/tagSet.js"></script>
         <script src="scripts/collections/content.js"></script>
         <script src="scripts/collections/groups.js"></script>
         <script src="scripts/collections/proposals.js"></script>
+        <script src="scripts/collections/tags.js"></script>
         <script src="scripts/views/searchForm.js"></script>
         <script src="scripts/routes/app.js"></script>
         <script src="scripts/views/teacherSearch.js"></script>
+        <script src="scripts/views/tagAsCheckbox.js"></script>
+        <script src="scripts/views/tagsAsCheckboxes.js"></script>
+        <script src="scripts/views/tagSetAsCheckboxGroup.js"></script>
+        <script src="scripts/views/oaeAsMainSearchResult.js"></script>
+        <script src="scripts/views/oaeAsMainSearchResults.js"></script>
         <!-- endbuild -->
 
 </body>

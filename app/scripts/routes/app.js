@@ -25,10 +25,12 @@ Stem.Routers = Stem.Routers || {};
 
         // We use a convenience function to
         // switch to a specific section. It's
-        // parameter is the `id` of the
-        // destination section.
+        // first parameter is the `id` of the
+        // destination section. The second
+        // (optional) parameter is a theme
+        // to apply to the header.
 
-        loadPage: function(id) {
+        loadPage: function(id,theme) {
 
             // For now, to "switch" pages, all we do
             // is set the `show` or `hide` classes on
@@ -42,7 +44,9 @@ Stem.Routers = Stem.Routers || {};
             // page. To do that, we set the appropriate
             // `data-` attribute.
 
-            $('.header').attr('data-section', id);
+            if (theme) {
+                $('.header').attr('data-theme', theme);
+            }
 
             // Close the navigation menu (in case it was
             // used to trigger the page change).
@@ -58,12 +62,12 @@ Stem.Routers = Stem.Routers || {};
         },
 
         landing: function() {
-            this.loadPage('landing');
+            this.loadPage('landing','theme-1-dark');
         },
 
         search: function(query) {
             this.teacherSearch.setQuery(decodeURIComponent(query));
-            this.loadPage('teachers-search');
+            this.loadPage('teachers-search','theme-1');
         },
 
         initialize: function() {
@@ -95,9 +99,8 @@ Stem.Routers = Stem.Routers || {};
             this.teacherSearch.render();
 
             this.teacherSearch.on('search', function(query) {
-                query = encodeURIComponent(query);
-                app.navigate('search/' + query);
-                app.search(query);
+                app.navigate('search/' + encodeURIComponent(query));
+                app.loadPage('teachers-search', 'theme-1');
             });
 
             // Everything's ready, so start enable

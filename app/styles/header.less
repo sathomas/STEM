@@ -10,9 +10,14 @@
     transition: background-color 400ms linear;
  }
 
-.header--theme-1-dark {
+header[data-theme=theme-1-dark] {
     background-color: @color-theme-1-dark-bg;
     color: @color-theme-1-dark-fg;
+}
+
+header[data-theme=theme-1] {
+    background-color: @color-theme-1-primary-bg;
+    color: @color-theme-1-primary-fg;
 }
 
 .header:before, .header:after {
@@ -108,6 +113,7 @@
 }
 
 .header__navbar__item {
+    .clickable;
     display: block;
     float:left;
     @media @desktop { height: 100%; }
@@ -119,7 +125,7 @@
     @media @desktop { width: 33.3333333333%; }
 }
 
-.header__navbar__item--theme-1-dark {
+header[data-theme=theme-1-dark] .header__navbar__list li:nth-child(1) {
     background-color: @color-theme-1-dark-bg;
     color: @color-theme-1-dark-fg;
     .no-touch & .header__navbar__link:hover,
@@ -128,7 +134,13 @@
     }
 }
 
-.header__navbar__item--theme-2-dark {
+header[data-theme=theme-1] .header__navbar__list li:nth-child(1) {
+    background-color: @color-theme-1-primary-bg;
+    color: @color-theme-1-primary-fg;
+}
+
+header[data-theme=theme-1] .header__navbar__list li:nth-child(2),
+header[data-theme=theme-1-dark] .header__navbar__list li:nth-child(2) {
     background-color: @color-theme-2-dark-bg;
     color: @color-theme-2-dark-fg;
     .no-touch & .header__navbar__link:hover,
@@ -137,7 +149,8 @@
     }
 }
 
-.header__navbar__item--theme-3-dark {
+header[data-theme=theme-1] .header__navbar__list li:nth-child(3),
+header[data-theme=theme-1-dark] .header__navbar__list li:nth-child(3) {
     background-color: @color-theme-3-dark-bg;
     color: @color-theme-3-dark-fg;
     .no-touch & .header__navbar__link:hover,

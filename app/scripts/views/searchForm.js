@@ -128,11 +128,11 @@ Stem.Views = Stem.Views || {};
 
             var query = this.model.get('query');
 
-            // Only update the view if it's out-of-date
-            // to avoid messing with the users' focus
+            // Only update the view if it's not in
+            // focus to avoid messing with the users
             // while they're typing.
 
-            if (this.query !== this.$el.find('input').val()) {
+            if (!this.$el.find('input').is(":focus")) {
 
                 this.$el.find('input').val(query);
 

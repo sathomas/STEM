@@ -33,6 +33,7 @@
 }
 
 .discovery-nav__label__more {
+    .clickable;
     .lnum;
     background-color: @color-theme-0-white;
     border: none;
@@ -42,15 +43,12 @@
     cursor: pointer;
     display: block;
     font-size: 11px;
-    font-weight: 600;
     height: 38px;
     line-height: 38px;
-    letter-spacing: .1rem;
     margin-top: @block-spacing-desktop;
     padding: 0 30px;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
     white-space: nowrap;
 }
 
@@ -93,7 +91,8 @@
 
 .discovery {
     background-color: @color-theme-0-light;
-    color:            @color-theme-0-dark;
+    box-sizing: border-box;
+    color: @color-theme-0-dark;
     margin: 0;
     padding-bottom:   @block-spacing;
     @media @tablet  { padding-bottom: @block-spacing-tablet;  }
@@ -172,6 +171,7 @@
 }
 
 .discovery__search-form__submit {
+    .clickable;
     .lnum;
     border: 1px solid transparent;
     border-radius: @border-radius-large;
@@ -183,15 +183,12 @@
     display: none;
     @media @desktop { display: inline-block; }
     font-size: 1.8rem;
-    font-weight: 600;
     height: 4rem;
-    letter-spacing: .1rem;
     line-height: 2.2;
     margin: 0 auto;
     padding: 0 1em;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
     white-space: nowrap;
     width: 120px;
 }
@@ -229,21 +226,19 @@
 }
 
 .discovery__option__button {
+    .clickable;
     .lnum;
     border: 1px solid transparent;
     border-radius: @border-radius-large;
     box-sizing: border-box;
     display: block;
     font-size: 1.8rem;
-    font-weight: 600;
     height: 4rem;
-    letter-spacing: .1rem;
     line-height: 2;
     margin: 0 auto;
     padding: 0 1em;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
     white-space: nowrap;
 }
 
