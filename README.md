@@ -13,8 +13,6 @@ Any update to this repository triggers an automated execution of all of the proj
 3. Clone this repository and `cd` into the the cloned folder.
 4. Install all the build tools `npm install`.
 5. Install the code dependencies `bower install`.
-6. Install the test dependencies `pushd test; bower install; popd`
-7. Build the release `grunt build`
+6. Build the release `grunt build`
 
 The completed build will be available in the `dist` folder.
-
