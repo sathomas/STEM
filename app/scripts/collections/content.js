@@ -1,4 +1,4 @@
-/*global Stem, Backbone*/
+/*global Stem, _, Backbone*/
 
 // Backbone collection for a set of content objects from the
 // Open Academic Environment.
