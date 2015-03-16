@@ -1,4 +1,4 @@
-/*global Stem, Backbone, JST*/
+/*global Stem, Backbone */
 
 Stem.Views = Stem.Views || {};
 

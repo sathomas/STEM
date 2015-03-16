@@ -1,4 +1,4 @@
-/* global Stem, $ */
+/* global Stem, $, _, Backbone */
 
 // Backbone view for the teacher-focused
 // search page of the application. This view is

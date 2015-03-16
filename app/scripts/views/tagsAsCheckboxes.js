@@ -1,4 +1,4 @@
-/*global Stem, Backbone, JST */
+/*global Stem, Backbone */
 
 // Trivial Backbone view that renders a tags
 // collection in a set of checkboxes.

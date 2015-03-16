@@ -1,4 +1,4 @@
-/*global beforeEach, describe, it, Stem  */
+/*global beforeEach, describe, it, sinon, Stem, $  */
 
 describe('OaeAsSecondarySearchGroup View', function () {
     'use strict';

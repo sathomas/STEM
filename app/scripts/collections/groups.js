@@ -1,4 +1,4 @@
-/*global Stem, Backbone*/
+/*global Stem, _, Backbone*/
 
 // Backbone collection for a set of group objects from the
 // Open Academic Environment.
@@ -60,7 +60,7 @@ Stem.Collections = Stem.Collections || {};
         // Enhance the normal Backbone `sync` method to gracefully
         // handle multiple pending AJAX requests.
 
-        sync: function(method, model, options) {
+        sync: function(method, model) {
 
             // Get information about previous AJAX request (if
             // there was one.
@@ -70,7 +70,7 @@ Stem.Collections = Stem.Collections || {};
             // If the previous AJAX request is still in progress,
             // abort it.
 
-            if (lastXHR && lastXHR.readyState != 4) {
+            if (lastXHR && lastXHR.readyState !== 4) {
                 lastXHR.abort('stale');
             }
 
