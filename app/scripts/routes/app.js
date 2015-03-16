@@ -19,15 +19,18 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-            '':         'landing'
+            '':               'landing',
+            'search/:query':  'search'
         },
 
         // We use a convenience function to
         // switch to a specific section. It's
-        // parameter is the `id` of the
-        // destination section.
+        // first parameter is the `id` of the
+        // destination section. The second
+        // (optional) parameter is a theme
+        // to apply to the header.
 
-        loadPage: function(id) {
+        loadPage: function(id,theme) {
 
             // For now, to "switch" pages, all we do
             // is set the `show` or `hide` classes on
@@ -41,7 +44,9 @@ Stem.Routers = Stem.Routers || {};
             // page. To do that, we set the appropriate
             // `data-` attribute.
 
-            $('.header').attr('data-section', id);
+            if (theme) {
+                $('.header').attr('data-theme', theme);
+            }
 
             // Close the navigation menu (in case it was
             // used to trigger the page change).
@@ -57,22 +62,17 @@ Stem.Routers = Stem.Routers || {};
         },
 
         landing: function() {
-            this.loadPage('landing');
+            this.loadPage('landing','theme-1-dark');
         },
 
-        teachers: function() {
-            this.loadPage('teachers');
-        },
-
-        schools: function() {
-            this.loadPage('schools');
-        },
-
-        industry: function() {
-            this.loadPage('industry');
+        search: function(query) {
+            this.teacherSearch.setQuery(decodeURIComponent(query));
+            this.loadPage('teachers-search','theme-1');
         },
 
         initialize: function() {
+
+            var app = this;
 
             // Since JavaScript is (obviously) up
             // and running, we don't have to rely
@@ -89,13 +89,24 @@ Stem.Routers = Stem.Routers || {};
                 $(this).attr('id', oldId + '_page');
             });
 
-            Backbone.history.start();
-
             // Now create and render the views for
             // each section. It's okay to render
             // them now because they'll remain
             // hidden until the user navigates
             // to them.
+
+            this.teacherSearch = new Stem.Views.TeacherSearch();
+            this.teacherSearch.render();
+
+            this.teacherSearch.on('search', function(query) {
+                app.navigate('search/' + encodeURIComponent(query));
+                app.loadPage('teachers-search', 'theme-1');
+            });
+
+            // Everything's ready, so start enable
+            // the router by starting history.
+
+            Backbone.history.start();
 
         }
     });

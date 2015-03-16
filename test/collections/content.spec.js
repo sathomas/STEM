@@ -213,4 +213,26 @@ describe('Content Collection', function () {
         this.ContentCollection.getTags()[0].should.equal('Math');
     });
 
+    it('should return current options when requested', function() {
+        this.ContentCollection = new Stem.Collections.Content([], {limit: 5});
+        this.ContentCollection.options().limit.should.equal(5);
+    });
+
+    it('should set options dynamically', function() {
+        this.ContentCollection.options({limit: 10});
+        this.ContentCollection.options().limit.should.equal(10);
+    });
+
+    it('should abort in-flight requests on new request', function() {
+        var xhrStub = sinon.useFakeXMLHttpRequest();
+        var xhrs = [];
+        xhrStub.onCreate = function (xhr) { xhrs.push(xhr); };
+        this.ContentCollection.fetch();
+        xhrs.length.should.equal(1);
+        this.ContentCollection.fetch();
+        xhrs.length.should.equal(2);
+        xhrs[0].aborted.should.be.true();
+        xhrStub.restore();
+    });
+
 });

@@ -191,4 +191,26 @@ describe('Groups Collection', function () {
         this.GroupsCollection.getTags().should.include('ELA');
     });
 
+    it('should return current options when requested', function() {
+        this.GroupsCollection = new Stem.Collections.Groups([], {limit: 5});
+        this.GroupsCollection.options().limit.should.equal(5);
+    });
+
+    it('should set options dynamically', function() {
+        this.GroupsCollection.options({limit: 10});
+        this.GroupsCollection.options().limit.should.equal(10);
+    });
+
+    it('should abort in-flight requests on new request', function() {
+        var xhrStub = sinon.useFakeXMLHttpRequest();
+        var xhrs = [];
+        xhrStub.onCreate = function (xhr) { xhrs.push(xhr); };
+        this.GroupsCollection.fetch();
+        xhrs.length.should.equal(1);
+        this.GroupsCollection.fetch();
+        xhrs.length.should.equal(2);
+        xhrs[0].aborted.should.be.true();
+        xhrStub.restore();
+    });
+
 });

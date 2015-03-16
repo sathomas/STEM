@@ -1,4 +1,4 @@
-/*global Stem, Backbone*/
+/*global Stem, _, Backbone*/
 
 // Backbone collection for a set of group objects from the
 // Open Academic Environment.
@@ -27,22 +27,21 @@ Stem.Collections = Stem.Collections || {};
 
         model: Stem.Models.Group,
 
+        // Default values for collection options.
+
+        defaults: {
+
+        },
+
         // Since we're accepting options for the collection,
         // we need an `initialize` method to handle them.
 
         initialize: function(models, options) {
 
-            // The `options` object is optional.
-
-            var settings = options || {};
-
             // We store the processed values in an
             // `options` property of the collection.
 
-            this.options = {};
-
-            this.options.limit = settings.limit;
-            this.options.keywords = settings.keywords;
+            this._options = _.extend({}, this.defaults, options);
 
         },
 
@@ -54,10 +53,45 @@ Stem.Collections = Stem.Collections || {};
 
             return Stem.config.oae.protocol + '//' + Stem.config.oae.host +
                 '/api/search/general?resourceTypes=group&scope=_tenant' +
-                (this.options.limit    ? ('&' + 'limit=' + this.options.limit)    : '') +
-                (this.options.keywords ? ('&' + 'q='     + this.options.keywords) : '');
+                (this._options.limit    ? ('&' + 'limit=' + this._options.limit)    : '') +
+                (this._options.keywords ? ('&' + 'q='     + this._options.keywords) : '');
         },
 
+        // Enhance the normal Backbone `sync` method to gracefully
+        // handle multiple pending AJAX requests.
+
+        sync: function(method, model) {
+
+            // Get information about previous AJAX request (if
+            // there was one.
+
+            var lastXHR = model._lastXHR && model._lastXHR[method];
+
+            // If the previous AJAX request is still in progress,
+            // abort it.
+
+            if (lastXHR && lastXHR.readyState !== 4) {
+                lastXHR.abort('stale');
+            }
+
+            // Save information about the (soon to be) current
+            // AJAX request. First make sure there's a data structure
+            // to store it.
+
+            if (!model._lastXHR) {
+                model._lastXHR = {};
+            }
+
+            // Now execute the regular AJAX request and save the
+            // resulting object.
+
+            model._lastXHR[method] = Backbone.sync.apply(this, arguments);
+
+            // Return the normal Backbone.sync return value.
+
+            return model._lastXHR[method];
+
+        },
 
         // Since we're using a general search query, we have
         // to supply a parse function to extract the actual model
@@ -75,6 +109,20 @@ Stem.Collections = Stem.Collections || {};
             // array of models and return it directly.
 
             return response.results ? response.results : response;
+        },
+
+        // Update or return the collection options.
+
+        options: function(options) {
+
+            if (typeof(options) === 'undefined') {
+                return this._options;
+            }
+
+            _(this._options).extend(options);
+
+            return this;
+
         },
 
         // Return an array of all the tags associated with
