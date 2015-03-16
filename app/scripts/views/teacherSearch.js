@@ -146,21 +146,74 @@ Stem.Views = Stem.Views || {};
             this.content = new Stem.Collections.Content([],{limit: 16});
             this.groups  = new Stem.Collections.Groups( [],{limit: 16});
 
+            this.contentGroup = new Stem.Models.SearchGroup({
+                collection: this.content,
+                heading: 'Resources and units',
+                moreLink: Stem.config.oae.protocol + '//' +
+                          Stem.config.oae.host + '/search/?types=content'
+            });
+            this.groupsGroup = new Stem.Models.SearchGroup({
+                collection: this.groups,
+                heading: 'Groups and people',
+                moreLink: Stem.config.oae.protocol + '//' +
+                          Stem.config.oae.host + '/search/?types=user,group'
+            });
+
+        },
+
+        // ## showCollections
+        //
+        // Show the search results on the page.
+
+        showCollections: function () {
+
+            // First detach existing elements from the DOM.
+
+            this.contentMainView.$el.detach();
+            this.contentSecondaryView.$el.detach();
+            this.groupsMainView.$el.detach();
+            this.groupsSecondaryView.$el.detach();
+
+            // Insert the elements in the correct locations
+            $('#teacher-search-results-main')
+                .append(this.contentMainView.$el);
+            $('#teacher-search-results-secondary .results-secondary-block').first()
+                .append(this.groupsSecondaryView.$el);
+
         },
 
         // ## renderCollections
         //
-        // Show the search results on the page.
+        // Create markup for the search results.
 
         renderCollections: function () {
 
             this.contentMainView = this.contentMainView ||
-                new Stem.Views.OaeAsMainSearchResults({
-                    collection: this.content,
-                    el: $('#teacher-search-results-main-list').get(0)
+                new Stem.Views.OaeAsMainSearchGroup({
+                    model: this.contentGroup
+                });
+
+            this.contentSecondaryView = this.contentSecondaryView ||
+                new Stem.Views.OaeAsSecondarySearchGroup({
+                    model: this.contentGroup
+                });
+
+            this.groupsMainView = this.groupsMainView ||
+                new Stem.Views.OaeAsMainSearchGroup({
+                    model: this.groupsGroup
+                });
+
+            this.groupsSecondaryView = this.groupsSecondaryView ||
+                new Stem.Views.OaeAsSecondarySearchGroup({
+                    model: this.groupsGroup
                 });
 
             this.contentMainView.render();
+            this.contentSecondaryView.render();
+            this.groupsMainView.render();
+            this.groupsSecondaryView.render();
+
+            this.showCollections();
 
         },
 

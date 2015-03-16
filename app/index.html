@@ -436,7 +436,9 @@ of course, means that JavaScript is available.
                                        class="results-filter__list-item__label" >
                                     <i class="results-filter__list-item__icon
                                               fa fa-cloud-download"></i>
-                                    Resources and units
+                                    <span class="results-filter__list-item__text">
+                                        Resources and units
+                                    </span>
                                 </label>
                                 <div class="results-filter__list-item__content">
                                 </div>
@@ -449,7 +451,9 @@ of course, means that JavaScript is available.
                                        class="results-filter__list-item__label" >
                                     <i class="results-filter__list-item__icon
                                               fa fa-certificate"></i>
-                                    Professional learning
+                                    <span class="results-filter__list-item__text">
+                                        Professional learning
+                                    </span>
                                 </label>
                                 <div class="results-filter__list-item__content">
                                 </div>
@@ -462,7 +466,9 @@ of course, means that JavaScript is available.
                                        class="results-filter__list-item__label" >
                                     <i class="results-filter__list-item__icon
                                               fa fa-comments-o"></i>
-                                    People and groups
+                                    <span class="results-filter__list-item__text">
+                                        People and groups
+                                    </span>
                                 </label>
                                 <div class="results-filter__list-item__content">
                                 </div>
@@ -470,26 +476,12 @@ of course, means that JavaScript is available.
                         </ul>
                     </div>
 
-                    <div class="results-main">
-                        <h3 class="results-main__header">Resources and units</h3>
-                        <ul id="teacher-search-results-main-list" class="results-main__list"></ul>
-                        <div class="results-main__more">
-                            <button class="button results-main__button">
-                                Show more
-                            </button>
-                        </div>
+                    <div id="teacher-search-results-main" class="results-main">
                     </div>
 
                     <div id="teacher-search-results-secondary" class="results-secondary">
-                        <div class="results-secondary-block">
-                            <h4 class="results-secondary__header">People and groups</h4>
-                            <ul class="results-secondary__list"></ul>
-                            <div class="results-secondary__more">
-                                <button class="button results-secondary__button">
-                                    Show more
-                                </button>
-                            </div>
-                        </div>
+                        <div class="results-secondary-block"></div>
+                        <div class="results-secondary-block"></div>
                     </div>
 
                 </article>
@@ -612,26 +604,31 @@ of course, means that JavaScript is available.
         <script src="scripts/main.js"></script>
         <script src="scripts/keys.js"></script>
         <script src="scripts/templates.js"></script>
-        <script src="scripts/components/featured.js"></script>
         <script src="scripts/components/style-helpers.js"></script>
-        <script src="scripts/models/search.js"></script>
+        <script src="scripts/components/utils.js"></script>
         <script src="scripts/models/content.js"></script>
         <script src="scripts/models/group.js"></script>
         <script src="scripts/models/proposal.js"></script>
+        <script src="scripts/models/search.js"></script>
+        <script src="scripts/models/searchGroup.js"></script>
         <script src="scripts/models/tag.js"></script>
         <script src="scripts/models/tagSet.js"></script>
         <script src="scripts/collections/content.js"></script>
         <script src="scripts/collections/groups.js"></script>
         <script src="scripts/collections/proposals.js"></script>
         <script src="scripts/collections/tags.js"></script>
+        <script src="scripts/views/oaeAsMainSearchGroup.js"></script>
+        <script src="scripts/views/oaeAsMainSearchResult.js"></script>
+        <script src="scripts/views/oaeAsMainSearchResults.js"></script>
+        <script src="scripts/views/oaeAsSecondarySearchGroup.js"></script>
+        <script src="scripts/views/oaeAsSecondarySearchResult.js"></script>
+        <script src="scripts/views/oaeAsSecondarySearchResults.js"></script>
         <script src="scripts/views/searchForm.js"></script>
-        <script src="scripts/routes/app.js"></script>
-        <script src="scripts/views/teacherSearch.js"></script>
         <script src="scripts/views/tagAsCheckbox.js"></script>
         <script src="scripts/views/tagsAsCheckboxes.js"></script>
         <script src="scripts/views/tagSetAsCheckboxGroup.js"></script>
-        <script src="scripts/views/oaeAsMainSearchResult.js"></script>
-        <script src="scripts/views/oaeAsMainSearchResults.js"></script>
+        <script src="scripts/views/teacherSearch.js"></script>
+        <script src="scripts/routes/app.js"></script>
         <!-- endbuild -->
 
 </body>
