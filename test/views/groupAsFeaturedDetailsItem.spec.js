@@ -39,5 +39,4 @@ describe('GroupAsFeaturedDetailsItem View', function () {
         $el.find('a').hasClass('button button-link').should.be.true();
     });
 
-
 });

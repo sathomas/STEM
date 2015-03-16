@@ -191,4 +191,14 @@ describe('Groups Collection', function () {
         this.GroupsCollection.getTags().should.include('ELA');
     });
 
+    it('should return current options when requested', function() {
+        this.GroupsCollection = new Stem.Collections.Groups([], {limit: 5});
+        this.GroupsCollection.options().limit.should.equal(5);
+    });
+
+    it('should set options dynamically', function() {
+        this.GroupsCollection.options({limit: 10});
+        this.GroupsCollection.options().limit.should.equal(10);
+    });
+
 });

@@ -223,5 +223,4 @@ describe('Content Collection', function () {
         this.ContentCollection.options().limit.should.equal(10);
     });
 
-
 });
