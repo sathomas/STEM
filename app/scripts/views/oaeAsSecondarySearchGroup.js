@@ -9,6 +9,8 @@ Stem.Views = Stem.Views || {};
 
         template: JST['app/scripts/templates/oaeAsSecondarySearchGroup.ejs'],
 
+        className: 'results-secondary-block',
+
         events: {
             'click button': 'clicked'
         },

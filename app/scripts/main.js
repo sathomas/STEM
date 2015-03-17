@@ -23,9 +23,16 @@ window.Stem = {
     // excluded from the public repository.
 
     config: {
+
         // Demo key for DonorsChoose; replaced by
         // production key in `keys.js`.
+
         donorsChooseApiKey: 'DONORSCHOOSE',
+
+        // OAE configuration. Host and protocol are
+        // split to allow easy switching between
+        // secure and non-secure (i.e. demo) version.
+
         oae: {
             host: 'stemincubator.oae-qa1.oaeproject.org',
             protocol: 'http:'
@@ -37,8 +44,16 @@ window.Stem = {
 
     init: function () {
         'use strict';
-        new Stem.Routers.App();
+
+        // Make sure the App object is defined. If it is,
+        // create one. It handles everything from there.
+
+        if (this.Routers && this.Routers.App) {
+            new this.Routers.App();
+        }
+
     }
+
 };
 
 // Wait for jQuery's `ready` event to start the application.
