@@ -34,18 +34,23 @@
               </a>
             
               
+              <a class="source" href="searchFilters.html">
+                searchFilters.js
+              </a>
+            
+              
               <a class="source" href="tags.html">
                 tags.js
               </a>
             
               
-              <a class="source" href="featured.html">
-                featured.js
+              <a class="source" href="style-helpers.html">
+                style-helpers.js
               </a>
             
               
-              <a class="source" href="style-helpers.html">
-                style-helpers.js
+              <a class="source" href="utils.html">
+                utils.js
               </a>
             
               
@@ -74,6 +79,21 @@
               </a>
             
               
+              <a class="source" href="search.html">
+                search.js
+              </a>
+            
+              
+              <a class="source" href="searchFilter.html">
+                searchFilter.js
+              </a>
+            
+              
+              <a class="source" href="searchGroup.html">
+                searchGroup.js
+              </a>
+            
+              
               <a class="source" href="tag.html">
                 tag.js
               </a>
@@ -84,83 +104,83 @@
               </a>
             
               
+              <a class="source" href="teacherSearch.html">
+                teacherSearch.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
               </a>
             
               
-              <a class="source" href="completedProposalAsFeaturedDetailsItem.html">
-                completedProposalAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsMainSearchGroup.html">
+                oaeAsMainSearchGroup.js
               </a>
             
               
-              <a class="source" href="completedProposalsAsFeaturedDetails.html">
-                completedProposalsAsFeaturedDetails.js
+              <a class="source" href="oaeAsMainSearchResult.html">
+                oaeAsMainSearchResult.js
               </a>
             
               
-              <a class="source" href="contentAsFeaturedDetails.html">
-                contentAsFeaturedDetails.js
+              <a class="source" href="oaeAsMainSearchResults.html">
+                oaeAsMainSearchResults.js
               </a>
             
               
-              <a class="source" href="contentAsFeaturedDetailsItem.html">
-                contentAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsSecondarySearchGroup.html">
+                oaeAsSecondarySearchGroup.js
               </a>
             
               
-              <a class="source" href="groupAsFeaturedDetailsItem.html">
-                groupAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsSecondarySearchResult.html">
+                oaeAsSecondarySearchResult.js
               </a>
             
               
-              <a class="source" href="groupsAsFeaturedDetails.html">
-                groupsAsFeaturedDetails.js
+              <a class="source" href="oaeAsSecondarySearchResults.html">
+                oaeAsSecondarySearchResults.js
               </a>
             
               
-              <a class="source" href="proposalAsHighlight.html">
-                proposalAsHighlight.js
+              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
+                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
               </a>
             
               
-              <a class="source" href="proposalsAsHighlights.html">
-                proposalsAsHighlights.js
+              <a class="source" href="searchFilterAsItem.html">
+                searchFilterAsItem.js
               </a>
             
               
-              <a class="source" href="tagAsHorizontalSelectionItem.html">
-                tagAsHorizontalSelectionItem.js
+              <a class="source" href="searchFiltersAsList.html">
+                searchFiltersAsList.js
               </a>
             
               
-              <a class="source" href="tagAsVerticalSelectionItem.html">
-                tagAsVerticalSelectionItem.js
+              <a class="source" href="searchForm.html">
+                searchForm.js
               </a>
             
               
-              <a class="source" href="tagSetAsHorizontalSelection.html">
-                tagSetAsHorizontalSelection.js
+              <a class="source" href="tagAsCheckbox.html">
+                tagAsCheckbox.js
               </a>
             
               
-              <a class="source" href="tagSetAsVerticalSelection.html">
-                tagSetAsVerticalSelection.js
+              <a class="source" href="tagSetAsCheckboxGroup.html">
+                tagSetAsCheckboxGroup.js
               </a>
             
               
-              <a class="source" href="tagsAsHorizontalSelection.html">
-                tagsAsHorizontalSelection.js
+              <a class="source" href="tagsAsCheckboxes.html">
+                tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="tagsAsVerticalSelection.html">
-                tagsAsVerticalSelection.js
-              </a>
-            
-              
-              <a class="source" href="teachers.html">
-                teachers.js
+              <a class="source" href="teacherSearchPage.html">
+                teacherSearchPage.js
               </a>
             
           </div>
@@ -231,10 +251,8 @@ various sections.</p>
             
             <div class="content"><div class='highlight'><pre>
         routes: {
-            <span class="hljs-string">''</span>:         <span class="hljs-string">'landing'</span>,
-            <span class="hljs-string">'teachers'</span>: <span class="hljs-string">'teachers'</span>,
-            <span class="hljs-string">'schools'</span>:  <span class="hljs-string">'schools'</span>,
-            <span class="hljs-string">'industry'</span>: <span class="hljs-string">'industry'</span>
+            <span class="hljs-string">''</span>:                 <span class="hljs-string">'landing'</span>,
+            <span class="hljs-string">'search(/)(:query)'</span>:  <span class="hljs-string">'search'</span>
         },</pre></div></div>
             
         </li>
@@ -248,13 +266,15 @@ various sections.</p>
               </div>
               <p>We use a convenience function to
 switch to a specific section. It’s
-parameter is the <code>id</code> of the
-destination section.</p>
+first parameter is the <code>id</code> of the
+destination section. The second
+(optional) parameter is a theme
+to apply to the header.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        loadPage: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id)</span> </span>{</pre></div></div>
+        loadPage: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id,theme)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -272,8 +292,8 @@ the sections as appropriate.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-string">'section'</span>).not(<span class="hljs-string">'#'</span> + id + <span class="hljs-string">'_page'</span>).removeClass(<span class="hljs-string">'show'</span>).addClass(<span class="hljs-string">'hide'</span>);
-            $(<span class="hljs-string">'section#'</span> + id + <span class="hljs-string">'_page'</span>).removeClass(<span class="hljs-string">'hide'</span>).addClass(<span class="hljs-string">'show'</span>);</pre></div></div>
+            $(<span class="hljs-string">'section'</span>).not(<span class="hljs-string">'#'</span> + id).removeClass(<span class="hljs-string">'show'</span>).addClass(<span class="hljs-string">'hide'</span>);
+            $(<span class="hljs-string">'section#'</span> + id).removeClass(<span class="hljs-string">'hide'</span>).addClass(<span class="hljs-string">'show'</span>);</pre></div></div>
             
         </li>
         
@@ -292,7 +312,9 @@ page. To do that, we set the appropriate
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-string">'.header'</span>).attr(<span class="hljs-string">'data-section'</span>, id);</pre></div></div>
+            <span class="hljs-keyword">if</span> (theme) {
+                $(<span class="hljs-string">'.header'</span>).attr(<span class="hljs-string">'data-theme'</span>, theme);
+            }</pre></div></div>
             
         </li>
         
@@ -303,7 +325,7 @@ page. To do that, we set the appropriate
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>CLose the navigation menu (in case it was
+              <p>Close the navigation menu (in case it was
 used to trigger the page change).</p>
 
             </div>
@@ -332,22 +354,19 @@ the top of the new “page”.</p>
         },
 
         landing: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>);
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
         },
 
-        teachers: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers'</span>);
+        search: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(query)</span> </span>{
+            query = query || <span class="hljs-string">""</span>;
+            <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.set(<span class="hljs-string">'query'</span>,
+                <span class="hljs-built_in">decodeURIComponent</span>(query));
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers-search'</span>,<span class="hljs-string">'theme-1'</span>);
         },
 
-        schools: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'schools'</span>);
-        },
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-        industry: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'industry'</span>);
-        },
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>;</pre></div></div>
             
         </li>
         
@@ -358,25 +377,13 @@ the top of the new “page”.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>Since JavaScript is (obviously) up
-and running, we don’t have to rely
-on boilerplate static HTML for
-navigation within the app. To
-prevent the browser from trying to
-adjust scroll positions, replace
-the existing <code>id</code> values with new
-ones that won’t match any URL
-hashtag.</p>
+              <p>Create the models that back each of the
+app’s “pages.”</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-string">'section'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-                <span class="hljs-keyword">var</span> oldId = $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">'id'</span>);
-                $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">'id'</span>, oldId + <span class="hljs-string">'_page'</span>);
-            });
-
-            Backbone.history.start();</pre></div></div>
+            <span class="hljs-keyword">this</span>.teacherSearch = <span class="hljs-keyword">new</span> Stem.Models.TeacherSearch();</pre></div></div>
             
         </li>
         
@@ -387,7 +394,7 @@ hashtag.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Now create and render the views for
+              <p>Create and render the views for
 each section. It’s okay to render
 them now because they’ll remain
 hidden until the user navigates
@@ -396,7 +403,59 @@ to them.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.teacher = <span class="hljs-keyword">new</span> Stem.Views.Teachers().render();
+            <span class="hljs-keyword">this</span>.teacherSearchPage = <span class="hljs-keyword">new</span> Stem.Views.TeacherSearchPage({
+                el: $(<span class="hljs-string">'#teachers-search'</span>),
+                model: <span class="hljs-keyword">this</span>.teacherSearch
+            }).render();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Now that the teachers search info
+is available, replace the generic
+search form on the landing page with
+a teacher-focused one.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.landingSearch = <span class="hljs-keyword">new</span> Stem.Views.SearchForm({
+                model: <span class="hljs-keyword">this</span>.teacherSearch.searchQuery,
+                theme: <span class="hljs-string">'theme-1'</span>
+            });
+
+            $(<span class="hljs-string">'#teachers-discovery-search-form'</span>)
+                .replaceWith(<span class="hljs-keyword">this</span>.landingSearch.render().$el);
+
+            <span class="hljs-keyword">this</span>.landingSearch.on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                <span class="hljs-keyword">var</span> query = app.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>);
+                app.navigate(<span class="hljs-string">'search/'</span> + <span class="hljs-built_in">encodeURIComponent</span>(query));
+                app.loadPage(<span class="hljs-string">'teachers-search'</span>, <span class="hljs-string">'theme-1'</span>);
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Everything’s ready, so start enable
+the router by starting history.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            Backbone.history.start();
+
         }
     });
 

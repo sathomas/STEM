@@ -34,18 +34,23 @@
               </a>
             
               
+              <a class="source" href="searchFilters.html">
+                searchFilters.js
+              </a>
+            
+              
               <a class="source" href="tags.html">
                 tags.js
               </a>
             
               
-              <a class="source" href="featured.html">
-                featured.js
+              <a class="source" href="style-helpers.html">
+                style-helpers.js
               </a>
             
               
-              <a class="source" href="style-helpers.html">
-                style-helpers.js
+              <a class="source" href="utils.html">
+                utils.js
               </a>
             
               
@@ -74,6 +79,21 @@
               </a>
             
               
+              <a class="source" href="search.html">
+                search.js
+              </a>
+            
+              
+              <a class="source" href="searchFilter.html">
+                searchFilter.js
+              </a>
+            
+              
+              <a class="source" href="searchGroup.html">
+                searchGroup.js
+              </a>
+            
+              
               <a class="source" href="tag.html">
                 tag.js
               </a>
@@ -84,83 +104,83 @@
               </a>
             
               
+              <a class="source" href="teacherSearch.html">
+                teacherSearch.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
               </a>
             
               
-              <a class="source" href="completedProposalAsFeaturedDetailsItem.html">
-                completedProposalAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsMainSearchGroup.html">
+                oaeAsMainSearchGroup.js
               </a>
             
               
-              <a class="source" href="completedProposalsAsFeaturedDetails.html">
-                completedProposalsAsFeaturedDetails.js
+              <a class="source" href="oaeAsMainSearchResult.html">
+                oaeAsMainSearchResult.js
               </a>
             
               
-              <a class="source" href="contentAsFeaturedDetails.html">
-                contentAsFeaturedDetails.js
+              <a class="source" href="oaeAsMainSearchResults.html">
+                oaeAsMainSearchResults.js
               </a>
             
               
-              <a class="source" href="contentAsFeaturedDetailsItem.html">
-                contentAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsSecondarySearchGroup.html">
+                oaeAsSecondarySearchGroup.js
               </a>
             
               
-              <a class="source" href="groupAsFeaturedDetailsItem.html">
-                groupAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsSecondarySearchResult.html">
+                oaeAsSecondarySearchResult.js
               </a>
             
               
-              <a class="source" href="groupsAsFeaturedDetails.html">
-                groupsAsFeaturedDetails.js
+              <a class="source" href="oaeAsSecondarySearchResults.html">
+                oaeAsSecondarySearchResults.js
               </a>
             
               
-              <a class="source" href="proposalAsHighlight.html">
-                proposalAsHighlight.js
+              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
+                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
               </a>
             
               
-              <a class="source" href="proposalsAsHighlights.html">
-                proposalsAsHighlights.js
+              <a class="source" href="searchFilterAsItem.html">
+                searchFilterAsItem.js
               </a>
             
               
-              <a class="source" href="tagAsHorizontalSelectionItem.html">
-                tagAsHorizontalSelectionItem.js
+              <a class="source" href="searchFiltersAsList.html">
+                searchFiltersAsList.js
               </a>
             
               
-              <a class="source" href="tagAsVerticalSelectionItem.html">
-                tagAsVerticalSelectionItem.js
+              <a class="source" href="searchForm.html">
+                searchForm.js
               </a>
             
               
-              <a class="source" href="tagSetAsHorizontalSelection.html">
-                tagSetAsHorizontalSelection.js
+              <a class="source" href="tagAsCheckbox.html">
+                tagAsCheckbox.js
               </a>
             
               
-              <a class="source" href="tagSetAsVerticalSelection.html">
-                tagSetAsVerticalSelection.js
+              <a class="source" href="tagSetAsCheckboxGroup.html">
+                tagSetAsCheckboxGroup.js
               </a>
             
               
-              <a class="source" href="tagsAsHorizontalSelection.html">
-                tagsAsHorizontalSelection.js
+              <a class="source" href="tagsAsCheckboxes.html">
+                tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="tagsAsVerticalSelection.html">
-                tagsAsVerticalSelection.js
-              </a>
-            
-              
-              <a class="source" href="teachers.html">
-                teachers.js
+              <a class="source" href="teacherSearchPage.html">
+                teacherSearchPage.js
               </a>
             
           </div>
@@ -197,10 +217,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Trivial Backbone collection for list of tags.
-The stock Backbone collection is sufficient, so
-there’s actually no code needed here. We just define
-the collection so it can be used in views.</p>
+              <p>Trivial Backbone collection for list of tags.</p>
 
             </div>
             
@@ -228,7 +245,7 @@ the set of tags that are currently selected.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>        
+            <div class="content"><div class='highlight'><pre>
         getSelectedTags: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{
                 <span class="hljs-keyword">return</span> model.get(<span class="hljs-string">'selected'</span>);

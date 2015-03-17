@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>searchFilter.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="content.html">
+                content.js
+              </a>
+            
+              
+              <a class="source" href="groups.html">
+                groups.js
+              </a>
+            
+              
+              <a class="source" href="proposals.html">
+                proposals.js
+              </a>
+            
+              
+              <a class="source" href="searchFilters.html">
+                searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="tags.html">
+                tags.js
+              </a>
+            
+              
+              <a class="source" href="style-helpers.html">
+                style-helpers.js
+              </a>
+            
+              
+              <a class="source" href="utils.html">
+                utils.js
+              </a>
+            
+              
+              <a class="source" href="index.html">
+                index.js
+              </a>
+            
+              
+              <a class="source" href="main.html">
+                main.js
+              </a>
+            
+              
+              <a class="source" href="content.html">
+                content.js
+              </a>
+            
+              
+              <a class="source" href="group.html">
+                group.js
+              </a>
+            
+              
+              <a class="source" href="proposal.html">
+                proposal.js
+              </a>
+            
+              
+              <a class="source" href="search.html">
+                search.js
+              </a>
+            
+              
+              <a class="source" href="searchFilter.html">
+                searchFilter.js
+              </a>
+            
+              
+              <a class="source" href="searchGroup.html">
+                searchGroup.js
+              </a>
+            
+              
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tagSet.html">
+                tagSet.js
+              </a>
+            
+              
+              <a class="source" href="teacherSearch.html">
+                teacherSearch.js
+              </a>
+            
+              
+              <a class="source" href="app.html">
+                app.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsMainSearchGroup.html">
+                oaeAsMainSearchGroup.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsMainSearchResult.html">
+                oaeAsMainSearchResult.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsMainSearchResults.html">
+                oaeAsMainSearchResults.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSecondarySearchGroup.html">
+                oaeAsSecondarySearchGroup.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSecondarySearchResult.html">
+                oaeAsSecondarySearchResult.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSecondarySearchResults.html">
+                oaeAsSecondarySearchResults.js
+              </a>
+            
+              
+              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
+                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              </a>
+            
+              
+              <a class="source" href="searchFilterAsItem.html">
+                searchFilterAsItem.js
+              </a>
+            
+              
+              <a class="source" href="searchFiltersAsList.html">
+                searchFiltersAsList.js
+              </a>
+            
+              
+              <a class="source" href="searchForm.html">
+                searchForm.js
+              </a>
+            
+              
+              <a class="source" href="tagAsCheckbox.html">
+                tagAsCheckbox.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsCheckboxGroup.html">
+                tagSetAsCheckboxGroup.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsCheckboxes.html">
+                tagsAsCheckboxes.js
+              </a>
+            
+              
+              <a class="source" href="teacherSearchPage.html">
+                teacherSearchPage.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>searchFilter.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Trivial Backbone model for a search filter.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Stem.Models = Stem.Models || {};
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+
+    Stem.Models.SearchFilter = Backbone.Model.extend({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Define the default properties of a model.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        defaults: {
+            icon: <span class="hljs-string">''</span>,
+            selected: <span class="hljs-literal">false</span>,
+            tagSet: {},
+            title: <span class="hljs-string">''</span>
+        }
+
+    });
+
+})();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

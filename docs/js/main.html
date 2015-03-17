@@ -34,18 +34,23 @@
               </a>
             
               
+              <a class="source" href="searchFilters.html">
+                searchFilters.js
+              </a>
+            
+              
               <a class="source" href="tags.html">
                 tags.js
               </a>
             
               
-              <a class="source" href="featured.html">
-                featured.js
+              <a class="source" href="style-helpers.html">
+                style-helpers.js
               </a>
             
               
-              <a class="source" href="style-helpers.html">
-                style-helpers.js
+              <a class="source" href="utils.html">
+                utils.js
               </a>
             
               
@@ -74,6 +79,21 @@
               </a>
             
               
+              <a class="source" href="search.html">
+                search.js
+              </a>
+            
+              
+              <a class="source" href="searchFilter.html">
+                searchFilter.js
+              </a>
+            
+              
+              <a class="source" href="searchGroup.html">
+                searchGroup.js
+              </a>
+            
+              
               <a class="source" href="tag.html">
                 tag.js
               </a>
@@ -84,83 +104,83 @@
               </a>
             
               
+              <a class="source" href="teacherSearch.html">
+                teacherSearch.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
               </a>
             
               
-              <a class="source" href="completedProposalAsFeaturedDetailsItem.html">
-                completedProposalAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsMainSearchGroup.html">
+                oaeAsMainSearchGroup.js
               </a>
             
               
-              <a class="source" href="completedProposalsAsFeaturedDetails.html">
-                completedProposalsAsFeaturedDetails.js
+              <a class="source" href="oaeAsMainSearchResult.html">
+                oaeAsMainSearchResult.js
               </a>
             
               
-              <a class="source" href="contentAsFeaturedDetails.html">
-                contentAsFeaturedDetails.js
+              <a class="source" href="oaeAsMainSearchResults.html">
+                oaeAsMainSearchResults.js
               </a>
             
               
-              <a class="source" href="contentAsFeaturedDetailsItem.html">
-                contentAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsSecondarySearchGroup.html">
+                oaeAsSecondarySearchGroup.js
               </a>
             
               
-              <a class="source" href="groupAsFeaturedDetailsItem.html">
-                groupAsFeaturedDetailsItem.js
+              <a class="source" href="oaeAsSecondarySearchResult.html">
+                oaeAsSecondarySearchResult.js
               </a>
             
               
-              <a class="source" href="groupsAsFeaturedDetails.html">
-                groupsAsFeaturedDetails.js
+              <a class="source" href="oaeAsSecondarySearchResults.html">
+                oaeAsSecondarySearchResults.js
               </a>
             
               
-              <a class="source" href="proposalAsHighlight.html">
-                proposalAsHighlight.js
+              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
+                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
               </a>
             
               
-              <a class="source" href="proposalsAsHighlights.html">
-                proposalsAsHighlights.js
+              <a class="source" href="searchFilterAsItem.html">
+                searchFilterAsItem.js
               </a>
             
               
-              <a class="source" href="tagAsHorizontalSelectionItem.html">
-                tagAsHorizontalSelectionItem.js
+              <a class="source" href="searchFiltersAsList.html">
+                searchFiltersAsList.js
               </a>
             
               
-              <a class="source" href="tagAsVerticalSelectionItem.html">
-                tagAsVerticalSelectionItem.js
+              <a class="source" href="searchForm.html">
+                searchForm.js
               </a>
             
               
-              <a class="source" href="tagSetAsHorizontalSelection.html">
-                tagSetAsHorizontalSelection.js
+              <a class="source" href="tagAsCheckbox.html">
+                tagAsCheckbox.js
               </a>
             
               
-              <a class="source" href="tagSetAsVerticalSelection.html">
-                tagSetAsVerticalSelection.js
+              <a class="source" href="tagSetAsCheckboxGroup.html">
+                tagSetAsCheckboxGroup.js
               </a>
             
               
-              <a class="source" href="tagsAsHorizontalSelection.html">
-                tagsAsHorizontalSelection.js
+              <a class="source" href="tagsAsCheckboxes.html">
+                tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="tagsAsVerticalSelection.html">
-                tagsAsVerticalSelection.js
-              </a>
-            
-              
-              <a class="source" href="teachers.html">
-                teachers.js
+              <a class="source" href="teacherSearchPage.html">
+                teacherSearchPage.js
               </a>
             
           </div>
@@ -236,19 +256,16 @@ namespace as part of their definition.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Global configuration items (e.g. API keys) are
-defined in the <code>config</code> property.</p>
+              <p>Global configuration items are defined in the
+<code>config</code> property. Sensitive data (e.g. production
+API keys) should not be specified here, but,
+rather, set in the <code>keys.js</code> file which is
+excluded from the public repository.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    config: {
-        donorsChooseApiKey: <span class="hljs-string">'DONORSCHOOSE'</span>,
-        oae: {
-            host: <span class="hljs-string">'stemincubator.oae-qa1.oaeproject.org'</span>,
-            protocol: <span class="hljs-string">'http:'</span>
-        }
-    },</pre></div></div>
+    config: {</pre></div></div>
             
         </li>
         
@@ -259,17 +276,13 @@ defined in the <code>config</code> property.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>The <code>init()</code> function is called when it’s time
-to start the application.</p>
+              <p>Demo key for DonorsChoose; replaced by
+production key in <code>keys.js</code>.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">        'use strict'</span>;
-        <span class="hljs-keyword">new</span> Stem.Routers.App();
-    }
-};</pre></div></div>
+        donorsChooseApiKey: <span class="hljs-string">'DONORSCHOOSE'</span>,</pre></div></div>
             
         </li>
         
@@ -279,6 +292,69 @@ to start the application.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>OAE configuration. Host and protocol are
+split to allow easy switching between
+secure and non-secure (i.e. demo) version.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        oae: {
+            host: <span class="hljs-string">'stemincubator.oae-qa1.oaeproject.org'</span>,
+            protocol: <span class="hljs-string">'http:'</span>
+        }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>The <code>init()</code> function is called when it’s time
+to start the application.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    init: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">        'use strict'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Make sure the App object is defined. If it is,
+create one. It handles everything from there.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.Routers &amp;&amp; <span class="hljs-keyword">this</span>.Routers.App) {
+            <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.Routers.App();
+        }
+
+    }
+
+};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Wait for jQuery’s <code>ready</code> event to start the application.</p>
 
