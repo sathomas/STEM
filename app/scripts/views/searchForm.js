@@ -92,11 +92,11 @@ Stem.Views = Stem.Views || {};
         // If the user changes the query value, we
         // need to update the underlying model.
 
-        changed: function() {
+        changed: function(ev) {
 
-            // Get the current selected state.
+            // Get the current input value.
 
-            var query = this.$el.find('input').val();
+            var query = $(ev.currentTarget).val();
 
             // Update the model with the current query..
 

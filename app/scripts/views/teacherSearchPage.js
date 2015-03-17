@@ -22,12 +22,12 @@ Stem.Views = Stem.Views || {};
 
         id: 'teachers-search',
 
-        // ## renderSearchBars
+        // ## renderSearchBar
         //
-        // Render the search bar(s) that support
+        // Render the search bar that supports
         // teacher-focused search queries.
 
-        renderSearchBars: function () {
+        renderSearchBar: function () {
 
             var model = this.model.searchQuery;
 
@@ -161,7 +161,7 @@ Stem.Views = Stem.Views || {};
 
             // Render the individual components of the view.
 
-            this.renderSearchBars();
+            this.renderSearchBar();
             this.renderSearchFilters();
             this.renderResults();
 
