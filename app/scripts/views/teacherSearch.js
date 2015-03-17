@@ -111,28 +111,65 @@ Stem.Views = Stem.Views || {};
 
         },
 
-        // ## renderGradeLevels
+        // ## setupSearchFilters
         //
-        // Render the grade-level filters that support
-        // teacher-focused search queries.
+        // Setup the filters that will control the search
+        // results presentation.
 
-        renderGradeLevels: function () {
+        setupSearchFilters: function () {
 
-            var view = this;
+            // Grade levels are part of the filters.
 
-            // Insert a grade-level filter in each filter set.
+            this.setupGradeLevels();
 
-            $('#teachers-results-filter .results-filter__list-item__content').each(function() {
+            // Create models for the individual filters.
 
-                var checkboxGroup = new Stem.Views.TagSetAsCheckboxGroup({
-                    model: view.gradeTagSet
+            this.showContent = new Stem.Models.SearchFilter({
+                icon: 'fa-cloud-download',
+                selected: true,
+                tagSet: this.gradeTagSet,
+                title: 'Resources and units'
+            });
+            this.showCourses = new Stem.Models.SearchFilter({
+                icon: 'fa-certificate',
+                tagSet: this.gradeTagSet,
+                title: 'Professional learning'
+            });
+            this.showGroups = new Stem.Models.SearchFilter({
+                icon: 'fa-comments-o',
+                tagSet: this.gradeTagSet,
+                title: 'People and groups'
+            });
+
+            // Collect the models into a collection.
+
+            this.searchFilters = new Stem.Collections.SearchFilters([
+                this.showContent,
+                this.showCourses,
+                this.showGroups
+            ]);
+
+            // If the filters change, update the search
+            // presentation.
+
+            this.listenTo(this.searchFilters,'change', this.arrangeResults);
+
+        },
+
+        // ## renderSearchFilters
+        //
+        // Show the search filters on the page.
+
+        renderSearchFilters: function () {
+
+            this.searchFiltersList = this.searchFiltersList ||
+                new Stem.Views.SearchFiltersAsList({
+                    collection: this.searchFilters
                 });
 
-                checkboxGroup.render();
+            this.searchFiltersList.render();
 
-                $(this).append(checkboxGroup.$el);
-
-            });
+            $('#teachers-results-filter').append(this.searchFiltersList.$el);
 
         },
 
@@ -161,11 +198,11 @@ Stem.Views = Stem.Views || {};
 
         },
 
-        // ## showCollections
+        // ## arrangeResults
         //
-        // Show the search results on the page.
+        // Arrange the search results on the page.
 
-        showCollections: function () {
+        arrangeResults: function () {
 
             // First detach existing elements from the DOM.
 
@@ -175,10 +212,30 @@ Stem.Views = Stem.Views || {};
             this.groupsSecondaryView.$el.detach();
 
             // Insert the elements in the correct locations
-            $('#teacher-search-results-main')
-                .append(this.contentMainView.$el);
-            $('#teacher-search-results-secondary .results-secondary-block').first()
-                .append(this.groupsSecondaryView.$el);
+            // depending on which filter is selected.
+
+            if (this.showContent.get('selected')) {
+
+                $('#teacher-search-results-main')
+                    .append(this.contentMainView.$el);
+                $('#teacher-search-results-secondary')
+                    .append(this.groupsSecondaryView.$el);
+
+            } else if (this.showCourses.get('selected')) {
+
+                $('#teacher-search-results-secondary')
+                    .append(this.groupsSecondaryView.$el);
+                $('#teacher-search-results-secondary')
+                    .append(this.contentSecondaryView.$el);
+
+            } else if (this.showGroups.get('selected')) {
+
+                $('#teacher-search-results-main')
+                    .append(this.groupsMainView.$el);
+                $('#teacher-search-results-secondary')
+                    .append(this.contentSecondaryView.$el);
+
+            }
 
         },
 
@@ -213,7 +270,7 @@ Stem.Views = Stem.Views || {};
             this.groupsMainView.render();
             this.groupsSecondaryView.render();
 
-            this.showCollections();
+            this.arrangeResults();
 
         },
 
@@ -224,7 +281,7 @@ Stem.Views = Stem.Views || {};
             // Initialize the individual components
 
             this.setupSearchBars();
-            this.setupGradeLevels();
+            this.setupSearchFilters();
             this.setupCollections();
 
             // Kick off the first search
@@ -244,7 +301,7 @@ Stem.Views = Stem.Views || {};
             // Render the individual components of the view.
 
             this.renderSearchBars();
-            this.renderGradeLevels();
+            this.renderSearchFilters();
             this.renderCollections();
 
             // Return view for method chaining.

@@ -19,8 +19,8 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-            '':               'landing',
-            'search/:query':  'search'
+            '':                 'landing',
+            'search(/)(:query)':  'search'
         },
 
         // We use a convenience function to
@@ -36,8 +36,8 @@ Stem.Routers = Stem.Routers || {};
             // is set the `show` or `hide` classes on
             // the sections as appropriate.
 
-            $('section').not('#' + id + '_page').removeClass('show').addClass('hide');
-            $('section#' + id + '_page').removeClass('hide').addClass('show');
+            $('section').not('#' + id).removeClass('show').addClass('hide');
+            $('section#' + id).removeClass('hide').addClass('show');
 
             // We also want to update the navigation
             // bar with a theme appropriate to the
@@ -66,7 +66,9 @@ Stem.Routers = Stem.Routers || {};
         },
 
         search: function(query) {
-            this.teacherSearch.setQuery(decodeURIComponent(query));
+            query = query || "";
+            this.teacherSearch.searchQuery.set('query',
+                decodeURIComponent(query));
             this.loadPage('teachers-search','theme-1');
         },
 
@@ -74,31 +76,37 @@ Stem.Routers = Stem.Routers || {};
 
             var app = this;
 
-            // Since JavaScript is (obviously) up
-            // and running, we don't have to rely
-            // on boilerplate static HTML for
-            // navigation within the app. To
-            // prevent the browser from trying to
-            // adjust scroll positions, replace
-            // the existing `id` values with new
-            // ones that won't match any URL
-            // hashtag.
+            // Create the models that back each of the
+            // app's "pages."
 
-            $('section').each(function() {
-                var oldId = $(this).attr('id');
-                $(this).attr('id', oldId + '_page');
-            });
+            this.teacherSearch = new Stem.Models.TeacherSearch();
 
-            // Now create and render the views for
+            // Create and render the views for
             // each section. It's okay to render
             // them now because they'll remain
             // hidden until the user navigates
             // to them.
 
-            this.teacherSearch = new Stem.Views.TeacherSearch();
-            this.teacherSearch.render();
+            this.teacherSearchPage = new Stem.Views.TeacherSearchPage({
+                el: $('#teachers-search'),
+                model: this.teacherSearch
+            }).render();
 
-            this.teacherSearch.on('search', function(query) {
+            // Now that the teachers search info
+            // is available, replace the generic
+            // search form on the landing page with
+            // a teacher-focused one.
+
+            this.landingSearch = new Stem.Views.SearchForm({
+                model: this.teacherSearch.searchQuery,
+                theme: 'theme-1'
+            });
+
+            $('#teachers-discovery-search-form')
+                .replaceWith(this.landingSearch.render().$el);
+
+            this.landingSearch.on('submit', function() {
+                var query = app.teacherSearch.searchQuery.get('query');
                 app.navigate('search/' + encodeURIComponent(query));
                 app.loadPage('teachers-search', 'theme-1');
             });

@@ -1,0 +1,9 @@
+<input type="radio" id="<%= id %>" class="results-filter__list-item__input"
+       name="<%= groupId %>" <% if (selected) print('checked') %> />
+<label for="<%= id %>" class="results-filter__list-item__label" >
+    <i class="results-filter__list-item__icon fa <%= icon %>"></i>
+    <span class="results-filter__list-item__text">
+        <%= title %>
+    </span>
+</label>
+<div class="results-filter__list-item__content"></div>

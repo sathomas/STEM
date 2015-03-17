@@ -88,6 +88,16 @@ of course, means that JavaScript is available.
         -->
 
         <header role="banner" class="header" data-theme="theme-1-dark">
+
+            <!--
+
+            For now, the "brand" is really just a placeholder, just
+            generic text with a border. The styles for the brand (in
+            `header.less`) are tied pretty specifically to the content
+            here. They should probably be revised together.
+
+            -->
+
             <h1 class="header__brand">
                 <span class="header__brand__border">
                     <a href="#" class="header__brand__link">
@@ -121,17 +131,17 @@ of course, means that JavaScript is available.
                 -->
 
                 <ul class="header__navbar__list">
-                    <li class="header__navbar__item header__navbar__item--theme-1-dark">
+                    <li class="header__navbar__item">
                         <a href="#teachers" class="header__navbar__link">
                             Teachers
                         </a>
                     </li>
-                    <li class="header__navbar__item header__navbar__item--theme-2-dark">
+                    <li class="header__navbar__item">
                         <a href="#schools" class="header__navbar__link">
                             Administrators
                         </a>
                     </li>
-                    <li class="header__navbar__item header__navbar__item--theme-3-dark">
+                    <li class="header__navbar__item">
                         <a href="#industry" class="header__navbar__link">
                             Partners
                         </a>
@@ -245,13 +255,33 @@ of course, means that JavaScript is available.
 
                     <!--
 
-                    The following `<div>` is just a placeholder for the actual
+                    The following search form is a placeholder for the actual
                     search for that JavaScript will insert for the teacher's
-                    discovery panel.
+                    discovery panel. It's functional, though, for users that
+                    are having a JavaScript moment.
 
                     -->
 
-                    <div id="teachers-discovery-search-form"></div>
+                    <form id="teachers-discovery-search-form" class="search theme-1"
+                          role="search" action="https://stemincubator.oaeproject.org/search/">
+                        <label class="search__label">Search for resources</label>
+                        <input placeholder="Search the Georgia STEM Incubator"
+                               type="search" class="search__input"><!--
+                        --><button type="submit" class="search__submit">Search</button>
+                        <input placeholder="Search" type="search"
+                               class="search__input search__input--small"><!--
+                        --><button type="submit" class="search__submit search__submit--small">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+
+                    <!--
+
+                    Next up are other discovery options for teachers.
+                    These are not generally dynamic but simply link
+                    to other sites.
+
+                    -->
 
                     <div class="discovery__options">
                         <div class="discovery__option">
@@ -365,129 +395,9 @@ of course, means that JavaScript is available.
             =======================
             Teachers Search Results
             =======================
-
-            Since the search results are populated by JavaScript,
-            we only show this section if JavaScript is available.
-
             -->
 
-            <section id="teachers-search" aria-labelledby="teachers-search-heading"
-                     class="util--js-only">
-
-                <!--
-
-                We provide a heading for the section to orient users relying
-                on screen readers, since, for them, it won't be obvious that
-                the site is organized as sections representing separate pages.
-                To visual users, however, the organization should be apparent,
-                so the heading is only required for screen readers.
-
-                -->
-
-                <h2 id="teachers-search-heading" class="util--sr-only">
-                    Search Result for Teachers
-                </h2>
-
-                <!--
-
-                The first "article" in this section is just a repeat of the
-                main search bar. (Repeat because the same search field is
-                present on the main landing page.)
-
-                -->
-
-                <article class="discovery discovery--lead">
-
-                    <!--
-
-                    The following `<div>` is just a placeholder for the actual
-                    search for that JavaScript will insert for the teacher's
-                    discovery panel.
-
-                    -->
-
-                    <div id="teachers-search-form"></div>
-
-                </article>
-
-                <!--
-
-                Now we present the search results.
-
-                -->
-
-                <article class="results" data-theme="theme-1">
-
-                    <!--
-
-                    The first block is a set of controls to let the
-                    user filter and manage the search results.
-
-                    -->
-
-                    <div id="teachers-results-filter" class="results-filter">
-                        <ul class="results-filter__list">
-                            <li class="results-filter__list-item">
-                                <input type="radio" id="teachers-search-results-1"
-                                       name="teachers-search-results"
-                                       class="results-filter__list-item__input"
-                                       checked="checked" />
-                                <label for="teachers-search-results-1"
-                                       class="results-filter__list-item__label" >
-                                    <i class="results-filter__list-item__icon
-                                              fa fa-cloud-download"></i>
-                                    <span class="results-filter__list-item__text">
-                                        Resources and units
-                                    </span>
-                                </label>
-                                <div class="results-filter__list-item__content">
-                                </div>
-                            </li>
-                            <li class="results-filter__list-item">
-                                <input type="radio" id="teachers-search-results-2"
-                                       name="teachers-search-results"
-                                       class="results-filter__list-item__input" />
-                                <label for="teachers-search-results-2"
-                                       class="results-filter__list-item__label" >
-                                    <i class="results-filter__list-item__icon
-                                              fa fa-certificate"></i>
-                                    <span class="results-filter__list-item__text">
-                                        Professional learning
-                                    </span>
-                                </label>
-                                <div class="results-filter__list-item__content">
-                                </div>
-                            </li>
-                            <li class="results-filter__list-item">
-                                <input type="radio" id="teachers-search-results-3"
-                                       name="teachers-search-results"
-                                       class="results-filter__list-item__input" />
-                                <label for="teachers-search-results-3"
-                                       class="results-filter__list-item__label" >
-                                    <i class="results-filter__list-item__icon
-                                              fa fa-comments-o"></i>
-                                    <span class="results-filter__list-item__text">
-                                        People and groups
-                                    </span>
-                                </label>
-                                <div class="results-filter__list-item__content">
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div id="teacher-search-results-main" class="results-main">
-                    </div>
-
-                    <div id="teacher-search-results-secondary" class="results-secondary">
-                        <div class="results-secondary-block"></div>
-                        <div class="results-secondary-block"></div>
-                    </div>
-
-                </article>
-
-
-            </section>
+            <section id="teachers-search"></section>
 
         </main>
 
@@ -610,12 +520,15 @@ of course, means that JavaScript is available.
         <script src="scripts/models/group.js"></script>
         <script src="scripts/models/proposal.js"></script>
         <script src="scripts/models/search.js"></script>
+        <script src="scripts/models/searchFilter.js"></script>
         <script src="scripts/models/searchGroup.js"></script>
         <script src="scripts/models/tag.js"></script>
         <script src="scripts/models/tagSet.js"></script>
+        <script src="scripts/models/teacherSearch.js"></script>
         <script src="scripts/collections/content.js"></script>
         <script src="scripts/collections/groups.js"></script>
         <script src="scripts/collections/proposals.js"></script>
+        <script src="scripts/collections/searchFilters.js"></script>
         <script src="scripts/collections/tags.js"></script>
         <script src="scripts/views/oaeAsMainSearchGroup.js"></script>
         <script src="scripts/views/oaeAsMainSearchResult.js"></script>
@@ -623,11 +536,13 @@ of course, means that JavaScript is available.
         <script src="scripts/views/oaeAsSecondarySearchGroup.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResult.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResults.js"></script>
+        <script src="scripts/views/searchFilterAsItem.js"></script>
+        <script src="scripts/views/searchFiltersAsList.js"></script>
         <script src="scripts/views/searchForm.js"></script>
         <script src="scripts/views/tagAsCheckbox.js"></script>
         <script src="scripts/views/tagsAsCheckboxes.js"></script>
         <script src="scripts/views/tagSetAsCheckboxGroup.js"></script>
-        <script src="scripts/views/teacherSearch.js"></script>
+        <script src="scripts/views/teacherSearchPage.js"></script>
         <script src="scripts/routes/app.js"></script>
         <!-- endbuild -->
 
