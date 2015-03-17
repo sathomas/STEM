@@ -1,4 +1,4 @@
-/*global beforeEach, describe, it, assert, expect  */
+/*global beforeEach, describe, it, Stem  */
 
 describe('SearchFilter Model', function () {
     'use strict';

@@ -57,7 +57,7 @@ describe('SearchFilterAsItem View', function () {
     it('should set checked property appropriately for the radio input', function() {
         var $el = this.SearchFilterAsItem.render().$el;
         $el.find('input[type="radio"]').prop('checked').should.be.false();
-        var item = new Stem.Views.SearchFilterAsItem({
+        new Stem.Views.SearchFilterAsItem({
             model: new Stem.Models.SearchFilter({ selected: true, tagSet: this.TagSet })
         }).render().$el.find('input[type="radio"]').prop('checked').should.be.true();
     });

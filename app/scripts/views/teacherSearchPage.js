@@ -1,4 +1,4 @@
-/* global Stem, $, _, Backbone */
+/* global Stem, _, Backbone, JST */
 
 // Backbone view for the teacher-focused
 // search page of the application.
@@ -29,8 +29,7 @@ Stem.Views = Stem.Views || {};
 
         renderSearchBars: function () {
 
-            var model = this.model.searchQuery,
-                view = this;
+            var model = this.model.searchQuery;
 
             // Create separate views for both of the search forms
             // and insert them into the page.

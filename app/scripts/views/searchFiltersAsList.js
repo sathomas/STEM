@@ -1,4 +1,4 @@
-/*global Stem, Backbone */
+/*global Stem, _, Backbone */
 
 // Basic Backbone view that renders
 // a set of search filters as a list.
