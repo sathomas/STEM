@@ -1,4 +1,4 @@
-/*global Stem, _, Backbone, JST*/
+/*global Stem, _, Backbone, JST, $ */
 
 Stem.Views = Stem.Views || {};
 
@@ -92,11 +92,11 @@ Stem.Views = Stem.Views || {};
         // If the user changes the query value, we
         // need to update the underlying model.
 
-        changed: function() {
+        changed: function(ev) {
 
-            // Get the current selected state.
+            // Get the current input value.
 
-            var query = this.$el.find('input').val();
+            var query = $(ev.currentTarget).val();
 
             // Update the model with the current query..
 
@@ -130,13 +130,15 @@ Stem.Views = Stem.Views || {};
 
             // Only update the view if it's not in
             // focus to avoid messing with the users
-            // while they're typing.
+            // while they're typing. Note that we
+            // have multiple parallel `<input>`
+            // elements to handle responsive design.
 
-            if (!this.$el.find('input').is(":focus")) {
-
-                this.$el.find('input').val(query);
-
-            }
+            this.$el.find('input').each(function() {
+                if (!$(this).is(":focus")) {
+                    $(this).val(query);
+                }
+            });
 
         }
 
