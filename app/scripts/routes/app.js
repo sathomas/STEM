@@ -19,7 +19,10 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-            '':                 'landing',
+            '':                   'landing',
+            'teachers':           'teachers',
+            'schools':            'schools',
+            'industry':           'industry',
             'search(/)(:query)':  'search'
         },
 
@@ -61,7 +64,44 @@ Stem.Routers = Stem.Routers || {};
 
         },
 
+        // Convenience function to set the discovery
+        // section on the landing page by setting the
+        // appropriate radio buttons in the nav.
+
+        setDiscovery: function(discoveryIdx) {
+
+            // Set the appropriate button and clear all
+            // the others.
+
+            $('#discovery-nav input[type="radio"]').each(function(idx) {
+                $(this).prop('checked', (discoveryIdx === (idx+1)));
+            });
+
+            // Since changing the property doesn't trigger
+            // a `change` event (!), we have to set the `data-`
+            // attribute explicitly.
+
+            $('#discovery-nav').attr('data-discovery-nav', discoveryIdx);
+
+        },
+
         landing: function() {
+            this.setDiscovery(1);
+            this.loadPage('landing','theme-1-dark');
+        },
+
+        teachers: function() {
+            this.setDiscovery(1);
+            this.loadPage('landing','theme-1-dark');
+        },
+
+        schools: function() {
+            this.setDiscovery(2);
+            this.loadPage('landing','theme-1-dark');
+        },
+
+        industry: function() {
+            this.setDiscovery(3);
             this.loadPage('landing','theme-1-dark');
         },
 
@@ -109,6 +149,21 @@ Stem.Routers = Stem.Routers || {};
                 var query = app.teacherSearch.searchQuery.get('query');
                 app.navigate('search/' + encodeURIComponent(query));
                 app.loadPage('teachers-search', 'theme-1');
+            });
+
+            // For other models, we need geographic information.
+            // Request that now and continue processing when it's
+            // available.
+
+            $.getJSON('http://ipinfo.io/json', function(ipInfo) {
+
+//console.log('using stubbed ipInfo for development');
+//var ipInfo = {"ip":"73.54.166.233","hostname":"c-73-54-166-233.hsd1.ga.comcast.net","city":"Woodstock","region":"Georgia","country":"US","loc":"34.1190,-84.4477","org":"AS7922 Comcast Cable Communications, Inc.","postal":"30188"};
+
+                // Save the IP information in the root object.
+
+                Stem.user.ipInfo = ipInfo;
+
             });
 
             // Everything's ready, so start enable

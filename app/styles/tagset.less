@@ -5,15 +5,8 @@
  */
 
 .tagset__label {
-    left: -9999em;
-    opacity: 0;
-    position: absolute;
-    top: -9999em;
-    @media @tablet {
-        left: auto;
-        opacity: 1;
-        position: static;
-    }
+    .invisible;
+    @media @tablet { .visible; }
 }
 
 .tagset__fieldset {

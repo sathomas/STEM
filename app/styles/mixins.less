@@ -11,9 +11,30 @@
  * clickable.
  */
 
- .clickable() {
+.clickable() {
     font-weight: 600;
     letter-spacing: .1rem;
     text-transform: uppercase;
- }
+}
 
+/*
+ * ### Visibility:
+ *
+ * Make content visible (or not)
+ * to visual users without affecting
+ * screen readers.
+ */
+
+.invisible() {
+    left: -9999em;
+    opacity: 0;
+    position: absolute;
+    top: -9999em;
+}
+
+.visible() {
+    left: auto;
+    opacity: 1;
+    position: static;
+    top: auto;
+}

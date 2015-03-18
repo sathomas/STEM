@@ -34,9 +34,17 @@ window.Stem = {
         // secure and non-secure (i.e. demo) version.
 
         oae: {
-            host: 'stemincubator.oae-qa1.oaeproject.org',
-            protocol: 'http:'
+//            host: 'stemincubator.oae-qa1.oaeproject.org',
+            host: 'stemincubator.oaeproject.org',
+            protocol: 'https:'
         }
+    },
+
+    // General user information shared by multiple
+    // components.
+
+    user: {
+
     },
 
     // The `init()` function is called when it's time
@@ -49,7 +57,7 @@ window.Stem = {
         // create one. It handles everything from there.
 
         if (this.Routers && this.Routers.App) {
-            new this.Routers.App();
+            Stem.app = new this.Routers.App();
         }
 
     }

@@ -1,4 +1,4 @@
-/*global $*/
+/*global $ */
 
 // Generic JavaScript utilities that enhance the CSS
 // styles for the site. The CSS is designed so that
@@ -21,6 +21,30 @@ $(document).ready(function () {
     $('#nav-toggle').on('change', function() {
 
         $('main').attr('data-nav-expanded', $('#nav-toggle').prop('checked'));
+
+    });
+
+    // Look for changes to discovery navigation and
+    // make those changes visible to CSS.
+
+    $('#discovery-nav').on('change', function() {
+
+        // Use setTimeout to delay processing
+        // because some browsers trigger the
+        // `change` event before updating the
+        // properties of the `<input>` elements.
+
+        setTimeout(function() {
+            $('#discovery-nav input[type="radio"]').each(function(idx) {
+                if ($(this).is(':checked')) {
+                    $('#discovery-nav').attr('data-discovery-nav', idx+1);
+                    // Update the URL as well.
+                    var hash = $('#discovery-nav ~ article:nth-of-type(' + (idx+1) + ')')
+                        .attr('id');
+                    history.pushState(null ,$('title').text(), '#' + hash);
+                }
+            });
+        }, 20);
 
     });
 
