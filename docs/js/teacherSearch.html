@@ -559,7 +559,27 @@ fetches.</p>
             _(<span class="hljs-keyword">this</span>.searchResults).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(search)</span> </span>{
                 search.get(<span class="hljs-string">'collection'</span>).options({keywords: keywords})
                     .fetch({reset: <span class="hljs-literal">true</span>});
-            });
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Update the “More” links in the results.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> oaeUrl = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
+                         Stem.config.oae.host + <span class="hljs-string">'/search/'</span> +
+                         <span class="hljs-built_in">encodeURIComponent</span>(keywords) + <span class="hljs-string">'?types='</span>;
+            <span class="hljs-keyword">this</span>.searchResults.content.set(<span class="hljs-string">'moreLink'</span>, oaeUrl + <span class="hljs-string">'content'</span>);
+            <span class="hljs-keyword">this</span>.searchResults.groups.set(<span class="hljs-string">'moreLink'</span>, oaeUrl + <span class="hljs-string">'user,group'</span>);
 
         }
 
