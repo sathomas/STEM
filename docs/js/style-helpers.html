@@ -206,7 +206,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global $*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global $ */</span></pre></div></div>
             
         </li>
         
@@ -264,6 +264,67 @@ mobile viewports.</p>
     $(<span class="hljs-string">'#nav-toggle'</span>).on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
         $(<span class="hljs-string">'main'</span>).attr(<span class="hljs-string">'data-nav-expanded'</span>, $(<span class="hljs-string">'#nav-toggle'</span>).prop(<span class="hljs-string">'checked'</span>));
+
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Look for changes to discovery navigation and
+make those changes visible to CSS.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    $(<span class="hljs-string">'#discovery-nav'</span>).on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Use setTimeout to delay processing
+because some browsers trigger the
+<code>change</code> event before updating the
+properties of the <code>&lt;input&gt;</code> elements.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            $(<span class="hljs-string">'#discovery-nav input[type="radio"]'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(idx)</span> </span>{
+                <span class="hljs-keyword">if</span> ($(<span class="hljs-keyword">this</span>).is(<span class="hljs-string">':checked'</span>)) {
+                    $(<span class="hljs-string">'#discovery-nav'</span>).attr(<span class="hljs-string">'data-discovery-nav'</span>, idx+<span class="hljs-number">1</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Update the URL as well.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    <span class="hljs-keyword">var</span> hash = $(<span class="hljs-string">'#discovery-nav ~ article:nth-of-type('</span> + (idx+<span class="hljs-number">1</span>) + <span class="hljs-string">')'</span>)
+                        .attr(<span class="hljs-string">'id'</span>);
+                    history.pushState(<span class="hljs-literal">null</span> ,$(<span class="hljs-string">'title'</span>).text(), <span class="hljs-string">'#'</span> + hash);
+                }
+            });
+        }, <span class="hljs-number">20</span>);
 
     });
 

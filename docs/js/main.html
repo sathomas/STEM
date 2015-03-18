@@ -300,11 +300,7 @@ secure and non-secure (i.e. demo) version.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        oae: {
-            host: <span class="hljs-string">'stemincubator.oae-qa1.oaeproject.org'</span>,
-            protocol: <span class="hljs-string">'http:'</span>
-        }
-    },</pre></div></div>
+        oae: {</pre></div></div>
             
         </li>
         
@@ -314,6 +310,43 @@ secure and non-secure (i.e. demo) version.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <pre><code>       host: <span class="hljs-string">'stemincubator.oae-qa1.oaeproject.org'</span>,
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            host: <span class="hljs-string">'stemincubator.oaeproject.org'</span>,
+            protocol: <span class="hljs-string">'https:'</span>
+        }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>General user information shared by multiple
+components.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    user: {
+
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>The <code>init()</code> function is called when it’s time
 to start the application.</p>
@@ -327,11 +360,11 @@ to start the application.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Make sure the App object is defined. If it is,
 create one. It handles everything from there.</p>
@@ -340,7 +373,7 @@ create one. It handles everything from there.</p>
             
             <div class="content"><div class='highlight'><pre>
         <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.Routers &amp;&amp; <span class="hljs-keyword">this</span>.Routers.App) {
-            <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.Routers.App();
+            Stem.app = <span class="hljs-keyword">new</span> <span class="hljs-keyword">this</span>.Routers.App();
         }
 
     }
@@ -350,11 +383,11 @@ create one. It handles everything from there.</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Wait for jQuery’s <code>ready</code> event to start the application.</p>
 
