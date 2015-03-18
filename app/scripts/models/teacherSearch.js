@@ -166,7 +166,7 @@ Stem.Models = Stem.Models || {};
 
             var oaeUrl = Stem.config.oae.protocol + '//' +
                          Stem.config.oae.host + '/search/' +
-                         encodeURIComponent(keywords) + '?types='
+                         encodeURIComponent(keywords) + '?types=';
             this.searchResults.content.set('moreLink', oaeUrl + 'content');
             this.searchResults.groups.set('moreLink', oaeUrl + 'user,group');
 
