@@ -1,4 +1,4 @@
-<img class="results-main__thumbnail" src="<% print(Stem.config.oae.protocol + '//' + Stem.config.oae.host + thumbnailUrl) %>" />
+<img class="results-main__thumbnail" src="<% if (thumbnailUrl.indexOf('http') === 0) { print(thumbnailUrl) } else { print(Stem.config.oae.protocol + '//' + Stem.config.oae.host + thumbnailUrl) } %>" />
 <a href="<% print(Stem.config.oae.protocol + '//' + Stem.config.oae.host + profilePath) %>"
    class="results-main__link">
     <%= displayName %>

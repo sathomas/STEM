@@ -202,9 +202,15 @@ of course, means that JavaScript is available.
                 vertically) anyway. As a result, we can keep the markup sane
                 and separate the tabs from the tab panels.
 
+                The `data-discovery-nav` attribute identifies the panel
+                that's currently visible. Screen readers just get all the
+                content in linear form, so there is no need to use ARIA
+                roles for a full-on tab/tab panel interface.
+
                 -->
 
-                <nav role="navigation" class="discovery-nav">
+                <nav role="navigation" id="discovery-nav" class="discovery-nav"
+                     data-discovery-nav="1">
                     <input type="radio" name="discovery-nav" id="discovery-nav-teachers"
                            class="discovery-nav__radio"
                            checked="checked"/>
@@ -241,10 +247,17 @@ of course, means that JavaScript is available.
 
                 <!--
 
-                The landing page section consists of several blocks of content.
-                Each of these content blocks is contained within an `<article>`
-                element.
+                The landing page continues with several blocks of content for
+                the different discovery focus perspectives. Each of these content
+                blocks is contained within an `<article>` element for CSS
+                `nth-of-type` targeting.
 
+                -->
+
+                <!--
+                ======================
+                Discovery for Teachers
+                ======================
                 -->
 
                 <article id="teachers" class="discovery" aria-labelledby="teachers-heading">
@@ -320,22 +333,60 @@ of course, means that JavaScript is available.
                     </div>
                 </article>
 
+                <!--
+                =====================
+                Discovery for Schools
+                =====================
+                -->
 
                 <article id="schools" class="discovery" aria-labelledby="schools-heading">
                     <h3 id="schools-heading"
                         class="discovery__heading discovery__heading--theme-2">
                         Supporting administrators
                     </h3>
+                    <p>
+                        Content under development.
+                    </p>
                 </article>
+
+
+                <!--
+                ======================
+                Discovery for Industry
+                ======================
+                -->
 
                 <article id="industry" class="discovery" aria-labelledby="industry-heading">
                     <h3 id="industry-heading"
                         class="discovery__heading discovery__heading--theme-3">
                         Supporting partners
                     </h3>
+                    <p>
+                        Content also under development.
+                    </p>
                 </article>
 
-                <article class="about" aria-labelledby="about-heading">
+                <!--
+
+                After the discovery section with its focus on different
+                types of users, the landing page includes some generic
+                content about the site as well as credits for funding and
+                underlying services.
+
+                Note that these content blocks are contained in `<div>`
+                rather than `<article>` elements. That's required so
+                that CSS `nth-of-type` selectors can target just the
+                discovery panels.
+
+                -->
+
+                <!--
+                =====================
+                Generic About Content
+                =====================
+                -->
+
+                <div class="about" aria-labelledby="about-heading">
                     <h3 id="about-heading" class="about__heading">
                         About the Georgia STEM Incubator
                     </h3>
@@ -346,9 +397,15 @@ of course, means that JavaScript is available.
                         to spur innovation in STEM education through reflective
                         practice, professional learning, and collaboration.
                     </p>
-                </article>
+                </div>
 
-                <article class="credits" aria-labelledby="credits-heading">
+                <!--
+                =======================
+                Generic Credits Content
+                =======================
+                -->
+
+                <div class="credits" aria-labelledby="credits-heading">
                     <h3 id="credits-heading" class="util--sr-only">
                         Credits
                     </h3>
@@ -387,14 +444,24 @@ of course, means that JavaScript is available.
                             </a>
                         </div>
                     </div>
-                </article>
+                </div>
 
             </section>
 
             <!--
-            =======================
-            Teachers Search Results
-            =======================
+
+            That's it for the landing page content. What follows are
+            additional "pages" in the site. These pages are, in general,
+            created by JavaScript (which is okay, since JavaScript is
+            required to "navigate" to them), so the static content that
+            shows up here is (virtually) non-existent.
+
+            -->
+
+            <!--
+            ============================
+            Teachers Search Results Page
+            ============================
             -->
 
             <section id="teachers-search"></section>
@@ -406,7 +473,10 @@ of course, means that JavaScript is available.
         Footer
         ======
 
-        Nothing special in the footer. Most of this content is boilerplate or
+        The footer follows the `<main>` element of the page, so it is present
+        on all "pages" in the site.
+
+        Nothing special in the footer content. Most of it is boilerplate or
         placeholder for now, pending further business-level decisions on the
         project (e.g. will there be a newsletter?)
 

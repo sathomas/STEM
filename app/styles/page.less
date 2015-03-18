@@ -45,39 +45,11 @@ section {
 html.js section:not(:first-of-type),
 html.js section.hide,
 section.hide {
-    left: -9999em;
-    opacity: 0;
-    position: absolute;
-    top: -9999em;
+    .invisible;
 }
 
 html.js section.show,
 section.show {
-    left: auto;
-    opacity: 1;
-    position: static;
+    .visible;
 }
 
-
-/**
- * Article:
- * A section can optionally be divided into multiple
- * `<article>` elements. The article adds vertical
- * spacing to the contents, but does not affect
- * horizontal spacing.
- *
- *     @example:
- *     <section>
- *         <article>
- *             This is the first article.
- *         </article>
- *         <article>
- *             This is the second article.
- *         </article>
- *     </section>
- */
-
-article {
-    margin: 30px 0;
-    width: 100%;
-}

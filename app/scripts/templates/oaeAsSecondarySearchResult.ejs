@@ -1,7 +1,7 @@
 <a href="<% print(Stem.config.oae.protocol + '//' + Stem.config.oae.host + profilePath) %>"
    class="results-secondary__link">
     <div role="image" class="results-secondary__image"
-         style="background-image: url(<% print(Stem.config.oae.protocol + '//' + Stem.config.oae.host + thumbnailUrl) %>);">
+         style="background-image: url(<% if (thumbnailUrl.indexOf('http') === 0) { print(thumbnailUrl) } else { print(Stem.config.oae.protocol + '//' + Stem.config.oae.host + thumbnailUrl) } %>);">
     </div>
     <h5 class="results-secondary__heading">
         <%= displayName %>
