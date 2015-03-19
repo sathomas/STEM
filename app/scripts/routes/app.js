@@ -22,7 +22,7 @@ Stem.Routers = Stem.Routers || {};
             '':                   'landing',
             'teachers':           'teachers',
             'schools':            'schools',
-            'industry':           'industry',
+            'partners':           'partners',
             'search(/)(:query)':  'search'
         },
 
@@ -100,7 +100,7 @@ Stem.Routers = Stem.Routers || {};
             this.loadPage('landing','theme-1-dark');
         },
 
-        industry: function() {
+        partners: function() {
             this.setDiscovery(3);
             this.loadPage('landing','theme-1-dark');
         },
@@ -155,16 +155,23 @@ Stem.Routers = Stem.Routers || {};
             // Request that now and continue processing when it's
             // available.
 
-            $.getJSON('http://ipinfo.io/json', function(ipInfo) {
+//            $.getJSON('http://ipinfo.io/json', function(ipInfo) {
 
-//console.log('using stubbed ipInfo for development');
-//var ipInfo = {"ip":"73.54.166.233","hostname":"c-73-54-166-233.hsd1.ga.comcast.net","city":"Woodstock","region":"Georgia","country":"US","loc":"34.1190,-84.4477","org":"AS7922 Comcast Cable Communications, Inc.","postal":"30188"};
+console.log('using stubbed ipInfo for development');
+var ipInfo = {"ip":"73.54.166.233","hostname":"c-73-54-166-233.hsd1.ga.comcast.net","city":"Woodstock","region":"Georgia","country":"US","loc":"34.1190,-84.4477","org":"AS7922 Comcast Cable Communications, Inc.","postal":"30188"};
 
                 // Save the IP information in the root object.
 
                 Stem.user.ipInfo = ipInfo;
+                this.industryDiscovery = new Stem.Models.IndustryDiscovery();
+                this.industryMap = new Stem.Views.DiscoveryAsMap({
+                    el: $('#partners-donorschoose-map'),
+                    collection: this.industryDiscovery.proposalPois,
+                    model: this.industryDiscovery,
+                    tint: 'images/theme-3-background.png'
+                }).render();
 
-            });
+//            });
 
             // Everything's ready, so start enable
             // the router by starting history.

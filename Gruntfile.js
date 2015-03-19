@@ -286,7 +286,6 @@ module.exports = function (grunt) {
                     flatten: true,
                     dest: '<%= yeoman.dist %>/fonts',
                     src: [
-                        'CNAME',
                         'bower_components/fontawesome/fonts/*.*'
                     ]
                 }]

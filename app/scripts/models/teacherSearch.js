@@ -141,17 +141,36 @@ Stem.Models = Stem.Models || {};
             // Add special keywords based on the tag
             // settings.
 
+            if (this.tags.primary.get('selected') ||
+                this.tags.elementary.get('selected')) {
+                keywords += ', primary, elementary';
+            }
             if (this.tags.primary.get('selected')) {
-                keywords += ', k-2, primary, elementary';
+                keywords += ', k-2, kindergarten' +
+                            ', "1st grade", "first grade"' +
+                            ', "2nd grade", "second grade"';
             }
             if (this.tags.elementary.get('selected')) {
-                keywords += ', 3-5, elementary';
+                keywords += ', 3-5, "3rd grade", "third grade"' +
+                            ', "4th grade", "fourth grade"' +
+                            ', "5th grade", "fifth grade"';
+            }
+            if (this.tags.middle.get('selected') ||
+                this.tags.high.get('selected')) {
+                keywords += ', secondary';
             }
             if (this.tags.middle.get('selected')) {
-                keywords += ', 6-8, middle';
+                keywords += ', 6-8, middle' +
+                            ', "6th grade", "sixth grade"' +
+                            ', "7th grade", "seventh grade"' +
+                            ', "8th grade", "eighth grade"';
             }
             if (this.tags.high.get('selected')) {
-                keywords += ', 9-12, high';
+                keywords += ', 9-12, high' +
+                            ', "9th grade", "ninth grade"' +
+                            ', "10th grade", "tenth grade"' +
+                            ', "11th grade", "eleventh grade"' +
+                            ', "12th grade", "twelfth grade"';
             }
 
             // Update the collections and trigger new

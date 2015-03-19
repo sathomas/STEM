@@ -1,4 +1,4 @@
-/*global $ */
+/*global $, Modernizr */
 
 // Generic JavaScript utilities that enhance the CSS
 // styles for the site. The CSS is designed so that
@@ -39,9 +39,11 @@ $(document).ready(function () {
                 if ($(this).is(':checked')) {
                     $('#discovery-nav').attr('data-discovery-nav', idx+1);
                     // Update the URL as well.
-                    var hash = $('#discovery-nav ~ article:nth-of-type(' + (idx+1) + ')')
-                        .attr('id');
-                    history.pushState(null ,$('title').text(), '#' + hash);
+                    if (Modernizr.history) {
+                        var hash = $('#discovery-nav ~ article:nth-of-type(' + (idx+1) + ')')
+                            .attr('id');
+                        history.pushState(null ,$('title').text(), '#' + hash);
+                    }
                 }
             });
         }, 20);
