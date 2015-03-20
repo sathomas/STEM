@@ -158,7 +158,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            var latLong = this.getLatLong(business, 'poi-business');
+            this.getLatLong(business, 'poi-business');
 
         },
 
@@ -167,7 +167,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            var latLong = this.getLatLong(school, 'poi-school');
+            this.getLatLong(school, 'poi-school');
 
         },
 
