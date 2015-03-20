@@ -8,11 +8,11 @@ Stem.Views = Stem.Views || {};
 (function () {
     'use strict';
 
-    Stem.Views.TeacherSearchPage = Backbone.View.extend({
+    Stem.Views.TeacherSearchAsPage = Backbone.View.extend({
 
         // Markup stored as external template.
 
-        template: JST['app/scripts/templates/teacherSearchPage.ejs'],
+        template: JST['app/scripts/templates/teacherSearchAsPage.ejs'],
 
         // First level element is a `<section>`.
 
@@ -34,7 +34,7 @@ Stem.Views = Stem.Views || {};
             // Create separate views for both of the search forms
             // and insert them into the page.
 
-            this.searchBar = new Stem.Views.SearchForm({
+            this.searchBar = new Stem.Views.SearchAsForm({
                 model: model,
                 showLabel: false,
                 theme: 'theme-1'

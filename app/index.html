@@ -36,6 +36,7 @@ of course, means that JavaScript is available.
         <!-- build:css styles/styles.css -->
         <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
         <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
+        <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 
@@ -142,7 +143,7 @@ of course, means that JavaScript is available.
                         </a>
                     </li>
                     <li class="header__navbar__item">
-                        <a href="#industry" class="header__navbar__link">
+                        <a href="#partners" class="header__navbar__link">
                             Partners
                         </a>
                     </li>
@@ -226,20 +227,16 @@ of course, means that JavaScript is available.
                     <label for="discovery-nav-schools"
                            class="discovery-nav__label discovery-nav__label--theme-2">
                         <span>
-                            Find professional learning opportunities,
-                            build partnerships, collaborate across the
-                            state
+                            Collaborate across the state
                         </span>
                         <span class="discovery-nav__label__more">More</span>
                     </label>
-                    <input type="radio" name="discovery-nav" id="discovery-nav-industry"
+                    <input type="radio" name="discovery-nav" id="discovery-nav-partners"
                            class="discovery-nav__radio"/>
-                    <label for="discovery-nav-industry"
+                    <label for="discovery-nav-partners"
                            class="discovery-nav__label discovery-nav__label--theme-3">
                         <span>
-                            Partner with schools, build your community-minded
-                            brand, promote change for a new generation of
-                            workforce
+                            Partner with schools and build the future
                         </span>
                         <span class="discovery-nav__label__more">More</span>
                     </label>
@@ -352,18 +349,98 @@ of course, means that JavaScript is available.
 
                 <!--
                 ======================
-                Discovery for Industry
+                Discovery for Partners
                 ======================
                 -->
 
-                <article id="industry" class="discovery" aria-labelledby="industry-heading">
-                    <h3 id="industry-heading"
+                <article id="partners" class="discovery theme-3" aria-labelledby="partners-heading">
+                    <h3 id="partners-heading"
                         class="discovery__heading discovery__heading--theme-3">
                         Supporting partners
                     </h3>
-                    <p>
-                        Content also under development.
-                    </p>
+
+                    <!--
+
+                    First content block is an introduction.
+
+                    -->
+
+                    <h4 class="discovery__subheading">
+                        Getting started
+                    </h4>
+                    <div class="discovery__option discovery__option--single">
+                        <div class="dicovery__option__visual">
+                            <i class="discovery__option__icon discovery__option__icon--single fa fa-book"></i>
+                            <a class="discovery__option__button
+                                      discovery__option__button--theme-3"
+                               href="https://gatech.brightspace.com">
+                                Read our guide
+                            </a>
+                        </div>
+                        <p class="discovery__text discovery__text--single">
+                            Start by finding schools, businesses, or specific projects in your
+                            local area. Explore spotlights and information below to see how to
+                            create relationships that build business value and deeper
+                            connections with community and schools.
+                        </p>
+                    </div>
+
+                    <!--
+
+                    Next content block is a tab panel for the maps.
+
+                    -->
+
+                    <div class="discovery-tabs">
+                		<input type="radio" name="tabs-1" id="tab-1-1"
+                		       class="discover-tabs__input" checked="checked"/><!--
+                		--><label for="tab-1-1" class="discovery_tabs_label">
+                		    Local partners
+                        </label><!--
+                		--><input type="radio" name="tabs-1" id="tab-1-2"
+                		       class="discover-tabs__input"/><!--
+                		--><label for="tab-1-2" class="discovery_tabs_label">
+                		    Local Projects
+                		</label><!--
+                        --><div class="discovery-tabs__panel">
+                            <div id="partners-organizations-filter" class="discovery__text"></div>
+                            <div id="partners-organizations-map" class="discovery-tabs__map">
+                            </div>
+                            <p class="discovery__text">
+                                Put your organization or school on the map by
+                                joining our community
+                            </p>
+                            <a class="button" href="https://stemincubator.oaeproject.org">
+                                Create an account
+                            </a>
+                        </div><!--
+                        --><div class="discovery-tabs__panel">
+                            <p class="discovery__text">
+                                A great way to start building partnerships
+                            </p>
+                            <div id="partners-donorschoose-map" class="discovery-tabs__map">
+                            </div>
+                            <a href="http://www.donorschoose.org">
+                                <img class="discovery-tabs__logo"
+                                     src="images/donorschoose.svg"/>
+                            </a>
+                            <a class="button"
+                               href="https://secure.donorschoose.org/wizard/addressWizard.html">
+                                Request funding
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--
+
+                    Final content block is spotlight case studies.
+
+                    -->
+
+                    <h4 class="discovery__subheading">
+                        Spotlights
+                    </h4>
+                    <button class="button">Show more spotlights</button>
                 </article>
 
                 <!--
@@ -510,7 +587,7 @@ of course, means that JavaScript is available.
 	    	</div>
 	    	<div class="footer__one-sixth-column">
 		    	<h5 class="footer__column-heading">
-    		    	<a href="#industry" class="footer__column-heading-link">Partners</a>
+    		    	<a href="#partners" class="footer__column-heading-link">Partners</a>
     		    </h5>
 		    	<p class="footer__topic">Leaders</p>
 		    	<p class="footer__topic">Local Businesses</p>
@@ -581,13 +658,17 @@ of course, means that JavaScript is available.
         <script src="bower_components/underscore.string/dist/underscore.string.js"></script>
         <script src="bower_components/backbone/backbone.js"></script>
         <script src="bower_components/backbone-filtered-collection/backbone-filtered-collection.js"></script>
+        <script src="bower_components/leaflet/dist/leaflet-src.js"></script>
         <script src="scripts/main.js"></script>
         <script src="scripts/keys.js"></script>
         <script src="scripts/templates.js"></script>
         <script src="scripts/components/style-helpers.js"></script>
         <script src="scripts/components/utils.js"></script>
         <script src="scripts/models/content.js"></script>
+        <script src="scripts/models/discovery.js"></script>
         <script src="scripts/models/group.js"></script>
+        <script src="scripts/models/partners.js"></script>
+        <script src="scripts/models/poi.js"></script>
         <script src="scripts/models/proposal.js"></script>
         <script src="scripts/models/search.js"></script>
         <script src="scripts/models/searchFilter.js"></script>
@@ -597,22 +678,29 @@ of course, means that JavaScript is available.
         <script src="scripts/models/teacherSearch.js"></script>
         <script src="scripts/collections/content.js"></script>
         <script src="scripts/collections/groups.js"></script>
+        <script src="scripts/collections/pois.js"></script>
         <script src="scripts/collections/proposals.js"></script>
         <script src="scripts/collections/searchFilters.js"></script>
+        <script src="scripts/collections/subGroups.js"></script>
         <script src="scripts/collections/tags.js"></script>
+        <script src="scripts/views/discoveryAsContent.js"></script>
         <script src="scripts/views/oaeAsMainSearchGroup.js"></script>
         <script src="scripts/views/oaeAsMainSearchResult.js"></script>
         <script src="scripts/views/oaeAsMainSearchResults.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchGroup.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResult.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResults.js"></script>
+        <script src="scripts/views/partnersAsDiscovery.js"></script>
+        <script src="scripts/views/poiAsMarker.js"></script>
+        <script src="scripts/views/poisAsMap.js"></script>
+        <script src="scripts/views/searchAsForm.js"></script>
         <script src="scripts/views/searchFilterAsItem.js"></script>
         <script src="scripts/views/searchFiltersAsList.js"></script>
-        <script src="scripts/views/searchForm.js"></script>
         <script src="scripts/views/tagAsCheckbox.js"></script>
         <script src="scripts/views/tagsAsCheckboxes.js"></script>
         <script src="scripts/views/tagSetAsCheckboxGroup.js"></script>
-        <script src="scripts/views/teacherSearchPage.js"></script>
+        <script src="scripts/views/tagSetAsInlineCheckboxGroup.js"></script>
+        <script src="scripts/views/teacherSearchAsPage.js"></script>
         <script src="scripts/routes/app.js"></script>
         <!-- endbuild -->
 

@@ -22,3 +22,28 @@
     padding-left: calc( 2 * @block-spacing );
     @media @tablet { padding-left: @block-spacing; }
 }
+
+.tagset__tag label,
+.tagset input {
+    cursor: pointer;
+}
+
+.tagset--inline div {
+    display: inline-block;
+}
+
+.tagset__fieldset--inline {
+    padding: 0;
+}
+
+.tagset--inline label {
+    padding-right: @block-spacing;
+}
+
+.theme-3 .tagset--inline .tagset__tag:nth-of-type(1) label {
+    color: @color-theme-3-light-bg;
+}
+
+.theme-3 .tagset--inline .tagset__tag:nth-of-type(2) label {
+    color: @color-theme-3-primary-bg;
+}

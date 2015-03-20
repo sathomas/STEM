@@ -34,16 +34,38 @@ window.Stem = {
         // secure and non-secure (i.e. demo) version.
 
         oae: {
-//            host: 'stemincubator.oae-qa1.oaeproject.org',
+            groups: {
+                businesses:   'g%3Asi%3A7Ji6H8sI',
+                courses:      'g%3Asi%3A7Ji6H8sI',
+                partnerships: 'g%3Asi%3A7Ji6H8sI',
+                schools:      'g%3Asi%3A7Ji6H8sI'
+            },
             host: 'stemincubator.oaeproject.org',
             protocol: 'https:'
+        },
+
+        // Default geographic coordinates are the
+        // center of the state.
+
+        geo: {
+            latitude: 32.9605,
+            longitude: -83.1132,
+            northwestCorner: [35.000659, -85.605165],
+            southeastCorner: [30.355757, -80.751429]
         }
+
     },
 
     // General user information shared by multiple
     // components.
 
     user: {
+
+        // Geolocation information for the user.
+
+        geo: {
+
+        }
 
     },
 

@@ -10,7 +10,7 @@
     "underscore.string": "~3",
     "backbone-filtered-collection": "~0",
     "fontawesome": "~4",
-    "lunr.js": "~0"
+    "leaflet": "~0"
   },
   "devDependencies": {
     "less.js": "~2"

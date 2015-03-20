@@ -55,6 +55,7 @@ Stem.Collections = Stem.Collections || {};
                 '/api/search/general?resourceTypes=group&scope=_tenant' +
                 (this._options.limit    ? ('&' + 'limit=' + this._options.limit)    : '') +
                 (this._options.keywords ? ('&' + 'q='     + this._options.keywords) : '');
+
         },
 
         // Enhance the normal Backbone `sync` method to gracefully

@@ -1,0 +1,64 @@
+/**
+ * ## Point of Interest
+ *
+ * Points of interest as markers and
+ * popups on maps.
+ */
+
+.poi-marker {
+    font-size: 40px;
+    transition: opacity 250ms linear;
+}
+
+.poi--hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.poi-proposal {
+    color: black;
+}
+
+.poi-school {
+    color: @color-theme-3-light-bg;
+}
+
+.poi-business {
+    color: @color-theme-3-primary-bg;
+}
+
+.poi-popup__link {
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.poi-popup__thumbnail {
+    height: 48px;
+    vertical-align: text-top;
+    width: 48px;
+}
+
+.poi-popup__text {
+    display: inline-block;
+    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    height: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: text-top;
+    width: 195px;
+}
+
+.theme-1 .poi-popup__text {
+    color: @color-theme-1-primary-bg;
+}
+
+.theme-2 .poi-popup__text {
+    color: @color-theme-2-primary-bg;
+}
+
+.theme-3 .poi-popup__text {
+    color: @color-theme-3-primary-bg;
+}

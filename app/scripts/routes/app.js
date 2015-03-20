@@ -22,7 +22,7 @@ Stem.Routers = Stem.Routers || {};
             '':                   'landing',
             'teachers':           'teachers',
             'schools':            'schools',
-            'industry':           'industry',
+            'partners':           'partners',
             'search(/)(:query)':  'search'
         },
 
@@ -88,21 +88,25 @@ Stem.Routers = Stem.Routers || {};
         landing: function() {
             this.setDiscovery(1);
             this.loadPage('landing','theme-1-dark');
+            this.discoveryContent.show('teachers');
         },
 
         teachers: function() {
             this.setDiscovery(1);
             this.loadPage('landing','theme-1-dark');
+            this.discoveryContent.show('teachers');
         },
 
         schools: function() {
             this.setDiscovery(2);
             this.loadPage('landing','theme-1-dark');
+            this.discoveryContent.show('schools');
         },
 
-        industry: function() {
+        partners: function() {
             this.setDiscovery(3);
             this.loadPage('landing','theme-1-dark');
+            this.discoveryContent.show('partners');
         },
 
         search: function(query) {
@@ -114,60 +118,83 @@ Stem.Routers = Stem.Routers || {};
 
         initialize: function() {
 
-            var app = this;
-
             // Create the models that back each of the
-            // app's "pages."
+            // app's "pages" and other content blocks.
 
+            this.discovery = new Stem.Models.Discovery();
             this.teacherSearch = new Stem.Models.TeacherSearch();
 
-            // Create and render the views for
-            // each section. It's okay to render
-            // them now because they'll remain
-            // hidden until the user navigates
-            // to them.
+            // Create and render the views for each
+            // page or content block. It's okay to
+            // render them now because they'll remain
+            // hidden until the user navigates to
+            // them.
 
-            this.teacherSearchPage = new Stem.Views.TeacherSearchPage({
+            this.discoveryContent = new Stem.Views.DiscoveryAsContent({
+                model: this.discovery
+            }).render();
+
+            this.teacherSearchPage = new Stem.Views.TeacherSearchAsPage({
                 el: $('#teachers-search'),
                 model: this.teacherSearch
             }).render();
 
+            this.listenTo(this.discoveryContent, 'navigate', function(hash) {
+
+                // Preserve the current scroll position
+                var pos = $(window).scrollTop();
+
+                // Add the new hash to the browser history
+                this.navigate(hash);
+
+                // And restore the scroll position
+                $(window).scrollTop(pos);
+
+            });
+
+            // Add any required logic that ties the
+            // different pages or content blocks
+            // together.
+
             // Now that the teachers search info
             // is available, replace the generic
             // search form on the landing page with
-            // a teacher-focused one.
+            // a teacher-focused one. First step
+            // is creating a view for the dynamic
+            // search form.
 
-            this.landingSearch = new Stem.Views.SearchForm({
+            this.landingSearch = new Stem.Views.SearchAsForm({
                 model: this.teacherSearch.searchQuery,
                 theme: 'theme-1'
             });
 
+            // Inject the new search form into the
+            // page.
+
             $('#teachers-discovery-search-form')
                 .replaceWith(this.landingSearch.render().$el);
 
+            // Watch for submission of the new search
+            // form and navigate appropriately.
+
             this.landingSearch.on('submit', function() {
-                var query = app.teacherSearch.searchQuery.get('query');
-                app.navigate('search/' + encodeURIComponent(query));
-                app.loadPage('teachers-search', 'theme-1');
-            });
 
-            // For other models, we need geographic information.
-            // Request that now and continue processing when it's
-            // available.
+                // Retrieve the submitted query.
 
-            $.getJSON('http://ipinfo.io/json', function(ipInfo) {
+                var query = this.teacherSearch.searchQuery.get('query');
 
-//console.log('using stubbed ipInfo for development');
-//var ipInfo = {"ip":"73.54.166.233","hostname":"c-73-54-166-233.hsd1.ga.comcast.net","city":"Woodstock","region":"Georgia","country":"US","loc":"34.1190,-84.4477","org":"AS7922 Comcast Cable Communications, Inc.","postal":"30188"};
+                // Update the address bar with the
+                // query for link sharing and bookmarks.
 
-                // Save the IP information in the root object.
+                this.navigate('search/' + encodeURIComponent(query));
 
-                Stem.user.ipInfo = ipInfo;
+                // Load the search page.
 
-            });
+                this.loadPage('teachers-search', 'theme-1');
 
-            // Everything's ready, so start enable
-            // the router by starting history.
+            }, this);
+
+            // Everything's ready, so enable history management.
 
             Backbone.history.start();
 

@@ -5,11 +5,11 @@ Stem.Views = Stem.Views || {};
 (function () {
     'use strict';
 
-    Stem.Views.SearchForm = Backbone.View.extend({
+    Stem.Views.SearchAsForm = Backbone.View.extend({
 
         // Markup stored as external template.
 
-        template: JST['app/scripts/templates/searchForm.ejs'],
+        template: JST['app/scripts/templates/searchAsForm.ejs'],
 
         // First level element is a `<form>`.
 

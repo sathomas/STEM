@@ -32,28 +32,32 @@
  */
 
 
-/*
- * This file is simply the parent file that includes
- * all the component styles. First we import the
- * components that are LESS-only: variable definitions
- * and utility mixins. Then we bring in the actual
- * styles.
- */
+// This file is simply the parent file that includes
+// all the component styles. First we import the
+// components that are LESS-only: variable definitions
+// and utility mixins. Then we bring in the actual
+// styles.
 
+
+@import "thirdparty.less"; // Override third-party rules
+
+
+// Generic variables and mixins are optional
 
 @import (optional) "variables.less";
 @import (optional) "mixins.less";
 
-@import "page.less";      // Overall page structure
-@import "grid.less";      // Visual grid
-@import "type.less";      // Typography
-@import "elements.less";  // Base HTML elements
-@import "header.less";    // Site header
-@import "search.less";    // Primary search form
-@import "results.less";   // Search results presentation
-@import "tagset.less";    // A set of tags
-@import "discovery.less"; // Discovery block
-@import "about.less";     // About the site block
-@import "credits.less";   // Site credits
-@import "footer.less";    // Site footer
-@import "util.less";      // Utility styles
+@import "page.less";       // Overall page structure
+@import "grid.less";       // Visual grid
+@import "type.less";       // Typography
+@import "elements.less";   // Base HTML elements
+@import "header.less";     // Site header
+@import "search.less";     // Primary search form
+@import "results.less";    // Search results presentation
+@import "tagset.less";     // A set of tags
+@import "discovery.less";  // Discovery block
+@import "poi.less";        // Map points of interest
+@import "about.less";      // About the site block
+@import "credits.less";    // Site credits
+@import "footer.less";     // Site footer
+@import "util.less";       // Utility styles
