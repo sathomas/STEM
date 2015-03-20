@@ -1,4 +1,4 @@
-/*global beforeEach, describe, it  */
+/*global beforeEach, describe, it, Stem  */
 
 describe('PoiAsMarker View', function () {
     'use strict';

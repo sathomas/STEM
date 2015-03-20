@@ -85,7 +85,7 @@ describe('SubGroups Collection', function () {
         };
     };
 
-    beforeEach(function () {
+    before(function () {
         var ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', oaeResponse);
         this.SubGroupsCollection = new Stem.Collections.SubGroups([],{parentId: 'ParentId'});
         this.SubGroupsCollection.fetch({validate:true});
@@ -107,12 +107,12 @@ describe('SubGroups Collection', function () {
     });
 
     it('should not parse directly created models', function() {
-        this.SubGroupsCollection = new Stem.Collections.SubGroups(
+        var subGroupsCollection = new Stem.Collections.SubGroups(
             oaeResponse.results.map(function(result) {
                 return result.profile;
             })
         );
-        this.SubGroupsCollection.length.should.equal(2);
+        subGroupsCollection.length.should.equal(2);
     });
 
     it('should create models from the OAE response', function() {

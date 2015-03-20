@@ -1,4 +1,4 @@
-/*global $, Modernizr */
+/*global $ */
 
 // Generic JavaScript utilities that enhance the CSS
 // styles for the site. The CSS is designed so that

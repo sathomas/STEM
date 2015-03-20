@@ -1,4 +1,4 @@
-/*global beforeEach, describe, it  */
+/*global beforeEach, describe, it, Stem  */
 
 describe('Poi Model', function () {
     'use strict';

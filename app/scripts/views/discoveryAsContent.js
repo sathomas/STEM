@@ -1,4 +1,4 @@
-/*global Stem, _, $, Backbone */
+/*global Stem, $, Backbone */
 
 // Backbone view for the landing page discovery
 // section. Because that section includes static

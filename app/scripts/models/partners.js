@@ -1,4 +1,4 @@
-/*global Stem, Backbone*/
+/*global Stem, _, Backbone*/
 
 // The partners model encapsulates information
 // about partnerships between schools and
@@ -158,7 +158,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            var latLong = getLatLong(business, 'poi-business');
+            var latLong = this.getLatLong(business, 'poi-business');
 
         },
 
@@ -167,7 +167,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            var latLong = getLatLong(school, 'poi-school');
+            var latLong = this.getLatLong(school, 'poi-school');
 
         },
 

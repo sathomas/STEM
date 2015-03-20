@@ -1,4 +1,4 @@
-/*global Stem, $, _, Backbone */
+/*global Stem, $, _, Backbone, L */
 
 // View that displays discovery information as a map.
 // The collection backing this view contains data for

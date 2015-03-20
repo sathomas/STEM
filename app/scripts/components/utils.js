@@ -1,4 +1,4 @@
-/*global _, Stem */
+/*global _, $, Stem */
 
 // Generic JavaScript utilities that aren't part of
 // any model, view, collection, etc.
@@ -128,9 +128,6 @@ Stem.Utils = Stem.Utils || {};
                 dataType: "jsonp"
             })
             .done(function(response) {
-
-                var lat = null,
-                    long = null;
 
                 if (response.result &&
                     response.result.addressMatches &&
