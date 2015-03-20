@@ -157,23 +157,38 @@ Stem.Routers = Stem.Routers || {};
 
 //            $.getJSON('http://ipinfo.io/json', function(ipInfo) {
 
-console.log('using stubbed ipInfo for development');
-var ipInfo = {"ip":"73.54.166.233","hostname":"c-73-54-166-233.hsd1.ga.comcast.net","city":"Woodstock","region":"Georgia","country":"US","loc":"34.1190,-84.4477","org":"AS7922 Comcast Cable Communications, Inc.","postal":"30188"};
+console.log('using stubbed ipInfo for development to avoid API limits');
+var ipInfo = {
+    ip: "73.54.166.233",
+    hostname: "c-73-54-166-233.hsd1.ga.comcast.net",
+    city: "Woodstock",
+    region: "Georgia",
+    country: "US",
+    loc: "34.1190,-84.4477",
+    org: "AS7922 Comcast Cable Communications, Inc.",
+    postal: "30188"
+};
 
                 // Save the IP information in the root object.
 
                 Stem.user.ipInfo = ipInfo;
-                this.industryDiscovery = new Stem.Models.IndustryDiscovery();
-                this.industryMap = new Stem.Views.DiscoveryAsMap({
-                    el: $('#partners-donorschoose-map'),
-                    collection: this.industryDiscovery.proposalPois,
-                    model: this.industryDiscovery,
-                    tint: 'images/theme-3-background.png'
+
+                // Now we can create the models that
+                // require IP geolocation information.
+                // Start with a partners model.
+
+                this.partners = new Stem.Models.Partners();
+
+                // Create the view based on that model and
+                // render it.
+
+                this.partnerDiscovery = new Stem.Views.PartnersAsDiscovery({
+                    model: this.partners
                 }).render();
 
 //            });
 
-            // Everything's ready, so start enable
+            // Everything's ready, so enable
             // the router by starting history.
 
             Backbone.history.start();

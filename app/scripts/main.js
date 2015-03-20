@@ -43,7 +43,9 @@ window.Stem = {
 
         geo: {
             latitude: 32.9605,
-            longitude: -83.1132
+            longitude: -83.1132,
+            northwestCorner: [35.000659, -85.605165],
+            southeastCorner: [30.355757, -80.751429]
         }
 
     },
