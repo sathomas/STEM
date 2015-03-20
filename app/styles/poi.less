@@ -7,10 +7,24 @@
 
 .poi-marker {
     font-size: 40px;
+    transition: opacity 250ms linear;
+}
+
+.poi--hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .poi-proposal {
     color: black;
+}
+
+.poi-school {
+    color: @color-theme-3-light-bg;
+}
+
+.poi-business {
+    color: @color-theme-3-primary-bg;
 }
 
 .poi-popup__link {

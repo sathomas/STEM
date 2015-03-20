@@ -1,4 +1,4 @@
-/*global Stem, Backbone, JST*/
+/*global Stem, $, Backbone */
 
 // Backbone view for the partners block of the
 // landing page's discovery section. Because
@@ -22,10 +22,20 @@ Stem.Views = Stem.Views || {};
             // During initialization, create any
             // child views.
 
-            this.proposalsMap = new Stem.Views.DiscoveryAsMap({
+            this.mapFilter = new Stem.Views.TagSetAsInlineCheckboxGroup({
+                el: $('#partners-organizations-filter'),
+                model: this.model.tagSet
+            });
+
+            this.organizationsMap = new Stem.Views.PoisAsMap({
+                el: $('#partners-organizations-map'),
+                collection: this.model.organizationPois,
+                tintUrl: 'images/theme-3-background.png'
+            });
+
+            this.proposalsMap = new Stem.Views.PoisAsMap({
                 el: $('#partners-donorschoose-map'),
                 collection: this.model.proposalPois,
-                model: this.model,
                 tintUrl: 'images/theme-3-background.png'
             });
 
@@ -35,7 +45,46 @@ Stem.Views = Stem.Views || {};
 
             // Render all the child views.
 
+            this.mapFilter.render();
+            this.organizationsMap.render();
             this.proposalsMap.render();
+
+            this.listenTo(this.model.tags, 'change', this.updateFilters);
+
+            return this; // for method chaining.
+
+        },
+
+        updateFilters: function () {
+
+            if (this.model.showBusinesses.get('selected')) {
+                $('#partners-organizations-map .poi-business')
+                    .removeClass('poi--hidden');
+            } else {
+                $('#partners-organizations-map .poi-business')
+                    .addClass('poi--hidden');
+            }
+
+            if (this.model.showSchools.get('selected')) {
+                $('#partners-organizations-map .poi-school')
+                    .removeClass('poi--hidden');
+            } else {
+                $('#partners-organizations-map .poi-business')
+                    .addClass('poi--hidden');
+            }
+        },
+
+
+        show: function () {
+
+            // Show is distinct from render so
+            // that we don't annoy the user with
+            // unneccessary requests for location
+            // permission. It should be called
+            // when the view is visible.
+
+            this.organizationsMap.show();
+            this.proposalsMap.show();
 
             return this; // for method chaining.
 

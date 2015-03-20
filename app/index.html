@@ -368,12 +368,22 @@ of course, means that JavaScript is available.
                     <h4 class="discovery__subheading">
                         Getting started
                     </h4>
-                    <p class="discovery__text">
-                        Start by finding schools, businesses, or specific projects in your
-                        local area. Explore spotlights and information below to see how to
-                        create relationships that build business value and deeper
-                        connections with community and schools.
-                    </p>
+                    <div class="discovery__option discovery__option--single">
+                        <div class="dicovery__option__visual">
+                            <i class="discovery__option__icon discovery__option__icon--single fa fa-book"></i>
+                            <a class="discovery__option__button
+                                      discovery__option__button--theme-3"
+                               href="https://gatech.brightspace.com">
+                                Read our guide
+                            </a>
+                        </div>
+                        <p class="discovery__text discovery__text--single">
+                            Start by finding schools, businesses, or specific projects in your
+                            local area. Explore spotlights and information below to see how to
+                            create relationships that build business value and deeper
+                            connections with community and schools.
+                        </p>
+                    </div>
 
                     <!--
 
@@ -393,8 +403,11 @@ of course, means that JavaScript is available.
                 		    Local Projects
                 		</label><!--
                         --><div class="discovery-tabs__panel">
+                            <div id="partners-organizations-filter" class="discovery__text"></div>
+                            <div id="partners-organizations-map" class="discovery-tabs__map">
+                            </div>
                             <p class="discovery__text">
-                                Put your business or school on the map by
+                                Put your organization or school on the map by
                                 joining our community
                             </p>
                             <a class="button" href="https://stemincubator.oaeproject.org">
@@ -405,7 +418,7 @@ of course, means that JavaScript is available.
                             <p class="discovery__text">
                                 A great way to start building partnerships
                             </p>
-                            <div id="partners-donorschoose-map" class="disovery-tabs__map">
+                            <div id="partners-donorschoose-map" class="discovery-tabs__map">
                             </div>
                             <a href="http://www.donorschoose.org">
                                 <img class="discovery-tabs__logo"
@@ -415,49 +428,6 @@ of course, means that JavaScript is available.
                                href="https://secure.donorschoose.org/wizard/addressWizard.html">
                                 Request funding
                             </a>
-                        </div>
-                    </div>
-
-                    <!--
-
-                    Content block with "Why STEM?" blurb.
-
-                    -->
-
-                    <h4 class="discovery__subheading">
-                        Why STEM?
-                    </h4>
-                    <p class="discovery__text">
-                        Educating students in STEM subjects teaches them to think
-                        critically and solve problems — skills that can be used
-                        throughout life. Partnering with STEM programs within your
-                        local area ensures that your community thrives in the future.
-                    </p>
-
-                    <!--
-
-                    Another tab panel, this one for resources.
-
-                    -->
-
-                    <div class="discovery-tabs">
-                		<input type="radio" name="tabs-2" id="tab-2-1"
-                		       class="discover-tabs__input" checked="checked"/>
-                		<label for="tab-2-1" class="discovery_tabs_label">
-                		    For business
-                        </label>
-                		<input type="radio" name="tabs-2" id="tab-2-2"
-                		       class="discover-tabs__input"/>
-                		<label for="tab-2-2" class="discovery_tabs_label">
-                		    For schools
-                		</label>
-                        <div class="discovery-tabs__panel">
-                            <div id="tab-body-2-1" class="tab-body">
-                            </div>
-                        </div>
-                        <div class="discovery-tabs__panel">
-                            <div id="tab-body-2-2" class="tab-body">
-                           </div>
                         </div>
                     </div>
 
@@ -695,6 +665,7 @@ of course, means that JavaScript is available.
         <script src="scripts/components/style-helpers.js"></script>
         <script src="scripts/components/utils.js"></script>
         <script src="scripts/models/content.js"></script>
+        <script src="scripts/models/discovery.js"></script>
         <script src="scripts/models/group.js"></script>
         <script src="scripts/models/partners.js"></script>
         <script src="scripts/models/poi.js"></script>
@@ -710,24 +681,27 @@ of course, means that JavaScript is available.
         <script src="scripts/collections/pois.js"></script>
         <script src="scripts/collections/proposals.js"></script>
         <script src="scripts/collections/searchFilters.js"></script>
+        <script src="scripts/collections/subGroups.js"></script>
         <script src="scripts/collections/tags.js"></script>
-        <script src="scripts/views/discoveryAsMap.js"></script>
+        <script src="scripts/views/discoveryAsContent.js"></script>
         <script src="scripts/views/oaeAsMainSearchGroup.js"></script>
         <script src="scripts/views/oaeAsMainSearchResult.js"></script>
         <script src="scripts/views/oaeAsMainSearchResults.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchGroup.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResult.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResults.js"></script>
+        <script src="scripts/views/partnersAsDiscovery.js"></script>
         <script src="scripts/views/poiAsMarker.js"></script>
+        <script src="scripts/views/poisAsMap.js"></script>
+        <script src="scripts/views/searchAsForm.js"></script>
         <script src="scripts/views/searchFilterAsItem.js"></script>
         <script src="scripts/views/searchFiltersAsList.js"></script>
-        <script src="scripts/views/searchForm.js"></script>
         <script src="scripts/views/tagAsCheckbox.js"></script>
         <script src="scripts/views/tagsAsCheckboxes.js"></script>
         <script src="scripts/views/tagSetAsCheckboxGroup.js"></script>
-        <script src="scripts/views/teacherSearchPage.js"></script>
+        <script src="scripts/views/tagSetAsInlineCheckboxGroup.js"></script>
+        <script src="scripts/views/teacherSearchAsPage.js"></script>
         <script src="scripts/routes/app.js"></script>
-        <script src="scripts/views/partnersAsDiscovery.js"></script>
         <!-- endbuild -->
 
 </body>

@@ -1,10 +1,7 @@
-/*global Stem, $, _, Backbone, JST*/
+/*global Stem, $, _, Backbone */
 
 // View that displays discovery information as a map.
-// Unlike simple views, this view has both a backing
-// model and a backing collection. The model provides
-// generic information (e.g. default latitude and
-// longitude), and the collection contains data for
+// The collection backing this view contains data for
 // a set of point of interest markers.
 //
 // The mapping itself is mostly handled by the Leafletjs
@@ -15,13 +12,13 @@ Stem.Views = Stem.Views || {};
 (function () {
     'use strict';
 
-    Stem.Views.DiscoveryAsMap = Backbone.View.extend({
+    Stem.Views.PoisAsMap = Backbone.View.extend({
 
         // Default options for the view.
 
         defaults: {
             // Aspect ratio for map
-            aspectRatio: 0.4,
+            aspectRatio: 0.5,
             // Attribution for the tiles
             attribution: '&copy; ' +
                 '<a href="http://openstreetmap.org">OpenStreetMap</a> ' +
@@ -60,14 +57,25 @@ Stem.Views = Stem.Views || {};
             // For now, this is sort of hacked
             // together "by eye." Eventually, it
             // would be good to get some user
-            // testing results to see if the
-            // calculations are reasonable.
+            // testing results to better match
+            // initial zoom levels with
+            // `$(window).width()`
 
-            return Math.round($(window).width()/320) + 7;
+            return 10;
+
         },
 
         // The render function that creates the
-        // map.
+        // map. There's a separate function to
+        // actually show the map. That separation
+        // lets us prepare the DOM for the map
+        // during the render phase but hold off
+        // on the final step until it's necessary.
+        // The final step hits the browser's location
+        // services API which throws a permissions
+        // prompt to the user. We'd like to avoid
+        // the permisssions prompt until we're absolutely
+        // sure the user is going to see the map.
 
         render: function () {
 
@@ -99,39 +107,6 @@ Stem.Views = Stem.Views || {};
                 scrollWheelZoom: false,
             });
 
-            // We're going to try to set the initial
-            // map location based on the user's
-            // current location. Before making the
-            // call, we set up simple event handlers
-            // to deal with the results.
-
-            // If the user's location is successfully
-            // identified, all we need do is set the
-            // appropriate zoom level.
-
-            this.map.on('locationfound', function() {
-                this.map.setZoom(this.zoom());
-            }, this);
-
-            // If we can't get the user's location
-            // automatically, we default to the
-            // coordinates defined for the model.
-
-            this.map.on('locationerror', function() {
-                this.map.setView([
-                    this.model.get('latitude'),
-                    this.model.get('longitude')
-                ],this.zoom());
-            }, this);
-
-            // Now we're set up to make the call
-            // to request location information
-            // from the user.
-
-            this.map.locate({setView: true});
-
-            // While that processing takes place,
-            // continue setting up the map.
             // If a tint is desired, add it.
 
             if (this.options.tintUrl) {
@@ -172,6 +147,122 @@ Stem.Views = Stem.Views || {};
             }).debounce(250).bind(this).value());
 
             return this; // for method chaining
+
+        },
+
+        // Function to show the map to the user.
+        // This function may cause the browser to
+        // throw a permission prompt to the user
+        // (for location information), so it's
+        // best to avoid it unless we're sure
+        // that the map is actually visible.
+
+        show: function () {
+
+            // We're going to try to set the initial
+            // map location based on the user's
+            // current location. The first thing to
+            // check is whether or not that information
+            // is already available and cached.
+
+            if (Stem.user.geo.latitude && Stem.user.geo.longitude) {
+                this.map.setView([
+                    Stem.user.geo.latitude,
+                    Stem.user.geo.longitude
+                ],this.zoom());
+            }
+
+            // Okay, the geo-location info isn't
+            // conveniently available already, so we'll
+            // try to set it automatically using the
+            // browser's location services. Before making
+            // the API call, we set up simple event handlers
+            // to deal with the results.
+
+            this.map.on('locationfound', function(ev) {
+
+                // If we successfully get the location,
+                // save it for other maps to use.
+
+                Stem.user.geo.latitude = ev.latlng.lat;
+                Stem.user.geo.longitude = ev.latlng.lng;
+
+                // Set the zoom level now that the
+                // map is positioned properly.
+
+                this.map.setZoom(this.zoom());
+
+            }, this).on('locationerror', this.locationFailed, this);
+
+            // Now we're set up to make the call
+            // to request location information
+            // from the user.
+
+            this.map.locate({
+                maximumAge: 60*60*1000, // Cached info is okay
+                setView:    true
+            });
+
+            // Unfortunately, Firefox allows
+            // location permission requests to
+            // fail silently (without returning
+            // an error) if, e.g., the user simply
+            // dismisses the dialog box without
+            // indicating a preference. To deal
+            // with that case, we have to add our
+            // own explicit timeout.
+
+            _.chain(function() {
+
+                // Once the delay has passed, check
+                // to see if we have a location.
+
+                if (!Stem.user.geo.latitude ||
+                    !Stem.user.geo.longitude) {
+
+                    // Nope. Resort to fallback.
+
+                    this.locationFailed();
+
+                }
+
+            }).bind(this).delay(8*1000);
+
+            return this; // for method chaining
+
+        },
+
+        // Handle case when browser geolocation fails.
+
+        locationFailed: function () {
+
+            // Bummer. We couldn't get the location
+            // information from the browser directly.
+            // As a backup, let's try using the
+            // client's public IP address.
+
+            Stem.Utils.getLocationFromIp(
+                _(function(LatLong) {
+
+                    // Success. Set the map view.
+
+                    this.map.setView(LatLong,this.zoom());
+
+                }).bind(this),
+                _(function() {
+
+                    // Okay. That didn't work either.
+                    // Only option left is resorting
+                    // to default values.
+
+                    this.map.setView([
+                        Stem.config.geo.latitude,
+                        Stem.config.geo.longitude
+                    ],this.zoom());
+
+                }).bind(this)
+            );
+
         },
 
         // Add an additional POI marker to the map.

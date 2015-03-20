@@ -11,18 +11,68 @@ Stem.Models = Stem.Models || {};
 
     Stem.Models.Partners = Backbone.Model.extend({
 
-        // Define the default properties of a model.
-        // Those include the geographic coordinates
-        // that define a nexus for schools and
-        // businesses to meet.
+        setupOrganizations: function () {
 
-        defaults: {
-            latitude:     Stem.config.geo.latitude,
-            longitude:    Stem.config.geo.longitude
+            // Organizations are schools or businesses
+            // looking for partnerships. We create a
+            // collection to store them as points of
+            // interest. We'll build that collection
+            // from two general subGroup collections from
+            // the OAE.
+
+            this.organizationPois = new Stem.Collections.Pois();
+
+            var businesses = new Stem.Collections.SubGroups([], {
+                limit: 99,
+                parentId: Stem.config.oae.groups.businesses
+            });
+            var schools = new Stem.Collections.SubGroups([],{
+                limit: 99,
+                parentId: Stem.config.oae.groups.schools
+            });
+
+            // Before we fetch the data from the OAE,
+            // set up handlers to deal with additions to
+            // each collection.
+
+            businesses.on('add', this.businessAdded, this);
+            schools.on('add', this.schoolsAdded, this);
+
+            // Now we can kick off the fetch from OAE.
+
+            businesses.fetch({validate: true});
+            schools.fetch({validate: true});
+
+            // Build the tag set that controls display of
+            // organizations.
+
+            this.showBusinesses = new Stem.Models.Tag({
+                label: 'Organizations',
+                selected: true
+            });
+            this.showSchools = new Stem.Models.Tag({
+                label: 'Schools',
+                selected: true
+            });
+
+            // Create a single collection of all tags to
+            // conveniently capture change events.
+
+            this.tags = new Stem.Collections.Tags([
+                this.showSchools,
+                this.showBusinesses
+            ]);
+
+            this.listenTo(this.tags, 'change', this.updateFilters);
+
+            // Gather the tags into a tag set.
+
+            this.tagSet = new Stem.Models.TagSet({
+                tags:  this.tags,
+                title: 'I’m looking for'
+            });
+
         },
-
-        // Handle initialization for DonorsChoose proposals
-        // that might be relevant for the partners.
 
         setupProposals: function () {
 
@@ -50,6 +100,74 @@ Stem.Models = Stem.Models || {};
             // Fetch the proposals from DonorsChoose.
 
             proposals.fetch();
+
+        },
+
+        // Get the latitude and longitude
+        // for an OAE group,
+
+        getLatLong: function (group, className) {
+
+            // Look for a street address in the
+            // group's description. That would be
+            // a line that begins "Address:".
+
+            var addrLines = _(group.description.split('\n'))
+                .filter(function(line) {
+                    return line.trim()
+                        .toLowerCase()
+                        .indexOf('address:') === 0;
+                });
+
+            // If we found an address in the
+            // description, we're in business.
+
+            if (addrLines.length) {
+
+                // Use a network service to retrieve
+                // geographic coordinates from a
+                // street address.
+
+                Stem.Utils.getLocationFromStreet(
+                    addrLines[0].substr(8).trim(),
+                    _.bind(function (latLong) {
+
+                        this.organizationPois.add(
+                            new Stem.Models.Poi({
+                                className: className,
+                                imageUrl:  group.get('thumbnailUrl'),
+                                latitude:  latLong[0],
+                                link:      Stem.config.oae.protocol +
+                                           '//' + Stem.config.oae.host +
+                                           group.get('profilePath'),
+                                longitude: latLong[1],
+                                title:     group.get('displayName')
+                            })
+                        );
+
+                    }, this)
+
+                );
+
+            }
+
+        },
+
+        businessAdded: function (business) {
+
+            // Try to extract geolocation from the
+            // group.
+
+            var latLong = getLatLong(business, 'poi-business');
+
+        },
+
+        schoolAdded: function (school) {
+
+            // Try to extract geolocation from the
+            // group.
+
+            var latLong = getLatLong(school, 'poi-school');
 
         },
 
@@ -82,6 +200,7 @@ Stem.Models = Stem.Models || {};
 
             // Set up the individual parts of the model.
 
+            this.setupOrganizations();
             this.setupProposals();
 
         }

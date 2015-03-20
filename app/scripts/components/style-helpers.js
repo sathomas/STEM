@@ -24,30 +24,4 @@ $(document).ready(function () {
 
     });
 
-    // Look for changes to discovery navigation and
-    // make those changes visible to CSS.
-
-    $('#discovery-nav').on('change', function() {
-
-        // Use setTimeout to delay processing
-        // because some browsers trigger the
-        // `change` event before updating the
-        // properties of the `<input>` elements.
-
-        setTimeout(function() {
-            $('#discovery-nav input[type="radio"]').each(function(idx) {
-                if ($(this).is(':checked')) {
-                    $('#discovery-nav').attr('data-discovery-nav', idx+1);
-                    // Update the URL as well.
-                    if (Modernizr.history) {
-                        var hash = $('#discovery-nav ~ article:nth-of-type(' + (idx+1) + ')')
-                            .attr('id');
-                        history.pushState(null ,$('title').text(), '#' + hash);
-                    }
-                }
-            });
-        }, 20);
-
-    });
-
 });

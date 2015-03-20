@@ -24,6 +24,15 @@ Stem.Models = Stem.Models || {};
                    Stem.config.oae.host + '/api/group/' + this.id;
         },
 
+        // Make sure the group object has the attributes
+        // we need in order to work with it.
+
+        validate: function(attrs) {
+            if (attrs.resourceType !== 'group') {
+                return 'Resource is not a group';
+            }
+        },
+
         // We need to parse the response from the server
         // to extract the grade level and tags from
         // the overloaded title. While we're at it, we

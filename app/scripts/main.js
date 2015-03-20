@@ -34,6 +34,12 @@ window.Stem = {
         // secure and non-secure (i.e. demo) version.
 
         oae: {
+            groups: {
+                businesses:   'g%3Asi%3A7Ji6H8sI',
+                courses:      'g%3Asi%3A7Ji6H8sI',
+                partnerships: 'g%3Asi%3A7Ji6H8sI',
+                schools:      'g%3Asi%3A7Ji6H8sI'
+            },
             host: 'stemincubator.oaeproject.org',
             protocol: 'https:'
         },
@@ -54,6 +60,12 @@ window.Stem = {
     // components.
 
     user: {
+
+        // Geolocation information for the user.
+
+        geo: {
+
+        }
 
     },
 

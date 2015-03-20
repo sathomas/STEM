@@ -41,7 +41,7 @@ Stem.Views = Stem.Views || {};
             // If the underlying model changes, we
             // need to update the view.
 
-            this.listenTo(this.model, 'change', this.render);
+            this.listenTo(this.model, 'change', this.update);
             return this;
 
         },
@@ -61,6 +61,20 @@ Stem.Views = Stem.Views || {};
             // Return the view for method chaining.
 
             return this;
+        },
+
+        update: function () {
+
+            // Only modify the DOM if neccessary to avoid
+            // annoying flashes of style changes.
+
+            var selected = this.$el.find('input').is(':checked'),
+                modelSelected = this.model.get('selected');
+
+            if (selected !== modelSelected) {
+                this.$el.find('input').prop('checked', modelSelected);
+            }
+
         }
 
     });
