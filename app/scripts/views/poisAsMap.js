@@ -194,7 +194,8 @@ Stem.Views = Stem.Views || {};
                 Stem.user.geo.longitude = ev.latlng.lng;
 
                 // Note that we've found it.
-                var locationFound = true;
+
+                locationFound = true;
 
                 // Set the zoom level now that the
                 // map is positioned properly.

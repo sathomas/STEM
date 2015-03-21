@@ -46,8 +46,8 @@ Stem.Views = Stem.Views || {};
             // Render all the child views.
 
             this.mapFilter.render();
-            this.organizationsMap.render();
             this.proposalsMap.render();
+            this.organizationsMap.render();
 
             this.listenTo(this.model.tags, 'change', this.updateFilters);
 
@@ -83,8 +83,8 @@ Stem.Views = Stem.Views || {};
             // permission. It should be called
             // when the view is visible.
 
-            this.organizationsMap.show();
             this.proposalsMap.show();
+            this.organizationsMap.show();
 
             return this; // for method chaining.
 
