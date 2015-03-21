@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -321,7 +366,7 @@ need to update the view.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.render);
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.update);
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
 
         },
@@ -365,6 +410,32 @@ create multiple views from the same model.</p>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+        },
+
+        update: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Only modify the DOM if neccessary to avoid
+annoying flashes of style changes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> selected = <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).is(<span class="hljs-string">':checked'</span>),
+                modelSelected = <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'selected'</span>);
+
+            <span class="hljs-keyword">if</span> (selected !== modelSelected) {
+                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).prop(<span class="hljs-string">'checked'</span>, modelSelected);
+            }
+
         }
 
     });

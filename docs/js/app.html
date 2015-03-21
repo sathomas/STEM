@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -254,7 +299,7 @@ various sections.</p>
             <span class="hljs-string">''</span>:                   <span class="hljs-string">'landing'</span>,
             <span class="hljs-string">'teachers'</span>:           <span class="hljs-string">'teachers'</span>,
             <span class="hljs-string">'schools'</span>:            <span class="hljs-string">'schools'</span>,
-            <span class="hljs-string">'industry'</span>:           <span class="hljs-string">'industry'</span>,
+            <span class="hljs-string">'partners'</span>:           <span class="hljs-string">'partners'</span>,
             <span class="hljs-string">'search(/)(:query)'</span>:  <span class="hljs-string">'search'</span>
         },</pre></div></div>
             
@@ -416,21 +461,25 @@ attribute explicitly.</p>
         landing: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">1</span>);
             <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'teachers'</span>);
         },
 
         teachers: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">1</span>);
             <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'teachers'</span>);
         },
 
         schools: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">2</span>);
             <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'schools'</span>);
         },
 
-        industry: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        partners: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">3</span>);
             <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'partners'</span>);
         },
 
         search: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(query)</span> </span>{
@@ -440,9 +489,7 @@ attribute explicitly.</p>
             <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers-search'</span>,<span class="hljs-string">'theme-1'</span>);
         },
 
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-keyword">var</span> app = <span class="hljs-keyword">this</span>;</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -454,11 +501,12 @@ attribute explicitly.</p>
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Create the models that back each of the
-app’s “pages.”</p>
+app’s “pages” and other content blocks.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.discovery = <span class="hljs-keyword">new</span> Stem.Models.Discovery();
             <span class="hljs-keyword">this</span>.teacherSearch = <span class="hljs-keyword">new</span> Stem.Models.TeacherSearch();</pre></div></div>
             
         </li>
@@ -470,19 +518,25 @@ app’s “pages.”</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>Create and render the views for
-each section. It’s okay to render
-them now because they’ll remain
-hidden until the user navigates
-to them.</p>
+              <p>Create and render the views for each
+page or content block. It’s okay to
+render them now because they’ll remain
+hidden until the user navigates to
+them.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.teacherSearchPage = <span class="hljs-keyword">new</span> Stem.Views.TeacherSearchPage({
+            <span class="hljs-keyword">this</span>.discoveryContent = <span class="hljs-keyword">new</span> Stem.Views.DiscoveryAsContent({
+                model: <span class="hljs-keyword">this</span>.discovery
+            }).render();
+
+            <span class="hljs-keyword">this</span>.teacherSearchPage = <span class="hljs-keyword">new</span> Stem.Views.TeacherSearchAsPage({
                 el: $(<span class="hljs-string">'#teachers-search'</span>),
                 model: <span class="hljs-keyword">this</span>.teacherSearch
-            }).render();</pre></div></div>
+            }).render();
+
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.discoveryContent, <span class="hljs-string">'navigate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hash)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -493,27 +547,11 @@ to them.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>Now that the teachers search info
-is available, replace the generic
-search form on the landing page with
-a teacher-focused one.</p>
+              <p>Preserve the current scroll position</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.landingSearch = <span class="hljs-keyword">new</span> Stem.Views.SearchForm({
-                model: <span class="hljs-keyword">this</span>.teacherSearch.searchQuery,
-                theme: <span class="hljs-string">'theme-1'</span>
-            });
-
-            $(<span class="hljs-string">'#teachers-discovery-search-form'</span>)
-                .replaceWith(<span class="hljs-keyword">this</span>.landingSearch.render().$el);
-
-            <span class="hljs-keyword">this</span>.landingSearch.on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-                <span class="hljs-keyword">var</span> query = app.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>);
-                app.navigate(<span class="hljs-string">'search/'</span> + <span class="hljs-built_in">encodeURIComponent</span>(query));
-                app.loadPage(<span class="hljs-string">'teachers-search'</span>, <span class="hljs-string">'theme-1'</span>);
-            });</pre></div></div>
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">var</span> pos = $(<span class="hljs-built_in">window</span>).scrollTop();</pre></div></div>
             
         </li>
         
@@ -524,14 +562,11 @@ a teacher-focused one.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>For other models, we need geographic information.
-Request that now and continue processing when it’s
-available.</p>
+              <p>Add the new hash to the browser history</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            $.getJSON(<span class="hljs-string">'http://ipinfo.io/json'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ipInfo)</span> </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">this</span>.navigate(hash);</pre></div></div>
             
         </li>
         
@@ -542,10 +577,13 @@ available.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>console.log(‘using stubbed ipInfo for development’);
-var ipInfo = {“ip”:”73.54.166.233”,”hostname”:”c-73-54-166-233.hsd1.ga.comcast.net”,”city”:”Woodstock”,”region”:”Georgia”,”country”:”US”,”loc”:”34.1190,-84.4477”,”org”:”AS7922 Comcast Cable Communications, Inc.”,”postal”:”30188”};</p>
+              <p>And restore the scroll position</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>                $(<span class="hljs-built_in">window</span>).scrollTop(pos);
+
+            });</pre></div></div>
             
         </li>
         
@@ -556,14 +594,11 @@ var ipInfo = {“ip”:”73.54.166.233”,”hostname”:”c-73-54-166-233.hsd
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Save the IP information in the root object.</p>
+              <p>Add any required logic that ties the
+different pages or content blocks
+together.</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                Stem.user.ipInfo = ipInfo;
-
-            });</pre></div></div>
             
         </li>
         
@@ -574,8 +609,117 @@ var ipInfo = {“ip”:”73.54.166.233”,”hostname”:”c-73-54-166-233.hsd
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
-              <p>Everything’s ready, so start enable
-the router by starting history.</p>
+              <p>Now that the teachers search info
+is available, replace the generic
+search form on the landing page with
+a teacher-focused one. First step
+is creating a view for the dynamic
+search form.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.landingSearch = <span class="hljs-keyword">new</span> Stem.Views.SearchAsForm({
+                model: <span class="hljs-keyword">this</span>.teacherSearch.searchQuery,
+                theme: <span class="hljs-string">'theme-1'</span>
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Inject the new search form into the
+page.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            $(<span class="hljs-string">'#teachers-discovery-search-form'</span>)
+                .replaceWith(<span class="hljs-keyword">this</span>.landingSearch.render().$el);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Watch for submission of the new search
+form and navigate appropriately.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.landingSearch.on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Retrieve the submitted query.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">var</span> query = <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Update the address bar with the
+query for link sharing and bookmarks.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.navigate(<span class="hljs-string">'search/'</span> + <span class="hljs-built_in">encodeURIComponent</span>(query));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Load the search page.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers-search'</span>, <span class="hljs-string">'theme-1'</span>);
+
+            }, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Everything’s ready, so enable history management.</p>
 
             </div>
             

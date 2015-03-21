@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>searchFilterAsItem (iMac's conflicted copy 2015-03-17).js</title>
+  <title>subGroups.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -191,7 +236,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>searchFilterAsItem (iMac's conflicted copy 2015-03-17).js</h1>
+                  <h1>subGroups.js</h1>
               </div>
           </li>
         
@@ -206,7 +251,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, JST*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, _, Backbone*/</span></pre></div></div>
             
         </li>
         
@@ -217,29 +262,20 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Basic Backbone view that renders
-a search filter as a list item.</p>
+              <p>Backbone collection for groups that are members of
+a common parent group.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-Stem.Views = Stem.Views || {};
+Stem.Collections = Stem.Collections || {};
 
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Views.SearchFilterAsItem = Backbone.View.extend({
+    Stem.Collections.SubGroups = Backbone.Collection.extend({
 
-        template: JST[<span class="hljs-string">'app/scripts/templates/searchFilterAsItem.ejs'</span>],
-
-        tagName: <span class="hljs-string">'li'</span>,
-
-        className: <span class="hljs-string">'results-filter__list-item'</span>,
-
-        events: {
-            <span class="hljs-string">'change input'</span>: <span class="hljs-string">'change'</span>,
-            <span class="hljs-string">'click input'</span>: <span class="hljs-string">'change'</span>
-        },</pre></div></div>
+        model: Stem.Models.Group,</pre></div></div>
             
         </li>
         
@@ -250,16 +286,14 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Default values for options.</p>
+              <p>Default values for collection options.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
         defaults: {
-            groupId: <span class="hljs-string">''</span> <span class="hljs-comment">// unique ID for group of filters</span>
-        },
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> </span>{</pre></div></div>
+            parentId: <span class="hljs-string">''</span>
+        },</pre></div></div>
             
         </li>
         
@@ -270,18 +304,13 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Save any options passed to constructor.</p>
+              <p>Since we’re accepting options for the collection,
+we need an <code>initialize</code> method to handle them.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.options = _.extend({}, <span class="hljs-keyword">this</span>.defaults, options);
-
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;  <span class="hljs-comment">// for method chaining</span>
-
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(models, options)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -292,18 +321,15 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>First render this model’s view as the parent view.</p>
+              <p>We store the processed values in an
+<code>options</code> property of the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(
-                _.extend(
-                    {},
-                    <span class="hljs-keyword">this</span>.model.toJSON(),
-                    { groupId: <span class="hljs-keyword">this</span>.options.groupId, id: _.uniqueId() }
-                )
-            ));</pre></div></div>
+            <span class="hljs-keyword">this</span>._options = _.extend({}, <span class="hljs-keyword">this</span>.defaults, options);
+
+        },</pre></div></div>
             
         </li>
         
@@ -314,23 +340,18 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Now add the tag set as a child view.</p>
+              <p>Since we’re using a OAE endpoint instead of Rails CRUD
+conventions to retrieve the collection, we have to define
+our own function that returns the URL for the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'tagSet'</span>)) {
+        url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-                <span class="hljs-keyword">var</span> tagsetView = <span class="hljs-keyword">new</span> Stem.Views.TagSetAsCheckboxGroup({
-                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'tagSet'</span>)
-                }).render();
-
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-filter__list-item__content'</span>)
-                    .append(tagsetView.$el);
-
-            }
-
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
+            <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host +
+                <span class="hljs-string">'/api/group/'</span> + <span class="hljs-keyword">this</span>._options.parentId + <span class="hljs-string">'/members'</span> +
+                (<span class="hljs-keyword">this</span>._options.limit ? (<span class="hljs-string">'?'</span> + <span class="hljs-string">'limit='</span> + <span class="hljs-keyword">this</span>._options.limit) : <span class="hljs-string">''</span>);
 
         },</pre></div></div>
             
@@ -343,13 +364,17 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>If the user changes a selection value, we
-update the underlying model.</p>
+              <p>Since we’re using an OAE endpoint instead of Rails, we
+supply a parse function to extract the actual model
+information from the response. We also have to account
+for the possibility of a collection being created
+directly from an array of models. In the latter case,
+we <em>won’t</em> have to parse anything.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        change: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span>  </span>{</pre></div></div>
             
         </li>
         
@@ -360,31 +385,27 @@ update the underlying model.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>Get the current selected state.</p>
+              <p>The OAE API returns models in the <code>results</code>
+property of the response. If that property
+exists, return the models it contains. Otherwise
+we assume that the “response” is already an
+array of models and return it directly.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> selected = <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).is(<span class="hljs-string">':checked'</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p>Update the model with the current state of
-the selection.</p>
+            <span class="hljs-keyword">return</span> response.results ?
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.model.set(<span class="hljs-string">'selected'</span>, selected);
+                _(response.results).map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result)</span> </span>{
+                    <span class="hljs-keyword">if</span> (!result.profile.thumbnailUrl &amp;&amp; result.profile.picture.small) {
+                        result.profile.thumbnailUrl = result.profile.picture.small;
+                    }
+                    <span class="hljs-keyword">return</span> result.profile;
+                }) :
 
-        },
+                response;
+
+        }
 
     });
 

@@ -26,13 +26,33 @@
  * `normalize.css` has been included prior to
  * these custom styles.
  */
-/*
- * This file is simply the parent file that includes
- * all the component styles. First we import the
- * components that are LESS-only: variable definitions
- * and utility mixins. Then we bring in the actual
- * styles.
+/**
+ * Third-Party Overrides:
+ * Override third-party properties as needed.
  */
+.leaflet-control-layers-toggle {
+  background-image: url(../images/layers.png);
+}
+.leaflet-retina .leaflet-control-layers-toggle {
+  background-image: url(../images/layers-2x.png);
+}
+.leaflet-container a {
+  color: inherit;
+}
+.leaflet-popup {
+  text-align: left;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.leaflet-popup-content {
+  margin: 0;
+}
+.leaflet-popup-tip-container {
+  display: none;
+}
 /*
  * ## Variables
  *
@@ -529,23 +549,30 @@ a:active {
  *     <button class="button-link">Button as Link</button>
  */
 .button {
-  font-weight: 600;
   letter-spacing: .1rem;
   text-transform: uppercase;
   font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: transparent;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding: 0 1em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.button--small {
+  border-radius: 3px;
   font-size: 11px;
   height: 38px;
   line-height: 38px;
   padding: 0 30px;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
 }
 .button-link {
   display: inline;
@@ -555,6 +582,18 @@ a:active {
   padding: 0;
   text-align: left;
   text-decoration: underline;
+}
+.theme-1 .button {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+.theme-2 .button {
+  background-color: #00ab0f;
+  color: #ffffff;
+}
+.theme-3 .button {
+  background-color: #005493;
+  color: #ffffff;
 }
 /**
  * Header:
@@ -993,7 +1032,7 @@ main[data-nav-expanded=true] {
   font-weight: 600;
   letter-spacing: .1rem;
   text-transform: uppercase;
-  background-color: #f3f3f1;
+  background-color: #f7f7f7;
   cursor: pointer;
   display: block;
   height: 6rem;
@@ -1284,6 +1323,25 @@ article[data-theme=theme-1] .results-secondary__button {
     padding-left: 10px;
   }
 }
+.tagset__tag label,
+.tagset input {
+  cursor: pointer;
+}
+.tagset--inline div {
+  display: inline-block;
+}
+.tagset__fieldset--inline {
+  padding: 0;
+}
+.tagset--inline label {
+  padding-right: 10px;
+}
+.theme-3 .tagset--inline .tagset__tag:nth-of-type(1) label {
+  color: #0088ef;
+}
+.theme-3 .tagset--inline .tagset__tag:nth-of-type(2) label {
+  color: #005493;
+}
 /**
  * ## Discovery
  *
@@ -1388,25 +1446,26 @@ article[data-theme=theme-1] .results-secondary__button {
   }
 }
 .discovery-nav__label__more {
-  font-weight: 600;
   letter-spacing: .1rem;
   text-transform: uppercase;
   font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #ffffff;
+  background-color: transparent;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   box-sizing: border-box;
-  color: #000000;
   cursor: pointer;
-  display: block;
-  font-size: 11px;
-  height: 38px;
-  line-height: 38px;
-  margin-top: 30px;
-  padding: 0 30px;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding: 0 1em;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
+  display: inline-block;
+  background-color: #ffffff;
+  border: 1px solid transparent;
+  color: #000000;
 }
 .discovery-nav__radio:checked + .discovery-nav__label {
   box-sizing: border-box;
@@ -1703,6 +1762,9 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
     padding: 30px 0;
   }
 }
+.discovery__option__icon--single {
+  padding-top: 0;
+}
 .discovery__option__button {
   font-weight: 600;
   letter-spacing: .1rem;
@@ -1721,8 +1783,31 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
   text-decoration: none;
   white-space: nowrap;
 }
+.dicovery__option__visual {
+  display: inline-block;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+@media only screen and (min-width: 500px) {
+  .dicovery__option__visual {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .dicovery__option__visual {
+    padding-bottom: 30px;
+  }
+}
 .discovery__option__button--theme-1 {
   background-color: #009eaf;
+  color: #ffffff;
+}
+.discovery__option__button--theme-2 {
+  background-color: #00ab0f;
+  color: #ffffff;
+}
+.discovery__option__button--theme-3 {
+  background-color: #005493;
   color: #ffffff;
 }
 .discovery__option__text {
@@ -1739,6 +1824,234 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
   .discovery__option__text {
     margin: 30px auto;
   }
+}
+.discovery__subheading {
+  margin-bottom: 0;
+  padding: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery__subheading {
+    padding: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__subheading {
+    padding: 30px;
+  }
+}
+.discovery__text {
+  font-size: 1.8rem;
+  margin: 0 auto;
+  max-width: 48em;
+  padding: 0 10px 10px 10px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery__text {
+    font-size: 2.2rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery__text {
+    padding: 0 30px 30px 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__text {
+    padding: 0 calc(60px) 30px calc(60px);
+  }
+}
+.discovery__text--single {
+  display: inline-block;
+  max-width: 30em;
+  padding-left: 10px;
+  vertical-align: middle;
+}
+@media only screen and (min-width: 500px) {
+  .discovery__text--single {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__text--single {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__text--single {
+    text-align: left;
+  }
+}
+.discover-tabs__input {
+  display: none;
+}
+.discovery_tabs_label {
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.4rem;
+  padding: 10px;
+  text-align: center;
+  width: auto;
+}
+@media only screen and (min-width: 500px) {
+  .discovery_tabs_label {
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery_tabs_label {
+    padding: 10px 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery_tabs_label {
+    padding: 10px 30px;
+  }
+}
+.theme-1 .discover-tabs__input + .discovery_tabs_label {
+  background-color: #f7f7f7;
+  color: #009eaf;
+}
+.theme-2 .discover-tabs__input + .discovery_tabs_label {
+  background-color: #f7f7f7;
+  color: #00ab0f;
+}
+.theme-3 .discover-tabs__input + .discovery_tabs_label {
+  background-color: #f7f7f7;
+  color: #0088ef;
+}
+.discover-tabs__input:checked + .discovery_tabs_label {
+  background-color: #ffffff;
+  color: #424242;
+}
+.discovery-tabs__panel {
+  left: -9999em;
+  opacity: 0;
+  position: absolute;
+  top: -9999em;
+  background-color: #ffffff;
+  padding: 10px 0;
+}
+@media only screen and (min-width: 500px) {
+  .discovery-tabs__panel {
+    padding: 30px 0;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-tabs__panel {
+    padding: 30px 0;
+  }
+}
+.discovery-tabs__logo {
+  display: block;
+  margin: 10px auto;
+  max-width: 150px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery-tabs__logo {
+    margin: 30px auto;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-tabs__logo {
+    margin: 30px auto;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery-tabs__logo {
+    max-width: 250px;
+  }
+}
+.discovery-tabs input:nth-of-type(1):checked ~ div:nth-of-type(1),
+.discovery-tabs input:nth-of-type(2):checked ~ div:nth-of-type(2),
+.discovery-tabs input:nth-of-type(3):checked ~ div:nth-of-type(3),
+.discovery-tabs input:nth-of-type(4):checked ~ div:nth-of-type(4) {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+.discovery-tabs__map {
+  border-left: 10px solid #ffffff;
+  border-right: 10px solid #ffffff;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery-tabs__map {
+    border-width: 0 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-tabs__map {
+    border-width: 0 calc(120px);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery-tabs__map {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-tabs__map {
+    margin-bottom: 30px;
+  }
+}
+/**
+ * ## Point of Interest
+ *
+ * Points of interest as markers and
+ * popups on maps.
+ */
+.poi-marker {
+  font-size: 40px;
+  transition: opacity 250ms linear;
+}
+.poi--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.poi-proposal {
+  color: black;
+}
+.poi-school {
+  color: #0088ef;
+}
+.poi-business {
+  color: #005493;
+}
+.poi-popup__link {
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+}
+.poi-popup__thumbnail {
+  height: 48px;
+  vertical-align: text-top;
+  width: 48px;
+}
+.poi-popup__text {
+  display: inline-block;
+  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: text-top;
+  width: 195px;
+}
+.theme-1 .poi-popup__text {
+  color: #009eaf;
+}
+.theme-2 .poi-popup__text {
+  color: #00ab0f;
+}
+.theme-3 .poi-popup__text {
+  color: #005493;
 }
 /**
  * ## About
@@ -1979,23 +2292,28 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
   margin-bottom: 0.2em;
 }
 .footer__button {
-  font-weight: 600;
   letter-spacing: .1rem;
   text-transform: uppercase;
   font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: transparent;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding: 0 1em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 3px;
   font-size: 11px;
   height: 38px;
   line-height: 38px;
   padding: 0 30px;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
   background-color: #efedeb;
   color: #424242;
 }

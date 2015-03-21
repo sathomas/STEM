@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -300,7 +345,16 @@ secure and non-secure (i.e. demo) version.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        oae: {</pre></div></div>
+        oae: {
+            groups: {
+                businesses:   <span class="hljs-string">'g%3Asi%3A7Ji6H8sI'</span>,
+                courses:      <span class="hljs-string">'g%3Asi%3A7Ji6H8sI'</span>,
+                partnerships: <span class="hljs-string">'g%3Asi%3A7Ji6H8sI'</span>,
+                schools:      <span class="hljs-string">'g%3Asi%3A7Ji6H8sI'</span>
+            },
+            host: <span class="hljs-string">'stemincubator.oaeproject.org'</span>,
+            protocol: <span class="hljs-string">'https:'</span>
+        },</pre></div></div>
             
         </li>
         
@@ -311,13 +365,19 @@ secure and non-secure (i.e. demo) version.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <pre><code>       host: <span class="hljs-string">'stemincubator.oae-qa1.oaeproject.org'</span>,
-</code></pre>
+              <p>Default geographic coordinates are the
+center of the state.</p>
+
             </div>
             
-            <div class="content"><div class='highlight'><pre>            host: <span class="hljs-string">'stemincubator.oaeproject.org'</span>,
-            protocol: <span class="hljs-string">'https:'</span>
+            <div class="content"><div class='highlight'><pre>
+        geo: {
+            latitude: <span class="hljs-number">32.9605</span>,
+            longitude: -<span class="hljs-number">83.1132</span>,
+            northwestCorner: [<span class="hljs-number">35.000659</span>, -<span class="hljs-number">85.605165</span>],
+            southeastCorner: [<span class="hljs-number">30.355757</span>, -<span class="hljs-number">80.751429</span>]
         }
+
     },</pre></div></div>
             
         </li>
@@ -335,9 +395,7 @@ components.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    user: {
-
-    },</pre></div></div>
+    user: {</pre></div></div>
             
         </li>
         
@@ -347,6 +405,26 @@ components.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Geolocation information for the user.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        geo: {
+
+        }
+
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>The <code>init()</code> function is called when it’s time
 to start the application.</p>
@@ -360,11 +438,11 @@ to start the application.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Make sure the App object is defined. If it is,
 create one. It handles everything from there.</p>
@@ -383,11 +461,11 @@ create one. It handles everything from there.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Wait for jQuery’s <code>ready</code> event to start the application.</p>
 

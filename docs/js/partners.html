@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>searchForm.js</title>
+  <title>partners.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -191,7 +236,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>searchForm.js</h1>
+                  <h1>partners.js</h1>
               </div>
           </li>
         
@@ -206,14 +251,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, _, Backbone, JST, $ */</span>
-
-Stem.Views = Stem.Views || {};
-
-(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">    'use strict'</span>;
-
-    Stem.Views.SearchForm = Backbone.View.extend({</pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, _, Backbone*/</span></pre></div></div>
             
         </li>
         
@@ -224,12 +262,21 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Markup stored as external template.</p>
+              <p>The partners model encapsulates information
+about partnerships between schools and
+businessses.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        template: JST[<span class="hljs-string">'app/scripts/templates/searchForm.ejs'</span>],</pre></div></div>
+Stem.Models = Stem.Models || {};
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+
+    Stem.Models.Partners = Backbone.Model.extend({
+
+        setupOrganizations: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -240,12 +287,26 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>First level element is a <code>&lt;form&gt;</code>.</p>
+              <p>Organizations are schools or businesses
+looking for partnerships. We create a
+collection to store them as points of
+interest. We’ll build that collection
+from two general subGroup collections from
+the OAE.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        tagName: <span class="hljs-string">'form'</span>,</pre></div></div>
+            <span class="hljs-keyword">this</span>.organizationPois = <span class="hljs-keyword">new</span> Stem.Collections.Pois();
+
+            <span class="hljs-keyword">var</span> businesses = <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([], {
+                limit: <span class="hljs-number">99</span>,
+                parentId: Stem.config.oae.groups.businesses
+            });
+            <span class="hljs-keyword">var</span> schools = <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([],{
+                limit: <span class="hljs-number">99</span>,
+                parentId: Stem.config.oae.groups.schools
+            });</pre></div></div>
             
         </li>
         
@@ -256,12 +317,15 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Use <code>.search</code> class to get search form styles.</p>
+              <p>Before we fetch the data from the OAE,
+set up handlers to deal with additions to
+each collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        className: <span class="hljs-string">'search'</span>,</pre></div></div>
+            businesses.on(<span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.businessAdded, <span class="hljs-keyword">this</span>);
+            schools.on(<span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.schoolsAdded, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -272,16 +336,13 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>Listen to events that change the input or
-click on the search link to initiate a search.</p>
+              <p>Now we can kick off the fetch from OAE.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        events: {
-            <span class="hljs-string">'input input'</span>: <span class="hljs-string">'changed'</span>,
-            <span class="hljs-string">'submit'</span>: <span class="hljs-string">'submitted'</span>
-        },</pre></div></div>
+            businesses.fetch({validate: <span class="hljs-literal">true</span>});
+            schools.fetch({validate: <span class="hljs-literal">true</span>});</pre></div></div>
             
         </li>
         
@@ -292,15 +353,20 @@ click on the search link to initiate a search.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Default values for options.</p>
+              <p>Build the tag set that controls display of
+organizations.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        defaults: {
-            showLabel: <span class="hljs-literal">true</span>,   <span class="hljs-comment">// Should label be visible</span>
-            theme: <span class="hljs-string">''</span>          <span class="hljs-comment">// Theme to apply</span>
-        },</pre></div></div>
+            <span class="hljs-keyword">this</span>.showBusinesses = <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                label: <span class="hljs-string">'Organizations'</span>,
+                selected: <span class="hljs-literal">true</span>
+            });
+            <span class="hljs-keyword">this</span>.showSchools = <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                label: <span class="hljs-string">'Schools'</span>,
+                selected: <span class="hljs-literal">true</span>
+            });</pre></div></div>
             
         </li>
         
@@ -311,17 +377,18 @@ click on the search link to initiate a search.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Options supported by this view
-include:</p>
-<ul>
-<li><code>.theme</code> for a theme class</li>
-<li><code>.showLabel</code> set <code>false</code> to suppress display of search label</li>
-</ul>
+              <p>Create a single collection of all tags to
+conveniently capture change events.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.tags = <span class="hljs-keyword">new</span> Stem.Collections.Tags([
+                <span class="hljs-keyword">this</span>.showSchools,
+                <span class="hljs-keyword">this</span>.showBusinesses
+            ]);
+
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.tags, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateFilters);</pre></div></div>
             
         </li>
         
@@ -332,12 +399,19 @@ include:</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>Save any options passed to constructor.</p>
+              <p>Gather the tags into a tag set.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.options = _.extend({}, <span class="hljs-keyword">this</span>.defaults, options);</pre></div></div>
+            <span class="hljs-keyword">this</span>.tagSet = <span class="hljs-keyword">new</span> Stem.Models.TagSet({
+                tags:  <span class="hljs-keyword">this</span>.tags,
+                title: <span class="hljs-string">'I’m looking for'</span>
+            });
+
+        },
+
+        setupProposals: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -348,13 +422,14 @@ include:</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>If the model changes, we might need to
-update the view.</p>
+              <p>Create a new collection that tracks
+proposals as points of interest (e.g.
+on a map).</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.modelUpdated);</pre></div></div>
+            <span class="hljs-keyword">this</span>.proposalPois = <span class="hljs-keyword">new</span> Stem.Collections.Pois();</pre></div></div>
             
         </li>
         
@@ -365,16 +440,15 @@ update the view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Return view for method chaining.</p>
+              <p>Populate the proposal points of interest with
+data from general DonorsChoose proposals.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">var</span> proposals = <span class="hljs-keyword">new</span> Stem.Collections.Proposals([],{
+               maxSize: <span class="hljs-number">50</span>
+            });</pre></div></div>
             
         </li>
         
@@ -385,13 +459,16 @@ update the view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p>After normal render, add a11y <code>role</code>.</p>
+              <p>For each DonorsChoose proposal, add a corresponding
+model to our points of interest collection. Since
+these proposals will be incrementally added to the
+collection once we trigger the fetch, we hook the
+<code>add</code> event.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()))
-                .attr(<span class="hljs-string">'role'</span>,<span class="hljs-string">'search'</span>);</pre></div></div>
+            proposals.on(<span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.proposalAdded, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -402,14 +479,14 @@ update the view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>Set the initial query parameters</p>
+              <p>Fetch the proposals from DonorsChoose.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'query'</span>)) {
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).val(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'query'</span>));
-            }</pre></div></div>
+            proposals.fetch();
+
+        },</pre></div></div>
             
         </li>
         
@@ -420,15 +497,13 @@ update the view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>If a theme has been requested, add it
-as a class.</p>
+              <p>Get the latitude and longitude
+for an OAE group,</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.options.theme) {
-                <span class="hljs-keyword">this</span>.$el.addClass(<span class="hljs-keyword">this</span>.options.theme);
-            }</pre></div></div>
+        getLatLong: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(group, className)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -439,15 +514,19 @@ as a class.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>If the label should be visible, remove
-the screen-reader only class.</p>
+              <p>Look for a street address in the
+group’s description. That would be
+a line that begins “Address:”.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.options.showLabel) {
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'label'</span>).removeClass(<span class="hljs-string">'util--sr-only'</span>);
-            }</pre></div></div>
+            <span class="hljs-keyword">var</span> addrLines = _(group.description.split(<span class="hljs-string">'\n'</span>))
+                .filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
+                    <span class="hljs-keyword">return</span> line.trim()
+                        .toLowerCase()
+                        .indexOf(<span class="hljs-string">'address:'</span>) === <span class="hljs-number">0</span>;
+                });</pre></div></div>
             
         </li>
         
@@ -458,14 +537,13 @@ the screen-reader only class.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Return view for method chaining.</p>
+              <p>If we found an address in the
+description, we’re in business.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
-
-        },</pre></div></div>
+            <span class="hljs-keyword">if</span> (addrLines.length) {</pre></div></div>
             
         </li>
         
@@ -476,13 +554,39 @@ the screen-reader only class.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>If the user changes the query value, we
-need to update the underlying model.</p>
+              <p>Use a network service to retrieve
+geographic coordinates from a
+street address.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        changed: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ev)</span> </span>{</pre></div></div>
+                Stem.Utils.getLocationFromStreet(
+                    addrLines[<span class="hljs-number">0</span>].substr(<span class="hljs-number">8</span>).trim(),
+                    _.bind(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(latLong)</span> </span>{
+
+                        <span class="hljs-keyword">this</span>.organizationPois.add(
+                            <span class="hljs-keyword">new</span> Stem.Models.Poi({
+                                className: className,
+                                imageUrl:  group.get(<span class="hljs-string">'thumbnailUrl'</span>),
+                                latitude:  latLong[<span class="hljs-number">0</span>],
+                                link:      Stem.config.oae.protocol +
+                                           <span class="hljs-string">'//'</span> + Stem.config.oae.host +
+                                           group.get(<span class="hljs-string">'profilePath'</span>),
+                                longitude: latLong[<span class="hljs-number">1</span>],
+                                title:     group.get(<span class="hljs-string">'displayName'</span>)
+                            })
+                        );
+
+                    }, <span class="hljs-keyword">this</span>)
+
+                );
+
+            }
+
+        },
+
+        businessAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(business)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -493,12 +597,17 @@ need to update the underlying model.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Get the current input value.</p>
+              <p>Try to extract geolocation from the
+group.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> query = $(ev.currentTarget).val();</pre></div></div>
+            <span class="hljs-keyword">this</span>.getLatLong(business, <span class="hljs-string">'poi-business'</span>);
+
+        },
+
+        schoolAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(school)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -509,12 +618,13 @@ need to update the underlying model.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
-              <p>Update the model with the current query..</p>
+              <p>Try to extract geolocation from the
+group.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.model.set(<span class="hljs-string">'query'</span>, query);
+            <span class="hljs-keyword">this</span>.getLatLong(school, <span class="hljs-string">'poi-school'</span>);
 
         },</pre></div></div>
             
@@ -527,14 +637,14 @@ need to update the underlying model.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
-              <p>If user clicks on the search button,
-pass it up the chain so the search
-can be executed.</p>
+              <p>Function called when a new DonorsChoose proposal
+has been fetched from DonorsChoose and added to
+our internal collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        submitted: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ev)</span> </span>{</pre></div></div>
+        proposalAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(proposal)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -545,12 +655,25 @@ can be executed.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
-              <p>Trigger a submit event on this view.</p>
+              <p>Extract the relevant information from the
+DonorsChoose response for our own POI model
+and add it to our internal collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.trigger(<span class="hljs-string">'submit'</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.proposalPois.add(
+                <span class="hljs-keyword">new</span> Stem.Models.Poi({
+                    className: <span class="hljs-string">'poi-proposal'</span>,
+                    imageUrl:  proposal.get(<span class="hljs-string">'thumbImageURL'</span>),
+                    latitude:  proposal.get(<span class="hljs-string">'latitude'</span>),
+                    link:      proposal.get(<span class="hljs-string">'proposalURL'</span>),
+                    longitude: proposal.get(<span class="hljs-string">'longitude'</span>),
+                    title:     proposal.get(<span class="hljs-string">'title'</span>)
+                })
+            );
+
+        },</pre></div></div>
             
         </li>
         
@@ -561,15 +684,12 @@ can be executed.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
-              <p>Prevent further event handling.</p>
+              <p>Model iniitalization.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            ev.preventDefault();
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
-
-        },</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -580,39 +700,13 @@ can be executed.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
-              <p>If the model has changed due to,
-another view, we update this view.</p>
+              <p>Set up the individual parts of the model.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        modelUpdated: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-keyword">var</span> query = <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'query'</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-23">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
-              </div>
-              <p>Only update the view if it’s not in
-focus to avoid messing with the users
-while they’re typing. Note that we
-have multiple parallel <code>&lt;input&gt;</code>
-elements to handle responsive design.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-                <span class="hljs-keyword">if</span> (!$(<span class="hljs-keyword">this</span>).is(<span class="hljs-string">":focus"</span>)) {
-                    $(<span class="hljs-keyword">this</span>).val(query);
-                }
-            });
+            <span class="hljs-keyword">this</span>.setupOrganizations();
+            <span class="hljs-keyword">this</span>.setupProposals();
 
         }
 

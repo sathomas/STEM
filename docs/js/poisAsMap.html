@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>poisAsMap.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="content.html">
+                content.js
+              </a>
+            
+              
+              <a class="source" href="groups.html">
+                groups.js
+              </a>
+            
+              
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
+              <a class="source" href="proposals.html">
+                proposals.js
+              </a>
+            
+              
+              <a class="source" href="searchFilters.html">
+                searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
+              </a>
+            
+              
+              <a class="source" href="tags.html">
+                tags.js
+              </a>
+            
+              
+              <a class="source" href="style-helpers.html">
+                style-helpers.js
+              </a>
+            
+              
+              <a class="source" href="utils.html">
+                utils.js
+              </a>
+            
+              
+              <a class="source" href="index.html">
+                index.js
+              </a>
+            
+              
+              <a class="source" href="main.html">
+                main.js
+              </a>
+            
+              
+              <a class="source" href="content.html">
+                content.js
+              </a>
+            
+              
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
+              <a class="source" href="group.html">
+                group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
+              </a>
+            
+              
+              <a class="source" href="proposal.html">
+                proposal.js
+              </a>
+            
+              
+              <a class="source" href="search.html">
+                search.js
+              </a>
+            
+              
+              <a class="source" href="searchFilter.html">
+                searchFilter.js
+              </a>
+            
+              
+              <a class="source" href="searchGroup.html">
+                searchGroup.js
+              </a>
+            
+              
+              <a class="source" href="tag.html">
+                tag.js
+              </a>
+            
+              
+              <a class="source" href="tagSet.html">
+                tagSet.js
+              </a>
+            
+              
+              <a class="source" href="teacherSearch.html">
+                teacherSearch.js
+              </a>
+            
+              
+              <a class="source" href="app.html">
+                app.js
+              </a>
+            
+              
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsMainSearchGroup.html">
+                oaeAsMainSearchGroup.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsMainSearchResult.html">
+                oaeAsMainSearchResult.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsMainSearchResults.html">
+                oaeAsMainSearchResults.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSecondarySearchGroup.html">
+                oaeAsSecondarySearchGroup.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSecondarySearchResult.html">
+                oaeAsSecondarySearchResult.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSecondarySearchResults.html">
+                oaeAsSecondarySearchResults.js
+              </a>
+            
+              
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
+              </a>
+            
+              
+              <a class="source" href="searchFilterAsItem.html">
+                searchFilterAsItem.js
+              </a>
+            
+              
+              <a class="source" href="searchFiltersAsList.html">
+                searchFiltersAsList.js
+              </a>
+            
+              
+              <a class="source" href="tagAsCheckbox.html">
+                tagAsCheckbox.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsCheckboxGroup.html">
+                tagSetAsCheckboxGroup.js
+              </a>
+            
+              
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
+              <a class="source" href="tagsAsCheckboxes.html">
+                tagsAsCheckboxes.js
+              </a>
+            
+              
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>poisAsMap.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, $, _, Backbone, L */</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>View that displays discovery information as a map.
+The collection backing this view contains data for
+a set of point of interest markers.</p>
+<p>The mapping itself is mostly handled by the Leafletjs
+library.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Stem.Views = Stem.Views || {};
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+
+    Stem.Views.PoisAsMap = Backbone.View.extend({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Default options for the view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        defaults: {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Aspect ratio for map</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            aspectRatio: <span class="hljs-number">0.5</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Attribution for the tiles</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            attribution: <span class="hljs-string">'&amp;copy; '</span> +
+                <span class="hljs-string">'&lt;a href="http://openstreetmap.org"&gt;OpenStreetMap&lt;/a&gt; '</span> +
+                <span class="hljs-string">'Contributors &amp; '</span> +
+                <span class="hljs-string">'&lt;a href="http://stamen.com"&gt;Stamen Design&lt;/a&gt;'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Tile layers</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            mapTiles: <span class="hljs-string">'http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.jpg'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Max zoom level supported by the tiles</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            maxZoom: <span class="hljs-number">18</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>1px solid color file to tint map</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            tintUrl:     <span class="hljs-string">''</span>
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>View initialization.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Save any options passed to constructor.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.options = _.extend({}, <span class="hljs-keyword">this</span>.defaults, options);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>The collection of POI markers may be
+built incrementally (e.g. from REST
+API calls). To handle additions to the
+collection, we hook its <code>add</code> event.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.addMarker);
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Convenience function to calculate a good
+zoom level based on window size.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        zoom: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>For now, this is sort of hacked
+together “by eye.” Eventually, it
+would be good to get some user
+testing results to better match
+initial zoom levels with
+<code>$(window).width()</code></p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">return</span> <span class="hljs-number">10</span>;
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>The render function that creates the
+map. There’s a separate function to
+actually show the map. That separation
+lets us prepare the DOM for the map
+during the render phase but hold off
+on the final step until it’s necessary.
+The final step hits the browser’s location
+services API which throws a permissions
+prompt to the user. We’d like to avoid
+the permisssions prompt until we’re absolutely
+sure the user is going to see the map.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Discovery maps are full-width (less
+any borders), but Leaflet requires
+explicit dimensions. Grab them from
+the browser.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> width = $(<span class="hljs-built_in">window</span>).width(),
+                height = width * <span class="hljs-keyword">this</span>.options.aspectRatio;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Set the map size explicitly to fill
+the browser window width.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.$el.css({
+                height: height + <span class="hljs-string">'px'</span>,
+                width:  width  + <span class="hljs-string">'px'</span>
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Initialize the underlying map object.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.map = L.map(<span class="hljs-keyword">this</span>.el, {
+                layers: [L.tileLayer(<span class="hljs-keyword">this</span>.options.mapTiles, {
+                            attribution: <span class="hljs-keyword">this</span>.options.attribution,
+                            maxZoom: <span class="hljs-keyword">this</span>.options.maxZoom
+                        })],
+                maxBounds: [ Stem.config.geo.northwestCorner,
+                             Stem.config.geo.southeastCorner ],
+                scrollWheelZoom: <span class="hljs-literal">false</span>,
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>If a tint is desired, add it.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.options.tintUrl) {
+                L.tileLayer(<span class="hljs-keyword">this</span>.options.tintUrl, {
+                    continuousWorld: <span class="hljs-literal">true</span>,
+                    opacity: <span class="hljs-number">0.1</span>,
+                    reuseTiles: <span class="hljs-literal">true</span>,
+                    tileSize: <span class="hljs-number">2048</span>,
+                }).addTo(<span class="hljs-keyword">this</span>.map);
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Now that the map infrastructure
+is in place, we can look at the
+collection of POI markers. If there
+are any already in the collection,
+add them to the map.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(marker)</span> </span>{
+                <span class="hljs-keyword">this</span>.addMarker(marker);
+            }, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Finally, hook the window resize
+event so that we can adjust the
+map size appropriately. We debounce
+the event since some browsers
+trigger a flood of <code>resize</code>
+events when the user changes
+window sizes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            $(<span class="hljs-built_in">window</span>).on(<span class="hljs-string">'resize'</span>, _.chain(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                <span class="hljs-keyword">var</span> width = $(<span class="hljs-built_in">window</span>).width(),
+                    height = width * <span class="hljs-keyword">this</span>.options.aspectRatio;
+                <span class="hljs-keyword">this</span>.$el.css({
+                    height: height + <span class="hljs-string">'px'</span>,
+                    width:  width  + <span class="hljs-string">'px'</span>
+                });
+                <span class="hljs-keyword">this</span>.map.invalidateSize(<span class="hljs-literal">false</span>);
+            }).debounce(<span class="hljs-number">250</span>).bind(<span class="hljs-keyword">this</span>).value());
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Function to show the map to the user.
+This function may cause the browser to
+throw a permission prompt to the user
+(for location information), so it’s
+best to avoid it unless we’re sure
+that the map is actually visible.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        show: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Use a closure variable to keep track
+of whether we’ve found the location
+or not.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> locationFound = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>We’re going to try to set the initial
+map location based on the user’s
+current location. The first thing to
+check is whether or not that information
+is already available and cached.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (Stem.user.geo.latitude &amp;&amp; Stem.user.geo.longitude) {
+                <span class="hljs-keyword">this</span>.map.setView([
+                    Stem.user.geo.latitude,
+                    Stem.user.geo.longitude
+                ],<span class="hljs-keyword">this</span>.zoom());
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Okay, the geo-location info isn’t
+conveniently available already, so we’ll
+try to set it automatically using the
+browser’s location services. Before making
+the API call, we set up simple event handlers
+to deal with the results.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.map.on(<span class="hljs-string">'locationfound'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ev)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>If we successfully get the location,
+save it for other maps to use.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                Stem.user.geo.latitude = ev.latlng.lat;
+                Stem.user.geo.longitude = ev.latlng.lng;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Note that we’ve found it.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                locationFound = <span class="hljs-literal">true</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>Set the zoom level now that the
+map is positioned properly.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.map.setZoom(<span class="hljs-keyword">this</span>.zoom());
+
+            }, <span class="hljs-keyword">this</span>).on(<span class="hljs-string">'locationerror'</span>, <span class="hljs-keyword">this</span>.locationFailed, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Now we’re set up to make the call
+to request location information
+from the user.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.map.locate({
+                maximumAge: <span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span>, <span class="hljs-comment">// Cached info is okay</span>
+                setView:    <span class="hljs-literal">true</span>
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Unfortunately, some browers allow
+location permission requests to
+fail silently (without returning
+an error) if, e.g., the user simply
+dismisses the dialog box without
+indicating a preference. To deal
+with that case, we have to add our
+own explicit timeout.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            _.chain(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-30">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-30">&#182;</a>
+              </div>
+              <p>Once the delay has passed, check
+to see if we have a location.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">if</span> (!locationFound ||
+                    !Stem.user.geo.latitude ||
+                    !Stem.user.geo.longitude) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-31">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-31">&#182;</a>
+              </div>
+              <p>Nope. Resort to fallback.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    <span class="hljs-keyword">this</span>.locationFailed();
+
+                }
+
+            }).bind(<span class="hljs-keyword">this</span>).delay(<span class="hljs-number">8</span>*<span class="hljs-number">1000</span>);
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-32">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-32">&#182;</a>
+              </div>
+              <p>Handle case when browser geolocation fails.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        locationFailed: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-33">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-33">&#182;</a>
+              </div>
+              <p>We may have gotten here because of
+a race condition in Leaflet with
+some browsers. If that’s the
+case, we can still set the view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (Stem.user.geo.latitude &amp;&amp; Stem.user.geo.longitude) {
+
+                <span class="hljs-keyword">this</span>.map.setView([
+                    Stem.user.geo.latitude,
+                    Stem.user.geo.longitude
+                ],<span class="hljs-keyword">this</span>.zoom());
+
+            } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-34">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-34">&#182;</a>
+              </div>
+              <p>Bummer. We couldn’t get the location
+information from the browser directly.
+As a backup, let’s try using the
+client’s public IP address.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                Stem.Utils.getLocationFromIp(
+                    _(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(LatLong)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-35">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-35">&#182;</a>
+              </div>
+              <p>Success. Set the map view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                        <span class="hljs-keyword">this</span>.map.setView(LatLong,<span class="hljs-keyword">this</span>.zoom());
+
+                    }).bind(<span class="hljs-keyword">this</span>),
+                    _(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-36">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>Okay. That didn’t work either.
+Only option left is resorting
+to default values.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                        <span class="hljs-keyword">this</span>.map.setView([
+                            Stem.config.geo.latitude,
+                            Stem.config.geo.longitude
+                        ],<span class="hljs-keyword">this</span>.zoom());
+
+                    }).bind(<span class="hljs-keyword">this</span>)
+
+                );
+
+            }
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
+              </div>
+              <p>Add an additional POI marker to the map.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        addMarker: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(marker)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-38">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-38">&#182;</a>
+              </div>
+              <p>We only process this if the
+map has been rendered. (If
+it hasn’t, the markers will
+just collect in the collection
+until this view is rendered,
+at which time we’ll catch up.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.map) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-39">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-39">&#182;</a>
+              </div>
+              <p>Create a simple HTML icon
+for the marker. The numbers
+here are (unfortunately)
+tied pretty tightly to the
+CSS that styles the markers.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">var</span> icon = L.divIcon({
+                    className: <span class="hljs-string">'fa fa-map-marker poi-marker '</span> +
+                                marker.get(<span class="hljs-string">'className'</span>),
+                    iconAnchor: [<span class="hljs-number">20</span>,<span class="hljs-number">40</span>],
+                    iconSize: [<span class="hljs-number">40</span>,<span class="hljs-number">40</span>],
+                    popupAnchor: [<span class="hljs-number">20</span>, -<span class="hljs-number">40</span>]
+                });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-40">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-40">&#182;</a>
+              </div>
+              <p>Create the marker object with
+appropriate properties and add
+it to the map.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                L.marker([
+                    marker.get(<span class="hljs-string">'latitude'</span>),
+                    marker.get(<span class="hljs-string">'longitude'</span>)
+                ],{
+                    icon: icon
+                })
+                .bindPopup(<span class="hljs-keyword">new</span> Stem.Views.PoiAsMarker({
+                    model: marker
+                }).render().el, {
+                    closeButton: <span class="hljs-literal">false</span>,
+                    maxWidth: <span class="hljs-number">250</span>,
+                    minWidth: <span class="hljs-number">250</span>,
+                    offset: [<span class="hljs-number">140</span>, <span class="hljs-number">0</span>]
+                })
+                .addTo(<span class="hljs-keyword">this</span>.map);
+
+            }
+
+        }
+
+    });
+
+})();</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

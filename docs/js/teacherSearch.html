@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -528,17 +573,36 @@ settings.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>) ||
+                <span class="hljs-keyword">this</span>.tags.elementary.get(<span class="hljs-string">'selected'</span>)) {
+                keywords += <span class="hljs-string">', primary, elementary'</span>;
+            }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', k-2, primary, elementary'</span>;
+                keywords += <span class="hljs-string">', k-2, kindergarten'</span> +
+                            <span class="hljs-string">', "1st grade", "first grade"'</span> +
+                            <span class="hljs-string">', "2nd grade", "second grade"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.elementary.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', 3-5, elementary'</span>;
+                keywords += <span class="hljs-string">', 3-5, "3rd grade", "third grade"'</span> +
+                            <span class="hljs-string">', "4th grade", "fourth grade"'</span> +
+                            <span class="hljs-string">', "5th grade", "fifth grade"'</span>;
+            }
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>) ||
+                <span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
+                keywords += <span class="hljs-string">', secondary'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', 6-8, middle'</span>;
+                keywords += <span class="hljs-string">', 6-8, middle'</span> +
+                            <span class="hljs-string">', "6th grade", "sixth grade"'</span> +
+                            <span class="hljs-string">', "7th grade", "seventh grade"'</span> +
+                            <span class="hljs-string">', "8th grade", "eighth grade"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', 9-12, high'</span>;
+                keywords += <span class="hljs-string">', 9-12, high'</span> +
+                            <span class="hljs-string">', "9th grade", "ninth grade"'</span> +
+                            <span class="hljs-string">', "10th grade", "tenth grade"'</span> +
+                            <span class="hljs-string">', "11th grade", "eleventh grade"'</span> +
+                            <span class="hljs-string">', "12th grade", "twelfth grade"'</span>;
             }</pre></div></div>
             
         </li>

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>teacherSearchPage.js</title>
+  <title>searchAsForm.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -191,7 +236,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>teacherSearchPage.js</h1>
+                  <h1>searchAsForm.js</h1>
               </div>
           </li>
         
@@ -206,7 +251,14 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/* global Stem, _, Backbone, JST */</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, _, Backbone, JST, $ */</span>
+
+Stem.Views = Stem.Views || {};
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+<span class="hljs-pi">    'use strict'</span>;
+
+    Stem.Views.SearchAsForm = Backbone.View.extend({</pre></div></div>
             
         </li>
         
@@ -217,18 +269,12 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Backbone view for the teacher-focused
-search page of the application.</p>
+              <p>Markup stored as external template.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-Stem.Views = Stem.Views || {};
-
-(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-<span class="hljs-pi">    'use strict'</span>;
-
-    Stem.Views.TeacherSearchPage = Backbone.View.extend({</pre></div></div>
+        template: JST[<span class="hljs-string">'app/scripts/templates/searchAsForm.ejs'</span>],</pre></div></div>
             
         </li>
         
@@ -239,12 +285,12 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Markup stored as external template.</p>
+              <p>First level element is a <code>&lt;form&gt;</code>.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        template: JST[<span class="hljs-string">'app/scripts/templates/teacherSearchPage.ejs'</span>],</pre></div></div>
+        tagName: <span class="hljs-string">'form'</span>,</pre></div></div>
             
         </li>
         
@@ -255,12 +301,12 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>First level element is a <code>&lt;section&gt;</code>.</p>
+              <p>Use <code>.search</code> class to get search form styles.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        tagName: <span class="hljs-string">'section'</span>,</pre></div></div>
+        className: <span class="hljs-string">'search'</span>,</pre></div></div>
             
         </li>
         
@@ -271,12 +317,16 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>The ‘id’ is used for navigation.</p>
+              <p>Listen to events that change the input or
+click on the search link to initiate a search.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        id: <span class="hljs-string">'teachers-search'</span>,</pre></div></div>
+        events: {
+            <span class="hljs-string">'input input'</span>: <span class="hljs-string">'changed'</span>,
+            <span class="hljs-string">'submit'</span>: <span class="hljs-string">'submitted'</span>
+        },</pre></div></div>
             
         </li>
         
@@ -287,16 +337,15 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h2 id="rendersearchbar">renderSearchBar</h2>
-<p>Render the search bar that supports
-teacher-focused search queries.</p>
+              <p>Default values for options.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        renderSearchBar: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">this</span>.model.searchQuery;</pre></div></div>
+        defaults: {
+            showLabel: <span class="hljs-literal">true</span>,   <span class="hljs-comment">// Should label be visible</span>
+            theme: <span class="hljs-string">''</span>          <span class="hljs-comment">// Theme to apply</span>
+        },</pre></div></div>
             
         </li>
         
@@ -307,22 +356,17 @@ teacher-focused search queries.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Create separate views for both of the search forms
-and insert them into the page.</p>
+              <p>Options supported by this view
+include:</p>
+<ul>
+<li><code>.theme</code> for a theme class</li>
+<li><code>.showLabel</code> set <code>false</code> to suppress display of search label</li>
+</ul>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.searchBar = <span class="hljs-keyword">new</span> Stem.Views.SearchForm({
-                model: model,
-                showLabel: <span class="hljs-literal">false</span>,
-                theme: <span class="hljs-string">'theme-1'</span>
-            });
-
-            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.search'</span>)
-                .append(<span class="hljs-keyword">this</span>.searchBar.render().$el);
-
-       },</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(options)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -333,22 +377,12 @@ and insert them into the page.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <h2 id="rendersearchfilters">renderSearchFilters</h2>
-<p>Show the search filters on the page.</p>
+              <p>Save any options passed to constructor.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        renderSearchFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-
-            <span class="hljs-keyword">this</span>.searchFiltersList = <span class="hljs-keyword">this</span>.searchFiltersList ||
-                <span class="hljs-keyword">new</span> Stem.Views.SearchFiltersAsList({
-                    collection: <span class="hljs-keyword">this</span>.model.searchFilters
-                });
-
-            <span class="hljs-keyword">this</span>.searchFiltersList.render();
-
-            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-filter'</span>).append(<span class="hljs-keyword">this</span>.searchFiltersList.$el);</pre></div></div>
+            <span class="hljs-keyword">this</span>.options = _.extend({}, <span class="hljs-keyword">this</span>.defaults, options);</pre></div></div>
             
         </li>
         
@@ -359,18 +393,13 @@ and insert them into the page.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>If the filters change, update the search
-presentation. Because changing one radio
-button (selecting it) necessarily changes
-another one (whatever was previously selected),
-we debounce this event.</p>
+              <p>If the model changes, we might need to
+update the view.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model.searchFilters,<span class="hljs-string">'change'</span>, _(<span class="hljs-keyword">this</span>.arrangeResults).debounce(<span class="hljs-number">16</span>));
-
-        },</pre></div></div>
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.modelUpdated);</pre></div></div>
             
         </li>
         
@@ -381,42 +410,16 @@ we debounce this event.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <h2 id="renderresults">renderResults</h2>
-<p>Create markup for the search results.</p>
+              <p>Return view for method chaining.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        renderResults: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
 
-            <span class="hljs-keyword">this</span>.contentMainView = <span class="hljs-keyword">this</span>.contentMainView ||
-                <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.content
-                });
+        },
 
-            <span class="hljs-keyword">this</span>.contentSecondaryView = <span class="hljs-keyword">this</span>.contentSecondaryView ||
-                <span class="hljs-keyword">new</span> Stem.Views.OaeAsSecondarySearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.content
-                });
-
-            <span class="hljs-keyword">this</span>.groupsMainView = <span class="hljs-keyword">this</span>.groupsMainView ||
-                <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.groups
-                });
-
-            <span class="hljs-keyword">this</span>.groupsSecondaryView = <span class="hljs-keyword">this</span>.groupsSecondaryView ||
-                <span class="hljs-keyword">new</span> Stem.Views.OaeAsSecondarySearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.groups
-                });
-
-            <span class="hljs-keyword">this</span>.contentMainView.render();
-            <span class="hljs-keyword">this</span>.contentSecondaryView.render();
-            <span class="hljs-keyword">this</span>.groupsMainView.render();
-            <span class="hljs-keyword">this</span>.groupsSecondaryView.render();
-
-            <span class="hljs-keyword">this</span>.arrangeResults();
-
-        },</pre></div></div>
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -427,13 +430,13 @@ we debounce this event.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <h2 id="arrangeresults">arrangeResults</h2>
-<p>Arrange the search results on the page.</p>
+              <p>After normal render, add a11y <code>role</code>.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        arrangeResults: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()))
+                .attr(<span class="hljs-string">'role'</span>,<span class="hljs-string">'search'</span>);</pre></div></div>
             
         </li>
         
@@ -444,15 +447,14 @@ we debounce this event.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>First detach existing elements from the DOM.</p>
+              <p>Set the initial query parameters</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.contentMainView.$el.detach();
-            <span class="hljs-keyword">this</span>.contentSecondaryView.$el.detach();
-            <span class="hljs-keyword">this</span>.groupsMainView.$el.detach();
-            <span class="hljs-keyword">this</span>.groupsSecondaryView.$el.detach();</pre></div></div>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'query'</span>)) {
+                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).val(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'query'</span>));
+            }</pre></div></div>
             
         </li>
         
@@ -463,35 +465,15 @@ we debounce this event.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>Insert the elements in the correct locations
-depending on which filter is selected.</p>
+              <p>If a theme has been requested, add it
+as a class.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.filters.content.get(<span class="hljs-string">'selected'</span>)) {
-
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
-                    .append(<span class="hljs-keyword">this</span>.contentMainView.$el);
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-secondary'</span>)
-                    .append(<span class="hljs-keyword">this</span>.groupsSecondaryView.$el);
-
-            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.filters.courses.get(<span class="hljs-string">'selected'</span>)) {
-
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-secondary'</span>)
-                    .append(<span class="hljs-keyword">this</span>.groupsSecondaryView.$el)
-                    .append(<span class="hljs-keyword">this</span>.contentSecondaryView.$el);
-
-            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.filters.groups.get(<span class="hljs-string">'selected'</span>)) {
-
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
-                    .append(<span class="hljs-keyword">this</span>.groupsMainView.$el);
-                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-secondary'</span>)
-                    .append(<span class="hljs-keyword">this</span>.contentSecondaryView.$el);
-
-            }
-
-        },</pre></div></div>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.options.theme) {
+                <span class="hljs-keyword">this</span>.$el.addClass(<span class="hljs-keyword">this</span>.options.theme);
+            }</pre></div></div>
             
         </li>
         
@@ -502,12 +484,15 @@ depending on which filter is selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <h2 id="render">render</h2>
+              <p>If the label should be visible, remove
+the screen-reader only class.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.options.showLabel) {
+                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'label'</span>).removeClass(<span class="hljs-string">'util--sr-only'</span>);
+            }</pre></div></div>
             
         </li>
         
@@ -518,12 +503,14 @@ depending on which filter is selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Render the main template first.</p>
+              <p>Return view for method chaining.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template());</pre></div></div>
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+
+        },</pre></div></div>
             
         </li>
         
@@ -534,14 +521,13 @@ depending on which filter is selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>Add in ARIA information.</p>
+              <p>If the user changes the query value, we
+need to update the underlying model.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> headingId = _.uniqueId();
-            <span class="hljs-keyword">this</span>.$el.attr(<span class="hljs-string">'aria-labelledby'</span>, headingId);
-            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'h2'</span>).attr(<span class="hljs-string">'id'</span>, headingId);</pre></div></div>
+        changed: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ev)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -552,14 +538,12 @@ depending on which filter is selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Render the individual components of the view.</p>
+              <p>Get the current input value.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.renderSearchBar();
-            <span class="hljs-keyword">this</span>.renderSearchFilters();
-            <span class="hljs-keyword">this</span>.renderResults();</pre></div></div>
+            <span class="hljs-keyword">var</span> query = $(ev.currentTarget).val();</pre></div></div>
             
         </li>
         
@@ -570,12 +554,110 @@ depending on which filter is selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
-              <p>Return view for method chaining.</p>
+              <p>Update the model with the current query..</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;  <span class="hljs-comment">// for method chaining</span>
+            <span class="hljs-keyword">this</span>.model.set(<span class="hljs-string">'query'</span>, query);
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>If user clicks on the search button,
+pass it up the chain so the search
+can be executed.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        submitted: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ev)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Trigger a submit event on this view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.trigger(<span class="hljs-string">'submit'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Prevent further event handling.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            ev.preventDefault();
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>If the model has changed due to,
+another view, we update this view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        modelUpdated: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-keyword">var</span> query = <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'query'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Only update the view if it’s not in
+focus to avoid messing with the users
+while they’re typing. Note that we
+have multiple parallel <code>&lt;input&gt;</code>
+elements to handle responsive design.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'input'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                <span class="hljs-keyword">if</span> (!$(<span class="hljs-keyword">this</span>).is(<span class="hljs-string">":focus"</span>)) {
+                    $(<span class="hljs-keyword">this</span>).val(query);
+                }
+            });
 
         }
 

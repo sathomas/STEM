@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="pois.html">
+                pois.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -36,6 +41,11 @@
               
               <a class="source" href="searchFilters.html">
                 searchFilters.js
+              </a>
+            
+              
+              <a class="source" href="subGroups.html">
+                subGroups.js
               </a>
             
               
@@ -69,8 +79,23 @@
               </a>
             
               
+              <a class="source" href="discovery.html">
+                discovery.js
+              </a>
+            
+              
               <a class="source" href="group.html">
                 group.js
+              </a>
+            
+              
+              <a class="source" href="partners.html">
+                partners.js
+              </a>
+            
+              
+              <a class="source" href="poi.html">
+                poi.js
               </a>
             
               
@@ -114,6 +139,11 @@
               </a>
             
               
+              <a class="source" href="discoveryAsContent.html">
+                discoveryAsContent.js
+              </a>
+            
+              
               <a class="source" href="oaeAsMainSearchGroup.html">
                 oaeAsMainSearchGroup.js
               </a>
@@ -144,8 +174,23 @@
               </a>
             
               
-              <a class="source" href="searchFilterAsItem (iMac's conflicted copy 2015-03-17).html">
-                searchFilterAsItem (iMac's conflicted copy 2015-03-17).js
+              <a class="source" href="partnersAsDiscovery.html">
+                partnersAsDiscovery.js
+              </a>
+            
+              
+              <a class="source" href="poiAsMarker.html">
+                poiAsMarker.js
+              </a>
+            
+              
+              <a class="source" href="poisAsMap.html">
+                poisAsMap.js
+              </a>
+            
+              
+              <a class="source" href="searchAsForm.html">
+                searchAsForm.js
               </a>
             
               
@@ -159,11 +204,6 @@
               </a>
             
               
-              <a class="source" href="searchForm.html">
-                searchForm.js
-              </a>
-            
-              
               <a class="source" href="tagAsCheckbox.html">
                 tagAsCheckbox.js
               </a>
@@ -174,13 +214,18 @@
               </a>
             
               
+              <a class="source" href="tagSetAsInlineCheckboxGroup.html">
+                tagSetAsInlineCheckboxGroup.js
+              </a>
+            
+              
               <a class="source" href="tagsAsCheckboxes.html">
                 tagsAsCheckboxes.js
               </a>
             
               
-              <a class="source" href="teacherSearchPage.html">
-                teacherSearchPage.js
+              <a class="source" href="teacherSearchAsPage.html">
+                teacherSearchAsPage.js
               </a>
             
           </div>
@@ -206,7 +251,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem */</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global _, $, Stem */</span></pre></div></div>
             
         </li>
         
@@ -249,6 +294,256 @@ Stem.Utils = Stem.Utils || {};
             }
             <span class="hljs-built_in">window</span>.location = path;
         }
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Asynchronous function to get geo-location
+information from the client’s IP address. Parameters
+are a success and error callback function.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    Stem.Utils.getLocationFromIp = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(success, error)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>If we’ve already cached the user’s information
+from a previous call or if it’s available from
+some other source (e.g. map API), just return
+what’s available. This will avoid making
+unnecessary (and potentially costly) API calls
+to the IP info service.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (Stem.user.geo.latitude &amp;&amp; Stem.user.geo.longitude) {
+
+            success([
+                Stem.user.geo.latitude,
+                Stem.user.geo.longitude
+            ]);
+
+        } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Since the info isn’t otherwise available,
+try querying the IP info service.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            $.getJSON(<span class="hljs-string">'http://ipinfo.io/json'</span>)
+                .done(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>The response should contain the
+location info. A sample response:</p>
+<pre><code>{
+    ip: <span class="hljs-string">"73.54.166.233"</span>,
+    hostname: <span class="hljs-string">"c-73-54-166-233.hsd1.ga.comcast.net"</span>,
+    city: <span class="hljs-string">"Woodstock"</span>,
+    region: <span class="hljs-string">"Georgia"</span>,
+    country: <span class="hljs-string">"US"</span>,
+    loc: <span class="hljs-string">"34.1190,-84.4477"</span>,
+    org: <span class="hljs-string">"AS7922 Comcast Cable Communications, Inc."</span>,
+    postal: <span class="hljs-string">"30188"</span>
+}
+</code></pre>
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    <span class="hljs-keyword">var</span> latLong = <span class="hljs-literal">null</span>;
+
+                    <span class="hljs-keyword">if</span> (response &amp;&amp; response.loc &amp;&amp;
+                        (latLong = _.chain(response.loc.split(<span class="hljs-string">','</span>))
+                            .map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(s)</span> </span>{
+                                <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseFloat</span>(s.trim());
+                            }).filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(x)</span> </span>{
+                                <span class="hljs-keyword">return</span> !_.isNaN(x);
+                            }).value()) &amp;&amp;
+                        (latLong.length === <span class="hljs-number">2</span>)) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Cache the response info.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                        Stem.user.geo.latitude  = latLong[<span class="hljs-number">0</span>];
+                        Stem.user.geo.longitude = latLong[<span class="hljs-number">1</span>];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Return it to the original
+caller via the success callback.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                        success([
+                            Stem.user.geo.latitude,
+                            Stem.user.geo.longitude
+                        ]);
+
+                    } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>No location info in the
+response! All we can do
+now is return an error.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+                            error();
+                        }
+
+                    }
+
+                })
+                .fail(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Looks like we’re out of luck.
+If the original caller provided
+an error callback, execute it.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+                        error();
+                    }
+
+                });
+
+        }
+
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Asynchronous function to get geo-location
+information from a street address. Parameters
+are the address and a success and error callback
+function.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    Stem.Utils.getLocationFromStreet = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(addr, success, error)</span> </span>{
+
+        $.ajax({
+                url: <span class="hljs-string">'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?'</span> +
+                        <span class="hljs-string">'address='</span> + <span class="hljs-built_in">encodeURIComponent</span>(addr.trim()) +
+                        <span class="hljs-string">'&amp;benchmark=9&amp;format=jsonp'</span>,
+                dataType: <span class="hljs-string">"jsonp"</span>
+            })
+            .done(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span> </span>{
+
+                <span class="hljs-keyword">if</span> (response.result &amp;&amp;
+                    response.result.addressMatches &amp;&amp;
+                    response.result.addressMatches.length &amp;&amp;
+                    response.result.addressMatches[<span class="hljs-number">0</span>].coordinates &amp;&amp;
+                    response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x &amp;&amp;
+                    response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y &amp;&amp;
+                    !_.isNaN(<span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x)) &amp;&amp;
+                    !_.isNaN(<span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y))) {
+
+                    success([
+                        <span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y),
+                        <span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x)
+                    ]);
+
+                } <span class="hljs-keyword">else</span> {
+
+                    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+                        error();
+                    }
+
+                }
+
+            })
+            .fail(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+                    error();
+                }
+
+            });
+
     };
 
 
