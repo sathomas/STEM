@@ -159,6 +159,12 @@ Stem.Views = Stem.Views || {};
 
         show: function () {
 
+            // Use a closure variable to keep track
+            // of whether we've found the location
+            // or not.
+
+            var locationFound = false;
+
             // We're going to try to set the initial
             // map location based on the user's
             // current location. The first thing to
@@ -187,6 +193,10 @@ Stem.Views = Stem.Views || {};
                 Stem.user.geo.latitude = ev.latlng.lat;
                 Stem.user.geo.longitude = ev.latlng.lng;
 
+                // Note that we've found it.
+
+                locationFound = true;
+
                 // Set the zoom level now that the
                 // map is positioned properly.
 
@@ -203,7 +213,7 @@ Stem.Views = Stem.Views || {};
                 setView:    true
             });
 
-            // Unfortunately, Firefox allows
+            // Unfortunately, some browers allow
             // location permission requests to
             // fail silently (without returning
             // an error) if, e.g., the user simply
@@ -217,7 +227,8 @@ Stem.Views = Stem.Views || {};
                 // Once the delay has passed, check
                 // to see if we have a location.
 
-                if (!Stem.user.geo.latitude ||
+                if (!locationFound ||
+                    !Stem.user.geo.latitude ||
                     !Stem.user.geo.longitude) {
 
                     // Nope. Resort to fallback.
@@ -236,32 +247,49 @@ Stem.Views = Stem.Views || {};
 
         locationFailed: function () {
 
-            // Bummer. We couldn't get the location
-            // information from the browser directly.
-            // As a backup, let's try using the
-            // client's public IP address.
+            // We may have gotten here because of
+            // a race condition in Leaflet with
+            // some browsers. If that's the
+            // case, we can still set the view.
 
-            Stem.Utils.getLocationFromIp(
-                _(function(LatLong) {
+            if (Stem.user.geo.latitude && Stem.user.geo.longitude) {
 
-                    // Success. Set the map view.
+                this.map.setView([
+                    Stem.user.geo.latitude,
+                    Stem.user.geo.longitude
+                ],this.zoom());
 
-                    this.map.setView(LatLong,this.zoom());
+            } else {
 
-                }).bind(this),
-                _(function() {
+                // Bummer. We couldn't get the location
+                // information from the browser directly.
+                // As a backup, let's try using the
+                // client's public IP address.
 
-                    // Okay. That didn't work either.
-                    // Only option left is resorting
-                    // to default values.
+                Stem.Utils.getLocationFromIp(
+                    _(function(LatLong) {
 
-                    this.map.setView([
-                        Stem.config.geo.latitude,
-                        Stem.config.geo.longitude
-                    ],this.zoom());
+                        // Success. Set the map view.
 
-                }).bind(this)
-            );
+                        this.map.setView(LatLong,this.zoom());
+
+                    }).bind(this),
+                    _(function() {
+
+                        // Okay. That didn't work either.
+                        // Only option left is resorting
+                        // to default values.
+
+                        this.map.setView([
+                            Stem.config.geo.latitude,
+                            Stem.config.geo.longitude
+                        ],this.zoom());
+
+                    }).bind(this)
+
+                );
+
+            }
 
         },
 
