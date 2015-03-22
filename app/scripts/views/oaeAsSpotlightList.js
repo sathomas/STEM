@@ -1,4 +1,4 @@
-/*global Stem, Backbone */
+/*global Stem, Backbone, $ */
 
 // Simple Backbone view to render an OAE
 // collection as a list of spotlight items.
