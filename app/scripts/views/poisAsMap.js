@@ -52,7 +52,7 @@ Stem.Views = Stem.Views || {};
         // Convenience function to calculate a good
         // zoom level based on window size.
 
-        zoom: function () {
+        calcZoom: function () {
 
             // For now, this is sort of hacked
             // together "by eye." Eventually, it
@@ -62,6 +62,53 @@ Stem.Views = Stem.Views || {};
             // `$(window).width()`
 
             return 10;
+
+        },
+
+        // Convenience function to set the view
+        // for the map. Parameters are latitude
+        // and longitude of the user.
+
+        setView: function (lat, lng) {
+
+            // See if the user's latitude and
+            // longitude are (more or less)
+            // within the state boundary. If
+            // they're not, we don't want to
+            // rely on the user location to
+            // set the map view.
+
+            var minLat = Stem.config.geo.southeastCorner[0],
+                maxLat = Stem.config.geo.northwestCorner[0],
+                minLng = Stem.config.geo.northwestCorner[1],
+                maxLng = Stem.config.geo.southeastCorner[1],
+                rangeLat = maxLat - minLat,
+                rangeLng = maxLng - minLng;
+
+            if ( (lat > (minLat - rangeLat/2)) &&
+                 (lat < (maxLat + rangeLat/2)) &&
+                 (lng > (minLng - rangeLng/2)) &&
+                 (lng < (maxLng + rangeLng/2)) ) {
+
+                this.map.setView(
+                    [lat,lng],
+                    this.calcZoom()
+                );
+
+            } else {
+
+                // If the user isn't located near
+                // the state, use the defaults
+                // for the map view.
+
+                this.map.setView([
+                        Stem.config.geo.latitude,
+                        Stem.config.geo.longitude
+                    ],
+                    this.calcZoom()
+                );
+
+            }
 
         },
 
@@ -172,10 +219,10 @@ Stem.Views = Stem.Views || {};
             // is already available and cached.
 
             if (Stem.user.geo.latitude && Stem.user.geo.longitude) {
-                this.map.setView([
+                this.setView(
                     Stem.user.geo.latitude,
                     Stem.user.geo.longitude
-                ],this.zoom());
+                );
             }
 
             // Okay, the geo-location info isn't
@@ -187,6 +234,10 @@ Stem.Views = Stem.Views || {};
 
             this.map.on('locationfound', function(ev) {
 
+                // Set the map view.
+
+                this.setView(ev.latlng.lat, ev.latlng.lng);
+
                 // If we successfully get the location,
                 // save it for other maps to use.
 
@@ -197,10 +248,6 @@ Stem.Views = Stem.Views || {};
 
                 locationFound = true;
 
-                // Set the zoom level now that the
-                // map is positioned properly.
-
-                this.map.setZoom(this.zoom());
 
             }, this).on('locationerror', this.locationFailed, this);
 
@@ -210,7 +257,7 @@ Stem.Views = Stem.Views || {};
 
             this.map.locate({
                 maximumAge: 60*60*1000, // Cached info is okay
-                setView:    true
+                setView:    false
             });
 
             // Unfortunately, some browers allow
@@ -252,12 +299,13 @@ Stem.Views = Stem.Views || {};
             // some browsers. If that's the
             // case, we can still set the view.
 
-            if (Stem.user.geo.latitude && Stem.user.geo.longitude) {
+            if (Stem.user.geo.latitude &&
+                Stem.user.geo.longitude) {
 
-                this.map.setView([
+                this.setView(
                     Stem.user.geo.latitude,
                     Stem.user.geo.longitude
-                ],this.zoom());
+                );
 
             } else {
 
@@ -271,7 +319,7 @@ Stem.Views = Stem.Views || {};
 
                         // Success. Set the map view.
 
-                        this.map.setView(LatLong,this.zoom());
+                        this.setView(LatLong[0],LatLong[1]);
 
                     }).bind(this),
                     _(function() {
@@ -280,10 +328,10 @@ Stem.Views = Stem.Views || {};
                         // Only option left is resorting
                         // to default values.
 
-                        this.map.setView([
+                        this.setView(
                             Stem.config.geo.latitude,
                             Stem.config.geo.longitude
-                        ],this.zoom());
+                        );
 
                     }).bind(this)
 

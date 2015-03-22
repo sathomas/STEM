@@ -57,16 +57,7 @@ Stem.Collections = Stem.Collections || {};
             // we assume that the "response" is already an
             // array of models and return it directly.
 
-            return response.results ?
-
-                _(response.results).map(function(result) {
-                    if (!result.profile.thumbnailUrl && result.profile.picture.small) {
-                        result.profile.thumbnailUrl = result.profile.picture.small;
-                    }
-                    return result.profile;
-                }) :
-
-                response;
+            return response.results ? response.results : response;
 
         }
 

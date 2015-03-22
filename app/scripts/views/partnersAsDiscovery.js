@@ -39,6 +39,11 @@ Stem.Views = Stem.Views || {};
                 tintUrl: 'images/theme-3-background.png'
             });
 
+            this.partnershipsList = new Stem.Views.OaeAsSpotlightList({
+                el: $('#partner-spotlights'),
+                collection: this.model.partnerships
+            });
+
         },
 
         render: function () {
@@ -48,6 +53,7 @@ Stem.Views = Stem.Views || {};
             this.mapFilter.render();
             this.proposalsMap.render();
             this.organizationsMap.render();
+            this.partnershipsList.render();
 
             this.listenTo(this.model.tags, 'change', this.updateFilters);
 

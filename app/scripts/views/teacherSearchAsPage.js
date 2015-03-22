@@ -86,6 +86,16 @@ Stem.Views = Stem.Views || {};
                     model: this.model.searchResults.content
                 });
 
+            this.coursesMainView = this.coursesMainView ||
+                new Stem.Views.OaeAsMainSearchGroup({
+                    model: this.model.searchResults.courses
+                });
+
+            this.coursesSecondaryView = this.coursesSecondaryView ||
+                new Stem.Views.OaeAsSecondarySearchGroup({
+                    model: this.model.searchResults.courses
+                });
+
             this.groupsMainView = this.groupsMainView ||
                 new Stem.Views.OaeAsMainSearchGroup({
                     model: this.model.searchResults.groups
@@ -98,6 +108,8 @@ Stem.Views = Stem.Views || {};
 
             this.contentMainView.render();
             this.contentSecondaryView.render();
+            this.coursesMainView.render();
+            this.coursesSecondaryView.render();
             this.groupsMainView.render();
             this.groupsSecondaryView.render();
 
@@ -115,6 +127,8 @@ Stem.Views = Stem.Views || {};
 
             this.contentMainView.$el.detach();
             this.contentSecondaryView.$el.detach();
+            this.coursesMainView.$el.detach();
+            this.coursesSecondaryView.$el.detach();
             this.groupsMainView.$el.detach();
             this.groupsSecondaryView.$el.detach();
 
@@ -126,10 +140,13 @@ Stem.Views = Stem.Views || {};
                 this.$el.find('.results-main')
                     .append(this.contentMainView.$el);
                 this.$el.find('.results-secondary')
+                    .append(this.coursesSecondaryView.$el)
                     .append(this.groupsSecondaryView.$el);
 
             } else if (this.model.filters.courses.get('selected')) {
 
+                this.$el.find('.results-main')
+                    .append(this.coursesMainView.$el);
                 this.$el.find('.results-secondary')
                     .append(this.groupsSecondaryView.$el)
                     .append(this.contentSecondaryView.$el);
@@ -139,7 +156,8 @@ Stem.Views = Stem.Views || {};
                 this.$el.find('.results-main')
                     .append(this.groupsMainView.$el);
                 this.$el.find('.results-secondary')
-                    .append(this.contentSecondaryView.$el);
+                    .append(this.contentSecondaryView.$el)
+                    .append(this.coursesSecondaryView.$el);
 
             }
 

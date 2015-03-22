@@ -35,17 +35,17 @@ window.Stem = {
 
         oae: {
             groups: {
-                businesses:   'g%3Asi%3A7Ji6H8sI',
-                courses:      'g%3Asi%3A7Ji6H8sI',
-                partnerships: 'g%3Asi%3A7Ji6H8sI',
-                schools:      'g%3Asi%3A7Ji6H8sI'
+                businesses:   'g:si:Xy9nrbWq',
+                courses:      'g:si:m179WbZq',
+                partnerships: 'g:si:XkJrmWWq',
+                schools:      'g:si:m1uhNWWc'
             },
             host: 'stemincubator.oaeproject.org',
             protocol: 'https:'
         },
 
         // Default geographic coordinates are the
-        // center of the state.
+        // center of the state and its boundaries.
 
         geo: {
             latitude: 32.9605,

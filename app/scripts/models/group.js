@@ -1,5 +1,8 @@
 /*global Stem, Backbone*/
 
+// Backbone model for a single group object from the
+// Open Academic Environment.
+
 Stem.Models = Stem.Models || {};
 
 (function () {
@@ -24,8 +27,11 @@ Stem.Models = Stem.Models || {};
                    Stem.config.oae.host + '/api/group/' + this.id;
         },
 
-        // Make sure the group object has the attributes
-        // we need in order to work with it.
+        // Since it's possible that we may have
+        // fetched this object from an API that
+        // returns general OAE objects (i.e. not
+        // just groups) define a method to make
+        // sure this really is a group.
 
         validate: function(attrs) {
             if (attrs.resourceType !== 'group') {
@@ -41,18 +47,57 @@ Stem.Models = Stem.Models || {};
 
         parse: function(response) {
 
-            // First make sure we have values for all
+            // Some OAE APIs return the model directly
+            // while others bury it in the `results`
+            // property. Also, some responses put the
+            // group information inside a 'profile`
+            // attribute. Our first task is to find the
+            // actual group information.
+
+            if (response.results) {
+                response = response.results;
+            }
+
+            if (response.profile) {
+                response = response.profile;
+            }
+
+            // Make sure we have defined values for all
             // required properties.
 
             response.description  = response.description  || '';
             response.displayName  = response.displayName  || '';
             response.thumbnailUrl = response.thumbnailUrl || '';
-            response.profilePath   = response.profilePath   || '';
+            response.profilePath  = response.profilePath  || '';
+
+            // If there isn't a real thumbnail URL but there
+            // is a small picture, use it as an alternative.
+
+            if (!response.thumbnailUrl && response.picture &&
+                response.picture.small) {
+
+                response.thumbnailUrl = response.picture.small;
+
+            }
+
+            // If we still don't have a thumbnail, substitute
+            // a generic image.
+
+            if (!response.thumbnailUrl) {
+
+                // Note that we have to make this a full URL
+                // to prevent view templates from assuming
+                // the link is to the OAE.
+
+                response.thumbnailUrl = location.protocol +
+                    '//' + location.host + '/images/group.png';
+
+            }
 
             // Define an array that lists the grade levels
             // we support.
 
-            var allGrades = ['elementary', 'middle', 'high'];
+            var allGrades = ['primary', 'elementary', 'middle', 'high'];
 
             // The extra information is contained in the
             // `displayName` property.
@@ -76,12 +121,20 @@ Stem.Models = Stem.Models || {};
                 // `displayName` holds the grade
                 // levels. Multiple grade levels are
                 // permitted, separated by commas.
+                // We also replace common abbreviations
+                // with the more descriptive version to
+                // match the model properties.
 
                 if (tokens.length > 1) {
 
                     var grades = tokens[1].split(',')
                         .map(function(token) {
-                             return token.trim().toLowerCase();
+	                        token = token.trim().toLowerCase();
+	                        if (token === 'k-2')       { token = 'primary';    }
+	                        else if (token === '3-5')  { token = 'elementary'; }
+	                        else if (token === '6-8')  { token = 'middle';     }
+	                        else if (token === '9-12') { token = 'high';       }
+                            return token;
                         });
 
                     // We're pretty forgiving about how

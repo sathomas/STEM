@@ -8,7 +8,7 @@ will remove the class if it is able to run successfully (which,
 of course, means that JavaScript is available.
 -->
 
-<html class="no-js">
+<html class="no-js" lang="en-us">
 
     <head>
         <!--
@@ -440,7 +440,10 @@ of course, means that JavaScript is available.
                     <h4 class="discovery__subheading">
                         Spotlights
                     </h4>
-                    <button class="button">Show more spotlights</button>
+                    <ul id="partner-spotlights" class="spotlight"></ul>
+                    <a class="button" href="https://stemincubator.oaeproject.org">
+                        Show more spotlights
+                    </a>
                 </article>
 
                 <!--
@@ -678,6 +681,7 @@ of course, means that JavaScript is available.
         <script src="scripts/models/teacherSearch.js"></script>
         <script src="scripts/collections/content.js"></script>
         <script src="scripts/collections/groups.js"></script>
+        <script src="scripts/collections/memberGroups.js"></script>
         <script src="scripts/collections/pois.js"></script>
         <script src="scripts/collections/proposals.js"></script>
         <script src="scripts/collections/searchFilters.js"></script>
@@ -690,6 +694,8 @@ of course, means that JavaScript is available.
         <script src="scripts/views/oaeAsSecondarySearchGroup.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResult.js"></script>
         <script src="scripts/views/oaeAsSecondarySearchResults.js"></script>
+        <script src="scripts/views/oaeAsSpotlightItem.js"></script>
+        <script src="scripts/views/oaeAsSpotlightList.js"></script>
         <script src="scripts/views/partnersAsDiscovery.js"></script>
         <script src="scripts/views/poiAsMarker.js"></script>
         <script src="scripts/views/poisAsMap.js"></script>
