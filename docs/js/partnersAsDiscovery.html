@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="memberGroups.html">
+                memberGroups.js
+              </a>
+            
+              
               <a class="source" href="pois.html">
                 pois.js
               </a>
@@ -174,6 +179,16 @@
               </a>
             
               
+              <a class="source" href="oaeAsSpotlightItem.html">
+                oaeAsSpotlightItem.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightList.html">
+                oaeAsSpotlightList.js
+              </a>
+            
+              
               <a class="source" href="partnersAsDiscovery.html">
                 partnersAsDiscovery.js
               </a>
@@ -316,6 +331,11 @@ child views.</p>
                 tintUrl: <span class="hljs-string">'images/theme-3-background.png'</span>
             });
 
+            <span class="hljs-keyword">this</span>.partnershipsList = <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightList({
+                el: $(<span class="hljs-string">'#partner-spotlights'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.partnerships
+            });
+
         },
 
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
@@ -337,6 +357,7 @@ child views.</p>
             <span class="hljs-keyword">this</span>.mapFilter.render();
             <span class="hljs-keyword">this</span>.proposalsMap.render();
             <span class="hljs-keyword">this</span>.organizationsMap.render();
+            <span class="hljs-keyword">this</span>.partnershipsList.render();
 
             <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model.tags, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateFilters);
 

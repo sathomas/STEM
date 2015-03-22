@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="memberGroups.html">
+                memberGroups.js
+              </a>
+            
+              
               <a class="source" href="pois.html">
                 pois.js
               </a>
@@ -171,6 +176,16 @@
               
               <a class="source" href="oaeAsSecondarySearchResults.html">
                 oaeAsSecondarySearchResults.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightItem.html">
+                oaeAsSpotlightItem.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightList.html">
+                oaeAsSpotlightList.js
               </a>
             
               
@@ -394,16 +409,7 @@ array of models and return it directly.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">return</span> response.results ?
-
-                _(response.results).map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result)</span> </span>{
-                    <span class="hljs-keyword">if</span> (!result.profile.thumbnailUrl &amp;&amp; result.profile.picture.small) {
-                        result.profile.thumbnailUrl = result.profile.picture.small;
-                    }
-                    <span class="hljs-keyword">return</span> result.profile;
-                }) :
-
-                response;
+            <span class="hljs-keyword">return</span> response.results ? response.results : response;
 
         }
 

@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="memberGroups.html">
+                memberGroups.js
+              </a>
+            
+              
               <a class="source" href="pois.html">
                 pois.js
               </a>
@@ -171,6 +176,16 @@
               
               <a class="source" href="oaeAsSecondarySearchResults.html">
                 oaeAsSecondarySearchResults.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightItem.html">
+                oaeAsSpotlightItem.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightList.html">
+                oaeAsSpotlightList.js
               </a>
             
               
@@ -444,6 +459,16 @@ we debounce this event.</p>
                     model: <span class="hljs-keyword">this</span>.model.searchResults.content
                 });
 
+            <span class="hljs-keyword">this</span>.coursesMainView = <span class="hljs-keyword">this</span>.coursesMainView ||
+                <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchGroup({
+                    model: <span class="hljs-keyword">this</span>.model.searchResults.courses
+                });
+
+            <span class="hljs-keyword">this</span>.coursesSecondaryView = <span class="hljs-keyword">this</span>.coursesSecondaryView ||
+                <span class="hljs-keyword">new</span> Stem.Views.OaeAsSecondarySearchGroup({
+                    model: <span class="hljs-keyword">this</span>.model.searchResults.courses
+                });
+
             <span class="hljs-keyword">this</span>.groupsMainView = <span class="hljs-keyword">this</span>.groupsMainView ||
                 <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchGroup({
                     model: <span class="hljs-keyword">this</span>.model.searchResults.groups
@@ -456,6 +481,8 @@ we debounce this event.</p>
 
             <span class="hljs-keyword">this</span>.contentMainView.render();
             <span class="hljs-keyword">this</span>.contentSecondaryView.render();
+            <span class="hljs-keyword">this</span>.coursesMainView.render();
+            <span class="hljs-keyword">this</span>.coursesSecondaryView.render();
             <span class="hljs-keyword">this</span>.groupsMainView.render();
             <span class="hljs-keyword">this</span>.groupsSecondaryView.render();
 
@@ -496,6 +523,8 @@ we debounce this event.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.contentMainView.$el.detach();
             <span class="hljs-keyword">this</span>.contentSecondaryView.$el.detach();
+            <span class="hljs-keyword">this</span>.coursesMainView.$el.detach();
+            <span class="hljs-keyword">this</span>.coursesSecondaryView.$el.detach();
             <span class="hljs-keyword">this</span>.groupsMainView.$el.detach();
             <span class="hljs-keyword">this</span>.groupsSecondaryView.$el.detach();</pre></div></div>
             
@@ -519,10 +548,13 @@ depending on which filter is selected.</p>
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
                     .append(<span class="hljs-keyword">this</span>.contentMainView.$el);
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-secondary'</span>)
+                    .append(<span class="hljs-keyword">this</span>.coursesSecondaryView.$el)
                     .append(<span class="hljs-keyword">this</span>.groupsSecondaryView.$el);
 
             } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.filters.courses.get(<span class="hljs-string">'selected'</span>)) {
 
+                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
+                    .append(<span class="hljs-keyword">this</span>.coursesMainView.$el);
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-secondary'</span>)
                     .append(<span class="hljs-keyword">this</span>.groupsSecondaryView.$el)
                     .append(<span class="hljs-keyword">this</span>.contentSecondaryView.$el);
@@ -532,7 +564,8 @@ depending on which filter is selected.</p>
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
                     .append(<span class="hljs-keyword">this</span>.groupsMainView.$el);
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-secondary'</span>)
-                    .append(<span class="hljs-keyword">this</span>.contentSecondaryView.$el);
+                    .append(<span class="hljs-keyword">this</span>.contentSecondaryView.$el)
+                    .append(<span class="hljs-keyword">this</span>.coursesSecondaryView.$el);
 
             }
 

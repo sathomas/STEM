@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="memberGroups.html">
+                memberGroups.js
+              </a>
+            
+              
               <a class="source" href="pois.html">
                 pois.js
               </a>
@@ -171,6 +176,16 @@
               
               <a class="source" href="oaeAsSecondarySearchResults.html">
                 oaeAsSecondarySearchResults.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightItem.html">
+                oaeAsSpotlightItem.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightList.html">
+                oaeAsSpotlightList.js
               </a>
             
               
@@ -497,6 +512,15 @@ filter group.</p>
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                                       Stem.config.oae.host + <span class="hljs-string">'/search/?types=content'</span>
                         }),
+                courses: <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
+                            collection: <span class="hljs-keyword">new</span> Stem.Collections.MemberGroups( [], {
+                                limit: <span class="hljs-number">16</span>,
+                                parentId: Stem.config.oae.groups.courses
+                            } ),
+                            heading: <span class="hljs-string">'Professional Learning'</span>,
+                            moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
+                                      Stem.config.oae.host + <span class="hljs-string">'/group/si/m179WbZq/members'</span>
+                        }),
                 groups:  <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
                             collection: <span class="hljs-keyword">new</span> Stem.Collections.Groups( [], { limit: <span class="hljs-number">16</span> } ),
                             heading: <span class="hljs-string">'Groups and people'</span>,
@@ -622,7 +646,7 @@ fetches.</p>
             <div class="content"><div class='highlight'><pre>
             _(<span class="hljs-keyword">this</span>.searchResults).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(search)</span> </span>{
                 search.get(<span class="hljs-string">'collection'</span>).options({keywords: keywords})
-                    .fetch({reset: <span class="hljs-literal">true</span>});
+                    .fetch({reset: <span class="hljs-literal">true</span>, validate: <span class="hljs-literal">true</span>});
             });</pre></div></div>
             
         </li>

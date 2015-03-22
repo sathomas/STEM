@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>oaeAsMainSearchResults.js</title>
+  <title>oaeAsSpotlightItem.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -251,7 +251,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>oaeAsMainSearchResults.js</h1>
+                  <h1>oaeAsSpotlightItem.js</h1>
               </div>
           </li>
         
@@ -266,39 +266,38 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone */</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone, JST*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Simple Bacbone view to show OAE information
+as a “spotlight” list item.</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
 Stem.Views = Stem.Views || {};
 
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Views.OaeAsMainSearchResults = Backbone.View.extend({
+    Stem.Views.OaeAsSpotlightItem = Backbone.View.extend({
 
-        tagName: <span class="hljs-string">'ul'</span>,
+        template: JST[<span class="hljs-string">'app/scripts/templates/oaeAsSpotlightItem.ejs'</span>],
 
-        className: <span class="hljs-string">'results-main__list'</span>,
+        tagName: <span class="hljs-string">'li'</span>,
 
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset'</span>, <span class="hljs-keyword">this</span>.render);
-        },
+        className: <span class="hljs-string">'spotlight__item'</span>,
 
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.reset();
-            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{
-               <span class="hljs-keyword">this</span>.add(model);
-            }, <span class="hljs-keyword">this</span>);
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
-        },
-
-        reset: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.$el.empty();
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
-        },
-
-        add: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{
-            <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchResult({model: model});
-            <span class="hljs-keyword">this</span>.$el.append(view.render().$el);
+            <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()));
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
         }
 

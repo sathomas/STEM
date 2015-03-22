@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="memberGroups.html">
+                memberGroups.js
+              </a>
+            
+              
               <a class="source" href="pois.html">
                 pois.js
               </a>
@@ -171,6 +176,16 @@
               
               <a class="source" href="oaeAsSecondarySearchResults.html">
                 oaeAsSecondarySearchResults.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightItem.html">
+                oaeAsSpotlightItem.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightList.html">
+                oaeAsSpotlightList.js
               </a>
             
               
@@ -486,7 +501,9 @@ collection once we trigger the fetch, we hook the
             <div class="content"><div class='highlight'><pre>
             proposals.fetch();
 
-        },</pre></div></div>
+        },
+
+        setupPartnerships: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -496,6 +513,34 @@ collection once we trigger the fetch, we hook the
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Spotlights are featured case studies
+of successful partnerships that we
+access as sub-groups on the OAE.
+All we need to do for set up is
+define the collection and initiate
+a fetch.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.partnerships = <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([], {
+                limit: <span class="hljs-number">10</span>,
+                parentId: Stem.config.oae.groups.partnerships
+            });
+
+            <span class="hljs-keyword">this</span>.partnerships.fetch({validate: <span class="hljs-literal">true</span>});
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Get the latitude and longitude
 for an OAE group,</p>
@@ -508,11 +553,11 @@ for an OAE group,</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Look for a street address in the
 group’s description. That would be
@@ -531,11 +576,11 @@ a line that begins “Address:”.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>If we found an address in the
 description, we’re in business.</p>
@@ -548,11 +593,11 @@ description, we’re in business.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Use a network service to retrieve
 geographic coordinates from a
@@ -568,11 +613,9 @@ street address.</p>
                         <span class="hljs-keyword">this</span>.organizationPois.add(
                             <span class="hljs-keyword">new</span> Stem.Models.Poi({
                                 className: className,
-                                imageUrl:  group.get(<span class="hljs-string">'thumbnailUrl'</span>),
+                                imageUrl:  Stem.Utils.oaeUrl(group.get(<span class="hljs-string">'thumbnailUrl'</span>)),
                                 latitude:  latLong[<span class="hljs-number">0</span>],
-                                link:      Stem.config.oae.protocol +
-                                           <span class="hljs-string">'//'</span> + Stem.config.oae.host +
-                                           group.get(<span class="hljs-string">'profilePath'</span>),
+                                link:      Stem.Utils.oaeUrl(group.get(<span class="hljs-string">'profilePath'</span>)),
                                 longitude: latLong[<span class="hljs-number">1</span>],
                                 title:     group.get(<span class="hljs-string">'displayName'</span>)
                             })
@@ -591,11 +634,11 @@ street address.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Try to extract geolocation from the
 group.</p>
@@ -612,11 +655,11 @@ group.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Try to extract geolocation from the
 group.</p>
@@ -631,11 +674,11 @@ group.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Function called when a new DonorsChoose proposal
 has been fetched from DonorsChoose and added to
@@ -649,11 +692,11 @@ our internal collection.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Extract the relevant information from the
 DonorsChoose response for our own POI model
@@ -678,11 +721,11 @@ and add it to our internal collection.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Model iniitalization.</p>
 
@@ -694,11 +737,11 @@ and add it to our internal collection.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Set up the individual parts of the model.</p>
 
@@ -707,6 +750,7 @@ and add it to our internal collection.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.setupOrganizations();
             <span class="hljs-keyword">this</span>.setupProposals();
+            <span class="hljs-keyword">this</span>.setupPartnerships();
 
         }
 

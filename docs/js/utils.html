@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="memberGroups.html">
+                memberGroups.js
+              </a>
+            
+              
               <a class="source" href="pois.html">
                 pois.js
               </a>
@@ -174,6 +179,16 @@
               </a>
             
               
+              <a class="source" href="oaeAsSpotlightItem.html">
+                oaeAsSpotlightItem.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightList.html">
+                oaeAsSpotlightList.js
+              </a>
+            
+              
               <a class="source" href="partnersAsDiscovery.html">
                 partnersAsDiscovery.js
               </a>
@@ -305,6 +320,52 @@ Stem.Utils = Stem.Utils || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
+              <p>Function to convert an OAE path to a full URL.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    Stem.Utils.oaeUrl = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(path)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Many OAE paths are relative URLs that
+we need to convert to absolute ones
+since we’re referencing them from
+a different site. Before we do that,
+though, check to make sure the link
+isn’t already a full URL. (OAE never
+includes the protocol in a relative
+URL.)</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        <span class="hljs-keyword">if</span> (path.indexOf(<span class="hljs-string">'http'</span>) === <span class="hljs-number">0</span>) {
+            <span class="hljs-keyword">return</span> path;
+        }
+
+        <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
+               Stem.config.oae.host + path;
+
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
               <p>Asynchronous function to get geo-location
 information from the client’s IP address. Parameters
 are a success and error callback function.</p>
@@ -317,11 +378,11 @@ are a success and error callback function.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>If we’ve already cached the user’s information
 from a previous call or if it’s available from
@@ -345,11 +406,11 @@ to the IP info service.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Since the info isn’t otherwise available,
 try querying the IP info service.</p>
@@ -363,11 +424,11 @@ try querying the IP info service.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>The response should contain the
 location info. A sample response:</p>
@@ -399,11 +460,11 @@ location info. A sample response:</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Cache the response info.</p>
 
@@ -416,11 +477,11 @@ location info. A sample response:</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Return it to the original
 caller via the success callback.</p>
@@ -438,11 +499,11 @@ caller via the success callback.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>No location info in the
 response! All we can do
@@ -463,11 +524,11 @@ now is return an error.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Looks like we’re out of luck.
 If the original caller provided
@@ -489,11 +550,11 @@ an error callback, execute it.</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>Asynchronous function to get geo-location
 information from a street address. Parameters

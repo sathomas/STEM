@@ -29,6 +29,11 @@
               </a>
             
               
+              <a class="source" href="memberGroups.html">
+                memberGroups.js
+              </a>
+            
+              
               <a class="source" href="pois.html">
                 pois.js
               </a>
@@ -171,6 +176,16 @@
               
               <a class="source" href="oaeAsSecondarySearchResults.html">
                 oaeAsSecondarySearchResults.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightItem.html">
+                oaeAsSpotlightItem.js
+              </a>
+            
+              
+              <a class="source" href="oaeAsSpotlightList.html">
+                oaeAsSpotlightList.js
               </a>
             
               
@@ -441,7 +456,7 @@ zoom level based on window size.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        zoom: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        calcZoom: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -475,6 +490,89 @@ initial zoom levels with
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
+              <p>Convenience function to set the view
+for the map. Parameters are latitude
+and longitude of the user.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        setView: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(lat, lng)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>See if the user’s latitude and
+longitude are (more or less)
+within the state boundary. If
+they’re not, we don’t want to
+rely on the user location to
+set the map view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> minLat = Stem.config.geo.southeastCorner[<span class="hljs-number">0</span>],
+                maxLat = Stem.config.geo.northwestCorner[<span class="hljs-number">0</span>],
+                minLng = Stem.config.geo.northwestCorner[<span class="hljs-number">1</span>],
+                maxLng = Stem.config.geo.southeastCorner[<span class="hljs-number">1</span>],
+                rangeLat = maxLat - minLat,
+                rangeLng = maxLng - minLng;
+
+            <span class="hljs-keyword">if</span> ( (lat &gt; (minLat - rangeLat/<span class="hljs-number">2</span>)) &amp;&amp;
+                 (lat &lt; (maxLat + rangeLat/<span class="hljs-number">2</span>)) &amp;&amp;
+                 (lng &gt; (minLng - rangeLng/<span class="hljs-number">2</span>)) &amp;&amp;
+                 (lng &lt; (maxLng + rangeLng/<span class="hljs-number">2</span>)) ) {
+
+                <span class="hljs-keyword">this</span>.map.setView(
+                    [lat,lng],
+                    <span class="hljs-keyword">this</span>.calcZoom()
+                );
+
+            } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>If the user isn’t located near
+the state, use the defaults
+for the map view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.map.setView([
+                        Stem.config.geo.latitude,
+                        Stem.config.geo.longitude
+                    ],
+                    <span class="hljs-keyword">this</span>.calcZoom()
+                );
+
+            }
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
               <p>The render function that creates the
 map. There’s a separate function to
 actually show the map. That separation
@@ -495,11 +593,11 @@ sure the user is going to see the map.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Discovery maps are full-width (less
 any borders), but Leaflet requires
@@ -515,11 +613,11 @@ the browser.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Set the map size explicitly to fill
 the browser window width.</p>
@@ -535,11 +633,11 @@ the browser window width.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Initialize the underlying map object.</p>
 
@@ -559,11 +657,11 @@ the browser window width.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>If a tint is desired, add it.</p>
 
@@ -582,11 +680,11 @@ the browser window width.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Now that the map infrastructure
 is in place, we can look at the
@@ -604,11 +702,11 @@ add them to the map.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Finally, hook the window resize
 event so that we can adjust the
@@ -638,11 +736,11 @@ window sizes.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Function to show the map to the user.
 This function may cause the browser to
@@ -659,11 +757,11 @@ that the map is actually visible.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Use a closure variable to keep track
 of whether we’ve found the location
@@ -677,11 +775,11 @@ or not.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>We’re going to try to set the initial
 map location based on the user’s
@@ -693,20 +791,20 @@ is already available and cached.</p>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">if</span> (Stem.user.geo.latitude &amp;&amp; Stem.user.geo.longitude) {
-                <span class="hljs-keyword">this</span>.map.setView([
+                <span class="hljs-keyword">this</span>.setView(
                     Stem.user.geo.latitude,
                     Stem.user.geo.longitude
-                ],<span class="hljs-keyword">this</span>.zoom());
+                );
             }</pre></div></div>
             
         </li>
         
         
-        <li id="section-24">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Okay, the geo-location info isn’t
 conveniently available already, so we’ll
@@ -723,11 +821,27 @@ to deal with the results.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Set the map view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.setView(ev.latlng.lat, ev.latlng.lng);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>If we successfully get the location,
 save it for other maps to use.</p>
@@ -741,46 +855,30 @@ save it for other maps to use.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Note that we’ve found it.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                locationFound = <span class="hljs-literal">true</span>;</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-27">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
-              </div>
-              <p>Set the zoom level now that the
-map is positioned properly.</p>
+                locationFound = <span class="hljs-literal">true</span>;
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">this</span>.map.setZoom(<span class="hljs-keyword">this</span>.zoom());
 
             }, <span class="hljs-keyword">this</span>).on(<span class="hljs-string">'locationerror'</span>, <span class="hljs-keyword">this</span>.locationFailed, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
         
-        <li id="section-28">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Now we’re set up to make the call
 to request location information
@@ -791,17 +889,17 @@ from the user.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.map.locate({
                 maximumAge: <span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">1000</span>, <span class="hljs-comment">// Cached info is okay</span>
-                setView:    <span class="hljs-literal">true</span>
+                setView:    <span class="hljs-literal">false</span>
             });</pre></div></div>
             
         </li>
         
         
-        <li id="section-29">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Unfortunately, some browers allow
 location permission requests to
@@ -820,11 +918,11 @@ own explicit timeout.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Once the delay has passed, check
 to see if we have a location.</p>
@@ -839,11 +937,11 @@ to see if we have a location.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Nope. Resort to fallback.</p>
 
@@ -863,11 +961,11 @@ to see if we have a location.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Handle case when browser geolocation fails.</p>
 
@@ -879,11 +977,11 @@ to see if we have a location.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>We may have gotten here because of
 a race condition in Leaflet with
@@ -893,23 +991,24 @@ case, we can still set the view.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (Stem.user.geo.latitude &amp;&amp; Stem.user.geo.longitude) {
+            <span class="hljs-keyword">if</span> (Stem.user.geo.latitude &amp;&amp;
+                Stem.user.geo.longitude) {
 
-                <span class="hljs-keyword">this</span>.map.setView([
+                <span class="hljs-keyword">this</span>.setView(
                     Stem.user.geo.latitude,
                     Stem.user.geo.longitude
-                ],<span class="hljs-keyword">this</span>.zoom());
+                );
 
             } <span class="hljs-keyword">else</span> {</pre></div></div>
             
         </li>
         
         
-        <li id="section-34">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>Bummer. We couldn’t get the location
 information from the browser directly.
@@ -925,18 +1024,18 @@ client’s public IP address.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Success. Set the map view.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                        <span class="hljs-keyword">this</span>.map.setView(LatLong,<span class="hljs-keyword">this</span>.zoom());
+                        <span class="hljs-keyword">this</span>.setView(LatLong[<span class="hljs-number">0</span>],LatLong[<span class="hljs-number">1</span>]);
 
                     }).bind(<span class="hljs-keyword">this</span>),
                     _(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
@@ -944,11 +1043,11 @@ client’s public IP address.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Okay. That didn’t work either.
 Only option left is resorting
@@ -957,10 +1056,10 @@ to default values.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                        <span class="hljs-keyword">this</span>.map.setView([
+                        <span class="hljs-keyword">this</span>.setView(
                             Stem.config.geo.latitude,
                             Stem.config.geo.longitude
-                        ],<span class="hljs-keyword">this</span>.zoom());
+                        );
 
                     }).bind(<span class="hljs-keyword">this</span>)
 
@@ -973,11 +1072,11 @@ to default values.</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Add an additional POI marker to the map.</p>
 
@@ -989,11 +1088,11 @@ to default values.</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>We only process this if the
 map has been rendered. (If
@@ -1010,11 +1109,11 @@ at which time we’ll catch up.</p>
         </li>
         
         
-        <li id="section-39">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>Create a simple HTML icon
 for the marker. The numbers
@@ -1036,11 +1135,11 @@ CSS that styles the markers.</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>Create the marker object with
 appropriate properties and add
