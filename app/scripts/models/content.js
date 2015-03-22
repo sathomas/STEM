@@ -35,13 +35,35 @@ Stem.Models = Stem.Models || {};
 
         parse: function(response) {
 
-            // First make sure we have values for all
-            // required properties.
+            // Some OAE APIs return the model directly
+            // while others bury it in the `results`
+            // property. Also, some responses put the
+            // group information inside a 'profile`
+            // attribute. Our first task is to find the
+            // actual group information.
+
+            if (response.results) {
+                response = response.results;
+            }
+
+            if (response.profile) {
+                response = response.profile;
+            }
 
             response.description  = response.description  || '';
             response.displayName  = response.displayName  || '';
             response.thumbnailUrl = response.thumbnailUrl || '';
-            response.profilePath   = response.profilePath   || '';
+            response.profilePath  = response.profilePath  || '';
+
+            // If there isn't a real thumbnail URL but there
+            // is a small picture, use it as an alternative.
+
+            if (!response.thumbnailUrl && response.picture &&
+                response.picture.small) {
+
+                response.thumbnailUrl = response.picture.small;
+
+            }
 
             // Define an array that lists the grade levels
             // we support.

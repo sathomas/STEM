@@ -13,6 +13,19 @@ describe('Content Model', function () {
         );
     });
 
+    it('should parse response from results and profile', function() {
+        new Stem.Models.Content({displayName: 'Name'}, {parse: true}).get('displayName').should.equal('Name');
+        new Stem.Models.Content({results: {displayName: 'Name'}}, {parse: true}).get('displayName').should.equal('Name');
+        new Stem.Models.Content({profile: {displayName: 'Name'}}, {parse: true}).get('displayName').should.equal('Name');
+        new Stem.Models.Content({results: {profile: {displayName: 'Name'}}}, {parse: true}).get('displayName').should.equal('Name');
+    });
+
+    it('should promote small picture to stand in for missing thumbnail', function() {
+        new Stem.Models.Content({}, {parse: true}).get('thumbnailUrl').should.equal('');
+        new Stem.Models.Content({thumbnailUrl: 'URL'}, {parse: true}).get('thumbnailUrl').should.equal('URL');
+        new Stem.Models.Content({picture: {small: 'URL'}}, {parse: true}).get('thumbnailUrl').should.equal('URL');
+    });
+
     it('should parse grade levels from the displayName', function() {
         new Stem.Models.Content({displayName: 'Title - elementary - math'}, {parse: true}).get('elementary').should.be.true();
         new Stem.Models.Content({displayName: 'Title - elementary - math'}, {parse: true}).get('middle').should.be.false();

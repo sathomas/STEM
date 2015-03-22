@@ -19,6 +19,28 @@ Stem.Utils = Stem.Utils || {};
         }
     };
 
+    // Function to convert an OAE path to a full URL.
+
+    Stem.Utils.oaeUrl = function(path) {
+
+        // Many OAE paths are relative URLs that
+        // we need to convert to absolute ones
+        // since we're referencing them from
+        // a different site. Before we do that,
+        // though, check to make sure the link
+        // isn't already a full URL. (OAE never
+        // includes the protocol in a relative
+        // URL.)
+
+        if (path.indexOf('http') === 0) {
+            return path;
+        }
+
+        return Stem.config.oae.protocol + '//' +
+               Stem.config.oae.host + path;
+
+    };
+
     // Asynchronous function to get geo-location
     // information from the client's IP address. Parameters
     // are a success and error callback function.

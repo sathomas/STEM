@@ -113,6 +113,15 @@ Stem.Models = Stem.Models || {};
                             moreLink: Stem.config.oae.protocol + '//' +
                                       Stem.config.oae.host + '/search/?types=content'
                         }),
+                courses: new Stem.Models.SearchGroup({
+                            collection: new Stem.Collections.MemberGroups( [], {
+                                limit: 16,
+                                parentId: Stem.config.oae.groups.courses
+                            } ),
+                            heading: 'Professional Learning',
+                            moreLink: Stem.config.oae.protocol + '//' +
+                                      Stem.config.oae.host + '/group/si/m179WbZq/members'
+                        }),
                 groups:  new Stem.Models.SearchGroup({
                             collection: new Stem.Collections.Groups( [], { limit: 16 } ),
                             heading: 'Groups and people',
@@ -178,7 +187,7 @@ Stem.Models = Stem.Models || {};
 
             _(this.searchResults).each(function(search) {
                 search.get('collection').options({keywords: keywords})
-                    .fetch({reset: true});
+                    .fetch({reset: true, validate: true});
             });
 
             // Update the "More" links in the results.

@@ -103,6 +103,24 @@ Stem.Models = Stem.Models || {};
 
         },
 
+        setupPartnerships: function () {
+
+            // Spotlights are featured case studies
+            // of successful partnerships that we
+            // access as sub-groups on the OAE.
+            // All we need to do for set up is
+            // define the collection and initiate
+            // a fetch.
+
+            this.partnerships = new Stem.Collections.SubGroups([], {
+                limit: 10,
+                parentId: Stem.config.oae.groups.partnerships
+            });
+
+            this.partnerships.fetch({validate: true});
+
+        },
+
         // Get the latitude and longitude
         // for an OAE group,
 
@@ -135,11 +153,9 @@ Stem.Models = Stem.Models || {};
                         this.organizationPois.add(
                             new Stem.Models.Poi({
                                 className: className,
-                                imageUrl:  group.get('thumbnailUrl'),
+                                imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
                                 latitude:  latLong[0],
-                                link:      Stem.config.oae.protocol +
-                                           '//' + Stem.config.oae.host +
-                                           group.get('profilePath'),
+                                link:      Stem.Utils.oaeUrl(group.get('profilePath')),
                                 longitude: latLong[1],
                                 title:     group.get('displayName')
                             })
@@ -202,6 +218,7 @@ Stem.Models = Stem.Models || {};
 
             this.setupOrganizations();
             this.setupProposals();
+            this.setupPartnerships();
 
         }
 
