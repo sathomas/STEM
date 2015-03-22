@@ -130,7 +130,7 @@ Stem.Models = Stem.Models || {};
             // group's description. That would be
             // a line that begins "Address:".
 
-            var addrLines = _(group.description.split('\n'))
+            var addrLines = _(group.get('description').split('\n'))
                 .filter(function(line) {
                     return line.trim()
                         .toLowerCase()

@@ -75,7 +75,7 @@ Stem.Views = Stem.Views || {};
                 $('#partners-organizations-map .poi-school')
                     .removeClass('poi--hidden');
             } else {
-                $('#partners-organizations-map .poi-business')
+                $('#partners-organizations-map .poi-school')
                     .addClass('poi--hidden');
             }
         },
