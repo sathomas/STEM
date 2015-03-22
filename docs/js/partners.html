@@ -566,7 +566,7 @@ a line that begins “Address:”.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> addrLines = _(group.description.split(<span class="hljs-string">'\n'</span>))
+            <span class="hljs-keyword">var</span> addrLines = _(group.get(<span class="hljs-string">'description'</span>).split(<span class="hljs-string">'\n'</span>))
                 .filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
                     <span class="hljs-keyword">return</span> line.trim()
                         .toLowerCase()

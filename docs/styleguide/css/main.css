@@ -1735,6 +1735,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
 .discovery__option {
   display: inline-block;
   padding: 0 10px;
+  vertical-align: text-top;
 }
 @media only screen and (min-width: 500px) {
   .discovery__option {
