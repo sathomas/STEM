@@ -39,6 +39,11 @@
               </a>
             
               
+              <a class="source" href="principals.html">
+                principals.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -101,6 +106,11 @@
               
               <a class="source" href="poi.html">
                 poi.js
+              </a>
+            
+              
+              <a class="source" href="principal.html">
+                principal.js
               </a>
             
               
@@ -460,12 +470,10 @@ first filter is selected.</p>
                         }),
                 courses: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
                             icon: <span class="hljs-string">'fa-certificate'</span>,
-                            tagSet: <span class="hljs-keyword">this</span>.tagSets.grades,
                             title: <span class="hljs-string">'Professional learning'</span>
                         }),
                 groups: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
                             icon: <span class="hljs-string">'fa-comments-o'</span>,
-                            tagSet: <span class="hljs-keyword">this</span>.tagSets.grades,
                             title: <span class="hljs-string">'People and groups'</span>
                         })
             };</pre></div></div>
@@ -522,7 +530,7 @@ filter group.</p>
                                       Stem.config.oae.host + <span class="hljs-string">'/group/si/m179WbZq/members'</span>
                         }),
                 groups:  <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
-                            collection: <span class="hljs-keyword">new</span> Stem.Collections.Groups( [], { limit: <span class="hljs-number">16</span> } ),
+                            collection: <span class="hljs-keyword">new</span> Stem.Collections.Principals( [], { limit: <span class="hljs-number">16</span> } ),
                             heading: <span class="hljs-string">'Groups and people'</span>,
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                                       Stem.config.oae.host + <span class="hljs-string">'/search/?types=user,group'</span>
@@ -580,7 +588,8 @@ the free-form query.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> keywords = <span class="hljs-keyword">this</span>.searchQuery.get(<span class="hljs-string">'query'</span>);</pre></div></div>
+            <span class="hljs-keyword">var</span> keywords = <span class="hljs-keyword">this</span>.searchQuery.get(<span class="hljs-string">'query'</span>),
+                extendedKeywords = keywords;</pre></div></div>
             
         </li>
         
@@ -599,30 +608,30 @@ settings.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>) ||
                 <span class="hljs-keyword">this</span>.tags.elementary.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', primary, elementary'</span>;
+                extendedKeywords += <span class="hljs-string">', primary, elementary'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', k-2, kindergarten'</span> +
+                extendedKeywords += <span class="hljs-string">', k-2, kindergarten'</span> +
                             <span class="hljs-string">', "1st grade", "first grade"'</span> +
                             <span class="hljs-string">', "2nd grade", "second grade"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.elementary.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', 3-5, "3rd grade", "third grade"'</span> +
+                extendedKeywords += <span class="hljs-string">', 3-5, "3rd grade", "third grade"'</span> +
                             <span class="hljs-string">', "4th grade", "fourth grade"'</span> +
                             <span class="hljs-string">', "5th grade", "fifth grade"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>) ||
                 <span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', secondary'</span>;
+                extendedKeywords += <span class="hljs-string">', secondary'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', 6-8, middle'</span> +
+                extendedKeywords += <span class="hljs-string">', 6-8, middle'</span> +
                             <span class="hljs-string">', "6th grade", "sixth grade"'</span> +
                             <span class="hljs-string">', "7th grade", "seventh grade"'</span> +
                             <span class="hljs-string">', "8th grade", "eighth grade"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
-                keywords += <span class="hljs-string">', 9-12, high'</span> +
+                extendedKeywords += <span class="hljs-string">', 9-12, high'</span> +
                             <span class="hljs-string">', "9th grade", "ninth grade"'</span> +
                             <span class="hljs-string">', "10th grade", "tenth grade"'</span> +
                             <span class="hljs-string">', "11th grade", "eleventh grade"'</span> +
@@ -644,9 +653,10 @@ fetches.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            _(<span class="hljs-keyword">this</span>.searchResults).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(search)</span> </span>{
-                search.get(<span class="hljs-string">'collection'</span>).options({keywords: keywords})
-                    .fetch({reset: <span class="hljs-literal">true</span>, validate: <span class="hljs-literal">true</span>});
+            _(<span class="hljs-keyword">this</span>.searchResults).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(search, key)</span> </span>{
+                search.get(<span class="hljs-string">'collection'</span>).options({
+                    keywords: key === <span class="hljs-string">'content'</span> ? extendedKeywords : keywords
+                }).fetch({reset: <span class="hljs-literal">true</span>, validate: <span class="hljs-literal">true</span>});
             });</pre></div></div>
             
         </li>
@@ -665,8 +675,11 @@ fetches.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">var</span> oaeUrl = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                          Stem.config.oae.host + <span class="hljs-string">'/search/'</span> +
-                         <span class="hljs-built_in">encodeURIComponent</span>(keywords) + <span class="hljs-string">'?types='</span>;
-            <span class="hljs-keyword">this</span>.searchResults.content.set(<span class="hljs-string">'moreLink'</span>, oaeUrl + <span class="hljs-string">'content'</span>);
+                         <span class="hljs-built_in">encodeURIComponent</span>(keywords) + <span class="hljs-string">'?types='</span>,
+                extendedUrl = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
+                         Stem.config.oae.host + <span class="hljs-string">'/search/'</span> +
+                         <span class="hljs-built_in">encodeURIComponent</span>(extendedKeywords) + <span class="hljs-string">'?types='</span>;
+            <span class="hljs-keyword">this</span>.searchResults.content.set(<span class="hljs-string">'moreLink'</span>, extendedUrl + <span class="hljs-string">'content'</span>);
             <span class="hljs-keyword">this</span>.searchResults.groups.set(<span class="hljs-string">'moreLink'</span>, oaeUrl + <span class="hljs-string">'user,group'</span>);
 
         }

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>group.js</title>
+  <title>principal.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -261,7 +261,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>group.js</h1>
+                  <h1>principal.js</h1>
               </div>
           </li>
         
@@ -287,7 +287,7 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Backbone model for a single group object from the
+              <p>Backbone model for a single group or user object from the
 Open Academic Environment.</p>
 
             </div>
@@ -298,7 +298,7 @@ Stem.Models = Stem.Models || {};
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Models.Group = Backbone.Model.extend({</pre></div></div>
+    Stem.Models.Principal = Backbone.Model.extend({</pre></div></div>
             
         </li>
         
@@ -314,7 +314,7 @@ implementations, it’s more likely that any
 collections of this model will be acquired
 through a different REST endpoint (e.g.
 search). We define the REST endpoint for the
-full group object in case those other
+full principal object in case those other
 endpoints only provide a summary. In such
 cases, calling <code>fetch()</code> on a model will
 update it with the complete profile.</p>
@@ -324,7 +324,9 @@ update it with the complete profile.</p>
             <div class="content"><div class='highlight'><pre>
         url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
-                   Stem.config.oae.host + <span class="hljs-string">'/api/group/'</span> + <span class="hljs-keyword">this</span>.id;
+                   Stem.config.oae.host + <span class="hljs-string">'/api/'</span> +
+                   <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'resourceType'</span>) +
+                   <span class="hljs-string">'/'</span> + <span class="hljs-keyword">this</span>.id;
         },</pre></div></div>
             
         </li>
@@ -339,15 +341,16 @@ update it with the complete profile.</p>
               <p>Since it’s possible that we may have
 fetched this object from an API that
 returns general OAE objects (i.e. not
-just groups) define a method to make
-sure this really is a group.</p>
+just principal) define a method to make
+sure this really is a group or a user.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
         validate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(attrs)</span> </span>{
-            <span class="hljs-keyword">if</span> (attrs.resourceType !== <span class="hljs-string">'group'</span>) {
-                <span class="hljs-keyword">return</span> <span class="hljs-string">'Resource is not a group'</span>;
+            <span class="hljs-keyword">if</span> (attrs.resourceType !== <span class="hljs-string">'group'</span> &amp;&amp;
+                attrs.resourceType !== <span class="hljs-string">'user'</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">'Resource is not a group or user'</span>;
             }
         },</pre></div></div>
             

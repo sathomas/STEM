@@ -39,6 +39,11 @@
               </a>
             
               
+              <a class="source" href="principals.html">
+                principals.js
+              </a>
+            
+              
               <a class="source" href="proposals.html">
                 proposals.js
               </a>
@@ -101,6 +106,11 @@
               
               <a class="source" href="poi.html">
                 poi.js
+              </a>
+            
+              
+              <a class="source" href="principal.html">
+                principal.js
               </a>
             
               
@@ -313,6 +323,10 @@ visibility of spotlight items.</p>
             <span class="hljs-string">'click'</span>: <span class="hljs-string">'toggleVisibility'</span>
         },
 
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset'</span>, <span class="hljs-keyword">this</span>.render);
+        },
+
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
@@ -324,13 +338,12 @@ visibility of spotlight items.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Iterate through the groups in the
-collection.</p>
+              <p>Clear out any old content</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(oae)</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.reset();</pre></div></div>
             
         </li>
         
@@ -341,25 +354,23 @@ collection.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>For each model, create a new
-view, render it, and append it
-to the list.</p>
+              <p>Iterate through the groups in the
+collection, adding them to the view.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">this</span>.$el.append(
-                    <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightItem({
-                        model: oae
-                    }).render().$el
-                );
-
-            }, <span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-keyword">this</span>.add, <span class="hljs-keyword">this</span>);
 
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
         },
 
-        toggleVisibility: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ev)</span> </span>{</pre></div></div>
+        reset: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.$el.empty();
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
+        },
+
+        add: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(oae)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -369,6 +380,32 @@ to the list.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>For a newly added model, create a
+new view, render it, and append it
+to the list.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.$el.append(
+                <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightItem({
+                    model: oae
+                }).render().$el
+            );
+
+        },
+
+        toggleVisibility: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(ev)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Which specific item was clicked? It’s
 either the clicked target or the first
@@ -380,16 +417,16 @@ appropriate class.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">var</span> $clicked = $(ev.target);
             $clicked = $clicked.hasClass(<span class="hljs-string">'spotlight__item'</span>) ?
-                $clicked : $.clicked.parents(<span class="hljs-string">'.spotlight__item'</span>);</pre></div></div>
+                $clicked : $clicked.parents(<span class="hljs-string">'.spotlight__item'</span>);</pre></div></div>
             
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Toggle the explanded class on that item.</p>
 
@@ -401,11 +438,11 @@ appropriate class.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>For all other items, clear the expanded
 class.</p>

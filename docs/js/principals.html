@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>group.js</title>
+  <title>principals.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -261,7 +261,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>group.js</h1>
+                  <h1>principals.js</h1>
               </div>
           </li>
         
@@ -276,7 +276,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone*/</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, _, Backbone*/</span></pre></div></div>
             
         </li>
         
@@ -287,18 +287,33 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Backbone model for a single group object from the
-Open Academic Environment.</p>
+              <p>Backbone collection for a set of group or user objects from
+the Open Academic Environment.</p>
+<p>Unlike typical Backbone collections, the Principals collection
+supports a set of options that determine how the collections
+accesses the OAE search API. Those options are passed, in
+a JavaScript object, as the second parameter to the constructor</p>
+<pre><code><span class="hljs-keyword">var</span> content = <span class="hljs-keyword">new</span> Stem.Collections.Principals([], options);
+</code></pre><p>The supported options are:</p>
+<ul>
+<li><code>keywords</code>: include a keyword search in the request.</li>
+<li><code>limit</code>: the maximum number of objects to retrieve for
+ the collection. If unspecified, uses the API’s default
+ (currently 12, but may change in the future).</li>
+</ul>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-Stem.Models = Stem.Models || {};
+
+Stem.Collections = Stem.Collections || {};
 
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Models.Group = Backbone.Model.extend({</pre></div></div>
+    Stem.Collections.Principals = Backbone.Collection.extend({
+
+        model: Stem.Models.Principal,</pre></div></div>
             
         </li>
         
@@ -309,22 +324,13 @@ Stem.Models = Stem.Models || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Unlike (some) more traditional Backbone
-implementations, it’s more likely that any
-collections of this model will be acquired
-through a different REST endpoint (e.g.
-search). We define the REST endpoint for the
-full group object in case those other
-endpoints only provide a summary. In such
-cases, calling <code>fetch()</code> on a model will
-update it with the complete profile.</p>
+              <p>Default values for collection options.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
-                   Stem.config.oae.host + <span class="hljs-string">'/api/group/'</span> + <span class="hljs-keyword">this</span>.id;
+        defaults: {
+
         },</pre></div></div>
             
         </li>
@@ -336,20 +342,13 @@ update it with the complete profile.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Since it’s possible that we may have
-fetched this object from an API that
-returns general OAE objects (i.e. not
-just groups) define a method to make
-sure this really is a group.</p>
+              <p>Since we’re accepting options for the collection,
+we need an <code>initialize</code> method to handle them.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        validate: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(attrs)</span> </span>{
-            <span class="hljs-keyword">if</span> (attrs.resourceType !== <span class="hljs-string">'group'</span>) {
-                <span class="hljs-keyword">return</span> <span class="hljs-string">'Resource is not a group'</span>;
-            }
-        },</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(models, options)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -360,16 +359,15 @@ sure this really is a group.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>We need to parse the response from the server
-to extract the grade level and tags from
-the overloaded title. While we’re at it, we
-also clean up the response a bit to avoid
-nasty surprises.</p>
+              <p>We store the processed values in an
+<code>options</code> property of the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>._options = _.extend({}, <span class="hljs-keyword">this</span>.defaults, options);
+
+        },</pre></div></div>
             
         </li>
         
@@ -380,23 +378,21 @@ nasty surprises.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Some OAE APIs return the model directly
-while others bury it in the <code>results</code>
-property. Also, some responses put the
-group information inside a ‘profile`
-attribute. Our first task is to find the
-actual group information.</p>
+              <p>Since we’re using a search endpoint instead of Rails CRUD
+conventions to retrieve the collection, we have to define
+our own function that returns the URL for the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (response.results) {
-                response = response.results;
-            }
+        url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-            <span class="hljs-keyword">if</span> (response.profile) {
-                response = response.profile;
-            }</pre></div></div>
+            <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host +
+                <span class="hljs-string">'/api/search/general?resourceTypes=group&amp;resourceTypes=user&amp;scope=_tenant'</span> +
+                (<span class="hljs-keyword">this</span>._options.limit    ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'limit='</span> + <span class="hljs-keyword">this</span>._options.limit)    : <span class="hljs-string">''</span>) +
+                (<span class="hljs-keyword">this</span>._options.keywords ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'q='</span>     + <span class="hljs-keyword">this</span>._options.keywords) : <span class="hljs-string">''</span>);
+
+        },</pre></div></div>
             
         </li>
         
@@ -407,16 +403,13 @@ actual group information.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Make sure we have defined values for all
-required properties.</p>
+              <p>Enhance the normal Backbone <code>sync</code> method to gracefully
+handle multiple pending AJAX requests.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            response.description  = response.description  || <span class="hljs-string">''</span>;
-            response.displayName  = response.displayName  || <span class="hljs-string">''</span>;
-            response.thumbnailUrl = response.thumbnailUrl || <span class="hljs-string">''</span>;
-            response.profilePath  = response.profilePath  || <span class="hljs-string">''</span>;</pre></div></div>
+        sync: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(method, model)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -427,18 +420,13 @@ required properties.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>If there isn’t a real thumbnail URL but there
-is a small picture, use it as an alternative.</p>
+              <p>Get information about previous AJAX request (if
+there was one.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (!response.thumbnailUrl &amp;&amp; response.picture &amp;&amp;
-                response.picture.small) {
-
-                response.thumbnailUrl = response.picture.small;
-
-            }</pre></div></div>
+            <span class="hljs-keyword">var</span> lastXHR = model._lastXHR &amp;&amp; model._lastXHR[method];</pre></div></div>
             
         </li>
         
@@ -449,13 +437,15 @@ is a small picture, use it as an alternative.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>If we still don’t have a thumbnail, substitute
-a generic image.</p>
+              <p>If the previous AJAX request is still in progress,
+abort it.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (!response.thumbnailUrl) {</pre></div></div>
+            <span class="hljs-keyword">if</span> (lastXHR &amp;&amp; lastXHR.readyState !== <span class="hljs-number">4</span>) {
+                lastXHR.abort(<span class="hljs-string">'stale'</span>);
+            }</pre></div></div>
             
         </li>
         
@@ -466,16 +456,15 @@ a generic image.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Note that we have to make this a full URL
-to prevent view templates from assuming
-the link is to the OAE.</p>
+              <p>Save information about the (soon to be) current
+AJAX request. First make sure there’s a data structure
+to store it.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                response.thumbnailUrl = location.protocol +
-                    <span class="hljs-string">'//'</span> + location.host + <span class="hljs-string">'/images/group.png'</span>;
-
+            <span class="hljs-keyword">if</span> (!model._lastXHR) {
+                model._lastXHR = {};
             }</pre></div></div>
             
         </li>
@@ -487,13 +476,13 @@ the link is to the OAE.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p>Define an array that lists the grade levels
-we support.</p>
+              <p>Now execute the regular AJAX request and save the
+resulting object.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> allGrades = [<span class="hljs-string">'primary'</span>, <span class="hljs-string">'elementary'</span>, <span class="hljs-string">'middle'</span>, <span class="hljs-string">'high'</span>];</pre></div></div>
+            model._lastXHR[method] = Backbone.sync.apply(<span class="hljs-keyword">this</span>, <span class="hljs-built_in">arguments</span>);</pre></div></div>
             
         </li>
         
@@ -504,13 +493,14 @@ we support.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>The extra information is contained in the
-<code>displayName</code> property.</p>
+              <p>Return the normal Backbone.sync return value.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (response.displayName) {</pre></div></div>
+            <span class="hljs-keyword">return</span> model._lastXHR[method];
+
+        },</pre></div></div>
             
         </li>
         
@@ -521,16 +511,17 @@ we support.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>First, split <code>displayName</code> up by
-dashes.</p>
+              <p>Since we’re using a general search query, we have
+to supply a parse function to extract the actual model
+information from the response. We also have to account
+for the possibility of a collection being created
+directly from an array of models. In the latter case,
+we <em>won’t</em> have to parse anything.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> tokens = response.displayName.split(<span class="hljs-string">' - '</span>)
-                    .map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span> </span>{
-                         <span class="hljs-keyword">return</span> token.trim();
-                    });</pre></div></div>
+        parse: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span>  </span>{</pre></div></div>
             
         </li>
         
@@ -541,13 +532,17 @@ dashes.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>The real <code>displayName</code> is the first of
-these tokens.</p>
+              <p>The search API returns models in the <code>results</code>
+property of the response. If that property
+exists, return the models it contains. Otherwise
+we assume that the “response” is already an
+array of models and return it directly.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                response.displayName = tokens[<span class="hljs-number">0</span>];</pre></div></div>
+            <span class="hljs-keyword">return</span> response.results ? response.results : response;
+        },</pre></div></div>
             
         </li>
         
@@ -558,28 +553,22 @@ these tokens.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>The second part of the original
-<code>displayName</code> holds the grade
-levels. Multiple grade levels are
-permitted, separated by commas.
-We also replace common abbreviations
-with the more descriptive version to
-match the model properties.</p>
+              <p>Update or return the collection options.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">if</span> (tokens.length &gt; <span class="hljs-number">1</span>) {
+        options: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(options)</span> </span>{
 
-                    <span class="hljs-keyword">var</span> grades = tokens[<span class="hljs-number">1</span>].split(<span class="hljs-string">','</span>)
-                        .map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span> </span>{
-	                        token = token.trim().toLowerCase();
-	                        <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'k-2'</span>)       { token = <span class="hljs-string">'primary'</span>;    }
-	                        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'3-5'</span>)  { token = <span class="hljs-string">'elementary'</span>; }
-	                        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'6-8'</span>)  { token = <span class="hljs-string">'middle'</span>;     }
-	                        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (token === <span class="hljs-string">'9-12'</span>) { token = <span class="hljs-string">'high'</span>;       }
-                            <span class="hljs-keyword">return</span> token;
-                        });</pre></div></div>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(options) === <span class="hljs-string">'undefined'</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>._options;
+            }
+
+            _(<span class="hljs-keyword">this</span>._options).extend(options);
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
+
+        },</pre></div></div>
             
         </li>
         
@@ -590,22 +579,13 @@ match the model properties.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>We’re pretty forgiving about how
-the grade levels are formatted.
-We look for any fragment that
-matches the relevant keyword.</p>
+              <p>Return an array of all the tags associated with
+the models in the collection.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                    allGrades.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(grade)</span> </span>{
-                        response[grade] = grades
-                            .some(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span> </span>{
-                                <span class="hljs-keyword">return</span> token.indexOf(grade) !== -<span class="hljs-number">1</span>;
-                            });
-                    });
-
-                }</pre></div></div>
+        getTags: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -616,20 +596,12 @@ matches the relevant keyword.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>If no grades were specified, then
-the content is considered tagged for
-all grades.</p>
+              <p>Start with an empty list of tags.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">if</span> (!allGrades.some(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(grade)</span> </span>{
-                    <span class="hljs-keyword">return</span> response[grade];
-                })) {
-                    allGrades.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(grade)</span> </span>{
-                        response[grade] = <span class="hljs-literal">true</span>;
-                    });
-                }</pre></div></div>
+            <span class="hljs-keyword">var</span> tags = [];</pre></div></div>
             
         </li>
         
@@ -640,15 +612,12 @@ all grades.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
-              <p>Finally, the third part of the
-original <code>displayName</code> holds the
-tags. Again, there may be
-multiple tags separated by
-commas. This time, though, we’re
-not going to interpret the values.
-We just store them as an array.</p>
+              <p>Iterate through the models.</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.models.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -659,25 +628,40 @@ We just store them as an array.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
-              <p>To handle the case of no tags
-cleanly, start with an empty array.</p>
+              <p>Iterate through each model’s tags.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                response.tags = [];
+                model.get(<span class="hljs-string">'tags'</span>).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>If the tag isn’t already included,
+add it to the array.</p>
 
-                <span class="hljs-keyword">if</span> (tokens.length &gt; <span class="hljs-number">2</span>) {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    <span class="hljs-keyword">if</span> (!tags.some(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(test)</span> </span>{
+                        <span class="hljs-keyword">return</span> test === tag;
+                    })) {
 
-                    tokens[<span class="hljs-number">2</span>].split(<span class="hljs-string">','</span>).forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(token)</span> </span>{
-                        response.tags.push(token.trim());
-                    });
+                        tags.push(tag);
+                    }
 
-                }
+                });
 
-            }
+            });
 
-            <span class="hljs-keyword">return</span> response;
+            <span class="hljs-keyword">return</span> tags;
 
         }
 

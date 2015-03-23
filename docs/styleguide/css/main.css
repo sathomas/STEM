@@ -1038,7 +1038,6 @@ main[data-nav-expanded=true] {
   height: 6rem;
   line-height: 1.4;
   position: relative;
-  transition: all 0.2s ease-out;
 }
 .results-filter__list-item__icon {
   background-color: #dbdbda;
@@ -1063,17 +1062,12 @@ main[data-nav-expanded=true] {
 .results-filter__list-item__content {
   background-color: #ffffff;
   clear: both;
-  max-height: 0;
+  height: 0;
   overflow: hidden;
   transition: all 0.3s ease-out;
 }
 .results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
-  max-height: 40px;
-}
-@media only screen and (min-width: 500px) {
-  .results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
-    max-height: 150px;
-  }
+  height: auto;
 }
 article[data-theme=theme-1] .results-filter__list-item__label {
   color: #009eaf;
@@ -2000,6 +1994,93 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
   .discovery-tabs__map {
     margin-bottom: 30px;
   }
+}
+/**
+ * ## Spotlight
+ *
+ * A list of spotlight items.
+ */
+.spotlight {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight {
+    padding: 0 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight {
+    padding: 0 calc(120px);
+  }
+}
+.spotlight__item {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #efedeb;
+  box-sizing: border-box;
+  position: relative;
+  height: 100px;
+}
+.spotlight__item.spotlight__item--expanded {
+  background-color: #ffffff;
+  height: auto;
+}
+.spotlight__item__thumbnail {
+  border-right: 1px solid #efedeb;
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100px;
+  width: 100px;
+}
+.spotlight__item__title {
+  color: #636363;
+  display: inline-block;
+  font-size: 2.2rem;
+  position: absolute;
+  left: calc(110px);
+  line-height: 1.2;
+  margin-right: 69px;
+  text-decoration: none;
+  top: 34px;
+}
+.no-touch .theme-3 .spotlight__item__title:hover,
+.theme-3 .spotlight__item__title:focus {
+  color: #0088ef;
+}
+.spotlight__item--expanded .spotlight__item__title {
+  color: #424242;
+}
+.spotlight__item__expand {
+  cursor: pointer;
+  font-size: 30px;
+  position: absolute;
+  right: 34px;
+  top: 34px;
+}
+.spotlight__item--expanded .spotlight__item__expand {
+  display: none;
+}
+.spotlight__item__description {
+  left: -9999em;
+  opacity: 0;
+  position: absolute;
+  top: -9999em;
+}
+.spotlight__item--expanded .spotlight__item__description {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+  margin-left: calc(110px);
+  padding-right: 69px;
+}
+.theme-3 .spotlight__item__expand {
+  color: #005493;
+}
+.no-touch .theme-3 .spotlight__item__expand:hover,
+.theme-3 .spotlight__item__expand:focus {
+  color: #0088ef;
 }
 /**
  * ## Point of Interest
