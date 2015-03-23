@@ -10,9 +10,7 @@ Stem.Models = Stem.Models || {};
 
     Stem.Models.Group = Backbone.Model.extend({
 
-        // The only thing we need to provide for this
-        // model (other than Backbone defaults) is the
-        // URL to access it. Unlike typical Backbone
+        // Unlike (some) more traditional Backbone
         // implementations, it's more likely that any
         // collections of this model will be acquired
         // through a different REST endpoint (e.g.
