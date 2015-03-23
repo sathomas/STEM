@@ -12,6 +12,16 @@ describe('Group Model', function () {
         );
     });
 
+    it('should provide validate resource types', function() {
+        var model = new Stem.Models.Group({id: 'g:si:mJUHSXeP'});
+        model.set('resourceType', 'user');
+        model.isValid().should.be.false();
+        model.set('resourceType', 'group');
+        model.isValid().should.be.true();
+        model.set('resourceType', 'content');
+        model.isValid().should.be.false();
+
+    });
     it('should parse response from results and profile', function() {
         new Stem.Models.Group({displayName: 'Name'}, {parse: true}).get('displayName').should.equal('Name');
         new Stem.Models.Group({results: {displayName: 'Name'}}, {parse: true}).get('displayName').should.equal('Name');

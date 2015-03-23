@@ -85,12 +85,10 @@ Stem.Models = Stem.Models || {};
                         }),
                 courses: new Stem.Models.SearchFilter({
                             icon: 'fa-certificate',
-                            tagSet: this.tagSets.grades,
                             title: 'Professional learning'
                         }),
                 groups: new Stem.Models.SearchFilter({
                             icon: 'fa-comments-o',
-                            tagSet: this.tagSets.grades,
                             title: 'People and groups'
                         })
             };
@@ -123,7 +121,7 @@ Stem.Models = Stem.Models || {};
                                       Stem.config.oae.host + '/group/si/m179WbZq/members'
                         }),
                 groups:  new Stem.Models.SearchGroup({
-                            collection: new Stem.Collections.Groups( [], { limit: 16 } ),
+                            collection: new Stem.Collections.Principals( [], { limit: 16 } ),
                             heading: 'Groups and people',
                             moreLink: Stem.config.oae.protocol + '//' +
                                       Stem.config.oae.host + '/search/?types=user,group'
@@ -145,37 +143,38 @@ Stem.Models = Stem.Models || {};
             // Start with whatever the user has typed into
             // the free-form query.
 
-            var keywords = this.searchQuery.get('query');
+            var keywords = this.searchQuery.get('query'),
+                extendedKeywords = keywords;
 
             // Add special keywords based on the tag
             // settings.
 
             if (this.tags.primary.get('selected') ||
                 this.tags.elementary.get('selected')) {
-                keywords += ', primary, elementary';
+                extendedKeywords += ', primary, elementary';
             }
             if (this.tags.primary.get('selected')) {
-                keywords += ', k-2, kindergarten' +
+                extendedKeywords += ', k-2, kindergarten' +
                             ', "1st grade", "first grade"' +
                             ', "2nd grade", "second grade"';
             }
             if (this.tags.elementary.get('selected')) {
-                keywords += ', 3-5, "3rd grade", "third grade"' +
+                extendedKeywords += ', 3-5, "3rd grade", "third grade"' +
                             ', "4th grade", "fourth grade"' +
                             ', "5th grade", "fifth grade"';
             }
             if (this.tags.middle.get('selected') ||
                 this.tags.high.get('selected')) {
-                keywords += ', secondary';
+                extendedKeywords += ', secondary';
             }
             if (this.tags.middle.get('selected')) {
-                keywords += ', 6-8, middle' +
+                extendedKeywords += ', 6-8, middle' +
                             ', "6th grade", "sixth grade"' +
                             ', "7th grade", "seventh grade"' +
                             ', "8th grade", "eighth grade"';
             }
             if (this.tags.high.get('selected')) {
-                keywords += ', 9-12, high' +
+                extendedKeywords += ', 9-12, high' +
                             ', "9th grade", "ninth grade"' +
                             ', "10th grade", "tenth grade"' +
                             ', "11th grade", "eleventh grade"' +
@@ -185,17 +184,21 @@ Stem.Models = Stem.Models || {};
             // Update the collections and trigger new
             // fetches.
 
-            _(this.searchResults).each(function(search) {
-                search.get('collection').options({keywords: keywords})
-                    .fetch({reset: true, validate: true});
+            _(this.searchResults).each(function(search, key) {
+                search.get('collection').options({
+                    keywords: key === 'content' ? extendedKeywords : keywords
+                }).fetch({reset: true, validate: true});
             });
 
             // Update the "More" links in the results.
 
             var oaeUrl = Stem.config.oae.protocol + '//' +
                          Stem.config.oae.host + '/search/' +
-                         encodeURIComponent(keywords) + '?types=';
-            this.searchResults.content.set('moreLink', oaeUrl + 'content');
+                         encodeURIComponent(keywords) + '?types=',
+                extendedUrl = Stem.config.oae.protocol + '//' +
+                         Stem.config.oae.host + '/search/' +
+                         encodeURIComponent(extendedKeywords) + '?types=';
+            this.searchResults.content.set('moreLink', extendedUrl + 'content');
             this.searchResults.groups.set('moreLink', oaeUrl + 'user,group');
 
         }

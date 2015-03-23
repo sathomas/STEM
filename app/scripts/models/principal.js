@@ -1,6 +1,6 @@
 /*global Stem, Backbone*/
 
-// Backbone model for a single group object from the
+// Backbone model for a single group or user object from the
 // Open Academic Environment.
 
 Stem.Models = Stem.Models || {};
@@ -8,32 +8,35 @@ Stem.Models = Stem.Models || {};
 (function () {
     'use strict';
 
-    Stem.Models.Group = Backbone.Model.extend({
+    Stem.Models.Principal = Backbone.Model.extend({
 
         // Unlike (some) more traditional Backbone
         // implementations, it's more likely that any
         // collections of this model will be acquired
         // through a different REST endpoint (e.g.
         // search). We define the REST endpoint for the
-        // full group object in case those other
+        // full principal object in case those other
         // endpoints only provide a summary. In such
         // cases, calling `fetch()` on a model will
         // update it with the complete profile.
 
         url: function() {
             return Stem.config.oae.protocol + '//' +
-                   Stem.config.oae.host + '/api/group/' + this.id;
+                   Stem.config.oae.host + '/api/' +
+                   this.get('resourceType') +
+                   '/' + this.id;
         },
 
         // Since it's possible that we may have
         // fetched this object from an API that
         // returns general OAE objects (i.e. not
-        // just groups) define a method to make
-        // sure this really is a group.
+        // just principal) define a method to make
+        // sure this really is a group or a user.
 
         validate: function(attrs) {
-            if (attrs.resourceType !== 'group') {
-                return 'Resource is not a group';
+            if (attrs.resourceType !== 'group' &&
+                attrs.resourceType !== 'user') {
+                return 'Resource is not a group or user';
             }
         },
 

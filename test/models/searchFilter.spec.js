@@ -15,10 +15,6 @@ describe('SearchFilter Model', function () {
         this.SearchFilterModel.get('selected').should.be.false();
     });
 
-    it('should default to an empty tag set', function() {
-        this.SearchFilterModel.get('tagSet').should.be.empty();
-    });
-
     it('should default to an empty title', function() {
         this.SearchFilterModel.get('title').should.equal('');
     });

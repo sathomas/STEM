@@ -4,6 +4,7 @@
    class="spotlight__item__title">
     <%= displayName %>
 </a>
+<i class="fa fa-chevron-down spotlight__item__expand"></i>
 <p class="spotlight__item__description">
-    <%= description %>
+    <% print(description.replace('\n', '<br/>')) %>
 </p>

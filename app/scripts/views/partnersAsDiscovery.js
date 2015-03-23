@@ -40,7 +40,7 @@ Stem.Views = Stem.Views || {};
             });
 
             this.partnershipsList = new Stem.Views.OaeAsSpotlightList({
-                el: $('#partner-spotlights'),
+                el: $('#partners-spotlights'),
                 collection: this.model.partnerships
             });
 

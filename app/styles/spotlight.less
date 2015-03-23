@@ -1,0 +1,75 @@
+/**
+ * ## Spotlight
+ *
+ * A list of spotlight items.
+ */
+
+.spotlight {
+    list-style: none;
+    padding: 0;
+    @media @tablet { padding: 0 @block-spacing-tablet; }
+    @media @desktop { padding: 0 calc(4 * @block-spacing-desktop); }
+    text-align: left;
+}
+.spotlight__item {
+    background-color: @color-theme-0-lighter;
+    border-bottom: 1px solid @color-theme-0-light;
+    box-sizing: border-box;
+    position: relative;
+    height: 100px;
+}
+.spotlight__item.spotlight__item--expanded {
+    background-color: @color-theme-0-white;
+    height: auto;
+}
+.spotlight__item__thumbnail {
+    border-right: 1px solid @color-theme-0-light;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 100px;
+    width: 100px;
+}
+.spotlight__item__title {
+    color: @color-theme-0-semidark;
+    display: inline-block;
+    font-size: 2.2rem;
+    position: absolute;
+    left: calc(100px + @block-spacing);
+    line-height: 1.2;
+    margin-right: 69px;
+    text-decoration: none;
+    top: 34px;
+}
+.no-touch .theme-3 .spotlight__item__title:hover,
+.theme-3 .spotlight__item__title:focus {
+    color: @color-theme-3-light-bg;
+}
+.spotlight__item--expanded .spotlight__item__title {
+    color: @color-theme-0-dark;
+}
+.spotlight__item__expand {
+    cursor: pointer;
+    font-size: 30px;
+    position: absolute;
+    right: 34px;
+    top: 34px;
+}
+.spotlight__item--expanded .spotlight__item__expand {
+    display: none;
+}
+.spotlight__item__description {
+    .invisible;
+}
+.spotlight__item--expanded .spotlight__item__description {
+    .visible;
+    margin-left: calc(100px + @block-spacing);
+    padding-right: 69px;
+}
+
+.theme-3 .spotlight__item__expand {
+    color: @color-theme-3-primary-bg;
+}
+.no-touch .theme-3 .spotlight__item__expand:hover,
+.theme-3 .spotlight__item__expand:focus {
+    color: @color-theme-3-light-bg;
+}

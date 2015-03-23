@@ -39,7 +39,6 @@
     height: 6rem;
     line-height: 1.4;
     position: relative;
-    transition: all .2s ease-out;
 }
 .results-filter__list-item__icon {
     background-color: @color-theme-0-medium;
@@ -63,13 +62,12 @@
 .results-filter__list-item__content {
     background-color: @color-theme-0-white;
     clear: both;
-    max-height:0;
+    height:0;
     overflow:hidden;
     transition: all .3s ease-out;
 }
 .results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
-    max-height:40px;
-    @media @tablet { max-height: 150px; }
+    height:auto;
 }
 
 article[data-theme=theme-1] .results-filter__list-item__label {

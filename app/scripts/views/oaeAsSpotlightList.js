@@ -21,26 +21,41 @@ Stem.Views = Stem.Views || {};
             'click': 'toggleVisibility'
         },
 
+        initialize: function () {
+            this.listenTo(this.collection, 'reset', this.render);
+        },
+
         render: function () {
 
+            // Clear out any old content
+
+            this.reset();
+
             // Iterate through the groups in the
-            // collection.
+            // collection, adding them to the view.
 
-            this.collection.each(function(oae) {
-
-                // For each model, create a new
-                // view, render it, and append it
-                // to the list.
-
-                this.$el.append(
-                    new Stem.Views.OaeAsSpotlightItem({
-                        model: oae
-                    }).render().$el
-                );
-
-            }, this);
+            this.collection.each(this.add, this);
 
             return this; // for method chaining
+        },
+
+        reset: function () {
+            this.$el.empty();
+            return this; // for method chaining
+        },
+
+        add: function (oae) {
+
+            // For a newly added model, create a
+            // new view, render it, and append it
+            // to the list.
+
+            this.$el.append(
+                new Stem.Views.OaeAsSpotlightItem({
+                    model: oae
+                }).render().$el
+            );
+
         },
 
         toggleVisibility: function (ev) {
@@ -52,7 +67,7 @@ Stem.Views = Stem.Views || {};
 
             var $clicked = $(ev.target);
             $clicked = $clicked.hasClass('spotlight__item') ?
-                $clicked : $.clicked.parents('.spotlight__item');
+                $clicked : $clicked.parents('.spotlight__item');
 
             // Toggle the explanded class on that item.
 

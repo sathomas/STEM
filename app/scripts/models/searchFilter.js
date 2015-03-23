@@ -14,7 +14,6 @@ Stem.Models = Stem.Models || {};
         defaults: {
             icon: '',
             selected: false,
-            tagSet: {},
             title: ''
         }
 
