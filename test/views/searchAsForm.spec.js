@@ -51,11 +51,11 @@ describe('SearchAsForm View', function () {
 
     it('should add inputs for multiple viewports with appropriate placeholders and classes', function() {
         var $el = this.SearchAsFormView.$el;
-        $el.find('input[type="search"]').length.should.equal(2);
-        $el.find('input[type="search"].search__input').length.should.equal(2);
-        $el.find('input[type="search"].search__input--small').length.should.equal(1);
-        $el.find('input[type="search"].search__input').not('.search__input--small').attr('placeholder').should.equal(this.SearchModel.get('placeholder'));
-        $el.find('input[type="search"].search__input--small').attr('placeholder').should.equal(this.SearchModel.get('shortPlaceholder'));
+        $el.find('input').length.should.equal(2);
+        $el.find('input.search__input').length.should.equal(2);
+        $el.find('input.search__input--small').length.should.equal(1);
+        $el.find('input.search__input').not('.search__input--small').attr('placeholder').should.equal(this.SearchModel.get('placeholder'));
+        $el.find('input.search__input--small').attr('placeholder').should.equal(this.SearchModel.get('shortPlaceholder'));
     });
 
     it('should add submit buttons for multiple viewports with appropriate classes', function() {
@@ -72,7 +72,7 @@ describe('SearchAsForm View', function () {
     it('should set the query value', function() {
         var model = this.SearchModel,
             $el = this.SearchAsFormView.$el;
-        $el.find('input[type="search"]').each(function() {
+        $el.find('input').each(function() {
             $(this).val().should.equal(model.get('query'));
         });
     });
@@ -81,14 +81,14 @@ describe('SearchAsForm View', function () {
         var model = this.SearchModel,
             $el = this.SearchAsFormView.$el;
         model.set('query', 'New Query');
-        $el.find('input[type="search"]').each(function() {
+        $el.find('input').each(function() {
             $(this).val().should.equal(model.get('query'));
         });
     });
 
     it('should update the model when the input changes', function() {
         var $el = this.SearchAsFormView.$el;
-        $el.find('input[type="search"]').first().val('New Query').trigger('input');
+        $el.find('input').first().val('New Query').trigger('input');
         this.SearchModel.get('query').should.equal('New Query');
     });
 
