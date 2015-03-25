@@ -42,7 +42,7 @@ Stem.Models = Stem.Models || {};
             // possible search.
 
             this.tags = {
-                primary:    new Stem.Models.Tag({ label: 'K-2',  selected: true }),
+                primary:    new Stem.Models.Tag({ label: 'P-2',  selected: true }),
                 elementary: new Stem.Models.Tag({ label: '3-5',  selected: true }),
                 middle:     new Stem.Models.Tag({ label: '6-8',  selected: true }),
                 high:       new Stem.Models.Tag({ label: '9-12', selected: true })
@@ -122,7 +122,7 @@ Stem.Models = Stem.Models || {};
                         }),
                 groups:  new Stem.Models.SearchGroup({
                             collection: new Stem.Collections.Principals( [], { limit: 16 } ),
-                            heading: 'Groups and people',
+                            heading: 'People and Groups',
                             moreLink: Stem.config.oae.protocol + '//' +
                                       Stem.config.oae.host + '/search/?types=user,group'
                         })
@@ -151,10 +151,11 @@ Stem.Models = Stem.Models || {};
 
             if (this.tags.primary.get('selected') ||
                 this.tags.elementary.get('selected')) {
-                extendedKeywords += ', primary, elementary';
+                extendedKeywords += ', "primary school", "elementary school"';
             }
             if (this.tags.primary.get('selected')) {
-                extendedKeywords += ', k-2, kindergarten' +
+                extendedKeywords += ', p-2, k-2, ' +
+                            'preschool, kindergarten' +
                             ', "1st grade", "first grade"' +
                             ', "2nd grade", "second grade"';
             }
@@ -165,16 +166,16 @@ Stem.Models = Stem.Models || {};
             }
             if (this.tags.middle.get('selected') ||
                 this.tags.high.get('selected')) {
-                extendedKeywords += ', secondary';
+                extendedKeywords += ', "secondary school"';
             }
             if (this.tags.middle.get('selected')) {
-                extendedKeywords += ', 6-8, middle' +
+                extendedKeywords += ', 6-8, "middle school"' +
                             ', "6th grade", "sixth grade"' +
                             ', "7th grade", "seventh grade"' +
                             ', "8th grade", "eighth grade"';
             }
             if (this.tags.high.get('selected')) {
-                extendedKeywords += ', 9-12, high' +
+                extendedKeywords += ', 9-12, "high school"' +
                             ', "9th grade", "ninth grade"' +
                             ', "10th grade", "tenth grade"' +
                             ', "11th grade", "eleventh grade"' +
