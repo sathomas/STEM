@@ -379,7 +379,7 @@ possible search.</p>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.tags = {
-                primary:    <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'K-2'</span>,  selected: <span class="hljs-literal">true</span> }),
+                primary:    <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'P-2'</span>,  selected: <span class="hljs-literal">true</span> }),
                 elementary: <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'3-5'</span>,  selected: <span class="hljs-literal">true</span> }),
                 middle:     <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'6-8'</span>,  selected: <span class="hljs-literal">true</span> }),
                 high:       <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'9-12'</span>, selected: <span class="hljs-literal">true</span> })
@@ -531,7 +531,7 @@ filter group.</p>
                         }),
                 groups:  <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
                             collection: <span class="hljs-keyword">new</span> Stem.Collections.Principals( [], { limit: <span class="hljs-number">16</span> } ),
-                            heading: <span class="hljs-string">'Groups and people'</span>,
+                            heading: <span class="hljs-string">'People and Groups'</span>,
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                                       Stem.config.oae.host + <span class="hljs-string">'/search/?types=user,group'</span>
                         })
@@ -608,10 +608,11 @@ settings.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>) ||
                 <span class="hljs-keyword">this</span>.tags.elementary.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', primary, elementary'</span>;
+                extendedKeywords += <span class="hljs-string">', "primary school", "elementary school"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', k-2, kindergarten'</span> +
+                extendedKeywords += <span class="hljs-string">', p-2, k-2, '</span> +
+                            <span class="hljs-string">'preschool, kindergarten'</span> +
                             <span class="hljs-string">', "1st grade", "first grade"'</span> +
                             <span class="hljs-string">', "2nd grade", "second grade"'</span>;
             }
@@ -622,16 +623,16 @@ settings.</p>
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>) ||
                 <span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', secondary'</span>;
+                extendedKeywords += <span class="hljs-string">', "secondary school"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', 6-8, middle'</span> +
+                extendedKeywords += <span class="hljs-string">', 6-8, "middle school"'</span> +
                             <span class="hljs-string">', "6th grade", "sixth grade"'</span> +
                             <span class="hljs-string">', "7th grade", "seventh grade"'</span> +
                             <span class="hljs-string">', "8th grade", "eighth grade"'</span>;
             }
             <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', 9-12, high'</span> +
+                extendedKeywords += <span class="hljs-string">', 9-12, "high school"'</span> +
                             <span class="hljs-string">', "9th grade", "ninth grade"'</span> +
                             <span class="hljs-string">', "10th grade", "tenth grade"'</span> +
                             <span class="hljs-string">', "11th grade", "eleventh grade"'</span> +

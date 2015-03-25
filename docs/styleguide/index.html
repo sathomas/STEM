@@ -156,60 +156,10 @@
 <span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>This is a sixth level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span></pre>
         </div>
       </section>
-    </section>
-
-    <section class="sg-section sg-section-base-elements">
-      <h2 id="base-elements" class="sg">Base Elements</h2>
-      <p class="sg">Styles for basic HTML elements such as anchors and buttons. These rules are essentially additional resets above and beyond normalize.css, as actual styles should be defined in blocks based on the BEM approach.</p>
-      <section class="sg-block sg-section-links">
-        <div class="sg-text">
-          <h3 id="links" class="sg">Links</h3>
-          <p class="sg">Reset links to the same color as the underlying content.
-          </p>
-        </div>
-        <div class="sg-example">
-          <div class="sg-canvas">
-            <p>
-              This paragraph contains
-              <a href="#">a link</a>
-            </p>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
-  This paragraph contains
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span>&gt;</span>a link<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></pre>
-        </div>
-      </section>
       <section class="sg-block sg-section-buttons">
-        <div class="sg-text">
-          <h3 id="buttons" class="sg">Buttons</h3>
-          <p class="sg">Buttons styles apply not only to
-            <code class="sg">&lt;button&gt;</code>
-            elements, but also to
-            <code class="sg">&lt;a class=&quot;button&quot;&gt;</code>
-            links, as well as appropriate
-            <code class="sg">&lt;input&gt;</code>
-            elements. The only default styles defined determine the textual content of the buttons. Thematic styles such as colors and borders are left to individual themes.</p>
-          <p class="sg">The
-            <code class="sg">button-link</code>class styles a button like an anchor tag. It is useful to change a button (for accessing content within the site) to a link style (for leaving the site) when, for example, local content is exhausted. This may be more convenient thaN replacing the
-            <code class="sg">&lt;button&gt;</code>
-            with a full anchor tag
-            <code class="sg">&lt;a&gt;</code>.</p>
-        </div>
-        <div class="sg-example">
-          <div class="sg-canvas">
-            <button>Button</button>
-            <a href="#" class="button">Link button</a>
-            <input type="submit" value="Submit input">
-            <input type="reset" value="Reset input">
-            <input type="button" value="Button input">
-            <button class="button-link">Button as Link</button>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">button</span>&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">button</span>&gt;</span>Link button<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Submit input&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;reset&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Reset input&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">value</span>=<span class="hljs-value">&quot;Button input&quot;</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;button-link&quot;</span>&gt;</span>Button as Link<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre>
-        </div>
+        <h3 id="buttons" class="sg">Buttons</h3>
+        <p class="sg">We use the
+          <code class="sg">btn</code>class not for brevity, but to make it easier to search for the class as distinct from the element.</p>
       </section>
       <section class="sg-block sg-section-header">
         <h3 id="header" class="sg">Header</h3>
@@ -230,6 +180,12 @@
     <section class="sg-section sg-section-tagset">
       <h2 id="tagset" class="sg">TagSet</h2>
       <p class="sg">A set of tags.</p>
+    </section>
+
+    <section class="sg-section sg-section-discovery-navigations">
+      <h2 id="discovery-navigations" class="sg">Discovery navigations</h2>
+      <p class="sg">Navigation block that controls the discovery block.
+      </p>
     </section>
 
     <section class="sg-section sg-section-discovery">

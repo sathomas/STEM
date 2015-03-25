@@ -455,13 +455,17 @@ update the view.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p>After normal render, add a11y <code>role</code>.</p>
+              <p>After normal render, add a11y <code>role</code> and
+other hints to make iOS treat the control
+as a search box (without restyling it).</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template(<span class="hljs-keyword">this</span>.model.toJSON()))
-                .attr(<span class="hljs-string">'role'</span>,<span class="hljs-string">'search'</span>);</pre></div></div>
+                .attr(<span class="hljs-string">'role'</span>,<span class="hljs-string">'search'</span>)
+                .attr(<span class="hljs-string">'action'</span>, <span class="hljs-string">'.'</span>)
+                .attr(<span class="hljs-string">'id'</span>,  _.uniqueId(<span class="hljs-string">'search_'</span>));</pre></div></div>
             
         </li>
         
