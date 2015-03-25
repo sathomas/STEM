@@ -48,7 +48,7 @@ Stem.Routers = Stem.Routers || {};
             // `data-` attribute.
 
             if (theme) {
-                $('.header').attr('data-theme', theme);
+                $('header').attr('data-theme', theme);
             }
 
             // Close the navigation menu (in case it was
