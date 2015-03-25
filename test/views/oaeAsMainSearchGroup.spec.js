@@ -49,7 +49,6 @@ describe('OaeAsMainSearchGroup View', function () {
     it('should include a more button', function() {
         var $el = this.OaeAsMainSearchGroup.render().$el;
         $el.find('button').length.should.equal(1);
-        $el.find('button').hasClass('button').should.be.true();
         $el.find('button').hasClass('results-main__button').should.be.true();
     });
 

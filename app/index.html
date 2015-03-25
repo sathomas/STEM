@@ -88,7 +88,7 @@ of course, means that JavaScript is available.
 
         -->
 
-        <header role="banner" class="header" data-theme="theme-1-dark">
+        <header role="banner" class="site-hdr" data-theme="theme-1-dark">
 
             <!--
 
@@ -99,14 +99,14 @@ of course, means that JavaScript is available.
 
             -->
 
-            <h1 class="header__brand">
-                <span class="header__brand__border">
-                    <a href="#" class="header__brand__link">
+            <h1 class="site-hdr__brand">
+                <span class="site-hdr__brand__border">
+                    <a href="#" class="site-hdr__brand__link">
                         The Georgia<br/>STEM Incubator
                     </a>
                 </span>
             </h1>
-            <nav role="navigation" class="header__navbar">
+            <nav role="navigation" class="site-hdr__navbar">
 
                 <!--
 
@@ -120,9 +120,9 @@ of course, means that JavaScript is available.
                 -->
 
                 <input type="checkbox" id="nav-toggle" aria-hidden="true"
-                       class="header__navbar__checkbox"/>
+                       class="site-hdr__navbar__checkbox"/>
                 <label for="nav-toggle" aria-hidden="true"
-                       class="header__navbar__label"></label>
+                       class="site-hdr__navbar__label"></label>
 
                 <!--
 
@@ -131,19 +131,19 @@ of course, means that JavaScript is available.
 
                 -->
 
-                <ul class="header__navbar__list">
-                    <li class="header__navbar__item">
-                        <a href="#teachers" class="header__navbar__link">
+                <ul class="site-hdr__navbar__list">
+                    <li class="site-hdr__navbar__item">
+                        <a href="#teachers" class="site-hdr__navbar__link">
                             Teachers
                         </a>
                     </li>
-                    <li class="header__navbar__item">
-                        <a href="#schools" class="header__navbar__link">
+                    <li class="site-hdr__navbar__item">
+                        <a href="#schools" class="site-hdr__navbar__link">
                             Administrators
                         </a>
                     </li>
-                    <li class="header__navbar__item">
-                        <a href="#partners" class="header__navbar__link">
+                    <li class="site-hdr__navbar__item">
+                        <a href="#partners" class="site-hdr__navbar__link">
                             Partners
                         </a>
                     </li>
@@ -216,29 +216,38 @@ of course, means that JavaScript is available.
                            class="discovery-nav__radio"
                            checked="checked"/>
                     <label for="discovery-nav-teachers"
-                           class="discovery-nav__label discovery-nav__label--theme-1">
-                        <span class="discovery-nav__label__text">
-                            Support from other teachers just like you
-                        </span>
-                        <span class="discovery-nav__label__more">More</span>
+                           class="discovery-nav__label theme-1">
+                        <div class="discovery-nav__label__content">
+                            <span class="discovery-nav__label__text">
+                                Support from other teachers just like you
+                            </span>
+                            <span class="discovery-nav__label__more">More</span>
+                        </div>
+                        <div class="discovery-nav__label__image"></div>
                     </label>
                     <input type="radio" name="discovery-nav" id="discovery-nav-schools"
                            class="discovery-nav__radio"/>
                     <label for="discovery-nav-schools"
-                           class="discovery-nav__label discovery-nav__label--theme-2">
-                        <span>
-                            Collaborate across the state
-                        </span>
-                        <span class="discovery-nav__label__more">More</span>
+                           class="discovery-nav__label theme-2">
+                        <div class="discovery-nav__label__content">
+                            <span>
+                                Collaborate across the state
+                            </span>
+                            <span class="discovery-nav__label__more">More</span>
+                        </div>
+                        <div class="discovery-nav__label__image"></div>
                     </label>
                     <input type="radio" name="discovery-nav" id="discovery-nav-partners"
                            class="discovery-nav__radio"/>
                     <label for="discovery-nav-partners"
-                           class="discovery-nav__label discovery-nav__label--theme-3">
-                        <span>
-                            Partner with schools and build the future
-                        </span>
-                        <span class="discovery-nav__label__more">More</span>
+                           class="discovery-nav__label theme-3">
+                        <div class="discovery-nav__label__content">
+                            <span>
+                                Get involved
+                            </span>
+                            <span class="discovery-nav__label__more">More</span>
+                        </div>
+                        <div class="discovery-nav__label__image"></div>
                     </label>
                 </nav>
 
@@ -302,7 +311,7 @@ of course, means that JavaScript is available.
                                 Find a course
                             </a>
                             <p class="discovery__option__text">
-                                Participate in professional learning
+                                Professional Learning Opportunities: courses, workshops, and more
                             </p>
                         </div>
                         <div class="discovery__option">
@@ -310,10 +319,10 @@ of course, means that JavaScript is available.
                             <a class="discovery__option__button
                                       discovery__option__button--theme-1"
                                href="https://stemincubator.oaeproject.org">
-                                Join the network
+                                Find people and groups
                             </a>
                             <p class="discovery__option__text">
-                                Share and discuss resources
+                                Share resources, discuss, and collaborate
                             </p>
                         </div>
                         <div class="discovery__option">
@@ -321,10 +330,10 @@ of course, means that JavaScript is available.
                             <a class="discovery__option__button
                                       discovery__option__button--theme-1"
                                href="https://secure.donorschoose.org/wizard/addressWizard.html">
-                                Request funding
+                                Fund projects
                             </a>
                             <p class="discovery__option__text">
-                                Crowdfund your school project
+                                Get your class project funded through DonorsChoose.org
                             </p>
                         </div>
                     </div>
@@ -428,14 +437,13 @@ of course, means that JavaScript is available.
                             <a class="discovery__option__button
                                       discovery__option__button--theme-3"
                                href="https://gatech.brightspace.com">
-                                Read our guide
+                                Partnering Handbook
                             </a>
                         </div>
                         <p class="discovery__text discovery__text--single">
-                            Start by finding schools, businesses, or specific projects in your
-                            local area. Explore spotlights and information below to see how to
-                            create relationships that build business value and deeper
-                            connections with community and schools.
+                            Find schools, school projects, and other partner organizations
+                            in your neighborhood with the maps below. Read the handbook for
+                            strategies and tips on how to get involved.
                         </p>
                     </div>
 
@@ -446,31 +454,19 @@ of course, means that JavaScript is available.
                     -->
 
                     <div class="discovery-tabs">
-                		<input type="radio" name="tabs-1" id="tab-1-1"
+                        <input type="radio" name="tabs-1" id="tab-1-1"
                 		       class="discover-tabs__input" checked="checked"/><!--
-                		--><label for="tab-1-1" class="discovery_tabs_label">
+                     --><label for="tab-1-1" class="discovery_tabs_label">
+                		    Class Projects to Fund
+                		</label><!--
+                     --><input type="radio" name="tabs-1" id="tab-1-2"
+                		       class="discover-tabs__input"/><!--
+                     --><label for="tab-1-2" class="discovery_tabs_label">
                 		    Local partners
                         </label><!--
-                		--><input type="radio" name="tabs-1" id="tab-1-2"
-                		       class="discover-tabs__input"/><!--
-                		--><label for="tab-1-2" class="discovery_tabs_label">
-                		    Local Projects
-                		</label><!--
-                        --><div class="discovery-tabs__panel">
-                            <div id="partners-organizations-filter" class="discovery__text"></div>
-                            <div id="partners-organizations-map" class="discovery-tabs__map">
-                            </div>
+                     --><div class="discovery-tabs__panel">
                             <p class="discovery__text">
-                                Put your organization or school on the map by
-                                joining our community
-                            </p>
-                            <a class="button" href="https://stemincubator.oaeproject.org">
-                                Create an account
-                            </a>
-                        </div><!--
-                        --><div class="discovery-tabs__panel">
-                            <p class="discovery__text">
-                                A great way to start building partnerships
+                                Donate to a local class project through DonorsChoose.org
                             </p>
                             <div id="partners-donorschoose-map" class="discovery-tabs__map">
                             </div>
@@ -478,9 +474,21 @@ of course, means that JavaScript is available.
                                 <img class="discovery-tabs__logo"
                                      src="images/donorschoose.svg"/>
                             </a>
-                            <a class="button"
+                            <a class="btn"
                                href="https://secure.donorschoose.org/wizard/addressWizard.html">
                                 Request funding
+                            </a>
+                        </div><!--
+                     --><div class="discovery-tabs__panel">
+                            <div id="partners-organizations-filter" class="discovery__text"></div>
+                            <div id="partners-organizations-map" class="discovery-tabs__map">
+                            </div>
+                            <p class="discovery__text">
+                                Put your organization or school on the map by
+                                joining our community
+                            </p>
+                            <a class="btn" href="https://stemincubator.oaeproject.org">
+                                Create a profile
                             </a>
                         </div>
                     </div>
@@ -495,7 +503,7 @@ of course, means that JavaScript is available.
                         Spotlights
                     </h4>
                     <ul id="partners-spotlights" class="spotlight"></ul>
-                    <a class="button"
+                    <a class="btn"
                        href="https://stemincubator.oaeproject.org/group/si/XkJrmWWq/members">
                         Show more spotlights
                     </a>
@@ -619,56 +627,19 @@ of course, means that JavaScript is available.
 
         <footer role="contentinfo" class="footer">
 
-	    	<div class="footer__one-sixth-column">
-		    	<h5 class="footer__column-heading">
-    		    	<a href="#" class="footer__column-heading-link">Home</a>
-    		    </h5>
-		    	<p class="footer__topic">Resources</p>
-		    	<p class="footer__topic">About</p>
-		    	<p class="footer__topic">Funded by</p>
-		    	<p class="footer__topic">Powered by</p>
-	    	</div>
-	    	<div class="footer__one-sixth-column">
-		    	<h5 class="footer__column-heading">
-    		    	<a href="#teachers" class="footer__column-heading-link">Teachers</a>
-    		    </h5>
-		    	<p class="footer__topic">Elementary</p>
-		    	<p class="footer__topic">Middle School</p>
-		    	<p class="footer__topic">High School</p>
-	    	</div>
-	    	<div class="footer__one-sixth-column">
-		    	<h5 class="footer__column-heading">
-                    <a href="#schools" class="footer__column-heading-link">Administrators</a>
-                </h5>
-		    	<p class="footer__topic">Leadership</p>
-		    	<p class="footer__topic">Administration</p>
-	    	</div>
-	    	<div class="footer__one-sixth-column">
-		    	<h5 class="footer__column-heading">
-    		    	<a href="#partners" class="footer__column-heading-link">Partners</a>
-    		    </h5>
-		    	<p class="footer__topic">Leaders</p>
-		    	<p class="footer__topic">Local Businesses</p>
-	    	</div>
-	    	<div class="footer__one-third-column">
-		    	<p>
-			    	<a class="footer__button" href="#">
-				    	<i class="fa fa-twitter footer__button__icon"></i>
-				    	Follow us on Twitter
-				    </a>
-		    	</p>
-		    	<p>
-			    	<a class="footer__button" href="#">
-				    	<i class="fa fa-newspaper-o footer__button__icon"></i>
-				    	Sign up for our newsletter
-				    </a>
-		    	</p>
-		    	<p>
-			    	<a class="footer__button" href="#">
-				    	<i class="fa fa-coffee footer__button__icon"></i>
-				    	Join our community
-				    </a>
-		    	</p>
+	    	<div class="footer__one-full-column">
+		    	<a class="footer__button" href="#">
+			    	<i class="fa fa-twitter footer__button__icon"></i>
+			    	Follow us on Twitter
+			    </a>
+		    	<a class="footer__button" href="#">
+			    	<i class="fa fa-newspaper-o footer__button__icon"></i>
+			    	Sign up for our newsletter
+			    </a>
+		    	<a class="footer__button" href="#">
+			    	<i class="fa fa-coffee footer__button__icon"></i>
+			    	Join our community
+			    </a>
 	    	</div>
 
 	    	<div class="footer__one-full-column">

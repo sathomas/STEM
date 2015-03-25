@@ -49,7 +49,6 @@ describe('OaeAsSecondarySearchGroup View', function () {
     it('should include a more button', function() {
         var $el = this.OaeAsSecondarySearchGroup.render().$el;
         $el.find('button').length.should.equal(1);
-        $el.find('button').hasClass('button').should.be.true();
         $el.find('button').hasClass('results-secondary__button').should.be.true();
     });
 

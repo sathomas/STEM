@@ -1,0 +1,57 @@
+/**
+ * Buttons:
+ * We use the `btn` class not for brevity,
+ * but to make it easier to search for
+ * the class as distinct from the element.
+ */
+
+.btn {
+    .clickable;
+    .lnum;
+    background-color: transparent;
+    border: none;
+    border-radius: @border-radius-large;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: 600;
+    height: 4rem;
+    line-height: 2.2;
+    padding: 0 1em;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.btn--small {
+    border-radius: @border-radius;
+    font-size: 11px;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 30px;
+}
+
+.btn-link {
+    display: inline;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    letter-spacing: 0;
+    padding: 0;
+    text-align: left;
+    text-decoration: underline;
+}
+
+.theme-1 .btn {
+    background-color: @color-theme-1-primary-bg;
+    color: @color-theme-1-primary-fg;
+}
+.theme-2 .btn {
+    background-color: @color-theme-2-primary-bg;
+    color: @color-theme-2-primary-fg;
+}
+.theme-3 .btn {
+    background-color: @color-theme-3-primary-bg;
+    color: @color-theme-3-primary-fg;
+}
+

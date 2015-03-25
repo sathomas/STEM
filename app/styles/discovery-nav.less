@@ -1,0 +1,139 @@
+/**
+ * ## Discovery navigations
+ *
+ * Navigation block that controls the discovery
+ * block.
+ */
+
+.discovery-nav {
+    .row;
+    display: none;
+    @media @desktop { display: flex; }
+}
+
+.discovery-nav__radio {
+    .zero-columns;
+    display: none;
+}
+
+@selected:  ~".discovery-nav__radio:checked";
+
+.discovery-nav__label {
+    .one-sixth-column;
+    align-items: flex-start;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    @{selected} + & {
+        .two-thirds-column;
+        align-items: center;
+        font-size: 3rem;
+        justify-content: flex-end;
+        height: 41.2vw; // 61.8% * 2/3%
+        padding-bottom: @block-spacing;
+        @media @tablet { padding-bottom: @block-spacing-tablet; }
+        @media @desktop { padding-bottom: @block-spacing-desktop; }
+        text-align: center;
+        vertical-align: bottom;
+    }
+}
+
+@selected-label:  ~"@{selected} + .discovery-nav__label";
+
+.discovery-nav__label__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    justify-content: space-between;
+    padding: @block-spacing;
+    @media @tablet { padding: @block-spacing-tablet; }
+    @media @desktop { padding: @block-spacing-desktop; }
+    @{selected-label} & {
+        flex-grow: 0;
+        padding: 0;
+    }
+}
+
+.discovery-nav__label__text {
+    display: block;
+}
+
+.discovery-nav__label__more {
+    .btn;
+    align-self: flex-start;
+    display: inline-block;
+    background-color: @color-theme-0-white;
+    border: 1px solid transparent;
+    color: @color-theme-0-black;
+    @{selected-label} & {
+        display: none;
+    }
+}
+
+.discovery-nav__label__image {
+    background-size: cover;
+    height: 10.3vw; // 61.8% * 1/6
+    width: 100%;
+    @{selected-label} & {
+        height: 0;
+    }
+}
+
+.theme-1.discovery-nav__label {
+    background-color: @color-theme-1-primary-bg;
+    @{selected} + & {
+        background-image: url(../images/theme-1.jpg);
+    }
+    color: @color-theme-1-primary-fg;
+}
+.theme-1 .discovery-nav__label__image {
+    background-image: url(../images/theme-1.jpg);
+}
+
+.theme-2.discovery-nav__label {
+    background-color: @color-theme-2-primary-bg;
+    @{selected} + & {
+        background-image: url(../images/theme-2.jpg);
+    }
+    color: @color-theme-2-primary-fg;
+}
+.theme-2 .discovery-nav__label__image {
+    background-image: url(../images/theme-2.jpg);
+}
+
+.theme-3.discovery-nav__label {
+    background-color: @color-theme-3-primary-bg;
+    @{selected} + & {
+        background-image: url(../images/theme-3.jpg);
+    }
+    color: @color-theme-3-primary-fg;
+}
+.theme-3 .discovery-nav__label__image {
+    background-image: url(../images/theme-3.jpg);
+}
+
+
+.js nav.discovery-nav ~ article {
+    .invisible;
+}
+nav.discovery-nav[data-discovery-nav="1"] ~ article:nth-of-type(1) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="2"] ~ article:nth-of-type(2) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="3"] ~ article:nth-of-type(3) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="4"] ~ article:nth-of-type(4) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="5"] ~ article:nth-of-type(5) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
+    .visible;
+}

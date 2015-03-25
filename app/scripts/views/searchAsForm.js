@@ -58,10 +58,14 @@ Stem.Views = Stem.Views || {};
 
         render: function () {
 
-            // After normal render, add a11y `role`.
+            // After normal render, add a11y `role` and
+            // other hints to make iOS treat the control
+            // as a search box (without restyling it).
 
             this.$el.html(this.template(this.model.toJSON()))
-                .attr('role','search');
+                .attr('role','search')
+                .attr('action', '.')
+                .attr('id',  _.uniqueId('search_'));
 
             // Set the initial query parameters
 
