@@ -69,7 +69,6 @@ Stem.Views = Stem.Views || {};
                 });
             }).delay(16);
 
-
         }
 
     });

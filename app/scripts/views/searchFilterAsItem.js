@@ -45,7 +45,12 @@ Stem.Views = Stem.Views || {};
             // browsers that don't handle radio buttons
             // properly (almost all of them).
 
-            this.on('groupChange', this.change, this);
+            this.on('groupChange', this.groupChange, this);
+
+            // Also listen to changes to the underlying model
+            // directly in case they're executed externally.
+
+            this.listenTo(this.model, 'change', this.modelChange);
 
             return this;  // for method chaining
 
@@ -83,7 +88,7 @@ Stem.Views = Stem.Views || {};
         // If the user changes a selection value, we
         // update the underlying model.
 
-        change: function() {
+        groupChange: function() {
 
             // Get the current selected state.
 
@@ -95,6 +100,32 @@ Stem.Views = Stem.Views || {};
             this.model.set('selected', selected);
 
         },
+
+        // If a model changes in the code, we need
+        // to update the view.
+
+        modelChange: function () {
+
+            var changed = this.model.changedAttributes();
+
+            // If the only attribute that changed was
+            // the selected status, we can update that
+            // directly. Otherwise, we'll re-render
+            // the view.
+
+            if ((_(changed).keys().length === 1) &&
+                 _(changed).has('selected')) {
+
+                 this.$el.children('input')
+                    .prop('checked', this.model.get('selected'));
+
+            } else {
+
+                this.render();
+
+            }
+
+        }
 
     });
 
