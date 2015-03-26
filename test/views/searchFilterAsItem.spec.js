@@ -89,4 +89,14 @@ describe('SearchFilterAsItem View', function () {
         this.SearchFilter.get('selected').should.be.true();
     });
 
+    it('should update the view on model change', function() {
+        var $el = this.SearchFilterAsItem.render().$el;
+        $el.find('input[type="radio"]').prop('checked').should.be.false();
+        $el.find('label.results-filter__list-item__label').text().trim().should.equal(this.SearchFilter.get('title').trim());
+        this.SearchFilter.set('selected', true);
+        $el.find('input[type="radio"]').prop('checked').should.be.true();
+        this.SearchFilter.set('title', 'new title');
+        $el.find('label.results-filter__list-item__label').text().trim().should.equal('new title');
+    });
+
 });
