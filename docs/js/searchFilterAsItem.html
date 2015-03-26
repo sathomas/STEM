@@ -383,7 +383,24 @@ properly (almost all of them).</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.on(<span class="hljs-string">'groupChange'</span>, <span class="hljs-keyword">this</span>.change, <span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">this</span>.on(<span class="hljs-string">'groupChange'</span>, <span class="hljs-keyword">this</span>.groupChange, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Also listen to changes to the underlying model
+directly in case they’re executed externally.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.modelChange);
 
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;  <span class="hljs-comment">// for method chaining</span>
 
@@ -394,11 +411,11 @@ properly (almost all of them).</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>First render this model’s view as the parent view.</p>
 
@@ -416,11 +433,11 @@ properly (almost all of them).</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Now add the tag set as a child view.</p>
 
@@ -445,11 +462,11 @@ properly (almost all of them).</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>If the user changes a selection value, we
 update the underlying model.</p>
@@ -457,16 +474,16 @@ update the underlying model.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        change: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+        groupChange: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-10">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Get the current selected state.</p>
 
@@ -478,11 +495,11 @@ update the underlying model.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Update the model with the current state of
 the selection.</p>
@@ -492,7 +509,57 @@ the selection.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.model.set(<span class="hljs-string">'selected'</span>, selected);
 
-        },
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>If a model changes in the code, we need
+to update the view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        modelChange: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+
+            <span class="hljs-keyword">var</span> changed = <span class="hljs-keyword">this</span>.model.changedAttributes();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>If the only attribute that changed was
+the selected status, we can update that
+directly. Otherwise, we’ll re-render
+the view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> ((_(changed).keys().length === <span class="hljs-number">1</span>) &amp;&amp;
+                 _(changed).has(<span class="hljs-string">'selected'</span>)) {
+
+                 <span class="hljs-keyword">this</span>.$el.children(<span class="hljs-string">'input'</span>)
+                    .prop(<span class="hljs-string">'checked'</span>, <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'selected'</span>));
+
+            } <span class="hljs-keyword">else</span> {
+
+                <span class="hljs-keyword">this</span>.render();
+
+            }
+
+        }
 
     });
 

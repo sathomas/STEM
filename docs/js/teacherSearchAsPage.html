@@ -438,7 +438,8 @@ we debounce this event.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model.searchFilters,<span class="hljs-string">'change'</span>, _(<span class="hljs-keyword">this</span>.arrangeResults).debounce(<span class="hljs-number">16</span>));
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model.searchFilters,<span class="hljs-string">'change'</span>,
+                 _(<span class="hljs-keyword">this</span>.arrangeResults).debounce(<span class="hljs-number">16</span>));
 
         },</pre></div></div>
             

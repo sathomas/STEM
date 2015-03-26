@@ -321,11 +321,12 @@ various sections.</p>
             
             <div class="content"><div class='highlight'><pre>
         routes: {
-            <span class="hljs-string">''</span>:                   <span class="hljs-string">'landing'</span>,
-            <span class="hljs-string">'teachers'</span>:           <span class="hljs-string">'teachers'</span>,
-            <span class="hljs-string">'schools'</span>:            <span class="hljs-string">'schools'</span>,
-            <span class="hljs-string">'partners'</span>:           <span class="hljs-string">'partners'</span>,
-            <span class="hljs-string">'search(/)(:query)'</span>:  <span class="hljs-string">'search'</span>
+            <span class="hljs-string">''</span>:         <span class="hljs-string">'landing'</span>,
+            <span class="hljs-string">'teachers'</span>: <span class="hljs-string">'teachers'</span>,
+            <span class="hljs-string">'schools'</span>:  <span class="hljs-string">'schools'</span>,
+            <span class="hljs-string">'partners'</span>: <span class="hljs-string">'partners'</span>,
+            <span class="hljs-string">'search(/)(:query)(/:facet)'</span>: <span class="hljs-string">'search'</span>,
+            <span class="hljs-string">'*default'</span>: <span class="hljs-string">'landing'</span>,
         },</pre></div></div>
             
         </li>
@@ -507,8 +508,11 @@ attribute explicitly.</p>
             <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'partners'</span>);
         },
 
-        search: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(query)</span> </span>{
-            query = query || <span class="hljs-string">""</span>;
+        search: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(query, facet)</span> </span>{
+            query = query || <span class="hljs-string">''</span>;
+            facet = facet || <span class="hljs-string">'content'</span>;
+            <span class="hljs-keyword">this</span>.teacherSearch.set(<span class="hljs-string">'facet'</span>,
+                <span class="hljs-built_in">decodeURIComponent</span>(facet));
             <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.set(<span class="hljs-string">'query'</span>,
                 <span class="hljs-built_in">decodeURIComponent</span>(query));
             <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers-search'</span>,<span class="hljs-string">'theme-1'</span>);
@@ -554,11 +558,6 @@ them.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.discoveryContent = <span class="hljs-keyword">new</span> Stem.Views.DiscoveryAsContent({
                 model: <span class="hljs-keyword">this</span>.discovery
-            }).render();
-
-            <span class="hljs-keyword">this</span>.teacherSearchPage = <span class="hljs-keyword">new</span> Stem.Views.TeacherSearchAsPage({
-                el: $(<span class="hljs-string">'#teachers-search'</span>),
-                model: <span class="hljs-keyword">this</span>.teacherSearch
             }).render();
 
             <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.discoveryContent, <span class="hljs-string">'navigate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hash)</span> </span>{</pre></div></div>
@@ -608,7 +607,14 @@ them.</p>
             
             <div class="content"><div class='highlight'><pre>                $(<span class="hljs-built_in">window</span>).scrollTop(pos);
 
-            });</pre></div></div>
+            });
+
+            <span class="hljs-keyword">this</span>.teacherSearchPage = <span class="hljs-keyword">new</span> Stem.Views.TeacherSearchAsPage({
+                el: $(<span class="hljs-string">'#teachers-search'</span>),
+                model: <span class="hljs-keyword">this</span>.teacherSearch
+            }).render();
+
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.teacherSearch, <span class="hljs-string">'navigate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hash)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -619,11 +625,19 @@ them.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Add any required logic that ties the
-different pages or content blocks
-together.</p>
+              <p>Add the new hash to the browser history, but
+only if we’re on the search “page”</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.location.hash.indexOf(<span class="hljs-string">'#search'</span>) === <span class="hljs-number">0</span>) {
+
+                    <span class="hljs-keyword">this</span>.navigate(<span class="hljs-string">'search/'</span> + hash);
+
+                }
+
+            });</pre></div></div>
             
         </li>
         
@@ -633,6 +647,21 @@ together.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Add any required logic that ties the
+different pages or content blocks
+together.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Now that the teachers search info
 is available, replace the generic
@@ -652,11 +681,11 @@ search form.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Inject the new search form into the
 page.</p>
@@ -670,11 +699,44 @@ page.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Watch for updates to the search query so
+we can update the links to other search
+facets. We debounce this event handler
+to avoid thrashing while the user types.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.on(<span class="hljs-string">'change'</span>, _(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+                <span class="hljs-keyword">var</span> query = <span class="hljs-built_in">encodeURIComponent</span>(
+                    <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>)
+                );
+
+                $(<span class="hljs-string">'#teachers-search-courses'</span>).attr(<span class="hljs-string">'href'</span>,
+                    <span class="hljs-string">'#search/'</span> + query + <span class="hljs-string">'/courses'</span>
+                );
+
+                $(<span class="hljs-string">'#teachers-search-groups'</span>).attr(<span class="hljs-string">'href'</span>,
+                    <span class="hljs-string">'#search/'</span> + query + <span class="hljs-string">'/groups'</span>
+                );
+
+            }).debounce(<span class="hljs-number">250</span>), <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Watch for submission of the new search
 form and navigate appropriately.</p>
@@ -687,51 +749,21 @@ form and navigate appropriately.</p>
         </li>
         
         
-        <li id="section-21">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
-              </div>
-              <p>Retrieve the submitted query.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> query = <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p>Update the address bar with the
-query for link sharing and bookmarks.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">this</span>.navigate(<span class="hljs-string">'search/'</span> + <span class="hljs-built_in">encodeURIComponent</span>(query));</pre></div></div>
-            
-        </li>
-        
-        
         <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
-              <p>Load the search page.</p>
+              <p>Retrieve the submitted query.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers-search'</span>, <span class="hljs-string">'theme-1'</span>);
+                <span class="hljs-keyword">var</span> query = <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>);
+
+                <span class="hljs-keyword">this</span>.navigate(<span class="hljs-string">'search/'</span> + <span class="hljs-built_in">encodeURIComponent</span>(query) + <span class="hljs-string">'/content'</span>,
+                    {trigger: <span class="hljs-literal">true</span>});
 
             }, <span class="hljs-keyword">this</span>);</pre></div></div>
             
