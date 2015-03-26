@@ -111,7 +111,7 @@ Stem.Models = Stem.Models || {};
                 this.filters.groups
             ]);
 
-            this.searchFilters.on('change', this.updateHash, this);
+            this.searchFilters.on('change', this.filterChanged, this);
 
             // Create groups to manage the various search results.
 
@@ -232,6 +232,32 @@ Stem.Models = Stem.Models || {};
             // Update the hash in the browser's address bar
 
             this.updateHash();
+
+        },
+
+        filterChanged: function (filter) {
+
+            // Most of the time, when one filter
+            // changes, all the others will as
+            // well. We only care about the filter
+            // that's now selected.
+
+            if (filter.get('selected')) {
+
+                // Find the specific filter in our
+                // set so that we can update the
+                // facet attribute.
+
+                _(this.filters).each(function(filterToCheck, key) {
+                    if (filterToCheck === filter) {
+                        this.set('facet',key);
+                    }
+                }, this);
+
+                // Update the browser's address bar
+
+                this.updateHash();
+            }
 
         },
 
