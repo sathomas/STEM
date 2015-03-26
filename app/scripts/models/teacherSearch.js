@@ -51,10 +51,10 @@ Stem.Models = Stem.Models || {};
             // possible search.
 
             this.tags = {
-                primary:    new Stem.Models.Tag({ label: 'P-2',  selected: true }),
-                elementary: new Stem.Models.Tag({ label: '3-5',  selected: true }),
-                middle:     new Stem.Models.Tag({ label: '6-8',  selected: true }),
-                high:       new Stem.Models.Tag({ label: '9-12', selected: true })
+                primary:    new Stem.Models.Tag({ label: 'P-2' }),
+                elementary: new Stem.Models.Tag({ label: '3-5' }),
+                middle:     new Stem.Models.Tag({ label: '6-8' }),
+                high:       new Stem.Models.Tag({ label: '9-12' })
             };
 
             // Create a single collection of all tags to
