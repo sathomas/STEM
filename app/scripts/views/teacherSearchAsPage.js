@@ -66,7 +66,8 @@ Stem.Views = Stem.Views || {};
             // another one (whatever was previously selected),
             // we debounce this event.
 
-            this.listenTo(this.model.searchFilters,'change', _(this.arrangeResults).debounce(16));
+            this.listenTo(this.model.searchFilters,'change',
+                 _(this.arrangeResults).debounce(16));
 
         },
 

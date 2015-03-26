@@ -50,6 +50,11 @@ Stem.Views = Stem.Views || {};
 
             this.listenTo(this.model, 'change', this.modelUpdated);
 
+            // Define a variable to track in-progress
+            // updates.
+
+            this.updating = false;
+
             // Return view for method chaining.
 
             return this;
@@ -102,7 +107,12 @@ Stem.Views = Stem.Views || {};
 
             var query = $(ev.currentTarget).val();
 
-            // Update the model with the current query..
+            // Note that we're about to start
+            // a model update.
+
+            this.updating = true;
+
+            // Update the model with the current query.
 
             this.model.set('query', query);
 
@@ -137,12 +147,26 @@ Stem.Views = Stem.Views || {};
             // while they're typing. Note that we
             // have multiple parallel `<input>`
             // elements to handle responsive design.
+            // We do, however, update a view that's
+            // in focus if we're not in the middle
+            // of a model update. This update is
+            // needed, e.g., if the user clicks
+            // the back button while the focus is
+            // on the input.
 
             this.$el.find('input').each(function() {
-                if (!$(this).is(":focus")) {
+                if (!$(this).is(":focus") || !this.updating) {
                     $(this).val(query);
                 }
             });
+
+            // If this event was triggered by
+            // a model update, that update is now
+            // finished.
+
+            if (this.updating) {
+                this.updating = false;
+            }
 
         }
 

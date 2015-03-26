@@ -19,11 +19,12 @@ Stem.Routers = Stem.Routers || {};
         // various sections.
 
         routes: {
-            '':                   'landing',
-            'teachers':           'teachers',
-            'schools':            'schools',
-            'partners':           'partners',
-            'search(/)(:query)':  'search'
+            '':         'landing',
+            'teachers': 'teachers',
+            'schools':  'schools',
+            'partners': 'partners',
+            'search(/)(:query)(/:facet)': 'search',
+            '*default': 'landing',
         },
 
         // We use a convenience function to
@@ -109,8 +110,11 @@ Stem.Routers = Stem.Routers || {};
             this.discoveryContent.show('partners');
         },
 
-        search: function(query) {
-            query = query || "";
+        search: function(query, facet) {
+            query = query || '';
+            facet = facet || 'content';
+            this.teacherSearch.set('facet',
+                decodeURIComponent(facet));
             this.teacherSearch.searchQuery.set('query',
                 decodeURIComponent(query));
             this.loadPage('teachers-search','theme-1');
@@ -134,11 +138,6 @@ Stem.Routers = Stem.Routers || {};
                 model: this.discovery
             }).render();
 
-            this.teacherSearchPage = new Stem.Views.TeacherSearchAsPage({
-                el: $('#teachers-search'),
-                model: this.teacherSearch
-            }).render();
-
             this.listenTo(this.discoveryContent, 'navigate', function(hash) {
 
                 // Preserve the current scroll position
@@ -149,6 +148,24 @@ Stem.Routers = Stem.Routers || {};
 
                 // And restore the scroll position
                 $(window).scrollTop(pos);
+
+            });
+
+            this.teacherSearchPage = new Stem.Views.TeacherSearchAsPage({
+                el: $('#teachers-search'),
+                model: this.teacherSearch
+            }).render();
+
+            this.listenTo(this.teacherSearch, 'navigate', function(hash) {
+
+                // Add the new hash to the browser history, but
+                // only if we're on the search "page"
+
+                if (window.location.hash.indexOf('#search') === 0) {
+
+                    this.navigate('search/' + hash);
+
+                }
 
             });
 
@@ -174,6 +191,27 @@ Stem.Routers = Stem.Routers || {};
             $('#teachers-discovery-search-form')
                 .replaceWith(this.landingSearch.render().$el);
 
+            // Watch for updates to the search query so
+            // we can update the links to other search
+            // facets. We debounce this event handler
+            // to avoid thrashing while the user types.
+
+            this.teacherSearch.searchQuery.on('change', _(function() {
+
+                var query = encodeURIComponent(
+                    this.teacherSearch.searchQuery.get('query')
+                );
+
+                $('#teachers-search-courses').attr('href',
+                    '#search/' + query + '/courses'
+                );
+
+                $('#teachers-search-groups').attr('href',
+                    '#search/' + query + '/groups'
+                );
+
+            }).debounce(250), this);
+
             // Watch for submission of the new search
             // form and navigate appropriately.
 
@@ -183,14 +221,8 @@ Stem.Routers = Stem.Routers || {};
 
                 var query = this.teacherSearch.searchQuery.get('query');
 
-                // Update the address bar with the
-                // query for link sharing and bookmarks.
-
-                this.navigate('search/' + encodeURIComponent(query));
-
-                // Load the search page.
-
-                this.loadPage('teachers-search', 'theme-1');
+                this.navigate('search/' + encodeURIComponent(query) + '/content',
+                    {trigger: true});
 
             }, this);
 

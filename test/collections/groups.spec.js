@@ -192,8 +192,8 @@ describe('Groups Collection', function () {
     });
 
     it('should return current options when requested', function() {
-        this.GroupsCollection = new Stem.Collections.Groups([], {limit: 5});
-        this.GroupsCollection.options().limit.should.equal(5);
+        var GroupsCollection = new Stem.Collections.Groups([], {limit: 5});
+        GroupsCollection.options().limit.should.equal(5);
     });
 
     it('should set options dynamically', function() {

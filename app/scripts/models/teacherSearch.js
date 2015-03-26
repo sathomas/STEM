@@ -10,6 +10,15 @@ Stem.Models = Stem.Models || {};
 
     Stem.Models.TeacherSearch = Backbone.Model.extend({
 
+        defaults: {
+
+            // If no particular search facet is set,
+            // we prioritize content as the facet.
+
+            facet: 'content'
+
+        },
+
         initialize: function () {
 
             // When this model is created, all we really
@@ -102,6 +111,8 @@ Stem.Models = Stem.Models || {};
                 this.filters.groups
             ]);
 
+            this.searchFilters.on('change', this.updateHash, this);
+
             // Create groups to manage the various search results.
 
             this.searchResults = {
@@ -128,10 +139,26 @@ Stem.Models = Stem.Models || {};
                         })
             };
 
+            // If the search facet changes, we'll
+            // need to keep track of the new value.
+
+            this.on('change:facet', this.updateFacet, this);
+
             // Now that everything is set up, perform the initial
             // search query.
 
             this.updateSearch();
+
+        },
+
+        // Update the search facet.
+
+        updateFacet: function () {
+            var facet = this.get('facet');
+
+            if (this.filters[facet]) {
+                this.filters[facet].set('selected',true);
+            }
 
         },
 
@@ -201,6 +228,33 @@ Stem.Models = Stem.Models || {};
                          encodeURIComponent(extendedKeywords) + '?types=';
             this.searchResults.content.set('moreLink', extendedUrl + 'content');
             this.searchResults.groups.set('moreLink', oaeUrl + 'user,group');
+
+            // Update the hash in the browser's address bar
+
+            this.updateHash();
+
+        },
+
+        updateHash: function () {
+
+            // Let folks upstream know when the URL hash
+            // can be changed.
+
+            // Start by extracting the query.
+
+            var query = encodeURIComponent(
+                this.searchQuery.get('query')
+            );
+
+            // Add the appropriate facet.
+
+            _(this.filters).each(function(model, key) {
+                if (model.get('selected')) {
+                    query += '/' + key;
+                }
+            });
+
+            this.trigger('navigate', query);
 
         }
 
