@@ -100,6 +100,11 @@
  * to visual users without affecting
  * screen readers.
  */
+/*
+ * ### Clearfix
+ *
+ * Standard fix to clear floats.
+ */
 /**
  * ## HTML Page Structure
  *
@@ -2035,47 +2040,84 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
  */
 .spotlight {
   list-style: none;
+  background-color: #ffffff;
+  margin: 0 0 10px 0;
   padding: 0;
   text-align: left;
 }
+.spotlight:before,
+.spotlight:after {
+  content: " ";
+  display: table;
+}
+.spotlight:after {
+  clear: both;
+}
 @media only screen and (min-width: 500px) {
   .spotlight {
-    padding: 0 30px;
+    margin: 0 30px 30px 30px;
   }
 }
 @media only screen and (min-width: 1000px) {
   .spotlight {
-    padding: 0 calc(120px);
+    margin: 0 calc(120px) 30px calc(120px);
   }
 }
 .spotlight__item {
   background-color: #f7f7f7;
   border-bottom: 1px solid #efedeb;
   box-sizing: border-box;
-  position: relative;
+  clear: both;
   height: 100px;
+  min-height: 100px;
 }
 .spotlight__item.spotlight__item--expanded {
+  height: auto;
+}
+.spotlight__item.spotlight__item--expanded,
+.spotlight__item--expanded .spotlight__item__content {
   background-color: #ffffff;
   height: auto;
 }
 .spotlight__item__thumbnail {
-  border-right: 1px solid #efedeb;
+  border: 1px solid #efedeb;
   box-sizing: border-box;
-  display: inline-block;
+  float: left;
   height: 100px;
   width: 100px;
+}
+.spotlight__item__content {
+  box-sizing: border-box;
+  float: left;
+  position: relative;
+  width: calc(100% - 100px);
+}
+.spotlight__item__content:before,
+.spotlight__item__content:after {
+  content: " ";
+  display: table;
+}
+.spotlight__item__content:after {
+  clear: both;
 }
 .spotlight__item__title {
   color: #636363;
   display: inline-block;
   font-size: 2.2rem;
-  position: absolute;
-  left: calc(110px);
   line-height: 1.2;
-  margin-right: 69px;
+  margin: 34px 0 0 0;
+  padding: 0 10px;
   text-decoration: none;
-  top: 34px;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    padding: 0 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__title {
+    padding: 0 30px;
+  }
 }
 .no-touch .theme-3 .spotlight__item__title:hover,
 .theme-3 .spotlight__item__title:focus {
@@ -2099,14 +2141,25 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
   opacity: 0;
   position: absolute;
   top: -9999em;
+  margin: 0;
+  padding: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__description {
+    padding: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__description {
+    padding: 30px;
+  }
 }
 .spotlight__item--expanded .spotlight__item__description {
   left: auto;
   opacity: 1;
   position: static;
   top: auto;
-  margin-left: calc(110px);
-  padding-right: 69px;
+  margin: 0;
 }
 .theme-3 .spotlight__item__expand {
   color: #005493;

@@ -325,6 +325,7 @@ visibility of spotlight items.</p>
 
         initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
             <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset'</span>, <span class="hljs-keyword">this</span>.render);
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.add);
         },
 
         render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
