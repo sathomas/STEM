@@ -23,11 +23,11 @@ Stem.Models = Stem.Models || {};
             this.organizationPois = new Stem.Collections.Pois();
 
             var businesses = new Stem.Collections.SubGroups([], {
-                limit: 99,
+                limit: 499,
                 parentId: Stem.config.oae.groups.businesses
             });
             var schools = new Stem.Collections.SubGroups([],{
-                limit: 99,
+                limit: 499,
                 parentId: Stem.config.oae.groups.schools
             });
 
