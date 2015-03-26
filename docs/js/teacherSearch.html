@@ -520,7 +520,7 @@ filter group.</p>
                 <span class="hljs-keyword">this</span>.filters.groups
             ]);
 
-            <span class="hljs-keyword">this</span>.searchFilters.on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateHash, <span class="hljs-keyword">this</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.searchFilters.on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.filterChanged, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -764,7 +764,7 @@ fetches.</p>
 
         },
 
-        updateHash: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        filterChanged: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(filter)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -775,10 +775,15 @@ fetches.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
-              <p>Let folks upstream know when the URL hash
-can be changed.</p>
+              <p>Most of the time, when one filter
+changes, all the others will as
+well. We only care about the filter
+that’s now selected.</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (filter.get(<span class="hljs-string">'selected'</span>)) {</pre></div></div>
             
         </li>
         
@@ -788,6 +793,63 @@ can be changed.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Find the specific filter in our
+set so that we can update the
+facet attribute.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                _(<span class="hljs-keyword">this</span>.filters).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(filterToCheck, key)</span> </span>{
+                    <span class="hljs-keyword">if</span> (filterToCheck === filter) {
+                        <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'facet'</span>,key);
+                    }
+                }, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Update the browser’s address bar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.updateHash();
+            }
+
+        },
+
+        updateHash: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Let folks upstream know when the URL hash
+can be changed.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Start by extracting the query.</p>
 
@@ -801,11 +863,11 @@ can be changed.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Add the appropriate facet.</p>
 
