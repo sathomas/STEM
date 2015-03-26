@@ -2070,6 +2070,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
   clear: both;
   height: 100px;
   min-height: 100px;
+  overflow: hidden;
 }
 .spotlight__item.spotlight__item--expanded {
   height: auto;
@@ -2103,11 +2104,21 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
 .spotlight__item__title {
   color: #636363;
   display: inline-block;
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   line-height: 1.2;
-  margin: 34px 0 0 0;
+  margin: 10px calc(30px) 0 0;
   padding: 0 10px;
   text-decoration: none;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    font-size: 2.2rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    margin: 34px 0 0 0;
+  }
 }
 @media only screen and (min-width: 500px) {
   .spotlight__item__title {
@@ -2128,10 +2139,25 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
 }
 .spotlight__item__expand {
   cursor: pointer;
-  font-size: 30px;
+  font-size: 20px;
   position: absolute;
-  right: 34px;
-  top: 34px;
+  right: 10px;
+  top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__expand {
+    font-size: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__expand {
+    right: 34px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__expand {
+    top: 34px;
+  }
 }
 .spotlight__item--expanded .spotlight__item__expand {
   display: none;
