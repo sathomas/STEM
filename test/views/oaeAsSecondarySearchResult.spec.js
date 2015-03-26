@@ -7,8 +7,11 @@ describe('OaeAsSecondarySearchResult View', function () {
         this.Group = new Stem.Models.Group({
             description:  'description',
             displayName:  'displayName',
-            profilePath:   '/profile/path',
-            thumbnailUrl: '/thumbnail/url'
+            profilePath:  '/profile/path',
+            thumbnailUrl: '/thumnail/url',
+            picture: {
+                medium: '/picture/medium'
+            }
         });
         this.OaeAsSecondarySearchResult = new Stem.Views.OaeAsSecondarySearchResult({model: this.Group});
     });

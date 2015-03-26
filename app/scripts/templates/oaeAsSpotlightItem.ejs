@@ -1,10 +1,12 @@
 <img class="spotlight__item__thumbnail"
-     src="<% print(Stem.Utils.oaeUrl(thumbnailUrl)) %>" />
-<a href="<% print(Stem.Utils.oaeUrl(profilePath)) %>"
-   class="spotlight__item__title">
-    <%= displayName %>
-</a>
-<i class="fa fa-chevron-down spotlight__item__expand"></i>
-<p class="spotlight__item__description">
-    <% print(description.replace('\n', '<br/>')) %>
-</p>
+     src="<% print(Stem.Utils.oaeUrl(picture.medium)) %>" />
+<div class="spotlight__item__content">
+    <a href="<% print(Stem.Utils.oaeUrl(profilePath)) %>"
+       class="spotlight__item__title">
+        <%= displayName %>
+    </a>
+    <i class="fa fa-chevron-down spotlight__item__expand"></i>
+    <p class="spotlight__item__description">
+        <% print(description.replace('\n', '<br/>')) %>
+    </p>
+</div>

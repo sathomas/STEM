@@ -23,6 +23,7 @@ Stem.Views = Stem.Views || {};
 
         initialize: function () {
             this.listenTo(this.collection, 'reset', this.render);
+            this.listenTo(this.collection, 'add', this.add);
         },
 
         render: function () {

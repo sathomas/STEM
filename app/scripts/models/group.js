@@ -92,6 +92,17 @@ Stem.Models = Stem.Models || {};
 
             }
 
+            // Use the thumbnail for other pictures if
+            // none are available.
+
+            response.picture = response.picture || {};
+            response.picture.small = response.picture.small ||
+                response.thumbnailUrl;
+            response.picture.medium = response.picture.medium ||
+                response.thumbnailUrl;
+            response.picture.large = response.picture.large ||
+                response.thumbnailUrl;
+
             return response;
 
         }

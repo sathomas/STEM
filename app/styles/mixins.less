@@ -38,3 +38,20 @@
     position: static;
     top: auto;
 }
+
+/*
+ * ### Clearfix
+ *
+ * Standard fix to clear floats.
+ */
+
+.clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+    clear: both;
+    }
+}

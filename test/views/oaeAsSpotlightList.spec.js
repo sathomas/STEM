@@ -10,19 +10,28 @@ describe('OaeAsSpotlightList View', function () {
                     description:  'description 1',
                     displayName:  'displayName 1',
                     profilePath:  '/profile/path/1',
-                    thumbnailUrl: '/thumbnail/url/1'
+                    thumbnailUrl: '/thumbnail/url/1',
+                    picture: {
+                        medium: '/picture/medium'
+                    }
                 }),
                 new Stem.Models.Group({
                     description:  'description 2',
                     displayName:  'displayName 2',
                     profilePath:  '/profile/path/2',
-                    thumbnailUrl: '/thumbnail/url/2'
+                    thumbnailUrl: '/thumbnail/url/2',
+                    picture: {
+                        medium: '/picture/medium'
+                    }
                 }),
                 new Stem.Models.Group({
                     description:  'description 3',
                     displayName:  'displayName 3',
                     profilePath:  '/profile/path/3',
-                    thumbnailUrl: '/thumbnail/url/3'
+                    thumbnailUrl: '/thumbnail/url/3',
+                    picture: {
+                        medium: '/picture/medium'
+                    }
                })
             ])
         });
