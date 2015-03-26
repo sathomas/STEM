@@ -21,6 +21,7 @@
     clear: both;
     height: 100px;
     min-height: 100px;
+    overflow: hidden;
 }
 .spotlight__item.spotlight__item--expanded {
     height: auto;
@@ -47,9 +48,11 @@
 .spotlight__item__title {
     color: @color-theme-0-semidark;
     display: inline-block;
-    font-size: 2.2rem;
+    font-size: 1.6rem;
+    @media @tablet { font-size: 2.2rem; }
     line-height: 1.2;
-    margin: 34px 0 0 0;
+    margin: @block-spacing calc(20px + @block-spacing) 0 0;
+    @media @tablet { margin: 34px 0 0 0; }
     padding: 0 @block-spacing;
     @media @tablet { padding: 0 @block-spacing-tablet; }
     @media @desktop { padding: 0 @block-spacing-desktop; }
@@ -64,10 +67,13 @@
 }
 .spotlight__item__expand {
     cursor: pointer;
-    font-size: 30px;
+    font-size: 20px;
+    @media @tablet { font-size: 30px; }
     position: absolute;
-    right: 34px;
-    top: 34px;
+    right: @block-spacing;
+    @media @tablet { right: 34px; }
+    top: @block-spacing;
+    @media @tablet { top: 34px; }
 }
 .spotlight__item--expanded .spotlight__item__expand {
     display: none;
