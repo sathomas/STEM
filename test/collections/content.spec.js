@@ -208,11 +208,6 @@ describe('Content Collection', function () {
         this.ContentCollection.at(1).get('description').should.equal(contentResponse.results[1].description);
     });
 
-    it('should identify all included subjects', function() {
-        this.ContentCollection.getTags().length.should.equal(1);
-        this.ContentCollection.getTags()[0].should.equal('Math');
-    });
-
     it('should return current options when requested', function() {
         this.ContentCollection = new Stem.Collections.Content([], {limit: 5});
         this.ContentCollection.options().limit.should.equal(5);
