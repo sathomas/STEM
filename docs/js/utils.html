@@ -574,7 +574,25 @@ function.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-    Stem.Utils.getLocationFromStreet = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(addr, success, error)</span> </span>{
+    Stem.Utils.getLocationFromStreet = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(addr, success, error)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>For some reason, the Census Bureau seems to have
+problems with zip+4 zip codes. So we strip them
+out here.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        addr = addr.replace(<span class="hljs-regexp">/([0-9]{5})-[0-9]{4}/g</span>, <span class="hljs-string">'$1'</span>);
 
         $.ajax({
                 url: <span class="hljs-string">'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?'</span> +
@@ -598,10 +616,36 @@ function.</p>
                         <span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x)
                     ]);
 
-                } <span class="hljs-keyword">else</span> {
+                } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Sometimes the Census Bureau has problems with
+NE in the address. (Maybe Nebraska!?) If this
+address has it, then strip it out and try again.</p>
 
-                    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    <span class="hljs-keyword">if</span> (addr.indexOf(<span class="hljs-string">' NE '</span>) &gt; <span class="hljs-number">0</span>) {
+
+                        Stem.Utils.getLocationFromStreet(
+                            addr.replace(<span class="hljs-regexp">/ NE /</span>, <span class="hljs-string">' '</span>),
+                            success,
+                            error
+                        );
+
+                    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+
                         error();
+
                     }
 
                 }
