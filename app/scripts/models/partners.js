@@ -36,7 +36,7 @@ Stem.Models = Stem.Models || {};
             // each collection.
 
             businesses.on('add', this.businessAdded, this);
-            schools.on('add', this.schoolsAdded, this);
+            schools.on('add', this.schoolAdded, this);
 
             // Now we can kick off the fetch from OAE.
 
