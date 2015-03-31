@@ -299,6 +299,14 @@ module.exports = function (grunt) {
                     src: 'styles/*.css',
                     dest: '<%= yeoman.dist %>/docs/styleguide/css/'
                 },{
+                    src: '<%= yeoman.app %>/docs.html',
+                    dest: '<%= yeoman.dist %>/docs/index.html',
+                    options: {
+                        process: function (content) {
+                            return content.replace(/http:\/\/demo.stemincubator.org\/docs\//g,'');
+                        }
+                    }
+                },{
                     expand: true,
                     dot: true,
                     flatten: true,
