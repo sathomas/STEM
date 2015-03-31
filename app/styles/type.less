@@ -296,10 +296,11 @@ html {
  *     </p>
  */
 
+@font-stack: Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 body {
     color: #222;
-    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: @font-stack;
     font-size: 150%; /* don't use rems here only; for browers without rem support */
     font-weight: 400;
     line-height: 1.6;
@@ -307,7 +308,7 @@ body {
 
 
 /**
- * Lining Numbers:
+ * ### `lnum`
  * The standard font uses old style numbers. To force
  * lining numbers, add the class `lnum` (which is the
  * commom typographers' abbreviation for lining numbers).
@@ -324,13 +325,11 @@ body {
 /*
  * Until browsers support open type features (I'm
  * looking at you Safari.), we have to do this with
- * a separate font file. Yuck. We do fall back to
- * old style numbers and turn on the feature as a
- * backup.
+ * a separate font file. Yuck.
  */
 
 .lnum {
-    font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Raleway lnum", @font-stack;
 }
 
 
@@ -343,6 +342,9 @@ body {
  * is required). We start with relatively modest font sizes
  * for mobile devices and then increase the sizes a bit for
  * tablets and larger.
+ *
+ * Heading classes (`.h1`, `.h2`, ...) can also be used as
+ * mixins for other classes.
  *
  *     @example:
  *     <h1>This is a first level heading</h1>

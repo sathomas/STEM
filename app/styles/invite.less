@@ -1,0 +1,103 @@
+/**
+ * ## Invitation Block
+ *
+ * An invitation block is a small block on
+ * the site that "invites" users to visit
+ * a different page or site.
+ */
+
+/**
+ * ### `invite`
+ * The `invite` class designates an invitation
+ * block. The block contains an icon (from the
+ * FontAwesome collection), a link to the
+ * destination, and a short text description.
+ *
+ *     @example:
+ *     <div class="invite">
+ *         <i class="invite__icon fa fa-comments-o"></i>
+ *         <a class="invite__button">
+ *             Button text
+ *         </a>
+ *         <p class="invite__text">
+ *             Brief invitation text
+ *         </p>
+ *     </div>
+ */
+
+.invite {
+    display: inline-block;
+    padding: 0 @block-spacing;
+    @media @tablet  { padding: 0 @block-spacing-tablet; }
+    @media @desktop { padding: 0 @block-spacing-desktop; }
+    text-align: center;
+    vertical-align: text-top;
+}
+
+.invite__icon {
+    display: block;
+    font-size: 4rem;
+    opacity: 0.5;
+    .spacing(padding-bottom);
+    padding-left: 0;
+    padding-right: 0;
+    .spacing(padding-top);
+}
+
+.invite__button {
+    .clickable;
+    .lnum;
+    .btn;
+    display: block;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+}
+
+.invite__text {
+    font-size: 2rem;
+    .spacing(margin-bottom);
+    margin-left: auto;
+    margin-right: auto;
+    .spacing(margin-top);
+    max-width: 12em;
+}
+
+/**
+ * Themes:
+ * Theme classes can control the visual
+ * appearance of elements with the invitation
+ * block.
+ *
+ *     @example:
+ *     <div class="invite theme-1">
+ *         <i class="invite__icon fa fa-comments-o"></i>
+ *         <a class="invite__button">
+ *             Theme 1
+ *         </a>
+ *         <p class="invite__text">
+ *             Brief invitation text
+ *         </p>
+ *     </div>
+ */
+
+
+.theme-1 .invite__button,
+.invite__button.theme-1 {
+    background-color: @color-theme-1-primary-bg;
+    color:            @color-theme-1-primary-fg;
+}
+
+.theme-2 .invite__button,
+.invite__button.theme-2 {
+    background-color: @color-theme-2-primary-bg;
+    color:            @color-theme-2-primary-fg;
+}
+
+.theme-3 .invite__button,
+.invite__button.theme-3 {
+    background-color: @color-theme-3-primary-bg;
+    color:            @color-theme-3-primary-fg;
+}
+

@@ -351,7 +351,7 @@ module.exports = function (grunt) {
             },
             options: {
               css: 'css/main.css',
-              title: 'Georgia K-12 STEM Incubator Style Guide',
+              title: 'Georgia STEM Incubator Style Guide',
               sg_css: 'css/styleguide.css'
             }
           }

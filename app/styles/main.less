@@ -1,17 +1,17 @@
-/*csslint adjoining-classes:false, box-sizing:false, font-sizes:false, qualified-headings:false, unique-headings:false, bulletproof-font-face:false, duplicate-properties:false, font-faces:false, compatible-vendor-prefixes:false */
+/*csslint adjoining-classes:false, box-sizing:false, font-sizes:false, qualified-headings:false, unique-headings:false, bulletproof-font-face:false, duplicate-properties:false, font-faces:false, compatible-vendor-prefixes:false,shorthand:false */
 
 
 /**
- * # Style Guide for Georgia K-12 STEM Incubator
+ * # Style Guide for Georgia STEM Incubator
  *
- * CSS stylesheet for Georgia K-12 STEM Incubator. Style
+ * CSS stylesheet for Georgia STEM Incubator. Style
  * guide generated automatically by
  * [styledown](https://github.com/styledown/styledown)
  * from comments embedded in the stylesheet.
  *
  * If you're reading the CSS source code, you can view
  * the live style guide on the
- * [STEM Incubator site](http://sathomas.me/STEM/docs/styleguide/).
+ * [STEM Incubator site](http://demo.stemincubator.org/docs/styleguide/).
  * If you're reading the style guide and have no other
  * access to the source code, you can see the fully
  * commented CSS file by viewing the page source.
@@ -22,44 +22,42 @@
  * example of the corresponding element. To see the
  * markup for any example, click on the ellipses
  * (`...`) below the example.
+ *
+ * > Note that the styles defined here assume that
+ * `normalize.css` has been included prior to
+ * the site-specific styles.
  */
-
 
 /*
- * > Note: the styles defined here assume that
- * `normalize.css` has been included prior to
- * these custom styles.
+ * This file is simply the parent file that includes
+ * all the component styles. Since LESS using lazy
+ * evaluation, we can import them in any order. The
+ * generated CSS file, however, is also used to
+ * document the style guide. To make it easy to find
+ * things in the style guide, we include the
+ * components in alphabetical order.
  */
 
 
-// This file is simply the parent file that includes
-// all the component styles. First we import the
-// components that are LESS-only: variable definitions
-// and utility mixins. Then we bring in the actual
-// styles.
-
-
-@import "thirdparty.less"; // Override third-party rules
-
-
-// Generic variables and mixins are optional
-
-@import (optional) "variables.less";
-@import (optional) "mixins.less";
-
-@import "page.less";            // Overall page structure
-@import "grid.less";            // Visual grid
-@import "type.less";            // Typography
-@import "btn.less";             // Buttons
-@import "site-hdr.less";        // Site header
-@import "search.less";          // Primary search form
-@import "results.less";         // Search results presentation
-@import "tagset.less";          // A set of tags
-@import "discovery-nav.less";   // Discovery navigation block
-@import "discovery.less";       // Discovery block
-@import "spotlight.less";       // Spotlight block
-@import "poi.less";             // Map points of interest
-@import "about.less";           // About the site block
-@import "credits.less";         // Site credits
-@import "footer.less";          // Site footer
-@import "util.less";            // Utility styles
+@import "about.less";
+@import "btn.less";
+@import "chkbox-group.less";
+@import "credits.less";
+@import "discovery.less";
+@import "discovery-nav.less";
+@import "grid.less";
+@import "invite.less";
+@import "map.less";
+@import "poi.less";
+@import "results.less";
+@import "scaffolding.less";
+@import "search.less";
+@import "site-ftr.less";
+@import "site-hdr.less";
+@import "spotlight.less";
+@import "thirdparty.less";
+@import "tabs.less";
+@import "type.less";
+@import "util.less";
+@import "util-mixins.less";
+@import "variables.less";

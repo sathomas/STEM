@@ -1,20 +1,39 @@
 /**
  * ## About
  *
- * An "about this site" block on the landing page
+ */
+
+/**
+ * ### `about`
+ * The `about` component provides typical
+ * "About this website" information. It
+ * includes headings (`about__heading`)
+ * and text (`about__text`).
+ *
+ *     @example:
+ *     <div class="about">
+ *         <h4 class="about__heading">
+ *             About block heading
+ *         </h4>
+ *         <p class="about__text">
+ *             Text content for the About
+ *             block (on the initial
+ *             landing page).
+ *         </p>
+ *     </div>
  */
 
 .about {
     background-color: @color-theme-0-white;
-    color:            @color-theme-0-dark;
-    margin: 0;
-    padding: @block-spacing 0;
-    @media @tablet {
-        padding: @block-spacing-tablet 0;
-    }
-    @media @desktop {
-        padding: @block-spacing-desktop 0;
-    }
+    color: @color-theme-0-dark;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    .spacing(padding-bottom);
+    padding-left: 0;
+    padding-right: 0;
+    .spacing(padding-top);
     text-align: center;
 }
 
@@ -23,11 +42,14 @@
 }
 
 .about__text {
-    margin: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
     max-width: 40em;
-    padding: @block-spacing;
-    @media @tablet {
-        padding: @block-spacing-tablet;
-    }
+    .spacing(padding-bottom);
+    .spacing(padding-left);
+    .spacing(padding-right);
+    .spacing(padding-top);
     text-align: center;
 }

@@ -10,6 +10,8 @@ Stem.Views = Stem.Views || {};
 
     Stem.Views.TagsAsCheckboxes = Backbone.View.extend({
 
+        tagName: 'span',
+
         // Once the view is created, we need to listen
         // for reset events in order to update the
         // view contents. Resets occur, for example,

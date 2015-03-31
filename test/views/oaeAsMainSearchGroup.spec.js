@@ -37,7 +37,7 @@ describe('OaeAsMainSearchGroup View', function () {
     it('should include a heading', function() {
         var $el = this.OaeAsMainSearchGroup.render().$el;
         $el.find('h3').length.should.equal(1);
-        $el.find('h3').hasClass('results-main__header').should.be.true();
+        $el.find('h3').hasClass('results-main__heading').should.be.true();
     });
 
     it('should include a list of results', function() {

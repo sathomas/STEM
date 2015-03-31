@@ -8,14 +8,17 @@
  * We're using flexbox for the grid since the page
  * layout is challenging for other grid approaches
  * (inline-block or floats). That does leave IE9
- * (and maybe IE10) behind.
+ * unsupported. If IE9 is desired in the future, it
+ * should be possible to provide "close enough"
+ * fallbacks using floats.
  */
 
-
 /**
- * Container:
- * The `container` class encapsulates all grid-based
- * content.
+ * ### `container`
+ * The `container` class or mixin encapsulates all
+ * grid-based content. Containers that are themselves
+ * nested within other elements are centered within
+ * those elements.
  *
  *     @example:
  *     <div class="container">
@@ -29,20 +32,72 @@
     margin-right: auto;
 }
 
-/*
- * The grid definitions are LESS mixins, not
- * direct classes. This avoids having to use
- * generic class names in the markup so the
- * HTML remains semantic.
+/**
+ * ### `row`
+ * The `row` class encapsulates a single row
+ * in the grid. Content within the row will
+ * be vertically aligned, subject to wrapping.
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             Columns go here
+ *         </div>
+ *     </div>
  */
 
 .row {
-    align-items: stretch;
+    align-items: stretch;   // full-height columns
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+/**
+ * ### `column`
+ * Column widths may be specified in two different
+ * ways. One way simply counts the number of columns
+ * the element should use. There are 12 columns in
+ * a full row, so the `six-columns` class represents
+ * half of the width of the container.
+ *
+ * Alternatively, columns may be specified as the
+ * fraction of the row. With this method, the
+ * above element would be given the `one-half-column`
+ * class. One of these two methods should be
+ * used consistenly within a block to avoid confusion.
+ * The current styles use the fractional column
+ * approach.
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             <div class="three-columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     3/12 (1/4) of row
+ *                 </div>
+ *             </div>
+ *             <div class="nine-columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     9/12 (3/4) of row
+ *                 </div>
+ *             </div>
+ *         </div>
+ *         <div class="row" style="margin-top:0.2em">
+ *             <div class="two-thirds-column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     2/3 of row
+ *                 </div>
+ *             </div>
+ *             <div class="one-third-column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     1/3 of row
+ *                 </div>
+ *             </div>
+ *         </div>
+ *     </div>
+ */
 
 .column {
     box-sizing: border-box;
@@ -52,81 +107,81 @@
     max-width: 100%;
 }
 
-.zero-columns() {
+.zero-columns {
     .column;
     flex-basis: 0;
 }
 
-.one-column() {
+.one-column {
     .column;
     @media @tablet  { flex-basis: 50%;            max-width: 50%;            }
     @media @desktop { flex-basis: 8.33333333333%; max-width: 8.33333333333%; }
 }
 
-.two-columns() {
+.two-columns {
     .column;
     @media @tablet  { flex-basis: 50%;            max-width: 50%;            }
     @media @desktop { flex-basis: 16.6666666667%; max-width: 16.6666666667%; }
 }
 
-.three-columns() {
+.three-columns {
     .column;
     @media @tablet  { flex-basis: 50%;            max-width: 50%;            }
     @media @desktop { flex-basis: 25%;            max-width: 25%;            }
 }
 
-.four-columns() {
+.four-columns {
     .column;
     @media @tablet  { flex-basis: 50%;            max-width: 50%;            }
     @media @desktop { flex-basis: 33.3333333333%; max-width: 33.3333333333%; }
 }
 
-.five-columns() {
+.five-columns {
     .column;
     @media @tablet  { flex-basis: 50%;            max-width: 50%;            }
     @media @desktop { flex-basis: 41.6666666667%; max-width: 41.6666666667%; }
 }
 
-.six-columns() {
+.six-columns {
     .column;
     @media @tablet  { flex-basis: 50%;            max-width: 50%;            }
     @media @desktop { flex-basis: 50%;            max-width: 50%;            }
 }
 
-.seven-columns() {
+.seven-columns {
     .column;
     @media @desktop { flex-basis: 58.3333333333%; max-width: 58.3333333333%; }
 }
 
-.eight-columns() {
+.eight-columns {
     .column;
     @media @desktop { flex-basis: 66.6666666667%; max-width: 66.6666666667%; }
 }
 
-.nine-columns() {
+.nine-columns {
     .column;
     @media @desktop { flex-basis: 75%;            max-width: 75%;            }
 }
 
-.ten-columns() {
+.ten-columns {
     .column;
     @media @desktop { flex-basis: 83.3333333333%; max-width: 83.3333333333%; }
 }
 
-.eleven-columns() {
+.eleven-columns {
     .column;
     @media @desktop { flex-basis: 91.6666666667%; max-width: 91.6666666667%; }
 }
 
-.twelve-columns() {
+.twelve-columns {
     .column;
 }
 
-.one-sixth-column()     { .two-columns; }
-.one-fourth-column()    { .three-columns; }
-.one-third-column()     { .four-columns; }
-.one-half-column()      { .six-columns; }
-.two-thirds-column()    { .eight-columns; }
-.three-fourths-column() { .nine-columns; }
-.five-sixths-column()   { .ten-columns; }
-.one-full-column()      { .twelve-columns; }
+.one-sixth-column     { .two-columns; }
+.one-fourth-column    { .three-columns; }
+.one-third-column     { .four-columns; }
+.one-half-column      { .six-columns; }
+.two-thirds-column    { .eight-columns; }
+.three-fourths-column { .nine-columns; }
+.five-sixths-column   { .ten-columns; }
+.one-full-column      { .twelve-columns; }

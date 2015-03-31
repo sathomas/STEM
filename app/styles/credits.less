@@ -1,62 +1,94 @@
 /**
  * ## Credits
  *
- * The credits block on the landing page
+ */
+
+/**
+ * ### `credits`
+ * The credits block on the landing page that
+ * provides information and links to resources
+ * and services on which the site relies.
+ * Components that can go within the credits
+ * block include:
+ *
+ * - Heading `credits__heading`
+ * - Text `credits__text`
+ * - Horizontal Rule `credits__rule`
+ * - Image links `credits__image-link`
+ * - Images `credits__image`
+ * - Small image links `credits__image-link--small`
+ *
+ *     @example:
+ *     <div class="credits">
+ *         <h4 class="credits__heading">
+ *             Credits block heading
+ *         </h4>
+ *         <p class="credits__text">
+ *             Text content for the Credits
+ *             block (on the initial
+ *             landing page).
+ *         </p>
+ *         <hr class="credits__rule" />
+ *         <h4 class="credits__heading">
+ *             Second credits block heading
+ *         </h4>
+ *         <a href="" class="credits__image-link">
+ *             <img src="" class="credits__image" />
+ *         </a>
+ *         <a href="" class="credits__image-link credits__image-link--small">
+ *             <img src="" class="credits__image credits__image--small" />
+ *         </a>
+ *     </div>
  */
 
 .credits {
     background-color: @color-theme-0-light;
-    color:            @color-theme-0-dark;
-    margin: 0;
-    padding-bottom: @block-spacing;
-    @media @tablet {
-        padding-bottom: @block-spacing-tablet;
-    }
+    color: @color-theme-0-dark;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    .spacing(padding-bottom);
+    .spacing(padding-top);
     text-align: center;
 }
 
-.credits__funding {
-    padding: @block-spacing;
-    @media @tablet {
-        padding: @block-spacing-tablet;
-    }
+.credits__heading {
+    .h4;
+    text-align: center;
 }
 
 .credits__text {
-    margin: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
     max-width: 40em;
-    padding: @block-spacing;
-    @media @tablet {
-        padding: @block-spacing-tablet;
-    }
+    .spacing(padding-bottom);
+    .spacing(padding-left);
+    .spacing(padding-right);
+    .spacing(padding-top);
     text-align: center;
 }
 
 .credits__rule {
     border: 1px solid @color-theme-0-medium;
     box-sizing: border-box;
-    margin-bottom: @block-spacing;
-    @media @tablet {
-        margin-bottom: @block-spacing-tablet;
-    }
+    .spacing(margin-bottom);
     margin-top: 0;
     width: 75%;
 }
 
-.credits__heading {
-    text-align: center;
-}
-
-.credits__service {
-    display: inline-block;
-    padding: 0 @block-spacing @block-spacing @block-spacing;
-    @media @tablet {
-        padding: 0 @block-spacing-tablet @block-spacing-tablet @block-spacing-tablet;
-    }
-}
-
 .credits__image-link {
     display: block;
+}
+
+.credits__image-link--small {
+    display: inline-block;
+    .spacing(padding-bottom);
+    .spacing(padding-left);
+    .spacing(padding-right);
+    padding-top: 0;
 }
 
 .credits__image {

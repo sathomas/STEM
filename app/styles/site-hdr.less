@@ -1,32 +1,83 @@
 /**
- * Header:
+ * ## Site Header
+ *
  * The header, including the responsive navigation bar,
  * at the top of the site.
  */
 
+/**
+ * ### `site-hdr`
+ * We use the `site-hdr` class instead of the more
+ * common `header` class to make it easuer to find
+ * style-related code using editor search and grep.
+ *
+ * The brand for the site is currently a placeholder
+ * for an identity or sponsorship. Rather than use
+ * a logo image, simple HTML components are sufficient.
+ * As is traditional, the logo is wrapped in an anchor
+ * tag that links to the home page for the site.
+ *
+ * The site navigation includes a hidden checkbox
+ * `<input>` and an empty label. The checkbox provides
+ * a simple CSS-only mechanism to toggle the collapsed
+ * or expanded state for the navigation menu on
+ * mobile viewports. The label provides the tap
+ * target on those viewports. It is empty in the
+ * markup so that its content can be supplied by
+ * CSS, allowing the content to appear only at
+ * appropriate viewport sizes. (The content also
+ * changes, depending on whether the menu is
+ * collapsed or expanded.)
+ *
+ * The menu items themselves are simply a standard
+ * unordered list.
+ *
+ *     @example:
+ *     <header role="banner" class="site-hdr"
+ *             data-theme="theme-1-dark">
+ *         <h1 class="site-hdr__brand">
+ *             <span class="site-hdr__brand__border">
+ *                 <a href="#"
+ *                    class="site-hdr__brand__link">
+ *                     The Georgia<br/>STEM Incubator
+ *                 </a>
+ *             </span>
+ *         </h1>
+ *         <nav role="navigation" class="site-hdr__navbar">
+ *             <input type="checkbox" id="nav-toggle"
+ *                    aria-hidden="true"
+ *                    class="site-hdr__navbar__checkbox"/>
+ *             <label for="nav-toggle" aria-hidden="true"
+ *                    class="site-hdr__navbar__label"></label>
+ *             <ul class="site-hdr__navbar__list">
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 1
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 2
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 3
+ *                     </a>
+ *                 </li>
+ *             </ul>
+ *         </nav>
+ *     </header>
+ */
+
 .site-hdr {
+    .clearfix;
 	height: 75px;
     position: relative;
     transition: background-color 400ms linear;
- }
-
-header[data-theme=theme-1-dark] {
-    background-color: @color-theme-1-dark-bg;
-    color: @color-theme-1-dark-fg;
-}
-
-header[data-theme=theme-1] {
-    background-color: @color-theme-1-primary-bg;
-    color: @color-theme-1-primary-fg;
-}
-
-.site-hdr:before, .site-hdr:after {
-    content: "";
-    display: table;
-}
-
-.site-hdr:after {
-    clear: both;
 }
 
 .site-hdr__brand {
@@ -36,8 +87,7 @@ header[data-theme=theme-1] {
     font-size: 20px;
     line-height: 1.2;
     margin-bottom: 0;
-    padding-left: @block-spacing;
-    @media @tablet { padding-left: @block-spacing-tablet; }
+    .spacing(padding-left);
     padding-top: 10px;
     @media @desktop { width: 50%; }
 }
@@ -45,7 +95,10 @@ header[data-theme=theme-1] {
 .site-hdr__brand__border {
     border: 1px solid white;
     display: inline-block;
-    padding: 1px 5px;
+    padding-bottom: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 1px;
 }
 
 .site-hdr__brand__link {
@@ -80,8 +133,11 @@ header[data-theme=theme-1] {
 	display: block;
 	font-size: 16px;
 	line-height: 1;
-	padding: 30px 10px 29px 0;
+	padding-bottom: 29px;
+	padding-left: 0;
+	padding-right: 10px;
 	@media @tablet { padding-right: @block-spacing-tablet; }
+	padding-top: 30px;
 	text-align: center;
 }
 
@@ -93,11 +149,17 @@ header[data-theme=theme-1] {
     border-top: 1px solid white;
     @media @desktop { border-top: none; }
     @media @desktop { height: 100%; }
-    margin: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
     max-height: 0;
     @media @desktop { max-height: none; }
     overflow-y: hidden;
-    padding: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
     position: absolute;
     @media @desktop { position: static; }
     right: 0;
@@ -114,6 +176,7 @@ header[data-theme=theme-1] {
 
 .site-hdr__navbar__item {
     .clickable;
+    .lnum;
     display: block;
     float:left;
     @media @desktop { height: 100%; }
@@ -123,6 +186,84 @@ header[data-theme=theme-1] {
     transition: background-color 400ms linear;
     width: 100%;
     @media @desktop { width: 33.3333333333%; }
+}
+
+.site-hdr__navbar__link {
+    box-sizing: border-box;
+    color: inherit;
+    display: block;
+	font-size: 16px;
+    @media @desktop { height: 100%; }
+	line-height: 1;
+	padding-bottom: 20px;
+	@media @desktop { padding-top: 0; }
+	.spacing(padding-left);
+	@media @desktop { padding-left: 0; }
+	.spacing(padding-right);
+	@media @desktop { padding-right: 0; }
+	padding-top: 20px;
+	@media @desktop { padding-top: 30px; }
+	text-decoration: none;
+    width: 100%;
+    @media @desktop { width: auto; }
+}
+
+
+/**
+ * Themes:
+ * The overall theme for the header is set using
+ * the `data-theme` attribute on the `<header>`
+ * element.
+ *
+ *     @example:
+ *     <header role="banner" class="site-hdr"
+ *             data-theme="theme-1">
+ *         <h1 class="site-hdr__brand">
+ *             <span class="site-hdr__brand__border">
+ *                 <a href="#"
+ *                    class="site-hdr__brand__link">
+ *                     The Georgia<br/>STEM Incubator
+ *                 </a>
+ *             </span>
+ *         </h1>
+ *         <nav role="navigation" class="site-hdr__navbar">
+ *             <input type="checkbox" id="nav-toggle"
+ *                    aria-hidden="true"
+ *                    class="site-hdr__navbar__checkbox"/>
+ *             <label for="nav-toggle" aria-hidden="true"
+ *                    class="site-hdr__navbar__label"></label>
+ *             <ul class="site-hdr__navbar__list">
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 1
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 2
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 3
+ *                     </a>
+ *                 </li>
+ *             </ul>
+ *         </nav>
+ *     </header>
+ */
+
+header[data-theme=theme-1-dark] {
+    background-color: @color-theme-1-dark-bg;
+    color: @color-theme-1-dark-fg;
+}
+
+header[data-theme=theme-1] {
+    background-color: @color-theme-1-primary-bg;
+    color: @color-theme-1-primary-fg;
 }
 
 header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(1) {
@@ -159,27 +300,28 @@ header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(3) {
     }
 }
 
+/**
+ * Main element transitions:
+ * On mobile viewports, the expanded menu,
+ * by default, overlays the top of the main
+ * site content. A better user experience is
+ * to have the main content move down to make
+ * make room for the menu. That's not possible
+ * entirely in CSS, but we do define some CSS
+ * rules that support a JavaScript implementation.
+ * To shift the main content down, the code
+ * adds the `data-nav-expanded=1` attribute
+ * to the `<main>` element.
+ *
+ *     .
+ */
 
-.site-hdr__navbar__link {
-    box-sizing: border-box;
-    color: inherit;
-    display: block;
-	font-size: 16px;
-    @media @desktop { height: 100%; }
-	line-height: 1;
-	padding: 20px @block-spacing;
-	@media @tablet { padding: 20px @block-spacing-tablet; }
-	@media @desktop { padding: 30px 0 0 0; }
-	text-decoration: none;
-    width: 100%;
-    @media @desktop { width: auto; }
-}
 
 main {
     transition: padding-top 250ms linear;
 }
 
-main[data-nav-expanded=true] {
+main[data-nav-expanded="1"] {
     padding-top: 168px;
     @media @desktop { padding-top: 0; }
 }

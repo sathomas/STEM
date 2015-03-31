@@ -127,11 +127,19 @@ Stem.Views = Stem.Views || {};
         render: function () {
 
             // Discovery maps are full-width (less
-            // any borders), but Leaflet requires
+            // any margins), but Leaflet requires
             // explicit dimensions. Grab them from
-            // the browser.
+            // the browser. We have to be a little
+            // tricky here because the normal jQuery
+            // `outerWidth()` function isn't reliable
+            // if the element is hidden. Instead,
+            // we read the CSS property directly.
+            // This does assume that the margins are
+            // defined in `px` units.
 
-            var width = $(window).width(),
+            var width = $(window).width() -
+                    parseInt(this.$el.css('margin-left')) -
+                    parseInt(this.$el.css('margin-right')),
                 height = width * this.options.aspectRatio;
 
             // Set the map size explicitly to fill
@@ -175,23 +183,14 @@ Stem.Views = Stem.Views || {};
                 this.addMarker(marker);
             }, this);
 
-            // Finally, hook the window resize
-            // event so that we can adjust the
-            // map size appropriately. We debounce
-            // the event since some browsers
-            // trigger a flood of `resize`
-            // events when the user changes
-            // window sizes.
+            // Cache a reference to the Leaflet
+            // structure in the map element. We
+            // do this so that the window resize
+            // handler can update Leaflet when
+            // the window size changes.
 
-            $(window).on('resize', _.chain(function() {
-                var width = $(window).width(),
-                    height = width * this.options.aspectRatio;
-                this.$el.css({
-                    height: height + 'px',
-                    width:  width  + 'px'
-                });
-                this.map.invalidateSize(false);
-            }).debounce(250).bind(this).value());
+            this.$el.data('map', this.map);
+            this.$el.data('aspectRatio', this.options.aspectRatio);
 
             return this; // for method chaining
 

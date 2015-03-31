@@ -1,14 +1,87 @@
 /**
- * ## Discovery navigations
+ * ## Discovery navigation
  *
- * Navigation block that controls the discovery
- * block.
+ * A special navigation block that controls
+ * the discovery block on the landing page.
+ * The block is hidden on small viewports and
+ * only available on a full desktop.
+ *
+ * The block is implemented as a group of
+ * radio buttons. The buttons themselves (i.e.
+ * the `<input>` elements are hidden from
+ * view and the user interacts strictly by
+ * clicking on the associated `<label>`
+ * elements.
+ *
+ * The selected radio button (the one that
+ * is checked) should be monitored by JavaScript
+ * and used to control which discovery block
+ * is visible. In the absence of JavaScript,
+ * the discovery navigation interaction won't
+ * work, so the navigation block is hidden
+ * and all discovery blocks are visible.
+ * This allows hashtag navigation to the blocks.
+ *
+ * The discovery blocks themselves are `<article>`
+ * elements that are siblings of the discovery
+ * navigation `<nav class="discovery-nav">` element
+ * The specific block that is to be visible is
+ * the _nth_ `<article>`, where _n_ is the value
+ * of the `data-discovery-nav` attribute on the
+ * `<nav class="discovery-nav">` element.
+ *
+ * Note that we use element names (`nav` and
+ * `article`) instead of classes because
+ *
+ * - the `nth-of-type()` psuedo-class doesn't
+ *   work with class names, and
+ * - attribute selectors without specific
+ *   element names have poor performance in
+ *   most browsers.
+ */
+
+/**
+ * ### `discovery-nav`
+ * The main container for a discovery navigation
+ * block is a `<nav>` element with the class
+ * `discovery-nav`. As noted above, this class
+ * should only be applied to a `<nav>` element.
+ *
+ *     .
  */
 
 .discovery-nav {
     .row;
     display: none;
+}
+
+.js .discovery-nav {
     @media @desktop { display: flex; }
+}
+
+@media @desktop {
+    .js nav.discovery-nav[data-discovery-nav] ~ article {
+        .invisible;
+    }
+}
+
+nav.discovery-nav[data-discovery-nav="1"] ~ article.discovery:nth-of-type(1) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="2"] ~ article.discovery:nth-of-type(2) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="3"] ~ article.discovery:nth-of-type(3) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="4"] ~ article.discovery:nth-of-type(4) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="5"] ~ article.discovery:nth-of-type(5) {
+    .visible;
+}
+nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
+    .visible;
 }
 
 .discovery-nav__radio {
@@ -18,6 +91,248 @@
 
 @selected:  ~".discovery-nav__radio:checked";
 
+/**
+ * ### `discovery-nav__label`
+ * The visible content for discovery navigation
+ * resides within the `<label>` elements. Their
+ * appearance is significantly different depending
+ * on whether or not the corresponding radio
+ * button is selected ('checked`).
+ *
+ * The markup for the labels isn't too complex,
+ * as the example shows. The styling benefits
+ * from a bit of explanation, though, so we'll
+ * tackle the narrow (unselected) view first.
+ * (That's how it appears in the LESS/CSS.)
+ *
+ *     .
+ */
+
+/**
+ * Markup Structure:
+ * The two main blocks are the content block
+ * and an image block. Within the content
+ * block are text and a More button. The
+ * More button isn't actually functional,
+ * since clicking anywhere on the `<label>`
+ * selects the section. It's just there to
+ * give the users a visual clue that they
+ * can click something. The visual styles
+ * and the specific image below the content
+ * are set by a theme class.
+ *
+ *       Content───────┐
+ *       │ ┌─────────┐ │
+ *       │ │ Text    │ │
+ *       │ │ ~~~~~   │ │
+ *       │ │ ~~~~~   │ │
+ *       │ └─────────┘ │
+ *       │ ┌──────┐    │
+ *       │ │ More │    │
+ *       │ └──────┘    │
+ *       └─────────────┘
+ *       ┌─────────────┐
+ *       │             │
+ *       │    Image    │
+ *       │             │
+ *       └─────────────┘
+ */
+
+/**
+ * Unselected discovery navigation:
+ * The example shows a discovery navigation
+ * label that is not selected. The significant
+ * visual aspects are:
+ *
+ * - All labels are equal height. (This is
+ *   achieved through the grid system.)
+ * - The text is vertically aligned to
+ *   the top of the container.
+ * - The image is vertically aligned to
+ *   the bottom of the container.
+ * - The More button appears immediately
+ *   above the image (not immediately
+ *   below the text).
+ * - The text and the more button are
+ *   left-aligned (with padding)
+ *
+ * > Note that the example does not have the
+ * same aspect ratio as the actual site because
+ * the example container is not full-width.
+ *
+ *     @example:
+ *     <label for="input-element-id" style="min-height:400px"
+ *            class="discovery-nav__label theme-1">
+ *         <div class="discovery-nav__label__content">
+ *             <span class="discovery-nav__label__text">
+ *                 Text content for label
+ *             </span>
+ *             <span class="discovery-nav__label__more">
+ *                 More
+ *             </span>
+ *         </div>
+ *         <div class="discovery-nav__label__image">
+ *         </div>
+ *     </label>
+ */
+
+/**
+ * Flexbox styles:
+ * The styles for discovery navigation
+ * labels rely on a CSS flexbox layout.
+ * The properties for the `<label>`
+ * element itself are:
+ *
+ * - `display:flex` To trigger flexbox
+ * - `flex-direction: column` Since the
+ *   label is a vertical flexbox
+ * - `align-items: flex-start` To left-align
+ *   the content (and image) children within
+ *   the label container.
+ * - `justify-content: space-between` To force
+ *     1. the first child element (the content)
+ *        to align with the start of the flexbox.
+ *        (In other words, to vertically align
+ *        the content with the top of the label
+ *        container.) And
+ *     2. the last child element (the image)
+ *        to align with the end of the flexbox.
+ *        (In other words, to vertically align
+ *        the bottom of the image with the
+ *        bottom of the label container.
+ * - in addition, the content container has
+ *   `flex-grow:1` to force it to grow
+ *   vertically to fill all the available
+ *   space.
+ *
+ *              │ align-items
+ *              ▼
+ *     ───────▶ ╔════════════╦──────┐
+ *     justify- ║            ║░▲░░░░│
+ *     content  ║            ║░│░░░░│
+ *        ┇     ║  Content   ║░│░░░░│
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░│ flex-
+ *        ┇     ║            ║░│ grow
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░▼░░░░│
+ *        ┇     ╠════════════╝░─░░░░│
+ *        ┇     ╠════════════╗░░░░░░│
+ *        ┇     ║            ║░░░░░░│
+ *     justify- ║   Image    ║░░░░░░│
+ *     content  ║            ║░░░░░░│
+ *     ───────▶ ╚════════════╩──────┘
+ */
+
+/**
+ * Selected discovery navigation:
+ * The next example shows a discovery navigation
+ * label that _is_ selected. The significant
+ * visual aspects are:
+ *
+ * - The label container is significantly wider.
+ *   (This is achieved through the grid system.)
+ * - The label container has a background image
+ *   (a larger version of the image in the
+ *   unselected state).
+ * - The text is vertically aligned to the
+ *   bottom of the container.
+ * - The bottom image is not visible.
+ * - The More button is not visible.
+ * - The text is centered
+ *
+ * > Note that the example does not have the
+ * same aspect ratio as the actual site because
+ * the example container is not full-width.
+ *
+ *     @example:
+ *     <input type="radio" name="discovery-nav" id="input-element-id-2"
+ *            class="discovery-nav__radio" checked="checked">
+ *     <label for="input-element-id-2" style="min-height:400px"
+ *            class="discovery-nav__label theme-1">
+ *         <div class="discovery-nav__label__content">
+ *             <span class="discovery-nav__label__text">
+ *                 Text content for label
+ *             </span>
+ *             <span class="discovery-nav__label__more">
+ *                 More
+ *             </span>
+ *         </div>
+ *         <div class="discovery-nav__label__image">
+ *         </div>
+ *     </label>
+ */
+
+ /**
+ * Flexbox styles:
+ * Here's how we adjust the flexbox styling
+ * to modify the appearance. Note that since
+ * the bottom image is not visible in this
+ * state, the content is the only child
+ * element of the label.
+ *
+ * - `align-items: center` To horizontally
+ *   center the content (the only child)
+ *   within the label container.
+ * - `justify-content: flex-end` To force
+ *   the last child element (which is the
+ *   only child element, the content)
+ *   to align with the end of the flexbox.
+ *   (In other words, to vertically align
+ *   the bottom of the content with the
+ *   bottom of the label container.
+ * - in addition, the content container's
+ *   `flex-grow` property is reset to the
+ *   default value of `0` since we don't
+ *   need it to fill the label container
+ *   any more.
+ *
+ *                ─────▶align-items◀─────
+ *                ┌───────────────────┐
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞┌───────────┐▞▞▞│
+ *      justify-  │▞▞▞│           │▞▞▞│
+ *      content   │▞▞▞│  Content  │▞▞▞│
+ *      ────────▶ └───┴───────────┴───┘
+ */
+
+/**
+ * Other label styles:
+ * There are other label styles as well,
+ * though most are pretty straightforward.
+ * The one slightly tricky property is
+ * the height of a selected label.
+ * We set that height explicitly
+ * to `41.2vw`, or 41.2% of the viewport
+ * width. We're doing that to force
+ * the aspect ratio of the entire
+ * label to be 61.8% (the Golden Ratio)
+ * which matches the aspect ratio of
+ * the images. Since a selected label
+ * is set by the grid system to be
+ * 2/3 of the full width, the height
+ * is 2/3 * 61.8%, or 41.2%. Note that
+ * we can't use the more common approach
+ * of embedding a spacer component and
+ * setting its padding to 61.8% because
+ * of Internet Explorer flexbox bugs.
+ *
+ *     .
+ */
+
 .discovery-nav__label {
     .one-sixth-column;
     align-items: flex-start;
@@ -26,16 +341,14 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     @{selected} + & {
         .two-thirds-column;
         align-items: center;
         font-size: 3rem;
         justify-content: flex-end;
         height: 41.2vw; // 61.8% * 2/3%
-        padding-bottom: @block-spacing;
-        @media @tablet { padding-bottom: @block-spacing-tablet; }
-        @media @desktop { padding-bottom: @block-spacing-desktop; }
+        .spacing(padding-bottom);
         text-align: center;
         vertical-align: bottom;
     }
@@ -43,22 +356,56 @@
 
 @selected-label:  ~"@{selected} + .discovery-nav__label";
 
+/**
+ * ### `discovery-nav__label__content`
+ * The content containers hold both text
+ * content and the More button. They also
+ * use a flexbox layout to force the button
+ * to the bottom of the container. The
+ * properties of the content container
+ * are much the same as the label container:
+ *
+ * - `display:flex`
+ * - `flex-direction:column`
+ * - `justify-content:space-between`
+ * - `align-items:flex-start`
+ *
+ * Because we don't need to force any
+ * children of the content container
+ * to expand their height, we don't need
+ * `flex-grow` properties for any of them.
+ *
+ * The `discovery-nav__label__content--detailed`
+ * class can be used for content within the
+ * container that is only visible when the
+ * discovery block is not selected. This is
+ * generally used to provide more expansive
+ * text content in the unselected state.
+ *
+ *     .
+ */
+
 .discovery-nav__label__content {
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
-    flex-grow: 2;
+    flex-grow: 1;
     justify-content: space-between;
-    padding: @block-spacing;
-    @media @tablet { padding: @block-spacing-tablet; }
-    @media @desktop { padding: @block-spacing-desktop; }
+    .spacing(padding-bottom);
+    .spacing(padding-left);
+    .spacing(padding-right);
+    .spacing(padding-top);
     @{selected-label} & {
         flex-grow: 0;
-        padding: 0;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
     }
 }
 
 @{selected-label} .discovery-nav__label__content--detailed {
-    display: none;
+    .invisible;
 }
 
 .discovery-nav__label__text {
@@ -67,15 +414,32 @@
 
 .discovery-nav__label__more {
     .btn;
-    align-self: flex-start;
     display: inline-block;
     background-color: @color-theme-0-white;
-    border: 1px solid transparent;
     color: @color-theme-0-black;
     @{selected-label} & {
         display: none;
     }
 }
+
+/**
+ * ### `discovery-nav__label__images`
+ * The image block (small image visible
+ * only when the label is not selected)
+ * is styled straightforwardly, except
+ * we use the same viewport width trick
+ * as above to force its aspect ratio.
+ * Since unselected styles are 1/6 of
+ * the page width, the image height is
+ * 1/6 * 61.8% or 10.3%.
+ *
+ * As noted above, the specific image
+ * shown in the block is determined by
+ * the theme class applied to the
+ * `<label>` element.
+ *
+ *     .
+ */
 
 .discovery-nav__label__image {
     background-size: cover;
@@ -119,25 +483,3 @@
     background-image: url(../images/theme-3-lowres.jpg);
 }
 
-
-.js nav.discovery-nav ~ article {
-    .invisible;
-}
-nav.discovery-nav[data-discovery-nav="1"] ~ article:nth-of-type(1) {
-    .visible;
-}
-nav.discovery-nav[data-discovery-nav="2"] ~ article:nth-of-type(2) {
-    .visible;
-}
-nav.discovery-nav[data-discovery-nav="3"] ~ article:nth-of-type(3) {
-    .visible;
-}
-nav.discovery-nav[data-discovery-nav="4"] ~ article:nth-of-type(4) {
-    .visible;
-}
-nav.discovery-nav[data-discovery-nav="5"] ~ article:nth-of-type(5) {
-    .visible;
-}
-nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
-    .visible;
-}

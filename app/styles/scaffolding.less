@@ -1,5 +1,5 @@
 /**
- * ## HTML Page Structure
+ * ## Scaffolding
  *
  * We use a straightforward semantic markup with the
  * three standard compononents of `<nav>`, `<main>`,
@@ -8,7 +8,7 @@
 
 
 /**
- * Section:
+ * ### `<section>`
  * Because the site is actually just a single page
  * application, there are multiple "apparent" pages
  * within the single HTML file. Each virtual page is
@@ -21,7 +21,9 @@
  * user can at least scroll to see all of the static
  * content. To override the default behavior on any
  * particular section, add the class `hide` or `show`
- * as appropriate.
+ * or set the `data-hide` attribute to `"1"` or `"0"`
+ * as appropriate. The `data-hide` attribute overrides
+ * all class- and position-based hiding.
  *
  * > Note: We "hide" sections by positioning them
  * offscreen, not by setting their display property
@@ -44,12 +46,18 @@ section {
 
 html.js section:not(:first-of-type),
 html.js section.hide,
-section.hide {
+section.hide,
+section[data-hide="1"] {
     .invisible;
 }
 
 html.js section.show,
-section.show {
+section.show,
+section[data-hide="0"],
+html.js section:not(:first-of-type)[data-hide="0"],
+html.js section.hide[data-hide="0"],
+section.hide[data-hide="0"],
+ {
     .visible;
 }
 

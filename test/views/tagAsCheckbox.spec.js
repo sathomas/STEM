@@ -5,7 +5,7 @@ describe('TagAsCheckbox View', function () {
 
     beforeEach(function () {
         this.$Scaffolding = $('<div>').addClass('scaffolding').css({'left':'-9999px','position': 'absolute'}).appendTo($('body'));
-        this.Tag = new Stem.Models.Tag({label: 'test'});
+        this.Tag = new Stem.Models.Tag({label: 'test', theme: 'theme-1'});
         this.TagAsCheckboxView = new Stem.Views.TagAsCheckbox({el: this.$Scaffolding,model: this.Tag});
     });
 
@@ -36,6 +36,11 @@ describe('TagAsCheckbox View', function () {
         var $el = this.TagAsCheckboxView.render().$el;
         $el.find('label').text().should.equal('test');
         $el.find('label').attr('for').should.equal($el.find('input').attr('id'));
+    });
+
+    it('should theme the checkbox', function() {
+        var $el = this.TagAsCheckboxView.render().$el;
+        $el.hasClass(this.Tag.get('theme')).should.be.true();
     });
 
     it('should update model based on user interations', function() {

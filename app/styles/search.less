@@ -1,14 +1,57 @@
 /**
  * ## Search
  *
- * Search form.
+ * A prominent search form for the site.
  */
 
+/**
+ * ### `search`
+ * A common search form. The form includes
+ * a label (typical only "visible" to assistive
+ * devices such as screen readers), an `<input>`
+ * element, and a submit `<button>`
+ *
+ * Colors for the submit button are defined by
+ * a parent theme class (e.g. on the `<form>`.
+ *
+ * Several points are noteworthy:
+ *
+ * - In order to avoid iOS search styles
+ *   overriding ours, be sure to use
+ *   `type="text"` instead of `type="search"`.
+ * - To force iOS to use a search keyboard
+ *   (with Search instead of the Enter key),
+ *   supply an `action` attribute (even it
+ *   it's meaningless) and give the `<input>`
+ *   element an `id` that includes "search."
+ * - There must be no whitespace between the
+ *   closing angle brace `>` of the input
+ *   and the opening angle brace `<` of the
+ *   button.
+ * - Do not provide text for the submit
+ *   button. CSS styles add the text in order
+ *   to change it for an icon on small viewports.
+ *
+ *     @example:
+ *     <form class="search theme-1"
+ *           role="search" action=".">
+ *         <label class="search__label">
+ *             Search label
+ *         </label>
+ *         <input placeholder="Search placeholder"
+ *                type="text"
+ *                class="search__input"
+ *                id="search_xxx"
+ *        ><button type="submit"
+ *                 class="search__submit"></button>
+ *     </form>
+ */
 
 .search {
-    padding: @block-spacing;
-    @media @tablet  { padding: @block-spacing-tablet;  }
-    @media @desktop { padding: @block-spacing-desktop; }
+    .spacing(padding-bottom);
+    .spacing(padding-left);
+    .spacing(padding-right);
+    .spacing(padding-top);
 }
 
 .search__label {
@@ -23,21 +66,21 @@
     border-bottom-right-radius: 0;
     border-right: none;
     border-top-right-radius: 0;
-    display: none;
-    @media @desktop { display: inline-block; }
+    display: inline-block;
     box-sizing: border-box;
     font-size: 2rem;
     height: 4rem;
     max-width: 600px;
-    margin: 0 auto @block-spacing auto;
-    padding: 0 10px 0 20px;
-    width: calc(100% - 41px);
-}
-
-.search__input--small {
-    display: inline-block;
-    @media @desktop { display: none; }
-    width: calc(100% - 31px);
+    margin-bottom: @block-spacing;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 20px;
+    padding-right: 10px;
+    padding-top: 0;
+    width: ~"calc(100% - 41px)";
+    @media @tablet { width: ~"calc(100% - 121px)"; }
 }
 
 .search__submit {
@@ -48,18 +91,30 @@
     border-bottom-left-radius: 0;
     border-left: none;
     border-top-left-radius: 0;
-    display: none;
-    @media @desktop { display: inline-block; }
-    margin: 0 auto;
-    width: 120px;
-}
-
-.search__submit--small {
     box-sizing: border-box;
     display: inline-block;
-    @media @desktop { display: none; }
-    padding: 0 10px;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 0;
     width: 40px;
+    @media @desktop { width: 120px; }
+}
+
+.search__submit:before {
+    content: "\f002";  // Font Awesome Search icon
+    font-family: FontAwesome;
+    font-weight: normal;
+    width: 40px;
+    @media @desktop {
+        content: "Search";
+        font-family: @font-stack;
+        font-weight: 600;
+    }
 }
 
 .theme-1 .search__submit {

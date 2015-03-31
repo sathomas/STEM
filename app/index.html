@@ -63,7 +63,7 @@ of course, means that JavaScript is available.
         This site is constructed as a single page web application, which means
         that all the content for all of the sites "pages" is in this single
         HTML file. What appear to the user as "pages" are simply `<section>`
-        elements in this file. A single `<header>` and `<footer>` enclose all
+        elements in this file. A single `<header>` and `<footer>` surround all
         of the sections.
 
         -->
@@ -106,6 +106,7 @@ of course, means that JavaScript is available.
                     </a>
                 </span>
             </h1>
+
             <nav role="navigation" class="site-hdr__navbar">
 
                 <!--
@@ -220,9 +221,8 @@ of course, means that JavaScript is available.
                         <div class="discovery-nav__label__content">
                             <span class="discovery-nav__label__text">
                                 Get support from other teachers just like
-                                you<span class="discovery-nav__label__content--detailed">,
-                                collaborate on resources and units, explore professional
-                                learning opportunities</span>
+                                you<span class="discovery-nav__label__content--detailed">
+                                and explore professional learning opportunities</span>
                             </span>
                             <span class="discovery-nav__label__more">More</span>
                         </div>
@@ -235,8 +235,8 @@ of course, means that JavaScript is available.
                         <div class="discovery-nav__label__content">
                             <span>
                                 Collaborate across the
-                                state<span class="discovery-nav__label__content--detailed">, review
-                                successful case studies, and research professional certification
+                                state<span class="discovery-nav__label__content--detailed">,
+                                review successful case studies, and research certification
                                 opportunities</span>
                             </span>
                             <span class="discovery-nav__label__more">More</span>
@@ -250,9 +250,8 @@ of course, means that JavaScript is available.
                         <div class="discovery-nav__label__content">
                             <span>
                                 Get involved in STEM education
-                                <span class="discovery-nav__label__content--detailed"> with
-                                schools, businesses, and other organizations in your
-                                community and around the state</span>
+                                <span class="discovery-nav__label__content--detailed">
+                                in your community and around the state</span>
                             </span>
                             <span class="discovery-nav__label__more">More</span>
                         </div>
@@ -277,7 +276,7 @@ of course, means that JavaScript is available.
 
                 <article id="teachers" class="discovery" aria-labelledby="teachers-heading">
                     <h3 id="teachers-heading"
-                        class="discovery__heading discovery__heading--theme-1">
+                        class="discovery__heading theme-1">
                         Supporting teachers
                     </h3>
 
@@ -290,17 +289,13 @@ of course, means that JavaScript is available.
 
                     -->
 
-                    <form id="teachers-discovery-search-form" class="search theme-1"
-                          role="search" action="https://stemincubator.oaeproject.org/search/">
-                        <label class="search__label">Search for resources</label>
-                        <input placeholder="Search the Georgia STEM Incubator"
-                               type="search" class="search__input"><!--
-                        --><button type="submit" class="search__submit">Search</button>
-                        <input placeholder="Search" type="search"
-                               class="search__input search__input--small"><!--
-                        --><button type="submit" class="search__submit search__submit--small">
-                            <i class="fa fa-search"></i>
-                        </button>
+                    <form class="search theme-1" role="search"
+                          action="https://stemincubator.oaeproject.org/search/"
+                          id="teachers-discovery-search-form">
+                          <label class="search__label">Search for resources</label>
+                          <input placeholder="Search the Incubator" type="text"
+                                 class="search__input"
+                         ><button type="submit" class="search__submit"></button>
                     </form>
 
                     <!--
@@ -309,39 +304,36 @@ of course, means that JavaScript is available.
 
                     -->
 
-                    <div class="discovery__options">
-                        <div class="discovery__option">
-                            <i class="discovery__option__icon fa fa-certificate"></i>
+                    <div class="theme-1">
+                        <div class="invite">
+                            <i class="invite__icon fa fa-certificate"></i>
                             <a id="teachers-search-courses"
-                               class="discovery__option__button
-                                      discovery__option__button--theme-1"
-                               href="#search//courses">
+                               class="invite__button"
+                               href="https://gatech.brightspace.com/incubator.asp">
                                 Find a course
                             </a>
-                            <p class="discovery__option__text">
+                            <p class="invite__text">
                                 Professional Learning Opportunities: courses, workshops, and more
                             </p>
                         </div>
-                        <div class="discovery__option">
-                            <i class="discovery__option__icon fa fa-comments-o"></i>
+                        <div class="invite">
+                            <i class="invite__icon fa fa-comments-o"></i>
                             <a id="teachers-search-groups"
-                               class="discovery__option__button
-                                      discovery__option__button--theme-1"
-                               href="#search//groups">
+                               class="invite__button"
+                               href="https://stemincubator.oaeproject.org/search/?types=user,group">
                                 Find people and groups
                             </a>
-                            <p class="discovery__option__text">
+                            <p class="invite__text">
                                 Share resources, discuss, and collaborate
                             </p>
                         </div>
-                        <div class="discovery__option">
-                            <i class="discovery__option__icon fa fa-money"></i>
-                            <a class="discovery__option__button
-                                      discovery__option__button--theme-1"
+                        <div class="invite">
+                            <i class="invite__icon fa fa-money"></i>
+                            <a class="invite__button"
                                href="https://secure.donorschoose.org/wizard/addressWizard.html">
                                 Fund projects
                             </a>
-                            <p class="discovery__option__text">
+                            <p class="invite__text">
                                 Get your class project funded through DonorsChoose.org
                             </p>
                         </div>
@@ -350,14 +342,14 @@ of course, means that JavaScript is available.
                 </article>
 
                 <!--
-                =====================
-                Discovery for Schools
-                =====================
+                ============================
+                Discovery for Administrators
+                ============================
                 -->
 
-                <article id="schools" class="discovery" aria-labelledby="schools-heading">
+                <article id="admins" class="discovery" aria-labelledby="schools-heading">
                     <h3 id="schools-heading"
-                        class="discovery__heading discovery__heading--theme-2">
+                        class="discovery__heading theme-2">
                         Supporting administrators
                     </h3>
 
@@ -366,7 +358,6 @@ of course, means that JavaScript is available.
                     Generic filler content for now
 
                     -->
-
 
                     <h4 class="discovery__subheading">
                         Getting started
@@ -380,41 +371,37 @@ of course, means that JavaScript is available.
                         and other organizations such as local businesses.
                     </p>
 
-                    <div class="discovery__options">
-                        <div class="discovery__option">
-                            <i class="discovery__option__icon fa fa-comments-o"></i>
-                            <a class="discovery__option__button
-                                      discovery__option__button--theme-2">
+                    <div class="theme-2">
+                        <div class="invite">
+                            <i class="invite__icon fa fa-comments-o"></i>
+                            <a class="invite__button">
                                 Join the network
                             </a>
-                            <p class="discovery__option__text">
+                            <p class="invite__text">
                                 Put your school on the STEM map
                             </p>
                         </div>
-                        <div class="discovery__option">
-                            <i class="discovery__option__icon fa fa-certificate"></i>
-                            <a class="discovery__option__button
-                                      discovery__option__button--theme-2">
+                        <div class="invite">
+                            <i class="invite__icon fa fa-certificate"></i>
+                            <a class="invite__button">
                                 Get certified
                             </a>
-                            <p class="discovery__option__text">
+                            <p class="invite__text">
                                 Find professional learning opportunities
                             </p>
                         </div>
-                        <div class="discovery__option">
-                            <i class="discovery__option__icon fa fa-group"></i>
-                            <a class="discovery__option__button
-                                      discovery__option__button--theme-2">
+                        <div class="invite">
+                            <i class="invite__icon fa fa-group"></i>
+                            <a class="invite__button">
                                 Case studies
                             </a>
-                            <p class="discovery__option__text">
+                            <p class="invite__text">
                                 Partner with businesses and other organizations
                             </p>
                         </div>
                     </div>
 
                 </article>
-
 
                 <!--
                 ======================
@@ -424,7 +411,7 @@ of course, means that JavaScript is available.
 
                 <article id="partners" class="discovery theme-3" aria-labelledby="partners-heading">
                     <h3 id="partners-heading"
-                        class="discovery__heading discovery__heading--theme-3">
+                        class="discovery__heading theme-3">
                         Supporting partners
                     </h3>
 
@@ -437,19 +424,21 @@ of course, means that JavaScript is available.
                     <h4 class="discovery__subheading">
                         Getting started
                     </h4>
-                    <div class="discovery__option discovery__option--single">
-                        <div class="dicovery__option__visual">
-                            <i class="discovery__option__icon discovery__option__icon--single fa fa-book"></i>
-                            <a class="discovery__option__button
-                                      discovery__option__button--theme-3"
-                               href="https://gatech.brightspace.com/incubator.asp​">
-                                Partnering Handbook
-                            </a>
-                        </div>
-                        <p class="discovery__text discovery__text--single">
-                            Find schools, school projects, and other partner organizations
-                            in your neighborhood with the maps below. Read the handbook for
-                            strategies and tips on how to get involved.
+
+                    <p class="discovery__text">
+                        Find schools, school projects, and other partner organizations
+                        in your neighborhood with the maps below. Read the handbook for
+                        strategies and tips on how to get involved.
+                    </p>
+
+                    <div class="invite theme-3">
+                        <i class="invite__icon fa fa-book"></i>
+                        <a class="invite__button"
+                           href="https://gatech.brightspace.com/incubator.asp​">
+                            Partners' Handbook
+                        </a>
+                        <p class="invite__text">
+                            Learn about partnering
                         </p>
                     </div>
 
@@ -459,35 +448,35 @@ of course, means that JavaScript is available.
 
                     -->
 
-                    <div class="discovery-tabs">
+                    <div class="tabs">
                         <input type="radio" name="tabs-1" id="tab-1-1"
-                		       class="discover-tabs__input" checked="checked"/><!--
-                     --><label for="tab-1-1" class="discovery_tabs_label">
+                		       class="tabs__input" checked="checked"/>
+                        <label for="tab-1-1" class="tabs__label">
                 		    Class Projects to Fund
-                		</label><!--
-                     --><input type="radio" name="tabs-1" id="tab-1-2"
-                		       class="discover-tabs__input"/><!--
-                     --><label for="tab-1-2" class="discovery_tabs_label">
+                		</label>
+                		<input type="radio" name="tabs-1" id="tab-1-2"
+                		       class="tabs__input"/>
+                        <label for="tab-1-2" class="tabs__label">
                 		    Local partners
-                        </label><!--
-                     --><div class="discovery-tabs__panel">
+                        </label>
+                        <div class="tabs__panel">
                             <p class="discovery__text">
                                 Donate to a local class project through DonorsChoose.org
                             </p>
-                            <div id="partners-donorschoose-map" class="discovery-tabs__map">
+                            <div id="partners-donorschoose-map" class="map">
                             </div>
                             <a href="http://www.donorschoose.org">
-                                <img class="discovery-tabs__logo"
+                                <img class="discovery-image"
                                      src="images/donorschoose.svg"/>
                             </a>
                             <a class="btn"
                                href="https://secure.donorschoose.org/wizard/addressWizard.html">
                                 Request funding
                             </a>
-                        </div><!--
-                     --><div class="discovery-tabs__panel">
+                        </div>
+                        <div class="tabs__panel">
                             <div id="partners-organizations-filter" class="discovery__text"></div>
-                            <div id="partners-organizations-map" class="discovery-tabs__map">
+                            <div id="partners-organizations-map" class="map">
                             </div>
                             <p class="discovery__text">
                                 Put your organization or school on the map by
@@ -558,41 +547,34 @@ of course, means that JavaScript is available.
                     <h3 id="credits-heading" class="util--sr-only">
                         Credits
                     </h3>
-                    <div class="credits__funding">
-                        <h4 class="credits__heading">Funded by</h4>
-                        <a href="https://gosa.georgia.gov" class="credits__image-link">
-                            <img src="images/gosa.svg" class="credits__image" />
-                        </a>
-                        <p class="credits__text">
-                            The Governor's Office of Student Achievement (GOSA)
-                            strives to increase student achievement and school
-                            completion across Georgia through meaningful,
-                            transparent, and objective analysis and communication
-                            of statewide data.
-                        </p>
-                    </div>
+                    <h4 class="credits__heading">Funded by</h4>
+                    <a href="https://gosa.georgia.gov" class="credits__image-link">
+                        <img src="images/gosa.svg" class="credits__image" />
+                    </a>
+                    <p class="credits__text">
+                        The Governor's Office of Student Achievement (GOSA)
+                        strives to increase student achievement and school
+                        completion across Georgia through meaningful,
+                        transparent, and objective analysis and communication
+                        of statewide data.
+                    </p>
                     <hr class="credits__rule" />
-                    <div class="credits__services">
-                        <h4 class="credits__heading">Powered by</h4>
-                        <div class="credits__service">
-                            <a href="http://oaeproject.org" class="credits__image-link">
-                            	<img src="images/oae.svg"
-                            	     class="credits__image credits__image--small" />
-                            </a>
-                        </div>
-                        <div class="credits__service">
-                            <a href="http://www.brightspace.com" class="credits__image-link">
-                                <img src="images/brightspace.svg"
-                                     class="credits__image credits__image--small" />
-                            </a>
-                        </div>
-                        <div class="credits__service">
-                            <a href="http://www.donorschoose.org" class="credits__image-link">
-                                <img src="images/donorschoose.svg"
-                                     class="credits__image credits__image--small" />
-                            </a>
-                        </div>
-                    </div>
+                    <h4 class="credits__heading">Powered by</h4>
+                    <a href="http://oaeproject.org"
+                       class="credits__image-link credits__image-link--small">
+                    	<img src="images/oae.svg"
+                    	     class="credits__image credits__image--small" />
+                    </a>
+                    <a href="http://www.brightspace.com"
+                       class="credits__image-link credits__image-link--small">
+                        <img src="images/brightspace.svg"
+                             class="credits__image credits__image--small" />
+                    </a>
+                    <a href="http://www.donorschoose.org"
+                       class="credits__image-link credits__image-link--small">
+                        <img src="images/donorschoose.svg"
+                             class="credits__image credits__image--small" />
+                    </a>
                 </div>
 
             </section>
@@ -631,41 +613,41 @@ of course, means that JavaScript is available.
 
         -->
 
-        <footer role="contentinfo" class="footer">
+        <footer role="contentinfo" class="site-ftr">
 
-	    	<div class="footer__one-full-column">
-		    	<a class="footer__button">
-			    	<i class="fa fa-twitter footer__button__icon"></i>
+	    	<div class="site-ftr__block">
+		    	<a class="site-ftr__button">
+			    	<i class="fa fa-twitter site-ftr__button__icon"></i>
 			    	Follow us on Twitter
 			    </a>
-		    	<a class="footer__button">
-			    	<i class="fa fa-newspaper-o footer__button__icon"></i>
+		    	<a class="site-ftr__button">
+			    	<i class="fa fa-newspaper-o site-ftr__button__icon"></i>
 			    	Sign up for our newsletter
 			    </a>
-		    	<a class="footer__button">
-			    	<i class="fa fa-coffee footer__button__icon"></i>
+		    	<a class="site-ftr__button">
+			    	<i class="fa fa-coffee site-ftr__button__icon"></i>
 			    	Join our community
 			    </a>
 	    	</div>
 
-	    	<div class="footer__one-full-column">
-                <p class="footer__copyright">
+	    	<div class="site-ftr__block">
+                <p class="site-ftr__copyright">
 	                Copyright 2015 ©
-	                <a href="https://gosa.georgia.gov" class="footer__copyright-link">
+	                <a href="https://gosa.georgia.gov" class="site-ftr__copyright-link">
     	                The Governor’s Office of Student Achievement
     	            </a>.
 	                All rights reserved.
                     Images copyright
                     <a href="https://www.flickr.com/photos/cybrarian77/6284181389/"
-                       class="footer__copyright-link">
+                       class="site-ftr__copyright-link">
                         cybrarian77
                     </a>,
                     <a href="https://www.flickr.com/photos/ctsenatedems/10043241965"
-                       class="footer__copyright-link">
+                       class="site-ftr__copyright-link">
                         CT Senate Democrats
                     </a>, and
                     <a href="https://www.flickr.com/photos/kentuckycountrydayschool/4089873006"
-                       class="footer__copyright-link">
+                       class="site-ftr__copyright-link">
                         Kentucky Country Day
                     </a>.
                     Licensed under Creative Commons.

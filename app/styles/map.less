@@ -1,0 +1,35 @@
+/**
+ * ## Map
+ *
+ * Styling for maps embedded in the page. Maps
+ * are created with the Leaflet.js library. Refer
+ * to the `thirdparty.less` file for styles that
+ * directly override the standard Leaflet styles.
+ */
+
+/**
+ * ### `map`
+ * Maps are full-wdith (of the browser window)
+ * less any left and right margin. _Note that
+ * margins must be specified in `px` units
+ * for the fluid re-sizing (performed in JavaScript
+ * due to Leaflet's limitation) to work._
+ *
+ *     @example:
+ *     <div class="map">
+ *         <p>Screen capture of map; not live</p>
+ *         <img src="images/samplemap.png"
+ *              style="width:100%;" />
+ *     </div>
+ */
+
+.map {
+    .spacing(margin-bottom);
+    margin-left: @block-spacing;
+    @media @tablet  { margin-left: @block-spacing-tablet; }
+    @media @desktop { margin-left: calc(4 * @block-spacing-desktop); }
+    margin-right: @block-spacing;
+    @media @tablet  { margin-right: @block-spacing-tablet; }
+    @media @desktop { margin-right: calc(4 * @block-spacing-desktop); }
+    margin-top: 0;
+}

@@ -12,7 +12,7 @@ Stem.Views = Stem.Views || {};
 
         template: JST['app/scripts/templates/tagAsCheckbox.ejs'],
 
-        className: 'tagset__tag',
+        className: 'chkbox',
 
         // We listen for change events on our `<input>` element.
 
@@ -57,6 +57,12 @@ Stem.Views = Stem.Views || {};
                 _(this.model.toJSON()).extend({
                     id: _.uniqueId()})
                 ));
+
+            // Add a theme if desired.
+
+            if (this.model.get('theme')) {
+                this.$el.addClass(this.model.get('theme'));
+            }
 
             // Return the view for method chaining.
 

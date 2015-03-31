@@ -37,7 +37,7 @@ describe('OaeAsSecondarySearchGroup View', function () {
     it('should include a heading', function() {
         var $el = this.OaeAsSecondarySearchGroup.render().$el;
         $el.find('h4').length.should.equal(1);
-        $el.find('h4').hasClass('results-secondary__header').should.be.true();
+        $el.find('h4').hasClass('results-secondary__heading').should.be.true();
     });
 
     it('should include a list of results', function() {

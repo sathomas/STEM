@@ -1,0 +1,159 @@
+/**
+ * ## Checkbox group
+ *
+ * A group of related checkboxes
+ */
+
+/**
+ * ### `chkbox-group`
+ * The `chkbox-group` class defines a group of
+ * related checkbox `<input>` elements with
+ * a common label. Generally the group is for
+ * use within a narrow grid column. On small
+ * viewports it displays inline to conserve
+ * vertical screen real estate. On larger
+ * devices, the checkboxes are arranged
+ * vertically.
+ *
+ * Note that the group label is hidden on
+ * small viewports to allow the inputs
+ * to fit on a single line.
+ *
+ *     @example:
+ *     <form class="chkbox-group">
+ *         <fieldset class="chkbox-group__fieldset">
+ *             <label class="chkbox-group__label">
+ *                 Group label:
+ *             </label>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="54">
+ *                 <label class="chkbox__label" for="54">
+ *                     Item 1
+ *                 </label>
+ *             </span>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="55">
+ *                 <label class="chkbox__label" for="55">
+ *                     Item 2
+ *                 </label>
+ *             </span>
+ *         </fieldset>
+ *     </form>
+ */
+
+.chkbox-group__label {
+    .invisible;
+    @media @tablet { .visible; }
+}
+
+.chkbox-group__fieldset {
+    border: none;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: @block-spacing;
+    padding-left: @block-spacing;
+    padding-right: @block-spacing;
+    padding-top: @block-spacing;
+}
+
+.chkbox {
+    display: inline-block;
+    @media @tablet { display: block; }
+    padding-left: calc( 2 * @block-spacing );
+    @media @tablet { padding-left: @block-spacing; }
+}
+
+.chkbox__label {
+    .lnum;
+    cursor: pointer;
+    padding-left: @block-spacing;
+}
+
+.chkbox-group input[type="checkbox"] {
+    cursor: pointer;
+}
+
+/**
+ * ### `chkbox-group--inline`
+ * The `chkbox-group--inline` modifier class has
+ * the checkbox group display as inline for all
+ * viewports. That class is added to the main
+ * form element.
+ *
+ *     @example:
+ *     <form class="chkbox-group chkbox-group--inline">
+ *         <fieldset class="chkbox-group__fieldset">
+ *             <label class="chkbox-group__label">
+ *                 Group label:
+ *             </label>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="56">
+ *                 <label class="chkbox__label" for="56">
+ *                     Item 1
+ *                 </label>
+ *             </span>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="57">
+ *                 <label class="chkbox__label" for="57">
+ *                     Item 2
+ *                 </label>
+ *             </span>
+ *         </fieldset>
+ *     </form>
+ */
+
+.chkbox-group--inline {
+    .chkbox { display: inline-block; }
+    .chkbox-group__fieldset {
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 0;
+    }
+    .chkbox__label {
+        padding-left: 0;
+        padding-right: @block-spacing;
+    }
+}
+
+/**
+ * Themes:
+ * Theme classes may be applied to the individual
+ * checkboxes to determine the styling of their
+ * labels.
+ *
+ *     @example:
+ *     <form class="chkbox-group chkbox-group--inline">
+ *         <fieldset class="chkbox-group__fieldset">
+ *             <label class="chkbox-group__label">
+ *                 Group label:
+ *             </label>
+ *             <span class="chkbox theme-3">
+ *                 <input type="checkbox" id="58">
+ *                 <label class="chkbox__label"
+ *                        for="58">
+ *                     Theme 3
+ *                 </label>
+ *             </span>
+ *             <span class="chkbox theme-3-light">
+ *                 <input type="checkbox" id="59">
+ *                 <label class="chkbox__label"
+ *                        for="59">
+ *                     Theme 3 light
+ *                 </label>
+ *             </span>
+ *         </fieldset>
+ *     </form>
+ */
+
+.chkbox.theme-3 .chkbox__label {
+    color: @color-theme-3-primary-bg;
+}
+
+.chkbox.theme-3-light .chkbox__label {
+    color: @color-theme-3-light-bg;
+}
+
+

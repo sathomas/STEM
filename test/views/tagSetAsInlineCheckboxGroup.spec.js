@@ -35,7 +35,7 @@ describe('TagSetAsInlineCheckboxGroup View', function () {
 
     it('should add a label for the fieldset', function() {
         var $el = this.TagSetAsInlineCheckboxGroup.render().$el;
-        $el.find('fieldset > label').first().text().should.equal('title');
+        $el.find('fieldset > label').first().text().should.equal('title:');
     });
 
     it('should enclose the model views in the fieldset', function() {
