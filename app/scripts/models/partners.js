@@ -48,11 +48,13 @@ Stem.Models = Stem.Models || {};
 
             this.showBusinesses = new Stem.Models.Tag({
                 label: 'Organizations',
-                selected: true
+                selected: true,
+                theme: 'theme-3'
             });
             this.showSchools = new Stem.Models.Tag({
                 label: 'Schools',
-                selected: true
+                selected: true,
+                theme: 'theme-3-light'
             });
 
             // Create a single collection of all tags to
@@ -174,7 +176,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            this.getLatLong(business, 'poi-business');
+            this.getLatLong(business, 'theme-3 poi-business');
 
         },
 
@@ -183,7 +185,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            this.getLatLong(school, 'poi-school');
+            this.getLatLong(school, 'theme-3-light poi-school');
 
         },
 
@@ -199,7 +201,7 @@ Stem.Models = Stem.Models || {};
 
             this.proposalPois.add(
                 new Stem.Models.Poi({
-                    className: 'poi-proposal',
+                    className: 'theme-0-black poi-proposal',
                     imageUrl:  proposal.get('thumbImageURL'),
                     latitude:  proposal.get('latitude'),
                     link:      proposal.get('proposalURL'),

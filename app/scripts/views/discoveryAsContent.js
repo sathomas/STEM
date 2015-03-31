@@ -15,21 +15,44 @@ Stem.Views = Stem.Views || {};
 
     Stem.Views.DiscoveryAsContent = Backbone.View.extend({
 
-        initialize: function () {
-
-            // Set up the different child views.
-
-            this.partnerDiscovery = new Stem.Views.PartnersAsDiscovery({
-                model: this.model.get('partners')
-            });
-
-        },
+        template: JST['app/scripts/templates/discoveryAsContent.ejs'],
 
         render: function () {
 
-            // Render the child views.
+            // Normally this view is used to "fill in"
+            // components that already exist on a static
+            // page. When that's the case, we will have
+            // been provided an element that already has
+            // content. To be safe, though, we check to
+            // make sure that content is present. If it
+            // isn't we use our template as a starting
+            // point.
 
-            this.partnerDiscovery.render();
+            if (this.$el.is(':empty')) {
+
+                // We don't need to supply any
+                // attributes to the view since
+                // it's just a static skeleton.
+
+                this.$el.html(this.template());
+
+            }
+
+            // Create and render the different child views.
+
+            this.teacherDiscovery = new Stem.Views.TeachersAsDiscovery({
+                el: this.$el.find('#teacher'),
+                model: this.model.get('teachers')
+            }).render();
+            this.adminDiscovery = new Stem.Views.AdminsAsDiscovery({
+                el: this.$el.find('#admins'),
+                model: this.model.get('admins')
+            }).render();
+            this.partnerDiscovery = new Stem.Views.PartnersAsDiscovery({
+                el: this.$el.find('#partners'),
+                model: this.model.get('partners')
+            }).render();
+
 
             var discovery = this;
 
@@ -84,6 +107,12 @@ Stem.Views = Stem.Views || {};
             return this; // for method chaining
 
         },
+
+        // The `show` method lets child views know
+        // that their view should now be visible.
+        // Most child views don't need it, but any
+        // with maps will want an event to prompt
+        // the user for permisstion to get location.
 
         show: function(section) {
 

@@ -17,6 +17,12 @@ Stem.Views = Stem.Views || {};
 
     Stem.Views.PartnersAsDiscovery = Backbone.View.extend({
 
+        tagName: 'article',
+
+        className: 'discovery',
+
+        id: 'partners',
+
         initialize: function () {
 
             // During initialization, create any
@@ -65,21 +71,20 @@ Stem.Views = Stem.Views || {};
 
             if (this.model.showBusinesses.get('selected')) {
                 $('#partners-organizations-map .poi-business')
-                    .removeClass('poi--hidden');
+                    .attr('data-hidden', '0');
             } else {
                 $('#partners-organizations-map .poi-business')
-                    .addClass('poi--hidden');
+                    .attr('data-hidden', '1');
             }
 
             if (this.model.showSchools.get('selected')) {
                 $('#partners-organizations-map .poi-school')
-                    .removeClass('poi--hidden');
+                    .attr('data-hidden', '0');
             } else {
                 $('#partners-organizations-map .poi-school')
-                    .addClass('poi--hidden');
+                    .attr('data-hidden', '1');
             }
         },
-
 
         show: function () {
 

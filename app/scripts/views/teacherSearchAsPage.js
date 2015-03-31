@@ -29,7 +29,7 @@ Stem.Views = Stem.Views || {};
 
         renderSearchBar: function () {
 
-            var model = this.model.searchQuery;
+            var model = this.model.get('searchQuery');
 
             // Create separate views for both of the search forms
             // and insert them into the page.

@@ -21,29 +21,31 @@ Stem.Models = Stem.Models || {};
 
         initialize: function () {
 
-            // When this model is created, all we really
-            // do is create the child models that back
-            // various components of the teacher-focused
-            // search page. Since this parent model isn't
-            // dynamic, we can just set properties directly
-            // instead of going through Backbone's `set()`
-            // and `get()` methods.
+            // If no search query was provided when
+            // the model was created, we create our
+            // own.
 
-            // One model tracks the free-form search query.
+            if (!this.get('searchQuery')) {
 
-            this.searchQuery = new Stem.Models.Search({
-                label: 'Search for resources',
-                placeholder: 'Search the Georgia STEM Incubator',
-                shortPlaceholder: 'Search'
-            });
+                var searchQuery = new Stem.Models.Search({
+                    label: 'Search for resources',
+                    placeholder: 'Search the Incubator'
+                });
+
+                this.set('searchQuery',searchQuery);
+
+            }
 
             // If that model changes, we'll want to update
             // the live searches. Because we're tracking user
-            // keystrokes, we debounce the udpate to avoid
-            // thrashing the server.
+            // keystrokes, we debounce the update to avoid
+            // hammering the server.
 
-            this.listenTo(this.searchQuery, 'change',
-                _(this.updateSearch).debounce(250));
+            this.get('searchQuery').on(
+                'change',
+                _(this.updateSearch).debounce(250),
+                this
+            );
 
             // Next we set up the various tags that users
             // can set to focus the search. Initially, all
@@ -117,7 +119,7 @@ Stem.Models = Stem.Models || {};
 
             this.searchResults = {
                 content: new Stem.Models.SearchGroup({
-                            collection: new Stem.Collections.Content([], { limit: 16 } ),
+                            collection: new Stem.Collections.Contents([], { limit: 16 } ),
                             heading: 'Resources and units',
                             moreLink: Stem.config.oae.protocol + '//' +
                                       Stem.config.oae.host + '/search/?types=content'
@@ -170,7 +172,7 @@ Stem.Models = Stem.Models || {};
             // Start with whatever the user has typed into
             // the free-form query.
 
-            var keywords = this.searchQuery.get('query'),
+            var keywords = this.get('searchQuery').get('query'),
                 extendedKeywords = keywords;
 
             // Add special keywords based on the tag
@@ -269,7 +271,7 @@ Stem.Models = Stem.Models || {};
             // Start by extracting the query.
 
             var query = encodeURIComponent(
-                this.searchQuery.get('query')
+                this.get('searchQuery').get('query')
             );
 
             // Add the appropriate facet.
