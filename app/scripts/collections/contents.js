@@ -22,7 +22,7 @@ Stem.Collections = Stem.Collections || {};
 (function () {
     'use strict';
 
-    Stem.Collections.Content = Backbone.Collection.extend({
+    Stem.Collections.Contents = Backbone.Collection.extend({
 
         model: Stem.Models.Content,
 
