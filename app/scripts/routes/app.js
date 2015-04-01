@@ -145,7 +145,7 @@ Stem.Routers = Stem.Routers || {};
             facet = facet || 'content';
             this.teacherSearch.set('facet',
                 decodeURIComponent(facet));
-            this.teacherSearch.searchQuery.set('query',
+            this.searchQuery.set('query',
                 decodeURIComponent(query));
             this.loadPage('teachers-search','theme-1');
         },
@@ -177,7 +177,7 @@ Stem.Routers = Stem.Routers || {};
             // typing a search query in the discovery
             // block, we want that partial search
             // query to show up in the teacher search
-            // results if the user switches to the
+            // results if the user navigates to the
             // search resuls page. To have both models
             // share search queries, we create a common
             // [search](search.html) model that both
@@ -207,12 +207,49 @@ Stem.Routers = Stem.Routers || {};
             // view for the "Discovery blocks".
 
             this.discoveryContent = new Stem.Views.DiscoveryAsContent({
+                el: $('#landing'),
                 model: this.discovery
             }).render();
 
-            // That discoveryContent view triggers
+            // Now we create the second of our two
+            // main views. This view controls the
+            // [teacherSearchPage](teacherSearchAsPage.html)
+            // part of the site.
+
+            this.teacherSearchPage = new Stem.Views.TeacherSearchAsPage({
+                el: $('#teachers-search'),
+                model: this.teacherSearch
+            }).render();
+
+            // Handle high level events from the views
+            // we've created.
+
+            // If the discovery content view detects
+            // that the user submits a search form,
+            // we want to navigate to the search
+            // results "page."
+
+            this.discoveryContent.on('search:submit', function() {
+
+                // Retrieve the submitted query.
+
+                var query = this.searchQuery.get('query');
+
+                // Although in general we don't trigger
+                // a full route when we update the navigation,
+                // in this case we really do want the app
+                // to behave exactly as if the user had
+                // navigated to the web site. Setting `trigger: true`
+                // is simpler than replicating the code in
+                // multiple places.
+                this.navigate('search/' + encodeURIComponent(query) + '/content',
+                    {trigger: true});
+
+            }, this);
+
+            // The discoveryContent view triggers
             // `navigate` events when the user navigates
-            // to a new discovery section. We don't have
+            // to a new discovery region. We don't have
             // to do very much when that event occurs
             // since the CSS takes care of exposing the
             // appropriate content. We do want to make
@@ -232,16 +269,6 @@ Stem.Routers = Stem.Routers || {};
                 $(window).scrollTop(pos);
 
             });
-
-            // Now we create the second of our two
-            // main views. This view controls the
-            // [teacherSearchPage](teacherSearchAsPage.html)
-            // part of the site.
-
-            this.teacherSearchPage = new Stem.Views.TeacherSearchAsPage({
-                el: $('#teachers-search'),
-                model: this.teacherSearch
-            }).render();
 
             // Just as with the discoveryContent view,
             // the teacherSearch model triggers a
@@ -266,85 +293,6 @@ Stem.Routers = Stem.Routers || {};
                 }
 
             });
-
-            // Add any required logic that ties the
-            // different pages or content blocks
-            // together.
-
-            // Now that the teachers search info
-            // is available, replace the generic
-            // search form on the landing page with
-            // a teacher-focused one. We're going
-            // to link this search form with the
-            // form on the search results page so
-            // that the two stay in sync. To do
-            // that, we'll use the same model for
-            // both forms.
-
-            // Create a view for the dynamic
-            // search form.
-
-            this.landingSearch = new Stem.Views.SearchAsForm({
-                model: this.searchQuery,
-                theme: 'theme-1'
-            });
-
-            // Inject the new search form into the
-            // page.
-
-            $('#teachers-discovery-search-form')
-                .replaceWith(this.landingSearch.render().$el);
-
-            // Watch for updates to the search query so
-            // we can update the links to other search
-            // facets. We debounce this event handler
-            // to avoid thrashing while the user types.
-
-            this.searchQuery.on('change', _(function() {
-
-                // When the user pauses typing,
-                // grab the contents of the search
-                // field so far.
-
-                var query = encodeURIComponent(
-                    this.teacherSearch.get('searchQuery').get('query')
-                );
-
-                // Update any interior links to
-                // search results with the new
-                // query.
-
-                $('#teachers-search-courses').attr('href',
-                    '#search/' + query + '/courses'
-                );
-
-                $('#teachers-search-groups').attr('href',
-                    '#search/' + query + '/groups'
-                );
-
-            }).debounce(250), this);
-
-            // Watch for submission of the new search
-            // form and navigate appropriately.
-
-            this.landingSearch.on('submit', function() {
-
-                // Retrieve the submitted query.
-
-                var query = this.teacherSearch.get('searchQuery').get('query');
-
-                // Although in general we don't trigger
-                // a full route when we update the navigation,
-                // in this case we really do want the app
-                // to behave exactly as if the user had
-                // navigated to the web site. Setting `trigger: true`
-                // is simpler than replicating the code in
-                // multiple places.
-
-                this.navigate('search/' + encodeURIComponent(query) + '/content',
-                    {trigger: true});
-
-            }, this);
 
             // Everything's ready, so enable history management.
 

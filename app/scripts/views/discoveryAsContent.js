@@ -41,7 +41,7 @@ Stem.Views = Stem.Views || {};
             // Create and render the different child views.
 
             this.teacherDiscovery = new Stem.Views.TeachersAsDiscovery({
-                el: this.$el.find('#teacher'),
+                el: this.$el.find('#teachers'),
                 model: this.model.get('teachers')
             }).render();
             this.adminDiscovery = new Stem.Views.AdminsAsDiscovery({
@@ -52,6 +52,13 @@ Stem.Views = Stem.Views || {};
                 el: this.$el.find('#partners'),
                 model: this.model.get('partners')
             }).render();
+
+            // The teacher region of the discovery
+            // block includes a search form. The view
+            // triggers an event if the user submits
+            // that form.
+
+            this.listenTo(this.teacherDiscovery, 'search:submit', this.submitSearch);
 
 
             var discovery = this;
@@ -130,6 +137,24 @@ Stem.Views = Stem.Views || {};
                     break;
 
             }
+
+        },
+
+        // The `submitSearch` handler responds to
+        // the user's submission of a search query.
+
+        submitSearch: function() {
+
+            // When a submit event occurs, we
+            // can't handle it entirely within
+            // the discovery view (since the
+            // result should be a navigation
+            // to the search results page).
+            // Pass the event "up the chain"
+            // to let other code take care of
+            // it.
+
+            this.trigger('search:submit');
 
         }
 

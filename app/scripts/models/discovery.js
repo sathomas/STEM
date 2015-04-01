@@ -18,16 +18,16 @@ Stem.Models = Stem.Models || {};
 
             // If no search query was provided when
             // the model was created, we create our
-            // own.
+            // own. (We don't use the `defaults`
+            // property to avoid creating unnecessary
+            // models.
 
             if (!this.get('searchQuery')) {
 
-                var searchQuery = new Stem.Models.Search({
+                this.set('searchQuery', new Stem.Models.Search({
                     label: 'Search for resources',
                     placeholder: 'Search the Incubator'
-                });
-
-                this.set('searchQuery',searchQuery);
+                }));
 
             }
 
@@ -38,34 +38,29 @@ Stem.Models = Stem.Models || {};
             // share the user's active query string.
 
             this.set('teachers', new Stem.Models.Teachers({
-                searchQuery: this.get('searchQuery');
+                searchQuery: this.get('searchQuery')
             }));
             this.set('admins',   new Stem.Models.Admins({
-                searchQuery: this.get('searchQuery');
+                searchQuery: this.get('searchQuery')
             }));
             this.set('partners', new Stem.Models.Partners({
-                searchQuery: this.get('searchQuery');
+                searchQuery: this.get('searchQuery')
             }));
+
+            this.on('change:searchQuery', this.updateQuery, this);
+
+        },
+
+        updateQuery: function () {
 
             // If someone changes our search query,
             // we need to update the child models.
 
-            this.on('set:searchQUery', function() {
+            var searchQuery = this.get('searchQuery');
 
-                this.get('teachers').set(
-                    'searchQuery',
-                    this.get('searchQuery')
-                );
-                this.get('admins').set(
-                    'searchQuery',
-                    this.get('searchQuery')
-                );
-                this.get('partners').set(
-                    'searchQuery',
-                    this.get('searchQuery')
-                );
-
-            }, this);
+            this.get('teachers').set('searchQuery', searchQuery);
+            this.get('admins').set('searchQuery', searchQuery);
+            this.get('partners').set('searchQuery', searchQuery);
 
         }
 

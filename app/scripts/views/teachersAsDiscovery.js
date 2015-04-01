@@ -1,4 +1,7 @@
-/*global Stem, Backbone, JST*/
+/*global Stem, _, Backbone, JST*/
+
+// Backbone view for the teacher's region of
+// the discovery block on the landing page.
 
 Stem.Views = Stem.Views || {};
 
@@ -15,10 +18,17 @@ Stem.Views = Stem.Views || {};
 
         id: 'teachers',
 
+        // The only user interaction we have to worry
+        // about here is the free-form search. The
+        // initialization code sets that up. It relies
+        // on the `searchQuery` attribute of the
+        // backing model to manage the state of the
+        // query.
+
         initialize: function () {
 
-            // If the search query model is reset, we need
-            // to update that part of our view.
+            // If the search query model is reset, we
+            // update that part of our view.
 
             this.listenTo(
                 this.model,
@@ -27,15 +37,20 @@ Stem.Views = Stem.Views || {};
             );
 
             // If the search query itself changes, we need
-            // to update the invitation links.
+            // to update the invitation links. We debounce
+            // this event handler to avoid hammering the
+            // browser with updates.
 
             this.listenTo(
                 this.model.get('searchQuery'),
                 'change:query',
-                this.updateInvites
+                _(this.updateInvites).debounce(250)
             );
 
         },
+
+        // Separate function to focus on rendering
+        // the search form that's part of our view.
 
         renderSearch: function () {
 
@@ -45,28 +60,45 @@ Stem.Views = Stem.Views || {};
 
             if (!this.$el.is(':empty')) {
 
-                // If a view already exists, remove it.
+                // Before we slam a new search form
+                // into the view, check to see if there's
+                // already one present. If there is,
+                // we explicitly remove it so that it
+                // can clean up event handlers, etc.
 
-                if (this.searchBar) {
-                    this.searchBar.remove();
+                if (this.searchForm) {
+                    this.stopListening(this.searchForm);
+                    this.searchForm.remove();
                 }
 
-                // Create a view and render it.
+                // Create a view for the search form
+                // and render it into our view.
 
-                this.searchBar = new Stem.Views.SearchAsForm({
+                this.searchForm = new Stem.Views.SearchAsForm({
                     el: this.$el.find('#teachers-discovery-search-form'),
                     model: this.model.get('searchQuery'),
                     theme: 'theme-1'
                 }).render();
 
+                // Watch for submit events related to the
+                // form.
+
+                this.listenTo(this.searchForm, 'submit', this.submitSearch);
+
                 // Update the invitation links to
-                // account for a new query string.
+                // account for a (potentially) new
+                // query string.
 
                 this.updateInvites();
 
             }
 
         },
+
+        // The invitation links are links to
+        // specific facets of the search results. As the
+        // user changes the search query, we update those
+        // links to reflect the current query value.
 
         updateInvites: function () {
 
@@ -103,12 +135,38 @@ Stem.Views = Stem.Views || {};
 
             }
 
+            // Add the ARIA attributes for accessibility
+
+            var headingId = _.uniqueId();
+            this.$el.attr('aria-labelledby', headingId);
+            this.$el.find('h3').attr('id', headingId);
+
             // Render the search bar in the discovery
             // section.
 
             this.renderSearch();
 
             return this; // for method chaining
+
+        },
+
+        submitSearch: function (ev) {
+
+            // Block the default handling of the
+            // submit event since we're dealing
+            // with it completely within our (single)
+            // page app.
+
+            ev.preventDefault();
+
+            // When the user submits the search form,
+            // the effect is beyond the scope of this
+            // view. We pass it upstairs by triggering
+            // an event.
+
+            this.trigger('search:submit');
+
+            return false;  // no need to bubble this event
 
         }
 

@@ -15,10 +15,6 @@ describe('Search Model', function () {
         this.SearchModel.get('placeholder').should.equal('');
     });
 
-    it('should default to an empty short placeholder', function() {
-        this.SearchModel.get('shortPlaceholder').should.equal('');
-    });
-
     it('should default to an empty query', function() {
         this.SearchModel.get('query').should.equal('');
     });
