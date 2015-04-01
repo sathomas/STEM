@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -251,6 +266,11 @@
               
               <a class="source" href="teacherSearchAsPage.html">
                 teacherSearchAsPage.js
+              </a>
+            
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
               </a>
             
           </div>
@@ -658,7 +678,7 @@ can be executed.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.trigger(<span class="hljs-string">'submit'</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.trigger(<span class="hljs-string">'submit'</span>, ev);</pre></div></div>
             
         </li>
         
@@ -669,13 +689,12 @@ can be executed.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
-              <p>Prevent further event handling.</p>
+              <p>Prevent regular form submission.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
             ev.preventDefault();
-            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 
         },</pre></div></div>
             

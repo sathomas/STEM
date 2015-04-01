@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -251,6 +266,11 @@
               
               <a class="source" href="teacherSearchAsPage.html">
                 teacherSearchAsPage.js
+              </a>
+            
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
               </a>
             
           </div>
@@ -434,7 +454,9 @@ appropriate class.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $clicked.toggleClass(<span class="hljs-string">'spotlight__item--expanded'</span>);</pre></div></div>
+            $clicked.attr(<span class="hljs-string">'data-expanded'</span>,
+                $clicked.attr(<span class="hljs-string">'data-expanded'</span>) === <span class="hljs-string">'1'</span> ? <span class="hljs-string">'0'</span> : <span class="hljs-string">'1'</span>
+            );</pre></div></div>
             
         </li>
         
@@ -452,7 +474,7 @@ class.</p>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.spotlight__item'</span>).not($clicked)
-                .removeClass(<span class="hljs-string">'spotlight__item--expanded'</span>);
+                .attr(<span class="hljs-string">'data-expanded'</span>,<span class="hljs-string">'0'</span>);
 
         }
 

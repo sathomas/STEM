@@ -3,42 +3,1267 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Georgia K-12 STEM Incubator Style Guide</title>
+  <title>Georgia STEM Incubator Style Guide</title>
   <link rel="stylesheet" href="css/styleguide.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body class="sg">
   <div>
-    <h1 id="style-guide-for-georgia-k-12-stem-incubator" class="sg">Style Guide for Georgia K-12 STEM Incubator</h1>
-    <p class="sg">CSS stylesheet for Georgia K-12 STEM Incubator. Style guide generated automatically by
+    <h1 id="style-guide-for-georgia-stem-incubator" class="sg">Style Guide for Georgia STEM Incubator</h1>
+    <p class="sg">CSS stylesheet for Georgia STEM Incubator. Style guide generated automatically by
       <a href="https://github.com/styledown/styledown" class="sg">styledown</a>
       from comments embedded in the stylesheet.</p>
     <p class="sg">If you&apos;re reading the CSS source code, you can view the live style guide on the
-      <a href="http://sathomas.me/STEM/docs/styleguide/" class="sg">STEM Incubator site</a>. If you&apos;re reading the style guide and have no other access to the source code, you can see the fully commented CSS file by viewing the page source.</p>
+      <a href="http://demo.stemincubator.org/docs/styleguide/" class="sg">STEM Incubator site</a>. If you&apos;re reading the style guide and have no other access to the source code, you can see the fully commented CSS file by viewing the page source.</p>
     <p class="sg">In the style guide, the left side of this page describes the various style elements and gives guidance for their use. The right side shows an example of the corresponding element. To see the markup for any example, click on the ellipses (
       <code class="sg">...</code>) below the example.</p>
-    <section class="sg-block sg-section-third-party-overrides">
-      <h3 id="third-party-overrides" class="sg">Third-Party Overrides</h3>
-      <p class="sg">Override third-party properties as needed.</p>
+    <blockquote class="sg">
+      <p class="sg">Note that the styles defined here assume that
+        <code class="sg">normalize.css</code>has been included prior to the site-specific styles.</p>
+    </blockquote>
+    <section class="sg-section sg-section-about">
+      <h2 id="about" class="sg">About</h2>
+      <section class="sg-block sg-section--about-">
+        <div class="sg-text">
+          <h3 id="-about-" class="sg">
+            <code class="sg">about</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">about</code>component provides typical &quot;About this website&quot; information. It includes headings (
+            <code class="sg">about__heading</code>) and text (
+            <code class="sg">about__text</code>).</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="about">
+              <h4 class="about__heading">
+                About block heading
+              </h4>
+              <p class="about__text">
+                Text content for the About block (on the initial landing page).
+              </p>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;about&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;about__heading&quot;</span>&gt;</span>
+    About block heading
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;about__text&quot;</span>&gt;</span>
+    Text content for the About block (on the initial landing page).
+  <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
     </section>
 
-    <section class="sg-section sg-section-html-page-structure">
-      <h2 id="html-page-structure" class="sg">HTML Page Structure</h2>
+    <section class="sg-section sg-section-buttons">
+      <h2 id="buttons" class="sg">Buttons</h2>
+      <section class="sg-block sg-section--btn-">
+        <div class="sg-text">
+          <h3 id="-btn-" class="sg">
+            <code class="sg">btn</code>
+          </h3>
+          <p class="sg">We use the
+            <code class="sg">btn</code>class not for brevity, but to make it easier to search for the class as distinct from the element. The
+            <code class="sg">btn--small</code>variation (unsurprisingly) is a smaller version of the button. Note that &apos;btn--small
+            <code class="sg">should be applied _in addition to_ (rather than instead of) the regular</code>btn` class.</p>
+          <p class="sg">By itself, the
+            <code class="sg">btn</code>class does not provide text or background colors. Those are defined by a parent theme. The theme classes
+            <code class="sg">theme-1</code>, etc. can be applied either to the
+            <code class="sg">btn</code>element directly or to a parent element.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <button class="btn theme-1">
+              Theme 1
+            </button>
+            <button class="btn theme-2">
+              Theme 2
+            </button>
+            <button class="btn theme-3">
+              Theme 3
+            </button>
+            <button class="btn btn--small theme-1">
+              Small Button
+            </button>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-1&quot;</span>&gt;</span>
+  Theme 1
+<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-2&quot;</span>&gt;</span>
+  Theme 2
+<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-3&quot;</span>&gt;</span>
+  Theme 3
+<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn--small theme-1&quot;</span>&gt;</span>
+  Small Button
+<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-checkbox-group">
+      <h2 id="checkbox-group" class="sg">Checkbox group</h2>
+      <p class="sg">A group of related checkboxes</p>
+      <section class="sg-block sg-section--chkbox-group-">
+        <div class="sg-text">
+          <h3 id="-chkbox-group-" class="sg">
+            <code class="sg">chkbox-group</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">chkbox-group</code>class defines a group of related checkbox
+            <code class="sg">&lt;input&gt;</code>elements with a common label. Generally the group is for use within a narrow grid column. On small viewports it displays inline to conserve vertical screen real estate. On larger devices, the checkboxes are arranged vertically.
+          </p>
+          <p class="sg">Note that the group label is hidden on small viewports to allow the inputs to fit on a single line.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <form class="chkbox-group">
+              <fieldset class="chkbox-group__fieldset">
+                <label class="chkbox-group__label">
+                  Group label:
+                </label>
+                <span class="chkbox">
+                  <input type="checkbox" id="54">
+                  <label class="chkbox__label" for="54">
+                    Item 1
+                  </label>
+                </span>
+                <span class="chkbox">
+                  <input type="checkbox" id="55">
+                  <label class="chkbox__label" for="55">
+                    Item 2
+                  </label>
+                </span>
+              </fieldset>
+            </form>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group__fieldset&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group__label&quot;</span>&gt;</span>
+      Group label:
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;54&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox__label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;54&quot;</span>&gt;</span>
+        Item 1
+      <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;55&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox__label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;55&quot;</span>&gt;</span>
+        Item 2
+      <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--chkbox-group-inline-">
+        <div class="sg-text">
+          <h3 id="-chkbox-group-inline-" class="sg">
+            <code class="sg">chkbox-group--inline</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">chkbox-group--inline</code>modifier class has the checkbox group display as inline for all viewports. That class is added to the main form element.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <form class="chkbox-group chkbox-group--inline">
+              <fieldset class="chkbox-group__fieldset">
+                <label class="chkbox-group__label">
+                  Group label:
+                </label>
+                <span class="chkbox">
+                  <input type="checkbox" id="56">
+                  <label class="chkbox__label" for="56">
+                    Item 1
+                  </label>
+                </span>
+                <span class="chkbox">
+                  <input type="checkbox" id="57">
+                  <label class="chkbox__label" for="57">
+                    Item 2
+                  </label>
+                </span>
+              </fieldset>
+            </form>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group chkbox-group--inline&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group__fieldset&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group__label&quot;</span>&gt;</span>
+      Group label:
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;56&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox__label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;56&quot;</span>&gt;</span>
+        Item 1
+      <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;57&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox__label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;57&quot;</span>&gt;</span>
+        Item 2
+      <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-themes">
+        <div class="sg-text">
+          <h3 id="themes" class="sg">Themes</h3>
+          <p class="sg">Theme classes may be applied to the individual checkboxes to determine the styling of their labels.
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <form class="chkbox-group chkbox-group--inline">
+              <fieldset class="chkbox-group__fieldset">
+                <label class="chkbox-group__label">
+                  Group label:
+                </label>
+                <span class="chkbox theme-3">
+                  <input type="checkbox" id="58">
+                  <label class="chkbox__label" for="58">
+                    Theme 3
+                  </label>
+                </span>
+                <span class="chkbox theme-3-light">
+                  <input type="checkbox" id="59">
+                  <label class="chkbox__label" for="59">
+                    Theme 3 light
+                  </label>
+                </span>
+              </fieldset>
+            </form>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group chkbox-group--inline&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">fieldset</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group__fieldset&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox-group__label&quot;</span>&gt;</span>
+      Group label:
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox theme-3&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;58&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox__label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;58&quot;</span>&gt;</span>
+        Theme 3
+      <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox theme-3-light&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;59&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;chkbox__label&quot;</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;59&quot;</span>&gt;</span>
+        Theme 3 light
+      <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">fieldset</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-credits">
+      <h2 id="credits" class="sg">Credits</h2>
+      <section class="sg-block sg-section--credits-">
+        <div class="sg-text">
+          <h3 id="-credits-" class="sg">
+            <code class="sg">credits</code>
+          </h3>
+          <p class="sg">The credits block on the landing page that provides information and links to resources and services on which the site relies. Components that can go within the credits block include:</p>
+          <ul class="sg">
+            <li class="sg">Heading
+              <code class="sg">credits__heading</code>
+            </li>
+            <li class="sg">Text
+              <code class="sg">credits__text</code>
+            </li>
+            <li class="sg">Horizontal Rule
+              <code class="sg">credits__rule</code>
+            </li>
+            <li class="sg">Image links
+              <code class="sg">credits__image-link</code>
+            </li>
+            <li class="sg">Images
+              <code class="sg">credits__image</code>
+            </li>
+            <li class="sg">Small image links
+              <code class="sg">credits__image-link--small</code>
+            </li>
+          </ul>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="credits">
+              <h4 class="credits__heading">
+                Credits block heading
+              </h4>
+              <p class="credits__text">
+                Text content for the Credits block (on the initial landing page).
+              </p>
+              <hr class="credits__rule">
+              <h4 class="credits__heading">
+                Second credits block heading
+              </h4>
+              <a href="" class="credits__image-link">
+                <img src="" class="credits__image">
+              </a>
+              <a href="" class="credits__image-link credits__image-link--small">
+                <img src="" class="credits__image credits__image--small">
+              </a>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__heading&quot;</span>&gt;</span>
+    Credits block heading
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__text&quot;</span>&gt;</span>
+    Text content for the Credits block (on the initial landing page).
+  <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">hr</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__rule&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__heading&quot;</span>&gt;</span>
+    Second credits block heading
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__image-link&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__image&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__image-link credits__image-link--small&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;credits__image credits__image--small&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-discovery">
+      <h2 id="discovery" class="sg">Discovery</h2>
+      <p class="sg">Discovery blocks are regions on the main landing page focussed on specific types of users.</p>
+      <section class="sg-block sg-section--discovery-">
+        <div class="sg-text">
+          <h3 id="-discovery-" class="sg">
+            <code class="sg">discovery</code>
+          </h3>
+          <p class="sg">Discovery blocks, in addition to having the
+            <code class="sg">discovery</code>class, should use the
+            <code class="sg">&lt;article&gt;</code>tag as their main container. This tag is required by the interactions defined in the discovery navigation block.</p>
+          <p class="sg">The main discovery heading is hidden on desktop viewports because the discovery navigation block (which is only shown on desktops) serves the role of a main heading. Discovery headings can be visually styled by the addition of a theme class.</p>
+          <p class="sg">Other components that make up a discovery block (all are optional) include sub-headings, text, and images.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <article class="discovery" aria-labelledby="id-heading">
+              <h3 id="id-heading" class="discovery__heading theme-1">
+                Discovery block heading
+              </h3>
+              <h4 class="discovery__subheading">
+                Discovery block sub-heading
+              </h4>
+              <p class="discovery__text">
+                Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum.
+              </p>
+              <a href="http://oaeproject.org">
+                <img src="images/oae.svg" class="discovery-image">
+              </a>
+            </article>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">article</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery&quot;</span> <span class="hljs-attribute">aria-labelledby</span>=<span class="hljs-value">&quot;id-heading&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h3</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;id-heading&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery__heading theme-1&quot;</span>&gt;</span>
+    Discovery block heading
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery__subheading&quot;</span>&gt;</span>
+    Discovery block sub-heading
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery__text&quot;</span>&gt;</span>
+    Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit sit amet non magna. Donec id
+    elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
+    fermentum massa justo sit amet risus. Maecenas faucibus mollis interdum. Maecenas faucibus mollis interdum.
+  <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;http://oaeproject.org&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/oae.svg&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-image&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">article</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-discovery-navigation">
+      <h2 id="discovery-navigation" class="sg">Discovery navigation</h2>
+      <p class="sg">A special navigation block that controls the discovery block on the landing page. The block is hidden on small viewports and only available on a full desktop.</p>
+      <p class="sg">The block is implemented as a group of radio buttons. The buttons themselves (i.e. the
+        <code class="sg">&lt;input&gt;</code>elements are hidden from view and the user interacts strictly by clicking on the associated
+        <code class="sg">&lt;label&gt;</code>
+        elements.</p>
+      <p class="sg">The selected radio button (the one that is checked) should be monitored by JavaScript and used to control which discovery block is visible. In the absence of JavaScript, the discovery navigation interaction won&apos;t work, so the navigation block is hidden and all discovery blocks are visible. This allows hashtag navigation to the blocks.</p>
+      <p class="sg">The discovery blocks themselves are
+        <code class="sg">&lt;article&gt;</code>
+        elements that are siblings of the discovery navigation
+        <code class="sg">&lt;nav class=&quot;discovery-nav&quot;&gt;</code>element The specific block that is to be visible is the
+        <em class="sg">nth</em>
+        <code class="sg">&lt;article&gt;</code>, where
+        <em class="sg">n</em>is the value of the
+        <code class="sg">data-discovery-nav</code>attribute on the
+        <code class="sg">&lt;nav class=&quot;discovery-nav&quot;&gt;</code>element.</p>
+      <p class="sg">Note that we use element names (
+        <code class="sg">nav</code>and
+        <code class="sg">article</code>) instead of classes because</p>
+      <ul class="sg">
+        <li class="sg">the
+          <code class="sg">nth-of-type()</code>psuedo-class doesn&apos;t work with class names, and</li>
+        <li class="sg">attribute selectors without specific element names have poor performance in most browsers.</li>
+      </ul>
+      <section class="sg-block sg-section--discovery-nav-">
+        <div class="sg-text">
+          <h3 id="-discovery-nav-" class="sg">
+            <code class="sg">discovery-nav</code>
+          </h3>
+          <p class="sg">The main container for a discovery navigation block is a
+            <code class="sg">&lt;nav&gt;</code>element with the class
+            <code class="sg">discovery-nav</code>. As noted above, this class should only be applied to a
+            <code class="sg">&lt;nav&gt;</code>element.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+      <section class="sg-block sg-section--discovery-nav__label-">
+        <div class="sg-text">
+          <h3 id="-discovery-nav__label-" class="sg">
+            <code class="sg">discovery-nav__label</code>
+          </h3>
+          <p class="sg">The visible content for discovery navigation resides within the
+            <code class="sg">&lt;label&gt;</code>elements. Their appearance is significantly different depending on whether or not the corresponding radio button is selected (&apos;checked`).</p>
+          <p class="sg">The markup for the labels isn&apos;t too complex, as the example shows. The styling benefits from a bit of explanation, though, so we&apos;ll tackle the narrow (unselected) view first. (That&apos;s how it appears in the LESS/CSS.)</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+      <section class="sg-block sg-section-markup-structure">
+        <div class="sg-text">
+          <h3 id="markup-structure" class="sg">Markup Structure</h3>
+          <p class="sg">The two main blocks are the content block and an image block. Within the content block are text and a More button. The More button isn&apos;t actually functional, since clicking anywhere on the
+            <code class="sg">&lt;label&gt;</code>
+            selects the section. It&apos;s just there to give the users a visual clue that they can click something. The visual styles and the specific image below the content are set by a theme class.</p>
+        </div><pre class="sg sg-lang-css sg-code">  <span class="hljs-tag">Content</span>&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+  &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510; &#x2502;
+  &#x2502; &#x2502; <span class="hljs-tag">Text</span>    &#x2502; &#x2502;
+  &#x2502; &#x2502; ~~~~~   &#x2502; &#x2502;
+  &#x2502; &#x2502; ~~~~~   &#x2502; &#x2502;
+  &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518; &#x2502;
+  &#x2502; &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;    &#x2502;
+  &#x2502; &#x2502; <span class="hljs-tag">More</span> &#x2502;    &#x2502;
+  &#x2502; &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;    &#x2502;
+  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+  &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+  &#x2502;             &#x2502;
+  &#x2502;    <span class="hljs-tag">Image</span>    &#x2502;
+  &#x2502;             &#x2502;
+  &#x2514;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+</pre>
+      </section>
+      <section class="sg-block sg-section-unselected-discovery-navigation">
+        <div class="sg-text">
+          <h3 id="unselected-discovery-navigation" class="sg">Unselected discovery navigation</h3>
+          <p class="sg">The example shows a discovery navigation label that is not selected. The significant visual aspects are:</p>
+          <ul class="sg">
+            <li class="sg">All labels are equal height. (This is achieved through the grid system.)</li>
+            <li class="sg">The text is vertically aligned to the top of the container.</li>
+            <li class="sg">The image is vertically aligned to the bottom of the container.</li>
+            <li class="sg">The More button appears immediately above the image (not immediately below the text).</li>
+            <li class="sg">The text and the more button are left-aligned (with padding)</li>
+          </ul>
+          <blockquote class="sg">
+            <p class="sg">Note that the example does not have the same aspect ratio as the actual site because the example container is not full-width.</p>
+          </blockquote>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <label for="input-element-id" style="min-height:400px" class="discovery-nav__label theme-1">
+              <div class="discovery-nav__label__content">
+                <span class="discovery-nav__label__text">
+                  Text content for label
+                </span>
+                <span class="discovery-nav__label__more">
+                  More
+                </span>
+              </div>
+              <div class="discovery-nav__label__image">
+              </div>
+            </label>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;input-element-id&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;min-height:400px&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label theme-1&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__content&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__text&quot;</span>&gt;</span>
+      Text content for label
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__more&quot;</span>&gt;</span>
+      More
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__image&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-flexbox-styles">
+        <div class="sg-text">
+          <h3 id="flexbox-styles" class="sg">Flexbox styles</h3>
+          <p class="sg">The styles for discovery navigation labels rely on a CSS flexbox layout. The properties for the
+            <code class="sg">&lt;label&gt;</code>
+            element itself are:</p>
+          <ul class="sg">
+            <li class="sg">
+              <code class="sg">display:flex</code>To trigger flexbox</li>
+            <li class="sg">
+              <code class="sg">flex-direction: column</code>Since the label is a vertical flexbox</li>
+            <li class="sg">
+              <code class="sg">align-items: flex-start</code>To left-align the content (and image) children within the label container.</li>
+            <li class="sg">
+              <code class="sg">justify-content: space-between</code>To force
+              <ol class="sg">
+                <li class="sg">the first child element (the content) to align with the start of the flexbox. (In other words, to vertically align the content with the top of the label container.) And</li>
+                <li class="sg">the last child element (the image) to align with the end of the flexbox. (In other words, to vertically align the bottom of the image with the bottom of the label container.</li>
+              </ol>
+            </li>
+            <li class="sg">in addition, the content container has
+              <code class="sg">flex-grow:1</code>to force it to grow vertically to fill all the available space.
+            </li>
+          </ul>
+        </div><pre class="sg sg-lang-css sg-code">         &#x2502; <span class="hljs-tag">align-items</span>
+         &#x25BC;
+&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x25B6; &#x2554;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2566;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+<span class="hljs-tag">justify-</span> &#x2551;            &#x2551;&#x2591;&#x25B2;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+<span class="hljs-tag">content</span>  &#x2551;            &#x2551;&#x2591;&#x2502;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2551;  <span class="hljs-tag">Content</span>   &#x2551;&#x2591;&#x2502;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x2502;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x2502; <span class="hljs-tag">flex-</span>
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x2502; <span class="hljs-tag">grow</span>
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x2502;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x2502;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x2502;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x25BC;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2560;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x255D;&#x2591;&#x2500;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2560;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2557;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+   &#x2507;     &#x2551;            &#x2551;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+<span class="hljs-tag">justify-</span> &#x2551;   <span class="hljs-tag">Image</span>    &#x2551;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+<span class="hljs-tag">content</span>  &#x2551;            &#x2551;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2591;&#x2502;
+&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x25B6; &#x255A;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2550;&#x2569;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2518;
+</pre>
+      </section>
+      <section class="sg-block sg-section-selected-discovery-navigation">
+        <div class="sg-text">
+          <h3 id="selected-discovery-navigation" class="sg">Selected discovery navigation</h3>
+          <p class="sg">The next example shows a discovery navigation label that
+            <em class="sg">is</em>selected. The significant visual aspects are:</p>
+          <ul class="sg">
+            <li class="sg">The label container is significantly wider. (This is achieved through the grid system.)</li>
+            <li class="sg">The label container has a background image (a larger version of the image in the unselected state).</li>
+            <li class="sg">The text is vertically aligned to the bottom of the container.</li>
+            <li class="sg">The bottom image is not visible.</li>
+            <li class="sg">The More button is not visible.</li>
+            <li class="sg">The text is centered</li>
+          </ul>
+          <blockquote class="sg">
+            <p class="sg">Note that the example does not have the same aspect ratio as the actual site because the example container is not full-width.</p>
+          </blockquote>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <input type="radio" name="discovery-nav" id="input-element-id-2" class="discovery-nav__radio" checked="checked">
+            <label for="input-element-id-2" style="min-height:400px" class="discovery-nav__label theme-1">
+              <div class="discovery-nav__label__content">
+                <span class="discovery-nav__label__text">
+                  Text content for label
+                </span>
+                <span class="discovery-nav__label__more">
+                  More
+                </span>
+              </div>
+              <div class="discovery-nav__label__image">
+              </div>
+            </label>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;discovery-nav&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;input-element-id-2&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__radio&quot;</span> <span class="hljs-attribute">checked</span>=<span class="hljs-value">&quot;checked&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;input-element-id-2&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;min-height:400px&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label theme-1&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__content&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__text&quot;</span>&gt;</span>
+      Text content for label
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__more&quot;</span>&gt;</span>
+      More
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;discovery-nav__label__image&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-flexbox-styles">
+        <div class="sg-text">
+          <h3 id="flexbox-styles" class="sg">Flexbox styles</h3>
+          <p class="sg">Here&apos;s how we adjust the flexbox styling to modify the appearance. Note that since the bottom image is not visible in this state, the content is the only child element of the label.</p>
+          <ul class="sg">
+            <li class="sg">
+              <code class="sg">align-items: center</code>To horizontally center the content (the only child) within the label container.</li>
+            <li class="sg">
+              <code class="sg">justify-content: flex-end</code>To force the last child element (which is the only child element, the content) to align with the end of the flexbox. (In other words, to vertically align the bottom of the content with the bottom of the label container.</li>
+            <li class="sg">in addition, the content container&apos;s
+              <code class="sg">flex-grow</code>property is reset to the default value of
+              <code class="sg">0</code>since we don&apos;t need it to fill the label container any more.</li>
+          </ul>
+        </div><pre class="sg sg-lang-css sg-code">           &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x25B6;<span class="hljs-tag">align-items</span>&#x25C0;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;
+           &#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x259E;&#x2502;
+           &#x2502;&#x259E;&#x259E;&#x259E;&#x250C;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2510;&#x259E;&#x259E;&#x259E;&#x2502;
+ <span class="hljs-tag">justify-</span>  &#x2502;&#x259E;&#x259E;&#x259E;&#x2502;           &#x2502;&#x259E;&#x259E;&#x259E;&#x2502;
+ <span class="hljs-tag">content</span>   &#x2502;&#x259E;&#x259E;&#x259E;&#x2502;  <span class="hljs-tag">Content</span>  &#x2502;&#x259E;&#x259E;&#x259E;&#x2502;
+ &#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x25B6; &#x2514;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2500;&#x2534;&#x2500;&#x2500;&#x2500;&#x2518;
+</pre>
+      </section>
+      <section class="sg-block sg-section-other-label-styles">
+        <div class="sg-text">
+          <h3 id="other-label-styles" class="sg">Other label styles</h3>
+          <p class="sg">There are other label styles as well, though most are pretty straightforward. The one slightly tricky property is the height of a selected label. We set that height explicitly to
+            <code class="sg">41.2vw</code>, or 41.2% of the viewport width. We&apos;re doing that to force the aspect ratio of the entire label to be 61.8% (the Golden Ratio) which matches the aspect ratio of the images. Since a selected label is set by the grid system to be 2/3 of the full width, the height is 2/3 * 61.8%, or 41.2%. Note that we can&apos;t use the more common approach of embedding a spacer component and setting its padding to 61.8% because of Internet Explorer flexbox bugs.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+      <section class="sg-block sg-section--discovery-nav__label__content-">
+        <div class="sg-text">
+          <h3 id="-discovery-nav__label__content-" class="sg">
+            <code class="sg">discovery-nav__label__content</code>
+          </h3>
+          <p class="sg">The content containers hold both text content and the More button. They also use a flexbox layout to force the button to the bottom of the container. The properties of the content container are much the same as the label container:</p>
+          <ul class="sg">
+            <li class="sg">
+              <code class="sg">display:flex</code>
+            </li>
+            <li class="sg">
+              <code class="sg">flex-direction:column</code>
+            </li>
+            <li class="sg">
+              <code class="sg">justify-content:space-between</code>
+            </li>
+            <li class="sg">
+              <code class="sg">align-items:flex-start</code>
+            </li>
+          </ul>
+          <p class="sg">Because we don&apos;t need to force any children of the content container to expand their height, we don&apos;t need
+            <code class="sg">flex-grow</code>properties for any of them.</p>
+          <p class="sg">The
+            <code class="sg">discovery-nav__label__content--detailed</code>
+            class can be used for content within the container that is only visible when the discovery block is not selected. This is generally used to provide more expansive text content in the unselected state.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+      <section class="sg-block sg-section--discovery-nav__label__images-">
+        <div class="sg-text">
+          <h3 id="-discovery-nav__label__images-" class="sg">
+            <code class="sg">discovery-nav__label__images</code>
+          </h3>
+          <p class="sg">The image block (small image visible only when the label is not selected) is styled straightforwardly, except we use the same viewport width trick as above to force its aspect ratio. Since unselected styles are 1/6 of the page width, the image height is 1/6 * 61.8% or 10.3%.</p>
+          <p class="sg">As noted above, the specific image shown in the block is determined by the theme class applied to the
+            <code class="sg">&lt;label&gt;</code>element.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-grid">
+      <h2 id="grid" class="sg">Grid</h2>
+      <p class="sg">Within sections (and articles) we use a standard 12-column grid for overall layout, in a responsive, mobile-first architecture.</p>
+      <p class="sg">We&apos;re using flexbox for the grid since the page layout is challenging for other grid approaches (inline-block or floats). That does leave IE9 unsupported. If IE9 is desired in the future, it should be possible to provide &quot;close enough&quot; fallbacks using floats.</p>
+      <section class="sg-block sg-section--container-">
+        <div class="sg-text">
+          <h3 id="-container-" class="sg">
+            <code class="sg">container</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">container</code>class or mixin encapsulates all grid-based content. Containers that are themselves nested within other elements are centered within those elements.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="container">
+              Contents here, starting with rows
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
+  Contents here, starting with rows
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--row-">
+        <div class="sg-text">
+          <h3 id="-row-" class="sg">
+            <code class="sg">row</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">row</code>class encapsulates a single row in the grid. Content within the row will be vertically aligned, subject to wrapping.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="container">
+              <div class="row">
+                Columns go here
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span>&gt;</span>
+    Columns go here
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--column-">
+        <div class="sg-text">
+          <h3 id="-column-" class="sg">
+            <code class="sg">column</code>
+          </h3>
+          <p class="sg">Column widths may be specified in two different ways. One way simply counts the number of columns the element should use. There are 12 columns in a full row, so the
+            <code class="sg">six-columns</code>class represents half of the width of the container.</p>
+          <p class="sg">Alternatively, columns may be specified as the fraction of the row. With this method, the above element would be given the
+            <code class="sg">one-half-column</code>
+            class. One of these two methods should be used consistenly within a block to avoid confusion. The current styles use the fractional column approach.
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="container">
+              <div class="row">
+                <div class="three-columns">
+                  <div style="background-color:lightgray;margin:5px;">
+                    3/12 (1/4) of row
+                  </div>
+                </div>
+                <div class="nine-columns">
+                  <div style="background-color:lightgray;margin:5px;">
+                    9/12 (3/4) of row
+                  </div>
+                </div>
+              </div>
+              <div class="row" style="margin-top:0.2em">
+                <div class="two-thirds-column">
+                  <div style="background-color:lightgray;margin:5px;">
+                    2/3 of row
+                  </div>
+                </div>
+                <div class="one-third-column">
+                  <div style="background-color:lightgray;margin:5px;">
+                    1/3 of row
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;three-columns&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray;margin:5px;&quot;</span>&gt;</span>
+        3/12 (1/4) of row
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;nine-columns&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray;margin:5px;&quot;</span>&gt;</span>
+        9/12 (3/4) of row
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;row&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;margin-top:0.2em&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;two-thirds-column&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray;margin:5px;&quot;</span>&gt;</span>
+        2/3 of row
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;one-third-column&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:lightgray;margin:5px;&quot;</span>&gt;</span>
+        1/3 of row
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-invitation-block">
+      <h2 id="invitation-block" class="sg">Invitation Block</h2>
+      <p class="sg">An invitation block is a small block on the site that &quot;invites&quot; users to visit a different page or site.</p>
+      <section class="sg-block sg-section--invite-">
+        <div class="sg-text">
+          <h3 id="-invite-" class="sg">
+            <code class="sg">invite</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">invite</code>class designates an invitation block. The block contains an icon (from the FontAwesome collection), a link to the destination, and a short text description.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="invite">
+              <i class="invite__icon fa fa-comments-o"></i>
+              <a class="invite__button">
+                Button text
+              </a>
+              <p class="invite__text">
+                Brief invitation text
+              </p>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__icon fa fa-comments-o&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__button&quot;</span>&gt;</span>
+    Button text
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__text&quot;</span>&gt;</span>
+    Brief invitation text
+  <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-themes">
+        <div class="sg-text">
+          <h3 id="themes" class="sg">Themes</h3>
+          <p class="sg">Theme classes can control the visual appearance of elements with the invitation block.
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="invite theme-1">
+              <i class="invite__icon fa fa-comments-o"></i>
+              <a class="invite__button">
+                Theme 1
+              </a>
+              <p class="invite__text">
+                Brief invitation text
+              </p>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite theme-1&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__icon fa fa-comments-o&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__button&quot;</span>&gt;</span>
+    Theme 1
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__text&quot;</span>&gt;</span>
+    Brief invitation text
+  <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-map">
+      <h2 id="map" class="sg">Map</h2>
+      <p class="sg">Styling for maps embedded in the page. Maps are created with the Leaflet.js library. Refer to the
+        <code class="sg">thirdparty.less</code>file for styles that directly override the standard Leaflet styles.</p>
+      <section class="sg-block sg-section--map-">
+        <div class="sg-text">
+          <h3 id="-map-" class="sg">
+            <code class="sg">map</code>
+          </h3>
+          <p class="sg">Maps are full-wdith (of the browser window) less any left and right margin.
+            <em class="sg">Note that margins must be specified in
+              <code class="sg">px</code>units for the fluid re-sizing (performed in JavaScript due to Leaflet&apos;s limitation) to work.</em>
+          </p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="map">
+              <p>Screen capture of map; not live</p>
+              <img src="images/samplemap.png" style="width:100%;">
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;map&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Screen capture of map; not live<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/samplemap.png&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;width:100%;&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-point-of-interest">
+      <h2 id="point-of-interest" class="sg">Point of Interest</h2>
+      <p class="sg">Points of interest as markers and popups on maps.</p>
+      <section class="sg-block sg-section--poi-marker-">
+        <div class="sg-text">
+          <h3 id="-poi-marker-" class="sg">
+            <code class="sg">poi-marker</code>
+          </h3>
+          <p class="sg">Added to (usually) icon markup when the icon is used as a point of interest on a map.</p>
+          <p class="sg">The
+            <code class="sg">data-hidden</code>attribute can be set to &quot;1&quot; to hide the marker by setting its opacity to 0.</p>
+          <p class="sg">By itself, the
+            <code class="sg">poi-marker</code>class does not define colors. Color is defined by theme classes added to the marker.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="fa fa-map-marker poi-marker">
+            </div>
+            <div class="fa fa-map-marker poi-marker theme-0-black">
+            </div>
+            <div class="fa fa-map-marker poi-marker theme-3">
+            </div>
+            <div class="fa fa-map-marker poi-marker theme-3-light">
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-map-marker poi-marker&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-map-marker poi-marker theme-0-black&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-map-marker poi-marker theme-3&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-map-marker poi-marker theme-3-light&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--poi-popup-">
+        <div class="sg-text">
+          <h3 id="-poi-popup-" class="sg">
+            <code class="sg">poi-popup</code>
+          </h3>
+          <p class="sg">A small bit of markup that acts as a popup, e.g. when the user clicks on a map marker. The popup
+            <code class="sg">&lt;div&gt;</code>consist of an anchor tag (class
+            <code class="sg">poi-popup__link</code>) which itself includes an image (class
+            <code class="sg">poi-popup__thumbnail</code>) and text (class
+            <code class="sg">poi-popup__text</code>).</p>
+          <p class="sg">Text colors are defined by a theme class on a parent container (e.g. the
+            <code class="sg">&lt;div class=&quot;pop-popup&quot;&gt;</code>
+            element or a higher level element).</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div style="background-color:#cccccc;display:inline-block;padding:20px;">
+              <div class="poi-popup theme-1">
+                <a href="" class="poi-popup__link">
+                  <img class="poi-popup__thumbnail" src="images/group.png">
+                  <span class="poi-popup__text">
+                    Title for the point of interest popup
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#cccccc;display:inline-block;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;poi-popup theme-1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;poi-popup__link&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;poi-popup__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;poi-popup__text&quot;</span>&gt;</span>
+        Title for the point of interest popup
+      <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-results">
+      <h2 id="results" class="sg">Results</h2>
+      <p class="sg">Presentation of search results.</p>
+      <section class="sg-block sg-section--results-">
+        <div class="sg-text">
+          <h3 id="-results-" class="sg">
+            <code class="sg">results</code>
+          </h3>
+          <p class="sg">Search results are presented in a containing
+            <code class="sg">&lt;div&gt;</code>with the class
+            <code class="sg">results</code>. That container includes three children:</p>
+          <ul class="sg">
+            <li class="sg">
+              <code class="sg">results-filter</code>filters for the results</li>
+            <li class="sg">
+              <code class="sg">results-main</code>primary search results</li>
+            <li class="sg">
+              <code class="sg">results-secondary</code>additional search results</li>
+          </ul>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="results">
+              <div class="results-filter">
+                Controls to filter search results
+              </div>
+              <div class="results-main">
+                Primary search results
+              </div>
+              <div class="results-secondary">
+                Additional search results
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter&quot;</span>&gt;</span>
+    Controls to filter search results
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main&quot;</span>&gt;</span>
+    Primary search results
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary&quot;</span>&gt;</span>
+    Additional search results
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--results-filter-">
+        <div class="sg-text">
+          <h3 id="-results-filter-" class="sg">
+            <code class="sg">results-filter</code>
+          </h3>
+          <p class="sg">The resuls filter consists of a single unordered list
+            <code class="sg">&lt;ul&gt;</code>of filter selections. Users pick one of these selections to filter the search results. The list element has a class of
+            <code class="sg">results-filter__list</code>.</p>
+          <p class="sg">Each
+            <code class="sg">&lt;li&gt;</code>in the list is a class of
+            <code class="sg">results-filter__list-item</code>. Items contain three child elements:</p>
+          <ul class="sg">
+            <li class="sg">a radio button
+              <code class="sg">&lt;input&gt;</code>to control which of the individual filter items is currently selected. Class
+              <code class="sg">results-filter__list-item__input</code>
+            </li>
+            <li class="sg">a label for the radio button that labels the filter. Class
+              <code class="sg">results-filter__list-item__label</code>
+            </li>
+            <li class="sg">optional additional content that is visible only when the filter is selected. Class
+              <code class="sg">results-filter__list-item__content</code>
+            </li>
+          </ul>
+          <p class="sg">The labels associated with each item include</p>
+          <ul class="sg">
+            <li class="sg">an icon
+              <code class="sg">results-filter__list-item__icon</code>
+            </li>
+            <li class="sg">text
+              <code class="sg">results-filter__list-item__text</code>
+            </li>
+          </ul>
+          <p class="sg">Results filters can be styled with theme classes applied to parent elements or the
+            <code class="sg">results-filter</code>
+            container itself.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="no-touch (emulate modernizr)" style="background-color:#cccccc;padding:20px;">
+              <div class="results-filter theme-1">
+                <ul class="results-filter__list">
+                  <li class="results-filter__list-item">
+                    <input type="radio" id="filter-id-1" class="results-filter__list-item__input" name="filter-group" checked="checked">
+                    <label for="filter-id-1" class="results-filter__list-item__label">
+                      <i class="results-filter__list-item__icon fa fa-star"></i>
+                      <span class="results-filter__list-item__text">
+                        Selected filter
+                      </span>
+                    </label>
+                    <div class="results-filter__list-item__content">
+                      Additional filter content or controls for first filter
+                    </div>
+                  </li>
+                  <li class="results-filter__list-item">
+                    <input type="radio" id="filter-id-2" class="results-filter__list-item__input" name="filter-group">
+                    <label for="filter-id-2" class="results-filter__list-item__label">
+                      <i class="results-filter__list-item__icon fa fa-circle"></i>
+                      <span class="results-filter__list-item__text">
+                        Unselected filter
+                      </span>
+                    </label>
+                    <div class="results-filter__list-item__content">
+                      Additional filter content or controls for second filter
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch (emulate modernizr)&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#cccccc;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter theme-1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;radio&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;filter-id-1&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__input&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;filter-group&quot;</span> <span class="hljs-attribute">checked</span>=<span class="hljs-value">&quot;checked&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;filter-id-1&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__label&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__icon fa fa-star&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__text&quot;</span>&gt;</span>
+            Selected filter
+          <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__content&quot;</span>&gt;</span>
+          Additional filter content or controls for first filter
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;radio&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;filter-id-2&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__input&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;filter-group&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;filter-id-2&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__label&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__icon fa fa-circle&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__text&quot;</span>&gt;</span>
+            Unselected filter
+          <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-filter__list-item__content&quot;</span>&gt;</span>
+          Additional filter content or controls for second filter
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--results-main-">
+        <div class="sg-text">
+          <h3 id="-results-main-" class="sg">
+            <code class="sg">results-main</code>
+          </h3>
+          <p class="sg">The primary search results are presented in a container that includes a heading, a list of individual results, and a link to additional results.</p>
+          <p class="sg">The individual items in the results list (which must be in
+            <code class="sg">&lt;li&gt;</code>elements) contain an image and a link. The text content of the link serves as the title for the result.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="no-touch (emulate modernizr)" style="background-color:#cccccc;padding:20px;">
+              <div class="results-main theme-1">
+                <h3 class="results-main__heading">
+                  Heading for results
+                </h3>
+                <ul class="results-main__list">
+                  <li class="results-main__item">
+                    <img class="results-main__thumbnail" src="images/group.png">
+                    <a href="" class="results-main__link">
+                      Title of result 1
+                    </a>
+                  </li>
+                  <li class="results-main__item">
+                    <img class="results-main__thumbnail" src="images/group.png">
+                    <a href="" class="results-main__link">
+                      Title of result 2
+                    </a>
+                  </li>
+                </ul>
+                <div class="results-main__more">
+                  <button type="button" class="results-main__button">
+                    Show more
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch (emulate modernizr)&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#cccccc;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main theme-1&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h3</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__heading&quot;</span>&gt;</span>
+      Heading for results
+    <span class="hljs-tag">&lt;/<span class="hljs-title">h3</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__list&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__link&quot;</span>&gt;</span>
+          Title of result 1
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__link&quot;</span>&gt;</span>
+          Title of result 2
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__more&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__button&quot;</span>&gt;</span>
+        Show more
+      <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--results-secondary-">
+        <div class="sg-text">
+          <h3 id="-results-secondary-" class="sg">
+            <code class="sg">results-secondary</code>
+          </h3>
+          <p class="sg">Alternate search results can consist of one or more blocks, where each block (a
+            <code class="sg">&lt;div&gt;</code>) present one set of alternate results. Each block uses a structure similar to that of the main search results: a heading, a list, and a more button.</p>
+          <p class="sg">The main difference between secondary results and main results is the list items. Each secondary item is an anchor tag
+            <code class="sg">&lt;a&gt;</code>that encloses all of the item&apos;s content. That content includes a
+            <code class="sg">&lt;div&gt;</code>
+            of class
+            <code class="sg">results-secondary__image</code>whose
+            <code class="sg">background-image</code>style is set to the result thumbnail. After the image is a text element with the result&apos;s title.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="results-secondary theme-1">
+              <div class="results-secondary-block">
+                <h4 class="results-secondary__heading">
+                  Secondary results heading
+                </h4>
+                <ul class="results-secondary__list">
+                  <li class="results-secondary__item">
+                    <a href="" class="results-secondary__link">
+                      <div role="image" class="results-secondary__image" style="background-image: url(images/group.png);">
+                      </div>
+                      <h5 class="results-secondary__text">
+                        Secondary results title 1
+                      </h5>
+                    </a>
+                  </li>
+                  <li class="results-secondary__item">
+                    <a href="" class="results-secondary__link">
+                      <div role="image" class="results-secondary__image" style="background-image: url(images/group.png);">
+                      </div>
+                      <h5 class="results-secondary__text">
+                        Secondary results title 2
+                      </h5>
+                    </a>
+                  </li>
+                </ul>
+                <div class="results-secondary__more">
+                  <button type="button" class="results-secondary__button">
+                    Show more
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary theme-1&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary-block&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__heading&quot;</span>&gt;</span>
+      Secondary results heading
+    <span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__list&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__link&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;image&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__image&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-image: url(images/group.png);&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">h5</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__text&quot;</span>&gt;</span>
+            Secondary results title 1
+          <span class="hljs-tag">&lt;/<span class="hljs-title">h5</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__link&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;image&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__image&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-image: url(images/group.png);&quot;</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">h5</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__text&quot;</span>&gt;</span>
+            Secondary results title 2
+          <span class="hljs-tag">&lt;/<span class="hljs-title">h5</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__more&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__button&quot;</span>&gt;</span>
+        Show more
+      <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-scaffolding">
+      <h2 id="scaffolding" class="sg">Scaffolding</h2>
       <p class="sg">We use a straightforward semantic markup with the three standard compononents of
         <code class="sg">&lt;nav&gt;</code>,
         <code class="sg">&lt;main&gt;</code>, and
         <code class="sg">&lt;footer&gt;</code>.</p>
-      <section class="sg-block sg-section-section">
+      <section class="sg-block sg-section--section-">
         <div class="sg-text">
-          <h3 id="section" class="sg">Section</h3>
+          <h3 id="-section-" class="sg">
+            <code class="sg">&lt;section&gt;</code>
+          </h3>
           <p class="sg">Because the site is actually just a single page application, there are multiple &quot;apparent&quot; pages within the single HTML file. Each virtual page is a single
             <code class="sg">&lt;section&gt;</code>within the
             <code class="sg">&lt;main&gt;</code>content.</p>
           <p class="sg">By default, all sections other than the first are hidden by CSS. There&apos;s an exception, however, if the user&apos;s browser does not support JavaScript. In that case we display all the sections so the user can at least scroll to see all of the static content. To override the default behavior on any particular section, add the class
             <code class="sg">hide</code>or
             <code class="sg">show</code>
-            as appropriate.</p>
+            or set the
+            <code class="sg">data-hide</code>attribute to
+            <code class="sg">&quot;1&quot;</code>or
+            <code class="sg">&quot;0&quot;</code>
+            as appropriate. The
+            <code class="sg">data-hide</code>attribute overrides all class- and position-based hiding.</p>
           <blockquote class="sg">
             <p class="sg">Note: We &quot;hide&quot; sections by positioning them offscreen, not by setting their display property to
               <code class="sg">none</code>. This keeps all sections accessible to screen readers.</p>
@@ -62,24 +1287,670 @@
       </section>
     </section>
 
-    <section class="sg-section sg-section-grid">
-      <h2 id="grid" class="sg">Grid</h2>
-      <p class="sg">Within sections (and articles) we use a standard 12-column grid for overall layout, in a responsive, mobile-first architecture.</p>
-      <p class="sg">We&apos;re using flexbox for the grid since the page layout is challenging for other grid approaches (inline-block or floats). That does leave IE9 (and maybe IE10) behind.</p>
-      <section class="sg-block sg-section-container">
+    <section class="sg-section sg-section-search">
+      <h2 id="search" class="sg">Search</h2>
+      <p class="sg">A prominent search form for the site.</p>
+      <section class="sg-block sg-section--search-">
         <div class="sg-text">
-          <h3 id="container" class="sg">Container</h3>
-          <p class="sg">The
-            <code class="sg">container</code>class encapsulates all grid-based content.
+          <h3 id="-search-" class="sg">
+            <code class="sg">search</code>
+          </h3>
+          <p class="sg">A common search form. The form includes a label (typical only &quot;visible&quot; to assistive devices such as screen readers), an
+            <code class="sg">&lt;input&gt;</code>
+            element, and a submit
+            <code class="sg">&lt;button&gt;</code>
           </p>
+          <p class="sg">Colors for the submit button are defined by a parent theme class (e.g. on the
+            <code class="sg">&lt;form&gt;</code>.</p>
+          <p class="sg">Several points are noteworthy:</p>
+          <ul class="sg">
+            <li class="sg">In order to avoid iOS search styles overriding ours, be sure to use
+              <code class="sg">type=&quot;text&quot;</code>instead of
+              <code class="sg">type=&quot;search&quot;</code>.</li>
+            <li class="sg">To force iOS to use a search keyboard (with Search instead of the Enter key), supply an
+              <code class="sg">action</code>attribute (even it it&apos;s meaningless) and give the
+              <code class="sg">&lt;input&gt;</code>
+              element an
+              <code class="sg">id</code>that includes &quot;search.&quot;</li>
+            <li class="sg">There must be no whitespace between the closing angle brace
+              <code class="sg">&gt;</code>of the input and the opening angle brace
+              <code class="sg">&lt;</code>of the button.
+            </li>
+            <li class="sg">Do not provide text for the submit button. CSS styles add the text in order to change it for an icon on small viewports.</li>
+          </ul>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <div class="container">
-              Contents here, starting with rows
+            <form class="search theme-1" role="search" action=".">
+              <label class="search__label">
+                Search label
+              </label>
+              <input placeholder="Search placeholder" type="text" class="search__input" id="search_xxx">
+              <button type="submit" class="search__submit"></button>
+            </form>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;search theme-1&quot;</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;search&quot;</span> <span class="hljs-attribute">action</span>=<span class="hljs-value">&quot;.&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;search__label&quot;</span>&gt;</span>
+    Search label
+  <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">&quot;Search placeholder&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;text&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;search__input&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;search_xxx&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;submit&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;search__submit&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-site-footer">
+      <h2 id="site-footer" class="sg">Site Footer</h2>
+      <section class="sg-block sg-section--site-ftr-">
+        <h3 id="-site-ftr-" class="sg">
+          <code class="sg">site-ftr</code>
+        </h3>
+        <p class="sg">We use the
+          <code class="sg">site-ftr</code>class instead of the more common
+          <code class="sg">footer</code>class to make it easuer to find style-related code using editor search and grep.</p>
+      </section>
+      <section class="sg-block sg-section--site-ftr__block-">
+        <h3 id="-site-ftr__block-" class="sg">
+          <code class="sg">site-ftr__block</code>
+        </h3>
+        <p class="sg">A block within the site footer is a full-width column.
+        </p>
+      </section>
+      <section class="sg-block sg-section--site-ftr__button-">
+        <div class="sg-text">
+          <h3 id="-site-ftr__button-" class="sg">
+            <code class="sg">site-ftr__button</code>
+          </h3>
+          <p class="sg">Buttons within the site footer are given compatible styling. They support both text and an icon. Normally footer buttons are anchor tags that link to other resources.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div role="contentinfo" class="site-ftr">
+              <div class="site-ftr__block">
+                <a class="site-ftr__button">
+                  <i class="fa fa-twitter
+               site-ftr__button__icon"></i>
+                  Follow us on Twitter
+                </a>
+              </div>
             </div>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;container&quot;</span>&gt;</span>
-  Contents here, starting with rows
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;contentinfo&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-ftr&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-ftr__block&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-ftr__button&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-twitter
+               site-ftr__button__icon&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+      Follow us on Twitter
+    <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section--site-ftr__copyright-">
+        <div class="sg-text">
+          <h3 id="-site-ftr__copyright-" class="sg">
+            <code class="sg">site-ftr__copyright</code>
+          </h3>
+          <p class="sg">Copyright information is reduced in size and embedded links are styled appropriately.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div role="contentinfo" class="site-ftr">
+              <div class="site-ftr__block">
+                <p class="site-ftr__copyright">
+                  Copyright 2015 &#xA9;
+                  <a href="https://gosa.georgia.gov" class="site-ftr__copyright-link">
+                    The Governor&#x2019;s Office of Student Achievement
+                  </a>. All rights reserved.
+                </p>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;contentinfo&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-ftr&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-ftr__block&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-ftr__copyright&quot;</span>&gt;</span>
+      Copyright 2015 &#xA9;
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;https://gosa.georgia.gov&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-ftr__copyright-link&quot;</span>&gt;</span>
+        The Governor&#x2019;s Office of Student Achievement
+      <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>. All rights reserved.
+    <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-site-header">
+      <h2 id="site-header" class="sg">Site Header</h2>
+      <p class="sg">The header, including the responsive navigation bar, at the top of the site.</p>
+      <section class="sg-block sg-section--site-hdr-">
+        <div class="sg-text">
+          <h3 id="-site-hdr-" class="sg">
+            <code class="sg">site-hdr</code>
+          </h3>
+          <p class="sg">We use the
+            <code class="sg">site-hdr</code>class instead of the more common
+            <code class="sg">header</code>class to make it easuer to find style-related code using editor search and grep.</p>
+          <p class="sg">The brand for the site is currently a placeholder for an identity or sponsorship. Rather than use a logo image, simple HTML components are sufficient. As is traditional, the logo is wrapped in an anchor tag that links to the home page for the site.</p>
+          <p class="sg">The site navigation includes a hidden checkbox
+            <code class="sg">&lt;input&gt;</code>and an empty label. The checkbox provides a simple CSS-only mechanism to toggle the collapsed or expanded state for the navigation menu on mobile viewports. The label provides the tap target on those viewports. It is empty in the markup so that its content can be supplied by CSS, allowing the content to appear only at appropriate viewport sizes. (The content also changes, depending on whether the menu is collapsed or expanded.)</p>
+          <p class="sg">The menu items themselves are simply a standard unordered list.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <header role="banner" class="site-hdr" data-theme="theme-1-dark">
+              <h1 class="site-hdr__brand">
+                <span class="site-hdr__brand__border">
+                  <a href="#" class="site-hdr__brand__link">
+                    The Georgia
+                    <br>STEM Incubator
+                  </a>
+                </span>
+              </h1>
+              <nav role="navigation" class="site-hdr__navbar">
+                <input type="checkbox" id="nav-toggle" aria-hidden="true" class="site-hdr__navbar__checkbox">
+                <label for="nav-toggle" aria-hidden="true" class="site-hdr__navbar__label"></label>
+                <ul class="site-hdr__navbar__list">
+                  <li class="site-hdr__navbar__item">
+                    <a href="" class="site-hdr__navbar__link">
+                      Item 1
+                    </a>
+                  </li>
+                  <li class="site-hdr__navbar__item">
+                    <a href="" class="site-hdr__navbar__link">
+                      Item 2
+                    </a>
+                  </li>
+                  <li class="site-hdr__navbar__item">
+                    <a href="" class="site-hdr__navbar__link">
+                      Item 3
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </header>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">header</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;banner&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr&quot;</span> <span class="hljs-attribute">data-theme</span>=<span class="hljs-value">&quot;theme-1-dark&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__brand&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__brand__border&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__brand__link&quot;</span>&gt;</span>
+        The Georgia
+        <span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>STEM Incubator
+      <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">nav</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;navigation&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;nav-toggle&quot;</span> <span class="hljs-attribute">aria-hidden</span>=<span class="hljs-value">&quot;true&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__checkbox&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;nav-toggle&quot;</span> <span class="hljs-attribute">aria-hidden</span>=<span class="hljs-value">&quot;true&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__label&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__list&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__link&quot;</span>&gt;</span>
+          Item 1
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__link&quot;</span>&gt;</span>
+          Item 2
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__link&quot;</span>&gt;</span>
+          Item 3
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">header</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-themes">
+        <div class="sg-text">
+          <h3 id="themes" class="sg">Themes</h3>
+          <p class="sg">The overall theme for the header is set using the
+            <code class="sg">data-theme</code>attribute on the
+            <code class="sg">&lt;header&gt;</code>
+            element.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <header role="banner" class="site-hdr" data-theme="theme-1">
+              <h1 class="site-hdr__brand">
+                <span class="site-hdr__brand__border">
+                  <a href="#" class="site-hdr__brand__link">
+                    The Georgia
+                    <br>STEM Incubator
+                  </a>
+                </span>
+              </h1>
+              <nav role="navigation" class="site-hdr__navbar">
+                <input type="checkbox" id="nav-toggle" aria-hidden="true" class="site-hdr__navbar__checkbox">
+                <label for="nav-toggle" aria-hidden="true" class="site-hdr__navbar__label"></label>
+                <ul class="site-hdr__navbar__list">
+                  <li class="site-hdr__navbar__item">
+                    <a href="" class="site-hdr__navbar__link">
+                      Item 1
+                    </a>
+                  </li>
+                  <li class="site-hdr__navbar__item">
+                    <a href="" class="site-hdr__navbar__link">
+                      Item 2
+                    </a>
+                  </li>
+                  <li class="site-hdr__navbar__item">
+                    <a href="" class="site-hdr__navbar__link">
+                      Item 3
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </header>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">header</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;banner&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr&quot;</span> <span class="hljs-attribute">data-theme</span>=<span class="hljs-value">&quot;theme-1&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__brand&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__brand__border&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;#&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__brand__link&quot;</span>&gt;</span>
+        The Georgia
+        <span class="hljs-tag">&lt;<span class="hljs-title">br</span>/&gt;</span>STEM Incubator
+      <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">nav</span> <span class="hljs-attribute">role</span>=<span class="hljs-value">&quot;navigation&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;checkbox&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;nav-toggle&quot;</span> <span class="hljs-attribute">aria-hidden</span>=<span class="hljs-value">&quot;true&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__checkbox&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;nav-toggle&quot;</span> <span class="hljs-attribute">aria-hidden</span>=<span class="hljs-value">&quot;true&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__label&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__list&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__link&quot;</span>&gt;</span>
+          Item 1
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__link&quot;</span>&gt;</span>
+          Item 2
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__item&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;site-hdr__navbar__link&quot;</span>&gt;</span>
+          Item 3
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">header</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-main-element-transitions">
+        <div class="sg-text">
+          <h3 id="main-element-transitions" class="sg">Main element transitions</h3>
+          <p class="sg">On mobile viewports, the expanded menu, by default, overlays the top of the main site content. A better user experience is to have the main content move down to make make room for the menu. That&apos;s not possible entirely in CSS, but we do define some CSS rules that support a JavaScript implementation. To shift the main content down, the code adds the
+            <code class="sg">data-nav-expanded=1</code>attribute to the
+            <code class="sg">&lt;main&gt;</code>element.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-spotlight">
+      <h2 id="spotlight" class="sg">Spotlight</h2>
+      <p class="sg">A list of spotlight items.</p>
+      <section class="sg-block sg-section--spotlight-">
+        <div class="sg-text">
+          <h3 id="-spotlight-" class="sg">
+            <code class="sg">spotlight</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">spotlight</code>class defines an unordered list of items featured as spotlighted content. Individual spotlight items are items in the list. Normally the list shows a small image and a title for the item, as well as a large disclosure triangle on the right. The key components of the block are:</p>
+          <ul class="sg">
+            <li class="sg">
+              <code class="sg">spotlight__item</code>the list item</li>
+            <li class="sg">
+              <code class="sg">spotlight__item__thumbnail</code>the thumbnail image</li>
+            <li class="sg">
+              <code class="sg">spotlight__item__content</code>the container
+              <code class="sg">&lt;div&gt;</code>
+              for the main item content
+              <ul class="sg">
+                <li class="sg">
+                  <code class="sg">spotlight__item__title</code>the title of the item (typically a link to the item)</li>
+                <li class="sg">
+                  <code class="sg">spotlight__item__expand</code>the disclosure icon</li>
+                <li class="sg">
+                  <code class="sg">spotlight__item__description</code>a more expansive description of the item (hidden in normal view)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="no-touch (emulate modernizr)" style="background-color:#cccccc;padding:20px;">
+              <ul class="spotlight">
+                <li class="spotlight__item">
+                  <img class="spotlight__item__thumbnail" src="images/group.png">
+                  <div class="spotlight__item__content">
+                    <a href="" class="spotlight__item__title">
+                      First spotlight item
+                    </a>
+                    <i class="fa fa-chevron-down
+                      spotlight__item__expand"></i>
+                    <p class="spotlight__item__description">
+                      Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                    </p>
+                  </div>
+                </li>
+                <li class="spotlight__item">
+                  <img class="spotlight__item__thumbnail" src="images/group.png">
+                  <div class="spotlight__item__content">
+                    <a href="" class="spotlight__item__title">
+                      Second spotlight item
+                    </a>
+                    <i class="fa fa-chevron-down
+                      spotlight__item__expand"></i>
+                    <p class="spotlight__item__description">
+                      Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch (emulate modernizr)&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#cccccc;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__content&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__title&quot;</span>&gt;</span>
+          First spotlight item
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-chevron-down
+                      spotlight__item__expand&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__description&quot;</span>&gt;</span>
+          Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur
+          ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus
+          posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__content&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__title&quot;</span>&gt;</span>
+          Second spotlight item
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-chevron-down
+                      spotlight__item__expand&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__description&quot;</span>&gt;</span>
+          Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod
+          semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis
+          in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum.
+        <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-expanded-items">
+        <div class="sg-text">
+          <h3 id="expanded-items" class="sg">Expanded items</h3>
+          <p class="sg">JavaScript can add the
+            <code class="sg">data-expanded=&quot;1&quot;</code>
+            attribute to any spotlight itemt to reveal the detailed description.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="no-touch (emulate modernizr)" style="background-color:#cccccc;padding:20px;">
+              <ul class="spotlight">
+                <li class="spotlight__item">
+                  <img class="spotlight__item__thumbnail" src="images/group.png">
+                  <div class="spotlight__item__content">
+                    <a href="" class="spotlight__item__title">
+                      First spotlight item
+                    </a>
+                    <i class="fa fa-chevron-down
+                      spotlight__item__expand"></i>
+                    <p class="spotlight__item__description">
+                      Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                    </p>
+                  </div>
+                </li>
+                <li class="spotlight__item" data-expanded="1">
+                  <img class="spotlight__item__thumbnail" src="images/group.png">
+                  <div class="spotlight__item__content">
+                    <a href="" class="spotlight__item__title">
+                      Second spotlight item (expanded)
+                    </a>
+                    <i class="fa fa-chevron-down
+                      spotlight__item__expand"></i>
+                    <p class="spotlight__item__description">
+                      Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch (emulate modernizr)&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#cccccc;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__content&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__title&quot;</span>&gt;</span>
+          First spotlight item
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-chevron-down
+                      spotlight__item__expand&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__description&quot;</span>&gt;</span>
+          Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur
+          ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus
+          posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item&quot;</span> <span class="hljs-attribute">data-expanded</span>=<span class="hljs-value">&quot;1&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__content&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__title&quot;</span>&gt;</span>
+          Second spotlight item (expanded)
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-chevron-down
+                      spotlight__item__expand&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__description&quot;</span>&gt;</span>
+          Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod
+          semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis
+          in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum.
+        <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-themes">
+        <div class="sg-text">
+          <h3 id="themes" class="sg">Themes</h3>
+          <p class="sg">Theme classes may be added to the main
+            <code class="sg">spotlight</code>
+            list element to change the visual appearance.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="no-touch (emulate modernizr)" style="background-color:#cccccc;padding:20px;">
+              <ul class="spotlight theme-3">
+                <li class="spotlight__item">
+                  <img class="spotlight__item__thumbnail" src="images/group.png">
+                  <div class="spotlight__item__content">
+                    <a href="" class="spotlight__item__title">
+                      First spotlight item
+                    </a>
+                    <i class="fa fa-chevron-down
+                      spotlight__item__expand"></i>
+                    <p class="spotlight__item__description">
+                      Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                    </p>
+                  </div>
+                </li>
+                <li class="spotlight__item" data-expanded="1">
+                  <img class="spotlight__item__thumbnail" src="images/group.png">
+                  <div class="spotlight__item__content">
+                    <a href="" class="spotlight__item__title">
+                      Second spotlight item (expanded)
+                    </a>
+                    <i class="fa fa-chevron-down
+                      spotlight__item__expand"></i>
+                    <p class="spotlight__item__description">
+                      Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch (emulate modernizr)&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#cccccc;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight theme-3&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__content&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__title&quot;</span>&gt;</span>
+          First spotlight item
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-chevron-down
+                      spotlight__item__expand&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__description&quot;</span>&gt;</span>
+          Cras mattis consectetur purus sit amet fermentum. Maecenas faucibus mollis interdum. Morbi leo risus, porta ac consectetur
+          ac, vestibulum at eros. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus
+          posuere velit aliquet. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+        <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item&quot;</span> <span class="hljs-attribute">data-expanded</span>=<span class="hljs-value">&quot;1&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__thumbnail&quot;</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;images/group.png&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__content&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">&quot;&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__title&quot;</span>&gt;</span>
+          Second spotlight item (expanded)
+        <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;fa fa-chevron-down
+                      spotlight__item__expand&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;spotlight__item__description&quot;</span>&gt;</span>
+          Maecenas faucibus mollis interdum. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod
+          semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis
+          in, egestas eget quam. Cras mattis consectetur purus sit amet fermentum.
+        <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+    </section>
+
+    <section class="sg-section sg-section-tabs">
+      <h2 id="tabs" class="sg">Tabs</h2>
+      <p class="sg">Tabs and tab panels.</p>
+      <section class="sg-block sg-section--tabs-">
+        <div class="sg-text">
+          <h3 id="-tabs-" class="sg">
+            <code class="sg">tabs</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">tabs</code>class defines a container that includes both the tab user interface elements and the tab panels containing content relevant for each tab.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="no-touch (emulate modernizr)" style="background-color:#EFEDEB;padding:20px;">
+              <div class="tabs">
+                <input type="radio" name="tabs-1" id="tab-1-1" class="tabs__input" checked="checked">
+                <label for="tab-1-1" class="tabs__label">
+                  Tab 1
+                </label>
+                <input type="radio" name="tabs-1" id="tab-1-2" class="tabs__input">
+                <label for="tab-1-2" class="tabs__label">
+                  Tab 2
+                </label>
+                <div class="tabs__panel">
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                  </p>
+                </div>
+                <div class="tabs__panel">
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch (emulate modernizr)&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#EFEDEB;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;tabs-1&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;tab-1-1&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__input&quot;</span> <span class="hljs-attribute">checked</span>=<span class="hljs-value">&quot;checked&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;tab-1-1&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__label&quot;</span>&gt;</span>
+      Tab 1
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;tabs-1&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;tab-1-2&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__input&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;tab-1-2&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__label&quot;</span>&gt;</span>
+      Tab 2
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__panel&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+        Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget
+        urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+      <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__panel&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+        dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis. Vestibulum
+        id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+      <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
+        </div>
+      </section>
+      <section class="sg-block sg-section-themes">
+        <div class="sg-text">
+          <h3 id="themes" class="sg">Themes</h3>
+          <p class="sg">Adding a theme class to the main
+            <code class="sg">tabs</code>container provides visual styling of the tabs.</p>
+        </div>
+        <div class="sg-example">
+          <div class="sg-canvas">
+            <div class="no-touch (emulate modernizr)" style="background-color:#EFEDEB;padding:20px;">
+              <div class="tabs theme-3">
+                <input type="radio" name="tabs-2" id="tab-2-1" class="tabs__input" checked="checked">
+                <label for="tab-2-1" class="tabs__label">
+                  Tab 1
+                </label>
+                <input type="radio" name="tabs-2" id="tab-2-2" class="tabs__input">
+                <label for="tab-2-2" class="tabs__label">
+                  Tab 2
+                </label>
+                <div class="tabs__panel">
+                  <p>
+                    Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                  </p>
+                </div>
+                <div class="tabs__panel">
+                  <p>
+                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis. Vestibulum id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch (emulate modernizr)&quot;</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">&quot;background-color:#EFEDEB;padding:20px;&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs theme-3&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;tabs-2&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;tab-2-1&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__input&quot;</span> <span class="hljs-attribute">checked</span>=<span class="hljs-value">&quot;checked&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;tab-2-1&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__label&quot;</span>&gt;</span>
+      Tab 1
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;radio&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">&quot;tabs-2&quot;</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;tab-2-2&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__input&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">label</span> <span class="hljs-attribute">for</span>=<span class="hljs-value">&quot;tab-2-2&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__label&quot;</span>&gt;</span>
+      Tab 2
+    <span class="hljs-tag">&lt;/<span class="hljs-title">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__panel&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+        Aenean lacinia bibendum nulla sed consectetur. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget
+        urna mollis ornare vel eu leo. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+      <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;tabs__panel&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus
+        dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Sed posuere consectetur est at lobortis. Vestibulum
+        id ligula porta felis euismod semper. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+      <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></pre>
         </div>
       </section>
@@ -113,9 +1984,11 @@
 <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span></pre>
         </div>
       </section>
-      <section class="sg-block sg-section-lining-numbers">
+      <section class="sg-block sg-section--lnum-">
         <div class="sg-text">
-          <h3 id="lining-numbers" class="sg">Lining Numbers</h3>
+          <h3 id="-lnum-" class="sg">
+            <code class="sg">lnum</code>
+          </h3>
           <p class="sg">The standard font uses old style numbers. To force lining numbers, add the class
             <code class="sg">lnum</code>(which is the commom typographers&apos; abbreviation for lining numbers).</p>
         </div>
@@ -139,6 +2012,9 @@
         <div class="sg-text">
           <h3 id="headings" class="sg">Headings</h3>
           <p class="sg">Headings use a slightly lighter font weight and specific line heights and letter spacings tailored for the Raleway font (but not so extreme as to be illegible if a font fallback is required). We start with relatively modest font sizes for mobile devices and then increase the sizes a bit for tablets and larger.</p>
+          <p class="sg">Heading classes (
+            <code class="sg">.h1</code>,
+            <code class="sg">.h2</code>, ...) can also be used as mixins for other classes.</p>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
@@ -156,77 +2032,86 @@
 <span class="hljs-tag">&lt;<span class="hljs-title">h6</span>&gt;</span>This is a sixth level heading<span class="hljs-tag">&lt;/<span class="hljs-title">h6</span>&gt;</span></pre>
         </div>
       </section>
-      <section class="sg-block sg-section-buttons">
-        <h3 id="buttons" class="sg">Buttons</h3>
-        <p class="sg">We use the
-          <code class="sg">btn</code>class not for brevity, but to make it easier to search for the class as distinct from the element.</p>
+    </section>
+
+    <section class="sg-section sg-section-utility-classes">
+      <h2 id="utility-classes" class="sg">Utility classes</h2>
+      <p class="sg">A few general-purpose utility classes are defined, though we try to avoid these as much as possible since they require that the markup explicity specify its presentation. The classes that are defined here control CSS behavior more than presentation.</p>
+      <section class="sg-block sg-section--util-sr-only-">
+        <div class="sg-text">
+          <h3 id="-util-sr-only-" class="sg">
+            <code class="sg">util--sr-only</code>
+          </h3>
+          <p class="sg">The
+            <code class="sg">util--sr-only</code>class designates content that is intended only for screen readers and other assistive devices. The content is not normally visible to regular web browsers.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
       </section>
-      <section class="sg-block sg-section-header">
-        <h3 id="header" class="sg">Header</h3>
-        <p class="sg">The header, including the responsive navigation bar, at the top of the site.</p>
+      <section class="sg-block sg-section--util-js-only-">
+        <div class="sg-text">
+          <h3 id="-util-js-only-" class="sg">
+            <code class="sg">util--js-only</code>
+          </h3>
+          <p class="sg">To keep the site at least minimally usable for users without JavaScript, all content that&apos;s dynamically generated by JavaScript should be enclosed in a container with the
+            <code class="sg">util--js-only</code>
+            class. In a no-JavaScript environment, that content will be hidden (includng from screen readers). Use the
+            <code class="sg">util--js-only</code>class for static content that only makes sense when there is dynamic content to go with it (for example, static headings for dynamic content).</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
       </section>
     </section>
 
-    <section class="sg-section sg-section-search">
-      <h2 id="search" class="sg">Search</h2>
-      <p class="sg">Search form.</p>
-    </section>
-
-    <section class="sg-section sg-section-results">
-      <h2 id="results" class="sg">Results</h2>
-      <p class="sg">Presentation of search results.</p>
-    </section>
-
-    <section class="sg-section sg-section-tagset">
-      <h2 id="tagset" class="sg">TagSet</h2>
-      <p class="sg">A set of tags.</p>
-    </section>
-
-    <section class="sg-section sg-section-discovery-navigations">
-      <h2 id="discovery-navigations" class="sg">Discovery navigations</h2>
-      <p class="sg">Navigation block that controls the discovery block.
-      </p>
-    </section>
-
-    <section class="sg-section sg-section-discovery">
-      <h2 id="discovery" class="sg">Discovery</h2>
-      <p class="sg">Discovery blocks on the landing page and the navigation that selectively displays them.
-      </p>
-    </section>
-
-    <section class="sg-section sg-section-spotlight">
-      <h2 id="spotlight" class="sg">Spotlight</h2>
-      <p class="sg">A list of spotlight items.</p>
-    </section>
-
-    <section class="sg-section sg-section-point-of-interest">
-      <h2 id="point-of-interest" class="sg">Point of Interest</h2>
-      <p class="sg">Points of interest as markers and popups on maps.</p>
-    </section>
-
-    <section class="sg-section sg-section-about">
-      <h2 id="about" class="sg">About</h2>
-      <p class="sg">An &quot;about this site&quot; block on the landing page</p>
-    </section>
-
-    <section class="sg-section sg-section-credits">
-      <h2 id="credits" class="sg">Credits</h2>
-      <p class="sg">The credits block on the landing page</p>
-    </section>
-
-    <section class="sg-section sg-section-footer">
-      <h2 id="footer" class="sg">Footer</h2>
-      <section class="sg-block sg-section-screen-readers">
-        <h3 id="screen-readers" class="sg">Screen Readers</h3>
-        <p class="sg">The
-          <code class="sg">util--sr-only</code>class designates content that is intended only for screen readers and other assistive devices. The content is not normally visible to regular web browsers.</p>
+    <section class="sg-section sg-section-utility-mixins">
+      <h2 id="utility-mixins" class="sg">Utility mixins</h2>
+      <p class="sg">Generic utilities as LESS mixins.</p>
+      <section class="sg-block sg-section--clearfix-">
+        <div class="sg-text">
+          <h3 id="-clearfix-" class="sg">
+            <code class="sg">.clearfix()</code>
+          </h3>
+          <p class="sg">Standard fix to clear floats.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
       </section>
-      <section class="sg-block sg-section-javascript-only-content">
-        <h3 id="javascript-only-content" class="sg">JavaScript-Only Content</h3>
-        <p class="sg">To keep the site at least minimally usable for users without JavaScript, all content that&apos;s dynamically generated by JavaScript should be enclosed in a container with the
-          <code class="sg">util--js-only</code>
-          class. In a no-JavaScript environment, that content will be hidden (includng from screen readers). Use the
-          <code class="sg">util--js-only</code>class for static content that only makes sense when there is dynamic content to go with it (for example, static headings for dynamic content).</p>
+      <section class="sg-block sg-section--clickable-">
+        <div class="sg-text">
+          <h3 id="-clickable-" class="sg">
+            <code class="sg">.clickable()</code>
+          </h3>
+          <p class="sg">Consistent styling for text that&apos;s clickable.
+          </p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+      <section class="sg-block sg-section--invisible-">
+        <div class="sg-text">
+          <h3 id="-invisible-" class="sg">
+            <code class="sg">.invisible()</code>
+          </h3>
+          <p class="sg">Make content invisible to visual users without affecting screen readers.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+      <section class="sg-block sg-section--spacing-">
+        <div class="sg-text">
+          <h3 id="-spacing-" class="sg">
+            <code class="sg">.spacing()</code>
+          </h3>
+          <p class="sg">Provides block spacing value based on appropriate media query. The parameter is a property name (e.g.
+            <code class="sg">padding-top</code>).</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
+      </section>
+      <section class="sg-block sg-section--visible-">
+        <div class="sg-text">
+          <h3 id="-visible-" class="sg">
+            <code class="sg">.visible()</code>
+          </h3>
+          <p class="sg">Reverse effect of
+            <code class="sg">.invisible()</code>
+            mixin.</p>
+        </div><pre class="sg sg-lang-css sg-code">.
+</pre>
       </section>
     </section>
 

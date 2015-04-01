@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -253,6 +268,11 @@
                 teacherSearchAsPage.js
               </a>
             
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -288,8 +308,7 @@
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
               <p>The parent component for the entire application
-is the <code>app</code> router. (It’s the only router used,
-and it’s pretty simple at that.)</p>
+is the <code>app</code> router. (It’s the only router used.)</p>
 
             </div>
             
@@ -315,7 +334,10 @@ possible single page app. Each “page” is
 bootstrapped as a <code>&lt;section&gt;</code> in the
 <code>index.html</code> file, so the only routes we
 need are routes corresponding to the
-various sections.</p>
+various sections. We also define a
+parameterized search page a default
+page (which is the same as the primary
+landing page).</p>
 
             </div>
             
@@ -323,7 +345,7 @@ various sections.</p>
         routes: {
             <span class="hljs-string">''</span>:         <span class="hljs-string">'landing'</span>,
             <span class="hljs-string">'teachers'</span>: <span class="hljs-string">'teachers'</span>,
-            <span class="hljs-string">'schools'</span>:  <span class="hljs-string">'schools'</span>,
+            <span class="hljs-string">'admins'</span>:   <span class="hljs-string">'admins'</span>,
             <span class="hljs-string">'partners'</span>: <span class="hljs-string">'partners'</span>,
             <span class="hljs-string">'search(/)(:query)(/:facet)'</span>: <span class="hljs-string">'search'</span>,
             <span class="hljs-string">'*default'</span>: <span class="hljs-string">'landing'</span>,
@@ -339,7 +361,7 @@ various sections.</p>
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>We use a convenience function to
-switch to a specific section. It’s
+switch to a specific section. Its
 first parameter is the <code>id</code> of the
 destination section. The second
 (optional) parameter is a theme
@@ -348,7 +370,7 @@ to apply to the header.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        loadPage: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id,theme)</span> </span>{</pre></div></div>
+        loadPage: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id, theme)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -359,15 +381,18 @@ to apply to the header.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
-              <p>For now, to “switch” pages, all we do
-is set the <code>show</code> or <code>hide</code> classes on
-the sections as appropriate.</p>
+              <p>To “switch” pages set the <code>data-hide</code>
+attribute on the sections as
+appropriate. All sections other than
+the selected one have <code>data-hide=&quot;1&quot;</code>,
+and the selected section has
+<code>data-hide=&quot;0&quot;</code>.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-string">'section'</span>).not(<span class="hljs-string">'#'</span> + id).removeClass(<span class="hljs-string">'show'</span>).addClass(<span class="hljs-string">'hide'</span>);
-            $(<span class="hljs-string">'section#'</span> + id).removeClass(<span class="hljs-string">'hide'</span>).addClass(<span class="hljs-string">'show'</span>);</pre></div></div>
+            $(<span class="hljs-string">'section'</span>).not(<span class="hljs-string">'#'</span> + id).attr(<span class="hljs-string">'data-hide'</span>,<span class="hljs-string">'1'</span>);
+            $(<span class="hljs-string">'section#'</span> + id).attr(<span class="hljs-string">'data-hide'</span>,<span class="hljs-string">'0'</span>);</pre></div></div>
             
         </li>
         
@@ -400,13 +425,17 @@ page. To do that, we set the appropriate
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Close the navigation menu (in case it was
-used to trigger the page change).</p>
+used to trigger the page change). Since
+our event handler only detects changes
+initiated by the user, we also have to
+manually clear the <code>data-nav-expanded</code>
+attribute on the <code>&lt;main&gt;</code> elements.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
             $(<span class="hljs-string">'#nav-toggle'</span>).prop(<span class="hljs-string">'checked'</span>, <span class="hljs-number">0</span>);
-            $(<span class="hljs-string">'main'</span>).attr(<span class="hljs-string">'data-nav-expanded'</span>, <span class="hljs-literal">false</span>);</pre></div></div>
+            $(<span class="hljs-string">'main'</span>).attr(<span class="hljs-string">'data-nav-expanded'</span>, <span class="hljs-string">'0'</span>);</pre></div></div>
             
         </li>
         
@@ -418,12 +447,17 @@ used to trigger the page change).</p>
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>And finally, set the scroll position to
-the top of the new “page”.</p>
+the top of the new “page” if we’re switching
+to the search results. We defer this until
+the execution stack clears to make sure
+that no other code reverses our setting.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            _.defer(<span class="hljs-built_in">window</span>.scrollTo, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+            <span class="hljs-keyword">if</span> (id === <span class="hljs-string">'teachers-search'</span>) {
+                _.defer(<span class="hljs-built_in">window</span>.scrollTo, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+            }
 
         },</pre></div></div>
             
@@ -482,43 +516,7 @@ attribute explicitly.</p>
             <div class="content"><div class='highlight'><pre>
             $(<span class="hljs-string">'#discovery-nav'</span>).attr(<span class="hljs-string">'data-discovery-nav'</span>, discoveryIdx);
 
-        },
-
-        landing: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">1</span>);
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
-            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'teachers'</span>);
-        },
-
-        teachers: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">1</span>);
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
-            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'teachers'</span>);
-        },
-
-        schools: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">2</span>);
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
-            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'schools'</span>);
-        },
-
-        partners: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">3</span>);
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
-            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'partners'</span>);
-        },
-
-        search: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(query, facet)</span> </span>{
-            query = query || <span class="hljs-string">''</span>;
-            facet = facet || <span class="hljs-string">'content'</span>;
-            <span class="hljs-keyword">this</span>.teacherSearch.set(<span class="hljs-string">'facet'</span>,
-                <span class="hljs-built_in">decodeURIComponent</span>(facet));
-            <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.set(<span class="hljs-string">'query'</span>,
-                <span class="hljs-built_in">decodeURIComponent</span>(query));
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers-search'</span>,<span class="hljs-string">'theme-1'</span>);
-        },
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+        },</pre></div></div>
             
         </li>
         
@@ -529,14 +527,15 @@ attribute explicitly.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>Create the models that back each of the
-app’s “pages” and other content blocks.</p>
+              <p>The default landing page is the
+teachers page.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.discovery = <span class="hljs-keyword">new</span> Stem.Models.Discovery();
-            <span class="hljs-keyword">this</span>.teacherSearch = <span class="hljs-keyword">new</span> Stem.Models.TeacherSearch();</pre></div></div>
+        landing: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.teachers();
+        },</pre></div></div>
             
         </li>
         
@@ -547,20 +546,31 @@ app’s “pages” and other content blocks.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>Create and render the views for each
-page or content block. It’s okay to
-render them now because they’ll remain
-hidden until the user navigates to
-them.</p>
+              <p>The individual route handlers follow. All they
+do is set the discovery navigation to the
+appropriate section, load the landing page,
+and show the appropriate discovery content.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.discoveryContent = <span class="hljs-keyword">new</span> Stem.Views.DiscoveryAsContent({
-                model: <span class="hljs-keyword">this</span>.discovery
-            }).render();
+        teachers: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">1</span>);
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'teachers'</span>);
+        },
 
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.discoveryContent, <span class="hljs-string">'navigate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hash)</span> </span>{</pre></div></div>
+        admins: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">2</span>);
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'admins'</span>);
+        },
+
+        partners: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">3</span>);
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.discoveryContent.show(<span class="hljs-string">'partners'</span>);
+        },</pre></div></div>
             
         </li>
         
@@ -571,11 +581,28 @@ them.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>Preserve the current scroll position</p>
+              <p>The search page is a little more involved
+because we need to set up the appropriate
+facet for the search. If there is no
+explicit facet in the URL, we default to
+the content facet. We also set the free-
+text query contents based on the URL, if
+any content is available. After setting
+up the search facet and query, we load
+the search page.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">var</span> pos = $(<span class="hljs-built_in">window</span>).scrollTop();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+        search: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(query, facet)</span> </span>{
+            query = query || <span class="hljs-string">''</span>;
+            facet = facet || <span class="hljs-string">'content'</span>;
+            <span class="hljs-keyword">this</span>.teacherSearch.set(<span class="hljs-string">'facet'</span>,
+                <span class="hljs-built_in">decodeURIComponent</span>(facet));
+            <span class="hljs-keyword">this</span>.searchQuery.set(<span class="hljs-string">'query'</span>,
+                <span class="hljs-built_in">decodeURIComponent</span>(query));
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'teachers-search'</span>,<span class="hljs-string">'theme-1'</span>);
+        },</pre></div></div>
             
         </li>
         
@@ -586,11 +613,13 @@ them.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Add the new hash to the browser history</p>
+              <p>The <code>initialize</code> function performs most of
+the work in bootstrapping the app.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">this</span>.navigate(hash);</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -601,20 +630,41 @@ them.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>And restore the scroll position</p>
+              <p>Create the models that back each of the
+app’s “pages” and other content blocks.
+Currently there are two primary models
+representing the two major sections of
+content on the site.</p>
+<ul>
+<li><a href="discovery.html">discovery</a> handles
+the “Discovery blocks” on the main
+landing page.</li>
+<li><a href="teacherSearch.html">teacherSearch</a>
+manages the search results page.
+(Currently the only search results
+the site provides are focused on
+teachers.)</li>
+</ul>
+<p>Those two models both include general
+seach functionality, and we want the
+search query values to be synchronized.
+(In other words, if a user starts
+typing a search query in the discovery
+block, we want that partial search
+query to show up in the teacher search
+results if the user navigates to the
+search resuls page. To have both models
+share search queries, we create a common
+<a href="search.html">search</a> model that both
+of the main models can share.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                $(<span class="hljs-built_in">window</span>).scrollTop(pos);
-
-            });
-
-            <span class="hljs-keyword">this</span>.teacherSearchPage = <span class="hljs-keyword">new</span> Stem.Views.TeacherSearchAsPage({
-                el: $(<span class="hljs-string">'#teachers-search'</span>),
-                model: <span class="hljs-keyword">this</span>.teacherSearch
-            }).render();
-
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.teacherSearch, <span class="hljs-string">'navigate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hash)</span> </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.searchQuery = <span class="hljs-keyword">new</span> Stem.Models.Search({
+                label: <span class="hljs-string">'Search for resources'</span>,
+                placeholder: <span class="hljs-string">'Search the Incubator'</span>
+            });</pre></div></div>
             
         </li>
         
@@ -625,8 +675,246 @@ them.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
+              <p>Now we can create the principle models
+that include this query.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.discovery = <span class="hljs-keyword">new</span> Stem.Models.Discovery({
+                searchQuery: <span class="hljs-keyword">this</span>.searchQuery
+            });
+            <span class="hljs-keyword">this</span>.teacherSearch = <span class="hljs-keyword">new</span> Stem.Models.TeacherSearch({
+                searchQuery: <span class="hljs-keyword">this</span>.searchQuery
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Create and render the views for each
+page or content block. It’s okay to
+render them now because they’ll remain
+hidden until the user navigates to
+them. Start with the
+<a href="discoveryAsContent.html">discoveryContent</a>
+view for the “Discovery blocks”.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.discoveryContent = <span class="hljs-keyword">new</span> Stem.Views.DiscoveryAsContent({
+                el: $(<span class="hljs-string">'#landing'</span>),
+                model: <span class="hljs-keyword">this</span>.discovery
+            }).render();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Now we create the second of our two
+main views. This view controls the
+<a href="teacherSearchAsPage.html">teacherSearchPage</a>
+part of the site.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.teacherSearchPage = <span class="hljs-keyword">new</span> Stem.Views.TeacherSearchAsPage({
+                el: $(<span class="hljs-string">'#teachers-search'</span>),
+                model: <span class="hljs-keyword">this</span>.teacherSearch
+            }).render();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Handle high level events from the views
+we’ve created.</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>If the discovery content view detects
+that the user submits a search form,
+we want to navigate to the search
+results “page.”</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.discoveryContent.on(<span class="hljs-string">'search:submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Retrieve the submitted query.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">var</span> query = <span class="hljs-keyword">this</span>.searchQuery.get(<span class="hljs-string">'query'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Although in general we don’t trigger
+a full route when we update the navigation,
+in this case we really do want the app
+to behave exactly as if the user had
+navigated to the web site. Setting <code>trigger: true</code>
+is simpler than replicating the code in
+multiple places.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">this</span>.navigate(<span class="hljs-string">'search/'</span> + <span class="hljs-built_in">encodeURIComponent</span>(query) + <span class="hljs-string">'/content'</span>,
+                    {trigger: <span class="hljs-literal">true</span>});
+
+            }, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>The discoveryContent view triggers
+<code>navigate</code> events when the user navigates
+to a new discovery region. We don’t have
+to do very much when that event occurs
+since the CSS takes care of exposing the
+appropriate content. We do want to make
+sure that the navigation is added to
+the browser history, though, so that the
+back/forward buttons work as expected.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.discoveryContent, <span class="hljs-string">'navigate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hash)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Preserve the current scroll position</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">var</span> pos = $(<span class="hljs-built_in">window</span>).scrollTop();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Add the new hash to the browser history</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">this</span>.navigate(hash);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>And restore the scroll position</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                $(<span class="hljs-built_in">window</span>).scrollTop(pos);
+
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Just as with the discoveryContent view,
+the teacherSearch model triggers a
+<code>navigate</code> event when the user performs
+a navigation action. As before, the view
+itself handles most of the work, but we
+do want to add the new navigation URL
+to the browser history for back/forward
+button operation.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.teacherSearch, <span class="hljs-string">'navigate'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(hash)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
               <p>Add the new hash to the browser history, but
-only if we’re on the search “page”</p>
+only if we’re on the search “page”. If we’re
+on the landing page, then the router itself
+will take care of the history.</p>
 
             </div>
             
@@ -642,139 +930,11 @@ only if we’re on the search “page”</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
-              </div>
-              <p>Add any required logic that ties the
-different pages or content blocks
-together.</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-19">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
-              </div>
-              <p>Now that the teachers search info
-is available, replace the generic
-search form on the landing page with
-a teacher-focused one. First step
-is creating a view for the dynamic
-search form.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.landingSearch = <span class="hljs-keyword">new</span> Stem.Views.SearchAsForm({
-                model: <span class="hljs-keyword">this</span>.teacherSearch.searchQuery,
-                theme: <span class="hljs-string">'theme-1'</span>
-            });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-20">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
-              </div>
-              <p>Inject the new search form into the
-page.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-string">'#teachers-discovery-search-form'</span>)
-                .replaceWith(<span class="hljs-keyword">this</span>.landingSearch.render().$el);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-21">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
-              </div>
-              <p>Watch for updates to the search query so
-we can update the links to other search
-facets. We debounce this event handler
-to avoid thrashing while the user types.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.on(<span class="hljs-string">'change'</span>, _(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-
-                <span class="hljs-keyword">var</span> query = <span class="hljs-built_in">encodeURIComponent</span>(
-                    <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>)
-                );
-
-                $(<span class="hljs-string">'#teachers-search-courses'</span>).attr(<span class="hljs-string">'href'</span>,
-                    <span class="hljs-string">'#search/'</span> + query + <span class="hljs-string">'/courses'</span>
-                );
-
-                $(<span class="hljs-string">'#teachers-search-groups'</span>).attr(<span class="hljs-string">'href'</span>,
-                    <span class="hljs-string">'#search/'</span> + query + <span class="hljs-string">'/groups'</span>
-                );
-
-            }).debounce(<span class="hljs-number">250</span>), <span class="hljs-keyword">this</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-22">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
-              </div>
-              <p>Watch for submission of the new search
-form and navigate appropriately.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.landingSearch.on(<span class="hljs-string">'submit'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-23">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
-              </div>
-              <p>Retrieve the submitted query.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">var</span> query = <span class="hljs-keyword">this</span>.teacherSearch.searchQuery.get(<span class="hljs-string">'query'</span>);
-
-                <span class="hljs-keyword">this</span>.navigate(<span class="hljs-string">'search/'</span> + <span class="hljs-built_in">encodeURIComponent</span>(query) + <span class="hljs-string">'/content'</span>,
-                    {trigger: <span class="hljs-literal">true</span>});
-
-            }, <span class="hljs-keyword">this</span>);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-24">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Everything’s ready, so enable history management.</p>
 

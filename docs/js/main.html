@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -253,6 +268,11 @@
                 teacherSearchAsPage.js
               </a>
             
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -291,19 +311,9 @@
 this file mostly just sets things up for the app and
 then launches it. This file also includes configuration
 information.</p>
-
-            </div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>Everything in the application is namespaced under the
+<p>After setup completes, control transfers to the
+the single instance of an <a href="app.html">app router</a>.</p>
+<p>Everything in the application is namespaced under the
 global variable <code>Stem</code>. Invidual components (e.g. models,
 views, collections, etc.) add themselves to this
 namespace as part of their definition.</p>
@@ -320,11 +330,11 @@ namespace as part of their definition.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Global configuration items are defined in the
 <code>config</code> property. Sensitive data (e.g. production
@@ -340,11 +350,11 @@ excluded from the public repository.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Demo key for DonorsChoose; replaced by
 production key in <code>keys.js</code>.</p>
@@ -357,11 +367,11 @@ production key in <code>keys.js</code>.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>OAE configuration. Host and protocol are
 split to allow easy switching between
@@ -384,11 +394,11 @@ secure and non-secure (i.e. demo) version.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Default geographic coordinates are the
 center of the state and its boundaries.</p>
@@ -408,11 +418,11 @@ center of the state and its boundaries.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>General user information shared by multiple
 components.</p>
@@ -425,11 +435,11 @@ components.</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Geolocation information for the user.</p>
 
@@ -445,11 +455,11 @@ components.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>The <code>init()</code> function is called when it’s time
 to start the application.</p>
@@ -463,14 +473,14 @@ to start the application.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>Make sure the App object is defined. If it is,
-create one. It handles everything from there.</p>
+              <p>Make sure the App object is defined. If it isn’t,
+create one. The app handles everything from there.</p>
 
             </div>
             
@@ -486,11 +496,11 @@ create one. It handles everything from there.</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Wait for jQuery’s <code>ready</code> event to start the application.</p>
 

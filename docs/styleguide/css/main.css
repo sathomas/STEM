@@ -1,15 +1,15 @@
-/*csslint adjoining-classes:false, box-sizing:false, font-sizes:false, qualified-headings:false, unique-headings:false, bulletproof-font-face:false, duplicate-properties:false, font-faces:false, compatible-vendor-prefixes:false */
+/*csslint adjoining-classes:false, box-sizing:false, font-sizes:false, qualified-headings:false, unique-headings:false, bulletproof-font-face:false, duplicate-properties:false, font-faces:false, compatible-vendor-prefixes:false,shorthand:false */
 /**
- * # Style Guide for Georgia K-12 STEM Incubator
+ * # Style Guide for Georgia STEM Incubator
  *
- * CSS stylesheet for Georgia K-12 STEM Incubator. Style
+ * CSS stylesheet for Georgia STEM Incubator. Style
  * guide generated automatically by
  * [styledown](https://github.com/styledown/styledown)
  * from comments embedded in the stylesheet.
  *
  * If you're reading the CSS source code, you can view
  * the live style guide on the
- * [STEM Incubator site](http://sathomas.me/STEM/docs/styleguide/).
+ * [STEM Incubator site](http://demo.stemincubator.org/docs/styleguide/).
  * If you're reading the style guide and have no other
  * access to the source code, you can see the fully
  * commented CSS file by viewing the page source.
@@ -20,13 +20,4475 @@
  * example of the corresponding element. To see the
  * markup for any example, click on the ellipses
  * (`...`) below the example.
+ *
+ * > Note that the styles defined here assume that
+ * `normalize.css` has been included prior to
+ * the site-specific styles.
  */
 /*
- * > Note: the styles defined here assume that
- * `normalize.css` has been included prior to
- * these custom styles.
+ * This file is simply the parent file that includes
+ * all the component styles. Since LESS using lazy
+ * evaluation, we can import them in any order. The
+ * generated CSS file, however, is also used to
+ * document the style guide. To make it easy to find
+ * things in the style guide, we include the
+ * components in alphabetical order.
  */
 /**
+ * ## About
+ *
+ */
+/**
+ * ### `about`
+ * The `about` component provides typical
+ * "About this website" information. It
+ * includes headings (`about__heading`)
+ * and text (`about__text`).
+ *
+ *     @example:
+ *     <div class="about">
+ *         <h4 class="about__heading">
+ *             About block heading
+ *         </h4>
+ *         <p class="about__text">
+ *             Text content for the About
+ *             block (on the initial
+ *             landing page).
+ *         </p>
+ *     </div>
+ */
+.about {
+  background-color: #ffffff;
+  color: #424242;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .about {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .about {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .about {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .about {
+    padding-top: 30px;
+  }
+}
+.about__heading {
+  font-weight: 300;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  font-size: 2.4rem;
+  letter-spacing: -0.08rem;
+  line-height: 1.35;
+}
+@media only screen and (min-width: 1000px) {
+  .about__heading {
+    font-size: 3.0rem;
+  }
+}
+.about__text {
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  max-width: 40em;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .about__text {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .about__text {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .about__text {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .about__text {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .about__text {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .about__text {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .about__text {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .about__text {
+    padding-top: 30px;
+  }
+}
+/**
+ * ## Buttons
+ *
+ */
+/**
+ * ### `btn`
+ * We use the `btn` class not for brevity,
+ * but to make it easier to search for
+ * the class as distinct from the element.
+ * The `btn--small` variation (unsurprisingly)
+ * is a smaller version of the button. Note
+ * that 'btn--small` should be applied
+ * _in addition to_ (rather than instead of)
+ * the regular `btn` class.
+ *
+ * By itself, the `btn` class does not provide
+ * text or background colors. Those are
+ * defined by a parent theme. The theme classes
+ * `theme-1`, etc. can be applied either
+ * to the `btn` element directly or to a
+ * parent element.
+ *
+ *     @example:
+ *     <button class="btn theme-1">
+ *         Theme 1
+ *     </button>
+ *     <button class="btn theme-2">
+ *         Theme 2
+ *     </button>
+ *     <button class="btn theme-3">
+ *         Theme 3
+ *     </button>
+ *     <button class="btn btn--small theme-1">
+ *         Small Button
+ *     </button>
+ */
+.btn {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding-bottom: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn--small {
+  border-radius: 3px;
+  font-size: 11px;
+  height: 38px;
+  line-height: 38px;
+  padding-bottom: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 0;
+}
+.theme-1 .btn,
+.theme-1.btn {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+.theme-2 .btn,
+.theme-2.btn {
+  background-color: #00ab0f;
+  color: #ffffff;
+}
+.theme-3 .btn,
+.theme-3.btn {
+  background-color: #005493;
+  color: #ffffff;
+}
+/**
+ * ## Checkbox group
+ *
+ * A group of related checkboxes
+ */
+/**
+ * ### `chkbox-group`
+ * The `chkbox-group` class defines a group of
+ * related checkbox `<input>` elements with
+ * a common label. Generally the group is for
+ * use within a narrow grid column. On small
+ * viewports it displays inline to conserve
+ * vertical screen real estate. On larger
+ * devices, the checkboxes are arranged
+ * vertically.
+ *
+ * Note that the group label is hidden on
+ * small viewports to allow the inputs
+ * to fit on a single line.
+ *
+ *     @example:
+ *     <form class="chkbox-group">
+ *         <fieldset class="chkbox-group__fieldset">
+ *             <label class="chkbox-group__label">
+ *                 Group label:
+ *             </label>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="54">
+ *                 <label class="chkbox__label" for="54">
+ *                     Item 1
+ *                 </label>
+ *             </span>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="55">
+ *                 <label class="chkbox__label" for="55">
+ *                     Item 2
+ *                 </label>
+ *             </span>
+ *         </fieldset>
+ *     </form>
+ */
+.chkbox-group__label {
+  left: -9999em;
+  opacity: 0;
+  position: absolute;
+  top: -9999em;
+}
+@media only screen and (min-width: 500px) {
+  .chkbox-group__label {
+    left: auto;
+    opacity: 1;
+    position: static;
+    top: auto;
+  }
+}
+.chkbox-group__fieldset {
+  border: none;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+.chkbox {
+  display: inline-block;
+  padding-left: calc(20px);
+}
+@media only screen and (min-width: 500px) {
+  .chkbox {
+    display: block;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .chkbox {
+    padding-left: 10px;
+  }
+}
+.chkbox__label {
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  padding-left: 10px;
+}
+.chkbox-group input[type="checkbox"] {
+  cursor: pointer;
+}
+/**
+ * ### `chkbox-group--inline`
+ * The `chkbox-group--inline` modifier class has
+ * the checkbox group display as inline for all
+ * viewports. That class is added to the main
+ * form element.
+ *
+ *     @example:
+ *     <form class="chkbox-group chkbox-group--inline">
+ *         <fieldset class="chkbox-group__fieldset">
+ *             <label class="chkbox-group__label">
+ *                 Group label:
+ *             </label>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="56">
+ *                 <label class="chkbox__label" for="56">
+ *                     Item 1
+ *                 </label>
+ *             </span>
+ *             <span class="chkbox">
+ *                 <input type="checkbox" id="57">
+ *                 <label class="chkbox__label" for="57">
+ *                     Item 2
+ *                 </label>
+ *             </span>
+ *         </fieldset>
+ *     </form>
+ */
+.chkbox-group--inline .chkbox {
+  display: inline-block;
+}
+.chkbox-group--inline .chkbox-group__fieldset {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+.chkbox-group--inline .chkbox__label {
+  padding-left: 0;
+  padding-right: 10px;
+}
+/**
+ * Themes:
+ * Theme classes may be applied to the individual
+ * checkboxes to determine the styling of their
+ * labels.
+ *
+ *     @example:
+ *     <form class="chkbox-group chkbox-group--inline">
+ *         <fieldset class="chkbox-group__fieldset">
+ *             <label class="chkbox-group__label">
+ *                 Group label:
+ *             </label>
+ *             <span class="chkbox theme-3">
+ *                 <input type="checkbox" id="58">
+ *                 <label class="chkbox__label"
+ *                        for="58">
+ *                     Theme 3
+ *                 </label>
+ *             </span>
+ *             <span class="chkbox theme-3-light">
+ *                 <input type="checkbox" id="59">
+ *                 <label class="chkbox__label"
+ *                        for="59">
+ *                     Theme 3 light
+ *                 </label>
+ *             </span>
+ *         </fieldset>
+ *     </form>
+ */
+.chkbox.theme-3 .chkbox__label {
+  color: #005493;
+}
+.chkbox.theme-3-light .chkbox__label {
+  color: #0088ef;
+}
+/**
+ * ## Credits
+ *
+ */
+/**
+ * ### `credits`
+ * The credits block on the landing page that
+ * provides information and links to resources
+ * and services on which the site relies.
+ * Components that can go within the credits
+ * block include:
+ *
+ * - Heading `credits__heading`
+ * - Text `credits__text`
+ * - Horizontal Rule `credits__rule`
+ * - Image links `credits__image-link`
+ * - Images `credits__image`
+ * - Small image links `credits__image-link--small`
+ *
+ *     @example:
+ *     <div class="credits">
+ *         <h4 class="credits__heading">
+ *             Credits block heading
+ *         </h4>
+ *         <p class="credits__text">
+ *             Text content for the Credits
+ *             block (on the initial
+ *             landing page).
+ *         </p>
+ *         <hr class="credits__rule" />
+ *         <h4 class="credits__heading">
+ *             Second credits block heading
+ *         </h4>
+ *         <a href="" class="credits__image-link">
+ *             <img src="" class="credits__image" />
+ *         </a>
+ *         <a href="" class="credits__image-link credits__image-link--small">
+ *             <img src="" class="credits__image credits__image--small" />
+ *         </a>
+ *     </div>
+ */
+.credits {
+  background-color: #efedeb;
+  color: #424242;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .credits {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .credits {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits {
+    padding-top: 30px;
+  }
+}
+.credits__heading {
+  font-weight: 300;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  font-size: 2.4rem;
+  letter-spacing: -0.08rem;
+  line-height: 1.35;
+  text-align: center;
+}
+@media only screen and (min-width: 1000px) {
+  .credits__heading {
+    font-size: 3.0rem;
+  }
+}
+.credits__text {
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  max-width: 40em;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .credits__text {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__text {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .credits__text {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__text {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .credits__text {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__text {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .credits__text {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__text {
+    padding-top: 30px;
+  }
+}
+.credits__rule {
+  border: 1px solid #dbdbda;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  margin-top: 0;
+  width: 75%;
+}
+@media only screen and (min-width: 500px) {
+  .credits__rule {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__rule {
+    margin-bottom: 30px;
+  }
+}
+.credits__image-link {
+  display: block;
+}
+.credits__image-link--small {
+  display: inline-block;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+}
+@media only screen and (min-width: 500px) {
+  .credits__image-link--small {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__image-link--small {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .credits__image-link--small {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__image-link--small {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .credits__image-link--small {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .credits__image-link--small {
+    padding-right: 30px;
+  }
+}
+.credits__image {
+  max-width: 400px;
+  width: 75%;
+}
+.credits__image--small {
+  max-width: 150px;
+  width: 90%;
+}
+/**
+ * ## Discovery
+ *
+ * Discovery blocks are regions on the main
+ * landing page focussed on specific types
+ * of users.
+ */
+/**
+ * ### `discovery`
+ * Discovery blocks, in addition to having
+ * the `discovery` class, should use the
+ * `<article>` tag as their main container.
+ * This tag is required by the interactions
+ * defined in the discovery navigation block.
+ *
+ * The main discovery heading is hidden
+ * on desktop viewports because the discovery
+ * navigation block (which is only shown
+ * on desktops) serves the role of a main
+ * heading. Discovery headings can be
+ * visually styled by the addition of a
+ * theme class.
+ *
+ * Other components that make up a discovery
+ * block (all are optional) include sub-headings,
+ * text, and images.
+ *
+ *     @example:
+ *     <article class="discovery"
+ *              aria-labelledby="id-heading">
+ *         <h3 id="id-heading"
+ *             class="discovery__heading theme-1">
+ *             Discovery block heading
+ *         </h3>
+ *         <h4 class="discovery__subheading">
+ *             Discovery block sub-heading
+ *         </h4>
+ *         <p class="discovery__text">
+ *             Donec id elit non mi porta gravida
+ *             at eget metus. Maecenas sed diam
+ *             eget risus varius blandit sit amet
+ *             non magna. Donec id elit non mi
+ *             porta gravida at eget metus. Fusce
+ *             dapibus, tellus ac cursus commodo,
+ *             tortor mauris condimentum nibh, ut
+ *             fermentum massa justo sit amet
+ *             risus. Maecenas faucibus mollis
+ *             interdum. Maecenas faucibus mollis
+ *             interdum.
+ *         </p>
+ *         <a href="http://oaeproject.org">
+ *             <img src="images/oae.svg"
+ *         	        class="discovery-image" />
+ *         </a>
+ *     </article>
+ */
+.discovery {
+  background-color: #efedeb;
+  box-sizing: border-box;
+  color: #424242;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .discovery {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery {
+    padding-bottom: 30px;
+  }
+}
+.discovery__heading {
+  font-size: 2.5rem;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__heading {
+    padding-bottom: 0;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__heading {
+    padding-left: 0;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__heading {
+    padding-right: 0;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__heading {
+    padding-top: 0;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__heading {
+    height: 0;
+    overflow: hidden;
+  }
+}
+.discovery__subheading {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery__subheading {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__subheading {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery__subheading {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__subheading {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery__subheading {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__subheading {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery__subheading {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__subheading {
+    padding-top: 30px;
+  }
+}
+.discovery__text {
+  font-size: 1.8rem;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  max-width: 48em;
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+}
+@media only screen and (min-width: 500px) {
+  .discovery__text {
+    font-size: 2.2rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery__text {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__text {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery__text {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__text {
+    padding-left: calc(60px);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery__text {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__text {
+    padding-right: calc(60px);
+  }
+}
+.discovery-image {
+  display: block;
+  margin: 10px auto;
+  max-width: 150px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery-image {
+    margin: 30px auto;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-image {
+    margin: 30px auto;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery-image {
+    max-width: 250px;
+  }
+}
+.discovery__heading.theme-1 {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+.discovery__heading.theme-2 {
+  background-color: #00ab0f;
+  color: #ffffff;
+}
+.discovery__heading.theme-3 {
+  background-color: #005493;
+  color: #ffffff;
+}
+/**
+ * ## Discovery navigation
+ *
+ * A special navigation block that controls
+ * the discovery block on the landing page.
+ * The block is hidden on small viewports and
+ * only available on a full desktop.
+ *
+ * The block is implemented as a group of
+ * radio buttons. The buttons themselves (i.e.
+ * the `<input>` elements are hidden from
+ * view and the user interacts strictly by
+ * clicking on the associated `<label>`
+ * elements.
+ *
+ * The selected radio button (the one that
+ * is checked) should be monitored by JavaScript
+ * and used to control which discovery block
+ * is visible. In the absence of JavaScript,
+ * the discovery navigation interaction won't
+ * work, so the navigation block is hidden
+ * and all discovery blocks are visible.
+ * This allows hashtag navigation to the blocks.
+ *
+ * The discovery blocks themselves are `<article>`
+ * elements that are siblings of the discovery
+ * navigation `<nav class="discovery-nav">` element
+ * The specific block that is to be visible is
+ * the _nth_ `<article>`, where _n_ is the value
+ * of the `data-discovery-nav` attribute on the
+ * `<nav class="discovery-nav">` element.
+ *
+ * Note that we use element names (`nav` and
+ * `article`) instead of classes because
+ *
+ * - the `nth-of-type()` psuedo-class doesn't
+ *   work with class names, and
+ * - attribute selectors without specific
+ *   element names have poor performance in
+ *   most browsers.
+ */
+/**
+ * ### `discovery-nav`
+ * The main container for a discovery navigation
+ * block is a `<nav>` element with the class
+ * `discovery-nav`. As noted above, this class
+ * should only be applied to a `<nav>` element.
+ *
+ *     .
+ */
+.discovery-nav {
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  display: none;
+}
+@media only screen and (min-width: 1000px) {
+  .js .discovery-nav {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .js nav.discovery-nav[data-discovery-nav] ~ article {
+    left: -9999em;
+    opacity: 0;
+    position: absolute;
+    top: -9999em;
+  }
+}
+nav.discovery-nav[data-discovery-nav="1"] ~ article.discovery:nth-of-type(1) {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+nav.discovery-nav[data-discovery-nav="2"] ~ article.discovery:nth-of-type(2) {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+nav.discovery-nav[data-discovery-nav="3"] ~ article.discovery:nth-of-type(3) {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+nav.discovery-nav[data-discovery-nav="4"] ~ article.discovery:nth-of-type(4) {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+nav.discovery-nav[data-discovery-nav="5"] ~ article.discovery:nth-of-type(5) {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+.discovery-nav__radio {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+  -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+  display: none;
+}
+/**
+ * ### `discovery-nav__label`
+ * The visible content for discovery navigation
+ * resides within the `<label>` elements. Their
+ * appearance is significantly different depending
+ * on whether or not the corresponding radio
+ * button is selected ('checked`).
+ *
+ * The markup for the labels isn't too complex,
+ * as the example shows. The styling benefits
+ * from a bit of explanation, though, so we'll
+ * tackle the narrow (unselected) view first.
+ * (That's how it appears in the LESS/CSS.)
+ *
+ *     .
+ */
+/**
+ * Markup Structure:
+ * The two main blocks are the content block
+ * and an image block. Within the content
+ * block are text and a More button. The
+ * More button isn't actually functional,
+ * since clicking anywhere on the `<label>`
+ * selects the section. It's just there to
+ * give the users a visual clue that they
+ * can click something. The visual styles
+ * and the specific image below the content
+ * are set by a theme class.
+ *
+ *       Content───────┐
+ *       │ ┌─────────┐ │
+ *       │ │ Text    │ │
+ *       │ │ ~~~~~   │ │
+ *       │ │ ~~~~~   │ │
+ *       │ └─────────┘ │
+ *       │ ┌──────┐    │
+ *       │ │ More │    │
+ *       │ └──────┘    │
+ *       └─────────────┘
+ *       ┌─────────────┐
+ *       │             │
+ *       │    Image    │
+ *       │             │
+ *       └─────────────┘
+ */
+/**
+ * Unselected discovery navigation:
+ * The example shows a discovery navigation
+ * label that is not selected. The significant
+ * visual aspects are:
+ *
+ * - All labels are equal height. (This is
+ *   achieved through the grid system.)
+ * - The text is vertically aligned to
+ *   the top of the container.
+ * - The image is vertically aligned to
+ *   the bottom of the container.
+ * - The More button appears immediately
+ *   above the image (not immediately
+ *   below the text).
+ * - The text and the more button are
+ *   left-aligned (with padding)
+ *
+ * > Note that the example does not have the
+ * same aspect ratio as the actual site because
+ * the example container is not full-width.
+ *
+ *     @example:
+ *     <label for="input-element-id" style="min-height:400px"
+ *            class="discovery-nav__label theme-1">
+ *         <div class="discovery-nav__label__content">
+ *             <span class="discovery-nav__label__text">
+ *                 Text content for label
+ *             </span>
+ *             <span class="discovery-nav__label__more">
+ *                 More
+ *             </span>
+ *         </div>
+ *         <div class="discovery-nav__label__image">
+ *         </div>
+ *     </label>
+ */
+/**
+ * Flexbox styles:
+ * The styles for discovery navigation
+ * labels rely on a CSS flexbox layout.
+ * The properties for the `<label>`
+ * element itself are:
+ *
+ * - `display:flex` To trigger flexbox
+ * - `flex-direction: column` Since the
+ *   label is a vertical flexbox
+ * - `align-items: flex-start` To left-align
+ *   the content (and image) children within
+ *   the label container.
+ * - `justify-content: space-between` To force
+ *     1. the first child element (the content)
+ *        to align with the start of the flexbox.
+ *        (In other words, to vertically align
+ *        the content with the top of the label
+ *        container.) And
+ *     2. the last child element (the image)
+ *        to align with the end of the flexbox.
+ *        (In other words, to vertically align
+ *        the bottom of the image with the
+ *        bottom of the label container.
+ * - in addition, the content container has
+ *   `flex-grow:1` to force it to grow
+ *   vertically to fill all the available
+ *   space.
+ *
+ *              │ align-items
+ *              ▼
+ *     ───────▶ ╔════════════╦──────┐
+ *     justify- ║            ║░▲░░░░│
+ *     content  ║            ║░│░░░░│
+ *        ┇     ║  Content   ║░│░░░░│
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░│ flex-
+ *        ┇     ║            ║░│ grow
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░│░░░░│
+ *        ┇     ║            ║░▼░░░░│
+ *        ┇     ╠════════════╝░─░░░░│
+ *        ┇     ╠════════════╗░░░░░░│
+ *        ┇     ║            ║░░░░░░│
+ *     justify- ║   Image    ║░░░░░░│
+ *     content  ║            ║░░░░░░│
+ *     ───────▶ ╚════════════╩──────┘
+ */
+/**
+ * Selected discovery navigation:
+ * The next example shows a discovery navigation
+ * label that _is_ selected. The significant
+ * visual aspects are:
+ *
+ * - The label container is significantly wider.
+ *   (This is achieved through the grid system.)
+ * - The label container has a background image
+ *   (a larger version of the image in the
+ *   unselected state).
+ * - The text is vertically aligned to the
+ *   bottom of the container.
+ * - The bottom image is not visible.
+ * - The More button is not visible.
+ * - The text is centered
+ *
+ * > Note that the example does not have the
+ * same aspect ratio as the actual site because
+ * the example container is not full-width.
+ *
+ *     @example:
+ *     <input type="radio" name="discovery-nav" id="input-element-id-2"
+ *            class="discovery-nav__radio" checked="checked">
+ *     <label for="input-element-id-2" style="min-height:400px"
+ *            class="discovery-nav__label theme-1">
+ *         <div class="discovery-nav__label__content">
+ *             <span class="discovery-nav__label__text">
+ *                 Text content for label
+ *             </span>
+ *             <span class="discovery-nav__label__more">
+ *                 More
+ *             </span>
+ *         </div>
+ *         <div class="discovery-nav__label__image">
+ *         </div>
+ *     </label>
+ */
+/**
+ * Flexbox styles:
+ * Here's how we adjust the flexbox styling
+ * to modify the appearance. Note that since
+ * the bottom image is not visible in this
+ * state, the content is the only child
+ * element of the label.
+ *
+ * - `align-items: center` To horizontally
+ *   center the content (the only child)
+ *   within the label container.
+ * - `justify-content: flex-end` To force
+ *   the last child element (which is the
+ *   only child element, the content)
+ *   to align with the end of the flexbox.
+ *   (In other words, to vertically align
+ *   the bottom of the content with the
+ *   bottom of the label container.
+ * - in addition, the content container's
+ *   `flex-grow` property is reset to the
+ *   default value of `0` since we don't
+ *   need it to fill the label container
+ *   any more.
+ *
+ *                ─────▶align-items◀─────
+ *                ┌───────────────────┐
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞▞│
+ *                │▞▞▞┌───────────┐▞▞▞│
+ *      justify-  │▞▞▞│           │▞▞▞│
+ *      content   │▞▞▞│  Content  │▞▞▞│
+ *      ────────▶ └───┴───────────┴───┘
+ */
+/**
+ * Other label styles:
+ * There are other label styles as well,
+ * though most are pretty straightforward.
+ * The one slightly tricky property is
+ * the height of a selected label.
+ * We set that height explicitly
+ * to `41.2vw`, or 41.2% of the viewport
+ * width. We're doing that to force
+ * the aspect ratio of the entire
+ * label to be 61.8% (the Golden Ratio)
+ * which matches the aspect ratio of
+ * the images. Since a selected label
+ * is set by the grid system to be
+ * 2/3 of the full width, the height
+ * is 2/3 * 61.8%, or 41.2%. Note that
+ * we can't use the more common approach
+ * of embedding a spacer component and
+ * setting its padding to 61.8% because
+ * of Internet Explorer flexbox bugs.
+ *
+ *     .
+ */
+.discovery-nav__label {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+@media only screen and (min-width: 500px) {
+  .discovery-nav__label {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-nav__label {
+    -webkit-flex-basis: 16.6666666667%;
+        -ms-flex-preferred-size: 16.6666666667%;
+            flex-basis: 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+}
+.discovery-nav__radio:checked + .discovery-nav__label {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 3rem;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 41.2vw;
+  padding-bottom: 10px;
+  text-align: center;
+  vertical-align: bottom;
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-nav__radio:checked + .discovery-nav__label {
+    -webkit-flex-basis: 66.6666666667%;
+        -ms-flex-preferred-size: 66.6666666667%;
+            flex-basis: 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery-nav__radio:checked + .discovery-nav__label {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-nav__radio:checked + .discovery-nav__label {
+    padding-bottom: 30px;
+  }
+}
+/**
+ * ### `discovery-nav__label__content`
+ * The content containers hold both text
+ * content and the More button. They also
+ * use a flexbox layout to force the button
+ * to the bottom of the container. The
+ * properties of the content container
+ * are much the same as the label container:
+ *
+ * - `display:flex`
+ * - `flex-direction:column`
+ * - `justify-content:space-between`
+ * - `align-items:flex-start`
+ *
+ * Because we don't need to force any
+ * children of the content container
+ * to expand their height, we don't need
+ * `flex-grow` properties for any of them.
+ *
+ * The `discovery-nav__label__content--detailed`
+ * class can be used for content within the
+ * container that is only visible when the
+ * discovery block is not selected. This is
+ * generally used to provide more expansive
+ * text content in the unselected state.
+ *
+ *     .
+ */
+.discovery-nav__label__content {
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery-nav__label__content {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-nav__label__content {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery-nav__label__content {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-nav__label__content {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery-nav__label__content {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-nav__label__content {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .discovery-nav__label__content {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery-nav__label__content {
+    padding-top: 30px;
+  }
+}
+.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__content {
+  -webkit-flex-grow: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__content--detailed {
+  left: -9999em;
+  opacity: 0;
+  position: absolute;
+  top: -9999em;
+}
+.discovery-nav__label__text {
+  display: block;
+}
+.discovery-nav__label__more {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding-bottom: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  display: inline-block;
+  background-color: #ffffff;
+  color: #000000;
+}
+.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__more {
+  display: none;
+}
+/**
+ * ### `discovery-nav__label__images`
+ * The image block (small image visible
+ * only when the label is not selected)
+ * is styled straightforwardly, except
+ * we use the same viewport width trick
+ * as above to force its aspect ratio.
+ * Since unselected styles are 1/6 of
+ * the page width, the image height is
+ * 1/6 * 61.8% or 10.3%.
+ *
+ * As noted above, the specific image
+ * shown in the block is determined by
+ * the theme class applied to the
+ * `<label>` element.
+ *
+ *     .
+ */
+.discovery-nav__label__image {
+  background-size: cover;
+  height: 10.3vw;
+  width: 100%;
+}
+.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__image {
+  height: 0;
+}
+.theme-1.discovery-nav__label {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+.discovery-nav__radio:checked + .theme-1.discovery-nav__label {
+  background-image: url(../images/theme-1.jpg);
+}
+.theme-1 .discovery-nav__label__image {
+  background-image: url(../images/theme-1-lowres.jpg);
+}
+.theme-2.discovery-nav__label {
+  background-color: #00ab0f;
+  color: #ffffff;
+}
+.discovery-nav__radio:checked + .theme-2.discovery-nav__label {
+  background-image: url(../images/theme-2.jpg);
+}
+.theme-2 .discovery-nav__label__image {
+  background-image: url(../images/theme-2-lowres.jpg);
+}
+.theme-3.discovery-nav__label {
+  background-color: #005493;
+  color: #ffffff;
+}
+.discovery-nav__radio:checked + .theme-3.discovery-nav__label {
+  background-image: url(../images/theme-3.jpg);
+}
+.theme-3 .discovery-nav__label__image {
+  background-image: url(../images/theme-3-lowres.jpg);
+}
+/**
+ * ## Grid
+ *
+ * Within sections (and articles) we use a standard
+ * 12-column grid for overall layout, in a responsive,
+ * mobile-first architecture.
+ *
+ * We're using flexbox for the grid since the page
+ * layout is challenging for other grid approaches
+ * (inline-block or floats). That does leave IE9
+ * unsupported. If IE9 is desired in the future, it
+ * should be possible to provide "close enough"
+ * fallbacks using floats.
+ */
+/**
+ * ### `container`
+ * The `container` class or mixin encapsulates all
+ * grid-based content. Containers that are themselves
+ * nested within other elements are centered within
+ * those elements.
+ *
+ *     @example:
+ *     <div class="container">
+ *         Contents here, starting with rows
+ *     </div>
+ */
+.container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+/**
+ * ### `row`
+ * The `row` class encapsulates a single row
+ * in the grid. Content within the row will
+ * be vertically aligned, subject to wrapping.
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             Columns go here
+ *         </div>
+ *     </div>
+ */
+.row {
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+/**
+ * ### `column`
+ * Column widths may be specified in two different
+ * ways. One way simply counts the number of columns
+ * the element should use. There are 12 columns in
+ * a full row, so the `six-columns` class represents
+ * half of the width of the container.
+ *
+ * Alternatively, columns may be specified as the
+ * fraction of the row. With this method, the
+ * above element would be given the `one-half-column`
+ * class. One of these two methods should be
+ * used consistenly within a block to avoid confusion.
+ * The current styles use the fractional column
+ * approach.
+ *
+ *     @example:
+ *     <div class="container">
+ *         <div class="row">
+ *             <div class="three-columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     3/12 (1/4) of row
+ *                 </div>
+ *             </div>
+ *             <div class="nine-columns">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     9/12 (3/4) of row
+ *                 </div>
+ *             </div>
+ *         </div>
+ *         <div class="row" style="margin-top:0.2em">
+ *             <div class="two-thirds-column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     2/3 of row
+ *                 </div>
+ *             </div>
+ *             <div class="one-third-column">
+ *                 <div style="background-color:lightgray;margin:5px;">
+ *                     1/3 of row
+ *                 </div>
+ *             </div>
+ *         </div>
+ *     </div>
+ */
+.column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+.zero-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+  -webkit-flex-basis: 0;
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+}
+.one-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .one-column {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .one-column {
+    -webkit-flex-basis: 8.33333333333%;
+        -ms-flex-preferred-size: 8.33333333333%;
+            flex-basis: 8.33333333333%;
+    max-width: 8.33333333333%;
+  }
+}
+.two-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .two-columns {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .two-columns {
+    -webkit-flex-basis: 16.6666666667%;
+        -ms-flex-preferred-size: 16.6666666667%;
+            flex-basis: 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+}
+.three-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .three-columns {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .three-columns {
+    -webkit-flex-basis: 25%;
+        -ms-flex-preferred-size: 25%;
+            flex-basis: 25%;
+    max-width: 25%;
+  }
+}
+.four-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .four-columns {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .four-columns {
+    -webkit-flex-basis: 33.3333333333%;
+        -ms-flex-preferred-size: 33.3333333333%;
+            flex-basis: 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+}
+.five-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .five-columns {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .five-columns {
+    -webkit-flex-basis: 41.6666666667%;
+        -ms-flex-preferred-size: 41.6666666667%;
+            flex-basis: 41.6666666667%;
+    max-width: 41.6666666667%;
+  }
+}
+.six-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .six-columns {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .six-columns {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+.seven-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .seven-columns {
+    -webkit-flex-basis: 58.3333333333%;
+        -ms-flex-preferred-size: 58.3333333333%;
+            flex-basis: 58.3333333333%;
+    max-width: 58.3333333333%;
+  }
+}
+.eight-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .eight-columns {
+    -webkit-flex-basis: 66.6666666667%;
+        -ms-flex-preferred-size: 66.6666666667%;
+            flex-basis: 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+}
+.nine-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .nine-columns {
+    -webkit-flex-basis: 75%;
+        -ms-flex-preferred-size: 75%;
+            flex-basis: 75%;
+    max-width: 75%;
+  }
+}
+.ten-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .ten-columns {
+    -webkit-flex-basis: 83.3333333333%;
+        -ms-flex-preferred-size: 83.3333333333%;
+            flex-basis: 83.3333333333%;
+    max-width: 83.3333333333%;
+  }
+}
+.eleven-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .eleven-columns {
+    -webkit-flex-basis: 91.6666666667%;
+        -ms-flex-preferred-size: 91.6666666667%;
+            flex-basis: 91.6666666667%;
+    max-width: 91.6666666667%;
+  }
+}
+.twelve-columns {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+.one-sixth-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .one-sixth-column {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .one-sixth-column {
+    -webkit-flex-basis: 16.6666666667%;
+        -ms-flex-preferred-size: 16.6666666667%;
+            flex-basis: 16.6666666667%;
+    max-width: 16.6666666667%;
+  }
+}
+.one-fourth-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .one-fourth-column {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .one-fourth-column {
+    -webkit-flex-basis: 25%;
+        -ms-flex-preferred-size: 25%;
+            flex-basis: 25%;
+    max-width: 25%;
+  }
+}
+.one-third-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .one-third-column {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .one-third-column {
+    -webkit-flex-basis: 33.3333333333%;
+        -ms-flex-preferred-size: 33.3333333333%;
+            flex-basis: 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+}
+.one-half-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .one-half-column {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .one-half-column {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+.two-thirds-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .two-thirds-column {
+    -webkit-flex-basis: 66.6666666667%;
+        -ms-flex-preferred-size: 66.6666666667%;
+            flex-basis: 66.6666666667%;
+    max-width: 66.6666666667%;
+  }
+}
+.three-fourths-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .three-fourths-column {
+    -webkit-flex-basis: 75%;
+        -ms-flex-preferred-size: 75%;
+            flex-basis: 75%;
+    max-width: 75%;
+  }
+}
+.five-sixths-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .five-sixths-column {
+    -webkit-flex-basis: 83.3333333333%;
+        -ms-flex-preferred-size: 83.3333333333%;
+            flex-basis: 83.3333333333%;
+    max-width: 83.3333333333%;
+  }
+}
+.one-full-column {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+/**
+ * ## Invitation Block
+ *
+ * An invitation block is a small block on
+ * the site that "invites" users to visit
+ * a different page or site.
+ */
+/**
+ * ### `invite`
+ * The `invite` class designates an invitation
+ * block. The block contains an icon (from the
+ * FontAwesome collection), a link to the
+ * destination, and a short text description.
+ *
+ *     @example:
+ *     <div class="invite">
+ *         <i class="invite__icon fa fa-comments-o"></i>
+ *         <a class="invite__button">
+ *             Button text
+ *         </a>
+ *         <p class="invite__text">
+ *             Brief invitation text
+ *         </p>
+ *     </div>
+ */
+.invite {
+  display: inline-block;
+  padding: 0 10px;
+  text-align: center;
+  vertical-align: text-top;
+}
+@media only screen and (min-width: 500px) {
+  .invite {
+    padding: 0 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .invite {
+    padding: 0 30px;
+  }
+}
+.invite__icon {
+  display: block;
+  font-size: 4rem;
+  opacity: 0.5;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .invite__icon {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .invite__icon {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .invite__icon {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .invite__icon {
+    padding-top: 30px;
+  }
+}
+.invite__button {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding-bottom: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  display: block;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+}
+.invite__text {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  max-width: 12em;
+}
+@media only screen and (min-width: 500px) {
+  .invite__text {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .invite__text {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .invite__text {
+    margin-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .invite__text {
+    margin-top: 30px;
+  }
+}
+/**
+ * Themes:
+ * Theme classes can control the visual
+ * appearance of elements with the invitation
+ * block.
+ *
+ *     @example:
+ *     <div class="invite theme-1">
+ *         <i class="invite__icon fa fa-comments-o"></i>
+ *         <a class="invite__button">
+ *             Theme 1
+ *         </a>
+ *         <p class="invite__text">
+ *             Brief invitation text
+ *         </p>
+ *     </div>
+ */
+.theme-1 .invite__button,
+.invite__button.theme-1 {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+.theme-2 .invite__button,
+.invite__button.theme-2 {
+  background-color: #00ab0f;
+  color: #ffffff;
+}
+.theme-3 .invite__button,
+.invite__button.theme-3 {
+  background-color: #005493;
+  color: #ffffff;
+}
+/**
+ * ## Map
+ *
+ * Styling for maps embedded in the page. Maps
+ * are created with the Leaflet.js library. Refer
+ * to the `thirdparty.less` file for styles that
+ * directly override the standard Leaflet styles.
+ */
+/**
+ * ### `map`
+ * Maps are full-wdith (of the browser window)
+ * less any left and right margin. _Note that
+ * margins must be specified in `px` units
+ * for the fluid re-sizing (performed in JavaScript
+ * due to Leaflet's limitation) to work._
+ *
+ *     @example:
+ *     <div class="map">
+ *         <p>Screen capture of map; not live</p>
+ *         <img src="images/samplemap.png"
+ *              style="width:100%;" />
+ *     </div>
+ */
+.map {
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 0;
+}
+@media only screen and (min-width: 500px) {
+  .map {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .map {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .map {
+    margin-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .map {
+    margin-left: calc(120px);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .map {
+    margin-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .map {
+    margin-right: calc(120px);
+  }
+}
+/**
+ * ## Point of Interest
+ *
+ * Points of interest as markers and
+ * popups on maps.
+ */
+/**
+ * ### `poi-marker`
+ * Added to (usually) icon markup when the
+ * icon is used as a point of interest on
+ * a map.
+ *
+ * The `data-hidden` attribute can be set
+ * to "1" to hide the marker by setting its
+ * opacity to 0.
+ *
+ * By itself, the `poi-marker` class does
+ * not define colors. Color is defined by
+ * theme classes added to the marker.
+ *
+ *     @example:
+ *     <div class="fa fa-map-marker poi-marker">
+ *     </div>
+ *     <div class="fa fa-map-marker poi-marker theme-0-black">
+ *     </div>
+ *     <div class="fa fa-map-marker poi-marker theme-3">
+ *     </div>
+ *     <div class="fa fa-map-marker poi-marker theme-3-light">
+ *     </div>
+ */
+.poi-marker {
+  font-size: 40px;
+  transition: opacity 250ms linear;
+}
+.poi-marker.theme-0-black {
+  color: #000000;
+}
+.poi-marker.theme-3 {
+  color: #005493;
+}
+.poi-marker.theme-3-light {
+  color: #0088ef;
+}
+div.poi-marker[data-hidden="1"] {
+  opacity: 0;
+  pointer-events: none;
+}
+/**
+ * ### `poi-popup`
+ * A small bit of markup that acts as a popup,
+ * e.g. when the user clicks on a map marker.
+ * The popup `<div>` consist of an anchor tag
+ * (class `poi-popup__link`) which itself includes
+ * an image (class `poi-popup__thumbnail`) and
+ * text (class `poi-popup__text`).
+ *
+ * Text colors are defined by a theme class on a
+ * parent container (e.g. the `<div class="pop-popup">`
+ * element or a higher level element).
+ *
+ *     @example:
+ *     <div style="background-color:#cccccc;display:inline-block;padding:20px;">
+ *     <div class="poi-popup theme-1">
+ *         <a href="" class="poi-popup__link">
+ *             <img class="poi-popup__thumbnail"
+ *                  src="images/group.png">
+ *             <span class="poi-popup__text">
+ *                 Title for the point of interest popup
+ *             </span>
+ *         </a>
+ *     </div>
+ *     </div>
+ */
+.poi-popup {
+  background-color: #ffffff;
+}
+.poi-popup__link {
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+}
+.poi-popup__thumbnail {
+  height: 48px;
+  vertical-align: text-top;
+  width: 48px;
+}
+.poi-popup__text {
+  display: inline-block;
+  font-family: Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  height: 48px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: text-top;
+  width: 195px;
+}
+.theme-1 .poi-popup__text {
+  color: #009eaf;
+}
+.theme-2 .poi-popup__text {
+  color: #00ab0f;
+}
+.theme-3 .poi-popup__text {
+  color: #005493;
+}
+/**
+ * ## Results
+ *
+ * Presentation of search results.
+ */
+/**
+ * ### `results`
+ * Search results are presented in a containing
+ * `<div>` with the class `results`. That container
+ * includes three children:
+ *
+ * - `results-filter` filters for the results
+ * - `results-main` primary search results
+ * - `results-secondary` additional search results
+ *
+ *     @example:
+ *     <div class="results">
+ *         <div class="results-filter">
+ *             Controls to filter search results
+ *         </div>
+ *         <div class="results-main">
+ *             Primary search results
+ *         </div>
+ *         <div class="results-secondary">
+ *             Additional search results
+ *         </div>
+ *     </div>
+ */
+.results {
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  background-color: #efedeb;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .results {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results {
+    padding-bottom: calc(60px);
+  }
+}
+.results-filter {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .results-filter {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-filter {
+    -webkit-flex-basis: 25%;
+        -ms-flex-preferred-size: 25%;
+            flex-basis: 25%;
+    max-width: 25%;
+  }
+}
+.results-main {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+  background-color: #ffffff;
+  border-left: 1px solid #dbdbda;
+  border-right: 1px solid #dbdbda;
+  padding-bottom: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .results-main {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-main {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main {
+    padding-bottom: 30px;
+  }
+}
+.results-secondary {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+@media only screen and (min-width: 500px) {
+  .results-secondary {
+    -webkit-flex-basis: 50%;
+        -ms-flex-preferred-size: 50%;
+            flex-basis: 50%;
+    max-width: 50%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-secondary {
+    -webkit-flex-basis: 25%;
+        -ms-flex-preferred-size: 25%;
+            flex-basis: 25%;
+    max-width: 25%;
+  }
+}
+/**
+ * ### `results-filter`
+ * The resuls filter consists of a single
+ * unordered list `<ul>` of filter selections.
+ * Users pick one of these selections to filter
+ * the search results. The list element has
+ * a class of `results-filter__list`.
+ *
+ * Each `<li>` in the list is a class of
+ * `results-filter__list-item`. Items contain
+ * three child elements:
+ *
+ * - a radio button `<input>` to control
+ *   which of the individual filter items
+ *   is currently selected.
+ *   Class `results-filter__list-item__input`
+ * - a label for the radio button that labels
+ *   the filter.
+ *   Class `results-filter__list-item__label`
+ * - optional additional content that is
+ *   visible only when the filter is selected.
+ *   Class `results-filter__list-item__content`
+ *
+ * The labels associated with each item include
+ *
+ * - an icon `results-filter__list-item__icon`
+ * - text `results-filter__list-item__text`
+ *
+ * Results filters can be styled with theme classes
+ * applied to parent elements or the `results-filter`
+ * container itself.
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <div class="results-filter theme-1">
+ *         <ul class="results-filter__list">
+ *             <li class="results-filter__list-item">
+ *                 <input type="radio" id="filter-id-1"
+ *                        class="results-filter__list-item__input"
+ *                        name="filter-group" checked="checked">
+ *                 <label for="filter-id-1"
+ *                        class="results-filter__list-item__label">
+ *                     <i class="results-filter__list-item__icon fa fa-star"></i>
+ *                     <span class="results-filter__list-item__text">
+ *                         Selected filter
+ *                     </span>
+ *                 </label>
+ *                 <div class="results-filter__list-item__content">
+ *                     Additional filter content or controls for first filter
+ *                 </div>
+ *             </li>
+ *             <li class="results-filter__list-item">
+ *                 <input type="radio" id="filter-id-2"
+ *                        class="results-filter__list-item__input"
+ *                        name="filter-group">
+ *                 <label for="filter-id-2"
+ *                        class="results-filter__list-item__label">
+ *                     <i class="results-filter__list-item__icon fa fa-circle"></i>
+ *                     <span class="results-filter__list-item__text">
+ *                         Unselected filter
+ *                     </span>
+ *                 </label>
+ *                 <div class="results-filter__list-item__content">
+ *                     Additional filter content or controls for second filter
+ *                 </div>
+ *             </li>
+ *         </ul>
+ *     </div>
+ *     </div>
+ */
+.results-filter__list {
+  list-style: none;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+.results-filter__list-item {
+  margin-bottom: 1px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  overflow: hidden;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+.results-filter__list-item__input {
+  display: none;
+}
+.results-filter__list-item__label {
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  display: block;
+  height: 6rem;
+  line-height: 1.4;
+  position: relative;
+}
+.results-filter__list-item__icon {
+  background-color: #dbdbda;
+  box-sizing: content-box;
+  color: #ffffff;
+  display: block;
+  float: left;
+  font-size: 3.8rem;
+  height: 4rem;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 10px;
+  margin-top: 0;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  width: 4rem;
+}
+.results-filter__list-item__text {
+  display: block;
+  left: 7rem;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.results-filter__list-item__content {
+  background-color: #ffffff;
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+.results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
+  height: auto;
+}
+.theme-1 .results-filter__list-item__label {
+  color: #009eaf;
+}
+.theme-1 .results-filter__list-item__input:checked ~ .results-filter__list-item__label {
+  background-color: #ffffff;
+  color: #636363;
+}
+.theme-1 .results-filter__list-item__label:focus .results-filter__list-item__icon,
+.no-touch .theme-1 .results-filter__list-item__label:hover .results-filter__list-item__icon,
+.theme-1 .results-filter__list-item__input:checked ~ .results-filter__list-item__label .results-filter__list-item__icon {
+  background-color: #009eaf;
+}
+/**
+ * ### `results-main`
+ * The primary search results are presented
+ * in a container that includes a heading,
+ * a list of individual results, and a link
+ * to additional results.
+ *
+ * The individual items in the results list
+ * (which must be in `<li>` elements) contain
+ * an image and a link. The text content of
+ * the link serves as the title for the result.
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <div class="results-main theme-1">
+ *         <h3 class="results-main__heading">
+ *             Heading for results
+ *         </h3>
+ *         <ul class="results-main__list">
+ *             <li class="results-main__item">
+ *                 <img class="results-main__thumbnail"
+ *                      src="images/group.png">
+ *                 <a href="" class="results-main__link">
+ *                     Title of result 1
+ *                 </a>
+ *             </li>
+ *             <li class="results-main__item">
+ *                 <img class="results-main__thumbnail"
+ *                      src="images/group.png">
+ *                 <a href="" class="results-main__link">
+ *                     Title of result 2
+ *                 </a>
+ *             </li>
+ *         </ul>
+ *         <div class="results-main__more">
+ *             <button type="button"
+ *                     class="results-main__button">
+ *                 Show more
+ *             </button>
+ *         </div>
+ *     </div>
+ *     </div>
+ */
+.results-main__heading {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .results-main__heading {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__heading {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-main__heading {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__heading {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-main__heading {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__heading {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-main__heading {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__heading {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-main__heading {
+    padding-bottom: 10px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__heading {
+    padding-bottom: 10px;
+  }
+}
+.results-main__list {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+.results-main__item {
+  box-sizing: content-box;
+  border-bottom: 1px solid #dbdbda;
+  clear: both;
+  min-height: 75px;
+  list-style: none;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .results-main__item {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__item {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-main__item {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__item {
+    padding-right: 30px;
+  }
+}
+.results-main__list li:last-of-type {
+  border-bottom: none;
+}
+.results-main__thumbnail {
+  border: 1px solid #dbdbda;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  height: 75px;
+  width: 75px;
+}
+.results-main__link {
+  display: block;
+  font-size: 2.2rem;
+  min-height: 75px;
+  padding-left: 10px;
+  overflow: hidden;
+  text-decoration: none;
+}
+.results-main__link:focus,
+.no-touch .results-main__link:hover {
+  text-decoration: underline;
+}
+.theme-1 .results-main__link {
+  color: #009eaf;
+}
+.results-main__more {
+  text-align: center;
+}
+.results-main__button {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding-bottom: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: #dbdbda;
+}
+.theme-1 .results-main__button {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+/**
+ * ### `results-secondary`
+ * Alternate search results can consist of
+ * one or more blocks, where each block (a
+ * `<div>`) present one set of alternate
+ * results. Each block uses a structure
+ * similar to that of the main search results:
+ * a heading, a list, and a more button.
+ *
+ * The main difference between secondary
+ * results and main results is the list
+ * items. Each secondary item is an anchor
+ * tag `<a>` that encloses all of the item's
+ * content. That content includes a `<div>`
+ * of class `results-secondary__image` whose
+ * `background-image` style is set to the
+ * result thumbnail. After the image is a
+ * text element with the result's title.
+ *
+ *     @example:
+ *     <div class="results-secondary theme-1">
+ *         <div class="results-secondary-block">
+ *             <h4 class="results-secondary__heading">
+ *                 Secondary results heading
+ *             </h4>
+ *             <ul class="results-secondary__list">
+ *                 <li class="results-secondary__item">
+ *                     <a href="" class="results-secondary__link">
+ *                         <div role="image"
+ *                              class="results-secondary__image"
+ *                              style="background-image: url(images/group.png);">
+ *                         </div>
+ *                         <h5 class="results-secondary__text">
+ *                             Secondary results title 1
+ *                         </h5>
+ *                     </a>
+ *                 </li>
+ *                 <li class="results-secondary__item">
+ *                     <a href="" class="results-secondary__link">
+ *                         <div role="image"
+ *                              class="results-secondary__image"
+ *                              style="background-image: url(images/group.png);">
+ *                         </div>
+ *                         <h5 class="results-secondary__text">
+ *                             Secondary results title 2
+ *                         </h5>
+ *                     </a>
+ *                 </li>
+ *             </ul>
+ *             <div class="results-secondary__more">
+ *                 <button type="button" class="results-secondary__button">
+ *                     Show more
+ *                 </button>
+ *             </div>
+ *         </div>
+ *     </div>
+ */
+.results-secondary__heading {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .results-secondary__heading {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-secondary__heading {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-secondary__heading {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-secondary__heading {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-secondary__heading {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-secondary__heading {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-secondary__heading {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-secondary__heading {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-secondary__heading {
+    padding-bottom: 10px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-secondary__heading {
+    padding-bottom: 10px;
+  }
+}
+.results-secondary__heading {
+  line-height: 1.2;
+  text-align: center;
+}
+.results-secondary__list {
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+}
+.results-secondary__item {
+  list-style: none;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  max-width: 200px;
+  position: relative;
+}
+@media only screen and (min-width: 500px) {
+  .results-secondary__item {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-secondary__item {
+    margin-bottom: 30px;
+  }
+}
+.results-secondary__link {
+  display: block;
+  text-decoration: none;
+}
+.results-secondary__image {
+  background-size: cover;
+  border: 1px solid #dbdbda;
+  box-sizing: border-box;
+  padding-top: 100%;
+  width: 100%;
+}
+.results-secondary__text {
+  background-color: #424242;
+  background-color: rgba(0, 0, 0, 0.75);
+  bottom: 0;
+  box-sizing: border-box;
+  color: white;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}
+.results-secondary__more {
+  text-align: center;
+}
+.results-secondary__button {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding-bottom: 0;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 0;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: #dbdbda;
+}
+.theme-1 .results-secondary__button {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+/**
+ * ## Scaffolding
+ *
+ * We use a straightforward semantic markup with the
+ * three standard compononents of `<nav>`, `<main>`,
+ * and `<footer>`.
+ */
+/**
+ * ### `<section>`
+ * Because the site is actually just a single page
+ * application, there are multiple "apparent" pages
+ * within the single HTML file. Each virtual page is
+ * a single `<section>` within the `<main>` content.
+ *
+ * By default, all sections other than the first are
+ * hidden by CSS. There's an exception, however, if
+ * the user's browser does not support JavaScript.
+ * In that case we display all the sections so the
+ * user can at least scroll to see all of the static
+ * content. To override the default behavior on any
+ * particular section, add the class `hide` or `show`
+ * or set the `data-hide` attribute to `"1"` or `"0"`
+ * as appropriate. The `data-hide` attribute overrides
+ * all class- and position-based hiding.
+ *
+ * > Note: We "hide" sections by positioning them
+ * offscreen, not by setting their display property
+ * to `none`. This keeps all sections accessible to
+ * screen readers.
+ *
+ *     @example:
+ *     <section class="show">
+ *         This section is always visible.
+ *     </section>
+ *     <section class="hide">
+ *         This section is never visible.
+ *     </section>
+ */
+section {
+  transition: opacity 400ms linear;
+  width: 100%;
+}
+html.js section:not(:first-of-type),
+html.js section.hide,
+section.hide,
+section[data-hide="1"] {
+  left: -9999em;
+  opacity: 0;
+  position: absolute;
+  top: -9999em;
+}
+html.js section.show,
+section.show,
+section[data-hide="0"],
+html.js section:not(:first-of-type)[data-hide="0"],
+html.js section.hide[data-hide="0"],
+section.hide[data-hide="0"] {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+}
+/**
+ * ## Search
+ *
+ * A prominent search form for the site.
+ */
+/**
+ * ### `search`
+ * A common search form. The form includes
+ * a label (typical only "visible" to assistive
+ * devices such as screen readers), an `<input>`
+ * element, and a submit `<button>`
+ *
+ * Colors for the submit button are defined by
+ * a parent theme class (e.g. on the `<form>`.
+ *
+ * Several points are noteworthy:
+ *
+ * - In order to avoid iOS search styles
+ *   overriding ours, be sure to use
+ *   `type="text"` instead of `type="search"`.
+ * - To force iOS to use a search keyboard
+ *   (with Search instead of the Enter key),
+ *   supply an `action` attribute (even it
+ *   it's meaningless) and give the `<input>`
+ *   element an `id` that includes "search."
+ * - There must be no whitespace between the
+ *   closing angle brace `>` of the input
+ *   and the opening angle brace `<` of the
+ *   button.
+ * - Do not provide text for the submit
+ *   button. CSS styles add the text in order
+ *   to change it for an icon on small viewports.
+ *
+ *     @example:
+ *     <form class="search theme-1"
+ *           role="search" action=".">
+ *         <label class="search__label">
+ *             Search label
+ *         </label>
+ *         <input placeholder="Search placeholder"
+ *                type="text"
+ *                class="search__input"
+ *                id="search_xxx"
+ *        ><button type="submit"
+ *                 class="search__submit"></button>
+ *     </form>
+ */
+.search {
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .search {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .search {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .search {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .search {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .search {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .search {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .search {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .search {
+    padding-top: 30px;
+  }
+}
+.theme-0.search {
+  background-color: #efedeb;
+}
+.search__label {
+  font-weight: 300;
+  margin-bottom: 2rem;
+  margin-top: 0;
+  font-size: 2.4rem;
+  letter-spacing: -0.08rem;
+  line-height: 1.35;
+  display: block;
+  width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .search__label {
+    font-size: 3.0rem;
+  }
+}
+.search__input {
+  border: 1px solid #dbdbda;
+  border-radius: 5px;
+  border-bottom-right-radius: 0;
+  border-right: none;
+  border-top-right-radius: 0;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 2rem;
+  height: 4rem;
+  max-width: 600px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 0;
+  width: calc(100% - 41px);
+}
+@media only screen and (min-width: 500px) {
+  .search__input {
+    width: calc(100% - 121px);
+  }
+}
+.search__submit {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-bottom-left-radius: 0;
+  border-left: none;
+  border-top-left-radius: 0;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+  width: 40px;
+}
+@media only screen and (min-width: 1000px) {
+  .search__submit {
+    width: 120px;
+  }
+}
+.search__submit:before {
+  content: "\f002";
+  font-family: FontAwesome;
+  font-weight: normal;
+  width: 40px;
+}
+@media only screen and (min-width: 1000px) {
+  .search__submit:before {
+    content: "Search";
+    font-family: Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+  }
+}
+.theme-1 .search__submit {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+.theme-1 .search__input:focus {
+  border: 1px solid #009eaf;
+  outline: 0;
+}
+.theme-1 .search__submit:focus {
+  border: 1px solid black;
+  outline: 0;
+}
+/**
+ * ## Site Footer
+ */
+/**
+ * ### `site-ftr`
+ * We use the `site-ftr` class instead of the more
+ * common `footer` class to make it easuer to find
+ * style-related code using editor search and grep.
+ *
+ */
+.site-ftr {
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-align-items: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+  box-sizing: border-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  background-color: #424242;
+  color: #efedeb;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr {
+    padding-top: 30px;
+  }
+}
+/**
+ * ### `site-ftr__block`
+ * A block within the site footer is a full-width
+ * column.
+ */
+.site-ftr__block {
+  box-sizing: border-box;
+  -webkit-flex-basis: 100%;
+      -ms-flex-preferred-size: 100%;
+          flex-basis: 100%;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  max-width: 100%;
+}
+/**
+ * ### `site-ftr__button`
+ * Buttons within the site footer are given
+ * compatible styling. They support both
+ * text and an icon. Normally footer
+ * buttons are anchor tags that link
+ * to other resources.
+ *
+ *     @example:
+ *     <div role="contentinfo" class="site-ftr">
+ *         <div class="site-ftr__block">
+ * 	    	   <a class="site-ftr__button">
+ * 		    	   <i class="fa fa-twitter
+ *                    site-ftr__button__icon"></i>
+ * 		    	   Follow us on Twitter
+ * 		       </a>
+ *     	   </div>
+ *     </div>
+ */
+.site-ftr__button {
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.8rem;
+  font-weight: 600;
+  height: 4rem;
+  line-height: 2.2;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 3px;
+  font-size: 11px;
+  height: 38px;
+  line-height: 38px;
+  padding-bottom: 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 0;
+  background-color: #efedeb;
+  color: #424242;
+  margin-bottom: calc(5px);
+  margin-left: calc(5px);
+  margin-right: calc(5px);
+  margin-top: calc(5px);
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr__button {
+    margin-bottom: calc(15px);
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr__button {
+    margin-bottom: calc(15px);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr__button {
+    margin-left: calc(15px);
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr__button {
+    margin-left: calc(15px);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr__button {
+    margin-right: calc(15px);
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr__button {
+    margin-right: calc(15px);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-ftr__button {
+    margin-top: calc(15px);
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-ftr__button {
+    margin-top: calc(15px);
+  }
+}
+.no-touch .site-ftr__button:hover,
+.site-ftr__button:focus {
+  color: #000000;
+}
+.site-ftr__button__icon {
+  margin-right: 0.5em;
+}
+/**
+ * ### `site-ftr__copyright`
+ * Copyright information is reduced in size
+ * and embedded links are styled appropriately.
+ *
+ *     @example:
+ *     <div role="contentinfo" class="site-ftr">
+ *         <div class="site-ftr__block">
+ *             <p class="site-ftr__copyright">
+ *                 Copyright 2015 ©
+ *                 <a href="https://gosa.georgia.gov"
+ *                    class="site-ftr__copyright-link">
+ *                     The Governor’s Office of Student Achievement
+ *  	           </a>.
+ *                 All rights reserved.
+ *             </p>
+ *     	   </div>
+ *     </div>
+ */
+.site-ftr__copyright {
+  font-size: 80%;
+  margin-bottom: 0;
+}
+.site-ftr__copyright-link {
+  color: inherit;
+  text-decoration: none;
+}
+.no-touch .site-ftr__copyright-link:hover,
+.site-ftr__copyright-link:focus {
+  text-decoration: underline;
+}
+/**
+ * ## Site Header
+ *
+ * The header, including the responsive navigation bar,
+ * at the top of the site.
+ */
+/**
+ * ### `site-hdr`
+ * We use the `site-hdr` class instead of the more
+ * common `header` class to make it easuer to find
+ * style-related code using editor search and grep.
+ *
+ * The brand for the site is currently a placeholder
+ * for an identity or sponsorship. Rather than use
+ * a logo image, simple HTML components are sufficient.
+ * As is traditional, the logo is wrapped in an anchor
+ * tag that links to the home page for the site.
+ *
+ * The site navigation includes a hidden checkbox
+ * `<input>` and an empty label. The checkbox provides
+ * a simple CSS-only mechanism to toggle the collapsed
+ * or expanded state for the navigation menu on
+ * mobile viewports. The label provides the tap
+ * target on those viewports. It is empty in the
+ * markup so that its content can be supplied by
+ * CSS, allowing the content to appear only at
+ * appropriate viewport sizes. (The content also
+ * changes, depending on whether the menu is
+ * collapsed or expanded.)
+ *
+ * The menu items themselves are simply a standard
+ * unordered list.
+ *
+ *     @example:
+ *     <header role="banner" class="site-hdr"
+ *             data-theme="theme-1-dark">
+ *         <h1 class="site-hdr__brand">
+ *             <span class="site-hdr__brand__border">
+ *                 <a href="#"
+ *                    class="site-hdr__brand__link">
+ *                     The Georgia<br/>STEM Incubator
+ *                 </a>
+ *             </span>
+ *         </h1>
+ *         <nav role="navigation" class="site-hdr__navbar">
+ *             <input type="checkbox" id="nav-toggle"
+ *                    aria-hidden="true"
+ *                    class="site-hdr__navbar__checkbox"/>
+ *             <label for="nav-toggle" aria-hidden="true"
+ *                    class="site-hdr__navbar__label"></label>
+ *             <ul class="site-hdr__navbar__list">
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 1
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 2
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 3
+ *                     </a>
+ *                 </li>
+ *             </ul>
+ *         </nav>
+ *     </header>
+ */
+.site-hdr {
+  height: 75px;
+  position: relative;
+  transition: background-color 400ms linear;
+}
+.site-hdr:before,
+.site-hdr:after {
+  content: " ";
+  display: table;
+}
+.site-hdr:after {
+  clear: both;
+}
+.site-hdr__brand {
+  box-sizing: border-box;
+  color: white;
+  float: left;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 0;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .site-hdr__brand {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__brand {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__brand {
+    width: 50%;
+  }
+}
+.site-hdr__brand__border {
+  border: 1px solid white;
+  display: inline-block;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 1px;
+}
+.site-hdr__brand__link {
+  color: inherit;
+  text-decoration: none;
+}
+.site-hdr__navbar {
+  display: block;
+  float: right;
+  height: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar {
+    width: 50%;
+  }
+}
+.site-hdr__navbar__checkbox {
+  display: none;
+}
+.site-hdr__navbar__label {
+  cursor: pointer;
+  display: block;
+  position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  z-index: 2;
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__label {
+    display: none;
+  }
+}
+.site-hdr__navbar__label:after {
+  color: #ffffff;
+  content: 'Menu';
+  display: block;
+  font-size: 16px;
+  line-height: 1;
+  padding-bottom: 29px;
+  padding-left: 0;
+  padding-right: 10px;
+  padding-top: 30px;
+  text-align: center;
+}
+@media only screen and (min-width: 500px) {
+  .site-hdr__navbar__label:after {
+    padding-right: 30px;
+  }
+}
+.site-hdr__navbar__checkbox:checked + .site-hdr__navbar__label:after {
+  content: 'Close Menu';
+}
+.site-hdr__navbar__list {
+  border-top: 1px solid white;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  max-height: 0;
+  overflow-y: hidden;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  position: absolute;
+  right: 0;
+  transition: max-height 250ms linear;
+  width: 100%;
+  z-index: 1;
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__list {
+    border-top: none;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__list {
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__list {
+    max-height: none;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__list {
+    position: static;
+  }
+}
+.site-hdr__navbar__checkbox:checked ~ .site-hdr__navbar__list {
+  max-height: 168px;
+  transition: max-height 250ms ease-in;
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__checkbox:checked ~ .site-hdr__navbar__list {
+    max-height: none;
+  }
+}
+.site-hdr__navbar__item {
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: block;
+  float: left;
+  list-style: none;
+  text-align: right;
+  transition: background-color 400ms linear;
+  width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__item {
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__item {
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__item {
+    width: 33.3333333333%;
+  }
+}
+.site-hdr__navbar__link {
+  box-sizing: border-box;
+  color: inherit;
+  display: block;
+  font-size: 16px;
+  line-height: 1;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+  text-decoration: none;
+  width: 100%;
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    height: 100%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    padding-top: 0;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-hdr__navbar__link {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    padding-left: 0;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .site-hdr__navbar__link {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    padding-right: 0;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .site-hdr__navbar__link {
+    width: auto;
+  }
+}
+/**
+ * Themes:
+ * The overall theme for the header is set using
+ * the `data-theme` attribute on the `<header>`
+ * element.
+ *
+ *     @example:
+ *     <header role="banner" class="site-hdr"
+ *             data-theme="theme-1">
+ *         <h1 class="site-hdr__brand">
+ *             <span class="site-hdr__brand__border">
+ *                 <a href="#"
+ *                    class="site-hdr__brand__link">
+ *                     The Georgia<br/>STEM Incubator
+ *                 </a>
+ *             </span>
+ *         </h1>
+ *         <nav role="navigation" class="site-hdr__navbar">
+ *             <input type="checkbox" id="nav-toggle"
+ *                    aria-hidden="true"
+ *                    class="site-hdr__navbar__checkbox"/>
+ *             <label for="nav-toggle" aria-hidden="true"
+ *                    class="site-hdr__navbar__label"></label>
+ *             <ul class="site-hdr__navbar__list">
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 1
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 2
+ *                     </a>
+ *                 </li>
+ *                 <li class="site-hdr__navbar__item">
+ *                     <a href=""
+ *                        class="site-hdr__navbar__link">
+ *                         Item 3
+ *                     </a>
+ *                 </li>
+ *             </ul>
+ *         </nav>
+ *     </header>
+ */
+header[data-theme=theme-1-dark] {
+  background-color: #013e45;
+  color: #009eaf;
+}
+header[data-theme=theme-1] {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(1) {
+  background-color: #013e45;
+  color: #009eaf;
+}
+.no-touch header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(1) .header__navbar__link:hover,
+header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(1) .header__navbar__link:focus {
+  color: #ffffff;
+}
+header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(1) {
+  background-color: #009eaf;
+  color: #ffffff;
+}
+header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(2),
+header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(2) {
+  background-color: #00430c;
+  color: #00ab0f;
+}
+.no-touch header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:hover,
+.no-touch header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:hover,
+header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:focus,
+header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:focus {
+  color: #ffffff;
+}
+header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(3),
+header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(3) {
+  background-color: #00213a;
+  color: #2ea1cc;
+}
+.no-touch header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:hover,
+.no-touch header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:hover,
+header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:focus,
+header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:focus {
+  color: #ffffff;
+}
+/**
+ * Main element transitions:
+ * On mobile viewports, the expanded menu,
+ * by default, overlays the top of the main
+ * site content. A better user experience is
+ * to have the main content move down to make
+ * make room for the menu. That's not possible
+ * entirely in CSS, but we do define some CSS
+ * rules that support a JavaScript implementation.
+ * To shift the main content down, the code
+ * adds the `data-nav-expanded=1` attribute
+ * to the `<main>` element.
+ *
+ *     .
+ */
+main {
+  transition: padding-top 250ms linear;
+}
+main[data-nav-expanded="1"] {
+  padding-top: 168px;
+}
+@media only screen and (min-width: 1000px) {
+  main[data-nav-expanded="1"] {
+    padding-top: 0;
+  }
+}
+/**
+ * ## Spotlight
+ *
+ * A list of spotlight items.
+ */
+/**
+ * ### `spotlight`
+ * The `spotlight` class defines an unordered list
+ * of items featured as spotlighted content.
+ * Individual spotlight items are items in the list.
+ * Normally the list shows a small image and a title
+ * for the item, as well as a large disclosure
+ * triangle on the right. The key components of the
+ * block are:
+ *
+ * - `spotlight__item` the list item
+ * - `spotlight__item__thumbnail` the thumbnail image
+ * - `spotlight__item__content` the container `<div>`
+ *    for the main item content
+ *    - `spotlight__item__title` the title of the
+ *      item (typically a link to the item)
+ *    - `spotlight__item__expand` the disclosure icon
+ *    - `spotlight__item__description` a more expansive
+ *      description of the item (hidden in normal view)
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <ul class="spotlight">
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     First spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Maecenas faucibus
+ *                     mollis interdum. Morbi leo risus,
+ *                     porta ac consectetur ac, vestibulum
+ *                     at eros. Sed posuere consectetur
+ *                     est at lobortis. Integer posuere
+ *                     erat a ante venenatis dapibus
+ *                     posuere velit aliquet. Praesent
+ *                     commodo cursus magna, vel
+ *                     scelerisque nisl consectetur et.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     Second spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Maecenas faucibus mollis interdum.
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Vestibulum id ligula
+ *                     porta felis euismod semper. Praesent
+ *                     commodo cursus magna, vel scelerisque
+ *                     nisl consectetur et. Cras justo odio,
+ *                     dapibus ac facilisis in, egestas eget
+ *                     quam. Cras mattis consectetur purus
+ *                     sit amet fermentum.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *     </ul>
+ *     </div>
+ */
+.spotlight {
+  list-style: none;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  text-align: left;
+}
+.spotlight:before,
+.spotlight:after {
+  content: " ";
+  display: table;
+}
+.spotlight:after {
+  clear: both;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight {
+    margin-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight {
+    margin-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight {
+    margin-left: calc(120px);
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight {
+    margin-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight {
+    margin-right: calc(120px);
+  }
+}
+.spotlight__item {
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #efedeb;
+  box-sizing: border-box;
+  clear: both;
+  height: 100px;
+  min-height: 100px;
+  overflow: hidden;
+}
+.spotlight__item__thumbnail {
+  border: 1px solid #efedeb;
+  box-sizing: border-box;
+  float: left;
+  height: 100px;
+  width: 100px;
+}
+.spotlight__item__content {
+  box-sizing: border-box;
+  float: left;
+  position: relative;
+  width: calc(100% - 100px);
+}
+.spotlight__item__content:before,
+.spotlight__item__content:after {
+  content: " ";
+  display: table;
+}
+.spotlight__item__content:after {
+  clear: both;
+}
+.spotlight__item__title {
+  color: #636363;
+  display: inline-block;
+  font-size: 1.6rem;
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: calc(30px);
+  margin-top: 10px;
+  padding-bottom: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
+  text-decoration: none;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    font-size: 2.2rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    margin-right: 0;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    margin-top: 34px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__title {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__title {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__title {
+    padding-right: 30px;
+  }
+}
+.spotlight__item__expand {
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__expand {
+    font-size: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__expand {
+    right: 34px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__expand {
+    top: 34px;
+  }
+}
+.spotlight__item__description {
+  left: -9999em;
+  opacity: 0;
+  position: absolute;
+  top: -9999em;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__description {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__description {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__description {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__description {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__description {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__description {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .spotlight__item__description {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .spotlight__item__description {
+    padding-top: 30px;
+  }
+}
+/**
+ * Expanded items:
+ * JavaScript can add the `data-expanded="1"`
+ * attribute to any spotlight itemt to reveal
+ * the detailed description.
+ *
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <ul class="spotlight">
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     First spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Maecenas faucibus
+ *                     mollis interdum. Morbi leo risus,
+ *                     porta ac consectetur ac, vestibulum
+ *                     at eros. Sed posuere consectetur
+ *                     est at lobortis. Integer posuere
+ *                     erat a ante venenatis dapibus
+ *                     posuere velit aliquet. Praesent
+ *                     commodo cursus magna, vel
+ *                     scelerisque nisl consectetur et.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *         <li class="spotlight__item" data-expanded="1">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     Second spotlight item (expanded)
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Maecenas faucibus mollis interdum.
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Vestibulum id ligula
+ *                     porta felis euismod semper. Praesent
+ *                     commodo cursus magna, vel scelerisque
+ *                     nisl consectetur et. Cras justo odio,
+ *                     dapibus ac facilisis in, egestas eget
+ *                     quam. Cras mattis consectetur purus
+ *                     sit amet fermentum.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *     </ul>
+ *     </div>
+ */
+li.spotlight__item[data-expanded="1"] {
+  height: auto;
+}
+li.spotlight__item[data-expanded="1"],
+li.spotlight__item[data-expanded="1"] .spotlight__item__content {
+  background-color: #ffffff;
+  height: auto;
+}
+li.spotlight__item[data-expanded="1"] .spotlight__item__title {
+  color: #424242;
+}
+li.spotlight__item[data-expanded="1"] .spotlight__item__expand {
+  cursor: default;
+  opacity: 0;
+}
+li.spotlight__item[data-expanded="1"] .spotlight__item__description {
+  left: auto;
+  opacity: 1;
+  position: static;
+  top: auto;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+}
+/**
+ * Themes:
+ * Theme classes may be added to the main `spotlight`
+ * list element to change the visual appearance.
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <ul class="spotlight theme-3">
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     First spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Maecenas faucibus
+ *                     mollis interdum. Morbi leo risus,
+ *                     porta ac consectetur ac, vestibulum
+ *                     at eros. Sed posuere consectetur
+ *                     est at lobortis. Integer posuere
+ *                     erat a ante venenatis dapibus
+ *                     posuere velit aliquet. Praesent
+ *                     commodo cursus magna, vel
+ *                     scelerisque nisl consectetur et.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *         <li class="spotlight__item" data-expanded="1">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     Second spotlight item (expanded)
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Maecenas faucibus mollis interdum.
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Vestibulum id ligula
+ *                     porta felis euismod semper. Praesent
+ *                     commodo cursus magna, vel scelerisque
+ *                     nisl consectetur et. Cras justo odio,
+ *                     dapibus ac facilisis in, egestas eget
+ *                     quam. Cras mattis consectetur purus
+ *                     sit amet fermentum.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *     </ul>
+ *     </div>
+ */
+.no-touch .theme-3 .spotlight__item__title:hover,
+.theme-3 .spotlight__item__title:focus,
+.no-touch .theme-3 li.spotlight__item[data-expanded="1"] .spotlight__item__title:hover,
+.theme-3 li.spotlight__item[data-expanded="1"] .spotlight__item__title:focus {
+  color: #0088ef;
+}
+.theme-3 .spotlight__item__expand {
+  color: #005493;
+}
+.no-touch .theme-3 .spotlight__item__expand:hover,
+.theme-3 .spotlight__item__expand:focus {
+  color: #0088ef;
+}
+/*
  * Third-Party Overrides:
  * Override third-party properties as needed.
  */
@@ -53,173 +4515,228 @@
 .leaflet-popup-tip-container {
   display: none;
 }
-/*
- * ## Variables
+/**
+ * ## Tabs
  *
- * LESS/CSS variables re-used in multiple
- * rules.
- */
-/*
- * ### Theme Colors:
- *
- * The site relies on three distinct themes,
- * plus an extensive neutral theme.
- */
-/* Theme 0 is the neutral theme */
-/*
- * ### Media Query Breakpoints:
- *
- * The site is mobile-first, with media queries
- * for tablet-ish and desktop-ish devices.
- */
-/*
- * ### Block spacing:
- *
- * Gutters and spacing between content blocks
- */
-/*
- * ### Border Radii:
- *
- * Standard border radius values for controls.
- */
-/*
- * ## Mixins
- *
- * Generic utilities as LESS mixins.
- */
-/*
- * ### Clickable:
- *
- * Consistent styling for text that's
- * clickable.
- */
-/*
- * ### Visibility:
- *
- * Make content visible (or not)
- * to visual users without affecting
- * screen readers.
- */
-/*
- * ### Clearfix
- *
- * Standard fix to clear floats.
+ * Tabs and tab panels.
  */
 /**
- * ## HTML Page Structure
- *
- * We use a straightforward semantic markup with the
- * three standard compononents of `<nav>`, `<main>`,
- * and `<footer>`.
- */
-/**
- * Section:
- * Because the site is actually just a single page
- * application, there are multiple "apparent" pages
- * within the single HTML file. Each virtual page is
- * a single `<section>` within the `<main>` content.
- *
- * By default, all sections other than the first are
- * hidden by CSS. There's an exception, however, if
- * the user's browser does not support JavaScript.
- * In that case we display all the sections so the
- * user can at least scroll to see all of the static
- * content. To override the default behavior on any
- * particular section, add the class `hide` or `show`
- * as appropriate.
- *
- * > Note: We "hide" sections by positioning them
- * offscreen, not by setting their display property
- * to `none`. This keeps all sections accessible to
- * screen readers.
+ * ### `tabs`
+ * The `tabs` class defines a container that includes
+ * both the tab user interface elements and the tab
+ * panels containing content relevant for each tab.
  *
  *     @example:
- *     <section class="show">
- *         This section is always visible.
- *     </section>
- *     <section class="hide">
- *         This section is never visible.
- *     </section>
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#EFEDEB;padding:20px;">
+ *     <div class="tabs">
+ *         <input type="radio" name="tabs-1" id="tab-1-1"
+ * 		       class="tabs__input" checked="checked"/>
+ *         <label for="tab-1-1" class="tabs__label">
+ * 		    Tab 1
+ * 		</label>
+ * 		<input type="radio" name="tabs-1" id="tab-1-2"
+ * 		       class="tabs__input"/>
+ *         <label for="tab-1-2" class="tabs__label">
+ * 		    Tab 2
+ *         </label>
+ *         <div class="tabs__panel">
+ *             <p>
+ *                 Aenean lacinia bibendum nulla sed
+ *                 consectetur. Donec ullamcorper nulla
+ *                 non metus auctor fringilla. Nullam
+ *                 quis risus eget urna mollis ornare
+ *                 vel eu leo. Praesent commodo cursus
+ *                 magna, vel scelerisque nisl
+ *                 consectetur et.
+ *             </p>
+ *         </div>
+ *         <div class="tabs__panel">
+ *             <p>
+ *                 Praesent commodo cursus magna, vel
+ *                 scelerisque nisl consectetur et.
+ *                 Vivamus sagittis lacus vel augue
+ *                 laoreet rutrum faucibus dolor auctor.
+ *                 Donec ullamcorper nulla non metus
+ *                 auctor fringilla. Sed posuere
+ *                 consectetur est at lobortis.
+ *                 Vestibulum id ligula porta felis
+ *                 euismod semper. Cras justo odio,
+ *                 dapibus ac facilisis in, egestas
+ *                 eget quam.
+ *             </p>
+ *         </div>
+ *     </div>
+ *     </div>
  */
-section {
-  transition: opacity 400ms linear;
-  width: 100%;
+.tabs {
+  padding-top: 10px;
 }
-html.js section:not(:first-of-type),
-html.js section.hide,
-section.hide {
+.tabs__input {
+  display: none;
+}
+.tabs__label {
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1rem;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  text-align: center;
+  width: auto;
+}
+@media only screen and (min-width: 500px) {
+  .tabs__label {
+    font-size: 1.4rem;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .tabs__label {
+    font-size: 1.8rem;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .tabs__label {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .tabs__label {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .tabs__label {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .tabs__label {
+    padding-right: 30px;
+  }
+}
+/*
+ * One of my least favorite hacks, but
+ * not much in the way of alternatives:
+ * Since the tab labels are likely to
+ * have whitespace between them (e.g.
+ * to provide indenting in the markup
+ * for readability), we have to shift
+ * all tabs except the first over a
+ * small bit to squeeze out that space.
+ */
+label.tabs__label:not(:first-of-type) {
+  margin-left: -0.3em;
+}
+.tabs__panel {
   left: -9999em;
   opacity: 0;
   position: absolute;
   top: -9999em;
+  background-color: #ffffff;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
 }
-html.js section.show,
-section.show {
+@media only screen and (min-width: 500px) {
+  .tabs__panel {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .tabs__panel {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .tabs__panel {
+    padding-top: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .tabs__panel {
+    padding-top: 30px;
+  }
+}
+.tabs input.tabs__input:nth-of-type(1):checked ~ div.tabs__panel:nth-of-type(1),
+.tabs input.tabs__input:nth-of-type(2):checked ~ div.tabs__panel:nth-of-type(2),
+.tabs input.tabs__input:nth-of-type(3):checked ~ div.tabs__panel:nth-of-type(3),
+.tabs input.tabs__input:nth-of-type(4):checked ~ div.tabs__panel:nth-of-type(4) {
   left: auto;
   opacity: 1;
   position: static;
   top: auto;
 }
 /**
- * ## Grid
- *
- * Within sections (and articles) we use a standard
- * 12-column grid for overall layout, in a responsive,
- * mobile-first architecture.
- *
- * We're using flexbox for the grid since the page
- * layout is challenging for other grid approaches
- * (inline-block or floats). That does leave IE9
- * (and maybe IE10) behind.
- */
-/**
- * Container:
- * The `container` class encapsulates all grid-based
- * content.
+ * Themes:
+ * Adding a theme class to the main `tabs` container
+ * provides visual styling of the tabs.
  *
  *     @example:
- *     <div class="container">
- *         Contents here, starting with rows
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#EFEDEB;padding:20px;">
+ *     <div class="tabs theme-3">
+ *         <input type="radio" name="tabs-2" id="tab-2-1"
+ * 		       class="tabs__input" checked="checked"/>
+ *         <label for="tab-2-1" class="tabs__label">
+ * 		    Tab 1
+ * 		</label>
+ * 		<input type="radio" name="tabs-2" id="tab-2-2"
+ * 		       class="tabs__input"/>
+ *         <label for="tab-2-2" class="tabs__label">
+ * 		    Tab 2
+ *         </label>
+ *         <div class="tabs__panel">
+ *             <p>
+ *                 Aenean lacinia bibendum nulla sed
+ *                 consectetur. Donec ullamcorper nulla
+ *                 non metus auctor fringilla. Nullam
+ *                 quis risus eget urna mollis ornare
+ *                 vel eu leo. Praesent commodo cursus
+ *                 magna, vel scelerisque nisl
+ *                 consectetur et.
+ *             </p>
+ *         </div>
+ *         <div class="tabs__panel">
+ *             <p>
+ *                 Praesent commodo cursus magna, vel
+ *                 scelerisque nisl consectetur et.
+ *                 Vivamus sagittis lacus vel augue
+ *                 laoreet rutrum faucibus dolor auctor.
+ *                 Donec ullamcorper nulla non metus
+ *                 auctor fringilla. Sed posuere
+ *                 consectetur est at lobortis.
+ *                 Vestibulum id ligula porta felis
+ *                 euismod semper. Cras justo odio,
+ *                 dapibus ac facilisis in, egestas
+ *                 eget quam.
+ *             </p>
+ *         </div>
+ *     </div>
  *     </div>
  */
-.container {
-  box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
+.theme-1 .tabs__input + .tabs__label {
+  background-color: #f7f7f7;
+  color: #009eaf;
 }
-/*
- * The grid definitions are LESS mixins, not
- * direct classes. This avoids having to use
- * generic class names in the markup so the
- * HTML remains semantic.
- */
-.row {
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  box-sizing: border-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
+.theme-2 .tabs__input + .tabs__label {
+  background-color: #f7f7f7;
+  color: #00ab0f;
 }
-.column {
-  box-sizing: border-box;
-  -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-  max-width: 100%;
+.theme-3 .tabs__input + .tabs__label {
+  background-color: #f7f7f7;
+  color: #0088ef;
+}
+.tabs__input:checked + .tabs__label {
+  background-color: #ffffff;
+  color: #424242;
 }
 /**
  * ## Typography
@@ -293,14 +4810,14 @@ html {
  */
 body {
   color: #222;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 150%;
   /* don't use rems here only; for browers without rem support */
   font-weight: 400;
   line-height: 1.6;
 }
 /**
- * Lining Numbers:
+ * ### `lnum`
  * The standard font uses old style numbers. To force
  * lining numbers, add the class `lnum` (which is the
  * commom typographers' abbreviation for lining numbers).
@@ -316,12 +4833,10 @@ body {
 /*
  * Until browsers support open type features (I'm
  * looking at you Safari.), we have to do this with
- * a separate font file. Yuck. We do fall back to
- * old style numbers and turn on the feature as a
- * backup.
+ * a separate font file. Yuck.
  */
 .lnum {
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 /**
  * Headings:
@@ -331,6 +4846,9 @@ body {
  * is required). We start with relatively modest font sizes
  * for mobile devices and then increase the sizes a bit for
  * tablets and larger.
+ *
+ * Heading classes (`.h1`, `.h2`, ...) can also be used as
+ * mixins for other classes.
  *
  *     @example:
  *     <h1>This is a first level heading</h1>
@@ -498,1983 +5016,42 @@ h6 {
   }
 }
 /**
- * Buttons:
- * We use the `btn` class not for brevity,
- * but to make it easier to search for
- * the class as distinct from the element.
- */
-.btn {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding: 0 1em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.btn--small {
-  border-radius: 3px;
-  font-size: 11px;
-  height: 38px;
-  line-height: 38px;
-  padding: 0 30px;
-}
-.btn-link {
-  display: inline;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  letter-spacing: 0;
-  padding: 0;
-  text-align: left;
-  text-decoration: underline;
-}
-.theme-1 .btn {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.theme-2 .btn {
-  background-color: #00ab0f;
-  color: #ffffff;
-}
-.theme-3 .btn {
-  background-color: #005493;
-  color: #ffffff;
-}
-/**
- * Header:
- * The header, including the responsive navigation bar,
- * at the top of the site.
- */
-.site-hdr {
-  height: 75px;
-  position: relative;
-  transition: background-color 400ms linear;
-}
-header[data-theme=theme-1-dark] {
-  background-color: #013e45;
-  color: #009eaf;
-}
-header[data-theme=theme-1] {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.site-hdr:before,
-.site-hdr:after {
-  content: "";
-  display: table;
-}
-.site-hdr:after {
-  clear: both;
-}
-.site-hdr__brand {
-  box-sizing: border-box;
-  color: white;
-  float: left;
-  font-size: 20px;
-  line-height: 1.2;
-  margin-bottom: 0;
-  padding-left: 10px;
-  padding-top: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .site-hdr__brand {
-    padding-left: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__brand {
-    width: 50%;
-  }
-}
-.site-hdr__brand__border {
-  border: 1px solid white;
-  display: inline-block;
-  padding: 1px 5px;
-}
-.site-hdr__brand__link {
-  color: inherit;
-  text-decoration: none;
-}
-.site-hdr__navbar {
-  display: block;
-  float: right;
-  height: 100%;
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar {
-    width: 50%;
-  }
-}
-.site-hdr__navbar__checkbox {
-  display: none;
-}
-.site-hdr__navbar__label {
-  cursor: pointer;
-  display: block;
-  position: relative;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  z-index: 2;
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__label {
-    display: none;
-  }
-}
-.site-hdr__navbar__label:after {
-  color: #ffffff;
-  content: 'Menu';
-  display: block;
-  font-size: 16px;
-  line-height: 1;
-  padding: 30px 10px 29px 0;
-  text-align: center;
-}
-@media only screen and (min-width: 500px) {
-  .site-hdr__navbar__label:after {
-    padding-right: 30px;
-  }
-}
-.site-hdr__navbar__checkbox:checked + .site-hdr__navbar__label:after {
-  content: 'Close Menu';
-}
-.site-hdr__navbar__list {
-  border-top: 1px solid white;
-  margin: 0;
-  max-height: 0;
-  overflow-y: hidden;
-  padding: 0;
-  position: absolute;
-  right: 0;
-  transition: max-height 250ms linear;
-  width: 100%;
-  z-index: 1;
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__list {
-    border-top: none;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__list {
-    height: 100%;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__list {
-    max-height: none;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__list {
-    position: static;
-  }
-}
-.site-hdr__navbar__checkbox:checked ~ .site-hdr__navbar__list {
-  max-height: 168px;
-  transition: max-height 250ms ease-in;
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__checkbox:checked ~ .site-hdr__navbar__list {
-    max-height: none;
-  }
-}
-.site-hdr__navbar__item {
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  display: block;
-  float: left;
-  list-style: none;
-  text-align: right;
-  transition: background-color 400ms linear;
-  width: 100%;
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__item {
-    height: 100%;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__item {
-    text-align: center;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__item {
-    width: 33.3333333333%;
-  }
-}
-header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(1) {
-  background-color: #013e45;
-  color: #009eaf;
-}
-.no-touch header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(1) .header__navbar__link:hover,
-header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(1) .header__navbar__link:focus {
-  color: #ffffff;
-}
-header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(1) {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(2),
-header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(2) {
-  background-color: #00430c;
-  color: #00ab0f;
-}
-.no-touch header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:hover,
-.no-touch header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:hover,
-header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:focus,
-header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(2) .header__navbar__link:focus {
-  color: #ffffff;
-}
-header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(3),
-header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(3) {
-  background-color: #00213a;
-  color: #2ea1cc;
-}
-.no-touch header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:hover,
-.no-touch header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:hover,
-header[data-theme=theme-1] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:focus,
-header[data-theme=theme-1-dark] .site-hdr__navbar__list li:nth-child(3) .header__navbar__link:focus {
-  color: #ffffff;
-}
-.site-hdr__navbar__link {
-  box-sizing: border-box;
-  color: inherit;
-  display: block;
-  font-size: 16px;
-  line-height: 1;
-  padding: 20px 10px;
-  text-decoration: none;
-  width: 100%;
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__link {
-    height: 100%;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .site-hdr__navbar__link {
-    padding: 20px 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__link {
-    padding: 30px 0 0 0;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .site-hdr__navbar__link {
-    width: auto;
-  }
-}
-main {
-  transition: padding-top 250ms linear;
-}
-main[data-nav-expanded=true] {
-  padding-top: 168px;
-}
-@media only screen and (min-width: 1000px) {
-  main[data-nav-expanded=true] {
-    padding-top: 0;
-  }
-}
-/**
- * ## Search
+ * ## Utility classes
  *
- * Search form.
- */
-.search {
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .search {
-    padding: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .search {
-    padding: 30px;
-  }
-}
-.search__label {
-  font-weight: 300;
-  margin-bottom: 2rem;
-  margin-top: 0;
-  font-size: 2.4rem;
-  letter-spacing: -0.08rem;
-  line-height: 1.35;
-  display: block;
-  width: 100%;
-}
-@media only screen and (min-width: 1000px) {
-  .search__label {
-    font-size: 3.0rem;
-  }
-}
-.search__input {
-  border: 1px solid #dbdbda;
-  border-radius: 5px;
-  border-bottom-right-radius: 0;
-  border-right: none;
-  border-top-right-radius: 0;
-  display: none;
-  box-sizing: border-box;
-  font-size: 2rem;
-  height: 4rem;
-  max-width: 600px;
-  margin: 0 auto 10px auto;
-  padding: 0 10px 0 20px;
-  width: calc(59%);
-}
-@media only screen and (min-width: 1000px) {
-  .search__input {
-    display: inline-block;
-  }
-}
-.search__input--small {
-  display: inline-block;
-  width: calc(69%);
-}
-@media only screen and (min-width: 1000px) {
-  .search__input--small {
-    display: none;
-  }
-}
-.search__submit {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding: 0 1em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  border-bottom-left-radius: 0;
-  border-left: none;
-  border-top-left-radius: 0;
-  display: none;
-  margin: 0 auto;
-  width: 120px;
-}
-@media only screen and (min-width: 1000px) {
-  .search__submit {
-    display: inline-block;
-  }
-}
-.search__submit--small {
-  box-sizing: border-box;
-  display: inline-block;
-  padding: 0 10px;
-  width: 40px;
-}
-@media only screen and (min-width: 1000px) {
-  .search__submit--small {
-    display: none;
-  }
-}
-.theme-1 .search__submit {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.theme-1 .search__input:focus {
-  border: 1px solid #009eaf;
-  outline: 0;
-}
-.theme-1 .search__submit:focus {
-  border: 1px solid black;
-  outline: 0;
-}
+ * A few general-purpose utility classes are
+ * defined, though we try to avoid these as
+ * much as possible since they require that
+ * the markup explicity specify its
+ * presentation. The classes that are
+ * defined here control CSS behavior more
+ * than presentation.
+
 /**
- * ## Results
- *
- * Presentation of search results.
- */
-.results {
-  margin-left: auto;
-  margin-right: auto;
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  box-sizing: border-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  background-color: #efedeb;
-  margin: 0;
-  padding-bottom: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .results {
-    padding-bottom: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results {
-    padding-bottom: calc(60px);
-  }
-}
-.results-filter {
-  box-sizing: border-box;
-  -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-  max-width: 100%;
-}
-@media only screen and (min-width: 500px) {
-  .results-filter {
-    -webkit-flex-basis: 50%;
-        -ms-flex-preferred-size: 50%;
-            flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-filter {
-    -webkit-flex-basis: 25%;
-        -ms-flex-preferred-size: 25%;
-            flex-basis: 25%;
-    max-width: 25%;
-  }
-}
-.results-filter__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.results-filter__list-item {
-  overflow: hidden;
-  margin: 0 0 1px;
-  padding: 0;
-}
-.results-filter__list-item__input {
-  display: none;
-}
-.results-filter__list-item__label {
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  background-color: #f7f7f7;
-  cursor: pointer;
-  display: block;
-  height: 6rem;
-  line-height: 1.4;
-  position: relative;
-}
-.results-filter__list-item__icon {
-  background-color: #dbdbda;
-  box-sizing: content-box;
-  color: #ffffff;
-  display: block;
-  float: left;
-  font-size: 3.8rem;
-  height: 4rem;
-  margin: 0 10px 0 0;
-  padding: 1rem;
-  width: 4rem;
-}
-.results-filter__list-item__text {
-  display: block;
-  left: 7rem;
-  position: absolute;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  top: 50%;
-}
-.results-filter__list-item__content {
-  background-color: #ffffff;
-  clear: both;
-  height: 0;
-  overflow: hidden;
-  transition: all 0.3s ease-out;
-}
-.results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
-  height: auto;
-}
-article[data-theme=theme-1] .results-filter__list-item__label {
-  color: #009eaf;
-}
-article[data-theme=theme-1] .results-filter__list-item__input:checked ~ .results-filter__list-item__label {
-  background-color: #ffffff;
-  color: #636363;
-}
-article[data-theme=theme-1] .results-filter__list-item__label:focus .results-filter__list-item__icon,
-article[data-theme=theme-1] .results-filter__list-item__label:hover .results-filter__list-item__icon,
-article[data-theme=theme-1] .results-filter__list-item__input:checked ~ .results-filter__list-item__label .results-filter__list-item__icon {
-  background-color: #009eaf;
-}
-.results-main {
-  box-sizing: border-box;
-  -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-  max-width: 100%;
-  background-color: #ffffff;
-  border-left: 1px solid #dbdbda;
-  border-right: 1px solid #dbdbda;
-  padding-bottom: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .results-main {
-    -webkit-flex-basis: 50%;
-        -ms-flex-preferred-size: 50%;
-            flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-main {
-    -webkit-flex-basis: 50%;
-        -ms-flex-preferred-size: 50%;
-            flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .results-main {
-    padding-bottom: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-main {
-    padding-bottom: 30px;
-  }
-}
-.results-main__header,
-.results-secondary__header {
-  margin-bottom: 0;
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .results-main__header,
-  .results-secondary__header {
-    padding: 30px 30px 10px 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-main__header,
-  .results-secondary__header {
-    padding: 30px 30px 10px 30px;
-  }
-}
-.results-secondary__header {
-  line-height: 1.2;
-  text-align: center;
-}
-.results-main__list {
-  padding: 0;
-}
-.results-main__item {
-  box-sizing: content-box;
-  border-bottom: 1px solid #dbdbda;
-  clear: both;
-  min-height: 75px;
-  list-style: none;
-  padding: 10px 10px;
-}
-@media only screen and (min-width: 500px) {
-  .results-main__item {
-    padding: 10px 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-main__item {
-    padding: 10px 30px;
-  }
-}
-.results-main__list li:last-of-type {
-  border-bottom: none;
-}
-.results-main__thumbnail {
-  border: 1px solid #dbdbda;
-  box-sizing: border-box;
-  display: block;
-  float: left;
-  height: 75px;
-  width: 75px;
-}
-.results-main__link {
-  display: block;
-  font-size: 2.2rem;
-  min-height: 75px;
-  padding-left: 10px;
-  overflow: hidden;
-  text-decoration: none;
-}
-.results-main__link:focus,
-.no-touch .results-main__link:hover {
-  text-decoration: underline;
-}
-article[data-theme=theme-1] .results-main__link {
-  color: #009eaf;
-}
-.results-main__more,
-.results-secondary__more {
-  text-align: center;
-}
-.results-main__button,
-.results-secondary__button {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding: 0 1em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: #dbdbda;
-}
-article[data-theme=theme-1] .results-main__button,
-article[data-theme=theme-1] .results-secondary__button {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.results-secondary {
-  box-sizing: border-box;
-  -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-  max-width: 100%;
-}
-@media only screen and (min-width: 500px) {
-  .results-secondary {
-    -webkit-flex-basis: 50%;
-        -ms-flex-preferred-size: 50%;
-            flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-secondary {
-    -webkit-flex-basis: 25%;
-        -ms-flex-preferred-size: 25%;
-            flex-basis: 25%;
-    max-width: 25%;
-  }
-}
-.results-secondary__list {
-  padding: 0;
-}
-.results-secondary__item {
-  list-style: none;
-  margin: 0 auto 10px auto;
-  position: relative;
-  max-width: 200px;
-}
-@media only screen and (min-width: 500px) {
-  .results-secondary__item {
-    margin: 0 auto 30px auto;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-secondary__item {
-    margin: 0 auto 30px auto;
-  }
-}
-.results-secondary__link {
-  display: block;
-  text-decoration: none;
-}
-.results-secondary__image {
-  background-size: cover;
-  border: 1px solid #dbdbda;
-  box-sizing: border-box;
-  padding-top: 100%;
-  width: 100%;
-}
-.results-secondary__heading {
-  background-color: #424242;
-  background-color: rgba(0, 0, 0, 0.75);
-  bottom: 0;
-  box-sizing: border-box;
-  color: white;
-  font-size: 1.8rem;
-  line-height: 1.1;
-  margin-bottom: 0;
-  padding: 10px;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-}
-/**
- * ## TagSet
- *
- * A set of tags.
- */
-.tagset__label {
-  left: -9999em;
-  opacity: 0;
-  position: absolute;
-  top: -9999em;
-}
-@media only screen and (min-width: 500px) {
-  .tagset__label {
-    left: auto;
-    opacity: 1;
-    position: static;
-    top: auto;
-  }
-}
-.tagset__fieldset {
-  border: none;
-  margin: 0;
-  padding: 10px;
-}
-.tagset__tag {
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  display: inline-block;
-  padding-left: calc(20px);
-}
-@media only screen and (min-width: 500px) {
-  .tagset__tag {
-    display: block;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .tagset__tag {
-    padding-left: 10px;
-  }
-}
-.tagset__tag label,
-.tagset input {
-  cursor: pointer;
-}
-.tagset--inline div {
-  display: inline-block;
-}
-.tagset__fieldset--inline {
-  padding: 0;
-}
-.tagset--inline label {
-  padding-right: 10px;
-}
-.theme-3 .tagset--inline .tagset__tag:nth-of-type(1) label {
-  color: #0088ef;
-}
-.theme-3 .tagset--inline .tagset__tag:nth-of-type(2) label {
-  color: #005493;
-}
-/**
- * ## Discovery navigations
- *
- * Navigation block that controls the discovery
- * block.
- */
-.discovery-nav {
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  box-sizing: border-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  display: none;
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-nav {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-  }
-}
-.discovery-nav__radio {
-  box-sizing: border-box;
-  -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-  max-width: 100%;
-  -webkit-flex-basis: 0;
-      -ms-flex-preferred-size: 0;
-          flex-basis: 0;
-  display: none;
-}
-.discovery-nav__label {
-  box-sizing: border-box;
-  -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-  max-width: 100%;
-  -webkit-align-items: flex-start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  background-position: bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-justify-content: flex-start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-@media only screen and (min-width: 500px) {
-  .discovery-nav__label {
-    -webkit-flex-basis: 50%;
-        -ms-flex-preferred-size: 50%;
-            flex-basis: 50%;
-    max-width: 50%;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-nav__label {
-    -webkit-flex-basis: 16.6666666667%;
-        -ms-flex-preferred-size: 16.6666666667%;
-            flex-basis: 16.6666666667%;
-    max-width: 16.6666666667%;
-  }
-}
-.discovery-nav__radio:checked + .discovery-nav__label {
-  box-sizing: border-box;
-  -webkit-flex-basis: 100%;
-      -ms-flex-preferred-size: 100%;
-          flex-basis: 100%;
-  -webkit-flex-grow: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-  -webkit-flex-shrink: 1;
-      -ms-flex-negative: 1;
-          flex-shrink: 1;
-  max-width: 100%;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 3rem;
-  -webkit-justify-content: flex-end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  height: 41.2vw;
-  padding-bottom: 10px;
-  text-align: center;
-  vertical-align: bottom;
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-nav__radio:checked + .discovery-nav__label {
-    -webkit-flex-basis: 66.6666666667%;
-        -ms-flex-preferred-size: 66.6666666667%;
-            flex-basis: 66.6666666667%;
-    max-width: 66.6666666667%;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .discovery-nav__radio:checked + .discovery-nav__label {
-    padding-bottom: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-nav__radio:checked + .discovery-nav__label {
-    padding-bottom: 30px;
-  }
-}
-.discovery-nav__label__content {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-flex-grow: 2;
-      -ms-flex-positive: 2;
-          flex-grow: 2;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .discovery-nav__label__content {
-    padding: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-nav__label__content {
-    padding: 30px;
-  }
-}
-.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__content {
-  -webkit-flex-grow: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  padding: 0;
-}
-.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__content--detailed {
-  display: none;
-}
-.discovery-nav__label__text {
-  display: block;
-}
-.discovery-nav__label__more {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding: 0 1em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  -webkit-align-self: flex-start;
-      -ms-flex-item-align: start;
-          align-self: flex-start;
-  display: inline-block;
-  background-color: #ffffff;
-  border: 1px solid transparent;
-  color: #000000;
-}
-.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__more {
-  display: none;
-}
-.discovery-nav__label__image {
-  background-size: cover;
-  height: 10.3vw;
-  width: 100%;
-}
-.discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__image {
-  height: 0;
-}
-.theme-1.discovery-nav__label {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.discovery-nav__radio:checked + .theme-1.discovery-nav__label {
-  background-image: url(../images/theme-1.jpg);
-}
-.theme-1 .discovery-nav__label__image {
-  background-image: url(../images/theme-1-lowres.jpg);
-}
-.theme-2.discovery-nav__label {
-  background-color: #00ab0f;
-  color: #ffffff;
-}
-.discovery-nav__radio:checked + .theme-2.discovery-nav__label {
-  background-image: url(../images/theme-2.jpg);
-}
-.theme-2 .discovery-nav__label__image {
-  background-image: url(../images/theme-2-lowres.jpg);
-}
-.theme-3.discovery-nav__label {
-  background-color: #005493;
-  color: #ffffff;
-}
-.discovery-nav__radio:checked + .theme-3.discovery-nav__label {
-  background-image: url(../images/theme-3.jpg);
-}
-.theme-3 .discovery-nav__label__image {
-  background-image: url(../images/theme-3-lowres.jpg);
-}
-.js nav.discovery-nav ~ article {
-  left: -9999em;
-  opacity: 0;
-  position: absolute;
-  top: -9999em;
-}
-nav.discovery-nav[data-discovery-nav="1"] ~ article:nth-of-type(1) {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-}
-nav.discovery-nav[data-discovery-nav="2"] ~ article:nth-of-type(2) {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-}
-nav.discovery-nav[data-discovery-nav="3"] ~ article:nth-of-type(3) {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-}
-nav.discovery-nav[data-discovery-nav="4"] ~ article:nth-of-type(4) {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-}
-nav.discovery-nav[data-discovery-nav="5"] ~ article:nth-of-type(5) {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-}
-nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-}
-/**
- * ## Discovery
- *
- * Discovery blocks on the landing page and
- * the navigation that selectively displays
- * them.
- */
-.discovery {
-  background-color: #efedeb;
-  box-sizing: border-box;
-  color: #424242;
-  margin: 0;
-  padding-bottom: 10px;
-  text-align: center;
-}
-@media only screen and (min-width: 500px) {
-  .discovery {
-    padding-bottom: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery {
-    padding-bottom: 30px;
-  }
-}
-.discovery--lead {
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .discovery--lead {
-    padding: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery--lead {
-    padding: 30px;
-  }
-}
-.discovery__heading {
-  font-size: 2.5rem;
-  margin-bottom: 0;
-  padding: 10px;
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__heading {
-    height: 0;
-    overflow: hidden;
-    padding: 0;
-  }
-}
-.discovery__heading--theme-1 {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.discovery__heading--theme-2 {
-  background-color: #00ab0f;
-  color: #ffffff;
-}
-.discovery__heading--theme-3 {
-  background-color: #005493;
-  color: #ffffff;
-}
-.discovery__search-form {
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .discovery__search-form {
-    padding: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__search-form {
-    padding: 30px;
-  }
-}
-.discovery__search-form__label {
-  font-weight: 300;
-  margin-bottom: 2rem;
-  margin-top: 0;
-  font-size: 2.4rem;
-  letter-spacing: -0.08rem;
-  line-height: 1.35;
-  display: block;
-  width: 100%;
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__search-form__label {
-    font-size: 3.0rem;
-  }
-}
-.discovery__search-form__input {
-  border: 1px solid #dbdbda;
-  border-radius: 5px;
-  border-bottom-right-radius: 0;
-  border-right: none;
-  border-top-right-radius: 0;
-  display: none;
-  box-sizing: border-box;
-  font-size: 2rem;
-  height: 4rem;
-  max-width: 600px;
-  margin: 0 auto 10px auto;
-  padding: 0 10px 0 20px;
-  width: calc(59%);
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__search-form__input {
-    display: inline-block;
-  }
-}
-.discovery__search-form__input--small {
-  display: inline-block;
-  width: calc(69%);
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__search-form__input--small {
-    display: none;
-  }
-}
-.discovery__search-form__submit {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding: 0 1em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  border: 1px solid transparent;
-  border-bottom-left-radius: 0;
-  border-left: none;
-  border-top-left-radius: 0;
-  display: none;
-  margin: 0 auto;
-  width: 120px;
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__search-form__submit {
-    display: inline-block;
-  }
-}
-.discovery__search-form__submit--small {
-  box-sizing: border-box;
-  display: inline-block;
-  padding: 0 10px;
-  width: 40px;
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__search-form__submit--small {
-    display: none;
-  }
-}
-.discovery__search-form__submit--theme-1 {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.discovery__option {
-  display: inline-block;
-  padding: 0 10px;
-  vertical-align: text-top;
-}
-@media only screen and (min-width: 500px) {
-  .discovery__option {
-    padding: 0 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__option {
-    padding: 0 30px;
-  }
-}
-.discovery__option__icon {
-  display: block;
-  font-size: 4rem;
-  opacity: 0.5;
-  padding: 10px 0;
-}
-@media only screen and (min-width: 500px) {
-  .discovery__option__icon {
-    padding: 30px 0;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__option__icon {
-    padding: 30px 0;
-  }
-}
-.discovery__option__icon--single {
-  padding-top: 0;
-}
-.discovery__option__button {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding: 0 1em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  display: block;
-  margin: 0 auto;
-}
-.dicovery__option__visual {
-  display: inline-block;
-  padding-bottom: 10px;
-  vertical-align: middle;
-}
-@media only screen and (min-width: 500px) {
-  .dicovery__option__visual {
-    padding-bottom: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .dicovery__option__visual {
-    padding-bottom: 30px;
-  }
-}
-.discovery__option__button--theme-1 {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.discovery__option__button--theme-2 {
-  background-color: #00ab0f;
-  color: #ffffff;
-}
-.discovery__option__button--theme-3 {
-  background-color: #005493;
-  color: #ffffff;
-}
-.discovery__option__text {
-  font-size: 2rem;
-  margin: 10px auto;
-  max-width: 12em;
-}
-@media only screen and (min-width: 500px) {
-  .discovery__option__text {
-    margin: 30px auto;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__option__text {
-    margin: 30px auto;
-  }
-}
-.discovery__subheading {
-  margin-bottom: 0;
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .discovery__subheading {
-    padding: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__subheading {
-    padding: 30px;
-  }
-}
-.discovery__text {
-  font-size: 1.8rem;
-  margin: 0 auto;
-  max-width: 48em;
-  padding: 0 10px 10px 10px;
-}
-@media only screen and (min-width: 500px) {
-  .discovery__text {
-    font-size: 2.2rem;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .discovery__text {
-    padding: 0 30px 30px 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__text {
-    padding: 0 calc(60px) 30px calc(60px);
-  }
-}
-.discovery__text--single {
-  display: inline-block;
-  max-width: 26em;
-  padding-left: 10px;
-  vertical-align: middle;
-}
-@media only screen and (min-width: 500px) {
-  .discovery__text--single {
-    padding-left: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__text--single {
-    padding-left: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery__text--single {
-    text-align: left;
-  }
-}
-.discovery-tabs {
-  padding-top: 10px;
-}
-.discover-tabs__input {
-  display: none;
-}
-.discovery_tabs_label {
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.1rem;
-  padding: 10px;
-  text-align: center;
-  width: auto;
-}
-@media only screen and (min-width: 500px) {
-  .discovery_tabs_label {
-    font-size: 1.4rem;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery_tabs_label {
-    font-size: 1.8rem;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .discovery_tabs_label {
-    padding: 10px 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery_tabs_label {
-    padding: 10px 30px;
-  }
-}
-.theme-1 .discover-tabs__input + .discovery_tabs_label {
-  background-color: #f7f7f7;
-  color: #009eaf;
-}
-.theme-2 .discover-tabs__input + .discovery_tabs_label {
-  background-color: #f7f7f7;
-  color: #00ab0f;
-}
-.theme-3 .discover-tabs__input + .discovery_tabs_label {
-  background-color: #f7f7f7;
-  color: #0088ef;
-}
-.discover-tabs__input:checked + .discovery_tabs_label {
-  background-color: #ffffff;
-  color: #424242;
-}
-.discovery-tabs__panel {
-  left: -9999em;
-  opacity: 0;
-  position: absolute;
-  top: -9999em;
-  background-color: #ffffff;
-  padding: 10px 0;
-}
-@media only screen and (min-width: 500px) {
-  .discovery-tabs__panel {
-    padding: 30px 0;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-tabs__panel {
-    padding: 30px 0;
-  }
-}
-.discovery-tabs__logo {
-  display: block;
-  margin: 10px auto;
-  max-width: 150px;
-}
-@media only screen and (min-width: 500px) {
-  .discovery-tabs__logo {
-    margin: 30px auto;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-tabs__logo {
-    margin: 30px auto;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .discovery-tabs__logo {
-    max-width: 250px;
-  }
-}
-.discovery-tabs input:nth-of-type(1):checked ~ div:nth-of-type(1),
-.discovery-tabs input:nth-of-type(2):checked ~ div:nth-of-type(2),
-.discovery-tabs input:nth-of-type(3):checked ~ div:nth-of-type(3),
-.discovery-tabs input:nth-of-type(4):checked ~ div:nth-of-type(4) {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-}
-.discovery-tabs__map {
-  border-left: 10px solid #ffffff;
-  border-right: 10px solid #ffffff;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .discovery-tabs__map {
-    border-width: 0 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-tabs__map {
-    border-width: 0 calc(120px);
-  }
-}
-@media only screen and (min-width: 500px) {
-  .discovery-tabs__map {
-    margin-bottom: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .discovery-tabs__map {
-    margin-bottom: 30px;
-  }
-}
-/**
- * ## Spotlight
- *
- * A list of spotlight items.
- */
-.spotlight {
-  list-style: none;
-  background-color: #ffffff;
-  margin: 0 0 10px 0;
-  padding: 0;
-  text-align: left;
-}
-.spotlight:before,
-.spotlight:after {
-  content: " ";
-  display: table;
-}
-.spotlight:after {
-  clear: both;
-}
-@media only screen and (min-width: 500px) {
-  .spotlight {
-    margin: 0 30px 30px 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .spotlight {
-    margin: 0 calc(120px) 30px calc(120px);
-  }
-}
-.spotlight__item {
-  background-color: #f7f7f7;
-  border-bottom: 1px solid #efedeb;
-  box-sizing: border-box;
-  clear: both;
-  height: 100px;
-  min-height: 100px;
-  overflow: hidden;
-}
-.spotlight__item.spotlight__item--expanded {
-  height: auto;
-}
-.spotlight__item.spotlight__item--expanded,
-.spotlight__item--expanded .spotlight__item__content {
-  background-color: #ffffff;
-  height: auto;
-}
-.spotlight__item__thumbnail {
-  border: 1px solid #efedeb;
-  box-sizing: border-box;
-  float: left;
-  height: 100px;
-  width: 100px;
-}
-.spotlight__item__content {
-  box-sizing: border-box;
-  float: left;
-  position: relative;
-  width: calc(100% - 100px);
-}
-.spotlight__item__content:before,
-.spotlight__item__content:after {
-  content: " ";
-  display: table;
-}
-.spotlight__item__content:after {
-  clear: both;
-}
-.spotlight__item__title {
-  color: #636363;
-  display: inline-block;
-  font-size: 1.6rem;
-  line-height: 1.2;
-  margin: 10px calc(30px) 0 0;
-  padding: 0 10px;
-  text-decoration: none;
-}
-@media only screen and (min-width: 500px) {
-  .spotlight__item__title {
-    font-size: 2.2rem;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .spotlight__item__title {
-    margin: 34px 0 0 0;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .spotlight__item__title {
-    padding: 0 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .spotlight__item__title {
-    padding: 0 30px;
-  }
-}
-.no-touch .theme-3 .spotlight__item__title:hover,
-.theme-3 .spotlight__item__title:focus {
-  color: #0088ef;
-}
-.spotlight__item--expanded .spotlight__item__title {
-  color: #424242;
-}
-.spotlight__item__expand {
-  cursor: pointer;
-  font-size: 20px;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .spotlight__item__expand {
-    font-size: 30px;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .spotlight__item__expand {
-    right: 34px;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .spotlight__item__expand {
-    top: 34px;
-  }
-}
-.spotlight__item--expanded .spotlight__item__expand {
-  display: none;
-}
-.spotlight__item__description {
-  left: -9999em;
-  opacity: 0;
-  position: absolute;
-  top: -9999em;
-  margin: 0;
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .spotlight__item__description {
-    padding: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .spotlight__item__description {
-    padding: 30px;
-  }
-}
-.spotlight__item--expanded .spotlight__item__description {
-  left: auto;
-  opacity: 1;
-  position: static;
-  top: auto;
-  margin: 0;
-}
-.theme-3 .spotlight__item__expand {
-  color: #005493;
-}
-.no-touch .theme-3 .spotlight__item__expand:hover,
-.theme-3 .spotlight__item__expand:focus {
-  color: #0088ef;
-}
-/**
- * ## Point of Interest
- *
- * Points of interest as markers and
- * popups on maps.
- */
-.poi-marker {
-  font-size: 40px;
-  transition: opacity 250ms linear;
-}
-.poi--hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-.poi-proposal {
-  color: black;
-}
-.poi-school {
-  color: #0088ef;
-}
-.poi-business {
-  color: #005493;
-}
-.poi-popup__link {
-  display: block;
-  overflow: hidden;
-  text-decoration: none;
-}
-.poi-popup__thumbnail {
-  height: 48px;
-  vertical-align: text-top;
-  width: 48px;
-}
-.poi-popup__text {
-  display: inline-block;
-  font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 1.4rem;
-  font-weight: 600;
-  height: 48px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  vertical-align: text-top;
-  width: 195px;
-}
-.theme-1 .poi-popup__text {
-  color: #009eaf;
-}
-.theme-2 .poi-popup__text {
-  color: #00ab0f;
-}
-.theme-3 .poi-popup__text {
-  color: #005493;
-}
-/**
- * ## About
- *
- * An "about this site" block on the landing page
- */
-.about {
-  background-color: #ffffff;
-  color: #424242;
-  margin: 0;
-  padding: 10px 0;
-  text-align: center;
-}
-@media only screen and (min-width: 500px) {
-  .about {
-    padding: 30px 0;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .about {
-    padding: 30px 0;
-  }
-}
-.about__heading {
-  font-weight: 300;
-  margin-bottom: 2rem;
-  margin-top: 0;
-  font-size: 2.4rem;
-  letter-spacing: -0.08rem;
-  line-height: 1.35;
-}
-@media only screen and (min-width: 1000px) {
-  .about__heading {
-    font-size: 3.0rem;
-  }
-}
-.about__text {
-  margin: auto;
-  max-width: 40em;
-  padding: 10px;
-  text-align: center;
-}
-@media only screen and (min-width: 500px) {
-  .about__text {
-    padding: 30px;
-  }
-}
-/**
- * ## Credits
- *
- * The credits block on the landing page
- */
-.credits {
-  background-color: #efedeb;
-  color: #424242;
-  margin: 0;
-  padding-bottom: 10px;
-  text-align: center;
-}
-@media only screen and (min-width: 500px) {
-  .credits {
-    padding-bottom: 30px;
-  }
-}
-.credits__funding {
-  padding: 10px;
-}
-@media only screen and (min-width: 500px) {
-  .credits__funding {
-    padding: 30px;
-  }
-}
-.credits__text {
-  margin: auto;
-  max-width: 40em;
-  padding: 10px;
-  text-align: center;
-}
-@media only screen and (min-width: 500px) {
-  .credits__text {
-    padding: 30px;
-  }
-}
-.credits__rule {
-  border: 1px solid #dbdbda;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  margin-top: 0;
-  width: 75%;
-}
-@media only screen and (min-width: 500px) {
-  .credits__rule {
-    margin-bottom: 30px;
-  }
-}
-.credits__heading {
-  text-align: center;
-}
-.credits__service {
-  display: inline-block;
-  padding: 0 10px 10px 10px;
-}
-@media only screen and (min-width: 500px) {
-  .credits__service {
-    padding: 0 30px 30px 30px;
-  }
-}
-.credits__image-link {
-  display: block;
-}
-.credits__image {
-  max-width: 400px;
-  width: 75%;
-}
-.credits__image--small {
-  max-width: 150px;
-  width: 90%;
-}
-/**
- * ## Footer
- */
-.footer {
-  margin-left: auto;
-  margin-right: auto;
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  box-sizing: border-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  background-color: #424242;
-  color: #efedeb;
-  padding: 10px;
-  text-align: center;
-}
-@media only screen and (min-width: 500px) {
-  .footer {
-    padding: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .footer {
-    padding: 30px;
-  }
-}
-.footer__one-full-column {
-  width: 100%;
-}
-.footer__button {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding: 0 1em;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  border-radius: 3px;
-  font-size: 11px;
-  height: 38px;
-  line-height: 38px;
-  padding: 0 30px;
-  background-color: #efedeb;
-  color: #424242;
-  margin: calc(5px);
-}
-@media only screen and (min-width: 500px) {
-  .footer__button {
-    margin: calc(15px);
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .footer__button {
-    margin: calc(15px);
-  }
-}
-.no-touch .footer__button:hover,
-.footer__button:focus {
-  color: #000000;
-}
-.footer__button__icon {
-  margin-right: 0.5em;
-}
-.footer__copyright {
-  font-size: 80%;
-  margin-bottom: 0;
-}
-.footer__copyright-link {
-  color: inherit;
-  text-decoration: none;
-}
-.no-touch .footer__copyright-link:hover,
-.footer__copyright-link:focus {
-  text-decoration: underline;
-}
-/**
- * Screen Readers:
+ * ### `util--sr-only`
  * The `util--sr-only` class designates content that
  * is intended only for screen readers and other
  * assistive devices. The content is not normally
  * visible to regular web browsers.
+ *
+ *     .
  */
 .util--sr-only {
   border: 0;
   height: 1px;
-  margin: -1px;
+  margin-bottom: -1px;
+  margin-left: -1px;
+  margin-right: -1px;
+  margin-top: -1px;
   overflow: hidden;
-  padding: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
   position: absolute;
   width: 1px;
 }
 /**
- * JavaScript-Only Content:
+ * ### `util--js-only`
  * To keep the site at least minimally usable for
  * users without JavaScript, all content that's
  * dynamically generated by JavaScript should be
@@ -2485,7 +5062,78 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article:nth-of-type(6) {
  * content that only makes sense when there is
  * dynamic content to go with it (for example,
  * static headings for dynamic content).
+ *
+ *     .
  */
 .no-js .util--js-only {
   display: none;
 }
+/**
+ * ## Utility mixins
+ *
+ * Generic utilities as LESS mixins.
+ */
+/**
+ * ### `.clearfix()`
+ * Standard fix to clear floats.
+ *
+ *     .
+ */
+/**
+ * ### `.clickable()`
+ * Consistent styling for text that's
+ * clickable.
+ *
+ *     .
+ */
+/**
+ * ### `.invisible()`
+ * Make content invisible to visual users
+ * without affecting screen readers.
+ *
+ *     .
+ */
+/**
+ * ### `.spacing()`
+ * Provides block spacing value based on
+ * appropriate media query. The parameter
+ * is a property name (e.g. `padding-top`).
+ *
+ *     .
+ */
+/**
+ * ### `.visible()`
+ * Reverse effect of `.invisible()`
+ * mixin.
+ *
+ *     .
+ */
+/*
+ * ## Variables
+ *
+ * LESS/CSS variables re-used in multiple
+ * rules.
+ */
+/*
+ * ### Theme Colors:
+ *
+ * The site relies on three distinct themes,
+ * plus an extensive neutral theme.
+ */
+/* Theme 0 is the neutral theme */
+/*
+ * ### Media Query Breakpoints:
+ *
+ * The site is mobile-first, with media queries
+ * for tablet-ish and desktop-ish devices.
+ */
+/*
+ * ### Block spacing:
+ *
+ * Gutters and spacing between content blocks
+ */
+/*
+ * ### Border Radii:
+ *
+ * Standard border radius values for controls.
+ */

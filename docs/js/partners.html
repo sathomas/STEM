@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -251,6 +266,11 @@
               
               <a class="source" href="teacherSearchAsPage.html">
                 teacherSearchAsPage.js
+              </a>
+            
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
               </a>
             
           </div>
@@ -386,11 +406,13 @@ organizations.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.showBusinesses = <span class="hljs-keyword">new</span> Stem.Models.Tag({
                 label: <span class="hljs-string">'Organizations'</span>,
-                selected: <span class="hljs-literal">true</span>
+                selected: <span class="hljs-literal">true</span>,
+                theme: <span class="hljs-string">'theme-3'</span>
             });
             <span class="hljs-keyword">this</span>.showSchools = <span class="hljs-keyword">new</span> Stem.Models.Tag({
                 label: <span class="hljs-string">'Schools'</span>,
-                selected: <span class="hljs-literal">true</span>
+                selected: <span class="hljs-literal">true</span>,
+                theme: <span class="hljs-string">'theme-3-light'</span>
             });</pre></div></div>
             
         </li>
@@ -656,7 +678,7 @@ group.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.getLatLong(business, <span class="hljs-string">'poi-business'</span>);
+            <span class="hljs-keyword">this</span>.getLatLong(business, <span class="hljs-string">'theme-3 poi-business'</span>);
 
         },
 
@@ -677,7 +699,7 @@ group.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.getLatLong(school, <span class="hljs-string">'poi-school'</span>);
+            <span class="hljs-keyword">this</span>.getLatLong(school, <span class="hljs-string">'theme-3-light poi-school'</span>);
 
         },</pre></div></div>
             
@@ -717,7 +739,7 @@ and add it to our internal collection.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.proposalPois.add(
                 <span class="hljs-keyword">new</span> Stem.Models.Poi({
-                    className: <span class="hljs-string">'poi-proposal'</span>,
+                    className: <span class="hljs-string">'theme-0-black poi-proposal'</span>,
                     imageUrl:  proposal.get(<span class="hljs-string">'thumbImageURL'</span>),
                     latitude:  proposal.get(<span class="hljs-string">'latitude'</span>),
                     link:      proposal.get(<span class="hljs-string">'proposalURL'</span>),

@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -253,6 +268,11 @@
                 teacherSearchAsPage.js
               </a>
             
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -305,7 +325,9 @@ Stem.Views = Stem.Views || {};
 
     Stem.Views.DiscoveryAsContent = Backbone.View.extend({
 
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        template: JST[<span class="hljs-string">'app/scripts/templates/discoveryAsContent.ejs'</span>],
+
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -316,18 +338,19 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Set up the different child views.</p>
+              <p>Normally this view is used to “fill in”
+components that already exist on a static
+page. When that’s the case, we will have
+been provided an element that already has
+content. To be safe, though, we check to
+make sure that content is present. If it
+isn’t we use our template as a starting
+point.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.partnerDiscovery = <span class="hljs-keyword">new</span> Stem.Views.PartnersAsDiscovery({
-                model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'partners'</span>)
-            });
-
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.$el.is(<span class="hljs-string">':empty'</span>)) {</pre></div></div>
             
         </li>
         
@@ -338,14 +361,16 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Render the child views.</p>
+              <p>We don’t need to supply any
+attributes to the view since
+it’s just a static skeleton.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.partnerDiscovery.render();
+                <span class="hljs-keyword">this</span>.$el.html(<span class="hljs-keyword">this</span>.template());
 
-            <span class="hljs-keyword">var</span> discovery = <span class="hljs-keyword">this</span>;</pre></div></div>
+            }</pre></div></div>
             
         </li>
         
@@ -355,6 +380,55 @@ Stem.Views = Stem.Views || {};
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Create and render the different child views.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.teacherDiscovery = <span class="hljs-keyword">new</span> Stem.Views.TeachersAsDiscovery({
+                el: <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'#teachers'</span>),
+                model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'teachers'</span>)
+            }).render();
+            <span class="hljs-keyword">this</span>.adminDiscovery = <span class="hljs-keyword">new</span> Stem.Views.AdminsAsDiscovery({
+                el: <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'#admins'</span>),
+                model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'admins'</span>)
+            }).render();
+            <span class="hljs-keyword">this</span>.partnerDiscovery = <span class="hljs-keyword">new</span> Stem.Views.PartnersAsDiscovery({
+                el: <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'#partners'</span>),
+                model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'partners'</span>)
+            }).render();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>The teacher region of the discovery
+block includes a search form. The view
+triggers an event if the user submits
+that form.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.teacherDiscovery, <span class="hljs-string">'search:submit'</span>, <span class="hljs-keyword">this</span>.submitSearch);
+
+
+            <span class="hljs-keyword">var</span> discovery = <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Look for changes to discovery navigation.</p>
 
@@ -366,11 +440,11 @@ Stem.Views = Stem.Views || {};
         </li>
         
         
-        <li id="section-6">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Use setTimeout to delay processing
 because some browsers trigger the
@@ -385,11 +459,11 @@ properties of the <code>&lt;input&gt;</code> elements.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-9">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
               <p>Scan through all the radio inputs to
 find which one is now selected.</p>
@@ -404,11 +478,11 @@ find which one is now selected.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-10">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
               <p>Found the selected radio button.
 Update the appropriate attribute
@@ -423,11 +497,11 @@ that CSS styles can take effect.</p>
         </li>
         
         
-        <li id="section-9">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Figure out which discovery block
 is now active by grabbing the <code>id</code>
@@ -442,11 +516,11 @@ of the selected article.</p>
         </li>
         
         
-        <li id="section-10">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-10">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>The selected block should now be shown.</p>
 
@@ -458,11 +532,11 @@ of the selected article.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>Signal a change in navigation.</p>
 
@@ -481,8 +555,26 @@ of the selected article.</p>
 
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
 
-        },
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>The <code>show</code> method lets child views know
+that their view should now be visible.
+Most child views don’t need it, but any
+with maps will want an event to prompt
+the user for permisstion to get location.</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
         show: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(section)</span> </span>{
 
             <span class="hljs-keyword">switch</span> (section) {</pre></div></div>
@@ -490,11 +582,11 @@ of the selected article.</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>For the partners block, we defer
 showing the content to avoid prompting
@@ -511,6 +603,48 @@ defer no longer.</p>
                     <span class="hljs-keyword">break</span>;
 
             }
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>The <code>submitSearch</code> handler responds to
+the user’s submission of a search query.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        submitSearch: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>When a submit event occurs, we
+can’t handle it entirely within
+the discovery view (since the
+result should be a navigation
+to the search results page).
+Pass the event “up the chain”
+to let other code take care of
+it.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.trigger(<span class="hljs-string">'search:submit'</span>);
 
         }
 

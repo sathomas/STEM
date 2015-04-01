@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -251,6 +266,11 @@
               
               <a class="source" href="teacherSearchAsPage.html">
                 teacherSearchAsPage.js
+              </a>
+            
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
               </a>
             
           </div>
@@ -610,14 +630,22 @@ sure the user is going to see the map.</p>
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Discovery maps are full-width (less
-any borders), but Leaflet requires
+any margins), but Leaflet requires
 explicit dimensions. Grab them from
-the browser.</p>
+the browser. We have to be a little
+tricky here because the normal jQuery
+<code>outerWidth()</code> function isn’t reliable
+if the element is hidden. Instead,
+we read the CSS property directly.
+This does assume that the margins are
+defined in <code>px</code> units.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> width = $(<span class="hljs-built_in">window</span>).width(),
+            <span class="hljs-keyword">var</span> width = $(<span class="hljs-built_in">window</span>).width() -
+                    <span class="hljs-built_in">parseInt</span>(<span class="hljs-keyword">this</span>.$el.css(<span class="hljs-string">'margin-left'</span>)) -
+                    <span class="hljs-built_in">parseInt</span>(<span class="hljs-keyword">this</span>.$el.css(<span class="hljs-string">'margin-right'</span>)),
                 height = width * <span class="hljs-keyword">this</span>.options.aspectRatio;</pre></div></div>
             
         </li>
@@ -718,26 +746,17 @@ add them to the map.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
-              <p>Finally, hook the window resize
-event so that we can adjust the
-map size appropriately. We debounce
-the event since some browsers
-trigger a flood of <code>resize</code>
-events when the user changes
-window sizes.</p>
+              <p>Cache a reference to the Leaflet
+structure in the map element. We
+do this so that the window resize
+handler can update Leaflet when
+the window size changes.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-built_in">window</span>).on(<span class="hljs-string">'resize'</span>, _.chain(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-                <span class="hljs-keyword">var</span> width = $(<span class="hljs-built_in">window</span>).width(),
-                    height = width * <span class="hljs-keyword">this</span>.options.aspectRatio;
-                <span class="hljs-keyword">this</span>.$el.css({
-                    height: height + <span class="hljs-string">'px'</span>,
-                    width:  width  + <span class="hljs-string">'px'</span>
-                });
-                <span class="hljs-keyword">this</span>.map.invalidateSize(<span class="hljs-literal">false</span>);
-            }).debounce(<span class="hljs-number">250</span>).bind(<span class="hljs-keyword">this</span>).value());
+            <span class="hljs-keyword">this</span>.$el.data(<span class="hljs-string">'map'</span>, <span class="hljs-keyword">this</span>.map);
+            <span class="hljs-keyword">this</span>.$el.data(<span class="hljs-string">'aspectRatio'</span>, <span class="hljs-keyword">this</span>.options.aspectRatio);
 
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
 

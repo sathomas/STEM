@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -253,6 +268,11 @@
                 teacherSearchAsPage.js
               </a>
             
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -304,8 +324,95 @@ Stem.Models = Stem.Models || {};
 
     Stem.Models.Discovery = Backbone.Model.extend({
 
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'partners'</span>, <span class="hljs-keyword">new</span> Stem.Models.Partners());
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>If no search query was provided when
+the model was created, we create our
+own.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)) {
+
+                <span class="hljs-keyword">var</span> searchQuery = <span class="hljs-keyword">new</span> Stem.Models.Search({
+                    label: <span class="hljs-string">'Search for resources'</span>,
+                    placeholder: <span class="hljs-string">'Search the Incubator'</span>
+                });
+
+                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'searchQuery'</span>,searchQuery);
+
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Within the discovery block there are
+three different perspectives. Set up
+a new model for each one. Pass in the
+search query so that all blocks can
+share the user’s active query string.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'teachers'</span>, <span class="hljs-keyword">new</span> Stem.Models.Teachers({
+                searchQuery: <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
+            }));
+            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'admins'</span>,   <span class="hljs-keyword">new</span> Stem.Models.Admins({
+                searchQuery: <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
+            }));
+            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'partners'</span>, <span class="hljs-keyword">new</span> Stem.Models.Partners({
+                searchQuery: <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
+            }));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>If someone changes our search query,
+we need to update the child models.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.on(<span class="hljs-string">'set:searchQUery'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+                <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'teachers'</span>).set(
+                    <span class="hljs-string">'searchQuery'</span>,
+                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
+                );
+                <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'admins'</span>).set(
+                    <span class="hljs-string">'searchQuery'</span>,
+                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
+                );
+                <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'partners'</span>).set(
+                    <span class="hljs-string">'searchQuery'</span>,
+                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
+                );
+
+            }, <span class="hljs-keyword">this</span>);
+
         }
 
     });

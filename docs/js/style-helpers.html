@@ -19,8 +19,8 @@
           <div id="jump_page">
             
               
-              <a class="source" href="content.html">
-                content.js
+              <a class="source" href="contents.html">
+                contents.js
               </a>
             
               
@@ -81,6 +81,11 @@
               
               <a class="source" href="main.html">
                 main.js
+              </a>
+            
+              
+              <a class="source" href="admins.html">
+                admins.js
               </a>
             
               
@@ -149,8 +154,18 @@
               </a>
             
               
+              <a class="source" href="teachers.html">
+                teachers.js
+              </a>
+            
+              
               <a class="source" href="app.html">
                 app.js
+              </a>
+            
+              
+              <a class="source" href="adminsAsDiscovery.html">
+                adminsAsDiscovery.js
               </a>
             
               
@@ -253,6 +268,11 @@
                 teacherSearchAsPage.js
               </a>
             
+              
+              <a class="source" href="teachersAsDiscovery.html">
+                teachersAsDiscovery.js
+              </a>
+            
           </div>
         </li>
       </ul>
@@ -276,7 +296,7 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global $ */</span></pre></div></div>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global $, _ */</span></pre></div></div>
             
         </li>
         
@@ -333,9 +353,48 @@ mobile viewports.</p>
             <div class="content"><div class='highlight'><pre>
     $(<span class="hljs-string">'#nav-toggle'</span>).on(<span class="hljs-string">'change'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-        $(<span class="hljs-string">'main'</span>).attr(<span class="hljs-string">'data-nav-expanded'</span>, $(<span class="hljs-string">'#nav-toggle'</span>).prop(<span class="hljs-string">'checked'</span>));
+        $(<span class="hljs-string">'main'</span>).attr(<span class="hljs-string">'data-nav-expanded'</span>,
+            $(<span class="hljs-string">'#nav-toggle'</span>).prop(<span class="hljs-string">'checked'</span>) ? <span class="hljs-string">'1'</span> : <span class="hljs-string">'0'</span>
+        );
 
-    });
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Hook the window resize event so that
+we can update any embedded maps. A bit
+clunky, but Leaflet doesn’t really
+support flexible layouts very well.
+We debounce the event since some browsers
+trigger a flood of <code>resize</code> events when
+the user changes window sizes.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    $(<span class="hljs-built_in">window</span>).on(<span class="hljs-string">'resize'</span>, _.debounce(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+        $(<span class="hljs-string">'.map'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> $el = $(<span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">if</span> ($el.data(<span class="hljs-string">'map'</span>) &amp;&amp; $el.data(<span class="hljs-string">'aspectRatio'</span>)) {
+                <span class="hljs-keyword">var</span> width = $(<span class="hljs-built_in">window</span>).width() -
+                        <span class="hljs-built_in">parseInt</span>($el.css(<span class="hljs-string">'margin-left'</span>)) -
+                        <span class="hljs-built_in">parseInt</span>($el.css(<span class="hljs-string">'margin-right'</span>)),
+                    height = width * $el.data(<span class="hljs-string">'aspectRatio'</span>);
+                $el.css({
+                    height: height + <span class="hljs-string">'px'</span>,
+                    width:  width  + <span class="hljs-string">'px'</span>
+                });
+                $(<span class="hljs-keyword">this</span>).data(<span class="hljs-string">'map'</span>).invalidateSize(<span class="hljs-literal">false</span>);
+            }
+        });
+    }, <span class="hljs-number">250</span>));
 
 });</pre></div></div>
             

@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>oaeAsMainSearchResults.js</title>
+  <title>admins.js</title>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
   <link rel="stylesheet" media="all" href="docco.css" />
@@ -281,7 +281,7 @@
         
           <li id="title">
               <div class="annotation">
-                  <h1>oaeAsMainSearchResults.js</h1>
+                  <h1>admins.js</h1>
               </div>
           </li>
         
@@ -296,42 +296,50 @@
               
             </div>
             
-            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone */</span>
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*global Stem, Backbone*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>The admins model tracks information
+needed to present the content
+focused on administrators. It’s
+not a traditional Backbone model
+in that it’s not backed by a
+server.</p>
 
-Stem.Views = Stem.Views || {};
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+Stem.Models = Stem.Models || {};
 
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Views.OaeAsMainSearchResults = Backbone.View.extend({
+    Stem.Models.Admins = Backbone.Model.extend({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>For now, the vanilla Backbone model
+is all we need, so there’s no code
+specific to admins.</p>
 
-        tagName: <span class="hljs-string">'ul'</span>,
-
-        className: <span class="hljs-string">'results-main__list'</span>,
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.collection, <span class="hljs-string">'reset'</span>, <span class="hljs-keyword">this</span>.render);
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.reset();
-            <span class="hljs-keyword">this</span>.collection.each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{
-               <span class="hljs-keyword">this</span>.add(model);
-            }, <span class="hljs-keyword">this</span>);
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
-        },
-
-        reset: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.$el.empty();
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
-        },
-
-        add: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model)</span> </span>{
-            <span class="hljs-keyword">var</span> view = <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchResult({model: model});
-            <span class="hljs-keyword">this</span>.$el.append(view.render().$el);
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining</span>
-        }
-
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
     });
 
 })();</pre></div></div>
