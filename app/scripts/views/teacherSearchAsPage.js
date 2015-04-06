@@ -22,26 +22,25 @@ Stem.Views = Stem.Views || {};
 
         id: 'teachers-search',
 
-        // ## renderSearchBar
+        // ## rendersearchForm
         //
         // Render the search bar that supports
         // teacher-focused search queries.
 
-        renderSearchBar: function () {
+        rendersearchForm: function () {
 
-            var model = this.model.get('searchQuery');
+            if (this.model.get('searchQuery')) {
 
-            // Create separate views for both of the search forms
-            // and insert them into the page.
+                this.searchForm = new Stem.Views.SearchAsForm({
+                    model: this.model.get('searchQuery'),
+                    showLabel: false,
+                    theme: 'theme-1'
+                });
 
-            this.searchBar = new Stem.Views.SearchAsForm({
-                model: model,
-                showLabel: false,
-                theme: 'theme-1'
-            });
+                this.$el.find('.search')
+                    .append(this.searchForm.render().$el);
 
-            this.$el.find('.search')
-                .append(this.searchBar.render().$el);
+            }
 
        },
 
@@ -51,14 +50,26 @@ Stem.Views = Stem.Views || {};
 
         renderSearchFilters: function () {
 
+            // If this is the first time this
+            // method has been called, we need
+            // to create the filter list. Othwerwise
+            // we use what already exists.
+
             this.searchFiltersList = this.searchFiltersList ||
                 new Stem.Views.SearchFiltersAsList({
-                    collection: this.model.searchFilters
+                    collection: this.model.get('searchFilters')
                 });
+
+            // In either case, we want to (re-)render
+            // the filter list.
 
             this.searchFiltersList.render();
 
-            this.$el.find('.results-filter').append(this.searchFiltersList.$el);
+            // Insert the filter list's view into
+            // our view.
+
+            this.$el.find('.results-filter')
+                .append(this.searchFiltersList.$el);
 
             // If the filters change, update the search
             // presentation. Because changing one radio
@@ -66,8 +77,11 @@ Stem.Views = Stem.Views || {};
             // another one (whatever was previously selected),
             // we debounce this event.
 
-            this.listenTo(this.model.searchFilters,'change',
-                 _(this.arrangeResults).debounce(16));
+            this.listenTo(
+                this.model.get('searchFilters'),
+                'change',
+                _(this.arrangeResults).debounce(16)
+            );
 
         },
 
@@ -79,32 +93,32 @@ Stem.Views = Stem.Views || {};
 
             this.contentMainView = this.contentMainView ||
                 new Stem.Views.OaeAsMainSearchGroup({
-                    model: this.model.searchResults.content
+                    model: this.model.get('facets').content.results
                 });
 
             this.contentSecondaryView = this.contentSecondaryView ||
                 new Stem.Views.OaeAsSecondarySearchGroup({
-                    model: this.model.searchResults.content
+                    model: this.model.get('facets').content.results
                 });
 
             this.coursesMainView = this.coursesMainView ||
                 new Stem.Views.OaeAsMainSearchGroup({
-                    model: this.model.searchResults.courses
+                    model: this.model.get('facets').courses.results
                 });
 
             this.coursesSecondaryView = this.coursesSecondaryView ||
                 new Stem.Views.OaeAsSecondarySearchGroup({
-                    model: this.model.searchResults.courses
+                    model: this.model.get('facets').courses.results
                 });
 
             this.groupsMainView = this.groupsMainView ||
                 new Stem.Views.OaeAsMainSearchGroup({
-                    model: this.model.searchResults.groups
+                    model: this.model.get('facets').groups.results
                 });
 
             this.groupsSecondaryView = this.groupsSecondaryView ||
                 new Stem.Views.OaeAsSecondarySearchGroup({
-                    model: this.model.searchResults.groups
+                    model: this.model.get('facets').groups.results
                 });
 
             this.contentMainView.render();
@@ -136,7 +150,7 @@ Stem.Views = Stem.Views || {};
             // Insert the elements in the correct locations
             // depending on which filter is selected.
 
-            if (this.model.filters.content.get('selected')) {
+            if (this.model.get('facets').content.filter.get('selected')) {
 
                 this.$el.find('.results-main')
                     .append(this.contentMainView.$el);
@@ -144,7 +158,7 @@ Stem.Views = Stem.Views || {};
                     .append(this.coursesSecondaryView.$el)
                     .append(this.groupsSecondaryView.$el);
 
-            } else if (this.model.filters.courses.get('selected')) {
+            } else if (this.model.get('facets').courses.filter.get('selected')) {
 
                 this.$el.find('.results-main')
                     .append(this.coursesMainView.$el);
@@ -152,7 +166,7 @@ Stem.Views = Stem.Views || {};
                     .append(this.groupsSecondaryView.$el)
                     .append(this.contentSecondaryView.$el);
 
-            } else if (this.model.filters.groups.get('selected')) {
+            } else if (this.model.get('facets').groups.filter.get('selected')) {
 
                 this.$el.find('.results-main')
                     .append(this.groupsMainView.$el);
@@ -180,7 +194,7 @@ Stem.Views = Stem.Views || {};
 
             // Render the individual components of the view.
 
-            this.renderSearchBar();
+            this.rendersearchForm();
             this.renderSearchFilters();
             this.renderResults();
 
