@@ -22,7 +22,7 @@ describe('Discovery Model', function () {
         discoveryModel.get('searchQuery').get('placeholder').should.equal(searchQuery.get('placeholder'));
     });
 
-    it('should pass search query model to child views', function () {
+    it('should pass search query model to child models', function () {
         var searchQuery = new Stem.Models.Search({ label: 'Label', placeholder: 'Placeholder' });
         var discoveryModel = new Stem.Models.Discovery({searchQuery: searchQuery});
         discoveryModel.get('teachers').get('searchQuery').should.equal(searchQuery);
@@ -30,7 +30,7 @@ describe('Discovery Model', function () {
         discoveryModel.get('partners').get('searchQuery').should.equal(searchQuery);
     });
 
-    it('should update search query model in child views', function () {
+    it('should update search query model in child models', function () {
         var searchQuery = new Stem.Models.Search({ label: 'Label', placeholder: 'Placeholder' });
         this.DiscoveryModel.set('searchQuery',searchQuery);
         this.DiscoveryModel.get('searchQuery').should.equal(searchQuery);

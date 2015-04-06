@@ -190,15 +190,30 @@ describe('Partners Model', function () {
 
 
     it('should load partners and groups into points of interest', function () {
-        this.PartnersModel.organizationPois.length.should.equal(2);
+        this.PartnersModel.get('organizationPois').length.should.equal(2);
     });
 
     it('should load proposals into points of interest', function () {
-        this.PartnersModel.proposalPois.length.should.equal(1);
+        this.PartnersModel.get('proposalPois').length.should.equal(1);
     });
 
     it('should load partnerships', function () {
-        this.PartnersModel.partnerships.length.should.equal(1);
+        this.PartnersModel.get('partnerships').length.should.equal(1);
+    });
+
+    it('should not load new collections when given existing ones', function () {
+        var ajaxSpy = sinon.spy($, 'ajax');
+        var locationStub = sinon.stub(Stem.Utils, 'getLocationFromStreet');
+        locationStub.callsArgWith(1, [1,2]);
+        var partners = new Stem.Models.Partners({
+            businesses: new Stem.Collections.SubGroups([{}]),
+            partnerships: new Stem.Collections.SubGroups([{}]),
+            proposals: new Stem.Collections.Proposals([{}]),
+            schools: new Stem.Collections.SubGroups([{}])
+        });
+        ajaxSpy.called.should.be.false();
+        locationStub.restore();
+        ajaxSpy.restore();
     });
 
 });
