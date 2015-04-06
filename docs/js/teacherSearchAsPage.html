@@ -377,16 +377,29 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <h2 id="rendersearchbar">renderSearchBar</h2>
+              <h2 id="rendersearchform">rendersearchForm</h2>
 <p>Render the search bar that supports
 teacher-focused search queries.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        renderSearchBar: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        rendersearchForm: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 
-            <span class="hljs-keyword">var</span> model = <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'searchQuery'</span>);</pre></div></div>
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'searchQuery'</span>)) {
+
+                <span class="hljs-keyword">this</span>.searchForm = <span class="hljs-keyword">new</span> Stem.Views.SearchAsForm({
+                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'searchQuery'</span>),
+                    showLabel: <span class="hljs-literal">false</span>,
+                    theme: <span class="hljs-string">'theme-1'</span>
+                });
+
+                <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.search'</span>)
+                    .append(<span class="hljs-keyword">this</span>.searchForm.render().$el);
+
+            }
+
+       },</pre></div></div>
             
         </li>
         
@@ -397,22 +410,13 @@ teacher-focused search queries.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Create separate views for both of the search forms
-and insert them into the page.</p>
+              <h2 id="rendersearchfilters">renderSearchFilters</h2>
+<p>Show the search filters on the page.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.searchBar = <span class="hljs-keyword">new</span> Stem.Views.SearchAsForm({
-                model: model,
-                showLabel: <span class="hljs-literal">false</span>,
-                theme: <span class="hljs-string">'theme-1'</span>
-            });
-
-            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.search'</span>)
-                .append(<span class="hljs-keyword">this</span>.searchBar.render().$el);
-
-       },</pre></div></div>
+        renderSearchFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -423,22 +427,18 @@ and insert them into the page.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <h2 id="rendersearchfilters">renderSearchFilters</h2>
-<p>Show the search filters on the page.</p>
+              <p>If this is the first time this
+method has been called, we need
+to create the filter list. Othwerwise
+we use what already exists.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        renderSearchFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-
             <span class="hljs-keyword">this</span>.searchFiltersList = <span class="hljs-keyword">this</span>.searchFiltersList ||
                 <span class="hljs-keyword">new</span> Stem.Views.SearchFiltersAsList({
-                    collection: <span class="hljs-keyword">this</span>.model.searchFilters
-                });
-
-            <span class="hljs-keyword">this</span>.searchFiltersList.render();
-
-            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-filter'</span>).append(<span class="hljs-keyword">this</span>.searchFiltersList.$el);</pre></div></div>
+                    collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'searchFilters'</span>)
+                });</pre></div></div>
             
         </li>
         
@@ -449,19 +449,13 @@ and insert them into the page.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>If the filters change, update the search
-presentation. Because changing one radio
-button (selecting it) necessarily changes
-another one (whatever was previously selected),
-we debounce this event.</p>
+              <p>In either case, we want to (re-)render
+the filter list.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model.searchFilters,<span class="hljs-string">'change'</span>,
-                 _(<span class="hljs-keyword">this</span>.arrangeResults).debounce(<span class="hljs-number">16</span>));
-
-        },</pre></div></div>
+            <span class="hljs-keyword">this</span>.searchFiltersList.render();</pre></div></div>
             
         </li>
         
@@ -471,6 +465,50 @@ we debounce this event.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Insert the filter list’s view into
+our view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-filter'</span>)
+                .append(<span class="hljs-keyword">this</span>.searchFiltersList.$el);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>If the filters change, update the search
+presentation. Because changing one radio
+button (selecting it) necessarily changes
+another one (whatever was previously selected),
+we debounce this event.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.listenTo(
+                <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'searchFilters'</span>),
+                <span class="hljs-string">'change'</span>,
+                _(<span class="hljs-keyword">this</span>.arrangeResults).debounce(<span class="hljs-number">16</span>)
+            );
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <h2 id="renderresults">renderResults</h2>
 <p>Create markup for the search results.</p>
@@ -482,32 +520,32 @@ we debounce this event.</p>
 
             <span class="hljs-keyword">this</span>.contentMainView = <span class="hljs-keyword">this</span>.contentMainView ||
                 <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.content
+                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).content.results
                 });
 
             <span class="hljs-keyword">this</span>.contentSecondaryView = <span class="hljs-keyword">this</span>.contentSecondaryView ||
                 <span class="hljs-keyword">new</span> Stem.Views.OaeAsSecondarySearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.content
+                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).content.results
                 });
 
             <span class="hljs-keyword">this</span>.coursesMainView = <span class="hljs-keyword">this</span>.coursesMainView ||
                 <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.courses
+                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).courses.results
                 });
 
             <span class="hljs-keyword">this</span>.coursesSecondaryView = <span class="hljs-keyword">this</span>.coursesSecondaryView ||
                 <span class="hljs-keyword">new</span> Stem.Views.OaeAsSecondarySearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.courses
+                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).courses.results
                 });
 
             <span class="hljs-keyword">this</span>.groupsMainView = <span class="hljs-keyword">this</span>.groupsMainView ||
                 <span class="hljs-keyword">new</span> Stem.Views.OaeAsMainSearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.groups
+                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).groups.results
                 });
 
             <span class="hljs-keyword">this</span>.groupsSecondaryView = <span class="hljs-keyword">this</span>.groupsSecondaryView ||
                 <span class="hljs-keyword">new</span> Stem.Views.OaeAsSecondarySearchGroup({
-                    model: <span class="hljs-keyword">this</span>.model.searchResults.groups
+                    model: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).groups.results
                 });
 
             <span class="hljs-keyword">this</span>.contentMainView.render();
@@ -524,11 +562,11 @@ we debounce this event.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <h2 id="arrangeresults">arrangeResults</h2>
 <p>Arrange the search results on the page.</p>
@@ -541,11 +579,11 @@ we debounce this event.</p>
         </li>
         
         
-        <li id="section-12">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>First detach existing elements from the DOM.</p>
 
@@ -562,11 +600,11 @@ we debounce this event.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Insert the elements in the correct locations
 depending on which filter is selected.</p>
@@ -574,7 +612,7 @@ depending on which filter is selected.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.filters.content.get(<span class="hljs-string">'selected'</span>)) {
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).content.filter.get(<span class="hljs-string">'selected'</span>)) {
 
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
                     .append(<span class="hljs-keyword">this</span>.contentMainView.$el);
@@ -582,7 +620,7 @@ depending on which filter is selected.</p>
                     .append(<span class="hljs-keyword">this</span>.coursesSecondaryView.$el)
                     .append(<span class="hljs-keyword">this</span>.groupsSecondaryView.$el);
 
-            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.filters.courses.get(<span class="hljs-string">'selected'</span>)) {
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).courses.filter.get(<span class="hljs-string">'selected'</span>)) {
 
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
                     .append(<span class="hljs-keyword">this</span>.coursesMainView.$el);
@@ -590,7 +628,7 @@ depending on which filter is selected.</p>
                     .append(<span class="hljs-keyword">this</span>.groupsSecondaryView.$el)
                     .append(<span class="hljs-keyword">this</span>.contentSecondaryView.$el);
 
-            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.filters.groups.get(<span class="hljs-string">'selected'</span>)) {
+            } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'facets'</span>).groups.filter.get(<span class="hljs-string">'selected'</span>)) {
 
                 <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.results-main'</span>)
                     .append(<span class="hljs-keyword">this</span>.groupsMainView.$el);
@@ -605,11 +643,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <h2 id="render">render</h2>
 
@@ -621,11 +659,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Render the main template first.</p>
 
@@ -637,11 +675,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Add in ARIA information.</p>
 
@@ -655,29 +693,29 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Render the individual components of the view.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.renderSearchBar();
+            <span class="hljs-keyword">this</span>.rendersearchForm();
             <span class="hljs-keyword">this</span>.renderSearchFilters();
             <span class="hljs-keyword">this</span>.renderResults();</pre></div></div>
             
         </li>
         
         
-        <li id="section-18">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Return view for method chaining.</p>
 

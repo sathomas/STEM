@@ -346,37 +346,35 @@ Stem.Views = Stem.Views || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>During initialization, create any
-child views.</p>
+              <p>Build the tag set that controls display of
+organizations (schools and businesses). Note
+that we’re adding an additional attribute
+to the Tag models, namely the class of the
+POI marker corresponding to the tag. We
+use that class to adjust the visibility
+of the markers based on how the user
+interacts with the filters.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.mapFilter = <span class="hljs-keyword">new</span> Stem.Views.TagSetAsInlineCheckboxGroup({
-                el: $(<span class="hljs-string">'#partners-organizations-filter'</span>),
-                model: <span class="hljs-keyword">this</span>.model.tagSet
-            });
-
-            <span class="hljs-keyword">this</span>.organizationsMap = <span class="hljs-keyword">new</span> Stem.Views.PoisAsMap({
-                el: $(<span class="hljs-string">'#partners-organizations-map'</span>),
-                collection: <span class="hljs-keyword">this</span>.model.organizationPois,
-                tintUrl: <span class="hljs-string">'images/theme-3-background.png'</span>
-            });
-
-            <span class="hljs-keyword">this</span>.proposalsMap = <span class="hljs-keyword">new</span> Stem.Views.PoisAsMap({
-                el: $(<span class="hljs-string">'#partners-donorschoose-map'</span>),
-                collection: <span class="hljs-keyword">this</span>.model.proposalPois,
-                tintUrl: <span class="hljs-string">'images/theme-3-background.png'</span>
-            });
-
-            <span class="hljs-keyword">this</span>.partnershipsList = <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightList({
-                el: $(<span class="hljs-string">'#partners-spotlights'</span>),
-                collection: <span class="hljs-keyword">this</span>.model.partnerships
-            });
-
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.tagSet = <span class="hljs-keyword">new</span> Stem.Models.TagSet({
+                tags:   <span class="hljs-keyword">new</span> Stem.Collections.Tags([
+                            <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                                label: <span class="hljs-string">'Schools'</span>,
+                                selected: <span class="hljs-literal">true</span>,
+                                theme: <span class="hljs-string">'theme-3-light'</span>,
+                                poiClass: <span class="hljs-string">'poi-school'</span>
+                            }),
+                            <span class="hljs-keyword">new</span> Stem.Models.Tag({
+                                label: <span class="hljs-string">'Organizations'</span>,
+                                selected: <span class="hljs-literal">true</span>,
+                                theme: <span class="hljs-string">'theme-3'</span>,
+                                poiClass: <span class="hljs-string">'poi-business'</span>
+                            })
+                        ]),
+                title:  <span class="hljs-string">'I’m looking for'</span>
+            });</pre></div></div>
             
         </li>
         
@@ -386,6 +384,46 @@ child views.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Create the child views.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.mapFilter = <span class="hljs-keyword">new</span> Stem.Views.TagSetAsInlineCheckboxGroup({
+                el: $(<span class="hljs-string">'#partners-organizations-filter'</span>),
+                model: <span class="hljs-keyword">this</span>.tagSet
+            });
+
+            <span class="hljs-keyword">this</span>.organizationsMap = <span class="hljs-keyword">new</span> Stem.Views.PoisAsMap({
+                el: $(<span class="hljs-string">'#partners-organizations-map'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'organizationPois'</span>),
+                tintUrl: <span class="hljs-string">'images/theme-3-background.png'</span>
+            });
+
+            <span class="hljs-keyword">this</span>.proposalsMap = <span class="hljs-keyword">new</span> Stem.Views.PoisAsMap({
+                el: $(<span class="hljs-string">'#partners-donorschoose-map'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'proposalPois'</span>),
+                tintUrl: <span class="hljs-string">'images/theme-3-background.png'</span>
+            });
+
+            <span class="hljs-keyword">this</span>.partnershipsList = <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightList({
+                el: $(<span class="hljs-string">'#partners-spotlights'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'partnerships'</span>)
+            });
+
+        },
+
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Normally this view is used to “fill in”
 components that already exist on a static
@@ -404,11 +442,11 @@ point.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>We don’t need to supply any
 attributes to the view since
@@ -424,11 +462,11 @@ it’s just a static skeleton.</p>
         </li>
         
         
-        <li id="section-6">
+        <li id="section-7">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
+                <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
               <p>Add the ARIA attributes for accessibility</p>
 
@@ -442,11 +480,11 @@ it’s just a static skeleton.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-8">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
               <p>Render all the child views.</p>
 
@@ -458,29 +496,58 @@ it’s just a static skeleton.</p>
             <span class="hljs-keyword">this</span>.organizationsMap.render();
             <span class="hljs-keyword">this</span>.partnershipsList.render();
 
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model.tags, <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateFilters);
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.tagSet.get(<span class="hljs-string">'tags'</span>), <span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateFilters);
 
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining.</span>
 
         },
 
-        updateFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        updateFilters: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>If the user changes the selection
+of one of the tag filters, we
+update the map to the user’s
+preference. Go through our
+set of tags to get the selection
+state of each.</p>
 
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.showBusinesses.get(<span class="hljs-string">'selected'</span>)) {
-                $(<span class="hljs-string">'#partners-organizations-map .poi-business'</span>)
-                    .attr(<span class="hljs-string">'data-hidden'</span>, <span class="hljs-string">'0'</span>);
-            } <span class="hljs-keyword">else</span> {
-                $(<span class="hljs-string">'#partners-organizations-map .poi-business'</span>)
-                    .attr(<span class="hljs-string">'data-hidden'</span>, <span class="hljs-string">'1'</span>);
-            }
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.tagSet.get(<span class="hljs-string">'tags'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Set the <code>data-hidden</code> attribute
+of the markers appropriately.</p>
 
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.showSchools.get(<span class="hljs-string">'selected'</span>)) {
-                $(<span class="hljs-string">'#partners-organizations-map .poi-school'</span>)
-                    .attr(<span class="hljs-string">'data-hidden'</span>, <span class="hljs-string">'0'</span>);
-            } <span class="hljs-keyword">else</span> {
-                $(<span class="hljs-string">'#partners-organizations-map .poi-school'</span>)
-                    .attr(<span class="hljs-string">'data-hidden'</span>, <span class="hljs-string">'1'</span>);
-            }
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                $(<span class="hljs-string">'#partners-organizations-map'</span>)
+                    .find(<span class="hljs-string">'.'</span> + tag.get(<span class="hljs-string">'poiClass'</span>))
+                    .attr(<span class="hljs-string">'data-hidden'</span>,
+                        tag.get(<span class="hljs-string">'selected'</span>) ? <span class="hljs-string">'0'</span> : <span class="hljs-string">'1'</span>
+                    );
+
+            });
+
         },
 
         show: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
@@ -488,11 +555,11 @@ it’s just a static skeleton.</p>
         </li>
         
         
-        <li id="section-8">
+        <li id="section-11">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Show is distinct from render so
 that we don’t annoy the user with

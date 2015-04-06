@@ -320,7 +320,7 @@ Stem.Models = Stem.Models || {};
 
     Stem.Models.TeacherSearch = Backbone.Model.extend({
 
-        defaults: {</pre></div></div>
+        setupSearch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -330,27 +330,6 @@ Stem.Models = Stem.Models || {};
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
-              </div>
-              <p>If no particular search facet is set,
-we prioritize content as the facet.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            facet: <span class="hljs-string">'content'</span>
-
-        },
-
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-4">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>If no search query was provided when
 the model was created, we create our
@@ -373,11 +352,11 @@ own.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>If that model changes, we’ll want to update
 the live searches. Because we’re tracking user
@@ -389,9 +368,37 @@ hammering the server.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>).on(
                 <span class="hljs-string">'change'</span>,
-                _(<span class="hljs-keyword">this</span>.updateSearch).debounce(<span class="hljs-number">250</span>),
+                _(<span class="hljs-keyword">this</span>.updateResults).debounce(<span class="hljs-number">250</span>),
                 <span class="hljs-keyword">this</span>
-            );</pre></div></div>
+            );
+
+        },
+
+        setupTags: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Create a collection of tags for grade levels
+to augment the search query.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> gradeLevelTags = <span class="hljs-keyword">new</span> Stem.Collections.Tags([
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'P-2'</span> }),
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'3-5'</span> }),
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'6-8'</span> }),
+                <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'9-12'</span> })
+            ]);
+
+            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'gradeLevelTags'</span>, gradeLevelTags);</pre></div></div>
             
         </li>
         
@@ -402,20 +409,13 @@ hammering the server.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Next we set up the various tags that users
-can set to focus the search. Initially, all
-the tags are selected for the broadest
-possible search.</p>
+              <p>Update the search results whenever the user
+selects or deselects a tag.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.tags = {
-                primary:    <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'P-2'</span> }),
-                elementary: <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'3-5'</span> }),
-                middle:     <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'6-8'</span> }),
-                high:       <span class="hljs-keyword">new</span> Stem.Models.Tag({ label: <span class="hljs-string">'9-12'</span> })
-            };</pre></div></div>
+            <span class="hljs-keyword">this</span>.listenTo(gradeLevelTags,<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateResults);</pre></div></div>
             
         </li>
         
@@ -426,13 +426,19 @@ possible search.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Create a single collection of all tags to
-conveniently capture change events.</p>
+              <p>Create a tag set from the collection</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.allTags = <span class="hljs-keyword">new</span> Stem.Collections.Tags(_(<span class="hljs-keyword">this</span>.tags).values());</pre></div></div>
+            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'gradeLevelTagSet'</span>, <span class="hljs-keyword">new</span> Stem.Models.TagSet({
+                title: <span class="hljs-string">'Grade level'</span>,
+                tags: gradeLevelTags
+            }));
+
+        },
+
+        getQueryTags: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -443,12 +449,13 @@ conveniently capture change events.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
-              <p>Update the search results whenever the user changes filters.</p>
+              <p>Create an augmented search query based on the
+tag settings. Start with an empty query</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.allTags,<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.updateSearch);</pre></div></div>
+            <span class="hljs-keyword">var</span> query = <span class="hljs-string">''</span>;</pre></div></div>
             
         </li>
         
@@ -459,22 +466,12 @@ conveniently capture change events.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-9">&#182;</a>
               </div>
-              <p>Gather the tags into related tag sets.</p>
+              <p>Look at each tag one at a time.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.tagSets = {
-                grades: <span class="hljs-keyword">new</span> Stem.Models.TagSet({
-                            title: <span class="hljs-string">'Grade level'</span>,
-                            tags: <span class="hljs-keyword">new</span> Stem.Collections.Tags([
-                                <span class="hljs-keyword">this</span>.tags.primary,
-                                <span class="hljs-keyword">this</span>.tags.elementary,
-                                <span class="hljs-keyword">this</span>.tags.middle,
-                                <span class="hljs-keyword">this</span>.tags.high
-                            ])
-                        })
-            };</pre></div></div>
+            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'gradeLevelTags'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tag)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -485,30 +482,13 @@ conveniently capture change events.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
               </div>
-              <p>We use the tags as part of the filters
-that let users focus their search on
-a specific perspective. Initially the
-first filter is selected.</p>
+              <p>If the tag isn’t selected, then we can
+skip it.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.filters = {
-                content: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
-                            icon: <span class="hljs-string">'fa-cloud-download'</span>,
-                            selected: <span class="hljs-literal">true</span>,
-                            tagSet: <span class="hljs-keyword">this</span>.tagSets.grades,
-                            title: <span class="hljs-string">'Resources and units'</span>
-                        }),
-                courses: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
-                            icon: <span class="hljs-string">'fa-certificate'</span>,
-                            title: <span class="hljs-string">'Professional learning'</span>
-                        }),
-                groups: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
-                            icon: <span class="hljs-string">'fa-comments-o'</span>,
-                            title: <span class="hljs-string">'People and groups'</span>
-                        })
-            };</pre></div></div>
+                <span class="hljs-keyword">if</span> (tag.get(<span class="hljs-string">'selected'</span>)) {</pre></div></div>
             
         </li>
         
@@ -519,19 +499,55 @@ first filter is selected.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
-              <p>Collect all of the filters into a single
-filter group.</p>
+              <p>For selected tags, we use “domain
+specific knowledge” to hack the
+search query.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.searchFilters = <span class="hljs-keyword">new</span> Stem.Collections.SearchFilters([
-                <span class="hljs-keyword">this</span>.filters.content,
-                <span class="hljs-keyword">this</span>.filters.courses,
-                <span class="hljs-keyword">this</span>.filters.groups
-            ]);
+                    <span class="hljs-keyword">switch</span> (tag.get(<span class="hljs-string">'label'</span>)) {
+                        <span class="hljs-keyword">case</span> <span class="hljs-string">'P-2'</span>:
+                            query += <span class="hljs-string">', "primary school"'</span> +
+                                     <span class="hljs-string">', "elementary school"'</span> +
+                                     <span class="hljs-string">', p-2, k-2'</span> +
+                                     <span class="hljs-string">', preschool, kindergarten'</span> +
+                                     <span class="hljs-string">', "1st grade", "first grade"'</span> +
+                                     <span class="hljs-string">', "2nd grade", "second grade"'</span>;
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> <span class="hljs-string">'3-5'</span>:
+                            query += <span class="hljs-string">', "primary school"'</span> +
+                                     <span class="hljs-string">', "elementary school"'</span> +
+                                     <span class="hljs-string">', 3-5, "3rd grade", "third grade"'</span> +
+                                     <span class="hljs-string">', "4th grade", "fourth grade"'</span> +
+                                     <span class="hljs-string">', "5th grade", "fifth grade"'</span>;
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> <span class="hljs-string">'6-8'</span>:
+                            query += <span class="hljs-string">', "secondary school"'</span> +
+                                     <span class="hljs-string">', 6-8, "middle school"'</span> +
+                                     <span class="hljs-string">', "6th grade", "sixth grade"'</span> +
+                                     <span class="hljs-string">', "7th grade", "seventh grade"'</span> +
+                                     <span class="hljs-string">', "8th grade", "eighth grade"'</span>;
+                            <span class="hljs-keyword">break</span>;
+                        <span class="hljs-keyword">case</span> <span class="hljs-string">'9-12'</span>:
+                            query += <span class="hljs-string">', "secondary school"'</span> +
+                                     <span class="hljs-string">', 9-12, "high school"'</span> +
+                                     <span class="hljs-string">', "9th grade", "ninth grade"'</span> +
+                                     <span class="hljs-string">', "10th grade", "tenth grade"'</span> +
+                                     <span class="hljs-string">', "11th grade", "eleventh grade"'</span> +
+                                     <span class="hljs-string">', "12th grade", "twelfth grade"'</span>;
+                            <span class="hljs-keyword">break</span>;
+                    }
 
-            <span class="hljs-keyword">this</span>.searchFilters.on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.filterChanged, <span class="hljs-keyword">this</span>);</pre></div></div>
+                }
+
+            });
+
+            <span class="hljs-keyword">return</span> query;
+
+        },
+
+        setupFacets: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -542,34 +558,82 @@ filter group.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>Create groups to manage the various search results.</p>
+              <p>There are many facets to a particular
+search query. Each facet includes a
+filter (to prioritize that facet) and
+a collection of results that
+correspond to it. We allow the facets
+to be predefined when the model is
+created to provide maximum flexibility
+(and ease of unit testing), though,
+in most cases we’ll set them up here.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.searchResults = {
-                content: <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
-                            collection: <span class="hljs-keyword">new</span> Stem.Collections.Contents([], { limit: <span class="hljs-number">16</span> } ),
+                <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>)) {
+
+                <span class="hljs-keyword">var</span> facets = {
+
+                    content: {
+
+                        filter: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
+                            icon: <span class="hljs-string">'fa-cloud-download'</span>,
+                            selected: <span class="hljs-literal">true</span>,
+                            tagSet: <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'gradeLevelTagSet'</span>),
+                            title: <span class="hljs-string">'Resources and units'</span>
+                        }),
+                        results: <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
+                            collection: <span class="hljs-keyword">new</span> Stem.Collections.Contents([], {
+                                 limit: <span class="hljs-number">16</span>
+                            }),
                             heading: <span class="hljs-string">'Resources and units'</span>,
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                                       Stem.config.oae.host + <span class="hljs-string">'/search/?types=content'</span>
+                        })
+
+                    },
+
+                    courses: {
+
+                        filter: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
+                            icon: <span class="hljs-string">'fa-certificate'</span>,
+                            title: <span class="hljs-string">'Professional learning'</span>
                         }),
-                courses: <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
-                            collection: <span class="hljs-keyword">new</span> Stem.Collections.MemberGroups( [], {
+                        results: <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
+                            collection: <span class="hljs-keyword">new</span> Stem.Collections.MemberGroups([], {
                                 limit: <span class="hljs-number">16</span>,
                                 parentId: Stem.config.oae.groups.courses
-                            } ),
+                            }),
                             heading: <span class="hljs-string">'Professional Learning'</span>,
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                                       Stem.config.oae.host + <span class="hljs-string">'/group/si/m179WbZq/members'</span>
+                        })
+
+                    },
+
+                    groups: {
+
+                        filter: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
+                            icon: <span class="hljs-string">'fa-comments-o'</span>,
+                            title: <span class="hljs-string">'People and groups'</span>
                         }),
-                groups:  <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
-                            collection: <span class="hljs-keyword">new</span> Stem.Collections.Principals( [], { limit: <span class="hljs-number">16</span> } ),
+                        results:  <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
+                            collection: <span class="hljs-keyword">new</span> Stem.Collections.Principals([], {
+                                limit: <span class="hljs-number">16</span>
+                            }),
                             heading: <span class="hljs-string">'People and Groups'</span>,
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                                       Stem.config.oae.host + <span class="hljs-string">'/search/?types=user,group'</span>
                         })
-            };</pre></div></div>
+
+                    }
+
+                };
+
+                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'facets'</span>, facets);
+
+            }</pre></div></div>
             
         </li>
         
@@ -580,13 +644,15 @@ filter group.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>If the search facet changes, we’ll
-need to keep track of the new value.</p>
+              <p>Create a filters collection to hold all of the
+facet filters.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.on(<span class="hljs-string">'change:facet'</span>, <span class="hljs-keyword">this</span>.updateFacet, <span class="hljs-keyword">this</span>);</pre></div></div>
+            <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'searchFilters'</span>,
+                <span class="hljs-keyword">new</span> Stem.Collections.SearchFilters()
+            );</pre></div></div>
             
         </li>
         
@@ -597,15 +663,28 @@ need to keep track of the new value.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
-              <p>Now that everything is set up, perform the initial
-search query.</p>
+              <p>Add each filter to that collection. While we’re
+iterating thought the filters, pick out the
+particular facet that is initially selected.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.updateSearch();
+            _(<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>)).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(facet, key)</span> </span>{
 
-        },</pre></div></div>
+                <span class="hljs-keyword">if</span> (facet.filter) {
+
+                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchFilters'</span>).add(facet.filter);
+
+                    <span class="hljs-keyword">if</span> (facet.filter.get(<span class="hljs-string">'selected'</span>)) {
+
+                        <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'facet'</span>, key);
+
+                    }
+
+                }
+
+            }, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -616,19 +695,12 @@ search query.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Update the search facet.</p>
+              <p>Watch for any changes to the filters.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        updateFacet: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">var</span> facet = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facet'</span>);
-
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.filters[facet]) {
-                <span class="hljs-keyword">this</span>.filters[facet].set(<span class="hljs-string">'selected'</span>,<span class="hljs-literal">true</span>);
-            }
-
-        },</pre></div></div>
+            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchFilters'</span>).on(<span class="hljs-string">'change'</span>, <span class="hljs-keyword">this</span>.filterChanged, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
@@ -639,12 +711,16 @@ search query.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>Update the search.</p>
+              <p>Also watch for any parent object changing the facet.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        updateSearch: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.on(<span class="hljs-string">'change:facet'</span>, <span class="hljs-keyword">this</span>.updateFacet, <span class="hljs-keyword">this</span>);
+
+        },
+
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -655,15 +731,15 @@ search query.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
-              <p>Gather the keywords and terms for the search.
-Start with whatever the user has typed into
-the free-form query.</p>
+              <p>Set up the individual components of the
+model.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> keywords = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>).get(<span class="hljs-string">'query'</span>),
-                extendedKeywords = keywords;</pre></div></div>
+            <span class="hljs-keyword">this</span>.setupSearch();
+            <span class="hljs-keyword">this</span>.setupTags();
+            <span class="hljs-keyword">this</span>.setupFacets();</pre></div></div>
             
         </li>
         
@@ -674,44 +750,17 @@ the free-form query.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
-              <p>Add special keywords based on the tag
-settings.</p>
+              <p>Now that everything is set up, perform
+the initial search query.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>) ||
-                <span class="hljs-keyword">this</span>.tags.elementary.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', "primary school", "elementary school"'</span>;
-            }
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.primary.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', p-2, k-2, '</span> +
-                            <span class="hljs-string">'preschool, kindergarten'</span> +
-                            <span class="hljs-string">', "1st grade", "first grade"'</span> +
-                            <span class="hljs-string">', "2nd grade", "second grade"'</span>;
-            }
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.elementary.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', 3-5, "3rd grade", "third grade"'</span> +
-                            <span class="hljs-string">', "4th grade", "fourth grade"'</span> +
-                            <span class="hljs-string">', "5th grade", "fifth grade"'</span>;
-            }
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>) ||
-                <span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', "secondary school"'</span>;
-            }
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.middle.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', 6-8, "middle school"'</span> +
-                            <span class="hljs-string">', "6th grade", "sixth grade"'</span> +
-                            <span class="hljs-string">', "7th grade", "seventh grade"'</span> +
-                            <span class="hljs-string">', "8th grade", "eighth grade"'</span>;
-            }
-            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.tags.high.get(<span class="hljs-string">'selected'</span>)) {
-                extendedKeywords += <span class="hljs-string">', 9-12, "high school"'</span> +
-                            <span class="hljs-string">', "9th grade", "ninth grade"'</span> +
-                            <span class="hljs-string">', "10th grade", "tenth grade"'</span> +
-                            <span class="hljs-string">', "11th grade", "eleventh grade"'</span> +
-                            <span class="hljs-string">', "12th grade", "twelfth grade"'</span>;
-            }</pre></div></div>
+            <span class="hljs-keyword">this</span>.updateResults();
+
+        },
+
+        updateFacet: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -722,17 +771,14 @@ settings.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
-              <p>Update the collections and trigger new
-fetches.</p>
+              <p>Somebody updated the search facet. Figure
+out which one they want by looking for a
+match within our facets object.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            _(<span class="hljs-keyword">this</span>.searchResults).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(search, key)</span> </span>{
-                search.get(<span class="hljs-string">'collection'</span>).options({
-                    keywords: key === <span class="hljs-string">'content'</span> ? extendedKeywords : keywords
-                }).fetch({reset: <span class="hljs-literal">true</span>, validate: <span class="hljs-literal">true</span>});
-            });</pre></div></div>
+            _(<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>)).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(facet, key)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -743,19 +789,21 @@ fetches.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
-              <p>Update the “More” links in the results.</p>
+              <p>If we find a match, set the filter to
+be selected.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">var</span> oaeUrl = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
-                         Stem.config.oae.host + <span class="hljs-string">'/search/'</span> +
-                         <span class="hljs-built_in">encodeURIComponent</span>(keywords) + <span class="hljs-string">'?types='</span>,
-                extendedUrl = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
-                         Stem.config.oae.host + <span class="hljs-string">'/search/'</span> +
-                         <span class="hljs-built_in">encodeURIComponent</span>(extendedKeywords) + <span class="hljs-string">'?types='</span>;
-            <span class="hljs-keyword">this</span>.searchResults.content.set(<span class="hljs-string">'moreLink'</span>, extendedUrl + <span class="hljs-string">'content'</span>);
-            <span class="hljs-keyword">this</span>.searchResults.groups.set(<span class="hljs-string">'moreLink'</span>, oaeUrl + <span class="hljs-string">'user,group'</span>);</pre></div></div>
+                <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facet'</span>) === key) &amp;&amp; facet.filter) {
+                    facet.filter.set(<span class="hljs-string">'selected'</span>,<span class="hljs-literal">true</span>);
+                }
+
+            }, <span class="hljs-keyword">this</span>);
+
+        },
+
+        updateResults: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -765,6 +813,132 @@ fetches.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Gather the keywords and terms for the search.
+Start with whatever the user has typed into
+the free-form query and augment that input
+with tag-based additions.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> keywords = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>).get(<span class="hljs-string">'query'</span>),
+                extendedKeywords = keywords + <span class="hljs-keyword">this</span>.getQueryTags();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Update the collections and trigger new
+fetches.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            _(<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>)).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(facet, key)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Make sure there’s a results model to
+update.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">if</span> (facet.results) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>If we do have a results model,
+change the options on it’s collection
+to match the new search query. If
+the facet is <code>content</code>, then use
+the extended keywords that include
+tags. Otherwise, just use the basic
+keywords.</p>
+<p>After updating the options, trigger
+a fetch on the collection to get
+new results.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    facet.results.get(<span class="hljs-string">'collection'</span>).options({
+                        keywords: key === <span class="hljs-string">'content'</span> ?
+                            extendedKeywords : keywords
+                    }).fetch({reset: <span class="hljs-literal">true</span>, validate: <span class="hljs-literal">true</span>});
+
+                }
+
+            }, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>We also want to update the “More” links
+associated with each search results. First
+figure out a URL to use.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> oaeUrl = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
+                         Stem.config.oae.host + <span class="hljs-string">'/search/'</span> +
+                         <span class="hljs-built_in">encodeURIComponent</span>(keywords) + <span class="hljs-string">'?types='</span>,
+                extendedUrl = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
+                         Stem.config.oae.host + <span class="hljs-string">'/search/'</span> +
+                         <span class="hljs-built_in">encodeURIComponent</span>(extendedKeywords) + <span class="hljs-string">'?types='</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Now update the model with the new URLs.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>).content.results.set(<span class="hljs-string">'moreLink'</span>, extendedUrl + <span class="hljs-string">'content'</span>);
+            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>).groups.results.set(<span class="hljs-string">'moreLink'</span>, oaeUrl + <span class="hljs-string">'user,group'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Update the hash in the browser’s address bar</p>
 
@@ -780,11 +954,11 @@ fetches.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Most of the time, when one filter
 changes, all the others will as
@@ -799,11 +973,11 @@ that’s now selected.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Find the specific filter in our
 set so that we can update the
@@ -812,20 +986,22 @@ facet attribute.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                _(<span class="hljs-keyword">this</span>.filters).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(filterToCheck, key)</span> </span>{
-                    <span class="hljs-keyword">if</span> (filterToCheck === filter) {
+                _(<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>)).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(facet, key)</span> </span>{
+
+                    <span class="hljs-keyword">if</span> (facet.filter === filter) {
                         <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'facet'</span>,key);
                     }
+
                 }, <span class="hljs-keyword">this</span>);</pre></div></div>
             
         </li>
         
         
-        <li id="section-24">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Update the browser’s address bar</p>
 
@@ -842,11 +1018,11 @@ facet attribute.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Let folks upstream know when the URL hash
 can be changed.</p>
@@ -856,11 +1032,11 @@ can be changed.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Start by extracting the query.</p>
 
@@ -874,22 +1050,24 @@ can be changed.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Add the appropriate facet.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            _(<span class="hljs-keyword">this</span>.filters).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(model, key)</span> </span>{
-                <span class="hljs-keyword">if</span> (model.get(<span class="hljs-string">'selected'</span>)) {
+            _(<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'facets'</span>)).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(facet, key)</span> </span>{
+
+                <span class="hljs-keyword">if</span> ((facet.filter) &amp;&amp; (facet.filter.get(<span class="hljs-string">'selected'</span>))) {
                     query += <span class="hljs-string">'/'</span> + key;
                 }
-            });
+
+            }, <span class="hljs-keyword">this</span>);
 
             <span class="hljs-keyword">this</span>.trigger(<span class="hljs-string">'navigate'</span>, query);
 

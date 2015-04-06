@@ -337,19 +337,19 @@ Stem.Models = Stem.Models || {};
               </div>
               <p>If no search query was provided when
 the model was created, we create our
-own.</p>
+own. (We don’t use the <code>defaults</code>
+property to avoid creating unnecessary
+models.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)) {
 
-                <span class="hljs-keyword">var</span> searchQuery = <span class="hljs-keyword">new</span> Stem.Models.Search({
+                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'searchQuery'</span>, <span class="hljs-keyword">new</span> Stem.Models.Search({
                     label: <span class="hljs-string">'Search for resources'</span>,
                     placeholder: <span class="hljs-string">'Search the Incubator'</span>
-                });
-
-                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'searchQuery'</span>,searchQuery);
+                }));
 
             }</pre></div></div>
             
@@ -379,7 +379,13 @@ share the user’s active query string.</p>
             }));
             <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'partners'</span>, <span class="hljs-keyword">new</span> Stem.Models.Partners({
                 searchQuery: <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
-            }));</pre></div></div>
+            }));
+
+            <span class="hljs-keyword">this</span>.on(<span class="hljs-string">'change:searchQuery'</span>, <span class="hljs-keyword">this</span>.updateQuery, <span class="hljs-keyword">this</span>);
+
+        },
+
+        updateQuery: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -396,22 +402,11 @@ we need to update the child models.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.on(<span class="hljs-string">'set:searchQUery'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> searchQuery = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>);
 
-                <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'teachers'</span>).set(
-                    <span class="hljs-string">'searchQuery'</span>,
-                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
-                );
-                <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'admins'</span>).set(
-                    <span class="hljs-string">'searchQuery'</span>,
-                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
-                );
-                <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'partners'</span>).set(
-                    <span class="hljs-string">'searchQuery'</span>,
-                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)
-                );
-
-            }, <span class="hljs-keyword">this</span>);
+            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'teachers'</span>).set(<span class="hljs-string">'searchQuery'</span>, searchQuery);
+            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'admins'</span>).set(<span class="hljs-string">'searchQuery'</span>, searchQuery);
+            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'partners'</span>).set(<span class="hljs-string">'searchQuery'</span>, searchQuery);
 
         }
 
