@@ -143,6 +143,12 @@ Stem.Utils = Stem.Utils || {};
 
     Stem.Utils.getLocationFromStreet = function(addr, success, error) {
 
+        // For some reason, the Census Bureau seems to have
+        // problems with zip+4 zip codes. So we strip them
+        // out here.
+
+        addr = addr.replace(/([0-9]{5})-[0-9]{4}/g, '$1');
+
         $.ajax({
                 url: 'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?' +
                         'address=' + encodeURIComponent(addr.trim()) +
@@ -167,8 +173,22 @@ Stem.Utils = Stem.Utils || {};
 
                 } else {
 
-                    if (typeof(error) === "function") {
+                    // Sometimes the Census Bureau has problems with
+                    // NE in the address. (Maybe Nebraska!?) If this
+                    // address has it, then strip it out and try again.
+
+                    if (addr.indexOf(' NE ') > 0) {
+
+                        Stem.Utils.getLocationFromStreet(
+                            addr.replace(/ NE /, ' '),
+                            success,
+                            error
+                        );
+
+                    } else if (typeof(error) === "function") {
+
                         error();
+
                     }
 
                 }

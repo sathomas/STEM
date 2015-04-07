@@ -1,4 +1,4 @@
-/*global Stem, $, Backbone */
+/*global Stem, $, Backbone, JST */
 
 // Backbone view for the landing page discovery
 // section. Because that section includes static
@@ -15,21 +15,51 @@ Stem.Views = Stem.Views || {};
 
     Stem.Views.DiscoveryAsContent = Backbone.View.extend({
 
-        initialize: function () {
-
-            // Set up the different child views.
-
-            this.partnerDiscovery = new Stem.Views.PartnersAsDiscovery({
-                model: this.model.get('partners')
-            });
-
-        },
+        template: JST['app/scripts/templates/discoveryAsContent.ejs'],
 
         render: function () {
 
-            // Render the child views.
+            // Normally this view is used to "fill in"
+            // components that already exist on a static
+            // page. When that's the case, we will have
+            // been provided an element that already has
+            // content. To be safe, though, we check to
+            // make sure that content is present. If it
+            // isn't we use our template as a starting
+            // point.
 
-            this.partnerDiscovery.render();
+            if (this.$el.is(':empty')) {
+
+                // We don't need to supply any
+                // attributes to the view since
+                // it's just a static skeleton.
+
+                this.$el.html(this.template());
+
+            }
+
+            // Create and render the different child views.
+
+            this.teacherDiscovery = new Stem.Views.TeachersAsDiscovery({
+                el: this.$el.find('#teachers'),
+                model: this.model.get('teachers')
+            }).render();
+            this.adminDiscovery = new Stem.Views.AdminsAsDiscovery({
+                el: this.$el.find('#admins'),
+                model: this.model.get('admins')
+            }).render();
+            this.partnerDiscovery = new Stem.Views.PartnersAsDiscovery({
+                el: this.$el.find('#partners'),
+                model: this.model.get('partners')
+            }).render();
+
+            // The teacher region of the discovery
+            // block includes a search form. The view
+            // triggers an event if the user submits
+            // that form.
+
+            this.listenTo(this.teacherDiscovery, 'search:submit', this.submitSearch);
+
 
             var discovery = this;
 
@@ -85,6 +115,12 @@ Stem.Views = Stem.Views || {};
 
         },
 
+        // The `show` method lets child views know
+        // that their view should now be visible.
+        // Most child views don't need it, but any
+        // with maps will want an event to prompt
+        // the user for permisstion to get location.
+
         show: function(section) {
 
             switch (section) {
@@ -101,6 +137,24 @@ Stem.Views = Stem.Views || {};
                     break;
 
             }
+
+        },
+
+        // The `submitSearch` handler responds to
+        // the user's submission of a search query.
+
+        submitSearch: function() {
+
+            // When a submit event occurs, we
+            // can't handle it entirely within
+            // the discovery view (since the
+            // result should be a navigation
+            // to the search results page).
+            // Pass the event "up the chain"
+            // to let other code take care of
+            // it.
+
+            this.trigger('search:submit');
 
         }
 

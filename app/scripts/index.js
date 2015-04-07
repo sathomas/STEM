@@ -10,3 +10,6 @@
 //
 // The documation is generated automatically from the source files
 // using the [docco](http://jashkenas.github.io/docco/) tool.
+//
+// A good place to start reading the code is the [main](main.html)
+// component that starts up the application.

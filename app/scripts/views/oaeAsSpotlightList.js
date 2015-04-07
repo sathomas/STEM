@@ -23,6 +23,7 @@ Stem.Views = Stem.Views || {};
 
         initialize: function () {
             this.listenTo(this.collection, 'reset', this.render);
+            this.listenTo(this.collection, 'add', this.add);
         },
 
         render: function () {
@@ -71,13 +72,15 @@ Stem.Views = Stem.Views || {};
 
             // Toggle the explanded class on that item.
 
-            $clicked.toggleClass('spotlight__item--expanded');
+            $clicked.attr('data-expanded',
+                $clicked.attr('data-expanded') === '1' ? '0' : '1'
+            );
 
             // For all other items, clear the expanded
             // class.
 
             this.$el.find('.spotlight__item').not($clicked)
-                .removeClass('spotlight__item--expanded');
+                .attr('data-expanded','0');
 
         }
 

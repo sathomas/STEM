@@ -10,7 +10,6 @@ describe('SearchAsForm View', function () {
         this.SearchModel = new Stem.Models.Search({
             label: 'Label',
             placeholder: 'Placeholder',
-            shortPlaceholder: 'Short Placeholder',
             query: 'Query'
         });
         this.SearchAsFormView = new Stem.Views.SearchAsForm({
@@ -49,24 +48,17 @@ describe('SearchAsForm View', function () {
         $el.find('label').hasClass('util--sr-only').should.be.false();
     });
 
-    it('should add inputs for multiple viewports with appropriate placeholders and classes', function() {
+    it('should add inputs with appropriate placeholders and classes', function() {
         var $el = this.SearchAsFormView.$el;
-        $el.find('input').length.should.equal(2);
-        $el.find('input.search__input').length.should.equal(2);
-        $el.find('input.search__input--small').length.should.equal(1);
+        $el.find('input').length.should.equal(1);
+        $el.find('input.search__input').length.should.equal(1);
         $el.find('input.search__input').not('.search__input--small').attr('placeholder').should.equal(this.SearchModel.get('placeholder'));
-        $el.find('input.search__input--small').attr('placeholder').should.equal(this.SearchModel.get('shortPlaceholder'));
     });
 
-    it('should add submit buttons for multiple viewports with appropriate classes', function() {
+    it('should add submit buttons with appropriate classes', function() {
         var $el = this.SearchAsFormView.$el;
-        $el.find('button').length.should.equal(2);
-        $el.find('button.search__submit').length.should.equal(2);
-        $el.find('button.search__submit--small').length.should.equal(1);
-        $el.find('button.search__submit').not('.search__submit--small').text().should.equal('Search');
-        $el.find('button.search__submit--small i').length.should.equal(1);
-        $el.find('button.search__submit--small i').hasClass('fa').should.be.true();
-        $el.find('button.search__submit--small i').hasClass('fa-search').should.be.true();
+        $el.find('button').length.should.equal(1);
+        $el.find('button.search__submit').length.should.equal(1);
     });
 
     it('should set the query value', function() {

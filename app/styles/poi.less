@@ -5,26 +5,82 @@
  * popups on maps.
  */
 
+/**
+ * ### `poi-marker`
+ * Added to (usually) icon markup when the
+ * icon is used as a point of interest on
+ * a map.
+ *
+ * The `data-hidden` attribute can be set
+ * to "1" to hide the marker by setting its
+ * opacity to 0.
+ *
+ * By itself, the `poi-marker` class does
+ * not define colors. Color is defined by
+ * theme classes added to the marker.
+ *
+ *     @example:
+ *     <div class="fa fa-map-marker poi-marker">
+ *     </div>
+ *     <div class="fa fa-map-marker poi-marker theme-0-black">
+ *     </div>
+ *     <div class="fa fa-map-marker poi-marker theme-3">
+ *     </div>
+ *     <div class="fa fa-map-marker poi-marker theme-3-light">
+ *     </div>
+ */
+
 .poi-marker {
     font-size: 40px;
     transition: opacity 250ms linear;
 }
 
-.poi--hidden {
+.poi-marker.theme-0-black {
+    color: @color-theme-0-black;
+}
+
+.poi-marker.theme-3 {
+    color: @color-theme-3-primary-bg;
+}
+
+.poi-marker.theme-3-light {
+    color: @color-theme-3-light-bg;
+}
+
+div.poi-marker[data-hidden="1"] {
     opacity: 0;
     pointer-events: none;
 }
 
-.poi-proposal {
-    color: black;
-}
+/**
+ * ### `poi-popup`
+ * A small bit of markup that acts as a popup,
+ * e.g. when the user clicks on a map marker.
+ * The popup `<div>` consist of an anchor tag
+ * (class `poi-popup__link`) which itself includes
+ * an image (class `poi-popup__thumbnail`) and
+ * text (class `poi-popup__text`).
+ *
+ * Text colors are defined by a theme class on a
+ * parent container (e.g. the `<div class="pop-popup">`
+ * element or a higher level element).
+ *
+ *     @example:
+ *     <div style="background-color:#cccccc;display:inline-block;padding:20px;">
+ *     <div class="poi-popup theme-1">
+ *         <a href="" class="poi-popup__link">
+ *             <img class="poi-popup__thumbnail"
+ *                  src="images/group.png">
+ *             <span class="poi-popup__text">
+ *                 Title for the point of interest popup
+ *             </span>
+ *         </a>
+ *     </div>
+ *     </div>
+ */
 
-.poi-school {
-    color: @color-theme-3-light-bg;
-}
-
-.poi-business {
-    color: @color-theme-3-primary-bg;
+.poi-popup {
+    background-color: @color-theme-0-white;
 }
 
 .poi-popup__link {
@@ -41,7 +97,7 @@
 
 .poi-popup__text {
     display: inline-block;
-    font-family: "Raleway", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: @font-stack; // revert Leaflet override
     font-size: 1.4rem;
     font-weight: 600;
     height: 48px;

@@ -126,12 +126,11 @@ Stem.Views = Stem.Views || {};
 
             // Trigger a submit event on this view.
 
-            this.trigger('submit');
+            this.trigger('submit', ev);
 
-            // Prevent further event handling.
+            // Prevent regular form submission.
 
             ev.preventDefault();
-            return false;
 
         },
 

@@ -1,0 +1,117 @@
+/**
+ * ## Site Footer
+ */
+
+/**
+ * ### `site-ftr`
+ * We use the `site-ftr` class instead of the more
+ * common `footer` class to make it easuer to find
+ * style-related code using editor search and grep.
+ *
+ */
+
+.site-ftr {
+    .container;
+    .row;
+    background-color: @color-theme-0-dark;
+    color: @color-theme-0-light;
+    .spacing(padding-bottom);
+    .spacing(padding-left);
+    .spacing(padding-right);
+    .spacing(padding-top);
+    text-align: center;
+}
+
+/**
+ * ### `site-ftr__block`
+ * A block within the site footer is a full-width
+ * column.
+ */
+
+.site-ftr__block {
+    .one-full-column;
+}
+
+/**
+ * ### `site-ftr__button`
+ * Buttons within the site footer are given
+ * compatible styling. They support both
+ * text and an icon. Normally footer
+ * buttons are anchor tags that link
+ * to other resources.
+ *
+ *     @example:
+ *     <div role="contentinfo" class="site-ftr">
+ *         <div class="site-ftr__block">
+ * 	    	   <a class="site-ftr__button">
+ * 		    	   <i class="fa fa-twitter
+ *                    site-ftr__button__icon"></i>
+ * 		    	   Follow us on Twitter
+ * 		       </a>
+ *     	   </div>
+ *     </div>
+ */
+
+.site-ftr__button {
+    .btn;
+    .btn--small;
+    background-color: @color-theme-0-light;
+    color:            @color-theme-0-dark;
+    margin-bottom: calc(@block-spacing / 2);
+    @media @tablet { margin-bottom: calc(@block-spacing-tablet / 2); }
+    @media @desktop { margin-bottom: calc(@block-spacing-desktop / 2); }
+    margin-left: calc(@block-spacing / 2);
+    @media @tablet { margin-left: calc(@block-spacing-tablet / 2); }
+    @media @desktop { margin-left: calc(@block-spacing-desktop / 2); }
+    margin-right: calc(@block-spacing / 2);
+    @media @tablet { margin-right: calc(@block-spacing-tablet / 2); }
+    @media @desktop { margin-right: calc(@block-spacing-desktop / 2); }
+    margin-top: calc(@block-spacing / 2);
+    @media @tablet { margin-top: calc(@block-spacing-tablet / 2); }
+    @media @desktop { margin-top: calc(@block-spacing-desktop / 2); }
+}
+
+.no-touch .site-ftr__button:hover,
+.site-ftr__button:focus {
+    color: @color-theme-0-black;
+}
+
+.site-ftr__button__icon {
+    margin-right: 0.5em;
+}
+
+/**
+ * ### `site-ftr__copyright`
+ * Copyright information is reduced in size
+ * and embedded links are styled appropriately.
+ *
+ *     @example:
+ *     <div role="contentinfo" class="site-ftr">
+ *         <div class="site-ftr__block">
+ *             <p class="site-ftr__copyright">
+ *                 Copyright 2015 ©
+ *                 <a href="https://gosa.georgia.gov"
+ *                    class="site-ftr__copyright-link">
+ *                     The Governor’s Office of Student Achievement
+ *  	           </a>.
+ *                 All rights reserved.
+ *             </p>
+ *     	   </div>
+ *     </div>
+ */
+
+.site-ftr__copyright {
+    font-size: 80%;
+    margin-bottom: 0;
+}
+
+.site-ftr__copyright-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+.no-touch .site-ftr__copyright-link:hover,
+.site-ftr__copyright-link:focus {
+    text-decoration: underline;
+}

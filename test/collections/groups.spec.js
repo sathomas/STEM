@@ -184,13 +184,6 @@ describe('Groups Collection', function () {
         this.GroupsCollection.at(1).get('description').should.equal(oaeResponse.results[1].description);
     });
 
-    it('should identify all included subjects', function() {
-        this.GroupsCollection.getTags().length.should.equal(3);
-        this.GroupsCollection.getTags().should.include('Math');
-        this.GroupsCollection.getTags().should.include('Science');
-        this.GroupsCollection.getTags().should.include('ELA');
-    });
-
     it('should return current options when requested', function() {
         var GroupsCollection = new Stem.Collections.Groups([], {limit: 5});
         GroupsCollection.options().limit.should.equal(5);

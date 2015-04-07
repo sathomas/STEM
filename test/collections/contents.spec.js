@@ -1,7 +1,7 @@
 /* jshint sub: true */
 /* global Stem, $, before, describe, it, sinon */
 
-describe('Content Collection', function () {
+describe('Contents Collection', function () {
 
     'use strict';
 
@@ -178,58 +178,53 @@ describe('Content Collection', function () {
 
     before(function() {
         var ajaxStub = sinon.stub($, 'ajax').yieldsTo('success', contentResponse);
-        this.ContentCollection = new Stem.Collections.Content();
-        this.ContentCollection.fetch();
+        this.ContentsCollection = new Stem.Collections.Contents();
+        this.ContentsCollection.fetch();
         ajaxStub.restore();
     });
 
     it('should generate the correct default URL to access the OAE', function() {
-        parseURL(this.ContentCollection.url())['protocol'].should.equal(Stem.config.oae.protocol);
-        parseURL(this.ContentCollection.url())['host'].should.equal(Stem.config.oae.host);
-        parseURL(this.ContentCollection.url())['pathname'].should.equal('/api/search/general');
-        parseURL(this.ContentCollection.url()).queries['resourceTypes'].should.equal('content');
-        parseURL(this.ContentCollection.url()).queries['scope'].should.equal('_tenant');
+        parseURL(this.ContentsCollection.url())['protocol'].should.equal(Stem.config.oae.protocol);
+        parseURL(this.ContentsCollection.url())['host'].should.equal(Stem.config.oae.host);
+        parseURL(this.ContentsCollection.url())['pathname'].should.equal('/api/search/general');
+        parseURL(this.ContentsCollection.url()).queries['resourceTypes'].should.equal('content');
+        parseURL(this.ContentsCollection.url()).queries['scope'].should.equal('_tenant');
     });
 
     it('should include specified keywords in the request URL', function() {
-        parseURL((new Stem.Collections.Content([], {keywords: 'one two'})).url()).queries['q'].should.equal('one two');
+        parseURL((new Stem.Collections.Contents([], {keywords: 'one two'})).url()).queries['q'].should.equal('one two');
     });
 
     it('should include specified size limit in the request URL', function() {
-        parseURL((new Stem.Collections.Content([], {limit: 5})).url()).queries['limit'].should.equal('5');
+        parseURL((new Stem.Collections.Contents([], {limit: 5})).url()).queries['limit'].should.equal('5');
     });
 
     it('should parse the response from the OAE', function() {
-        this.ContentCollection.length.should.equal(8);
+        this.ContentsCollection.length.should.equal(8);
     });
 
     it('should create models from the OAE response', function() {
-        this.ContentCollection.at(0).get('description').should.equal(contentResponse.results[0].description);
-        this.ContentCollection.at(1).get('description').should.equal(contentResponse.results[1].description);
-    });
-
-    it('should identify all included subjects', function() {
-        this.ContentCollection.getTags().length.should.equal(1);
-        this.ContentCollection.getTags()[0].should.equal('Math');
+        this.ContentsCollection.at(0).get('description').should.equal(contentResponse.results[0].description);
+        this.ContentsCollection.at(1).get('description').should.equal(contentResponse.results[1].description);
     });
 
     it('should return current options when requested', function() {
-        this.ContentCollection = new Stem.Collections.Content([], {limit: 5});
-        this.ContentCollection.options().limit.should.equal(5);
+        this.ContentsCollection = new Stem.Collections.Contents([], {limit: 5});
+        this.ContentsCollection.options().limit.should.equal(5);
     });
 
     it('should set options dynamically', function() {
-        this.ContentCollection.options({limit: 10});
-        this.ContentCollection.options().limit.should.equal(10);
+        this.ContentsCollection.options({limit: 10});
+        this.ContentsCollection.options().limit.should.equal(10);
     });
 
     it('should abort in-flight requests on new request', function() {
         var xhrStub = sinon.useFakeXMLHttpRequest();
         var xhrs = [];
         xhrStub.onCreate = function (xhr) { xhrs.push(xhr); };
-        this.ContentCollection.fetch();
+        this.ContentsCollection.fetch();
         xhrs.length.should.equal(1);
-        this.ContentCollection.fetch();
+        this.ContentsCollection.fetch();
         xhrs.length.should.equal(2);
         xhrs[0].aborted.should.be.true();
         xhrStub.restore();

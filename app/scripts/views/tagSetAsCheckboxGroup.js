@@ -31,7 +31,7 @@ Stem.Views = Stem.Views || {};
 
             tagsView.render();
 
-            // Add finally adding it to our element.
+            // Add finally adding it's contents to our element.
 
             $el.find('fieldset').append(tagsView.el);
 

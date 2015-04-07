@@ -4,7 +4,10 @@
 // this file mostly just sets things up for the app and
 // then launches it. This file also includes configuration
 // information.
-
+//
+// After setup completes, control transfers to the
+// the single instance of an [app router](app.html).
+//
 // Everything in the application is namespaced under the
 // global variable `Stem`. Invidual components (e.g. models,
 // views, collections, etc.) add themselves to this
@@ -75,8 +78,8 @@ window.Stem = {
     init: function () {
         'use strict';
 
-        // Make sure the App object is defined. If it is,
-        // create one. It handles everything from there.
+        // Make sure the App object is defined. If it isn't,
+        // create one. The app handles everything from there.
 
         if (this.Routers && this.Routers.App) {
             Stem.app = new this.Routers.App();

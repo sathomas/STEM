@@ -8,7 +8,10 @@ describe('OaeAsMainSearchResult View', function () {
             description:  'description',
             displayName:  'displayName',
             profilePath:   '/profile/path',
-            thumbnailUrl: '/thumbnail/url'
+            thumbnailUrl: '/thumbnail/url',
+            picture: {
+                medium: '/picture/medium'
+            }
         });
         this.OaeAsMainSearchResult = new Stem.Views.OaeAsMainSearchResult({model: this.Group});
     });

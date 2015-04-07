@@ -20,57 +20,68 @@ Stem.Models = Stem.Models || {};
             // from two general subGroup collections from
             // the OAE.
 
-            this.organizationPois = new Stem.Collections.Pois();
+            // For all of the collections below, we
+            // check to see if one already exists (e.g.
+            // was provided when this model was
+            // created). Although mainly for ease of
+            // unit testing, this may come in handy
+            // in the future, if, e.g. different parts
+            // of the site want to re-use the same
+            // collection(s).
 
-            var businesses = new Stem.Collections.SubGroups([], {
-                limit: 499,
-                parentId: Stem.config.oae.groups.businesses
-            });
-            var schools = new Stem.Collections.SubGroups([],{
-                limit: 499,
-                parentId: Stem.config.oae.groups.schools
-            });
+            if (!this.get('organizationPois')) {
+                this.set('organizationPois',
+                    new Stem.Collections.Pois()
+                );
+            }
+
+            if (!this.get('businesses')) {
+                this.set('businesses',
+                    new Stem.Collections.SubGroups([], {
+                        limit: 50,
+                        parentId: Stem.config.oae.groups.businesses
+                    })
+                );
+            }
+
+            if (!this.get('schools')) {
+                this.set('schools',
+                    new Stem.Collections.SubGroups([],{
+                       limit: 50,
+                       parentId: Stem.config.oae.groups.schools
+                    })
+                );
+            }
+
+            // To keep things readable, use local variables
+            // as a convenient reference to these attributes.
+
+            var businesses = this.get('businesses');
+            var schools = this.get('schools');
 
             // Before we fetch the data from the OAE,
             // set up handlers to deal with additions to
             // each collection.
 
             businesses.on('add', this.businessAdded, this);
-            schools.on('add', this.schoolsAdded, this);
+            schools.on('add', this.schoolAdded, this);
 
-            // Now we can kick off the fetch from OAE.
+            // If the collections were supplied on model
+            // creation, they already have members, so
+            // simply add them. If the collections are
+            // empty, then we fetch them from the OAE.
 
-            businesses.fetch({validate: true});
-            schools.fetch({validate: true});
+            if (businesses.length > 0) {
+                businesses.each(_(this.businessAdded).bind(this));
+            } else {
+                businesses.fetch({validate: true});
+            }
 
-            // Build the tag set that controls display of
-            // organizations.
-
-            this.showBusinesses = new Stem.Models.Tag({
-                label: 'Organizations',
-                selected: true
-            });
-            this.showSchools = new Stem.Models.Tag({
-                label: 'Schools',
-                selected: true
-            });
-
-            // Create a single collection of all tags to
-            // conveniently capture change events.
-
-            this.tags = new Stem.Collections.Tags([
-                this.showSchools,
-                this.showBusinesses
-            ]);
-
-            this.listenTo(this.tags, 'change', this.updateFilters);
-
-            // Gather the tags into a tag set.
-
-            this.tagSet = new Stem.Models.TagSet({
-                tags:  this.tags,
-                title: 'I’m looking for'
-            });
+            if (schools.length > 0) {
+                schools.each(_(this.schoolAdded).bind(this));
+            } else {
+                schools.fetch({validate: true});
+            }
 
         },
 
@@ -78,16 +89,28 @@ Stem.Models = Stem.Models || {};
 
             // Create a new collection that tracks
             // proposals as points of interest (e.g.
-            // on a map).
+            // on a map). We allow this collection to
+            // be provided during model creation for
+            // ease of testing and future flexibility/
 
-            this.proposalPois = new Stem.Collections.Pois();
+            if (!this.get('proposalPois')) {
+                this.set('proposalPois',
+                    new Stem.Collections.Pois()
+                );
+            }
 
-            // Populate the proposal points of interest with
-            // data from general DonorsChoose proposals.
+            // A separate collection holds the proposals
+            // that have points of interest.
 
-            var proposals = new Stem.Collections.Proposals([],{
-               maxSize: 50
-            });
+            if (!this.get('proposals')) {
+                this.set('proposals',
+                    new Stem.Collections.Proposals([],{
+                        maxSize: 50
+                    })
+                );
+            }
+
+            var proposals = this.get('proposals');
 
             // For each DonorsChoose proposal, add a corresponding
             // model to our points of interest collection. Since
@@ -97,9 +120,17 @@ Stem.Models = Stem.Models || {};
 
             proposals.on('add', this.proposalAdded, this);
 
-            // Fetch the proposals from DonorsChoose.
+            // Finally, handle the case in which proposals
+            // were provided during model creation. In
+            // that case, we don't need to fetch them
+            // from the service but can simply add them
+            // now.
 
-            proposals.fetch();
+            if (proposals.length > 0) {
+                proposals.each(_(this.proposalAdded).bind(this));
+            } else {
+                proposals.fetch();
+            }
 
         },
 
@@ -110,14 +141,29 @@ Stem.Models = Stem.Models || {};
             // access as sub-groups on the OAE.
             // All we need to do for set up is
             // define the collection and initiate
-            // a fetch.
+            // a fetch. As with other collections,
+            // we permit the collection to be
+            // specified when the model is
+            // created.
 
-            this.partnerships = new Stem.Collections.SubGroups([], {
-                limit: 10,
-                parentId: Stem.config.oae.groups.partnerships
-            });
+            if (!this.get('partnerships')) {
+                this.set('partnerships',
+                    new Stem.Collections.SubGroups([], {
+                        limit: 10,
+                        parentId: Stem.config.oae.groups.partnerships
+                    })
+                );
+            }
 
-            this.partnerships.fetch({validate: true});
+            var partnerships = this.get('partnerships');
+
+            // If the collection is empty (i.e.
+            // not supplied in the model's
+            // creation, fetch it from the OAE.
+
+            if (partnerships.length === 0) {
+                partnerships.fetch({validate: true});
+            }
 
         },
 
@@ -130,40 +176,44 @@ Stem.Models = Stem.Models || {};
             // group's description. That would be
             // a line that begins "Address:".
 
-            var addrLines = _(group.get('description').split('\n'))
-                .filter(function(line) {
-                    return line.trim()
-                        .toLowerCase()
-                        .indexOf('address:') === 0;
-                });
+            if (group.get('description')) {
 
-            // If we found an address in the
-            // description, we're in business.
+                var addrLines = _(group.get('description').split('\n'))
+                    .filter(function(line) {
+                        return line.trim()
+                            .toLowerCase()
+                            .indexOf('address:') === 0;
+                    });
 
-            if (addrLines.length) {
+                // If we found an address in the
+                // description, we're in business.
 
-                // Use a network service to retrieve
-                // geographic coordinates from a
-                // street address.
+                if (addrLines.length) {
 
-                Stem.Utils.getLocationFromStreet(
-                    addrLines[0].substr(8).trim(),
-                    _.bind(function (latLong) {
+                    // Use a network service to retrieve
+                    // geographic coordinates from a
+                    // street address.
 
-                        this.organizationPois.add(
-                            new Stem.Models.Poi({
-                                className: className,
-                                imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
-                                latitude:  latLong[0],
-                                link:      Stem.Utils.oaeUrl(group.get('profilePath')),
-                                longitude: latLong[1],
-                                title:     group.get('displayName')
-                            })
-                        );
+                    Stem.Utils.getLocationFromStreet(
+                        addrLines[0].substr(8).trim(),
+                        _.bind(function (latLong) {
 
-                    }, this)
+                            this.get('organizationPois').add(
+                                new Stem.Models.Poi({
+                                    className: className,
+                                    imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
+                                    latitude:  latLong[0],
+                                    link:      Stem.Utils.oaeUrl(group.get('profilePath')),
+                                    longitude: latLong[1],
+                                    title:     group.get('displayName')
+                                })
+                            );
 
-                );
+                        }, this)
+
+                    );
+
+                }
 
             }
 
@@ -174,7 +224,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            this.getLatLong(business, 'poi-business');
+            this.getLatLong(business, 'theme-3 poi-business');
 
         },
 
@@ -183,7 +233,7 @@ Stem.Models = Stem.Models || {};
             // Try to extract geolocation from the
             // group.
 
-            this.getLatLong(school, 'poi-school');
+            this.getLatLong(school, 'theme-3-light poi-school');
 
         },
 
@@ -197,9 +247,9 @@ Stem.Models = Stem.Models || {};
             // DonorsChoose response for our own POI model
             // and add it to our internal collection.
 
-            this.proposalPois.add(
+            this.get('proposalPois').add(
                 new Stem.Models.Poi({
-                    className: 'poi-proposal',
+                    className: 'theme-0-black poi-proposal',
                     imageUrl:  proposal.get('thumbImageURL'),
                     latitude:  proposal.get('latitude'),
                     link:      proposal.get('proposalURL'),

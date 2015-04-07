@@ -14,7 +14,6 @@ Stem.Models = Stem.Models || {};
         defaults: {
             label: '',
             placeholder: '',
-            shortPlaceholder: '',
             query: ''
         }
 

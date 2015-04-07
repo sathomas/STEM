@@ -4,66 +4,316 @@
  * A list of spotlight items.
  */
 
+/**
+ * ### `spotlight`
+ * The `spotlight` class defines an unordered list
+ * of items featured as spotlighted content.
+ * Individual spotlight items are items in the list.
+ * Normally the list shows a small image and a title
+ * for the item, as well as a large disclosure
+ * triangle on the right. The key components of the
+ * block are:
+ *
+ * - `spotlight__item` the list item
+ * - `spotlight__item__thumbnail` the thumbnail image
+ * - `spotlight__item__content` the container `<div>`
+ *    for the main item content
+ *    - `spotlight__item__title` the title of the
+ *      item (typically a link to the item)
+ *    - `spotlight__item__expand` the disclosure icon
+ *    - `spotlight__item__description` a more expansive
+ *      description of the item (hidden in normal view)
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <ul class="spotlight">
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     First spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Maecenas faucibus
+ *                     mollis interdum. Morbi leo risus,
+ *                     porta ac consectetur ac, vestibulum
+ *                     at eros. Sed posuere consectetur
+ *                     est at lobortis. Integer posuere
+ *                     erat a ante venenatis dapibus
+ *                     posuere velit aliquet. Praesent
+ *                     commodo cursus magna, vel
+ *                     scelerisque nisl consectetur et.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     Second spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Maecenas faucibus mollis interdum.
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Vestibulum id ligula
+ *                     porta felis euismod semper. Praesent
+ *                     commodo cursus magna, vel scelerisque
+ *                     nisl consectetur et. Cras justo odio,
+ *                     dapibus ac facilisis in, egestas eget
+ *                     quam. Cras mattis consectetur purus
+ *                     sit amet fermentum.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *     </ul>
+ *     </div>
+ */
+
 .spotlight {
+    .clearfix;
     list-style: none;
-    padding: 0;
-    @media @tablet { padding: 0 @block-spacing-tablet; }
-    @media @desktop { padding: 0 calc(4 * @block-spacing-desktop); }
+    background-color: @color-theme-0-white;
+    .spacing(margin-bottom);
+    margin-left: 0;
+    @media @tablet { margin-left: @block-spacing-tablet; }
+    @media @desktop { margin-left: calc(4 * @block-spacing-desktop); }
+    margin-right: 0;
+    @media @tablet { margin-right: @block-spacing-tablet; }
+    @media @desktop { margin-right: calc(4 * @block-spacing-desktop); }
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
     text-align: left;
 }
+
 .spotlight__item {
     background-color: @color-theme-0-lighter;
     border-bottom: 1px solid @color-theme-0-light;
     box-sizing: border-box;
-    position: relative;
+    clear: both;
     height: 100px;
+    min-height: 100px;
+    overflow: hidden;
 }
-.spotlight__item.spotlight__item--expanded {
-    background-color: @color-theme-0-white;
-    height: auto;
-}
+
 .spotlight__item__thumbnail {
-    border-right: 1px solid @color-theme-0-light;
+    border: 1px solid @color-theme-0-light;
     box-sizing: border-box;
-    display: inline-block;
+    float:left;
     height: 100px;
     width: 100px;
 }
+
+.spotlight__item__content {
+    .clearfix;
+    box-sizing: border-box;
+    float: left;
+    position: relative;
+    width: ~"calc(100% - 100px)"
+}
+
 .spotlight__item__title {
     color: @color-theme-0-semidark;
     display: inline-block;
-    font-size: 2.2rem;
-    position: absolute;
-    left: calc(100px + @block-spacing);
+    font-size: 1.6rem;
+    @media @tablet { font-size: 2.2rem; }
     line-height: 1.2;
-    margin-right: 69px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: calc(20px + @block-spacing);
+    @media @tablet { margin-right: 0; }
+    margin-top: @block-spacing;
+    @media @tablet { margin-top: 34px; }
+    padding-bottom: 0;
+    .spacing(padding-left);
+    .spacing(padding-right);
+    padding-top: 0;
     text-decoration: none;
-    top: 34px;
 }
-.no-touch .theme-3 .spotlight__item__title:hover,
-.theme-3 .spotlight__item__title:focus {
-    color: @color-theme-3-light-bg;
-}
-.spotlight__item--expanded .spotlight__item__title {
-    color: @color-theme-0-dark;
-}
+
 .spotlight__item__expand {
     cursor: pointer;
-    font-size: 30px;
+    font-size: 20px;
+    @media @tablet { font-size: 30px; }
     position: absolute;
-    right: 34px;
-    top: 34px;
+    right: @block-spacing;
+    @media @tablet { right: 34px; }
+    top: @block-spacing;
+    @media @tablet { top: 34px; }
 }
-.spotlight__item--expanded .spotlight__item__expand {
-    display: none;
-}
+
 .spotlight__item__description {
     .invisible;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    .spacing(padding-bottom);
+    .spacing(padding-right);
+    .spacing(padding-left);
+    .spacing(padding-top);
 }
-.spotlight__item--expanded .spotlight__item__description {
+
+
+
+/**
+ * Expanded items:
+ * JavaScript can add the `data-expanded="1"`
+ * attribute to any spotlight itemt to reveal
+ * the detailed description.
+ *
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <ul class="spotlight">
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     First spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Maecenas faucibus
+ *                     mollis interdum. Morbi leo risus,
+ *                     porta ac consectetur ac, vestibulum
+ *                     at eros. Sed posuere consectetur
+ *                     est at lobortis. Integer posuere
+ *                     erat a ante venenatis dapibus
+ *                     posuere velit aliquet. Praesent
+ *                     commodo cursus magna, vel
+ *                     scelerisque nisl consectetur et.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *         <li class="spotlight__item" data-expanded="1">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     Second spotlight item (expanded)
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Maecenas faucibus mollis interdum.
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Vestibulum id ligula
+ *                     porta felis euismod semper. Praesent
+ *                     commodo cursus magna, vel scelerisque
+ *                     nisl consectetur et. Cras justo odio,
+ *                     dapibus ac facilisis in, egestas eget
+ *                     quam. Cras mattis consectetur purus
+ *                     sit amet fermentum.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *     </ul>
+ *     </div>
+ */
+
+
+li.spotlight__item[data-expanded="1"]  {
+    height: auto;
+}
+li.spotlight__item[data-expanded="1"] ,
+li.spotlight__item[data-expanded="1"] .spotlight__item__content {
+    background-color: @color-theme-0-white;
+    height: auto;
+}
+li.spotlight__item[data-expanded="1"] .spotlight__item__title {
+    color: @color-theme-0-dark;
+}
+
+li.spotlight__item[data-expanded="1"] .spotlight__item__expand {
+    cursor: default;
+    opacity: 0;
+}
+li.spotlight__item[data-expanded="1"] .spotlight__item__description {
     .visible;
-    margin-left: calc(100px + @block-spacing);
-    padding-right: 69px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+}
+
+/**
+ * Themes:
+ * Theme classes may be added to the main `spotlight`
+ * list element to change the visual appearance.
+ *
+ *     @example:
+ *     <div class="no-touch (emulate modernizr)"
+ *          style="background-color:#cccccc;padding:20px;">
+ *     <ul class="spotlight theme-3">
+ *         <li class="spotlight__item">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     First spotlight item
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Maecenas faucibus
+ *                     mollis interdum. Morbi leo risus,
+ *                     porta ac consectetur ac, vestibulum
+ *                     at eros. Sed posuere consectetur
+ *                     est at lobortis. Integer posuere
+ *                     erat a ante venenatis dapibus
+ *                     posuere velit aliquet. Praesent
+ *                     commodo cursus magna, vel
+ *                     scelerisque nisl consectetur et.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *         <li class="spotlight__item" data-expanded="1">
+ *             <img class="spotlight__item__thumbnail"
+ *                  src="images/group.png">
+ *             <div class="spotlight__item__content">
+ *                 <a href="" class="spotlight__item__title">
+ *                     Second spotlight item (expanded)
+ *                 </a>
+ *                 <i class="fa fa-chevron-down
+ *                           spotlight__item__expand"></i>
+ *                 <p class="spotlight__item__description">
+ *                     Maecenas faucibus mollis interdum.
+ *                     Cras mattis consectetur purus sit
+ *                     amet fermentum. Vestibulum id ligula
+ *                     porta felis euismod semper. Praesent
+ *                     commodo cursus magna, vel scelerisque
+ *                     nisl consectetur et. Cras justo odio,
+ *                     dapibus ac facilisis in, egestas eget
+ *                     quam. Cras mattis consectetur purus
+ *                     sit amet fermentum.
+ *                 </p>
+ *             </div>
+ *         </li>
+ *     </ul>
+ *     </div>
+ */
+
+.no-touch .theme-3 .spotlight__item__title:hover,
+.theme-3 .spotlight__item__title:focus,
+.no-touch .theme-3 li.spotlight__item[data-expanded="1"] .spotlight__item__title:hover,
+.theme-3 li.spotlight__item[data-expanded="1"] .spotlight__item__title:focus {
+    color: @color-theme-3-light-bg;
 }
 
 .theme-3 .spotlight__item__expand {

@@ -1,13 +1,5 @@
 <label class="search__label util--sr-only"><%= label %></label>
 <input placeholder="<%= placeholder %>" type="text"
        class="search__input"
-       id="<% print(_.uniqueId('search_')) %>"/><!--
---><button type="submit" class="search__submit">Search</button>
-<input placeholder="<%= shortPlaceholder %>" type="text"
-       class="search__input search__input--small"
        id="<% print(_.uniqueId('search_')) %>"
-       aria-hidden="true"/><!--
---><button type="submit" class="search__submit search__submit--small"
-           aria-hidden="true">
-    <i class="fa fa-search"></i>
-</button>
+/><button type="submit" class="search__submit"></button>

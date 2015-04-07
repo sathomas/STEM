@@ -27,12 +27,6 @@ Stem.Collections = Stem.Collections || {};
 
         model: Stem.Models.Group,
 
-        // Default values for collection options.
-
-        defaults: {
-
-        },
-
         // Since we're accepting options for the collection,
         // we need an `initialize` method to handle them.
 
@@ -123,41 +117,6 @@ Stem.Collections = Stem.Collections || {};
             _(this._options).extend(options);
 
             return this;
-
-        },
-
-        // Return an array of all the tags associated with
-        // the models in the collection.
-
-        getTags: function() {
-
-            // Start with an empty list of tags.
-
-            var tags = [];
-
-            // Iterate through the models.
-
-            this.models.forEach(function(model) {
-
-                // Iterate through each model's tags.
-
-                model.get('tags').forEach(function(tag) {
-
-                    // If the tag isn't already included,
-                    // add it to the array.
-
-                    if (!tags.some(function(test) {
-                        return test === tag;
-                    })) {
-
-                        tags.push(tag);
-                    }
-
-                });
-
-            });
-
-            return tags;
 
         }
 

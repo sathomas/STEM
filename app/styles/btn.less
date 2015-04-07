@@ -1,8 +1,39 @@
 /**
- * Buttons:
+ * ## Buttons
+ *
+ */
+
+/**
+ * ### `btn`
  * We use the `btn` class not for brevity,
  * but to make it easier to search for
  * the class as distinct from the element.
+ * The `btn--small` variation (unsurprisingly)
+ * is a smaller version of the button. Note
+ * that 'btn--small` should be applied
+ * _in addition to_ (rather than instead of)
+ * the regular `btn` class.
+ *
+ * By itself, the `btn` class does not provide
+ * text or background colors. Those are
+ * defined by a parent theme. The theme classes
+ * `theme-1`, etc. can be applied either
+ * to the `btn` element directly or to a
+ * parent element.
+ *
+ *     @example:
+ *     <button class="btn theme-1">
+ *         Theme 1
+ *     </button>
+ *     <button class="btn theme-2">
+ *         Theme 2
+ *     </button>
+ *     <button class="btn theme-3">
+ *         Theme 3
+ *     </button>
+ *     <button class="btn btn--small theme-1">
+ *         Small Button
+ *     </button>
  */
 
 .btn {
@@ -18,7 +49,10 @@
     font-weight: 600;
     height: 4rem;
     line-height: 2.2;
-    padding: 0 1em;
+    padding-bottom: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
@@ -29,28 +63,21 @@
     font-size: 11px;
     height: 38px;
     line-height: 38px;
-    padding: 0 30px;
+    padding-bottom: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 0;
 }
 
-.btn-link {
-    display: inline;
-    font-size: 1.5rem;
-    line-height: 1.6;
-    letter-spacing: 0;
-    padding: 0;
-    text-align: left;
-    text-decoration: underline;
-}
-
-.theme-1 .btn {
+.theme-1 .btn, .theme-1.btn {
     background-color: @color-theme-1-primary-bg;
     color: @color-theme-1-primary-fg;
 }
-.theme-2 .btn {
+.theme-2 .btn, .theme-2.btn {
     background-color: @color-theme-2-primary-bg;
     color: @color-theme-2-primary-fg;
 }
-.theme-3 .btn {
+.theme-3 .btn, .theme-3.btn {
     background-color: @color-theme-3-primary-bg;
     color: @color-theme-3-primary-fg;
 }
