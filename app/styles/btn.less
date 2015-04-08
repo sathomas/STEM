@@ -22,25 +22,46 @@
  * parent element.
  *
  *     @example:
- *     <button class="btn theme-1">
- *         Theme 1
- *     </button>
- *     <button class="btn theme-2">
- *         Theme 2
- *     </button>
- *     <button class="btn theme-3">
- *         Theme 3
- *     </button>
- *     <button class="btn btn--small theme-1">
- *         Small Button
- *     </button>
+ *     <div>
+ *         <button class="btn theme-1">
+ *             Theme 1
+ *         </button>
+ *         <button class="btn theme-1-hollow">
+ *             Theme 1 Hollow
+ *         </button>
+ *     <div/>
+ *     <br>
+ *     <div>
+ *         <button class="btn theme-2">
+ *             Theme 2
+ *         </button>
+ *         <button class="btn theme-2-hollow">
+ *             Theme 2 Hollow
+ *         </button>
+ *     <div/>
+ *     <br>
+ *     <div>
+ *         <button class="btn theme-3">
+ *             Theme 3
+ *         </button>
+ *         <button class="btn theme-3-hollow">
+ *             Theme 3 Hollow
+ *         </button>
+ *     <div/>
+ *     <br>
+ *     <div>
+ *         <button class="btn btn--small theme-1">
+ *             Small Button
+ *         </button>
+ *     </div>
+ *     <br>
  */
 
 .btn {
     .clickable;
     .lnum;
     background-color: transparent;
-    border: none;
+    border: 2px solid;
     border-radius: @border-radius-large;
     box-sizing: border-box;
     cursor: pointer;
@@ -69,16 +90,31 @@
     padding-top: 0;
 }
 
+
+
 .theme-1 .btn, .theme-1.btn {
+    border-color: @color-theme-1-primary-bg;
     background-color: @color-theme-1-primary-bg;
     color: @color-theme-1-primary-fg;
 }
+.theme-1-hollow .btn, .theme-1-hollow.btn {
+    color: @color-theme-1-primary-bg;
+}
 .theme-2 .btn, .theme-2.btn {
+    border-color: @color-theme-2-primary-bg;
     background-color: @color-theme-2-primary-bg;
     color: @color-theme-2-primary-fg;
 }
+.theme-2-hollow .btn, .theme-2-hollow.btn {
+    color: @color-theme-2-primary-bg;
+}
 .theme-3 .btn, .theme-3.btn {
+    border-color: @color-theme-3-primary-bg;
     background-color: @color-theme-3-primary-bg;
     color: @color-theme-3-primary-fg;
 }
+.theme-3-hollow .btn, .theme-3-hollow.btn {
+    color: @color-theme-3-primary-bg;
+}
+
 
