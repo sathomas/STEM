@@ -313,7 +313,7 @@ Stem.Views = Stem.Views || {};
 
         id: <span class="hljs-string">'admins'</span>,
 
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -323,6 +323,35 @@ Stem.Views = Stem.Views || {};
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Create the child views.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.certificationsMap = <span class="hljs-keyword">new</span> Stem.Views.PoisAsMap({
+                el: $(<span class="hljs-string">'#admins-certifications-map'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'certificationPois'</span>),
+                tintUrl: <span class="hljs-string">'images/theme-2-background.png'</span>
+            });
+
+            <span class="hljs-keyword">this</span>.spotlightList = <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightList({
+                el: $(<span class="hljs-string">'#admins-spotlights'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'spotlights'</span>)
+            });
+
+        },
+
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Normally this view is used to “fill in”
 components that already exist on a static
@@ -341,11 +370,11 @@ point.</p>
         </li>
         
         
-        <li id="section-3">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>We don’t need to supply any
 attributes to the view since
@@ -361,11 +390,11 @@ it’s just a static skeleton.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Add the ARIA attributes for accessibility</p>
 
@@ -374,9 +403,52 @@ it’s just a static skeleton.</p>
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">var</span> headingId = _.uniqueId();
             <span class="hljs-keyword">this</span>.$el.attr(<span class="hljs-string">'aria-labelledby'</span>, headingId);
-            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'h3'</span>).attr(<span class="hljs-string">'id'</span>, headingId);
+            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'h3'</span>).attr(<span class="hljs-string">'id'</span>, headingId);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Render all the child views.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.certificationsMap.render();
+            <span class="hljs-keyword">this</span>.spotlightList.render();
 
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining.</span>
+        },
+
+        show: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Show is distinct from render so
+that we don’t annoy the user with
+unneccessary requests for location
+permission. It should be called
+when the view is visible.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.certificationsMap.show();
+
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining.</span>
+
        }
 
     });

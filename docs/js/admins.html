@@ -322,7 +322,9 @@ Stem.Models = Stem.Models || {};
 (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
 <span class="hljs-pi">    'use strict'</span>;
 
-    Stem.Models.Admins = Backbone.Model.extend({</pre></div></div>
+    Stem.Models.Admins = Backbone.Model.extend({
+
+        setupCertifications: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -333,13 +335,271 @@ Stem.Models = Stem.Models || {};
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>For now, the vanilla Backbone model
-is all we need, so there’s no code
-specific to admins.</p>
+              <p>Certifications are schools that have
+achieved STEM certification. We show
+them on a map, so we’ll need point
+of interest information for them.
+Normally, we create the POI collection,
+but we allow it to be passed into
+the model during creation for
+flexibility and testing.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'certificationPois'</span>)) {
+                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'certificationPois'</span>,
+                    <span class="hljs-keyword">new</span> Stem.Collections.Pois()
+                );
+            }
+
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'certifications'</span>)) {
+                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'certifications'</span>,
+                    <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([], {
+                        limit: <span class="hljs-number">50</span>,
+                        parentId: Stem.config.oae.groups.certifications
+                    })
+                );
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Use a local variable for convenience.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> certifications = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'certifications'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Before we fetch the data from the OAE,
+set up a handler to deal with additions
+to the collection.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            certifications.on(<span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.certificationAdded, <span class="hljs-keyword">this</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>If the collection was supplied on model
+creation, it already has members, so
+simply add them. If the collection is
+empty, then we fetch it from the OAE.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (certifications.length &gt; <span class="hljs-number">0</span>) {
+                certifications.each(_(<span class="hljs-keyword">this</span>.certificationAdded).bind(<span class="hljs-keyword">this</span>));
+            } <span class="hljs-keyword">else</span> {
+                certifications.fetch({validate: <span class="hljs-literal">true</span>});
+            }
+
+        },
+
+        certificationAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(group)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Look for a street address in the
+group’s description. That would be
+a line that begins “Address:”.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (group.get(<span class="hljs-string">'description'</span>)) {
+
+                <span class="hljs-keyword">var</span> addrLines = _(group.get(<span class="hljs-string">'description'</span>)
+                    .split(<span class="hljs-string">'\n'</span>))
+                    .filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
+                        <span class="hljs-keyword">return</span> line.trim()
+                            .toLowerCase()
+                            .indexOf(<span class="hljs-string">'address:'</span>) === <span class="hljs-number">0</span>;
+                    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>If we found an address in the
+description, we’re in business.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">if</span> (addrLines.length) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Use a network service to retrieve
+geographic coordinates from a
+street address.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    Stem.Utils.getLocationFromStreet(
+                        addrLines[<span class="hljs-number">0</span>].substr(<span class="hljs-number">8</span>).trim(),
+                        _.bind(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(latLong)</span> </span>{
+
+                            <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'certificationPois'</span>).add(
+                                <span class="hljs-keyword">new</span> Stem.Models.Poi({
+                                    className: <span class="hljs-string">'theme-2'</span>,
+                                    imageUrl:  Stem.Utils.oaeUrl(group.get(<span class="hljs-string">'thumbnailUrl'</span>)),
+                                    latitude:  latLong[<span class="hljs-number">0</span>],
+                                    link:      Stem.Utils.oaeUrl(group.get(<span class="hljs-string">'profilePath'</span>)),
+                                    longitude: latLong[<span class="hljs-number">1</span>],
+                                    title:     group.get(<span class="hljs-string">'displayName'</span>)
+                                })
+                            );
+
+                        }, <span class="hljs-keyword">this</span>)
+
+                    );
+
+                }
+
+            }
+
+        },
+
+        setupSpotlights: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Spotlights are featured schools
+that have achieved STEM
+certification. We access them
+as sub-groups on the OAE.
+All we need to do for set up is
+define the collection and initiate
+a fetch. As with other collections,
+we permit the collection to be
+specified when the model is
+created.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'spotlights'</span>)) {
+                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'spotlights'</span>,
+                    <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([], {
+                        limit: <span class="hljs-number">10</span>,
+                        parentId: Stem.config.oae.groups.featuredSchools
+                    })
+                );
+            }
+
+            <span class="hljs-keyword">var</span> spotlights = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'spotlights'</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>If the collection is empty (i.e.
+not supplied in the model’s
+creation), fetch it from the OAE.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (spotlights.length === <span class="hljs-number">0</span>) {
+                spotlights.fetch({validate: <span class="hljs-literal">true</span>});
+            }
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Model iniitalization.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Set up the individual parts of the model.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.setupCertifications();
+            <span class="hljs-keyword">this</span>.setupSpotlights();
+
+        }
+
     });
 
 })();</pre></div></div>

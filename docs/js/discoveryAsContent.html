@@ -588,7 +588,7 @@ the user for permisstion to get location.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>For the partners block, we defer
+              <p>For the blocks with maps, we defer
 showing the content to avoid prompting
 the user with unneccessary location
 permission requests. Since the user
@@ -600,6 +600,10 @@ defer no longer.</p>
             <div class="content"><div class='highlight'><pre>
                 <span class="hljs-keyword">case</span> <span class="hljs-string">'partners'</span>:
                     <span class="hljs-keyword">this</span>.partnerDiscovery.show();
+                    <span class="hljs-keyword">break</span>;
+
+                <span class="hljs-keyword">case</span> <span class="hljs-string">'admins'</span>:
+                    <span class="hljs-keyword">this</span>.adminDiscovery.show();
                     <span class="hljs-keyword">break</span>;
 
             }
