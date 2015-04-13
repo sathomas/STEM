@@ -125,7 +125,7 @@ Stem.Views = Stem.Views || {};
 
             switch (section) {
 
-                // For the partners block, we defer
+                // For the blocks with maps, we defer
                 // showing the content to avoid prompting
                 // the user with unneccessary location
                 // permission requests. Since the user
@@ -134,6 +134,10 @@ Stem.Views = Stem.Views || {};
 
                 case 'partners':
                     this.partnerDiscovery.show();
+                    break;
+
+                case 'admins':
+                    this.adminDiscovery.show();
                     break;
 
             }

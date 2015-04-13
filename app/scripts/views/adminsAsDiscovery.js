@@ -15,6 +15,23 @@ Stem.Views = Stem.Views || {};
 
         id: 'admins',
 
+        initialize: function () {
+
+            // Create the child views.
+
+            this.certificationsMap = new Stem.Views.PoisAsMap({
+                el: $('#admins-certifications-map'),
+                collection: this.model.get('certificationPois'),
+                tintUrl: 'images/theme-2-background.png'
+            });
+
+            this.spotlightList = new Stem.Views.OaeAsSpotlightList({
+                el: $('#admins-spotlights'),
+                collection: this.model.get('spotlights')
+            });
+
+        },
+
         render: function () {
 
             // Normally this view is used to "fill in"
@@ -42,7 +59,26 @@ Stem.Views = Stem.Views || {};
             this.$el.attr('aria-labelledby', headingId);
             this.$el.find('h3').attr('id', headingId);
 
+            // Render all the child views.
+
+            this.certificationsMap.render();
+            this.spotlightList.render();
+
             return this; // for method chaining.
+        },
+
+        show: function () {
+
+            // Show is distinct from render so
+            // that we don't annoy the user with
+            // unneccessary requests for location
+            // permission. It should be called
+            // when the view is visible.
+
+            this.certificationsMap.show();
+
+            return this; // for method chaining.
+
        }
 
     });

@@ -20,7 +20,7 @@ Stem.Models = Stem.Models || {};
             // the model was created, we create our
             // own. (We don't use the `defaults`
             // property to avoid creating unnecessary
-            // models.
+            // models.)
 
             if (!this.get('searchQuery')) {
 

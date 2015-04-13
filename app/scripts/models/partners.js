@@ -159,7 +159,7 @@ Stem.Models = Stem.Models || {};
 
             // If the collection is empty (i.e.
             // not supplied in the model's
-            // creation, fetch it from the OAE.
+            // creation), fetch it from the OAE.
 
             if (partnerships.length === 0) {
                 partnerships.fetch({validate: true});
