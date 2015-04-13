@@ -14,9 +14,149 @@ Stem.Models = Stem.Models || {};
 
     Stem.Models.Admins = Backbone.Model.extend({
 
-        // For now, the vanilla Backbone model
-        // is all we need, so there's no code
-        // specific to admins.
+        setupCertifications: function () {
+
+            // Certifications are schools that have
+            // achieved STEM certification. We show
+            // them on a map, so we'll need point
+            // of interest information for them.
+            // Normally, we create the POI collection,
+            // but we allow it to be passed into
+            // the model during creation for
+            // flexibility and testing.
+
+            if (!this.get('certificationPois')) {
+                this.set('certificationPois',
+                    new Stem.Collections.Pois()
+                );
+            }
+
+            if (!this.get('certifications')) {
+                this.set('certifications',
+                    new Stem.Collections.SubGroups([], {
+                        limit: 50,
+                        parentId: Stem.config.oae.groups.certifications
+                    })
+                );
+            }
+
+            // Use a local variable for convenience.
+
+            var certifications = this.get('certifications');
+
+            // Before we fetch the data from the OAE,
+            // set up a handler to deal with additions
+            // to the collection.
+
+            certifications.on('add', this.certificationAdded, this);
+
+            // If the collection was supplied on model
+            // creation, it already has members, so
+            // simply add them. If the collection is
+            // empty, then we fetch it from the OAE.
+
+            if (certifications.length > 0) {
+                certifications.each(_(this.certificationAdded).bind(this));
+            } else {
+                certifications.fetch({validate: true});
+            }
+
+        },
+
+        certificationAdded: function (group) {
+
+            // Look for a street address in the
+            // group's description. That would be
+            // a line that begins "Address:".
+
+            if (group.get('description')) {
+
+                var addrLines = _(group.get('description')
+                    .split('\n'))
+                    .filter(function(line) {
+                        return line.trim()
+                            .toLowerCase()
+                            .indexOf('address:') === 0;
+                    });
+
+                // If we found an address in the
+                // description, we're in business.
+
+                if (addrLines.length) {
+
+                    // Use a network service to retrieve
+                    // geographic coordinates from a
+                    // street address.
+
+                    Stem.Utils.getLocationFromStreet(
+                        addrLines[0].substr(8).trim(),
+                        _.bind(function (latLong) {
+
+                            this.get('certificationPois').add(
+                                new Stem.Models.Poi({
+                                    className: 'theme-2',
+                                    imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
+                                    latitude:  latLong[0],
+                                    link:      Stem.Utils.oaeUrl(group.get('profilePath')),
+                                    longitude: latLong[1],
+                                    title:     group.get('displayName')
+                                })
+                            );
+
+                        }, this)
+
+                    );
+
+                }
+
+            }
+
+        },
+
+        setupSpotlights: function () {
+
+            // Spotlights are featured schools
+            // that have achieved STEM
+            // certification. We access them
+            // as sub-groups on the OAE.
+            // All we need to do for set up is
+            // define the collection and initiate
+            // a fetch. As with other collections,
+            // we permit the collection to be
+            // specified when the model is
+            // created.
+
+            if (!this.get('spotlights')) {
+                this.set('spotlights',
+                    new Stem.Collections.SubGroups([], {
+                        limit: 10,
+                        parentId: Stem.config.oae.groups.featuredSchools
+                    })
+                );
+            }
+
+            var spotlights = this.get('spotlights');
+
+            // If the collection is empty (i.e.
+            // not supplied in the model's
+            // creation), fetch it from the OAE.
+
+            if (spotlights.length === 0) {
+                spotlights.fetch({validate: true});
+            }
+
+        },
+
+        // Model iniitalization.
+
+        initialize: function () {
+
+            // Set up the individual parts of the model.
+
+            this.setupCertifications();
+            this.setupSpotlights();
+
+        }
 
     });
 

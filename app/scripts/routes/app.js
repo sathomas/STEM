@@ -67,16 +67,6 @@ Stem.Routers = Stem.Routers || {};
             $('#nav-toggle').prop('checked', 0);
             $('main').attr('data-nav-expanded', '0');
 
-            // And finally, set the scroll position to
-            // the top of the new "page" if we're switching
-            // to the search results. We defer this until
-            // the execution stack clears to make sure
-            // that no other code reverses our setting.
-
-            if (id === 'teachers-search') {
-                _.defer(window.scrollTo, 0, 0);
-            }
-
         },
 
         // Convenience function to set the discovery
@@ -148,6 +138,15 @@ Stem.Routers = Stem.Routers || {};
             this.searchQuery.set('query',
                 decodeURIComponent(query));
             this.loadPage('teachers-search','theme-1');
+
+            // And finally, set the scroll position to
+            // the top of the new "page" since we're switching
+            // to the search results. We defer this until
+            // the execution stack clears to make sure
+            // that no other code reverses our setting.
+
+            _.defer(window.scrollTo, 0, 0);
+
         },
 
         // The `initialize` function performs most of
