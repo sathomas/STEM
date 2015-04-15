@@ -1,4 +1,4 @@
-/*global Stem, $, Backbone */
+/*global Stem, _, $, Backbone, JST */
 
 // Backbone view for the partners block of the
 // landing page's discovery section. Because

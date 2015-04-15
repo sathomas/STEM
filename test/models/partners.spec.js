@@ -205,7 +205,7 @@ describe('Partners Model', function () {
         var ajaxSpy = sinon.spy($, 'ajax');
         var locationStub = sinon.stub(Stem.Utils, 'getLocationFromStreet');
         locationStub.callsArgWith(1, [1,2]);
-        var partners = new Stem.Models.Partners({
+        new Stem.Models.Partners({
             businesses: new Stem.Collections.SubGroups([{}]),
             partnerships: new Stem.Collections.SubGroups([{}]),
             proposals: new Stem.Collections.Proposals([{}]),

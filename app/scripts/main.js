@@ -38,10 +38,12 @@ window.Stem = {
 
         oae: {
             groups: {
-                businesses:   'g:si:Xy9nrbWq',
-                courses:      'g:si:m179WbZq',
-                partnerships: 'g:si:XkJrmWWq',
-                schools:      'g:si:m1uhNWWc'
+                businesses:      'g:si:Xy9nrbWq',
+                certifications:  'g:si:VkE40i4W',
+                courses:         'g:si:m179WbZq',
+                featuredSchools: 'g:si:4yv0msV-',
+                partnerships:    'g:si:XkJrmWWq',
+                schools:         'g:si:m1uhNWWc'
             },
             host: 'stemincubator.oaeproject.org',
             protocol: 'https:'
