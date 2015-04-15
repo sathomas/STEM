@@ -29,7 +29,7 @@
  *         <button class="btn theme-1-hollow">
  *             Theme 1 Hollow
  *         </button>
- *     <div/>
+ *     </div>
  *     <br>
  *     <div>
  *         <button class="btn theme-2">
@@ -38,7 +38,7 @@
  *         <button class="btn theme-2-hollow">
  *             Theme 2 Hollow
  *         </button>
- *     <div/>
+ *     </div>
  *     <br>
  *     <div>
  *         <button class="btn theme-3">
@@ -47,7 +47,7 @@
  *         <button class="btn theme-3-hollow">
  *             Theme 3 Hollow
  *         </button>
- *     <div/>
+ *     </div>
  *     <br>
  *     <div>
  *         <button class="btn btn--small theme-1">
@@ -55,13 +55,16 @@
  *         </button>
  *     </div>
  *     <br>
+ *     <a class="btn theme-3-hollow"> Link Button </a>
+ *     <a class="btn theme-3"> Link Button </a>
+ *     <br>
  */
 
 .btn {
     .clickable;
     .lnum;
     background-color: transparent;
-    border: none;
+    border: 2px solid;
     border-radius: @border-radius-large;
     box-sizing: border-box;
     cursor: pointer;
@@ -69,7 +72,7 @@
     font-size: 1.8rem;
     font-weight: 600;
     height: 4rem;
-    line-height: 2.2;
+    line-height: 2.1;
     padding-bottom: 0;
     padding-left: 1em;
     padding-right: 1em;
@@ -94,25 +97,31 @@
 
 .theme-1 .btn, .theme-1.btn {
     background-color: @color-theme-1-primary-bg;
+    border-color: @color-theme-1-primary-bg;
     color: @color-theme-1-primary-fg;
 }
 .theme-1-hollow .btn, .theme-1-hollow.btn {
+    background-color: transparent;
     border: 2px solid;
     color: @color-theme-1-primary-bg;
 }
 .theme-2 .btn, .theme-2.btn {
     background-color: @color-theme-2-primary-bg;
+    border-color: @color-theme-2-primary-bg;
     color: @color-theme-2-primary-fg;
 }
 .theme-2-hollow .btn, .theme-2-hollow.btn {
+    background-color: transparent;
     border: 2px solid;
     color: @color-theme-2-primary-bg;
 }
 .theme-3 .btn, .theme-3.btn {
     background-color: @color-theme-3-primary-bg;
+    border-color: @color-theme-3-primary-bg;
     color: @color-theme-3-primary-fg;
 }
 .theme-3-hollow .btn, .theme-3-hollow.btn {
+    background-color: transparent;
     border: 2px solid;
     color: @color-theme-3-primary-bg;
 }
