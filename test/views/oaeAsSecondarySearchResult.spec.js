@@ -8,9 +8,9 @@ describe('OaeAsSecondarySearchResult View', function () {
             description:  'description',
             displayName:  'displayName',
             profilePath:  '/profile/path',
-            thumbnailUrl: '/thumnail/url',
+            thumbnailUrl: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
             picture: {
-                medium: '/picture/medium'
+                medium: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png'
             }
         });
         this.OaeAsSecondarySearchResult = new Stem.Views.OaeAsSecondarySearchResult({model: this.Group});
