@@ -16,7 +16,7 @@
  *     @example:
  *     <div class="invite">
  *         <i class="invite__icon fa fa-comments-o"></i>
- *         <a class="invite__button">
+ *         <a class="btn">
  *             Button text
  *         </a>
  *         <p class="invite__text">
@@ -44,17 +44,6 @@
     .spacing(padding-top);
 }
 
-.invite__button {
-    .clickable;
-    .lnum;
-    .btn;
-    display: block;
-    margin-bottom: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-}
-
 .invite__text {
     font-size: 2rem;
     .spacing(margin-bottom);
@@ -73,7 +62,7 @@
  *     @example:
  *     <div class="invite theme-1">
  *         <i class="invite__icon fa fa-comments-o"></i>
- *         <a class="invite__button">
+ *         <a class="btn">
  *             Theme 1
  *         </a>
  *         <p class="invite__text">
@@ -81,26 +70,3 @@
  *         </p>
  *     </div>
  */
-
-
-.theme-1 .invite__button,
-.invite__button.theme-1 {
-    background-color: @color-theme-1-primary-bg;
-    border-color:     @color-theme-1-primary-bg;
-    color:            @color-theme-1-primary-fg;
-}
-
-.theme-2 .invite__button,
-.invite__button.theme-2 {
-    background-color: @color-theme-2-primary-bg;
-    border-color:     @color-theme-2-primary-bg;
-    color:            @color-theme-2-primary-fg;
-}
-
-.theme-3 .invite__button,
-.invite__button.theme-3 {
-    background-color: @color-theme-3-primary-bg;
-    border-color:     @color-theme-3-primary-bg;
-    color:            @color-theme-3-primary-fg;
-}
-
