@@ -8,9 +8,9 @@ describe('OaeAsSpotlightItem View', function () {
             description:  'description',
             displayName:  'displayName',
             profilePath:   '/profile/path',
-            thumbnailUrl: '/thumbnail/url',
+            thumbnailUrl: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
             picture: {
-                medium: '/picture/medium'
+                medium: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png'
             }
         });
         this.OaeAsSpotlightItem = new Stem.Views.OaeAsSpotlightItem({model: this.Group});

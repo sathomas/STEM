@@ -6,7 +6,7 @@ describe('PoiAsMarker View', function () {
     beforeEach(function () {
         this.PoiModel = new Stem.Models.Poi({
             className: 'Class',
-            imageUrl:  'http://image/url',
+            imageUrl:  'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
             link:      'http://link/url',
             title:     'Title'
         });

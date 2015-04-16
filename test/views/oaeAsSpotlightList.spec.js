@@ -10,27 +10,27 @@ describe('OaeAsSpotlightList View', function () {
                     description:  'description 1',
                     displayName:  'displayName 1',
                     profilePath:  '/profile/path/1',
-                    thumbnailUrl: '/thumbnail/url/1',
+                    thumbnailUrl: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
                     picture: {
-                        medium: '/picture/medium'
+                        medium: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png'
                     }
                 }),
                 new Stem.Models.Group({
                     description:  'description 2',
                     displayName:  'displayName 2',
                     profilePath:  '/profile/path/2',
-                    thumbnailUrl: '/thumbnail/url/2',
+                    thumbnailUrl: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
                     picture: {
-                        medium: '/picture/medium'
+                        medium: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/gt-logo-footer.png'
                     }
                 }),
                 new Stem.Models.Group({
                     description:  'description 3',
                     displayName:  'displayName 3',
                     profilePath:  '/profile/path/3',
-                    thumbnailUrl: '/thumbnail/url/3',
+                    thumbnailUrl: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png',
                     picture: {
-                        medium: '/picture/medium'
+                        medium: 'http://www.gatech.edu/sites/all/themes/gt/images/logos/logo-gt.png'
                     }
                })
             ])
