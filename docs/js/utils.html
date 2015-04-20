@@ -660,6 +660,28 @@ address has it, then strip it out and try again.</p>
                             addr.replace(<span class="hljs-regexp">/ NE /</span>, <span class="hljs-string">' '</span>),
                             success,
                             error
+                        );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>Try the same for NW in the address.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (addr.indexOf(<span class="hljs-string">' NW '</span>) &gt; <span class="hljs-number">0</span>) {
+
+                        Stem.Utils.getLocationFromStreet(
+                            addr.replace(<span class="hljs-regexp">/ NW /</span>, <span class="hljs-string">' '</span>),
+                            success,
+                            error
                         );
 
                     } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {

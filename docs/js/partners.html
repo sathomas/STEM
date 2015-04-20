@@ -368,6 +368,15 @@ collection(s).</p>
                 );
             }
 
+            <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'organizations'</span>)) {
+                <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'organizations'</span>,
+                    <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([],{
+                       limit: <span class="hljs-number">50</span>,
+                       parentId: Stem.config.oae.groups.organizations
+                    })
+                );
+            }
+
             <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'businesses'</span>)) {
                 <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'businesses'</span>,
                     <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([], {
@@ -401,6 +410,7 @@ as a convenient reference to these attributes.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">var</span> organizations = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'organizations'</span>);
             <span class="hljs-keyword">var</span> businesses = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'businesses'</span>);
             <span class="hljs-keyword">var</span> schools = <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'schools'</span>);</pre></div></div>
             
@@ -420,6 +430,7 @@ each collection.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+            organizations.on(<span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.organizationAdded, <span class="hljs-keyword">this</span>);
             businesses.on(<span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.businessAdded, <span class="hljs-keyword">this</span>);
             schools.on(<span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.schoolAdded, <span class="hljs-keyword">this</span>);</pre></div></div>
             
@@ -440,6 +451,12 @@ empty, then we fetch them from the OAE.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (organizations.length &gt; <span class="hljs-number">0</span>) {
+                organizations.each(_(<span class="hljs-keyword">this</span>.organizationAdded).bind(<span class="hljs-keyword">this</span>));
+            } <span class="hljs-keyword">else</span> {
+                organizations.fetch({validate: <span class="hljs-literal">true</span>});
+            }
+
             <span class="hljs-keyword">if</span> (businesses.length &gt; <span class="hljs-number">0</span>) {
                 businesses.each(_(<span class="hljs-keyword">this</span>.businessAdded).bind(<span class="hljs-keyword">this</span>));
             } <span class="hljs-keyword">else</span> {
@@ -708,7 +725,7 @@ street address.</p>
 
         },
 
-        businessAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(business)</span> </span>{</pre></div></div>
+        organizationAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(business)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -725,11 +742,11 @@ group.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.getLatLong(business, <span class="hljs-string">'theme-3 poi-business'</span>);
+            <span class="hljs-keyword">this</span>.getLatLong(business, <span class="hljs-string">'theme-3-dark poi-organization'</span>);
 
         },
 
-        schoolAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(school)</span> </span>{</pre></div></div>
+        businessAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(business)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -746,9 +763,11 @@ group.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.getLatLong(school, <span class="hljs-string">'theme-3-light poi-school'</span>);
+            <span class="hljs-keyword">this</span>.getLatLong(business, <span class="hljs-string">'theme-3 poi-business'</span>);
 
-        },</pre></div></div>
+        },
+
+        schoolAdded: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(school)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -758,6 +777,25 @@ group.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>Try to extract geolocation from the
+group.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.getLatLong(school, <span class="hljs-string">'theme-3-light poi-school'</span>);
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Function called when a new DonorsChoose proposal
 has been fetched from DonorsChoose and added to
@@ -771,11 +809,11 @@ our internal collection.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Extract the relevant information from the
 DonorsChoose response for our own POI model
@@ -800,11 +838,11 @@ and add it to our internal collection.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Model iniitalization.</p>
 
@@ -816,11 +854,11 @@ and add it to our internal collection.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Set up the individual parts of the model.</p>
 
