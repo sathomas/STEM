@@ -185,6 +185,16 @@ Stem.Utils = Stem.Utils || {};
                             error
                         );
 
+                    // Try the same for NW in the address.
+
+                    } else if (addr.indexOf(' NW ') > 0) {
+
+                        Stem.Utils.getLocationFromStreet(
+                            addr.replace(/ NW /, ' '),
+                            success,
+                            error
+                        );
+
                     } else if (typeof(error) === "function") {
 
                         error();

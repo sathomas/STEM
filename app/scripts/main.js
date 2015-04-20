@@ -42,6 +42,7 @@ window.Stem = {
                 certifications:  'g:si:VkE40i4W',
                 courses:         'g:si:m179WbZq',
                 featuredSchools: 'g:si:4yv0msV-',
+                organizations:   'g:si:41rIG10W',
                 partnerships:    'g:si:XkJrmWWq',
                 schools:         'g:si:m1uhNWWc'
             },
