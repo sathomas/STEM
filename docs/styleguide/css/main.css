@@ -170,6 +170,10 @@
  * _in addition to_ (rather than instead of)
  * the regular `btn` class.
  *
+ * The `btn--outline` variation inverts
+ * the color scheme and, for `<a>` elements
+ * adds underlining on hover.
+ *
  * By itself, the `btn` class does not provide
  * text or background colors. Those are
  * defined by a parent theme. The theme classes
@@ -178,33 +182,59 @@
  * parent element.
  *
  *     @example:
- *     <button class="btn theme-1">
- *         Theme 1
- *     </button>
- *     <button class="btn theme-2">
- *         Theme 2
- *     </button>
- *     <button class="btn theme-3">
- *         Theme 3
- *     </button>
- *     <button class="btn btn--small theme-1">
- *         Small Button
- *     </button>
+ *     <div class="no-touch">
+ *         <button class="btn theme-1">
+ *             Theme 1
+ *         </button>
+ *         <a class="btn btn--outline theme-1">
+ *             Theme 1 Outline
+ *         </a>
+ *     </div>
+ *     <br>
+ *     <div class="no-touch">
+ *         <button class="btn theme-2">
+ *             Theme 2
+ *         </button>
+ *         <a class="btn btn--outline theme-2">
+ *             Theme 2 Outline
+ *         </a>
+ *     </div>
+ *     <br>
+ *     <div class="no-touch">
+ *         <button class="btn theme-3">
+ *             Theme 3
+ *         </button>
+ *         <a class="btn btn--outline theme-3">
+ *             Theme 3 Outline
+ *         </a>
+ *     </div>
+ *     <br>
+ *     <div>
+ *         <button class="btn btn--small theme-1">
+ *             Small Button
+ *         </button>
+ *     </div>
+ *     <br>
+ *     <a class="btn theme-3-hollow"> Link Button </a>
+ *     <a class="btn theme-3"> Link Button </a>
+ *     <br>
  */
 .btn {
   letter-spacing: .1rem;
   text-transform: uppercase;
   font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: transparent;
-  border: none;
+  border-color: transparent;
   border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
   font-size: 1.8rem;
   font-weight: 600;
   height: 4rem;
-  line-height: 2.2;
+  line-height: 2.1;
   padding-bottom: 0;
   padding-left: 1em;
   padding-right: 1em;
@@ -215,6 +245,7 @@
 }
 .btn--small {
   border-radius: 3px;
+  border-width: 0;
   font-size: 11px;
   height: 38px;
   line-height: 38px;
@@ -223,20 +254,45 @@
   padding-right: 30px;
   padding-top: 0;
 }
+a.btn--outline:focus,
+.no-touch a.btn--outline:hover {
+  text-decoration: underline;
+}
 .theme-1 .btn,
 .theme-1.btn {
   background-color: #009eaf;
+  border-color: #009eaf;
   color: #ffffff;
+}
+.theme-1 .btn--outline,
+.theme-1.btn--outline {
+  background-color: transparent;
+  border-color: #009eaf;
+  color: #009eaf;
 }
 .theme-2 .btn,
 .theme-2.btn {
   background-color: #00ab0f;
+  border-color: #00ab0f;
   color: #ffffff;
+}
+.theme-2 .btn--outline,
+.theme-2.btn--outline {
+  background-color: transparent;
+  border-color: #00ab0f;
+  color: #00ab0f;
 }
 .theme-3 .btn,
 .theme-3.btn {
   background-color: #005493;
+  border-color: #005493;
   color: #ffffff;
+}
+.theme-3 .btn--outline,
+.theme-3.btn--outline {
+  background-color: transparent;
+  border-color: #005493;
+  color: #005493;
 }
 /**
  * ## Checkbox group
@@ -1255,10 +1311,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .discovery-nav__label {
-    -webkit-flex-basis: 16.6666666667%;
-        -ms-flex-preferred-size: 16.6666666667%;
-            flex-basis: 16.6666666667%;
-    max-width: 16.6666666667%;
+    -webkit-flex-basis: 16.66%;
+        -ms-flex-preferred-size: 16.66%;
+            flex-basis: 16.66%;
+    max-width: 16.66%;
   }
 }
 .discovery-nav__radio:checked + .discovery-nav__label {
@@ -1287,10 +1343,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .discovery-nav__radio:checked + .discovery-nav__label {
-    -webkit-flex-basis: 66.6666666667%;
-        -ms-flex-preferred-size: 66.6666666667%;
-            flex-basis: 66.6666666667%;
-    max-width: 66.6666666667%;
+    -webkit-flex-basis: 66.66%;
+        -ms-flex-preferred-size: 66.66%;
+            flex-basis: 66.66%;
+    max-width: 66.66%;
   }
 }
 @media only screen and (min-width: 500px) {
@@ -1415,14 +1471,16 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   text-transform: uppercase;
   font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: transparent;
-  border: none;
+  border-color: transparent;
   border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: 600;
   height: 4rem;
-  line-height: 2.2;
+  line-height: 2.1;
   padding-bottom: 0;
   padding-left: 1em;
   padding-right: 1em;
@@ -1432,6 +1490,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   white-space: nowrap;
   display: inline-block;
   background-color: #ffffff;
+  border-color: #ffffff;
   color: #000000;
 }
 .discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__more {
@@ -1648,10 +1707,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .one-column {
-    -webkit-flex-basis: 8.33333333333%;
-        -ms-flex-preferred-size: 8.33333333333%;
-            flex-basis: 8.33333333333%;
-    max-width: 8.33333333333%;
+    -webkit-flex-basis: 8.33%;
+        -ms-flex-preferred-size: 8.33%;
+            flex-basis: 8.33%;
+    max-width: 8.33%;
   }
 }
 .two-columns {
@@ -1677,10 +1736,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .two-columns {
-    -webkit-flex-basis: 16.6666666667%;
-        -ms-flex-preferred-size: 16.6666666667%;
-            flex-basis: 16.6666666667%;
-    max-width: 16.6666666667%;
+    -webkit-flex-basis: 16.66%;
+        -ms-flex-preferred-size: 16.66%;
+            flex-basis: 16.66%;
+    max-width: 16.66%;
   }
 }
 .three-columns {
@@ -1735,10 +1794,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .four-columns {
-    -webkit-flex-basis: 33.3333333333%;
-        -ms-flex-preferred-size: 33.3333333333%;
-            flex-basis: 33.3333333333%;
-    max-width: 33.3333333333%;
+    -webkit-flex-basis: 33.33%;
+        -ms-flex-preferred-size: 33.33%;
+            flex-basis: 33.33%;
+    max-width: 33.33%;
   }
 }
 .five-columns {
@@ -1764,10 +1823,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .five-columns {
-    -webkit-flex-basis: 41.6666666667%;
-        -ms-flex-preferred-size: 41.6666666667%;
-            flex-basis: 41.6666666667%;
-    max-width: 41.6666666667%;
+    -webkit-flex-basis: 41.66%;
+        -ms-flex-preferred-size: 41.66%;
+            flex-basis: 41.66%;
+    max-width: 41.666%;
   }
 }
 .six-columns {
@@ -1814,10 +1873,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .seven-columns {
-    -webkit-flex-basis: 58.3333333333%;
-        -ms-flex-preferred-size: 58.3333333333%;
-            flex-basis: 58.3333333333%;
-    max-width: 58.3333333333%;
+    -webkit-flex-basis: 58.33%;
+        -ms-flex-preferred-size: 58.33%;
+            flex-basis: 58.33%;
+    max-width: 58.33%;
   }
 }
 .eight-columns {
@@ -1835,10 +1894,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .eight-columns {
-    -webkit-flex-basis: 66.6666666667%;
-        -ms-flex-preferred-size: 66.6666666667%;
-            flex-basis: 66.6666666667%;
-    max-width: 66.6666666667%;
+    -webkit-flex-basis: 66.66%;
+        -ms-flex-preferred-size: 66.66%;
+            flex-basis: 66.66%;
+    max-width: 66.66%;
   }
 }
 .nine-columns {
@@ -1877,10 +1936,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .ten-columns {
-    -webkit-flex-basis: 83.3333333333%;
-        -ms-flex-preferred-size: 83.3333333333%;
-            flex-basis: 83.3333333333%;
-    max-width: 83.3333333333%;
+    -webkit-flex-basis: 83.33%;
+        -ms-flex-preferred-size: 83.33%;
+            flex-basis: 83.33%;
+    max-width: 83.333%;
   }
 }
 .eleven-columns {
@@ -1898,10 +1957,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .eleven-columns {
-    -webkit-flex-basis: 91.6666666667%;
-        -ms-flex-preferred-size: 91.6666666667%;
-            flex-basis: 91.6666666667%;
-    max-width: 91.6666666667%;
+    -webkit-flex-basis: 91.66%;
+        -ms-flex-preferred-size: 91.66%;
+            flex-basis: 91.66%;
+    max-width: 91.66%;
   }
 }
 .twelve-columns {
@@ -1940,10 +1999,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .one-sixth-column {
-    -webkit-flex-basis: 16.6666666667%;
-        -ms-flex-preferred-size: 16.6666666667%;
-            flex-basis: 16.6666666667%;
-    max-width: 16.6666666667%;
+    -webkit-flex-basis: 16.66%;
+        -ms-flex-preferred-size: 16.66%;
+            flex-basis: 16.66%;
+    max-width: 16.66%;
   }
 }
 .one-fourth-column {
@@ -1998,10 +2057,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .one-third-column {
-    -webkit-flex-basis: 33.3333333333%;
-        -ms-flex-preferred-size: 33.3333333333%;
-            flex-basis: 33.3333333333%;
-    max-width: 33.3333333333%;
+    -webkit-flex-basis: 33.33%;
+        -ms-flex-preferred-size: 33.33%;
+            flex-basis: 33.33%;
+    max-width: 33.33%;
   }
 }
 .one-half-column {
@@ -2048,10 +2107,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .two-thirds-column {
-    -webkit-flex-basis: 66.6666666667%;
-        -ms-flex-preferred-size: 66.6666666667%;
-            flex-basis: 66.6666666667%;
-    max-width: 66.6666666667%;
+    -webkit-flex-basis: 66.66%;
+        -ms-flex-preferred-size: 66.66%;
+            flex-basis: 66.66%;
+    max-width: 66.66%;
   }
 }
 .three-fourths-column {
@@ -2090,10 +2149,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 @media only screen and (min-width: 1000px) {
   .five-sixths-column {
-    -webkit-flex-basis: 83.3333333333%;
-        -ms-flex-preferred-size: 83.3333333333%;
-            flex-basis: 83.3333333333%;
-    max-width: 83.3333333333%;
+    -webkit-flex-basis: 83.33%;
+        -ms-flex-preferred-size: 83.33%;
+            flex-basis: 83.33%;
+    max-width: 83.333%;
   }
 }
 .one-full-column {
@@ -2126,7 +2185,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
  *     @example:
  *     <div class="invite">
  *         <i class="invite__icon fa fa-comments-o"></i>
- *         <a class="invite__button">
+ *         <a class="btn">
  *             Button text
  *         </a>
  *         <p class="invite__text">
@@ -2179,33 +2238,6 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
     padding-top: 30px;
   }
 }
-.invite__button {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding-bottom: 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 0;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  display: block;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0;
-}
 .invite__text {
   font-size: 2rem;
   margin-bottom: 10px;
@@ -2243,7 +2275,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
  *     @example:
  *     <div class="invite theme-1">
  *         <i class="invite__icon fa fa-comments-o"></i>
- *         <a class="invite__button">
+ *         <a class="btn">
  *             Theme 1
  *         </a>
  *         <p class="invite__text">
@@ -2251,21 +2283,6 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
  *         </p>
  *     </div>
  */
-.theme-1 .invite__button,
-.invite__button.theme-1 {
-  background-color: #009eaf;
-  color: #ffffff;
-}
-.theme-2 .invite__button,
-.invite__button.theme-2 {
-  background-color: #00ab0f;
-  color: #ffffff;
-}
-.theme-3 .invite__button,
-.invite__button.theme-3 {
-  background-color: #005493;
-  color: #ffffff;
-}
 /**
  * ## Map
  *
@@ -2792,7 +2809,7 @@ div.poi-marker[data-hidden="1"] {
  *         </ul>
  *         <div class="results-main__more">
  *             <button type="button"
- *                     class="results-main__button">
+ *                     class="btn">
  *                 Show more
  *             </button>
  *         </div>
@@ -2922,33 +2939,6 @@ div.poi-marker[data-hidden="1"] {
 .results-main__more {
   text-align: center;
 }
-.results-main__button {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding-bottom: 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 0;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: #dbdbda;
-}
-.theme-1 .results-main__button {
-  background-color: #009eaf;
-  color: #ffffff;
-}
 /**
  * ### `results-secondary`
  * Alternate search results can consist of
@@ -2999,7 +2989,7 @@ div.poi-marker[data-hidden="1"] {
  *                 </li>
  *             </ul>
  *             <div class="results-secondary__more">
- *                 <button type="button" class="results-secondary__button">
+ *                 <button type="button" class="btn">
  *                     Show more
  *                 </button>
  *             </div>
@@ -3122,33 +3112,6 @@ div.poi-marker[data-hidden="1"] {
 }
 .results-secondary__more {
   text-align: center;
-}
-.results-secondary__button {
-  letter-spacing: .1rem;
-  text-transform: uppercase;
-  font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 1.8rem;
-  font-weight: 600;
-  height: 4rem;
-  line-height: 2.2;
-  padding-bottom: 0;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-top: 0;
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  background-color: #dbdbda;
-}
-.theme-1 .results-secondary__button {
-  background-color: #009eaf;
-  color: #ffffff;
 }
 /**
  * ## Scaffolding
@@ -3355,13 +3318,15 @@ section.hide[data-hide="0"] {
   text-transform: uppercase;
   font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: transparent;
-  border: none;
+  border-color: transparent;
   border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
   cursor: pointer;
   font-size: 1.8rem;
   font-weight: 600;
   height: 4rem;
-  line-height: 2.2;
+  line-height: 2.1;
   padding-left: 1em;
   padding-right: 1em;
   text-align: center;
@@ -3373,6 +3338,7 @@ section.hide[data-hide="0"] {
   border-top-left-radius: 0;
   box-sizing: border-box;
   display: inline-block;
+  line-height: 2.2;
   margin-bottom: 0;
   margin-left: auto;
   margin-right: auto;
@@ -3529,21 +3495,24 @@ section.hide[data-hide="0"] {
   text-transform: uppercase;
   font-family: "Raleway lnum", Raleway, HelveticaNeue, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   background-color: transparent;
-  border: none;
+  border-color: transparent;
   border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
   font-size: 1.8rem;
   font-weight: 600;
   height: 4rem;
-  line-height: 2.2;
+  line-height: 2.1;
   padding-left: 1em;
   padding-right: 1em;
   text-align: center;
   text-decoration: none;
   white-space: nowrap;
   border-radius: 3px;
+  border-width: 0;
   font-size: 11px;
   height: 38px;
   line-height: 38px;
@@ -3552,6 +3521,7 @@ section.hide[data-hide="0"] {
   padding-right: 30px;
   padding-top: 0;
   background-color: #efedeb;
+  border-color: #efedeb;
   color: #424242;
   margin-bottom: calc(5px);
   margin-left: calc(5px);

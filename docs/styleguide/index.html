@@ -67,6 +67,9 @@
             <code class="sg">btn</code>class not for brevity, but to make it easier to search for the class as distinct from the element. The
             <code class="sg">btn--small</code>variation (unsurprisingly) is a smaller version of the button. Note that &apos;btn--small
             <code class="sg">should be applied _in addition to_ (rather than instead of) the regular</code>btn` class.</p>
+          <p class="sg">The
+            <code class="sg">btn--outline</code>variation inverts the color scheme and, for
+            <code class="sg">&lt;a&gt;</code>elements adds underlining on hover.</p>
           <p class="sg">By itself, the
             <code class="sg">btn</code>class does not provide text or background colors. Those are defined by a parent theme. The theme classes
             <code class="sg">theme-1</code>, etc. can be applied either to the
@@ -74,30 +77,78 @@
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <button class="btn theme-1">
-              Theme 1
-            </button>
-            <button class="btn theme-2">
-              Theme 2
-            </button>
-            <button class="btn theme-3">
-              Theme 3
-            </button>
-            <button class="btn btn--small theme-1">
-              Small Button
-            </button>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-1&quot;</span>&gt;</span>
-  Theme 1
-<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-2&quot;</span>&gt;</span>
-  Theme 2
-<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-3&quot;</span>&gt;</span>
-  Theme 3
-<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn--small theme-1&quot;</span>&gt;</span>
-  Small Button
-<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span></pre>
+            <div class="no-touch">
+              <button class="btn theme-1">
+                Theme 1
+              </button>
+              <a class="btn btn--outline theme-1">
+                Theme 1 Outline
+              </a>
+            </div>
+            <br>
+            <div class="no-touch">
+              <button class="btn theme-2">
+                Theme 2
+              </button>
+              <a class="btn btn--outline theme-2">
+                Theme 2 Outline
+              </a>
+            </div>
+            <br>
+            <div class="no-touch">
+              <button class="btn theme-3">
+                Theme 3
+              </button>
+              <a class="btn btn--outline theme-3">
+                Theme 3 Outline
+              </a>
+            </div>
+            <br>
+            <div>
+              <button class="btn btn--small theme-1">
+                Small Button
+              </button>
+            </div>
+            <br>
+            <a class="btn theme-3-hollow">Link Button</a>
+            <a class="btn theme-3">Link Button</a>
+            <br>
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-1&quot;</span>&gt;</span>
+    Theme 1
+  <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn--outline theme-1&quot;</span>&gt;</span>
+    Theme 1 Outline
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-2&quot;</span>&gt;</span>
+    Theme 2
+  <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn--outline theme-2&quot;</span>&gt;</span>
+    Theme 2 Outline
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;no-touch&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-3&quot;</span>&gt;</span>
+    Theme 3
+  <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn--outline theme-3&quot;</span>&gt;</span>
+    Theme 3 Outline
+  <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn btn--small theme-1&quot;</span>&gt;</span>
+    Small Button
+  <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-3-hollow&quot;</span>&gt;</span>Link Button<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn theme-3&quot;</span>&gt;</span>Link Button<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">br</span>&gt;</span></pre>
         </div>
       </section>
     </section>
@@ -796,7 +847,7 @@
           <div class="sg-canvas">
             <div class="invite">
               <i class="invite__icon fa fa-comments-o"></i>
-              <a class="invite__button">
+              <a class="btn">
                 Button text
               </a>
               <p class="invite__text">
@@ -805,7 +856,7 @@
             </div>
           </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__icon fa fa-comments-o&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__button&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn&quot;</span>&gt;</span>
     Button text
   <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__text&quot;</span>&gt;</span>
@@ -824,7 +875,7 @@
           <div class="sg-canvas">
             <div class="invite theme-1">
               <i class="invite__icon fa fa-comments-o"></i>
-              <a class="invite__button">
+              <a class="btn">
                 Theme 1
               </a>
               <p class="invite__text">
@@ -833,7 +884,7 @@
             </div>
           </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite theme-1&quot;</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">i</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__icon fa fa-comments-o&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__button&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn&quot;</span>&gt;</span>
     Theme 1
   <span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;invite__text&quot;</span>&gt;</span>
@@ -1123,7 +1174,7 @@
                   </li>
                 </ul>
                 <div class="results-main__more">
-                  <button type="button" class="results-main__button">
+                  <button type="button" class="btn">
                     Show more
                   </button>
                 </div>
@@ -1149,7 +1200,7 @@
       <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__more&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-main__button&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn&quot;</span>&gt;</span>
         Show more
       <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
@@ -1199,7 +1250,7 @@
                   </li>
                 </ul>
                 <div class="results-secondary__more">
-                  <button type="button" class="results-secondary__button">
+                  <button type="button" class="btn">
                     Show more
                   </button>
                 </div>
@@ -1231,7 +1282,7 @@
       <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__more&quot;</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;results-secondary__button&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">&quot;button&quot;</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;btn&quot;</span>&gt;</span>
         Show more
       <span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
