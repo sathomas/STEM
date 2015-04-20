@@ -28,7 +28,7 @@ describe('OaeAsSpotlightItem View', function () {
 
     it('should render the thumbnail as an <img>', function() {
         var $el = this.OaeAsSpotlightItem.render().$el;
-        $el.find('img').attr('src').should.equal(Stem.config.oae.protocol + '//' + Stem.config.oae.host + this.Group.get('picture').medium);
+        $el.find('img').attr('src').should.equal(this.Group.get('picture').medium);
         $el.find('img').hasClass('spotlight__item__thumbnail').should.be.true();
     });
 

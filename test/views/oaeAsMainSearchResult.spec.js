@@ -28,7 +28,7 @@ describe('OaeAsMainSearchResult View', function () {
 
     it('should render the thumbnail as an <img>', function() {
         var $el = this.OaeAsMainSearchResult.render().$el;
-        $el.find('img').attr('src').should.equal(Stem.config.oae.protocol + '//' + Stem.config.oae.host + this.Group.get('thumbnailUrl'));
+        $el.find('img').attr('src').should.equal(this.Group.get('thumbnailUrl'));
         $el.find('img').hasClass('results-main__thumbnail').should.be.true();
     });
 

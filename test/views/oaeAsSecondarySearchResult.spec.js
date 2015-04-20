@@ -30,7 +30,7 @@ describe('OaeAsSecondarySearchResult View', function () {
         var $el = this.OaeAsSecondarySearchResult.render().$el;
         $el.find('div[role="image"]').length.should.equal(1);
         $el.find('div[role="image"]').hasClass('results-secondary__image').should.be.true();
-        $el.find('div[role="image"]').attr('style').should.equal('background-image: url(' + Stem.config.oae.protocol + '//' + Stem.config.oae.host + this.Group.get('thumbnailUrl') + ');');
+        $el.find('div[role="image"]').attr('style').should.equal('background-image: url(' + this.Group.get('thumbnailUrl') + ');');
     });
 
     it('should include a link to the group with appropriate styling classes', function() {
