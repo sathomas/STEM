@@ -45,10 +45,16 @@ Stem.Views = Stem.Views || {};
                                 poiClass: 'poi-school'
                             }),
                             new Stem.Models.Tag({
-                                label: 'Organizations',
+                                label: 'Businesses',
                                 selected: true,
                                 theme: 'theme-3',
                                 poiClass: 'poi-business'
+                            }),
+                            new Stem.Models.Tag({
+                                label: 'Organizations',
+                                selected: true,
+                                theme: 'theme-3-dark',
+                                poiClass: 'poi-organization'
                             })
                         ]),
                 title:  'I’m looking for'

@@ -179,8 +179,9 @@ describe('Partners Model', function () {
         var ajaxStub = sinon.stub($, 'ajax');
         ajaxStub.onCall(0).yieldsTo('success', oaeResponse);
         ajaxStub.onCall(1).yieldsTo('success', oaeResponse);
-        ajaxStub.onCall(2).yieldsTo('success', donorsChooseResponse);
-        ajaxStub.onCall(3).yieldsTo('success', oaeResponse);
+        ajaxStub.onCall(2).yieldsTo('success', oaeResponse);
+        ajaxStub.onCall(3).yieldsTo('success', donorsChooseResponse);
+        ajaxStub.onCall(4).yieldsTo('success', oaeResponse);
         var locationStub = sinon.stub(Stem.Utils, 'getLocationFromStreet');
         locationStub.callsArgWith(1, [1,2]);
         this.PartnersModel = new Stem.Models.Partners();
@@ -190,7 +191,7 @@ describe('Partners Model', function () {
 
 
     it('should load partners and groups into points of interest', function () {
-        this.PartnersModel.get('organizationPois').length.should.equal(2);
+        this.PartnersModel.get('organizationPois').length.should.equal(3);
     });
 
     it('should load proposals into points of interest', function () {
@@ -206,6 +207,7 @@ describe('Partners Model', function () {
         var locationStub = sinon.stub(Stem.Utils, 'getLocationFromStreet');
         locationStub.callsArgWith(1, [1,2]);
         new Stem.Models.Partners({
+            organizations: new Stem.Collections.SubGroups([{}]),
             businesses: new Stem.Collections.SubGroups([{}]),
             partnerships: new Stem.Collections.SubGroups([{}]),
             proposals: new Stem.Collections.Proposals([{}]),

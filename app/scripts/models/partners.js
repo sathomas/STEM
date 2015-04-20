@@ -35,6 +35,15 @@ Stem.Models = Stem.Models || {};
                 );
             }
 
+            if (!this.get('organizations')) {
+                this.set('organizations',
+                    new Stem.Collections.SubGroups([],{
+                       limit: 50,
+                       parentId: Stem.config.oae.groups.organizations
+                    })
+                );
+            }
+
             if (!this.get('businesses')) {
                 this.set('businesses',
                     new Stem.Collections.SubGroups([], {
@@ -56,6 +65,7 @@ Stem.Models = Stem.Models || {};
             // To keep things readable, use local variables
             // as a convenient reference to these attributes.
 
+            var organizations = this.get('organizations');
             var businesses = this.get('businesses');
             var schools = this.get('schools');
 
@@ -63,6 +73,7 @@ Stem.Models = Stem.Models || {};
             // set up handlers to deal with additions to
             // each collection.
 
+            organizations.on('add', this.organizationAdded, this);
             businesses.on('add', this.businessAdded, this);
             schools.on('add', this.schoolAdded, this);
 
@@ -70,6 +81,12 @@ Stem.Models = Stem.Models || {};
             // creation, they already have members, so
             // simply add them. If the collections are
             // empty, then we fetch them from the OAE.
+
+            if (organizations.length > 0) {
+                organizations.each(_(this.organizationAdded).bind(this));
+            } else {
+                organizations.fetch({validate: true});
+            }
 
             if (businesses.length > 0) {
                 businesses.each(_(this.businessAdded).bind(this));
@@ -216,6 +233,15 @@ Stem.Models = Stem.Models || {};
                 }
 
             }
+
+        },
+
+        organizationAdded: function (business) {
+
+            // Try to extract geolocation from the
+            // group.
+
+            this.getLatLong(business, 'theme-3-dark poi-organization');
 
         },
 
