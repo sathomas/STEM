@@ -14,6 +14,10 @@
  * _in addition to_ (rather than instead of)
  * the regular `btn` class.
  *
+ * The `btn--outline` variation inverts
+ * the color scheme and, for `<a>` elements
+ * adds underlining on hover.
+ *
  * By itself, the `btn` class does not provide
  * text or background colors. Those are
  * defined by a parent theme. The theme classes
@@ -22,33 +26,59 @@
  * parent element.
  *
  *     @example:
- *     <button class="btn theme-1">
- *         Theme 1
- *     </button>
- *     <button class="btn theme-2">
- *         Theme 2
- *     </button>
- *     <button class="btn theme-3">
- *         Theme 3
- *     </button>
- *     <button class="btn btn--small theme-1">
- *         Small Button
- *     </button>
+ *     <div class="no-touch">
+ *         <button class="btn theme-1">
+ *             Theme 1
+ *         </button>
+ *         <a class="btn btn--outline theme-1">
+ *             Theme 1 Outline
+ *         </a>
+ *     </div>
+ *     <br>
+ *     <div class="no-touch">
+ *         <button class="btn theme-2">
+ *             Theme 2
+ *         </button>
+ *         <a class="btn btn--outline theme-2">
+ *             Theme 2 Outline
+ *         </a>
+ *     </div>
+ *     <br>
+ *     <div class="no-touch">
+ *         <button class="btn theme-3">
+ *             Theme 3
+ *         </button>
+ *         <a class="btn btn--outline theme-3">
+ *             Theme 3 Outline
+ *         </a>
+ *     </div>
+ *     <br>
+ *     <div>
+ *         <button class="btn btn--small theme-1">
+ *             Small Button
+ *         </button>
+ *     </div>
+ *     <br>
+ *     <a class="btn theme-3-hollow"> Link Button </a>
+ *     <a class="btn theme-3"> Link Button </a>
+ *     <br>
  */
 
 .btn {
     .clickable;
     .lnum;
     background-color: transparent;
-    border: none;
+    border-color: transparent;
     border-radius: @border-radius-large;
+    border-style: solid;
+    border-width: 2px;
     box-sizing: border-box;
     cursor: pointer;
     display: inline-block;
     font-size: 1.8rem;
     font-weight: 600;
     height: 4rem;
-    line-height: 2.2;
+    line-height: 2.1;
     padding-bottom: 0;
     padding-left: 1em;
     padding-right: 1em;
@@ -60,6 +90,7 @@
 
 .btn--small {
     border-radius: @border-radius;
+    border-width: 0;
     font-size: 11px;
     height: 38px;
     line-height: 38px;
@@ -69,16 +100,41 @@
     padding-top: 0;
 }
 
+a.btn--outline:focus,
+.no-touch a.btn--outline:hover {
+    text-decoration: underline;
+}
+
+
 .theme-1 .btn, .theme-1.btn {
     background-color: @color-theme-1-primary-bg;
+    border-color: @color-theme-1-primary-bg;
     color: @color-theme-1-primary-fg;
+}
+.theme-1 .btn--outline, .theme-1.btn--outline {
+    background-color: transparent;
+    border-color: @color-theme-1-primary-bg;
+    color: @color-theme-1-primary-bg;
 }
 .theme-2 .btn, .theme-2.btn {
     background-color: @color-theme-2-primary-bg;
+    border-color: @color-theme-2-primary-bg;
     color: @color-theme-2-primary-fg;
+}
+.theme-2 .btn--outline, .theme-2.btn--outline {
+    background-color: transparent;
+    border-color: @color-theme-2-primary-bg;
+    color: @color-theme-2-primary-bg;
 }
 .theme-3 .btn, .theme-3.btn {
     background-color: @color-theme-3-primary-bg;
+    border-color: @color-theme-3-primary-bg;
     color: @color-theme-3-primary-fg;
 }
+.theme-3 .btn--outline, .theme-3.btn--outline {
+    background-color: transparent;
+    border-color: @color-theme-3-primary-bg;
+    color: @color-theme-3-primary-bg;
+}
+
 
