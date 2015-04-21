@@ -19,7 +19,7 @@ Stem.Models = Stem.Models || {};
             if (!this.get('searchQuery')) {
 
                 var searchQuery = new Stem.Models.Search({
-                    label: 'Search for resources',
+                    label: 'Search resources',
                     placeholder: 'Search the Incubator'
                 });
 
@@ -186,13 +186,13 @@ Stem.Models = Stem.Models || {};
 
                         filter: new Stem.Models.SearchFilter({
                             icon: 'fa-comments-o',
-                            title: 'People and groups'
+                            title: 'Groups and organizations'
                         }),
                         results:  new Stem.Models.SearchGroup({
                             collection: new Stem.Collections.Principals([], {
                                 limit: 16
                             }),
-                            heading: 'People and Groups',
+                            heading: 'Groups and organizations',
                             moreLink: Stem.config.oae.protocol + '//' +
                                       Stem.config.oae.host + '/search/?types=user,group'
                         })
