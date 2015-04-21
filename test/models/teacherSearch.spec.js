@@ -119,7 +119,7 @@ describe('TeacherSearch Model', function () {
 
     it('should create a search query model if none was provided', function () {
         this.TeacherSearchModel.get('searchQuery').should.not.be.empty();
-        this.TeacherSearchModel.get('searchQuery').get('label').should.equal('Search for resources');
+        this.TeacherSearchModel.get('searchQuery').get('label').should.equal('Search resources');
         this.TeacherSearchModel.get('searchQuery').get('placeholder').should.equal('Search the Incubator');
     });
 

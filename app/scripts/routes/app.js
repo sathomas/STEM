@@ -183,7 +183,7 @@ Stem.Routers = Stem.Routers || {};
             // of the main models can share.
 
             this.searchQuery = new Stem.Models.Search({
-                label: 'Search for resources',
+                label: 'Search resources',
                 placeholder: 'Search the Incubator'
             });
 
