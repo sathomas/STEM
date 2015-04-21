@@ -420,12 +420,7 @@ it’s just a static skeleton.</p>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">this</span>.certificationsMap.render();
-            <span class="hljs-keyword">this</span>.spotlightList.render();
-
-            <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining.</span>
-        },
-
-        show: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+            <span class="hljs-keyword">this</span>.spotlightList.render();</pre></div></div>
             
         </li>
         
@@ -436,11 +431,9 @@ it’s just a static skeleton.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-7">&#182;</a>
               </div>
-              <p>Show is distinct from render so
-that we don’t annoy the user with
-unneccessary requests for location
-permission. It should be called
-when the view is visible.</p>
+              <p>Go ahead and show the map since it’s
+initially visible on tablets and
+smartphones.</p>
 
             </div>
             

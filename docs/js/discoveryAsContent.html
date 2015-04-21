@@ -522,22 +522,6 @@ of the selected article.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
-              <p>The selected block should now be shown.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                            discovery.show.call(discovery, hash);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-13">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
-              </div>
               <p>Signal a change in navigation.</p>
 
             </div>
@@ -560,64 +544,11 @@ of the selected article.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-13">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
-              </div>
-              <p>The <code>show</code> method lets child views know
-that their view should now be visible.
-Most child views don’t need it, but any
-with maps will want an event to prompt
-the user for permisstion to get location.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-        show: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(section)</span> </span>{
-
-            <span class="hljs-keyword">switch</span> (section) {</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-15">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
-              </div>
-              <p>For the blocks with maps, we defer
-showing the content to avoid prompting
-the user with unneccessary location
-permission requests. Since the user
-has navigated here, though, we can
-defer no longer.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">case</span> <span class="hljs-string">'partners'</span>:
-                    <span class="hljs-keyword">this</span>.partnerDiscovery.show();
-                    <span class="hljs-keyword">break</span>;
-
-                <span class="hljs-keyword">case</span> <span class="hljs-string">'admins'</span>:
-                    <span class="hljs-keyword">this</span>.adminDiscovery.show();
-                    <span class="hljs-keyword">break</span>;
-
-            }
-
-        },</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-16">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
               <p>The <code>submitSearch</code> handler responds to
 the user’s submission of a search query.</p>
@@ -630,11 +561,11 @@ the user’s submission of a search query.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-14">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
               <p>When a submit event occurs, we
 can’t handle it entirely within

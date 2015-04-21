@@ -341,7 +341,7 @@ own.</p>
             <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'searchQuery'</span>)) {
 
                 <span class="hljs-keyword">var</span> searchQuery = <span class="hljs-keyword">new</span> Stem.Models.Search({
-                    label: <span class="hljs-string">'Search for resources'</span>,
+                    label: <span class="hljs-string">'Search resources'</span>,
                     placeholder: <span class="hljs-string">'Search the Incubator'</span>
                 });
 
@@ -616,13 +616,13 @@ in most cases we’ll set them up here.</p>
 
                         filter: <span class="hljs-keyword">new</span> Stem.Models.SearchFilter({
                             icon: <span class="hljs-string">'fa-comments-o'</span>,
-                            title: <span class="hljs-string">'People and groups'</span>
+                            title: <span class="hljs-string">'Groups and organizations'</span>
                         }),
                         results:  <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
                             collection: <span class="hljs-keyword">new</span> Stem.Collections.Principals([], {
                                 limit: <span class="hljs-number">16</span>
                             }),
-                            heading: <span class="hljs-string">'People and Groups'</span>,
+                            heading: <span class="hljs-string">'Groups and organizations'</span>,
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
                                       Stem.config.oae.host + <span class="hljs-string">'/search/?types=user,group'</span>
                         })
