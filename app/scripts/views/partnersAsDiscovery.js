@@ -122,6 +122,14 @@ Stem.Views = Stem.Views || {};
 
             this.listenTo(this.tagSet.get('tags'), 'change', this.updateFilters);
 
+            // Go ahead and show the maps
+            // since they'll be visibile right
+            // from the start on tablet and
+            // smartphone viewports.
+
+            this.proposalsMap.show();
+            this.organizationsMap.show();
+
             return this; // for method chaining.
 
         },
@@ -147,21 +155,6 @@ Stem.Views = Stem.Views || {};
                     );
 
             });
-
-        },
-
-        show: function () {
-
-            // Show is distinct from render so
-            // that we don't annoy the user with
-            // unneccessary requests for location
-            // permission. It should be called
-            // when the view is visible.
-
-            this.proposalsMap.show();
-            this.organizationsMap.show();
-
-            return this; // for method chaining.
 
         }
 
