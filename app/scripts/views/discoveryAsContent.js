@@ -95,10 +95,6 @@ Stem.Views = Stem.Views || {};
                             var hash = $('#discovery-nav ~ article:nth-of-type(' +
                                         (idx+1) + ')').attr('id');
 
-                            // The selected block should now be shown.
-
-                            discovery.show.call(discovery, hash);
-
                             // Signal a change in navigation.
 
                             discovery.trigger('navigate', hash);
