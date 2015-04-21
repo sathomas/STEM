@@ -64,16 +64,9 @@ Stem.Views = Stem.Views || {};
             this.certificationsMap.render();
             this.spotlightList.render();
 
-            return this; // for method chaining.
-        },
-
-        show: function () {
-
-            // Show is distinct from render so
-            // that we don't annoy the user with
-            // unneccessary requests for location
-            // permission. It should be called
-            // when the view is visible.
+            // Go ahead and show the map since it's
+            // initially visible on tablets and
+            // smartphones.
 
             this.certificationsMap.show();
 

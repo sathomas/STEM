@@ -115,35 +115,6 @@ Stem.Views = Stem.Views || {};
 
         },
 
-        // The `show` method lets child views know
-        // that their view should now be visible.
-        // Most child views don't need it, but any
-        // with maps will want an event to prompt
-        // the user for permisstion to get location.
-
-        show: function(section) {
-
-            switch (section) {
-
-                // For the blocks with maps, we defer
-                // showing the content to avoid prompting
-                // the user with unneccessary location
-                // permission requests. Since the user
-                // has navigated here, though, we can
-                // defer no longer.
-
-                case 'partners':
-                    this.partnerDiscovery.show();
-                    break;
-
-                case 'admins':
-                    this.adminDiscovery.show();
-                    break;
-
-            }
-
-        },
-
         // The `submitSearch` handler responds to
         // the user's submission of a search query.
 

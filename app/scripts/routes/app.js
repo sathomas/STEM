@@ -105,19 +105,16 @@ Stem.Routers = Stem.Routers || {};
         teachers: function() {
             this.setDiscovery(1);
             this.loadPage('landing','theme-1-dark');
-            this.discoveryContent.show('teachers');
         },
 
         admins: function() {
             this.setDiscovery(2);
             this.loadPage('landing','theme-1-dark');
-            this.discoveryContent.show('admins');
         },
 
         partners: function() {
             this.setDiscovery(3);
             this.loadPage('landing','theme-1-dark');
-            this.discoveryContent.show('partners');
         },
 
         // The search page is a little more involved
