@@ -43,6 +43,10 @@
 
 .results-filter {
     .one-fourth-column;
+    background-color: @color-theme-0-medium;
+    display: table;
+    @media @tablet { display: block; }
+    @media @phone-only { width: 100%; }
 }
 
 .results-main {
@@ -55,6 +59,8 @@
 
 .results-secondary {
     .one-fourth-column;
+    display: none;
+    @media @tablet { display: block; }
 }
 
 /**
@@ -131,6 +137,10 @@
 
 
 .results-filter__list {
+    display: table-cell;
+    @media @tablet { display: block; }
+    line-height: 0.7;
+    @media @tablet { line-height: inherit; }
     list-style:none;
     margin-bottom: 0;
     margin-left: 0;
@@ -140,8 +150,12 @@
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
+    text-align: center;
+    @media @tablet { text-align: inherit; }
 }
 .results-filter__list-item {
+    display: inline-block;
+    @media @tablet { display: block; }
     margin-bottom: 1px;
     margin-left: 0;
     margin-right: 0;
@@ -159,7 +173,8 @@
     .clickable;
     background-color: @color-theme-0-lighter;
     cursor:pointer;
-    display:block;
+    display: inline-block;
+    @media @tablet { display: block; }
     height: 6rem;
     line-height: 1.4;
     position: relative;
@@ -174,7 +189,8 @@
     height: 4rem;
     margin-bottom: 0;
     margin-left: 0;
-    margin-right: 10px;
+    margin-right: 0;
+    @media @tablet { margin-right: 10px; }
     margin-top: 0;
     padding-bottom: 1rem;
     padding-left: 1rem;
@@ -183,7 +199,8 @@
     width: 4rem;
 }
 .results-filter__list-item__text {
-    display: block;
+    display: none;
+    @media @tablet { display: block; }
     left: 7rem;
     position: absolute;
     top: 50%;
@@ -192,6 +209,8 @@
 .results-filter__list-item__content {
     background-color: @color-theme-0-white;
     clear: both;
+    display: none;
+    @media @tablet { display: block; }
     height:0;
     overflow:hidden;
 }
@@ -380,6 +399,11 @@
  *         </div>
  *     </div>
  */
+
+.results-secondary {
+    display: none;
+    @media @tablet { display: block; }
+}
 
 .results-secondary__heading {
     margin-bottom: 0;
