@@ -733,6 +733,7 @@ a.btn--outline:focus,
   margin-top: 0;
   padding-bottom: 10px;
   text-align: center;
+  transition: opacity 250ms linear;
 }
 @media only screen and (min-width: 500px) {
   .discovery {
@@ -1300,6 +1301,9 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  transition: max-width 250ms ease, -webkit-flex-basis 250ms ease;
+  transition: max-width 250ms ease, -ms-flex-preferred-size 250ms ease;
+  transition: max-width 250ms ease, flex-basis 250ms ease;
 }
 @media only screen and (min-width: 500px) {
   .discovery-nav__label {
