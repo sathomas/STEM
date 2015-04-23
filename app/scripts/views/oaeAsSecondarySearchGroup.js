@@ -12,7 +12,8 @@ Stem.Views = Stem.Views || {};
         className: 'results-secondary-block',
 
         events: {
-            'click button': 'clicked'
+            'click .results-secondary__extras button': 'showExtras',
+            'click .results-secondary__more   button': 'showAll'
         },
 
         render: function () {
@@ -29,8 +30,12 @@ Stem.Views = Stem.Views || {};
             return this; // for method chaining
         },
 
-        clicked: function () {
-            // Show more button was clicked, go there.
+        showExtras: function () {
+            this.trigger('expand', this);
+        },
+
+        showAll: function () {
+            // Full results button was clicked, go there.
             Stem.Utils.redirect(this.model.get('moreLink'));
         }
 

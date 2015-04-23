@@ -129,6 +129,10 @@ Stem.Views = Stem.Views || {};
             this.groupsSecondaryView.render();
 
             this.arrangeResults();
+            
+            this.listenTo(this.contentSecondaryView, 'expand', this.expand);
+            this.listenTo(this.coursesSecondaryView, 'expand', this.expand);
+            this.listenTo(this.groupsSecondaryView,  'expand', this.expand);
 
         },
 
@@ -146,6 +150,14 @@ Stem.Views = Stem.Views || {};
             this.coursesSecondaryView.$el.detach();
             this.groupsMainView.$el.detach();
             this.groupsSecondaryView.$el.detach();
+            
+            // Clear any expanded or compressed classes
+            this.contentSecondaryView.$el.
+                removeClass('results-secondary-block--compressed results-secondary-block--expanded');
+            this.coursesSecondaryView.$el.
+                removeClass('results-secondary-block--compressed results-secondary-block--expanded');
+            this.groupsSecondaryView.$el.
+                removeClass('results-secondary-block--compressed results-secondary-block--expanded');
 
             // Insert the elements in the correct locations
             // depending on which filter is selected.
@@ -201,6 +213,26 @@ Stem.Views = Stem.Views || {};
             // Return view for method chaining.
 
             return this;  // for method chaining
+
+        },
+        
+        expand: function (results) {
+
+            this.contentSecondaryView.$el.addClass(
+                results === this.contentSecondaryView ? 
+                    'results-secondary-block--expanded' : 
+                    'results-secondary-block--compressed'
+            );
+            this.coursesSecondaryView.$el.addClass(
+                results === this.coursesSecondaryView ? 
+                    'results-secondary-block--expanded' : 
+                    'results-secondary-block--compressed'
+            );
+            this.groupsSecondaryView.$el.addClass(
+                results === this.groupsSecondaryView ? 
+                    'results-secondary-block--expanded' : 
+                    'results-secondary-block--compressed'
+            );
 
         }
 
