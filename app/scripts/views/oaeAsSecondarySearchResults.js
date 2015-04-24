@@ -18,9 +18,10 @@ Stem.Views = Stem.Views || {};
         render: function () {
             this.reset();
             this.collection.each(function(model, idx) {
-                // No more than two results in a secondary listing
                 if (idx < 2) {
                     this.add(model);
+                } else if (idx < 6) {
+                    this.addExtra(model);
                 }
             }, this);
             return this; // for method chaining
@@ -34,6 +35,13 @@ Stem.Views = Stem.Views || {};
         add: function(model) {
             var view = new Stem.Views.OaeAsSecondarySearchResult({model: model});
             this.$el.append(view.render().$el);
+            return this; // for method chaining
+        },
+
+        addExtra: function(model) {
+            var view = new Stem.Views.OaeAsSecondarySearchResult({model: model});
+            view.render().$el.addClass('results-secondary__item--extra');
+            this.$el.append(view.$el);
             return this; // for method chaining
         }
 
