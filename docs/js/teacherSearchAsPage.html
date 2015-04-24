@@ -556,6 +556,10 @@ we debounce this event.</p>
             <span class="hljs-keyword">this</span>.groupsSecondaryView.render();
 
             <span class="hljs-keyword">this</span>.arrangeResults();
+            
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.contentSecondaryView, <span class="hljs-string">'expand'</span>, <span class="hljs-keyword">this</span>.expand);
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.coursesSecondaryView, <span class="hljs-string">'expand'</span>, <span class="hljs-keyword">this</span>.expand);
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.groupsSecondaryView,  <span class="hljs-string">'expand'</span>, <span class="hljs-keyword">this</span>.expand);
 
         },</pre></div></div>
             
@@ -606,6 +610,24 @@ we debounce this event.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
+              <p>Clear any expanded or compressed attributes</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">this</span>.contentSecondaryView.$el.attr(<span class="hljs-string">'data-status'</span>, <span class="hljs-string">''</span>);
+            <span class="hljs-keyword">this</span>.coursesSecondaryView.$el.attr(<span class="hljs-string">'data-status'</span>, <span class="hljs-string">''</span>);
+            <span class="hljs-keyword">this</span>.groupsSecondaryView.$el.attr(<span class="hljs-string">'data-status'</span>, <span class="hljs-string">''</span>);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
               <p>Insert the elements in the correct locations
 depending on which filter is selected.</p>
 
@@ -643,11 +665,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <h2 id="render">render</h2>
 
@@ -659,11 +681,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Render the main template first.</p>
 
@@ -675,11 +697,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Add in ARIA information.</p>
 
@@ -693,11 +715,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Render the individual components of the view.</p>
 
@@ -711,11 +733,11 @@ depending on which filter is selected.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Return view for method chaining.</p>
 
@@ -723,6 +745,23 @@ depending on which filter is selected.</p>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;  <span class="hljs-comment">// for method chaining</span>
+
+        },
+        
+        expand: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(results)</span> </span>{
+
+            <span class="hljs-keyword">this</span>.contentSecondaryView.$el.attr(
+                <span class="hljs-string">'data-status'</span>,
+                results === <span class="hljs-keyword">this</span>.contentSecondaryView ? <span class="hljs-string">'expanded'</span> : <span class="hljs-string">'compressed'</span>
+            );
+            <span class="hljs-keyword">this</span>.coursesSecondaryView.$el.attr(
+                <span class="hljs-string">'data-status'</span>,
+                results === <span class="hljs-keyword">this</span>.coursesSecondaryView ? <span class="hljs-string">'expanded'</span> : <span class="hljs-string">'compressed'</span>
+            );
+            <span class="hljs-keyword">this</span>.groupsSecondaryView.$el.attr(
+                <span class="hljs-string">'data-status'</span>,
+                results === <span class="hljs-keyword">this</span>.groupsSecondaryView  ? <span class="hljs-string">'expanded'</span> : <span class="hljs-string">'compressed'</span>
+            );
 
         }
 
