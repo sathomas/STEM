@@ -151,13 +151,11 @@ Stem.Views = Stem.Views || {};
             this.groupsMainView.$el.detach();
             this.groupsSecondaryView.$el.detach();
             
-            // Clear any expanded or compressed classes
-            this.contentSecondaryView.$el.
-                removeClass('results-secondary-block--compressed results-secondary-block--expanded');
-            this.coursesSecondaryView.$el.
-                removeClass('results-secondary-block--compressed results-secondary-block--expanded');
-            this.groupsSecondaryView.$el.
-                removeClass('results-secondary-block--compressed results-secondary-block--expanded');
+            // Clear any expanded or compressed attributes
+
+            this.contentSecondaryView.$el.attr('data-status', '');
+            this.coursesSecondaryView.$el.attr('data-status', '');
+            this.groupsSecondaryView.$el.attr('data-status', '');
 
             // Insert the elements in the correct locations
             // depending on which filter is selected.
@@ -218,20 +216,17 @@ Stem.Views = Stem.Views || {};
         
         expand: function (results) {
 
-            this.contentSecondaryView.$el.addClass(
-                results === this.contentSecondaryView ? 
-                    'results-secondary-block--expanded' : 
-                    'results-secondary-block--compressed'
+            this.contentSecondaryView.$el.attr(
+                'data-status',
+                results === this.contentSecondaryView ? 'expanded' : 'compressed'
             );
-            this.coursesSecondaryView.$el.addClass(
-                results === this.coursesSecondaryView ? 
-                    'results-secondary-block--expanded' : 
-                    'results-secondary-block--compressed'
+            this.coursesSecondaryView.$el.attr(
+                'data-status',
+                results === this.coursesSecondaryView ? 'expanded' : 'compressed'
             );
-            this.groupsSecondaryView.$el.addClass(
-                results === this.groupsSecondaryView ? 
-                    'results-secondary-block--expanded' : 
-                    'results-secondary-block--compressed'
+            this.groupsSecondaryView.$el.attr(
+                'data-status',
+                results === this.groupsSecondaryView  ? 'expanded' : 'compressed'
             );
 
         }

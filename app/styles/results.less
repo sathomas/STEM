@@ -299,7 +299,7 @@
     box-sizing: content-box;
     border-bottom: 1px solid @color-theme-0-medium;
     clear: both;
-    min-height: 75px;
+    min-height: @thumbnail-size;
     list-style: none;
     padding-bottom: @block-spacing;
     .spacing(padding-left);
@@ -316,14 +316,14 @@
     box-sizing: border-box;
     display: block;
     float: left;
-    height: 75px;
-    width: 75px;
+    height: @thumbnail-size;
+    width: @thumbnail-size;
 }
 
 .results-main__link {
     display: block;
     font-size: 2.2rem;
-    min-height: 75px;
+    min-height: @thumbnail-size;
     padding-left:  @block-spacing;
     overflow: hidden;
     text-decoration: none;
@@ -406,33 +406,32 @@
 }
 
 .results-secondary-block {
-    max-height: 650px;
-    &.results-secondary-block--compressed {
+    max-height: 132px + 40px + 2 * (@large-thumbnail-size + @block-spacing-desktop + 2);
+    &[data-status=compressed] {
         max-height: 0;
     }
-    &.results-secondary-block--expanded {
-        max-height: 1600px;
+    &[data-status=expanded] {
+        max-height: 132px + 40px + 6 * (@large-thumbnail-size + @block-spacing-desktop + 2);
     }
     overflow: hidden;
     transition: max-height 400ms ease;
 }
 
 .results-secondary__heading {
+    line-height: 1.2;
     margin-bottom: 0;
     .spacing(padding-bottom);
     .spacing(padding-left);
     .spacing(padding-right);
     .spacing(padding-top);
-    @media @tablet { padding-bottom: @block-spacing; }
-    @media @desktop { padding-bottom: @block-spacing; }
-}
-
-.results-secondary__heading {
-    line-height: 1.2;
     text-align: center;
 }
 
 .results-secondary__list {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
     padding-bottom: 0;
     padding-left: 0;
     padding-right: 0;
@@ -445,13 +444,13 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 0;
-    max-width: 200px;
     position: relative;
+    width: @large-thumbnail-size;
 }
 
 .results-secondary__item--extra {
     display: none;
-    .results-secondary-block--expanded & {
+    .results-secondary-block[data-status=expanded] & {
         display: block;
     }
 }
@@ -489,14 +488,14 @@
 
 .results-secondary__extras {
     text-align: center;
-    .results-secondary-block--expanded & {
+    .results-secondary-block[data-status=expanded] & {
         display: none;
     }
 }
 
 .results-secondary__more {
     display: none;
-    .results-secondary-block--expanded & {
+    .results-secondary-block[data-status=expanded] & {
         display: block;
     }
     text-align: center;
