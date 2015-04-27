@@ -430,6 +430,54 @@ we <em>won’t</em> have to parse anything.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-8">&#182;</a>
               </div>
+              <p>The OAE API may not return a full set of
+results. When that’s the case, it includes
+a <code>nextToken</code> value for continuing the query.
+If the results so far don’t satisfy our
+limits, we’ll can to make additional API
+calls.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (response.nextToken &amp;&amp; <span class="hljs-keyword">this</span>._options.limit &amp;&amp; 
+                (<span class="hljs-keyword">this</span>.length + response.results.length) &lt; <span class="hljs-keyword">this</span>._options.limit) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Make another API request to fetch
+additional models.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    
+                <span class="hljs-keyword">this</span>.fetch({
+                    remove: <span class="hljs-literal">false</span>,
+                    url: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host +
+                         <span class="hljs-string">'/api/group/'</span> + <span class="hljs-keyword">this</span>._options.parentId + <span class="hljs-string">'/members'</span> +
+                         <span class="hljs-string">'?limit='</span> + 
+                            (<span class="hljs-keyword">this</span>._options.limit - <span class="hljs-keyword">this</span>.length - response.results.length) +
+                         <span class="hljs-string">'&amp;start='</span> + response.nextToken
+                });
+                
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
               <p>The OAE API returns models in the <code>results</code>
 property of the response. If that property
 exists, return the models it contains. Otherwise
