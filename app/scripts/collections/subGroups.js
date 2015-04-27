@@ -57,7 +57,7 @@ Stem.Collections = Stem.Collections || {};
             // If the results so far don't satisfy our
             // limits, we'll can to make additional API
             // calls.
-            
+
             if (response.nextToken && this._options.limit && 
                 (this.length + response.results.length) < this._options.limit) {
 
@@ -65,6 +65,7 @@ Stem.Collections = Stem.Collections || {};
                 // additional models.
                     
                 this.fetch({
+                    remove: false,
                     url: Stem.config.oae.protocol + '//' + Stem.config.oae.host +
                          '/api/group/' + this._options.parentId + '/members' +
                          '?limit=' + 

@@ -122,5 +122,19 @@ describe('SubGroups Collection', function () {
     it('should set the thumbnail from the small picture', function() {
         this.SubGroupsCollection.at(0).get('thumbnailUrl').should.equal(oaeResponse.results[0].profile.picture.small);
     });
+    
+    it('should follow up if initial request not fulfilled', function() {
+        var response = $.extend(true,{},oaeResponse);
+        response.nextToken = true;
+        response.results[0].id = '1';
+        response.results[1].id = '2';
+        var ajaxStub = sinon.stub($, 'ajax');
+        ajaxStub.onFirstCall().yieldsTo('success', response);
+        ajaxStub.yieldsTo('success', oaeResponse);
+        var subGroupsCollection = new Stem.Collections.SubGroups([],{parentId: 'ParentId', limit: 4});
+        subGroupsCollection.fetch();
+        ajaxStub.callCount.should.equal(2);
+        ajaxStub.restore();
+    });
 
 });
