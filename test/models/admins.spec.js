@@ -1,5 +1,5 @@
 /* jshint sub: true */
-/*global before, describe, it, sinon, $, Stem  */
+/*global beforeEach, afterEach, describe, it, sinon, $, Stem  */
 
 describe('Admins Model', function () {
 
@@ -33,7 +33,8 @@ describe('Admins Model', function () {
         {
           "profile": {
             "id": "u:gatech:lknvFkQkb",
-            "resourceType": "user",
+            "description": "LatLong: [1,2]",
+            "resourceType": "group",
             "picture": {
               "small": "/api/download/signed?uri=local%3Au%2Fgatech%2Flk%2Fnv%2FFk%2FQk%2FlknvFkQkb%2Fprofilepictures%2F1406724198397%2Fsmall.jpg&expires=1427932800000&signature=225e10bfa0c33c02a22d18b31626807d5726dfb1",
               "large": "/api/download/signed?uri=local%3Au%2Fgatech%2Flk%2Fnv%2FFk%2FQk%2FlknvFkQkb%2Fprofilepictures%2F1406724190852%2Flarge.jpg&expires=1427932800000&signature=58fbe47d36cc415006d748c54458607d012bdc1d",
@@ -60,36 +61,38 @@ describe('Admins Model', function () {
         "nextToken": null
     };
 
-    before(function () {
-        var ajaxStub = sinon.stub($, 'ajax');
-        ajaxStub.yieldsTo('success', oaeResponse);
-        var locationStub = sinon.stub(Stem.Utils, 'getLocationFromStreet');
-        locationStub.callsArgWith(1, [1,2]);
+    beforeEach(function () {
+        this.ajaxStub = sinon.stub($, 'ajax');
+        this.ajaxStub.yieldsTo('success', oaeResponse);
+        this.locationStub = sinon.stub(Stem.Utils, 'getLocationFromStreet');
+        this.locationStub.callsArgWith(1, [1,2]);
         this.AdminsModel = new Stem.Models.Admins();
-        ajaxStub.restore();
-        locationStub.restore();
+    });
+    
+    afterEach(function () {
+        this.ajaxStub.restore();
+        this.locationStub.restore();
     });
 
     it('should load certified schools into points of interest', function () {
-        this.AdminsModel.get('certificationPois').length.should.equal(1);
+        this.AdminsModel.get('certificationPois').length.should.equal(2);
     });
 
     it('should load spotlights', function () {
-        this.AdminsModel.get('spotlights').length.should.equal(1);
+        this.AdminsModel.get('spotlights').length.should.equal(2);
     });
 
     it('should not load a new collection when given existing one', function () {
-        var ajaxSpy = sinon.spy($, 'ajax');
-        var locationStub = sinon.stub(Stem.Utils, 'getLocationFromStreet');
-        locationStub.callsArgWith(1, [1,2]);
+        var intialCalls = this.ajaxStub.callCount;
         new Stem.Models.Admins({
             certifications: new Stem.Collections.SubGroups([{}]),
             spotlights: new Stem.Collections.SubGroups([{}])
         });
-        ajaxSpy.called.should.be.false();
-        locationStub.restore();
-        ajaxSpy.restore();
+        this.ajaxStub.callCount.should.equal(intialCalls);
     });
 
+    it('should lookup street address when no lat/long is available', function () {
+        this.locationStub.callCount.should.equal(1);
+    });
 
 });
