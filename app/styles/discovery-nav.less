@@ -51,19 +51,18 @@
  */
 
 .discovery-nav {
-    .row;
     display: none;
 }
 
 .flexbox .discovery-nav {
+    .row;
     @media @desktop { display: flex; }
 }
 
-.no-flexbox .discovery-nav {
-    @media @desktop { display: inline-table; }
-}
-
 @media @desktop {
+    .no-flexbox .discovery-nav {
+        display: inline-table;
+    }
     .js nav.discovery-nav[data-discovery-nav] ~ article {
         .invisible;
     }
@@ -337,37 +336,50 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
  *     .
  */
 
-.no-flexbox .discovery-nav__label {
-    display: table-cell;
-    width: 15%;
-    @{selected} + & {
-        width: 70%;
-    }
-}
-
-.flexbox .discovery-nav__label {
-
-}
-
-.discovery-nav__label {
-    .one-sixth-column;
-    align-items: flex-start;
+ .discovery-nav__label {
     background-position: bottom;
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
-    transition: max-width 250ms ease, flex-basis 250ms ease;
     @{selected} + & {
-        .two-thirds-column;
         align-items: center;
-        font-size: 3rem;
-        justify-content: flex-end;
-        height: 41.2vw; // 61.8% * 2/3%
-        .spacing(padding-bottom);
         text-align: center;
         vertical-align: bottom;
+        .spacing(padding-bottom);
+        height: 41.2vw; // 61.8% * 2/3%
+        font-size: 3rem;
+    }
+ }
+
+.no-flexbox {
+    .discovery-nav__label {
+        display: table-cell;
+        transition: max-width 250ms ease, flex-basis 250ms ease;
+        width: 16.66%;
+        max-width: 16.66%;
+        min-width: 16.66%;
+    }
+
+    @{selected} + .discovery-nav__label {
+        width: 66.66%;
+        max-width: 66.66%;
+        min-width: 66.66%;
+    }
+}
+
+
+.flexbox {
+    .discovery-nav__label {
+        .one-sixth-column;
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        transition: max-width 250ms ease, flex-basis 250ms ease;
+    }
+
+    @{selected} + .discovery-nav__label {
+        .two-thirds-column;
+        justify-content: flex-end;
     }
 }
 
