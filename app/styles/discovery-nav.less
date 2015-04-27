@@ -55,8 +55,12 @@
     display: none;
 }
 
-.js .discovery-nav {
+.flexbox .discovery-nav {
     @media @desktop { display: flex; }
+}
+
+.no-flexbox .discovery-nav {
+    @media @desktop { display: inline-table; }
 }
 
 @media @desktop {
@@ -332,6 +336,18 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
  *
  *     .
  */
+
+.no-flexbox .discovery-nav__label {
+    display: table-cell;
+    width: 15%;
+    @{selected} + & {
+        width: 70%;
+    }
+}
+
+.flexbox .discovery-nav__label {
+
+}
 
 .discovery-nav__label {
     .one-sixth-column;
