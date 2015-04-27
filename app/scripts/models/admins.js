@@ -65,24 +65,55 @@ Stem.Models = Stem.Models || {};
 
         certificationAdded: function (group) {
 
-            // Look for a street address in the
-            // group's description. That would be
-            // a line that begins "Address:".
+            // Look for an explicit latitude/longitude
+            // or a street address in the group's
+            // description.
 
             if (group.get('description')) {
-
-                var addrLines = _(group.get('description')
-                    .split('\n'))
-                    .filter(function(line) {
-                        return line.trim()
-                            .toLowerCase()
-                            .indexOf('address:') === 0;
+                
+                var descLines = _(group.get('description').split('\n'))
+                    .map(function(line) {
+                        return line.trim();
                     });
 
-                // If we found an address in the
+                var geoLines = _(descLines).filter(function(line) {
+                        return (line.indexOf('latlong:') === 0) ||
+                               (line.indexOf('Latlong:') === 0) ||
+                               (line.indexOf('LatLong:') === 0) ||
+                               (line.indexOf('LATLONG:') === 0);
+                    });
+
+                var addrLines = _(descLines).filter(function(line) {
+                        return (line.indexOf('address:') === 0) ||
+                               (line.indexOf('Address:') === 0) ||
+                               (line.indexOf('ADDRESS:') === 0);
+                    });
+
+                // If we found lat/long in the
                 // description, we're in business.
 
-                if (addrLines.length) {
+                if (geoLines.length) {
+
+                    var latLong = _(geoLines[0].substr(8).trim().split(','))
+                        .map(function(coords) {
+                            return parseFloat(coords);
+                        });
+                    
+                    this.get('certificationPois').add(
+                        new Stem.Models.Poi({
+                            className: className,
+                            imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
+                            latitude:  latLong[0],
+                            link:      Stem.Utils.oaeUrl(group.get('profilePath')),
+                            longitude: latLong[1],
+                            title:     group.get('displayName')
+                        })
+                    );
+                
+                // No explicit lat/long; how about a
+                // street address?
+                    
+                } else if (addrLines.length) {
 
                     // Use a network service to retrieve
                     // geographic coordinates from a
@@ -94,7 +125,7 @@ Stem.Models = Stem.Models || {};
 
                             this.get('certificationPois').add(
                                 new Stem.Models.Poi({
-                                    className: 'theme-2',
+                                    className: className,
                                     imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
                                     latitude:  latLong[0],
                                     link:      Stem.Utils.oaeUrl(group.get('profilePath')),

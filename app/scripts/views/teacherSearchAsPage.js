@@ -129,6 +129,10 @@ Stem.Views = Stem.Views || {};
             this.groupsSecondaryView.render();
 
             this.arrangeResults();
+            
+            this.listenTo(this.contentSecondaryView, 'expand', this.expand);
+            this.listenTo(this.coursesSecondaryView, 'expand', this.expand);
+            this.listenTo(this.groupsSecondaryView,  'expand', this.expand);
 
         },
 
@@ -146,6 +150,12 @@ Stem.Views = Stem.Views || {};
             this.coursesSecondaryView.$el.detach();
             this.groupsMainView.$el.detach();
             this.groupsSecondaryView.$el.detach();
+            
+            // Clear any expanded or compressed attributes
+
+            this.contentSecondaryView.$el.attr('data-status', '');
+            this.coursesSecondaryView.$el.attr('data-status', '');
+            this.groupsSecondaryView.$el.attr('data-status', '');
 
             // Insert the elements in the correct locations
             // depending on which filter is selected.
@@ -201,6 +211,23 @@ Stem.Views = Stem.Views || {};
             // Return view for method chaining.
 
             return this;  // for method chaining
+
+        },
+        
+        expand: function (results) {
+
+            this.contentSecondaryView.$el.attr(
+                'data-status',
+                results === this.contentSecondaryView ? 'expanded' : 'compressed'
+            );
+            this.coursesSecondaryView.$el.attr(
+                'data-status',
+                results === this.coursesSecondaryView ? 'expanded' : 'compressed'
+            );
+            this.groupsSecondaryView.$el.attr(
+                'data-status',
+                results === this.groupsSecondaryView  ? 'expanded' : 'compressed'
+            );
 
         }
 

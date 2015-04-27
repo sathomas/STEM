@@ -51,6 +51,30 @@ Stem.Collections = Stem.Collections || {};
 
         parse: function(response)  {
 
+            // The OAE API may not return a full set of
+            // results. When that's the case, it includes
+            // a `nextToken` value for continuing the query.
+            // If the results so far don't satisfy our
+            // limits, we'll can to make additional API
+            // calls.
+
+            if (response.nextToken && this._options.limit && 
+                (this.length + response.results.length) < this._options.limit) {
+
+                // Make another API request to fetch
+                // additional models.
+                    
+                this.fetch({
+                    remove: false,
+                    url: Stem.config.oae.protocol + '//' + Stem.config.oae.host +
+                         '/api/group/' + this._options.parentId + '/members' +
+                         '?limit=' + 
+                            (this._options.limit - this.length - response.results.length) +
+                         '&start=' + response.nextToken
+                });
+                
+            }
+
             // The OAE API returns models in the `results`
             // property of the response. If that property
             // exists, return the models it contains. Otherwise

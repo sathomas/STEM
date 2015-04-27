@@ -17,6 +17,24 @@ describe('OaeAsSecondarySearchGroup View', function () {
                 displayName:  'displayName 2',
                 profilePath:  '/profile/path/2',
                 thumbnailUrl: '/thumbnail/url/2'
+            }),
+            new Stem.Models.Group({
+                description:  'description 3',
+                displayName:  'displayName 3',
+                profilePath:  '/profile/path/3',
+                thumbnailUrl: '/thumbnail/url/3'
+            }),
+            new Stem.Models.Group({
+                description:  'description 4',
+                displayName:  'displayName 4',
+                profilePath:  '/profile/path/4',
+                thumbnailUrl: '/thumbnail/url/4'
+            }),
+            new Stem.Models.Group({
+                description:  'description 5',
+                displayName:  'displayName 5',
+                profilePath:  '/profile/path/5',
+                thumbnailUrl: '/thumbnail/url/5'
            })
         ]);
         this.group = new Stem.Models.SearchGroup({
@@ -43,13 +61,24 @@ describe('OaeAsSecondarySearchGroup View', function () {
     it('should include a list of results', function() {
         var $el = this.OaeAsSecondarySearchGroup.render().$el;
         $el.find('ul').length.should.equal(1);
-        $el.find('li').length.should.equal(2);
+        $el.find('li').length.should.equal(5);
+    });
+
+    it('should mark excess results as extra', function() {
+        var $el = this.OaeAsSecondarySearchGroup.render().$el;
+        $el.find('li.results-secondary__item--extra').length.should.equal(3);
     });
 
     it('should include a more button', function() {
         var $el = this.OaeAsSecondarySearchGroup.render().$el;
-        $el.find('button').length.should.equal(1);
-        $el.find('button').hasClass('btn').should.be.true();
+        $el.find('.results-secondary__more button').length.should.equal(1);
+        $el.find('.results-secondary__more button').hasClass('btn').should.be.true();
+    });
+
+    it('should include an extras button', function() {
+        var $el = this.OaeAsSecondarySearchGroup.render().$el;
+        $el.find('.results-secondary__extras button').length.should.equal(1);
+        $el.find('.results-secondary__extras button').hasClass('btn').should.be.true();
     });
 
     it('should redirect when more button clicked', function() {

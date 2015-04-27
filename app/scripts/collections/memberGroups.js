@@ -104,7 +104,7 @@ Stem.Collections = Stem.Collections || {};
         // we _won't_ have to parse anything.
 
         parse: function(response)  {
-
+            
             // The search API returns models in the `results`
             // property of the response. If that property
             // exists, return the models it contains. Otherwise
