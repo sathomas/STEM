@@ -150,15 +150,25 @@ Stem.Views = Stem.Views || {};
                 width:  width  + 'px'
             });
 
-            // Initialize the underlying map object.
+            // Initialize the underlying map object. The code
+            // to limit the map to Georgia only is currently
+            // commented out because it introduces usability
+            // issues. (Namely, if a popup extends beyond
+            // the map bounds, it's partially unreadable.)
+            // If the bounding behavior is desirable, the
+            // bounds should be extended to allow full popups
+            // to display. It's not considered a problem
+            // worth solving at this time, but the code is
+            // left in place (though commented out) to 
+            // indicate where the behavior can be added back.
 
             this.map = L.map(this.el, {
                 layers: [L.tileLayer(this.options.mapTiles, {
                             attribution: this.options.attribution,
                             maxZoom: this.options.maxZoom
                         })],
-                maxBounds: [ Stem.config.geo.northwestCorner,
-                             Stem.config.geo.southeastCorner ],
+                // maxBounds: [ Stem.config.geo.northwestCorner,
+                //              Stem.config.geo.southeastCorner ],
                 scrollWheelZoom: false,
             });
 
