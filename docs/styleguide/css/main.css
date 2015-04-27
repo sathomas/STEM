@@ -2724,10 +2724,6 @@ div.poi-marker[data-hidden="1"] {
   display: table-cell;
   line-height: 0.7;
   list-style: none;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
@@ -2742,6 +2738,14 @@ div.poi-marker[data-hidden="1"] {
 @media only screen and (min-width: 500px) {
   .results-filter__list {
     line-height: inherit;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .results-filter__list {
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
   }
 }
 @media only screen and (min-width: 500px) {

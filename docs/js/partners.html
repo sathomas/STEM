@@ -651,20 +651,31 @@ for an OAE group,</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
-              <p>Look for a street address in the
-group’s description. That would be
-a line that begins “Address:”.</p>
+              <p>Look for an explicit latitude/longitude
+or a street address in the group’s
+description.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
             <span class="hljs-keyword">if</span> (group.get(<span class="hljs-string">'description'</span>)) {
+                
+                <span class="hljs-keyword">var</span> descLines = _(group.get(<span class="hljs-string">'description'</span>).split(<span class="hljs-string">'\n'</span>))
+                    .map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
+                        <span class="hljs-keyword">return</span> line.trim();
+                    });
 
-                <span class="hljs-keyword">var</span> addrLines = _(group.get(<span class="hljs-string">'description'</span>).split(<span class="hljs-string">'\n'</span>))
-                    .filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
-                        <span class="hljs-keyword">return</span> line.trim()
-                            .toLowerCase()
-                            .indexOf(<span class="hljs-string">'address:'</span>) === <span class="hljs-number">0</span>;
+                <span class="hljs-keyword">var</span> geoLines = _(descLines).filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
+                        <span class="hljs-keyword">return</span> (line.indexOf(<span class="hljs-string">'latlong:'</span>) === <span class="hljs-number">0</span>) ||
+                               (line.indexOf(<span class="hljs-string">'Latlong:'</span>) === <span class="hljs-number">0</span>) ||
+                               (line.indexOf(<span class="hljs-string">'LatLong:'</span>) === <span class="hljs-number">0</span>) ||
+                               (line.indexOf(<span class="hljs-string">'LATLONG:'</span>) === <span class="hljs-number">0</span>);
+                    });
+
+                <span class="hljs-keyword">var</span> addrLines = _(descLines).filter(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(line)</span> </span>{
+                        <span class="hljs-keyword">return</span> (line.indexOf(<span class="hljs-string">'address:'</span>) === <span class="hljs-number">0</span>) ||
+                               (line.indexOf(<span class="hljs-string">'Address:'</span>) === <span class="hljs-number">0</span>) ||
+                               (line.indexOf(<span class="hljs-string">'ADDRESS:'</span>) === <span class="hljs-number">0</span>);
                     });</pre></div></div>
             
         </li>
@@ -676,13 +687,29 @@ a line that begins “Address:”.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>If we found an address in the
+              <p>If we found lat/long in the
 description, we’re in business.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-                <span class="hljs-keyword">if</span> (addrLines.length) {</pre></div></div>
+                <span class="hljs-keyword">if</span> (geoLines.length) {
+
+                    <span class="hljs-keyword">var</span> latLong = _(geoLines[<span class="hljs-number">0</span>].substr(<span class="hljs-number">8</span>).trim().split(<span class="hljs-string">','</span>))
+                        .map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(coords)</span> </span>{
+                            <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseFloat</span>(coords);
+                        });
+                    
+                    <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'organizationPois'</span>).add(
+                        <span class="hljs-keyword">new</span> Stem.Models.Poi({
+                            className: className,
+                            imageUrl:  Stem.Utils.oaeUrl(group.get(<span class="hljs-string">'thumbnailUrl'</span>)),
+                            latitude:  latLong[<span class="hljs-number">0</span>],
+                            link:      Stem.Utils.oaeUrl(group.get(<span class="hljs-string">'profilePath'</span>)),
+                            longitude: latLong[<span class="hljs-number">1</span>],
+                            title:     group.get(<span class="hljs-string">'displayName'</span>)
+                        })
+                    );</pre></div></div>
             
         </li>
         
@@ -692,6 +719,23 @@ description, we’re in business.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>No explicit lat/long; how about a
+street address?</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                    
+                } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (addrLines.length) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Use a network service to retrieve
 geographic coordinates from a
@@ -730,11 +774,11 @@ street address.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Try to extract geolocation from the
 group.</p>
@@ -751,11 +795,11 @@ group.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Try to extract geolocation from the
 group.</p>
@@ -772,11 +816,11 @@ group.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Try to extract geolocation from the
 group.</p>
@@ -791,11 +835,11 @@ group.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>Function called when a new DonorsChoose proposal
 has been fetched from DonorsChoose and added to
@@ -809,11 +853,11 @@ our internal collection.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Extract the relevant information from the
 DonorsChoose response for our own POI model
@@ -838,11 +882,11 @@ and add it to our internal collection.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Model iniitalization.</p>
 
@@ -854,11 +898,11 @@ and add it to our internal collection.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Set up the individual parts of the model.</p>
 
