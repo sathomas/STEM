@@ -1500,6 +1500,15 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 .discovery-nav__radio:checked + .discovery-nav__label .discovery-nav__label__more {
   display: none;
 }
+.theme-1 .discovery-nav__label__more {
+  color: #009eaf;
+}
+.theme-2 .discovery-nav__label__more {
+  color: #00ab0f;
+}
+.theme-3 .discovery-nav__label__more {
+  color: #005493;
+}
 /**
  * ### `discovery-nav__label__images`
  * The image block (small image visible

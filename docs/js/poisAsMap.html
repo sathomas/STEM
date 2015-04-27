@@ -677,7 +677,17 @@ the browser window width.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
-              <p>Initialize the underlying map object.</p>
+              <p>Initialize the underlying map object. The code
+to limit the map to Georgia only is currently
+commented out because it introduces usability
+issues. (Namely, if a popup extends beyond
+the map bounds, it’s partially unreadable.)
+If the bounding behavior is desirable, the
+bounds should be extended to allow full popups
+to display. It’s not considered a problem
+worth solving at this time, but the code is
+left in place (though commented out) to 
+indicate where the behavior can be added back.</p>
 
             </div>
             
@@ -686,11 +696,7 @@ the browser window width.</p>
                 layers: [L.tileLayer(<span class="hljs-keyword">this</span>.options.mapTiles, {
                             attribution: <span class="hljs-keyword">this</span>.options.attribution,
                             maxZoom: <span class="hljs-keyword">this</span>.options.maxZoom
-                        })],
-                maxBounds: [ Stem.config.geo.northwestCorner,
-                             Stem.config.geo.southeastCorner ],
-                scrollWheelZoom: <span class="hljs-literal">false</span>,
-            });</pre></div></div>
+                        })],</pre></div></div>
             
         </li>
         
@@ -700,6 +706,23 @@ the browser window width.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>maxBounds: [ Stem.config.geo.northwestCorner,
+             Stem.config.geo.southeastCorner ],</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                scrollWheelZoom: <span class="hljs-literal">false</span>,
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>If a tint is desired, add it.</p>
 
@@ -718,11 +741,11 @@ the browser window width.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Now that the map infrastructure
 is in place, we can look at the
@@ -740,11 +763,11 @@ add them to the map.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Cache a reference to the Leaflet
 structure in the map element. We
@@ -765,11 +788,11 @@ the window size changes.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Function to show the map to the user.
 This function may cause the browser to
@@ -786,11 +809,11 @@ that the map is actually visible.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Use a closure variable to keep track
 of whether we’ve found the location
@@ -804,11 +827,11 @@ or not.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>We’re going to try to set the initial
 map location based on the user’s
@@ -829,11 +852,11 @@ is already available and cached.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Okay, the geo-location info isn’t
 conveniently available already, so we’ll
@@ -850,11 +873,11 @@ to deal with the results.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Set the map view.</p>
 
@@ -866,11 +889,11 @@ to deal with the results.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>If we successfully get the location,
 save it for other maps to use.</p>
@@ -884,11 +907,11 @@ save it for other maps to use.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Note that we’ve found it.</p>
 
@@ -903,11 +926,11 @@ save it for other maps to use.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Now we’re set up to make the call
 to request location information
@@ -924,11 +947,11 @@ from the user.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Unfortunately, some browers allow
 location permission requests to
@@ -947,11 +970,11 @@ own explicit timeout.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Once the delay has passed, check
 to see if we have a location.</p>
@@ -966,11 +989,11 @@ to see if we have a location.</p>
         </li>
         
         
-        <li id="section-34">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-34">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Nope. Resort to fallback.</p>
 
@@ -990,11 +1013,11 @@ to see if we have a location.</p>
         </li>
         
         
-        <li id="section-35">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-35">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>Handle case when browser geolocation fails.</p>
 
@@ -1006,11 +1029,11 @@ to see if we have a location.</p>
         </li>
         
         
-        <li id="section-36">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-36">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>We may have gotten here because of
 a race condition in Leaflet with
@@ -1033,11 +1056,11 @@ case, we can still set the view.</p>
         </li>
         
         
-        <li id="section-37">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-37">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <p>Bummer. We couldn’t get the location
 information from the browser directly.
@@ -1053,11 +1076,11 @@ client’s public IP address.</p>
         </li>
         
         
-        <li id="section-38">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-38">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Success. Set the map view.</p>
 
@@ -1072,11 +1095,11 @@ client’s public IP address.</p>
         </li>
         
         
-        <li id="section-39">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-39">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Okay. That didn’t work either.
 Only option left is resorting
@@ -1101,11 +1124,11 @@ to default values.</p>
         </li>
         
         
-        <li id="section-40">
+        <li id="section-41">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-40">&#182;</a>
+                <a class="pilcrow" href="#section-41">&#182;</a>
               </div>
               <p>Add an additional POI marker to the map.</p>
 
@@ -1117,11 +1140,11 @@ to default values.</p>
         </li>
         
         
-        <li id="section-41">
+        <li id="section-42">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-41">&#182;</a>
+                <a class="pilcrow" href="#section-42">&#182;</a>
               </div>
               <p>We only process this if the
 map has been rendered. (If
@@ -1138,11 +1161,11 @@ at which time we’ll catch up.</p>
         </li>
         
         
-        <li id="section-42">
+        <li id="section-43">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-42">&#182;</a>
+                <a class="pilcrow" href="#section-43">&#182;</a>
               </div>
               <p>Create a simple HTML icon
 for the marker. The numbers
@@ -1164,11 +1187,11 @@ CSS that styles the markers.</p>
         </li>
         
         
-        <li id="section-43">
+        <li id="section-44">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-43">&#182;</a>
+                <a class="pilcrow" href="#section-44">&#182;</a>
               </div>
               <p>Create the marker object with
 appropriate properties and add
