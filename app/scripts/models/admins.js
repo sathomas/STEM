@@ -101,7 +101,7 @@ Stem.Models = Stem.Models || {};
                     
                     this.get('certificationPois').add(
                         new Stem.Models.Poi({
-                            className: className,
+                            className: 'theme-2',
                             imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
                             latitude:  latLong[0],
                             link:      Stem.Utils.oaeUrl(group.get('profilePath')),
@@ -125,7 +125,7 @@ Stem.Models = Stem.Models || {};
 
                             this.get('certificationPois').add(
                                 new Stem.Models.Poi({
-                                    className: className,
+                                    className: 'theme-2',
                                     imageUrl:  Stem.Utils.oaeUrl(group.get('thumbnailUrl')),
                                     latitude:  latLong[0],
                                     link:      Stem.Utils.oaeUrl(group.get('profilePath')),
