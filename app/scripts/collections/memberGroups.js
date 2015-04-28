@@ -54,7 +54,7 @@ Stem.Collections = Stem.Collections || {};
         url: function() {
 
             return Stem.config.oae.protocol + '//' + Stem.config.oae.host +
-                '/api/search/members/' + this._options.parentId  + '?scope=_tenant' +
+                '/api/search/members-library/' + this._options.parentId  + '?scope=_tenant' +
                 (this._options.limit    ? ('&' + 'limit=' + this._options.limit)    : '') +
                 (this._options.keywords ? ('&' + 'q='     + this._options.keywords) : '');
 
