@@ -1543,7 +1543,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   background-image: url(../images/theme-1.jpg);
 }
 .theme-1 .discovery-nav__label__image {
-  background-image: url(../images/theme-1-lowres.jpg);
+  background-image: url(../images/theme-1.jpg);
 }
 .theme-2.discovery-nav__label {
   background-color: #00ab0f;
@@ -1553,7 +1553,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   background-image: url(../images/theme-2.jpg);
 }
 .theme-2 .discovery-nav__label__image {
-  background-image: url(../images/theme-2-lowres.jpg);
+  background-image: url(../images/theme-2.jpg);
 }
 .theme-3.discovery-nav__label {
   background-color: #005493;
@@ -1563,7 +1563,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   background-image: url(../images/theme-3.jpg);
 }
 .theme-3 .discovery-nav__label__image {
-  background-image: url(../images/theme-3-lowres.jpg);
+  background-image: url(../images/theme-3.jpg);
 }
 /**
  * ## Grid
@@ -2392,6 +2392,9 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 .poi-marker.theme-0-black {
   color: #000000;
 }
+.poi-marker.theme-2 {
+  color: #00430c;
+}
 .poi-marker.theme-3 {
   color: #005493;
 }
@@ -2450,6 +2453,7 @@ div.poi-marker[data-hidden="1"] {
   font-size: 1.4rem;
   font-weight: 600;
   height: 48px;
+  line-height: 1.1;
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: text-top;
@@ -2459,7 +2463,7 @@ div.poi-marker[data-hidden="1"] {
   color: #009eaf;
 }
 .theme-2 .poi-popup__text {
-  color: #00ab0f;
+  color: #00430c;
 }
 .theme-3 .poi-popup__text {
   color: #005493;
