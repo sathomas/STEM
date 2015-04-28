@@ -410,7 +410,7 @@ our own function that returns the URL for the collection.</p>
         url: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
             <span class="hljs-keyword">return</span> Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host +
-                <span class="hljs-string">'/api/search/members/'</span> + <span class="hljs-keyword">this</span>._options.parentId  + <span class="hljs-string">'?scope=_tenant'</span> +
+                <span class="hljs-string">'/api/search/members-library/'</span> + <span class="hljs-keyword">this</span>._options.parentId  + <span class="hljs-string">'?scope=_tenant'</span> +
                 (<span class="hljs-keyword">this</span>._options.limit    ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'limit='</span> + <span class="hljs-keyword">this</span>._options.limit)    : <span class="hljs-string">''</span>) +
                 (<span class="hljs-keyword">this</span>._options.keywords ? (<span class="hljs-string">'&amp;'</span> + <span class="hljs-string">'q='</span>     + <span class="hljs-keyword">this</span>._options.keywords) : <span class="hljs-string">''</span>);
 
