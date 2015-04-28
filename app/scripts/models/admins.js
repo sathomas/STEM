@@ -178,7 +178,7 @@ Stem.Models = Stem.Models || {};
 
         },
 
-        // Model iniitalization.
+        // Model initialization.
 
         initialize: function () {
 
