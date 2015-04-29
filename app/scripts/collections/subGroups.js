@@ -63,15 +63,14 @@ Stem.Collections = Stem.Collections || {};
 
                 // Make another API request to fetch
                 // additional models.
-                    
-                this.fetch({
-                    remove: false,
-                    url: Stem.config.oae.protocol + '//' + Stem.config.oae.host +
-                         '/api/group/' + this._options.parentId + '/members' +
-                         '?limit=' + 
-                            (this._options.limit - this.length - response.results.length) +
-                         '&start=' + response.nextToken
-                });
+                
+                var url = Stem.config.oae.protocol + '//' + Stem.config.oae.host +
+                    '/api/group/' + this._options.parentId + '/members' +
+                    '?limit=' + 
+                    (this._options.limit - this.length - response.results.length) +
+                    '&start=' + encodeURIComponent(response.nextToken);
+
+                this.fetch({ remove: false, url: url });
                 
             }
 

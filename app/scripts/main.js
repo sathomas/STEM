@@ -49,6 +49,19 @@ window.Stem = {
             host: 'stemincubator.oaeproject.org',
             protocol: 'https:'
         },
+        
+        // Configuration settings for maps displayed
+        // on the site.
+        
+        map: {
+       
+            // Max number of Points of Interest of
+            // any specific type to be displayed on
+            // the map.
+
+            poiLimit: 100
+
+        },
 
         // Default geographic coordinates are the
         // center of the state and its boundaries.
