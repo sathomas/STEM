@@ -7,7 +7,7 @@ describe('adminsAsDiscovery View', function() {
         this.Admins = new Stem.Models.Admins({
         });
         this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
-            $el: $('<div id="#admins"></div>')
+            $el: $('<div id="#admins"></div>'),
             model: this.Admins
         });
     });
