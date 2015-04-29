@@ -51,17 +51,17 @@
  */
 
 .discovery-nav {
+    .row;
     display: none;
 }
 
 .flexbox .discovery-nav {
-    .row;
     @media @desktop { display: flex; }
 }
 
 @media @desktop {
     .no-flexbox .discovery-nav {
-        display: inline-table;
+        display: table;
     }
     .js nav.discovery-nav[data-discovery-nav] ~ article {
         .invisible;
@@ -341,12 +341,12 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: space-between;
+    height: 41.2vw; // 61.8% * 2/3%
     @{selected} + & {
         align-items: center;
         text-align: center;
         vertical-align: bottom;
         .spacing(padding-bottom);
-        height: 41.2vw; // 61.8% * 2/3%
         font-size: 3rem;
     }
  }
@@ -414,22 +414,40 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
  *     .
  */
 
+.no-flexbox {
+    .discovery-nav__label__content {
+        height: 30.9vw; // 41.2 - 10.3
+    }
+    @{selected-label} .discovery-nav__label__content {
+        height: 5vw;
+    }
+}
+
 .discovery-nav__label__content {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
     .spacing(padding-bottom);
     .spacing(padding-left);
     .spacing(padding-right);
     .spacing(padding-top);
+
     @{selected-label} & {
-        flex-grow: 0;
         padding-bottom: 0;
         padding-left: 0;
         padding-right: 0;
         padding-top: 0;
+    }
+}
+
+.flexbox {
+    .discovery-nav__label__content {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+    }
+
+    @{selected-label} .discovery-nav__label__content {
+        flex-grow: 0;
     }
 }
 
@@ -439,6 +457,10 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 
 .discovery-nav__label__text {
     display: block;
+}
+
+.no-flexbox .discovery-nav__label__text {
+    height: 28vw;
 }
 
 .discovery-nav__label__more {
