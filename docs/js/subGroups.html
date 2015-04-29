@@ -457,15 +457,14 @@ additional models.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                    
-                <span class="hljs-keyword">this</span>.fetch({
-                    remove: <span class="hljs-literal">false</span>,
-                    url: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host +
-                         <span class="hljs-string">'/api/group/'</span> + <span class="hljs-keyword">this</span>._options.parentId + <span class="hljs-string">'/members'</span> +
-                         <span class="hljs-string">'?limit='</span> + 
-                            (<span class="hljs-keyword">this</span>._options.limit - <span class="hljs-keyword">this</span>.length - response.results.length) +
-                         <span class="hljs-string">'&amp;start='</span> + response.nextToken
-                });
+            <div class="content"><div class='highlight'><pre>                
+                <span class="hljs-keyword">var</span> url = Stem.config.oae.protocol + <span class="hljs-string">'//'</span> + Stem.config.oae.host +
+                    <span class="hljs-string">'/api/group/'</span> + <span class="hljs-keyword">this</span>._options.parentId + <span class="hljs-string">'/members'</span> +
+                    <span class="hljs-string">'?limit='</span> + 
+                    (<span class="hljs-keyword">this</span>._options.limit - <span class="hljs-keyword">this</span>.length - response.results.length) +
+                    <span class="hljs-string">'&amp;start='</span> + <span class="hljs-built_in">encodeURIComponent</span>(response.nextToken);
+
+                <span class="hljs-keyword">this</span>.fetch({ remove: <span class="hljs-literal">false</span>, url: url });
                 
             }</pre></div></div>
             

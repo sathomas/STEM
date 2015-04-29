@@ -371,7 +371,7 @@ collection(s).</p>
             <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'organizations'</span>)) {
                 <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'organizations'</span>,
                     <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([],{
-                       limit: <span class="hljs-number">50</span>,
+                       limit: Stem.config.map.poiLimit,
                        parentId: Stem.config.oae.groups.organizations
                     })
                 );
@@ -380,7 +380,7 @@ collection(s).</p>
             <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'businesses'</span>)) {
                 <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'businesses'</span>,
                     <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([], {
-                        limit: <span class="hljs-number">50</span>,
+                       limit: Stem.config.map.poiLimit,
                         parentId: Stem.config.oae.groups.businesses
                     })
                 );
@@ -389,7 +389,7 @@ collection(s).</p>
             <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.get(<span class="hljs-string">'schools'</span>)) {
                 <span class="hljs-keyword">this</span>.set(<span class="hljs-string">'schools'</span>,
                     <span class="hljs-keyword">new</span> Stem.Collections.SubGroups([],{
-                       limit: <span class="hljs-number">50</span>,
+                       limit: Stem.config.map.poiLimit,
                        parentId: Stem.config.oae.groups.schools
                     })
                 );
