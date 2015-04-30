@@ -258,6 +258,12 @@ a.btn--outline:focus,
 .no-touch a.btn--outline:hover {
   text-decoration: underline;
 }
+.theme-0 .btn,
+.theme-0.btn {
+  background-color: #636363;
+  border-color: #636363;
+  color: #ffffff;
+}
 .theme-1 .btn,
 .theme-1.btn {
   background-color: #009eaf;
