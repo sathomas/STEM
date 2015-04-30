@@ -1417,6 +1417,8 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
+  box-sizing: border-box;
+  max-width: 100%;
 }
 @media only screen and (min-width: 500px) {
   .discovery-nav__label__content {
@@ -1474,6 +1476,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   top: -9999em;
 }
 .discovery-nav__label__text {
+  max-width: 100%;
   display: block;
 }
 .discovery-nav__label__more {
