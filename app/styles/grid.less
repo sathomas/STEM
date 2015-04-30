@@ -60,17 +60,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    &:after {
+    &:after { // Prevent from collapsing to 0 height when non-flexbox styles are used.
         content: "";
         display: table;
         clear: both;
     }
-}
-
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
 }
 
 /**
@@ -129,82 +123,79 @@
 }
 
 .zero-columns {
-    .flexbox &{
-        .column;
-        flex-basis: 0;
-    }
+    .column;
+    flex-basis: 0;
+    width: 0;
 }
 
 .one-column {
     .column;
-    @media @tablet  { flex-basis: 50%;    max-width: 50%;     }
-    @media @desktop { flex-basis: 8.33%;  max-width: 8.33%;   }
-    width: 8.33%;
+    @media @tablet  { flex-basis: 50%;    max-width: 50%;       width: 50%;     }
+    @media @desktop { flex-basis: 8.33%;  max-width: 8.33%;     width: 8.33%;   }
 }
 
 .two-columns {
     .column;
-    @media @tablet  { flex-basis: 50%;    max-width: 50%;     }
-    @media @desktop { flex-basis: 16.66%; max-width: 16.66%;  }
-    width: 16.66%;
+    @media @tablet  { flex-basis: 50%;    max-width: 50%;       width: 50%;     }
+    @media @desktop { flex-basis: 16.66%; max-width: 16.66%;    width: 16.66%;  }
 }
 
 .three-columns {
     .column;
-    @media @tablet  { flex-basis: 50%;    max-width: 50%;     }
-    @media @desktop { flex-basis: 25%;    max-width: 25%;     }
-    width: 25%;
+    @media @tablet  { flex-basis: 50%;    max-width: 50%;       width: 50%;     }
+    @media @desktop { flex-basis: 25%;    max-width: 25%;       width: 25%;     }
+
 }
 
 .four-columns {
     .column;
-    @media @tablet  { flex-basis: 50%;    max-width: 50%;     }
-    @media @desktop { flex-basis: 33.33%; max-width: 33.33%;  }
-    with: 33.33%;
+    @media @tablet  { flex-basis: 50%;    max-width: 50%;       width: 50%;     }
+    @media @desktop { flex-basis: 33.33%; max-width: 33.33%;    width: 33.33%;  }
+
 }
 
 .five-columns {
     .column;
-    @media @tablet  { flex-basis: 50%;    max-width: 50%;     }
-    @media @desktop { flex-basis: 41.66%; max-width: 41.666%; }
-    width: 41.666%;
+    @media @tablet  { flex-basis: 50%;    max-width: 50%;       width: 50%;     }
+    @media @desktop { flex-basis: 41.66%; max-width: 41.666%;   width: 41.666%; }
+
 }
 
 .six-columns {
     .column;
-    @media @tablet  { flex-basis: 50%;    max-width: 50%;     }
-    @media @desktop { flex-basis: 50%;    max-width: 50%;     }
-    width: 50%;
+    @media @tablet  { flex-basis: 50%;    max-width: 50%;       width: 50%;     }
+    @media @desktop { flex-basis: 50%;    max-width: 50%;       width: 50%;     }
+
 }
 
 .seven-columns {
     .column;
-    @media @desktop { flex-basis: 58.33%; max-width: 58.33%;  }
-    width: 58.33%;
+    @media @desktop { flex-basis: 58.33%; max-width: 58.33%;    width: 58.33%;  }
+
 }
 
 .eight-columns {
     .column;
-    @media @desktop { flex-basis: 66.66%; max-width: 66.66%;  }
-    width: 66.66%
+    @media @desktop { flex-basis: 66.66%; max-width: 66.66%;    width: 66.66%   }
+
 }
 
 .nine-columns {
     .column;
-    @media @desktop { flex-basis: 75%;    max-width: 75%;     }
-    width: 75%;
+    @media @desktop { flex-basis: 75%;    max-width: 75%;       width: 75%;     }
+
 }
 
 .ten-columns {
     .column;
-    @media @desktop { flex-basis: 83.33%; max-width: 83.333%; }
-    width: 83.333%;
+    @media @desktop { flex-basis: 83.33%; max-width: 83.333%;   width: 83.333%; }
+
 }
 
 .eleven-columns {
     .column;
-    @media @desktop { flex-basis: 91.66%; max-width: 91.66%;  }
-    width: 91.66%;
+    @media @desktop { flex-basis: 91.66%; max-width: 91.66%;    width: 91.66%;  }
+
 }
 
 .twelve-columns {
