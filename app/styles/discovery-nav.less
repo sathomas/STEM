@@ -396,6 +396,8 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
     .spacing(padding-left);
     .spacing(padding-right);
     .spacing(padding-top);
+    box-sizing: border-box;
+    max-width: 100%;
     @{selected-label} & {
         flex-grow: 0;
         padding-bottom: 0;
@@ -410,6 +412,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 
 .discovery-nav__label__text {
+    max-width: 100%;
     display: block;
 }
 

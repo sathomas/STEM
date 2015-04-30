@@ -72,27 +72,27 @@ of course, means that JavaScript is available.
         =======================================
         Internet Explorer version 9 and earlier
         =======================================
-        
+
         There's a conflict in the security settings for the APIs on which
         the site relies that prevents it from working in IE9 and earler.
         (The OAE only supports https: access while DonorsChoose and other
         APIs only support http: access; IE9 doesn't really allow mixing
         the two in a user-friendly way.)
-        
+
         For users visiting the site with an unsupported browser, we include
         a notice and link to potential upgrades.
 
         -->
-        
+
         <!--[if lte IE 9]>
-            
+
             <div style="background-color:#444444;height:100%;left:0;position:fixed;top:0;width:100%;z-index:1000;">
                 <p style="color:white;padding:40px;">
                     It looks like you're using an old version of
                     Microsoft's Internet Explorer Web Browser.
-                    Because of security problems, we recommend 
+                    Because of security problems, we recommend
                     upgrading your web browser to a newer version.
-                    The <a href="http://browsehappy.com" 
+                    The <a href="http://browsehappy.com"
                            style="color:#3cbfe0">Browse Happy</a>
                     web site has information on upgrading.
                 </p>
@@ -266,7 +266,7 @@ of course, means that JavaScript is available.
                     <label for="discovery-nav-admins"
                            class="discovery-nav__label theme-2">
                         <div class="discovery-nav__label__content">
-                            <span>
+                            <span class="discovery-nav__label__text">
                                 Learn about STEM certification
                                 <span class="discovery-nav__label__content--detailed">
                                 and what it can do for your school</span>
@@ -280,7 +280,7 @@ of course, means that JavaScript is available.
                     <label for="discovery-nav-partners"
                            class="discovery-nav__label theme-3">
                         <div class="discovery-nav__label__content">
-                            <span>
+                            <span class="discovery-nav__label__text">
                                 Connect with others
                                 <span class="discovery-nav__label__content--detailed">
                                 advancing STEM education locally and throughout Georgia</span>
@@ -432,7 +432,7 @@ of course, means that JavaScript is available.
 
                     <p class="discovery__text">
                         Find schools, businesses, and other partner organizations
-                        in your neighborhood with the maps below. Browse the 
+                        in your neighborhood with the maps below. Browse the
                         partnering guide for ways to get involved.
                     </p>
 
@@ -535,10 +535,10 @@ of course, means that JavaScript is available.
                     </h3>
                     <p class="about__text">
                         The movement to advance STEM education in Georgia is
-                        gaining momentum, but it can still be difficult to 
-                        find practical resources and supportive partners. The 
-                        Incubator's mission is to spur innovation in STEM 
-                        education through reflective practice, professional 
+                        gaining momentum, but it can still be difficult to
+                        find practical resources and supportive partners. The
+                        Incubator's mission is to spur innovation in STEM
+                        education through reflective practice, professional
                         learning, and collaboration.
                     </p>
                     <a href="http://sgiz.mobi/s3/STEM-Incubator-Feedback"
@@ -724,7 +724,7 @@ of course, means that JavaScript is available.
         <script src="scripts/views/teacherSearchAsPage.js"></script>
         <script src="scripts/routes/app.js"></script>
         <!-- endbuild -->
-        
+
         <!--
         Google Analytics tracking code. To minimize false data
         from testing and local execution, we only load this code
@@ -732,7 +732,7 @@ of course, means that JavaScript is available.
         loaded over http or https and not over the local port
         9000.
         -->
-        
+
         <script>
         if (window.location.protocol !== 'file:' && window.location.port !== '9000') {
 
@@ -740,7 +740,7 @@ of course, means that JavaScript is available.
         	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        
+
             ga('create', 'UA-62176036-1', 'auto');
             ga('send', 'pageview');
 
