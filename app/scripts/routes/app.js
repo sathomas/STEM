@@ -66,6 +66,14 @@ Stem.Routers = Stem.Routers || {};
 
             $('#nav-toggle').prop('checked', 0);
             $('main').attr('data-nav-expanded', '0');
+            
+            // If Google Analytics is available, track
+            // the page load.
+            
+            if (ga) {
+                ga('send', 'pageview', id);
+                ga('set', 'page', id);
+            }
 
         },
 
