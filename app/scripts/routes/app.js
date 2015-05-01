@@ -129,7 +129,7 @@ Stem.Routers = Stem.Routers || {};
                 // the discovery position. Instead, scroll
                 // to the top.
 
-                $('body').scrollTop(dontScroll ? 0 : pos);
+                $('html,body').scrollTop(dontScroll ? 0 : pos);
 
             }
 
@@ -187,7 +187,7 @@ Stem.Routers = Stem.Routers || {};
             // of the new "page" since we're switching
             // to the search results.
 
-            $('body').scrollTop(0);
+            $('html,body').scrollTop(0);
 
         },
         
