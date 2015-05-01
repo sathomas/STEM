@@ -1306,33 +1306,24 @@
           <p class="sg">Because the site is actually just a single page application, there are multiple &quot;apparent&quot; pages within the single HTML file. Each virtual page is a single
             <code class="sg">&lt;section&gt;</code>within the
             <code class="sg">&lt;main&gt;</code>content.</p>
-          <p class="sg">By default, all sections other than the first are hidden by CSS. There&apos;s an exception, however, if the user&apos;s browser does not support JavaScript. In that case we display all the sections so the user can at least scroll to see all of the static content. To override the default behavior on any particular section, add the class
-            <code class="sg">hide</code>or
-            <code class="sg">show</code>
-            or set the
+          <p class="sg">By default, all sections other than the first are hidden by CSS. There&apos;s an exception, however, if the user&apos;s browser does not support JavaScript. In that case we display all the sections so the user can at least scroll to see all of the static content. To override the default behavior on any particular section, set the
             <code class="sg">data-hide</code>attribute to
             <code class="sg">&quot;1&quot;</code>or
-            <code class="sg">&quot;0&quot;</code>
-            as appropriate. The
-            <code class="sg">data-hide</code>attribute overrides all class- and position-based hiding.</p>
-          <blockquote class="sg">
-            <p class="sg">Note: We &quot;hide&quot; sections by positioning them offscreen, not by setting their display property to
-              <code class="sg">none</code>. This keeps all sections accessible to screen readers.</p>
-          </blockquote>
+            <code class="sg">&quot;0&quot;</code>as appropriate.</p>
         </div>
         <div class="sg-example">
           <div class="sg-canvas">
-            <section class="show">
-              This section is always visible.
+            <section data-hide="0">
+              This section is visible.
             </section>
-            <section class="hide">
-              This section is never visible.
+            <section data-hide="1">
+              This section is not visible.
             </section>
-          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;show&quot;</span>&gt;</span>
-  This section is always visible.
+          </div><pre class="sg-code"><span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">data-hide</span>=<span class="hljs-value">&quot;0&quot;</span>&gt;</span>
+  This section is visible.
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">&quot;hide&quot;</span>&gt;</span>
-  This section is never visible.
+<span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">data-hide</span>=<span class="hljs-value">&quot;1&quot;</span>&gt;</span>
+  This section is not visible.
 <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span></pre>
         </div>
       </section>
