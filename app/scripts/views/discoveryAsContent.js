@@ -41,15 +41,15 @@ Stem.Views = Stem.Views || {};
             // Create and render the different child views.
 
             this.teacherDiscovery = new Stem.Views.TeachersAsDiscovery({
-                el: this.$el.find('#teachers'),
+                el: this.$el.find('#teachers_js'),
                 model: this.model.get('teachers')
             }).render();
             this.adminDiscovery = new Stem.Views.AdminsAsDiscovery({
-                el: this.$el.find('#admins'),
+                el: this.$el.find('#admins_js'),
                 model: this.model.get('admins')
             }).render();
             this.partnerDiscovery = new Stem.Views.PartnersAsDiscovery({
-                el: this.$el.find('#partners'),
+                el: this.$el.find('#partners_js'),
                 model: this.model.get('partners')
             }).render();
 
