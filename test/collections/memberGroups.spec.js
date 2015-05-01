@@ -95,7 +95,7 @@ describe('MemberGroups Collection', function () {
     it('should generate the correct default URL to access the OAE', function() {
         parseURL(this.MemberGroupsCollection.url())['protocol'].should.equal(Stem.config.oae.protocol);
         parseURL(this.MemberGroupsCollection.url())['host'].should.equal(Stem.config.oae.host);
-        parseURL(this.MemberGroupsCollection.url())['pathname'].should.equal('/api/search/members/ParentId');
+        parseURL(this.MemberGroupsCollection.url())['pathname'].should.equal('/api/search/members-library/ParentId');
     });
 
     it('should include specified size limit in the request URL', function() {

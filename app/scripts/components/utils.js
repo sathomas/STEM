@@ -145,72 +145,88 @@ Stem.Utils = Stem.Utils || {};
 
         // For some reason, the Census Bureau seems to have
         // problems with zip+4 zip codes. So we strip them
-        // out here.
+        // out here. Also trim extra whitespace while we're
+        // at it.
 
-        addr = addr.replace(/([0-9]{5})-[0-9]{4}/g, '$1');
+        addr = addr.replace(/([0-9]{5})-[0-9]{4}/g, '$1').trim();
+        
+        // Make sure there's an address to query.
+        
+        if (addr.length) {
 
-        $.ajax({
-                url: 'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?' +
-                        'address=' + encodeURIComponent(addr.trim()) +
-                        '&benchmark=9&format=jsonp',
-                dataType: "jsonp"
-            })
-            .done(function(response) {
-
-                if (response.result &&
-                    response.result.addressMatches &&
-                    response.result.addressMatches.length &&
-                    response.result.addressMatches[0].coordinates &&
-                    response.result.addressMatches[0].coordinates.x &&
-                    response.result.addressMatches[0].coordinates.y &&
-                    !_.isNaN(parseFloat(response.result.addressMatches[0].coordinates.x)) &&
-                    !_.isNaN(parseFloat(response.result.addressMatches[0].coordinates.y))) {
-
-                    success([
-                        parseFloat(response.result.addressMatches[0].coordinates.y),
-                        parseFloat(response.result.addressMatches[0].coordinates.x)
-                    ]);
-
-                } else {
-
-                    // Sometimes the Census Bureau has problems with
-                    // NE in the address. (Maybe Nebraska!?) If this
-                    // address has it, then strip it out and try again.
-
-                    if (addr.indexOf(' NE ') > 0) {
-
-                        Stem.Utils.getLocationFromStreet(
-                            addr.replace(/ NE /, ' '),
-                            success,
-                            error
-                        );
-
-                    // Try the same for NW in the address.
-
-                    } else if (addr.indexOf(' NW ') > 0) {
-
-                        Stem.Utils.getLocationFromStreet(
-                            addr.replace(/ NW /, ' '),
-                            success,
-                            error
-                        );
-
-                    } else if (typeof(error) === "function") {
-
-                        error();
-
+            $.ajax({
+                    url: 'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?' +
+                            'address=' + encodeURIComponent(addr) +
+                            '&benchmark=9&format=jsonp',
+                    dataType: "jsonp"
+                })
+                .done(function(response) {
+    
+                    if (response.result &&
+                        response.result.addressMatches &&
+                        response.result.addressMatches.length &&
+                        response.result.addressMatches[0].coordinates &&
+                        response.result.addressMatches[0].coordinates.x &&
+                        response.result.addressMatches[0].coordinates.y &&
+                        !_.isNaN(parseFloat(response.result.addressMatches[0].coordinates.x)) &&
+                        !_.isNaN(parseFloat(response.result.addressMatches[0].coordinates.y))) {
+    
+                        success([
+                            parseFloat(response.result.addressMatches[0].coordinates.y),
+                            parseFloat(response.result.addressMatches[0].coordinates.x)
+                        ]);
+    
+                    } else {
+    
+                        // Sometimes the Census Bureau has problems with
+                        // NE in the address. (Maybe Nebraska!?) If this
+                        // address has it, then strip it out and try again.
+    
+                        if (addr.indexOf(' NE ') > 0) {
+    
+                            Stem.Utils.getLocationFromStreet(
+                                addr.replace(/ NE /, ' '),
+                                success,
+                                error
+                            );
+    
+                        // Try the same for NW in the address.
+    
+                        } else if (addr.indexOf(' NW ') > 0) {
+    
+                            Stem.Utils.getLocationFromStreet(
+                                addr.replace(/ NW /, ' '),
+                                success,
+                                error
+                            );
+    
+                        } else if (typeof(error) === "function") {
+    
+                            error();
+    
+                        }
+    
                     }
+    
+                })
+                .fail(function() {
+    
+                    if (typeof(error) === "function") {
+                        error();
+                    }
+    
+                });
+        
+        } else {
+            
+            // If there wasn't a valid address, report
+            // a failure.
+    
+            if (typeof(error) === "function") {
+                error();
+            }
 
-                }
-
-            })
-            .fail(function() {
-
-                if (typeof(error) === "function") {
-                    error();
-                }
-
-            });
+        }
 
     };
 

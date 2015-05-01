@@ -38,7 +38,7 @@ Stem.Models = Stem.Models || {};
             if (!this.get('organizations')) {
                 this.set('organizations',
                     new Stem.Collections.SubGroups([],{
-                       limit: 50,
+                       limit: Stem.config.map.poiLimit,
                        parentId: Stem.config.oae.groups.organizations
                     })
                 );
@@ -47,7 +47,7 @@ Stem.Models = Stem.Models || {};
             if (!this.get('businesses')) {
                 this.set('businesses',
                     new Stem.Collections.SubGroups([], {
-                        limit: 50,
+                       limit: Stem.config.map.poiLimit,
                         parentId: Stem.config.oae.groups.businesses
                     })
                 );
@@ -56,7 +56,7 @@ Stem.Models = Stem.Models || {};
             if (!this.get('schools')) {
                 this.set('schools',
                     new Stem.Collections.SubGroups([],{
-                       limit: 50,
+                       limit: Stem.config.map.poiLimit,
                        parentId: Stem.config.oae.groups.schools
                     })
                 );
