@@ -607,36 +607,13 @@ function.</p>
               </div>
               <p>For some reason, the Census Bureau seems to have
 problems with zip+4 zip codes. So we strip them
-out here.</p>
+out here. Also trim extra whitespace while we’re
+at it.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        addr = addr.replace(<span class="hljs-regexp">/([0-9]{5})-[0-9]{4}/g</span>, <span class="hljs-string">'$1'</span>);
-
-        $.ajax({
-                url: <span class="hljs-string">'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?'</span> +
-                        <span class="hljs-string">'address='</span> + <span class="hljs-built_in">encodeURIComponent</span>(addr.trim()) +
-                        <span class="hljs-string">'&amp;benchmark=9&amp;format=jsonp'</span>,
-                dataType: <span class="hljs-string">"jsonp"</span>
-            })
-            .done(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span> </span>{
-
-                <span class="hljs-keyword">if</span> (response.result &amp;&amp;
-                    response.result.addressMatches &amp;&amp;
-                    response.result.addressMatches.length &amp;&amp;
-                    response.result.addressMatches[<span class="hljs-number">0</span>].coordinates &amp;&amp;
-                    response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x &amp;&amp;
-                    response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y &amp;&amp;
-                    !_.isNaN(<span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x)) &amp;&amp;
-                    !_.isNaN(<span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y))) {
-
-                    success([
-                        <span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y),
-                        <span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x)
-                    ]);
-
-                } <span class="hljs-keyword">else</span> {</pre></div></div>
+        addr = addr.replace(<span class="hljs-regexp">/([0-9]{5})-[0-9]{4}/g</span>, <span class="hljs-string">'$1'</span>).trim();</pre></div></div>
             
         </li>
         
@@ -647,20 +624,36 @@ out here.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
-              <p>Sometimes the Census Bureau has problems with
-NE in the address. (Maybe Nebraska!?) If this
-address has it, then strip it out and try again.</p>
+              <p>Make sure there’s an address to query.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-                    <span class="hljs-keyword">if</span> (addr.indexOf(<span class="hljs-string">' NE '</span>) &gt; <span class="hljs-number">0</span>) {
+            <div class="content"><div class='highlight'><pre>        
+        <span class="hljs-keyword">if</span> (addr.length) {
 
-                        Stem.Utils.getLocationFromStreet(
-                            addr.replace(<span class="hljs-regexp">/ NE /</span>, <span class="hljs-string">' '</span>),
-                            success,
-                            error
-                        );</pre></div></div>
+            $.ajax({
+                    url: <span class="hljs-string">'http://geocoding.geo.census.gov/geocoder/locations/onelineaddress?'</span> +
+                            <span class="hljs-string">'address='</span> + <span class="hljs-built_in">encodeURIComponent</span>(addr) +
+                            <span class="hljs-string">'&amp;benchmark=9&amp;format=jsonp'</span>,
+                    dataType: <span class="hljs-string">"jsonp"</span>
+                })
+                .done(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(response)</span> </span>{
+    
+                    <span class="hljs-keyword">if</span> (response.result &amp;&amp;
+                        response.result.addressMatches &amp;&amp;
+                        response.result.addressMatches.length &amp;&amp;
+                        response.result.addressMatches[<span class="hljs-number">0</span>].coordinates &amp;&amp;
+                        response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x &amp;&amp;
+                        response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y &amp;&amp;
+                        !_.isNaN(<span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x)) &amp;&amp;
+                        !_.isNaN(<span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y))) {
+    
+                        success([
+                            <span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.y),
+                            <span class="hljs-built_in">parseFloat</span>(response.result.addressMatches[<span class="hljs-number">0</span>].coordinates.x)
+                        ]);
+    
+                    } <span class="hljs-keyword">else</span> {</pre></div></div>
             
         </li>
         
@@ -671,35 +664,82 @@ address has it, then strip it out and try again.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
+              <p>Sometimes the Census Bureau has problems with
+NE in the address. (Maybe Nebraska!?) If this
+address has it, then strip it out and try again.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    
+                        <span class="hljs-keyword">if</span> (addr.indexOf(<span class="hljs-string">' NE '</span>) &gt; <span class="hljs-number">0</span>) {
+    
+                            Stem.Utils.getLocationFromStreet(
+                                addr.replace(<span class="hljs-regexp">/ NE /</span>, <span class="hljs-string">' '</span>),
+                                success,
+                                error
+                            );</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
               <p>Try the same for NW in the address.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-                    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (addr.indexOf(<span class="hljs-string">' NW '</span>) &gt; <span class="hljs-number">0</span>) {
-
-                        Stem.Utils.getLocationFromStreet(
-                            addr.replace(<span class="hljs-regexp">/ NW /</span>, <span class="hljs-string">' '</span>),
-                            success,
-                            error
-                        );
-
-                    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
-
-                        error();
-
+            <div class="content"><div class='highlight'><pre>    
+                        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (addr.indexOf(<span class="hljs-string">' NW '</span>) &gt; <span class="hljs-number">0</span>) {
+    
+                            Stem.Utils.getLocationFromStreet(
+                                addr.replace(<span class="hljs-regexp">/ NW /</span>, <span class="hljs-string">' '</span>),
+                                success,
+                                error
+                            );
+    
+                        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+    
+                            error();
+    
+                        }
+    
                     }
+    
+                })
+                .fail(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+    
+                    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+                        error();
+                    }
+    
+                });
+        
+        } <span class="hljs-keyword">else</span> {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>If there wasn’t a valid address, report
+a failure.</p>
 
-                }
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
+                error();
+            }
 
-            })
-            .fail(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-
-                <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span>(error) === <span class="hljs-string">"function"</span>) {
-                    error();
-                }
-
-            });
+        }
 
     };
 
