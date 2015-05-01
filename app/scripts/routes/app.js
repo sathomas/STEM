@@ -81,7 +81,7 @@ Stem.Routers = Stem.Routers || {};
         // section on the landing page by setting the
         // appropriate radio buttons in the nav.
 
-        setDiscovery: function(discoveryId) {
+        setDiscovery: function(discoveryId, dontScroll) {
             
             // Find the index of the appropriate
             // article so we can set the attribute
@@ -123,18 +123,25 @@ Stem.Routers = Stem.Routers || {};
                 
                 var pos = $('#' + discoveryId + '_js').offset().top -
                     parseInt($('main').css('padding-top'));
+                    
+                // If the optional `dontScroll` parameter
+                // is true, we don't want to scroll to
+                // the discovery position. Instead, scroll
+                // to the top.
 
-                $('body').scrollTop(pos);
+                $('body').scrollTop(dontScroll ? 0 : pos);
 
             }
 
         },
 
         // The default landing page is the
-        // teachers page.
+        // teachers page, but we don't want
+        // to scroll to the section.
 
         landing: function() {
-            this.teachers();
+            this.loadPage('landing','theme-1-dark');
+            this.setDiscovery('teachers', true);
         },
 
         // The individual route handlers follow. All they
@@ -180,8 +187,24 @@ Stem.Routers = Stem.Routers || {};
             // of the new "page" since we're switching
             // to the search results.
 
-            window.scrollTo(0, 0);
+            $('body').scrollTop(0);
 
+        },
+        
+        // User clicked the main navigation bar
+
+        navClicked: function(ev) {
+
+            // Normally we don't have to do anything
+            // here. If, however, the user clicks on
+            // the menu item that matches what's
+            // already in the hash, the browser ignores
+            // it. We don't want to ignore it.
+
+            if (window.location.hash === $(ev.target).attr('href')) {
+                this[window.location.hash.slice(1)].call(this);
+            }
+            
         },
 
         // The `initialize` function performs most of
@@ -347,6 +370,17 @@ Stem.Routers = Stem.Routers || {};
                 }
 
             });
+            
+            // We also have to account for an edge case in 
+            // mobile views. If the user starts at a particular
+            // section (e.g. `#partners`) and then scrolls back
+            // to the top, the URL hash will still be `#partners`.
+            // In that case, the browser won't recognize subsequent
+            // clicks on the same element in the navigation menu.
+            // We have to catch those manually.
+            
+            $('.site-hdr__navbar__list a').on('click', 
+                $.proxy(this.navClicked, this));
 
             // Everything's ready, so enable history management.
 
