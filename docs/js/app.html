@@ -475,7 +475,7 @@ appropriate radio buttons in the nav.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        setDiscovery: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(discoveryIdx)</span> </span>{</pre></div></div>
+        setDiscovery: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(discoveryId, dontScroll)</span> </span>{</pre></div></div>
             
         </li>
         
@@ -485,6 +485,29 @@ appropriate radio buttons in the nav.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Find the index of the appropriate
+article so we can set the attribute
+for CSS.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">var</span> discoveryIdx = <span class="hljs-number">0</span>;
+            $(<span class="hljs-string">'article.discovery'</span>).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(idx)</span></span>{
+                <span class="hljs-keyword">if</span> ($(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">'id'</span>) === discoveryId + <span class="hljs-string">'_js'</span>) {
+                    discoveryIdx = idx+<span class="hljs-number">1</span>;
+                }
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
               </div>
               <p>Set the appropriate button and clear all
 the others.</p>
@@ -499,11 +522,11 @@ the others.</p>
         </li>
         
         
-        <li id="section-11">
+        <li id="section-12">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-11">&#182;</a>
+                <a class="pilcrow" href="#section-12">&#182;</a>
               </div>
               <p>Since changing the property doesn’t trigger
 a <code>change</code> event (!), we have to set the <code>data-</code>
@@ -512,28 +535,7 @@ attribute explicitly.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            $(<span class="hljs-string">'#discovery-nav'</span>).attr(<span class="hljs-string">'data-discovery-nav'</span>, discoveryIdx);
-
-        },</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-12">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-12">&#182;</a>
-              </div>
-              <p>The default landing page is the
-teachers page.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-        landing: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.teachers();
-        },</pre></div></div>
+            $(<span class="hljs-string">'#discovery-nav'</span>).attr(<span class="hljs-string">'data-discovery-nav'</span>, discoveryIdx);</pre></div></div>
             
         </li>
         
@@ -544,28 +546,15 @@ teachers page.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-13">&#182;</a>
               </div>
-              <p>The individual route handlers follow. All they
-do is set the discovery navigation to the
-appropriate section, load the landing page,
-and show the appropriate discovery content.</p>
+              <p>If the view is a mobile view in which
+the different discovery sections are
+stacked and the discovery navigation is
+hidden, scroll to the selected section.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-        teachers: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">1</span>);
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
-        },
-
-        admins: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">2</span>);
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
-        },
-
-        partners: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-number">3</span>);
-            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
-        },</pre></div></div>
+            <span class="hljs-keyword">if</span> ($(<span class="hljs-string">'#discovery-nav'</span>).css(<span class="hljs-string">'display'</span>) === <span class="hljs-string">'none'</span>) {</pre></div></div>
             
         </li>
         
@@ -575,6 +564,104 @@ and show the appropriate discovery content.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Calculating the scroll position is a
+little complicated because we have to
+account for the fact that the menu
+may be expanded when this function
+is called, but the desired position
+is based on a collapsed menu.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                
+                <span class="hljs-keyword">var</span> pos = $(<span class="hljs-string">'#'</span> + discoveryId + <span class="hljs-string">'_js'</span>).offset().top -
+                    <span class="hljs-built_in">parseInt</span>($(<span class="hljs-string">'main'</span>).css(<span class="hljs-string">'padding-top'</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>If the optional <code>dontScroll</code> parameter
+is true, we don’t want to scroll to
+the discovery position. Instead, scroll
+to the top.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+                $(<span class="hljs-string">'html,body'</span>).scrollTop(dontScroll ? <span class="hljs-number">0</span> : pos);
+
+            }
+
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>The default landing page is the
+teachers page, but we don’t want
+to scroll to the section.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        landing: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-string">'teachers'</span>, <span class="hljs-literal">true</span>);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>The individual route handlers follow. All they
+do is set the discovery navigation to the
+appropriate section, load the landing page,
+and show the appropriate discovery content.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        teachers: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-string">'teachers'</span>);
+        },
+
+        admins: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-string">'admins'</span>);
+        },
+
+        partners: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">this</span>.loadPage(<span class="hljs-string">'landing'</span>,<span class="hljs-string">'theme-1-dark'</span>);
+            <span class="hljs-keyword">this</span>.setDiscovery(<span class="hljs-string">'partners'</span>);
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>The search page is a little more involved
 because we need to set up the appropriate
@@ -601,33 +688,71 @@ the search page.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
-              <p>And finally, set the scroll position to
-the top of the new “page” since we’re switching
-to the search results. We defer this until
-the execution stack clears to make sure
-that no other code reverses our setting.</p>
+              <p>Set the scroll position to the top
+of the new “page” since we’re switching
+to the search results.</p>
 
             </div>
             
             <div class="content"><div class='highlight'><pre>
-            _.defer(<span class="hljs-built_in">window</span>.scrollTo, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+            $(<span class="hljs-string">'html,body'</span>).scrollTop(<span class="hljs-number">0</span>);
 
         },</pre></div></div>
             
         </li>
         
         
-        <li id="section-16">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>User clicked the main navigation bar</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+        navClicked: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ev)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>Normally we don’t have to do anything
+here. If, however, the user clicks on
+the menu item that matches what’s
+already in the hash, the browser ignores
+it. We don’t want to ignore it.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">if</span> (<span class="hljs-built_in">window</span>.location.hash === $(ev.target).attr(<span class="hljs-string">'href'</span>)) {
+                <span class="hljs-keyword">this</span>[<span class="hljs-built_in">window</span>.location.hash.slice(<span class="hljs-number">1</span>)].call(<span class="hljs-keyword">this</span>);
+            }
+            
+        },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>The <code>initialize</code> function performs most of
 the work in bootstrapping the app.</p>
@@ -640,11 +765,44 @@ the work in bootstrapping the app.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>The initial static page has several
+elements with <code>id</code> attributes matched
+to URL fragments. We define the 
+attributes that way so that the site
+works for users without JavaScript
+(albeit with reduced functionality).
+Since we’re here executing this code,
+though, JavaScript is, by definition,
+available. In this case, we don’t
+want the browser scrolling to these
+page elements. Doing so would
+interfere with the hashtag routing
+of Backbone. To eliminate the 
+the conflict, we replace the original
+<code>id</code> attribute values with new values
+that don’t correspond to hashtags.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            
+            _([<span class="hljs-string">'teachers'</span>,<span class="hljs-string">'admins'</span>,<span class="hljs-string">'partners'</span>]).each(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(id)</span> </span>{
+                $(<span class="hljs-string">'#'</span> + id).attr(<span class="hljs-string">'id'</span>, id + <span class="hljs-string">'_js'</span>);
+            });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Create the models that back each of the
 app’s “pages” and other content blocks.
@@ -685,11 +843,11 @@ of the main models can share.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Now we can create the principle models
 that include this query.</p>
@@ -707,11 +865,11 @@ that include this query.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Create and render the views for each
 page or content block. It’s okay to
@@ -732,11 +890,11 @@ view for the “Discovery blocks”.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>Now we create the second of our two
 main views. This view controls the
@@ -754,11 +912,11 @@ part of the site.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Handle high level events from the views
 we’ve created.</p>
@@ -768,11 +926,11 @@ we’ve created.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>If the discovery content view detects
 that the user submits a search form,
@@ -787,11 +945,11 @@ results “page.”</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Retrieve the submitted query.</p>
 
@@ -803,11 +961,11 @@ results “page.”</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Although in general we don’t trigger
 a full route when we update the navigation,
@@ -827,11 +985,11 @@ multiple places.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>The discoveryContent view triggers
 <code>navigate</code> events when the user navigates
@@ -851,58 +1009,33 @@ back/forward buttons work as expected.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
-              <p>Preserve the current scroll position</p>
+              <p>To make the URL hash consistent with
+non-JavaScript users (e.g. if a JS-user
+shares a link with a non-JS-user), strip
+of the special <code>_js</code> bit that we added
+to the <code>id</code> attribute during initialization.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">var</span> pos = $(<span class="hljs-built_in">window</span>).scrollTop();</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-27">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
-              </div>
-              <p>Add the new hash to the browser history</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">this</span>.navigate(hash);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-28">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
-              </div>
-              <p>And restore the scroll position</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>                $(<span class="hljs-built_in">window</span>).scrollTop(pos);
+            <div class="content"><div class='highlight'><pre>
+                <span class="hljs-keyword">this</span>.navigate(hash.slice(<span class="hljs-number">0</span>,-<span class="hljs-number">3</span>));
 
             });</pre></div></div>
             
         </li>
         
         
-        <li id="section-29">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Just as with the discoveryContent view,
 the teacherSearch model triggers a
@@ -921,11 +1054,11 @@ button operation.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Add the new hash to the browser history, but
 only if we’re on the search “page”. If we’re
@@ -946,11 +1079,34 @@ will take care of the history.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
+              </div>
+              <p>We also have to account for an edge case in 
+mobile views. If the user starts at a particular
+section (e.g. <code>#partners</code>) and then scrolls back
+to the top, the URL hash will still be <code>#partners</code>.
+In that case, the browser won’t recognize subsequent
+clicks on the same element in the navigation menu.
+We have to catch those manually.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            
+            $(<span class="hljs-string">'.site-hdr__navbar__list a'</span>).on(<span class="hljs-string">'click'</span>, 
+                $.proxy(<span class="hljs-keyword">this</span>.navClicked, <span class="hljs-keyword">this</span>));</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-37">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>Everything’s ready, so enable history management.</p>
 

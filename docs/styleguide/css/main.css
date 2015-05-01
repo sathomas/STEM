@@ -760,27 +760,27 @@ a.btn--outline:focus,
   padding-top: 10px;
 }
 @media only screen and (min-width: 1000px) {
-  .discovery__heading {
+  .js .discovery__heading {
     padding-bottom: 0;
   }
 }
 @media only screen and (min-width: 1000px) {
-  .discovery__heading {
+  .js .discovery__heading {
     padding-left: 0;
   }
 }
 @media only screen and (min-width: 1000px) {
-  .discovery__heading {
+  .js .discovery__heading {
     padding-right: 0;
   }
 }
 @media only screen and (min-width: 1000px) {
-  .discovery__heading {
+  .js .discovery__heading {
     padding-top: 0;
   }
 }
 @media only screen and (min-width: 1000px) {
-  .discovery__heading {
+  .js .discovery__heading {
     height: 0;
     overflow: hidden;
   }
