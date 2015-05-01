@@ -38,7 +38,7 @@ describe('TeachersAsDiscovery View', function() {
         $el.find('#teachers-search-groups').attr('href').should.equal('#search//groups');
     });
 
-    it('triggering a submit event on the searchForm should cause TeachersAsDiscovery to trigger search:submit on itself.', function() {
+    it('triggering a submit event on the searchForm should cause TeachersAsDiscovery to trigger a search:submit event.', function() {
         var view = this.TeachersAsDiscovery.render();
         var externalHandler = sinon.spy();
         var internalHandler = sinon.spy();
@@ -54,14 +54,14 @@ describe('TeachersAsDiscovery View', function() {
         view.off('search:submit', internalHandler);
     });
 
-    it.skip('if Discovery triggers a set:searchQuery event, the searchForm attached to TeachersAsDiscovery will be destroyed and re-created', function() {
+    it('if Discovery triggers a set:searchQuery event, the searchForm attached to TeachersAsDiscovery will be re-rendered.', function() {
         var view = this.TeachersAsDiscovery.render();
         var handler = sinon.spy();
 
         view.model.on('set:searchQuery', handler);
         view.model.set('searchQuery', new Stem.Models.Search({
-            label: "Test label",
-            placeholder: "Test placeholder"
+            label: "Test",
+            placeholder: "Test"
         }));
 
         handler.callCount.should.equal(1);
