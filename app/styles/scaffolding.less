@@ -20,22 +20,15 @@
  * In that case we display all the sections so the
  * user can at least scroll to see all of the static
  * content. To override the default behavior on any
- * particular section, add the class `hide` or `show`
- * or set the `data-hide` attribute to `"1"` or `"0"`
- * as appropriate. The `data-hide` attribute overrides
- * all class- and position-based hiding.
- *
- * > Note: We "hide" sections by positioning them
- * offscreen, not by setting their display property
- * to `none`. This keeps all sections accessible to
- * screen readers.
+ * particular section, set the `data-hide` attribute 
+ * to `"1"` or `"0"` as appropriate.
  *
  *     @example:
- *     <section class="show">
- *         This section is always visible.
+ *     <section data-hide="0">
+ *         This section is visible.
  *     </section>
- *     <section class="hide">
- *         This section is never visible.
+ *     <section data-hide="1">
+ *         This section is not visible.
  *     </section>
  */
 
@@ -44,20 +37,11 @@ section {
     width: 100%;
 }
 
-html.js section:not(:first-of-type),
-html.js section.hide,
-section.hide,
-section[data-hide="1"] {
-    .invisible;
+.js section:not(:first-of-type),
+.js section[data-hide="1"] {
+    display: none;
 }
 
-html.js section.show,
-section.show,
-section[data-hide="0"],
-html.js section:not(:first-of-type)[data-hide="0"],
-html.js section.hide[data-hide="0"],
-section.hide[data-hide="0"],
- {
-    .visible;
+.js section[data-hide="0"] {
+    display: block;
 }
-
