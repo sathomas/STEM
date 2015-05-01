@@ -73,16 +73,18 @@
     font-size: 2.5rem;
     margin-bottom: 0;
     padding-bottom: @block-spacing;
-    @media @desktop { padding-bottom: 0; }
+    .js & {@media @desktop { padding-bottom: 0; } }
     padding-left: @block-spacing;
-    @media @desktop { padding-left: 0; }
+    .js & {@media @desktop { padding-left: 0; } }
     padding-right: @block-spacing;
-    @media @desktop { padding-right: 0; }
+    .js & {@media @desktop { padding-right: 0; } }
     padding-top: @block-spacing;
-    @media @desktop { padding-top: 0; }
-    @media @desktop {
-        height: 0;
-        overflow: hidden;
+    .js & { @media @desktop { padding-top: 0; } }
+    .js & {
+        @media @desktop {
+            height: 0;
+            overflow: hidden;
+        }
     }
 }
 

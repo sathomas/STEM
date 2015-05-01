@@ -81,7 +81,18 @@ Stem.Routers = Stem.Routers || {};
         // section on the landing page by setting the
         // appropriate radio buttons in the nav.
 
-        setDiscovery: function(discoveryIdx) {
+        setDiscovery: function(discoveryId, dontScroll) {
+            
+            // Find the index of the appropriate
+            // article so we can set the attribute
+            // for CSS.
+            
+            var discoveryIdx = 0;
+            $('article.discovery').each(function(idx){
+                if ($(this).attr('id') === discoveryId + '_js') {
+                    discoveryIdx = idx+1;
+                }
+            });
 
             // Set the appropriate button and clear all
             // the others.
@@ -95,14 +106,42 @@ Stem.Routers = Stem.Routers || {};
             // attribute explicitly.
 
             $('#discovery-nav').attr('data-discovery-nav', discoveryIdx);
+            
+            // If the view is a mobile view in which
+            // the different discovery sections are
+            // stacked and the discovery navigation is
+            // hidden, scroll to the selected section.
+
+            if ($('#discovery-nav').css('display') === 'none') {
+                
+                // Calculating the scroll position is a
+                // little complicated because we have to
+                // account for the fact that the menu
+                // may be expanded when this function
+                // is called, but the desired position
+                // is based on a collapsed menu.
+                
+                var pos = $('#' + discoveryId + '_js').offset().top -
+                    parseInt($('main').css('padding-top'));
+                    
+                // If the optional `dontScroll` parameter
+                // is true, we don't want to scroll to
+                // the discovery position. Instead, scroll
+                // to the top.
+
+                $('html,body').scrollTop(dontScroll ? 0 : pos);
+
+            }
 
         },
 
         // The default landing page is the
-        // teachers page.
+        // teachers page, but we don't want
+        // to scroll to the section.
 
         landing: function() {
-            this.teachers();
+            this.loadPage('landing','theme-1-dark');
+            this.setDiscovery('teachers', true);
         },
 
         // The individual route handlers follow. All they
@@ -111,18 +150,18 @@ Stem.Routers = Stem.Routers || {};
         // and show the appropriate discovery content.
 
         teachers: function() {
-            this.setDiscovery(1);
             this.loadPage('landing','theme-1-dark');
+            this.setDiscovery('teachers');
         },
 
         admins: function() {
-            this.setDiscovery(2);
             this.loadPage('landing','theme-1-dark');
+            this.setDiscovery('admins');
         },
 
         partners: function() {
-            this.setDiscovery(3);
             this.loadPage('landing','theme-1-dark');
+            this.setDiscovery('partners');
         },
 
         // The search page is a little more involved
@@ -144,20 +183,55 @@ Stem.Routers = Stem.Routers || {};
                 decodeURIComponent(query));
             this.loadPage('teachers-search','theme-1');
 
-            // And finally, set the scroll position to
-            // the top of the new "page" since we're switching
-            // to the search results. We defer this until
-            // the execution stack clears to make sure
-            // that no other code reverses our setting.
+            // Set the scroll position to the top
+            // of the new "page" since we're switching
+            // to the search results.
 
-            _.defer(window.scrollTo, 0, 0);
+            $('html,body').scrollTop(0);
 
+        },
+        
+        // User clicked the main navigation bar
+
+        navClicked: function(ev) {
+
+            // Normally we don't have to do anything
+            // here. If, however, the user clicks on
+            // the menu item that matches what's
+            // already in the hash, the browser ignores
+            // it. We don't want to ignore it.
+
+            if (window.location.hash === $(ev.target).attr('href')) {
+                this[window.location.hash.slice(1)].call(this);
+            }
+            
         },
 
         // The `initialize` function performs most of
         // the work in bootstrapping the app.
 
         initialize: function() {
+            
+            // The initial static page has several
+            // elements with `id` attributes matched
+            // to URL fragments. We define the 
+            // attributes that way so that the site
+            // works for users without JavaScript
+            // (albeit with reduced functionality).
+            // Since we're here executing this code,
+            // though, JavaScript is, by definition,
+            // available. In this case, we don't
+            // want the browser scrolling to these
+            // page elements. Doing so would
+            // interfere with the hashtag routing
+            // of Backbone. To eliminate the 
+            // the conflict, we replace the original
+            // `id` attribute values with new values
+            // that don't correspond to hashtags.
+            
+            _(['teachers','admins','partners']).each(function(id) {
+                $('#' + id).attr('id', id + '_js');
+            });
 
             // Create the models that back each of the
             // app's "pages" and other content blocks.
@@ -262,15 +336,14 @@ Stem.Routers = Stem.Routers || {};
             // back/forward buttons work as expected.
 
             this.listenTo(this.discoveryContent, 'navigate', function(hash) {
+                
+                // To make the URL hash consistent with
+                // non-JavaScript users (e.g. if a JS-user
+                // shares a link with a non-JS-user), strip
+                // of the special `_js` bit that we added
+                // to the `id` attribute during initialization.
 
-                // Preserve the current scroll position
-                var pos = $(window).scrollTop();
-
-                // Add the new hash to the browser history
-                this.navigate(hash);
-
-                // And restore the scroll position
-                $(window).scrollTop(pos);
+                this.navigate(hash.slice(0,-3));
 
             });
 
@@ -297,6 +370,17 @@ Stem.Routers = Stem.Routers || {};
                 }
 
             });
+            
+            // We also have to account for an edge case in 
+            // mobile views. If the user starts at a particular
+            // section (e.g. `#partners`) and then scrolls back
+            // to the top, the URL hash will still be `#partners`.
+            // In that case, the browser won't recognize subsequent
+            // clicks on the same element in the navigation menu.
+            // We have to catch those manually.
+            
+            $('.site-hdr__navbar__list a').on('click', 
+                $.proxy(this.navClicked, this));
 
             // Everything's ready, so enable history management.
 
