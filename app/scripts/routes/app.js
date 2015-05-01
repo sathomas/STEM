@@ -70,7 +70,7 @@ Stem.Routers = Stem.Routers || {};
             // If Google Analytics is available, track
             // the page load.
             
-            if (ga) {
+            if (typeof ga !== 'undefined') {
                 ga('send', 'pageview', id);
                 ga('set', 'page', id);
             }
