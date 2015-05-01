@@ -4,7 +4,7 @@ describe('TeachersAsDiscovery View', function() {
     'use strict';
 
     beforeEach(function() {
-        this.$Scaffolding = $('<article id="teachers"></article>');
+        this.$Scaffolding = $('<article id="teachers" class="discovery"></article>');
         this.Discovery = new Stem.Models.Discovery();
         this.TeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
             $el: this.$Scaffolding,
@@ -28,7 +28,7 @@ describe('TeachersAsDiscovery View', function() {
         $el.find('h3').attr('id').should.match(/^[0-9]+$/);
     });
 
-    it('after render, the anchor elements should have an href with a search that has but no query', function() {
+    it('after render, the anchor elements should have an href with a search that has no query', function() {
         var $el = this.TeachersAsDiscovery.render().$el;
 
         $el.find('#teachers-search-courses').length.should.equal(1);
@@ -38,32 +38,38 @@ describe('TeachersAsDiscovery View', function() {
         $el.find('#teachers-search-groups').attr('href').should.equal('#search//groups');
     });
 
-    it('triggering a submit event on the searchForm should cause TeachersAsDiscovery to trigger a search:submit event.', function() {
-        var view = this.TeachersAsDiscovery.render();
-        var externalHandler = sinon.spy();
-        var internalHandler = sinon.spy();
-
-        view.searchForm.on('submit', externalHandler);
-        view.on('search:submit', internalHandler);
-
-        view.searchForm.$el.find('button').first().trigger('click');
-        externalHandler.callCount.should.equal(1); // this indicates that the external submit event was recieved, and submitSearch called.
-        internalHandler.callCount.should.equal(1); // this indicates search:submit was fired from submitSearch.
-
-        view.searchForm.off('submit', externalHandler);
-        view.off('search:submit', internalHandler);
+    it.skip('a change in the query of the underlying search model should update the href of the teacher anchor elements', function() {
+        var $el = this.TeachersAsDiscovery.render().$el;
+        $el.find('form > input.search__input').first().val('Test').trigger('input');
+        $el.find('#teachers-search-courses').attr('href').should.equal('#search/Test/courses');
+        $el.find('#teachers-search-groups').attr('href').should.equal('#search/Test/groups');
     });
 
-    it('if Discovery triggers a set:searchQuery event, the searchForm attached to TeachersAsDiscovery will be re-rendered.', function() {
+    it('triggering a submit event on the searchForm should cause TeachersAsDiscovery to trigger a search:submit event.', function() {
+        var $el = this.TeachersAsDiscovery.render().$el;
+        var handler = sinon.spy();
+
+        this.TeachersAsDiscovery.on('search:submit', handler);
+
+        $el.find('button.search__submit').first().trigger('click');
+        handler.callCount.should.equal(1); // submitSearch called.
+
+        this.TeachersAsDiscovery.off('search:submit', handler);
+    });
+
+    it.skip('if Discovery triggers a set:searchQuery event, the searchForm attached to TeachersAsDiscovery will be re-rendered.', function() {
         var view = this.TeachersAsDiscovery.render();
         var handler = sinon.spy();
 
-        view.model.on('set:searchQuery', handler);
-        view.model.set('searchQuery', new Stem.Models.Search({
+        this.Discovery.on('set:searchQuery', handler);
+
+        var newSearch = new Stem.Models.Search({
             label: "Test",
             placeholder: "Test"
-        }));
+        });
+        this.Discovery.set('searchQuery', newSearch);
 
+        view.searchForm.model.should.equal(newSearch);
         handler.callCount.should.equal(1);
 
         view.off('set:searchQuery', handler);
