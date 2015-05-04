@@ -8,11 +8,11 @@ describe('TeachersAsDiscovery View', function() {
         this.Discovery = new Stem.Models.Discovery();
         this.TeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
             $el: this.$Scaffolding,
-            model: this.Discovery
+            model: this.Discovery.get('teachers')
         });
     });
 
-    it('render method should return the view, whether or not el was empty', function() {
+    it('render method should return the view', function() {
         this.TeachersAsDiscovery.render().should.equal(this.TeachersAsDiscovery);
     });
 
@@ -57,21 +57,21 @@ describe('TeachersAsDiscovery View', function() {
         this.TeachersAsDiscovery.off('search:submit', handler);
     });
 
-    it.skip('if Discovery triggers a set:searchQuery event, the searchForm attached to TeachersAsDiscovery will be re-rendered.', function() {
-        var view = this.TeachersAsDiscovery.render();
+    it.skip('if the teachers model triggers a set:searchQuery event, the searchForm property of TeachersAsDiscovery should be updated and re-rendered.', function() {
+        this.TeachersAsDiscovery.render();
         var handler = sinon.spy();
 
-        this.Discovery.on('set:searchQuery', handler);
+        this.TeachersAsDiscovery.model.on('set:searchQuery', handler);
 
         var newSearch = new Stem.Models.Search({
-            label: "Test",
-            placeholder: "Test"
+            label: 'Test',
+            placeholder: 'Test'
         });
-        this.Discovery.set('searchQuery', newSearch);
+        this.TeachersAsDiscovery.model.set('searchQuery', newSearch);
 
-        view.searchForm.model.should.equal(newSearch);
+        this.TeachersAsDiscovery.searchForm.model.should.equal(newSearch);
         handler.callCount.should.equal(1);
 
-        view.off('set:searchQuery', handler);
+        this.TeachersAsDiscovery.model.off('set:searchQuery', handler);
     });
 });
