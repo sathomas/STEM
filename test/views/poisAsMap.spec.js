@@ -1,4 +1,4 @@
-/* global beforeEach, describe, it, Stem */
+/* global beforeEach, describe, it, Stem, L */
 
 describe('PoisAsMap View', function() {
     'use strict';
@@ -13,15 +13,15 @@ describe('PoisAsMap View', function() {
 
         this.PoisAsMap_admins = new Stem.Views.PoisAsMap({
             $el: this.$Scaffolding_admins,
-            model: this.Admins.get('certificationPois')
+            collection: this.Admins.get('certificationPois')
         });
         this.PoisAsMap_partners1 = new Stem.Views.PoisAsMap({
             $el: this.$Scaffolding_partners1,
-            model: this.Partners.get('organizationPois')
+            collection: this.Partners.get('organizationPois')
         });
         this.PoisAsMap_partners2 = new Stem.Views.PoisAsMap({
-            $el: this.$Scaffolding_partners1,
-            model: this.Partners.get('proposalPois')
+            $el: this.$Scaffolding_partners2,
+            collection: this.Partners.get('proposalPois')
         });
     });
 
