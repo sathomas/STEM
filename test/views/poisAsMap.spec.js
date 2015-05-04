@@ -4,30 +4,32 @@ describe('PoisAsMap View', function() {
     'use strict';
 
     beforeEach(function() {
-        this.$Scaffolding_admins = $('<div id="admins-certifications-map"></div>');
-        this.$Scaffolding_partners1 = $('<div id="partners-organizations-filter"></div>');
-        this.$Scaffolding_partners2 = $('<div id="partners-donorschoose-map"></div>');
-        this.Discovery = new Stem.Models.Discovery();
-        this.Admins = this.Discovery.get('admins');
-        this.Partners = this.Discovery.get('partners');
+        this.$Scaffolding = $('<div id="test-certifications-map"></div>');
+        this.Pois = new Stem.Collections.Pois();
 
-        this.PoisAsMap_admins = new Stem.Views.PoisAsMap({
-            $el: this.$Scaffolding_admins,
-            collection: this.Admins.get('certificationPois')
-        });
-        this.PoisAsMap_partners1 = new Stem.Views.PoisAsMap({
-            $el: this.$Scaffolding_partners1,
-            collection: this.Partners.get('organizationPois')
-        });
-        this.PoisAsMap_partners2 = new Stem.Views.PoisAsMap({
-            $el: this.$Scaffolding_partners2,
-            collection: this.Partners.get('proposalPois')
+        this.PoisAsMap = new Stem.Views.PoisAsMap({
+            $el: this.$Scaffolding,
+            collection: this.Pois
         });
     });
 
     it('render methods should return the view', function() {
-        this.PoisAsMap_admins.render().should.equal(this.PoisAsMap_admins);
-        this.PoisAsMap_partners1.render().should.equal(this.PoisAsMap_partners1);
-        this.PoisAsMap_partners2.render().should.equal(this.PoisAsMap_partners2);
+        this.PoisAsMap.render().should.equal(this.PoisAsMap);
+    });
+
+    it('after render, a reference to the Leaflet structure should exist in a data attribute on the source element', function() {
+        var $el = this.PoisAsMap.render().$el;
+        $el.data('map').should.equal(this.PoisAsMap.map);
+    });
+
+    it('after render, if no aspect ratio is not provided on initialization, should be 0.5', function() {
+        var $el = this.PoisAsMap.render().$el;
+        $el.data('aspectRatio').should.equal(0.5);
+    });
+
+    it('if the add event is fired from Pois collection, addMarker should be called for PoisAsMap', function() {
+        var handler = sinon.spy();
+        this.Pois.on('add', handler);
+        this.Pois.off('add', handler);
     });
 });
