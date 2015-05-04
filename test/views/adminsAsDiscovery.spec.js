@@ -17,12 +17,12 @@ describe('adminsAsDiscovery View', function() {
     });
 
     it('after render, the root element of the view should have ARIA label with an id value', function() {
-        var $el = this.TeachersAsDiscovery.render().$el;
+        var $el = this.AdminsAsDiscovery.render().$el;
         $el.attr('aria-labelledby').should.match(/^[0-9]+$/);
     });
 
     it('after render, the h3 element in the view should have an id value', function() {
-        var $el = this.TeachersAsDiscovery.render().$el;
+        var $el = this.AdminsAsDiscovery.render().$el;
 
         $el.find('h3').length.should.equal(1);
         $el.find('h3').attr('id').should.match(/^[0-9]+$/);
