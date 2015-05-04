@@ -7,7 +7,7 @@ describe('TeachersAsDiscovery View', function() {
         this.$Scaffolding = $('<article id="teachers" class="discovery"></article>');
         this.Discovery = new Stem.Models.Discovery();
         this.TeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
-            $el: this.$Scaffolding,
+            el: this.$Scaffolding,
             model: this.Discovery.get('teachers')
         });
     });

@@ -7,7 +7,7 @@ describe('partnersAsDiscovery View', function() {
         this.$Scaffolding = $('<article id="partners" class="discovery theme-3"></article>');
         this.Discovery = new Stem.Models.Discovery();
         this.PartnersAsDiscovery = new Stem.Views.PartnersAsDiscovery({
-            $el: this.$Scaffolding,
+            el: this.$Scaffolding,
             model: this.Discovery.get('partners')
         });
     });

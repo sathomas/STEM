@@ -7,7 +7,7 @@ describe('adminsAsDiscovery View', function() {
         this.$Scaffolding = $('<article id="admins" class="discovery theme-2"></article>');
         this.Discovery = new Stem.Models.Discovery();
         this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
-            $el: this.$Scaffolding,
+            el: this.$Scaffolding,
             model: this.Discovery.get('admins')
         });
     });
