@@ -67,4 +67,51 @@ describe('PoisAsMap View', function() {
         // There should be a marker in the PoisAsMap DOM.
         $el.find('.leaflet-marker-pane > .poi-marker').length.should.equal(1);
     });
+
+    it('post-render: When a locationfound event occurs, PoisAsMap should save the location for other maps to use later.', function() {
+        var view = this.PoisAsMap.render().show();
+
+        view.map.fire('locationfound', {
+            latlng: { lat: 0, lng: 0 }
+        });
+
+        Stem.user.geo.latitude.should.equal(0);
+        Stem.user.geo.longitude.should.equal(0);
+    });
+
+    it('post-render: If browser provides location out of state boundary, set the view to the Stem config default.', function() {
+        var view = this.PoisAsMap.render().show();
+        view.map.fire('locationfound', {
+            latlng: { lat: 0, lng: 0 }
+        });
+
+        var latlng = view.map.getCenter();
+        latlng.lat.should.equal(Stem.config.geo.latitude);
+        latlng.lng.should.equal(Stem.config.geo.longitude);
+    });
+
+    it('post-render: If browser provides location in state boundary, set the view to the provided location', function() {
+        var view = this.PoisAsMap.render().show();
+
+        var test_location = { lat: 32.6781248, lng: -83.223252 }; // Google Maps result for typing 'Georgia'
+        view.map.fire('locationfound', { latlng: test_location });
+
+        var latlng = view.map.getCenter();
+        latlng.lat.should.equal(test_location.lat);
+        latlng.lng.should.equal(test_location.lng);
+    });
+
+    it.skip('post-render: When a locationerror event occurs, and user coordinates are already cached, view should be set', function() {
+        Stem.user.geo = _.clone(Stem.config.geo);
+        var view = this.PoisAsMap.render().show();
+        view.map.fire('locationerror');
+    });
+
+    // definitely need a mock for getLocationFromIp success and fail.
+    it.skip('post-render: When a locationerror event occurs, and user coordinates are not cached, attempt getting location from ip.', function() {
+        // should test pass and fail.
+        Stem.user.geo = {};
+        var view = this.PoisAsMap.render().show();
+        view.map.fire('locationerror');
+    });
 });
