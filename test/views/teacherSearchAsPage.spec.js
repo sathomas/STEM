@@ -12,47 +12,67 @@ describe('TeacherSearchAsPage View', function() {
         });
     });
 
-    it('render method should return the view', function() {
+    it('Render method should return the View', function() {
         this.TeacherSearchAsPage.render().should.equal(this.TeacherSearchAsPage);
     });
 
-    it('after render, the root element of the view should have ARIA label with an id value', function() {
+    it('post-render: The root element of the View should have an ARIA label with an id value.', function() {
         var $el = this.TeacherSearchAsPage.render().$el;
         $el.attr('aria-labelledby').should.match(/^[0-9]+$/);
     });
 
-    it('after render, the h3 element in the view should have an id value', function() {
+    it('post-render: The h2 element in the View should have an id attribute with an id value.', function() {
         var $el = this.TeacherSearchAsPage.render().$el;
+        var $heading = $el.find('h2');
+        var num_headings = $heading.length;
 
-        $el.find('h2').length.should.equal(1);
-        $el.find('h2').attr('id').should.match(/^[0-9]+$/);
+        num_headings.should.equal(1);
+        $heading.attr('id').should.match(/^[0-9]+$/);
     });
 
-    it('after render, a search form should exist in the DOM', function() {
+    it('post-render: A search form should exist in the DOM.', function() {
         var $el = this.TeacherSearchAsPage.render().$el;
         $el.find('.search > form.search').length.should.equal(1);
     });
 
-    it('after render, the filter list view should exist in the DOM', function() {
+    it('post-render: A filter list should exist in the DOM.', function() {
         var $el = this.TeacherSearchAsPage.render().$el;
         $el.find('.results-filter > .results-filter__list').length.should.equal(1);
     });
 
-    it('after render, content should be the selected filter', function() {
-        var $el = this.TeacherSearchAsPage.render().$el;
+    it('post-render: By default, "content" should be the selected filter.', function() {
+        var view = this.TeacherSearchAsPage.render();
+        var $el = view.$el;
+
         var $results_main = $el.find('.results-main');
-        $results_main.is(this.TeacherSearchAsPage.contentMainView.$el.parent()).should.be.true();
+        var $contentMainView = view.contentMainView.$el;
+
+        var assertion = $results_main.is($contentMainView.parent());
+        assertion.should.be.true();
     });
 
-    it('after render, changing the selected TeacherSearch searchFilter property should change the main view of TeacherSearchAsPage', function() {
-        var SEARCHFILTER_CHANGE_EVENT_TIMEOUT = 16; // ms
-        var $el = this.TeacherSearchAsPage.render().$el;
-        var $results_main = $el.find('.results-main');
+    it('post-render: Triggering an expand event on a secondary view should expand it while compressing others.', function() {
+        var view = this.TeacherSearchAsPage.render();
 
-        this.TeacherSearch.get('searchFilters').set('facet', 'courses');
-        this.timeout(SEARCHFILTER_CHANGE_EVENT_TIMEOUT);
-        var $results_main = $el.find('.results-main');
+        view.coursesSecondaryView.$el.find('button').trigger('click');
 
-        $results_main.is(this.TeacherSearchAsPage.coursesMainView.$el.parent()).should.be.true();
+        view.contentSecondaryView.$el.attr('data-status').should.equal('compressed');
+        view.coursesSecondaryView.$el.attr('data-status').should.equal('expanded');
+        view.groupsSecondaryView.$el.attr('data-status').should.equal('compressed');
+    });
+
+    it.skip('post-render: Changing the searchFilter should re-arrange results.', function() {
+        var view = this.TeacherSearchAsPage.render();
+        var $el = view.$el;
+
+        var courseSearchFilter = view.searchFiltersList.$el.find('.results-filter__list .results-filter__list-item input')[1];
+        $(courseSearchFilter).trigger('click');
+        this.timeout(16); // n+1 millisecond timeout to compensate for debouncing.
+
+        var $results_main = $el.find('.results-main');
+        var $coursesMainView = view.coursesMainView.$el;
+
+        var assertion = $results_main.is($coursesMainView.parent());
+        assertion.should.be.true();
     });
 });
