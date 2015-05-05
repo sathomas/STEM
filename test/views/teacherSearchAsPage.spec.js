@@ -54,7 +54,7 @@ describe('TeacherSearchAsPage View', function() {
     it('post-render: Triggering an expand event on a secondary view should expand it while compressing others.', function() {
         var view = this.TeacherSearchAsPage.render();
 
-        view.coursesSecondaryView.$el.find('button').trigger('click');
+        view.coursesSecondaryView.$el.find('.results-secondary__extras button').trigger('click');
 
         view.contentSecondaryView.$el.attr('data-status').should.equal('compressed');
         view.coursesSecondaryView.$el.attr('data-status').should.equal('expanded');
@@ -65,9 +65,8 @@ describe('TeacherSearchAsPage View', function() {
         var view = this.TeacherSearchAsPage.render();
         var $el = view.$el;
 
-        var courseSearchFilter = view.searchFiltersList.$el.find('.results-filter__list .results-filter__list-item input')[1];
+        var courseSearchFilter = view.searchFiltersList.$el.find('.results-filter__list-item > .results-filter__list-item__input')[1];
         $(courseSearchFilter).trigger('click');
-        this.timeout(16); // n+1 millisecond timeout to compensate for debouncing.
 
         var $results_main = $el.find('.results-main');
         var $coursesMainView = view.coursesMainView.$el;
