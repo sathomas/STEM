@@ -74,4 +74,26 @@ describe('TeachersAsDiscovery View', function() {
 
         this.TeachersAsDiscovery.model.off('set:searchQuery', handler);
     });
+
+    it('should remove and replace search form if it already exists', function() {
+        var $FilledScaffolding = $('<article id="teachers" class="discovery"><div>Not Empty!</div></article>');
+        var teachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
+            el: $FilledScaffolding,
+            model: this.Discovery.get('teachers'),
+            searchForm: 'test'
+        });
+        var spy = sinon.spy(teachersAsDiscovery, "render");
+        teachersAsDiscovery.render();
+        assert(spy.calledOnce);
+        teachersAsDiscovery.searchForm.should.not.equal('test');
+        teachersAsDiscovery.searchForm = 'test';
+        teachersAsDiscovery.searchForm.should.equal('test');
+
+        // function test() {
+
+        // }
+        // var spy = sinon.spy(test);
+        // test();
+        // spy.callCount.should.equal(1);
+    });
 });
