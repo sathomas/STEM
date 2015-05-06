@@ -76,24 +76,21 @@ describe('TeachersAsDiscovery View', function() {
     });
 
     it('should remove and replace search form if it already exists', function() {
-        var $FilledScaffolding = $('<article id="teachers" class="discovery"><div>Not Empty!</div></article>');
-        var teachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
+        var $FilledScaffolding = $('<article id="teachers" class="discovery"><div id="test-search-form"></div></article>');
+        var newTeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
             el: $FilledScaffolding,
-            model: this.Discovery.get('teachers'),
-            searchForm: 'test'
+            model: this.Discovery.get('teachers')
         });
-        var spy = sinon.spy(teachersAsDiscovery, "render");
-        teachersAsDiscovery.render();
-        assert(spy.calledOnce);
-        teachersAsDiscovery.searchForm.should.not.equal('test');
-        teachersAsDiscovery.searchForm = 'test';
-        teachersAsDiscovery.searchForm.should.equal('test');
+        var newSearchForm = new Stem.Views.SearchAsForm({
+            el: $FilledScaffolding.find('#test-search-form'),
+            model: newTeachersAsDiscovery.model.get('searchQuery'),
+            theme: 'theme-1-test',
+            testOption: 'the-test-option'
+        }).render();
+        newTeachersAsDiscovery.searchForm = newSearchForm;
+        newTeachersAsDiscovery.searchForm.options.testOption.should.equal('the-test-option');
 
-        // function test() {
-
-        // }
-        // var spy = sinon.spy(test);
-        // test();
-        // spy.callCount.should.equal(1);
+        newTeachersAsDiscovery.render();
+        should.not.exist(newTeachersAsDiscovery.searchForm.options.testOption);
     });
 });
