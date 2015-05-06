@@ -60,30 +60,6 @@ Stem.Views = Stem.Views || {};
                 title:  'I’m looking for'
             });
 
-            // Create the child views.
-
-            this.mapFilter = new Stem.Views.TagSetAsInlineCheckboxGroup({
-                el: $('#partners-organizations-filter'),
-                model: this.tagSet
-            });
-
-            this.organizationsMap = new Stem.Views.PoisAsMap({
-                el: $('#partners-organizations-map'),
-                collection: this.model.get('organizationPois'),
-                tintUrl: 'images/theme-3-background.png'
-            });
-
-            this.proposalsMap = new Stem.Views.PoisAsMap({
-                el: $('#partners-donorschoose-map'),
-                collection: this.model.get('proposalPois'),
-                tintUrl: 'images/theme-3-background.png'
-            });
-
-            this.partnershipsList = new Stem.Views.OaeAsSpotlightList({
-                el: $('#partners-spotlights'),
-                collection: this.model.get('partnerships')
-            });
-
         },
 
         render: function () {
@@ -113,12 +89,29 @@ Stem.Views = Stem.Views || {};
             this.$el.attr('aria-labelledby', headingId);
             this.$el.find('h3').attr('id', headingId);
 
-            // Render all the child views.
+            // Create and Render all child views.
 
-            this.mapFilter.render();
-            this.proposalsMap.render();
-            this.organizationsMap.render();
-            this.partnershipsList.render();
+            this.mapFilter = new Stem.Views.TagSetAsInlineCheckboxGroup({
+                el: this.$el.find('#partners-organizations-filter'),
+                model: this.tagSet
+            }).render();
+
+            this.organizationsMap = new Stem.Views.PoisAsMap({
+                el: this.$el.find('#partners-organizations-map'),
+                collection: this.model.get('organizationPois'),
+                tintUrl: 'images/theme-3-background.png'
+            }).render();
+
+            this.proposalsMap = new Stem.Views.PoisAsMap({
+                el: this.$el.find('#partners-donorschoose-map'),
+                collection: this.model.get('proposalPois'),
+                tintUrl: 'images/theme-3-background.png'
+            }).render();
+
+            this.partnershipsList = new Stem.Views.OaeAsSpotlightList({
+                el: this.$el.find('#partners-spotlights'),
+                collection: this.model.get('partnerships')
+            }).render();
 
             this.listenTo(this.tagSet.get('tags'), 'change', this.updateFilters);
 
