@@ -145,14 +145,15 @@ describe('PoisAsMap View', function() {
         it('post-render: If the browser encounters an error acquiring the location, and user coordinates are not cached,\
             and attempting to get location by ip is successful, call setView with the response.', function() {
             var server = sinon.fakeServer.create();
-            // need a spy for setView
+            var spy = sinon.spy(this.PoisAsMap, 'setView');
             var view = this.PoisAsMap.render().show();
 
             view.map.fire('locationerror');
             server.requests[0].respond(200, { 'Content-Type': 'application/json' }, JSON.stringify({
                 loc: '0, 0'
             }));
-            // expect setView to have been called with 0, 0. No need to test what setView does with these values as it is done above.
+            spy.callCount.should.equal(1);
+            spy.calledWith(0, 0).should.be.true();
 
             server.restore();
         });
@@ -160,12 +161,13 @@ describe('PoisAsMap View', function() {
         it('post-render: If the browser encounters an error acquiring the location, and user coordinates are not cached,\
             and attempting to get location by ip fails, call setView with the Stem defaults.', function() {
             var server = sinon.fakeServer.create();
-            // need a spy for setView
+            var spy = sinon.spy(this.PoisAsMap, 'setView');
             var view = this.PoisAsMap.render().show();
 
             view.map.fire('locationerror');
             server.requests[0].respond(404);
-            // expect setView to have been called with Stem default coords. No need to test what setView does with these values as it is done above.
+            spy.callCount.should.equal(1);
+            spy.calledWith(Stem.config.geo.latitude, Stem.config.geo.longitude).should.be.true();
 
             server.restore();
         });
