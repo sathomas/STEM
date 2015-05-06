@@ -123,18 +123,6 @@ describe('TeacherSearch Model', function () {
         this.TeacherSearchModel.get('searchQuery').get('placeholder').should.equal('Search the Incubator');
     });
 
-    it('should not create a new search query model if one is provided', function() {
-        var searchQueryModel = new Stem.Models.Search({
-          label: 'test label',
-          placeholder: 'test placeholder',
-          query: 'test query'
-        });
-        var teacherSearch = new Stem.Models.TeacherSearch({searchQuery: searchQueryModel});
-        teacherSearch.get('searchQuery').get('label').should.equal('test label');
-        teacherSearch.get('searchQuery').get('placeholder').should.equal('test placeholder');
-        teacherSearch.get('searchQuery').get('query').should.equal('test query');
-    });
-
     it('should create a tag set for grade levels', function () {
         this.TeacherSearchModel.get('gradeLevelTags').should.not.be.empty();
         this.TeacherSearchModel.get('gradeLevelTagSet').should.not.be.empty();
@@ -187,11 +175,5 @@ describe('TeacherSearch Model', function () {
         this.TeacherSearchModel.set('facet','courses');
         this.TeacherSearchModel.get('facets').courses.filter.get('selected').should.be.true();
     });
-
-    it('should create filters collection', function() {
-        this.TeacherSearchModel.get('searchFilters').should.not.equal(undefined);
-    });
-
-    it('should ')
 
 });
