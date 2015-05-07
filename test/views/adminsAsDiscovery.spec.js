@@ -1,10 +1,10 @@
 /* global beforeEach, describe, it, Stem */
 
-describe('adminsAsDiscovery View', function() {
+describe('AdminsAsDiscovery View', function() {
     'use strict';
 
     beforeEach(function() {
-        this.$Scaffolding = $('<article id="admins" class="discovery theme-2"></article>');
+        this.$Scaffolding = $('<article id="admins" class="discovery theme-2"><div id="admins-certifications-map" class="theme-2 map"></div></article>');
         this.Discovery = new Stem.Models.Discovery();
         this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
             el: this.$Scaffolding,
@@ -26,5 +26,9 @@ describe('adminsAsDiscovery View', function() {
 
         $el.find('h3').length.should.equal(1);
         $el.find('h3').attr('id').should.match(/^[0-9]+$/);
+    });
+
+    it.skip('should throw Map container not found error if no map container', function() {
+        console.error('no content');
     });
 });
