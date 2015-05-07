@@ -46,4 +46,24 @@ describe('partnersAsDiscovery View', function() {
         $partnership_list.hasClass('spotlight').should.be.true();
         $partnership_list.is(':empty').should.be.true();
     });
+
+    it('post-render: There should be a link to the Partnering Guide in the view.', function() {
+        var $el = this.PartnersAsDiscovery.render().$el;
+        $el.find('a[href="http://www.stemincubator.gatech.edu/handbook"]').length.should.not.equal(0);
+    });
+
+
+    it.skip('post-render: Changing a tag in the tagset should update the filters for the organizations map.', function() {
+        var $el = this.PartnersAsDiscovery.render().$el;
+        var spy = sinon.spy(this.PartnersAsDiscovery, "updateFilters");
+
+        var count = 0;
+        var $filters = $el.find('#partners-organizations-filter .chkbox');
+        $filters.children().each(function(index, element) {
+            $(element).trigger('click');
+            count++;
+        });
+
+        spy.callCount.should.equal(count);
+    });
 });
