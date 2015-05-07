@@ -42,15 +42,4 @@ describe('AdminsAsDiscovery View', function() {
         mapContainer.length.should.equal(1);
         mapContainer.hasClass('leaflet-container').should.be.true();
     });
-
-    it('after render, should have link to show more spotlights', function() {
-        // var $el = this.AdminsAsDiscovery.render().$el;
-
-        // $el.find('admins-spotlights')
-        // var $el = this.OaeAsSecondarySearchGroup.render().$el;
-        // var redirectStub = sinon.stub(Stem.Utils, 'redirect');
-        // $el.find('button').click();
-        // redirectStub.calledWith('/more/link').should.be.true();
-        // redirectStub.restore();
-    });
 });
