@@ -28,12 +28,22 @@ describe('partnersAsDiscovery View', function() {
         $el.find('h3').attr('id').should.match(/^[0-9]+$/);
     });
 
-    it('post-render: Child views should not be empty.', function() {
+    it('post-render: Child views should be rendered.', function() {
         var $el = this.PartnersAsDiscovery.render().$el;
 
-        $el.find('#partners-organizations-filter').is(':empty').should.not.be.true();
-        $el.find('#partners-organizations-map').is(':empty').should.not.be.true();
-        $el.find('#partners-donorschoose-map').is(':empty').should.not.be.true();
-        $el.find('#partners-spotlights').is(':empty').should.be.not.true();
+        var $organizations_map = $el.find('#partners-organizations-map');
+        $organizations_map.hasClass('leaflet-container').should.be.true();
+        $organizations_map.is(':empty').should.be.false();
+
+        var $organizations_map_filter = $el.find('#partners-organizations-filter');
+        $organizations_map_filter.is(':empty').should.be.false();
+
+        var $proposals_map = $el.find('#partners-donorschoose-map');
+        $proposals_map.hasClass('leaflet-container').should.be.true();
+        $proposals_map.is(':empty').should.be.false();
+
+        var $partnership_list = $el.find('#partners-spotlights');
+        $partnership_list.hasClass('spotlight').should.be.true();
+        $partnership_list.is(':empty').should.be.true();
     });
 });
