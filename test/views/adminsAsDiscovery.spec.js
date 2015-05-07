@@ -4,7 +4,7 @@ describe('AdminsAsDiscovery View', function() {
     'use strict';
 
     beforeEach(function() {
-        this.$Scaffolding = $('<article id="admins" class="discovery theme-2"><div id="admins-certifications-map" class="theme-2 map"></div></article>');
+        this.$Scaffolding = $('<article id="admins" class="discovery theme-2"><div id="a</article>');
         this.Discovery = new Stem.Models.Discovery();
         this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
             el: this.$Scaffolding,
@@ -28,7 +28,10 @@ describe('AdminsAsDiscovery View', function() {
         $el.find('h3').attr('id').should.match(/^[0-9]+$/);
     });
 
-    it.skip('should throw Map container not found error if no map container', function() {
-        console.error('no content');
+    it('post render: should have a link to stemgeorgia roadmap', function() {
+        var $el = this.AdminsAsDiscovery.render().$el;
+
+        var link = $el.find('.invite .btn');
+        $el.find('.invite .btn').attr('href').should.equal('http://stemgeorgia.org/roadmap/');
     });
 });
