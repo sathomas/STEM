@@ -16,20 +16,6 @@ Stem.Views = Stem.Views || {};
         id: 'admins',
 
         initialize: function () {
-
-            // Create the child views.
-
-            this.certificationsMap = new Stem.Views.PoisAsMap({
-                el: $('#admins-certifications-map'),
-                collection: this.model.get('certificationPois'),
-                tintUrl: 'images/theme-2-background.png'
-            });
-
-            this.spotlightList = new Stem.Views.OaeAsSpotlightList({
-                el: $('#admins-spotlights'),
-                collection: this.model.get('spotlights')
-            });
-
         },
 
         render: function () {
@@ -59,10 +45,18 @@ Stem.Views = Stem.Views || {};
             this.$el.attr('aria-labelledby', headingId);
             this.$el.find('h3').attr('id', headingId);
 
-            // Render all the child views.
+            // Create and Render all child views.
 
-            this.certificationsMap.render();
-            this.spotlightList.render();
+            this.certificationsMap = new Stem.Views.PoisAsMap({
+                el: this.$el.find('#admins-certifications-map'),
+                collection: this.model.get('certificationPois'),
+                tintUrl: 'images/theme-2-background.png'
+            }).render();
+
+            this.spotlightList = new Stem.Views.OaeAsSpotlightList({
+                el: this.$el.find('#admins-spotlights'),
+                collection: this.model.get('spotlights')
+            }).render();
 
             // Go ahead and show the map since it's
             // initially visible on tablets and
