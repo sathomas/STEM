@@ -1,39 +1,58 @@
-<h3 class="discovery__heading theme-3">Supporting partners</h3>
-<h4 class="discovery__subheading">Getting started</h4>
-<p class="discovery__text">
-    Find schools, school projects, and other partner organizations
-    in your neighborhood with the maps below. Read the handbook for
-    strategies and tips on how to get involved. Check out case
-    studies below.
+<h3 id="partners-heading"
+    class="discovery__heading theme-3">
+    Partnering
+</h3>
 
+<h4 class="discovery__subheading">
+    Getting started
+</h4>
+
+<p class="discovery__text">
+    Find schools, businesses, and other partner organizations
+    in your neighborhood with the maps below. Browse the
+    partnering guide for ways to get involved.
 </p>
+
 <div class="invite theme-3">
     <i class="invite__icon fa fa-book"></i>
-    <a class="btn" href="https://gatech.brightspace.com/incubator.asp​">
-        Partners’ handbook
+    <a class="btn"
+       href="http://www.stemincubator.gatech.edu/handbook">
+        Partnering Guide
     </a>
     <p class="invite__text">
         Learn about partnering
     </p>
 </div>
-<div class="tabs">
-    <input type="radio" name="tabs-1" id="tab-1-1" class="tabs__input" checked="checked"/>
+
+<!--
+
+Next content block is a tab panel for the maps.
+
+-->
+
+<div class="tabs util--js-only">
+    <input type="radio" name="tabs-1" id="tab-1-1"
+           class="tabs__input" checked="checked"/>
     <label for="tab-1-1" class="tabs__label">
-	    Class Projects to Fund
-	</label>
-	<input type="radio" name="tabs-1" id="tab-1-2" class="tabs__input"/>
+        Class Projects to Fund
+    </label>
+    <input type="radio" name="tabs-1" id="tab-1-2"
+           class="tabs__input"/>
     <label for="tab-1-2" class="tabs__label">
-	    Local partners
+        Local partners
     </label>
     <div class="tabs__panel">
         <p class="discovery__text">
             Donate to a local class project through DonorsChoose.org
         </p>
-        <div id="partners-donorschoose-map" class="map"></div>
+        <div id="partners-donorschoose-map" class="map">
+        </div>
         <a href="http://www.donorschoose.org">
-            <img class="discovery-image" src="images/donorschoose.svg"/>
+            <img class="discovery-image"
+                 src="images/donorschoose.svg"/>
         </a>
-        <a class="btn" href="https://secure.donorschoose.org/wizard/addressWizard.html">
+        <a class="btn"
+           href="https://secure.donorschoose.org/wizard/addressWizard.html">
             Request funding
         </a>
     </div>
@@ -41,16 +60,26 @@
         <div id="partners-organizations-filter" class="discovery__text"></div>
         <div id="partners-organizations-map" class="map"></div>
         <p class="discovery__text">
-            Put your organization or school on the map by
+            Put your organization or business on the map by
             joining our community
         </p>
-        <a class="btn" href="https://stemincubator.oaeproject.org">
+        <a class="btn" href="https://www.surveymonkey.com/s/STEMincubator">
             Create a profile
         </a>
     </div>
 </div>
-<h4 class="discovery__subheading">Spotlights</h4>
-<ul id="partners-spotlights" class="spotlight"></ul>
-<a class="btn" href="https://stemincubator.oaeproject.org/group/si/XkJrmWWq/members">
+
+<!--
+
+Final content block is spotlight case studies.
+
+-->
+
+<h4 class="discovery__subheading util--js-only">
+    Spotlights
+</h4>
+<ul id="partners-spotlights util--js-only" class="spotlight"></ul>
+<a class="btn util--js-only"
+   href="https://stemincubator.oaeproject.org/group/si/XkJrmWWq/members">
     Show more spotlights
 </a>
