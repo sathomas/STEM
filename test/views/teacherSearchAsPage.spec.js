@@ -65,13 +65,19 @@ describe('TeacherSearchAsPage View', function() {
         var view = this.TeacherSearchAsPage.render();
         var $el = view.$el;
 
-        var courseSearchFilter = view.searchFiltersList.$el.find('.results-filter__list-item > .results-filter__list-item__input')[1];
-        $(courseSearchFilter).trigger('click');
+        var filters = view.searchFiltersList.$el.find('.results-filter__list-item > .results-filter__list-item__input');
+        var courseSearchFilter = view.searchFiltersList.$el.find('.results-filter__list-item__label')[1];
+        courseSearchFilter.click('click');
 
-        var $results_main = $el.find('.results-main');
-        var $coursesMainView = view.coursesMainView.$el;
+            var resultsMainHeading = $('body').html();
+            var innerHTML = resultsMainHeading.html();
+            innerHTML.should.equal('Professional Learning');
 
-        var assertion = $results_main.is($coursesMainView.parent());
-        assertion.should.be.true();
+        // var $results_main = $el.find('.results-main');
+        // var $coursesMainView = view.coursesMainView.$el;
+
+        // var assertion = $results_main.is($coursesMainView.parent());
+        // var parent = $coursesMainView.parent();
+        // assertion.should.be.true();
     });
 });
