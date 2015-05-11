@@ -381,14 +381,28 @@ of course, means that JavaScript is available.
 
                 <article id="admins" class="discovery theme-2" aria-labelledby="admins-heading">
 
-                    <h3 class="discovery__heading theme-2">STEM Certification</h3>
-                    <h4 class="discovery__subheading">Getting started</h4>
+                    <h3 id="admins-heading"
+                        class="discovery__heading theme-2">
+                        STEM Certification
+                    </h3>
+
+                    <!--
+
+                    First content block is an introduction.
+
+                    -->
+
+                    <h4 class="discovery__subheading">
+                        Getting started
+                    </h4>
+
                     <p class="discovery__text">
                         See the schools in your neighborhood that have
                         achieved STEM certification. Read the handbook for
                         information on putting your school on the map.
                         Check out spotlighted schools below.
                     </p>
+
                     <div class="invite theme-2">
                         <i class="invite__icon fa fa-book"></i>
                         <a class="btn" href="http://stemgeorgia.org/roadmap/">
@@ -398,14 +412,35 @@ of course, means that JavaScript is available.
                             Learn about certification at STEM Georgia
                         </p>
                     </div>
-                    <h4 class="discovery__subheading util--js-only">STEM-certified schools</h4>
-                    <div id="admins-certifications-map" class="theme-2 map util--js-only"></div>
-                    <h4 class="discovery__subheading util--js-only">Spotlights</h4>
-                    <ul id="admins-spotlights" class="spotlight"></ul>
-                    <a class="btn util--js-only" 
-                       href="https://stemincubator.oaeproject.org/group/si/4yv0msV-/members">
-                        Show more spotlights
-                    </a>
+
+                    <!--
+
+                    Next content block is map of STEM-certified schools.
+
+                    -->
+
+                    <div class="discovery__block util--js-only theme-0-white">
+                        <h4 class="discovery__subheading">
+                            STEM-certified schools
+                        </h4>
+                        <div id="admins-certifications-map" class="theme-2 map"></div>
+                    </div>
+
+                    <!--
+
+                    Final content block is list of spotlighted examples. It's hidden
+                    from view unless there are actual spotlights to show.
+
+                    -->
+
+                    <div class="spotlight-block util--js-only util--hide">
+                        <h4 class="discovery__subheading">Spotlights</h4>
+                        <ul id="admins-spotlights" class="spotlight"></ul>
+                        <a class="btn" 
+                           href="https://stemincubator.oaeproject.org/group/si/4yv0msV-/members">
+                            Show more spotlights
+                        </a>
+                    </div>
 
                 </article>
 
@@ -495,18 +530,21 @@ of course, means that JavaScript is available.
 
                     <!--
 
-                    Final content block is spotlight case studies.
+                    Final content block is spotlight case studies. It's hidden
+                    from view unless there are actual spotlights to show.
 
                     -->
 
-                    <h4 class="discovery__subheading util--js-only">
-                        Spotlights
-                    </h4>
-                    <ul id="partners-spotlights util--js-only" class="spotlight"></ul>
-                    <a class="btn util--js-only"
-                       href="https://stemincubator.oaeproject.org/group/si/XkJrmWWq/members">
-                        Show more spotlights
-                    </a>
+                    <div class="spotlight-block util--js-only util--hide">
+                        <h4 class="discovery__subheading">
+                            Spotlights
+                        </h4>
+                        <ul id="partners-spotlights" class="spotlight"></ul>
+                        <a class="btn"
+                           href="https://stemincubator.oaeproject.org/group/si/XkJrmWWq/members">
+                            Show more spotlights
+                        </a>
+                    </div>
 
                 </article>
 

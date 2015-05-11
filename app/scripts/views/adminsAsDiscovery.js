@@ -15,23 +15,6 @@ Stem.Views = Stem.Views || {};
 
         id: 'admins',
 
-        initialize: function () {
-
-            // Create the child views.
-
-            this.certificationsMap = new Stem.Views.PoisAsMap({
-                el: $('#admins-certifications-map'),
-                collection: this.model.get('certificationPois'),
-                tintUrl: 'images/theme-2-background.png'
-            });
-
-            this.spotlightList = new Stem.Views.OaeAsSpotlightList({
-                el: $('#admins-spotlights'),
-                collection: this.model.get('spotlights')
-            });
-
-        },
-
         render: function () {
 
             // Normally this view is used to "fill in"
@@ -59,19 +42,36 @@ Stem.Views = Stem.Views || {};
             this.$el.attr('aria-labelledby', headingId);
             this.$el.find('h3').attr('id', headingId);
 
-            // Render all the child views.
+            // Create and render all the child views.
 
-            this.certificationsMap.render();
-            this.spotlightList.render();
+            new Stem.Views.PoisAsMap({
+                el: this.$el.find('#admins-certifications-map'),
+                collection: this.model.get('certificationPois'),
+                tintUrl: 'images/theme-2-background.png'
+            }).render().show();
 
-            // Go ahead and show the map since it's
-            // initially visible on tablets and
-            // smartphones.
+            new Stem.Views.OaeAsSpotlightList({
+                el: this.$el.find('#admins-spotlights'),
+                collection: this.model.get('spotlights')
+            }).render();
 
-            this.certificationsMap.show();
+            
+            // If the spotlight list isn't empty, we'll
+            // want to show it.
+            
+            this.listenTo(this.model.get('spotlights'), 'add', this.showSpotlights);
+            if (this.model.get('spotlights').length) {
+                this.showSpotlights();
+            }
 
             return this; // for method chaining.
 
+        },
+        
+        showSpotlights: function () {
+            
+            this.$el.find('.spotlight-block').removeClass('util--hide');
+            
        }
 
     });
