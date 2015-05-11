@@ -69,6 +69,10 @@
     transition: opacity 250ms linear;
 }
 
+.discovery__block {
+    .spacing(padding-bottom);
+}
+
 .discovery__heading {
     font-size: 2.5rem;
     margin-bottom: 0;
@@ -123,6 +127,10 @@
     @media @desktop { margin: @block-spacing-desktop auto; }
     max-width: 150px;
     @media @tablet  { max-width: 250px; }
+}
+
+.discovery__block.theme-0-white {
+    background-color: @color-theme-0-white;
 }
 
 .discovery__heading.theme-1 {
