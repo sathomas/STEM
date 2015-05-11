@@ -32,7 +32,7 @@ Stem.Views = Stem.Views || {};
 
             this.listenTo(
                 this.model,
-                'set:searchQuery',
+                'change:searchQuery',
                 this.renderSearch
             );
 

@@ -1,6 +1,6 @@
-/* global beforeEach, describe, it, Stem */
+/* global Stem, describe, beforeEach, it */
 
-describe('TeachersAsDiscovery View', function() {
+describe('View::TeachersAsDiscovery', function() {
     'use strict';
 
     beforeEach(function() {
@@ -12,23 +12,30 @@ describe('TeachersAsDiscovery View', function() {
         });
     });
 
-    it('render method should return the view', function() {
+    it('Render method should return the view (for chaining).', function() {
         this.TeachersAsDiscovery.render().should.equal(this.TeachersAsDiscovery);
     });
 
-    it('after render, the root element of the view should have ARIA label with an id value', function() {
+    it('Render method should render search form.', function() {
+        var functionSpy = sinon.spy(this.TeachersAsDiscovery, "renderSearch");
+        this.TeachersAsDiscovery.render();
+        functionSpy.callCount.should.equal(1);
+
+        functionSpy.restore();
+    });
+
+    it('After render, the root element of the view should have an ARIA label with a valid id value.', function() {
         var $el = this.TeachersAsDiscovery.render().$el;
         $el.attr('aria-labelledby').should.match(/^[0-9]+$/);
     });
 
-    it('after render, the h3 element in the view should have an id value', function() {
+    it('After render, the sole h3 element in the view should have a valid id value.', function() {
         var $el = this.TeachersAsDiscovery.render().$el;
-
         $el.find('h3').length.should.equal(1);
         $el.find('h3').attr('id').should.match(/^[0-9]+$/);
     });
 
-    it('after render, the anchor elements should have an href with a search that has no query', function() {
+    it('After render, the anchor elements should exist and have an href of a search with no query.', function() {
         var $el = this.TeachersAsDiscovery.render().$el;
 
         $el.find('#teachers-search-courses').length.should.equal(1);
@@ -38,41 +45,58 @@ describe('TeachersAsDiscovery View', function() {
         $el.find('#teachers-search-groups').attr('href').should.equal('#search//groups');
     });
 
-    it.skip('a change in the query of the underlying search model should update the href of the teacher anchor elements', function() {
+    it('After render, a change to the query of the teacher model search query, should update the href of the view anchor elements.', function() {
+        this.TeachersAsDiscovery.remove();
+        var functionSpy = sinon.spy(this.TeachersAsDiscovery, 'updateInvites');
+        this.TeachersAsDiscovery.initialize();
+
         var $el = this.TeachersAsDiscovery.render().$el;
+        functionSpy.reset();
+
         $el.find('form > input.search__input').first().val('Test').trigger('input');
-        $el.find('#teachers-search-courses').attr('href').should.equal('#search/Test/courses');
-        $el.find('#teachers-search-groups').attr('href').should.equal('#search/Test/groups');
+        _.delay(function() {
+            functionSpy.callCount.should.equal(1);
+            $el.find('#teachers-search-courses').attr('href').should.equal('#search/Test/courses');
+            $el.find('#teachers-search-groups').attr('href').should.equal('#search/Test/groups');
+
+            functionSpy.restore();
+            clock.restore();
+        }, 260); // 250ms debounce + 10ms delay.
     });
 
-    it('triggering a submit event on the searchForm should cause TeachersAsDiscovery to trigger a search:submit event.', function() {
-        var $el = this.TeachersAsDiscovery.render().$el;
-        var handler = sinon.spy();
+    it('After render, submission of the embedded searchForm should be caught and passed through by this view.', function() {
+        var functionSpy = sinon.spy(this.TeachersAsDiscovery, "submitSearch"); // Replace before render-time event binding.
+        var eventSpy = sinon.spy();
 
-        this.TeachersAsDiscovery.on('search:submit', handler);
+        var $el = this.TeachersAsDiscovery.render().$el;
+        this.TeachersAsDiscovery.on('search:submit', eventSpy);
 
         $el.find('button.search__submit').first().trigger('click');
-        handler.callCount.should.equal(1); // submitSearch called.
+        functionSpy.callCount.should.equal(1);
+        eventSpy.callCount.should.equal(1);
 
-        this.TeachersAsDiscovery.off('search:submit', handler);
+        this.TeachersAsDiscovery.off('search:submit', eventSpy);
+        functionSpy.restore();
     });
 
-    it.skip('if the teachers model triggers a set:searchQuery event, the searchForm property of TeachersAsDiscovery should be updated and re-rendered.', function() {
+    it('After render, if the teachers model has its search model changed, the searchForm property of this view should be updated and re-rendered.', function() {
+        this.TeachersAsDiscovery.remove();
+        var functionSpy = sinon.spy(this.TeachersAsDiscovery, 'renderSearch');
+        this.TeachersAsDiscovery.initialize(); // re-bind event handler to use spy.
         this.TeachersAsDiscovery.render();
-        var handler = sinon.spy();
+        functionSpy.reset(); // render makes a call to renderSearch which we don't care for in this test.
 
-        this.TeachersAsDiscovery.model.on('set:searchQuery', handler);
-
-        var newSearch = new Stem.Models.Search({
-            label: 'Test',
-            placeholder: 'Test'
+        this.TeachersAsDiscovery.model.unset('searchQuery', { silent: true });
+        var newQuery = new Stem.Models.Search({
+            label: 'Test Label',
+            placeholder: 'Test Placeholder'
         });
-        this.TeachersAsDiscovery.model.set('searchQuery', newSearch);
+        this.TeachersAsDiscovery.model.set('searchQuery', newQuery);
 
-        this.TeachersAsDiscovery.searchForm.model.should.equal(newSearch);
-        handler.callCount.should.equal(1);
+        functionSpy.callCount.should.equal(1);
+        this.TeachersAsDiscovery.searchForm.model.should.equal(newQuery);
 
-        this.TeachersAsDiscovery.model.off('set:searchQuery', handler);
+        functionSpy.restore();
     });
 
     it('should remove and replace search form if it already exists', function() {
