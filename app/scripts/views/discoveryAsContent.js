@@ -47,7 +47,9 @@ Stem.Views = Stem.Views || {};
             this.adminDiscovery = new Stem.Views.AdminsAsDiscovery({
                 el: this.$el.find('#admins_js'),
                 model: this.model.get('admins')
-            }).render();
+            });
+            var test = this.$el.find('#admins_js');
+            this.adminDiscovery.render();
             this.partnerDiscovery = new Stem.Views.PartnersAsDiscovery({
                 el: this.$el.find('#partners_js'),
                 model: this.model.get('partners')
