@@ -751,6 +751,19 @@ a.btn--outline:focus,
     padding-bottom: 30px;
   }
 }
+.discovery__block {
+  padding-bottom: 10px;
+}
+@media only screen and (min-width: 500px) {
+  .discovery__block {
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .discovery__block {
+    padding-bottom: 30px;
+  }
+}
 .discovery__heading {
   font-size: 2.5rem;
   margin-bottom: 0;
@@ -898,6 +911,9 @@ a.btn--outline:focus,
   .discovery-image {
     max-width: 250px;
   }
+}
+.discovery__block.theme-0-white {
+  background-color: #ffffff;
 }
 .discovery__heading.theme-1 {
   background-color: #009eaf;
@@ -5140,6 +5156,16 @@ h6 {
  *     .
  */
 .no-js .util--js-only {
+  display: none;
+}
+/**
+ * ### `util--hide`
+ * Hide content from all users, including
+ * screen readers.
+ *
+ *     .
+ */
+.util--hide {
   display: none;
 }
 /**

@@ -313,7 +313,7 @@ Stem.Views = Stem.Views || {};
 
         id: <span class="hljs-string">'admins'</span>,
 
-        initialize: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
+        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
             
         </li>
         
@@ -323,35 +323,6 @@ Stem.Views = Stem.Views || {};
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
-              </div>
-              <p>Create the child views.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.certificationsMap = <span class="hljs-keyword">new</span> Stem.Views.PoisAsMap({
-                el: $(<span class="hljs-string">'#admins-certifications-map'</span>),
-                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'certificationPois'</span>),
-                tintUrl: <span class="hljs-string">'images/theme-2-background.png'</span>
-            });
-
-            <span class="hljs-keyword">this</span>.spotlightList = <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightList({
-                el: $(<span class="hljs-string">'#admins-spotlights'</span>),
-                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'spotlights'</span>)
-            });
-
-        },
-
-        render: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-3">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>Normally this view is used to “fill in”
 components that already exist on a static
@@ -370,11 +341,11 @@ point.</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-3">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
               <p>We don’t need to supply any
 attributes to the view since
@@ -390,11 +361,11 @@ it’s just a static skeleton.</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-4">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>Add the ARIA attributes for accessibility</p>
 
@@ -408,40 +379,56 @@ it’s just a static skeleton.</p>
         </li>
         
         
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Create and render all the child views.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+            <span class="hljs-keyword">new</span> Stem.Views.PoisAsMap({
+                el: <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'#admins-certifications-map'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'certificationPois'</span>),
+                tintUrl: <span class="hljs-string">'images/theme-2-background.png'</span>
+            }).render().show();
+
+            <span class="hljs-keyword">new</span> Stem.Views.OaeAsSpotlightList({
+                el: <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'#admins-spotlights'</span>),
+                collection: <span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'spotlights'</span>)
+            }).render();</pre></div></div>
+            
+        </li>
+        
+        
         <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Render all the child views.</p>
+              <p>If the spotlight list isn’t empty, we’ll
+want to show it.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.certificationsMap.render();
-            <span class="hljs-keyword">this</span>.spotlightList.render();</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-7">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
-              </div>
-              <p>Go ahead and show the map since it’s
-initially visible on tablets and
-smartphones.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>
-            <span class="hljs-keyword">this</span>.certificationsMap.show();
+            <div class="content"><div class='highlight'><pre>            
+            <span class="hljs-keyword">this</span>.listenTo(<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'spotlights'</span>), <span class="hljs-string">'add'</span>, <span class="hljs-keyword">this</span>.showSpotlights);
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.model.get(<span class="hljs-string">'spotlights'</span>).length) {
+                <span class="hljs-keyword">this</span>.showSpotlights();
+            }
 
             <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>; <span class="hljs-comment">// for method chaining.</span>
 
+        },
+        
+        showSpotlights: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+            
+            <span class="hljs-keyword">this</span>.$el.find(<span class="hljs-string">'.spotlight-block'</span>).removeClass(<span class="hljs-string">'util--hide'</span>);
+            
        }
 
     });
