@@ -1,6 +1,6 @@
 /* global beforeEach, describe, it, Stem */
 
-describe('TeacherSearchAsPage View', function() {
+describe('View::TeacherSearchAsPage', function() {
     'use strict';
 
     beforeEach(function() {

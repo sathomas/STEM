@@ -1,6 +1,6 @@
 /* global beforeEach, describe, it, Stem, L */
 
-describe('PoisAsMap View', function() {
+describe('View::PoisAsMap', function() {
     'use strict';
 
     beforeEach(function() {
@@ -155,6 +155,7 @@ describe('PoisAsMap View', function() {
             spy.callCount.should.equal(1);
             spy.calledWith(0, 0).should.be.true();
 
+            spy.restore();
             server.restore();
         });
 
@@ -169,6 +170,7 @@ describe('PoisAsMap View', function() {
             spy.callCount.should.equal(1);
             spy.calledWith(Stem.config.geo.latitude, Stem.config.geo.longitude).should.be.true();
 
+            spy.restore();
             server.restore();
         });
     });
