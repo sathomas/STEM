@@ -4,10 +4,11 @@ describe('View::DiscoveryAsContent', function() {
     'use strict';
 
     beforeEach(function() {
+        this.$emptyScaffolding = $('<section id="landing"></section>');
         this.$base_scaffolding = $('<section id="landing">' +
-                                        '<article id="teachers_js" class="discovery">' +
-                                        '<article id="admins_js" class="discovery">' +
-                                        '<article id="partners_js" class="discovery">' +
+                                        '<article id="teachers_js" class="discovery"></article>' +
+                                        '<article id="admins_js" class="discovery"></article>' +
+                                        '<article id="partners_js" class="discovery"></article>' +
                                     '</section>');
         this.Discovery = new Stem.Models.Discovery();
         this.DiscoveryAsContent = new Stem.Views.DiscoveryAsContent({
@@ -24,6 +25,16 @@ describe('View::DiscoveryAsContent', function() {
 
     it('Render method should return the view (for chaining).', function() {
         this.DiscoveryAsContent.render().should.equal(this.DiscoveryAsContent);
+    });
+
+    it('should fill the element if it is emtpy', function() {
+        var emptyDiscovery = new Stem.Views.DiscoveryAsContent({
+            el: this.$emptyScaffolding,
+            model: this.Discovery
+        });
+
+        assert(emptyDiscovery.render, 'Map container not found.');
+
     });
 
 });
