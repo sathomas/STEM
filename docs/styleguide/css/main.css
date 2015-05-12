@@ -2574,13 +2574,19 @@ div.poi-marker[data-hidden="1"] {
     max-width: 25%;
   }
 }
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 1000px) {
   .results-filter {
     display: block;
   }
 }
 @media only screen and (max-width: 499px) {
   .results-filter {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  .results-filter {
+    max-width: 100%;
     width: 100%;
   }
 }
@@ -2627,6 +2633,15 @@ div.poi-marker[data-hidden="1"] {
     padding-bottom: 30px;
   }
 }
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  .results-main {
+    -webkit-flex-basis: 100%;
+        -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+}
 .results-secondary {
   box-sizing: border-box;
   -webkit-flex-basis: 100%;
@@ -2658,7 +2673,7 @@ div.poi-marker[data-hidden="1"] {
     max-width: 25%;
   }
 }
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 1000px) {
   .results-secondary {
     display: block;
   }
@@ -2745,51 +2760,28 @@ div.poi-marker[data-hidden="1"] {
  *     </div>
  */
 .results-filter__list {
-  display: table-cell;
-  line-height: 0.7;
+  line-height: 0;
   list-style: none;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
   padding-bottom: 0;
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
   text-align: center;
 }
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 1000px) {
   .results-filter__list {
-    display: block;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .results-filter__list {
-    line-height: inherit;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .results-filter__list {
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .results-filter__list {
-    text-align: inherit;
+    text-align: left;
   }
 }
 .results-filter__list-item {
   display: inline-block;
-  margin-bottom: 1px;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
   overflow: hidden;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
 }
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 1000px) {
   .results-filter__list-item {
     display: block;
   }
@@ -2805,64 +2797,71 @@ div.poi-marker[data-hidden="1"] {
   cursor: pointer;
   display: inline-block;
   height: 6rem;
-  line-height: 1.4;
-  position: relative;
+  line-height: 1;
 }
 @media only screen and (min-width: 500px) {
   .results-filter__list-item__label {
     display: block;
   }
 }
+@media only screen and (min-width: 1000px) {
+  .results-filter__list-item__label {
+    position: relative;
+  }
+}
 .results-filter__list-item__icon {
   background-color: #dbdbda;
-  box-sizing: content-box;
+  box-sizing: border-box;
   color: #ffffff;
-  display: block;
-  float: left;
-  font-size: 3.8rem;
-  height: 4rem;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding-bottom: 1rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  font-size: 4rem;
+  height: 6rem;
   padding-top: 1rem;
-  width: 4rem;
+  width: 6rem;
 }
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 1000px) {
   .results-filter__list-item__icon {
-    margin-right: 10px;
+    padding-left: 1rem;
   }
 }
 .results-filter__list-item__text {
   display: none;
-  left: 7rem;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+}
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  .results-filter__list-item__input:checked ~ .results-filter__list-item__label .results-filter__list-item__text {
+    display: inline-block;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-filter__list-item__text {
+    display: inline;
+  }
 }
 @media only screen and (min-width: 500px) {
   .results-filter__list-item__text {
-    display: block;
+    padding-left: 0.5rem;
+    padding-right: 1rem;
+    position: relative;
+    top: -0.5rem;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-filter__list-item__text {
+    left: 7rem;
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
   }
 }
 .results-filter__list-item__content {
   background-color: #ffffff;
-  clear: both;
   display: none;
-  height: 0;
-  overflow: hidden;
+  line-height: 1.4;
 }
-@media only screen and (min-width: 500px) {
-  .results-filter__list-item__content {
+@media only screen and (min-width: 1000px) {
+  .results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
     display: block;
   }
-}
-.results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
-  height: auto;
 }
 .theme-1 .results-filter__list-item__label {
   color: #009eaf;
@@ -2927,6 +2926,11 @@ div.poi-marker[data-hidden="1"] {
   padding-right: 10px;
   padding-top: 10px;
 }
+@media only screen and (min-width: 500px) and (max-width: 999px) {
+  .results-main__heading {
+    display: none;
+  }
+}
 @media only screen and (min-width: 500px) {
   .results-main__heading {
     padding-bottom: 30px;
@@ -2935,6 +2939,11 @@ div.poi-marker[data-hidden="1"] {
 @media only screen and (min-width: 1000px) {
   .results-main__heading {
     padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .results-main__heading {
+    padding-bottom: 10px;
   }
 }
 @media only screen and (min-width: 500px) {
@@ -2965,16 +2974,6 @@ div.poi-marker[data-hidden="1"] {
 @media only screen and (min-width: 1000px) {
   .results-main__heading {
     padding-top: 30px;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .results-main__heading {
-    padding-bottom: 10px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .results-main__heading {
-    padding-bottom: 10px;
   }
 }
 .results-main__list {
@@ -3103,7 +3102,7 @@ div.poi-marker[data-hidden="1"] {
 .results-secondary {
   display: none;
 }
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 1000px) {
   .results-secondary {
     display: block;
   }
