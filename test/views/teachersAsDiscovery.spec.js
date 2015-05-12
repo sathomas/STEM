@@ -60,7 +60,6 @@ describe('View::TeachersAsDiscovery', function() {
             $el.find('#teachers-search-groups').attr('href').should.equal('#search/Test/groups');
 
             functionSpy.restore();
-            clock.restore();
         }, 260); // 250ms debounce + 10ms delay.
     });
 
