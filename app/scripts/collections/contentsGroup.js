@@ -1,15 +1,15 @@
 /*global Stem, _, Backbone*/
 
-// Backbone collection for a set of group objects from the
-// Open Academic Environment that are members of the
-// designated parent group.
+// Backbone collection for a set of content objects from the
+// Open Academic Environment that are containted in the
+// library of the designated parent group.
 //
 // Unlike typical Backbone collections, the collection
 // supports a set of options that determine how the collections
 // accesses the OAE search API. Those options are passed, in
 // a JavaScript object, as the second parameter to the constructor
 //
-//     var content = new Stem.Collections.MemberGroups([], options);
+//     var content = new Stem.Collections.ContentsGroup([], options);
 //
 // The supported options are:
 //
@@ -25,9 +25,9 @@ Stem.Collections = Stem.Collections || {};
 (function () {
     'use strict';
 
-    Stem.Collections.MemberGroups = Backbone.Collection.extend({
+    Stem.Collections.ContentsGroup = Backbone.Collection.extend({
 
-        model: Stem.Models.Group,
+        model: Stem.Models.Content,
 
         // Default values for collection options.
 
@@ -54,7 +54,7 @@ Stem.Collections = Stem.Collections || {};
         url: function() {
 
             return Stem.config.oae.protocol + '//' + Stem.config.oae.host +
-                '/api/search/members-library/' + this._options.parentId  + '?scope=_tenant' +
+                '/api/search/content-library/' + this._options.parentId  + '?scope=_tenant' +
                 (this._options.limit    ? ('&' + 'limit=' + this._options.limit)    : '') +
                 (this._options.keywords ? ('&' + 'q='     + this._options.keywords) : '');
 
