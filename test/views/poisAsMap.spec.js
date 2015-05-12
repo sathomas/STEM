@@ -173,5 +173,19 @@ describe('View::PoisAsMap', function() {
             spy.restore();
             server.restore();
         });
+
+        it('post-render: If the browser encounters an error acquiring the location, and user coordinates are not cached,\
+            and the browser does not allow a locationerror event to be fired, call locationFailed manually.', function() {
+            var spy = sinon.spy(this.PoisAsMap, "locationFailed");
+            var clock = sinon.useFakeTimers();
+            var view = this.PoisAsMap.render().show();
+            // instead of firing a locationerror from the Leaflet map, do nothing.
+            clock.tick(8000); // wait for the necessary time period to elapse
+
+            spy.callCount.should.equal(1);
+
+            clock.restore();
+            spy.restore();
+        });
     });
 });
