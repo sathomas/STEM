@@ -55,18 +55,20 @@ describe('View::PartnersAsDiscovery', function() {
         $partnership_list.is(':empty').should.be.true();
     });
 
-    it.skip('After render, changing a tag in the tagset should update the filters for the organizations map.', function() {
-        var $el = this.PartnersAsDiscovery.render().$el;
+    it('After render, changing the filter checkboxes should update the filters for the organizations map.', function() {
         var spy = sinon.spy(this.PartnersAsDiscovery, 'updateFilters');
+        var $el = this.PartnersAsDiscovery.render().$el;
 
         var count = 0;
         var $filters = $el.find('#partners-organizations-filter .chkbox');
-        $filters.children().each(function(index, element) {
-            $(element).trigger('click');
+        $filters.children('input').each(function(index, element) {
+            $(element).trigger('click').trigger('change');
             count++;
         });
 
         spy.callCount.should.equal(count);
+
+        spy.restore();
     });
 
 });
