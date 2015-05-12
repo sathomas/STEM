@@ -43,8 +43,9 @@
     .one-fourth-column;
     background-color: @color-theme-0-medium;
     display: table;
-    @media @tablet { display: block; }
+    @media @desktop { display: block; }
     @media @phone-only { width: 100%; }
+    @media @tablet-only { max-width: 100%; width: 100%; }
 }
 
 .results-main {
@@ -53,12 +54,13 @@
     border-left: 1px solid @color-theme-0-medium;
     border-right: 1px solid @color-theme-0-medium;
     .spacing(padding-bottom);
+    @media @tablet-only { flex-basis: 100%; max-width: 100%; width: 100%; }
 }
 
 .results-secondary {
     .one-fourth-column;
     display: none;
-    @media @tablet { display: block; }
+    @media @desktop { display: block; }
     .spacing(padding-bottom);
 }
 
@@ -134,42 +136,31 @@
  *     </div>
  */
 
-
 .results-filter__list {
-    display: table-cell;
-    @media @tablet { display: block; }
-    line-height: 0.7;
-    @media @tablet { line-height: inherit; }
+    line-height: 0;
     list-style:none;
-    @media @tablet {
-        margin-bottom: 0;
-        margin-left: 0;
-        margin-right: 0;
-        margin-top: 0;
-    }
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
     padding-bottom: 0;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
     text-align: center;
-    @media @tablet { text-align: inherit; }
+    @media @desktop { text-align: left; }
 }
+
 .results-filter__list-item {
     display: inline-block;
-    @media @tablet { display: block; }
-    margin-bottom: 1px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    overflow:hidden;
-    padding-bottom: 0;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
+    @media @desktop { display: block; }
+    overflow: hidden;
 }
+
 .results-filter__list-item__input {
     display:none;
 }
+
 .results-filter__list-item__label {
     .clickable;
     background-color: @color-theme-0-lighter;
@@ -177,46 +168,52 @@
     display: inline-block;
     @media @tablet { display: block; }
     height: 6rem;
-    line-height: 1.4;
-    position: relative;
+    line-height: 1;
+    @media @desktop { position: relative; }
 }
+
 .results-filter__list-item__icon {
     background-color: @color-theme-0-medium;
-    box-sizing: content-box;
+    box-sizing: border-box;
     color: @color-theme-0-white;
-    display: block;
-    float: left;
-    font-size: 3.8rem;
-    height: 4rem;
-    margin-bottom: 0;
-    margin-left: 0;
-    margin-right: 0;
-    @media @tablet { margin-right: 10px; }
-    margin-top: 0;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    font-size: 4rem;
+    height: 6rem;
+    @media @desktop { padding-left: 1rem; }
     padding-top: 1rem;
-    width: 4rem;
+    width: 6rem;
 }
+
 .results-filter__list-item__text {
     display: none;
-    @media @tablet { display: block; }
-    left: 7rem;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    @media @tablet-only { 
+        .results-filter__list-item__input:checked ~ .results-filter__list-item__label & {
+            display: inline-block;
+        }
+    }
+    @media @desktop { display: inline; }
+    @media @tablet {
+        padding-left: 0.5rem;
+        padding-right: 1rem;
+        position: relative;
+        top: -0.5rem;
+    }
+    @media @desktop {
+        left: 7rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
+
 .results-filter__list-item__content {
     background-color: @color-theme-0-white;
-    clear: both;
     display: none;
-    @media @tablet { display: block; }
-    height:0;
-    overflow:hidden;
-}
-.results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ .results-filter__list-item__content {
-    height:auto;
+    @media @desktop { 
+        .results-filter__list-item__input:checked ~ .results-filter__list-item__label ~ & {
+            display: block;
+        }
+    }
+    line-height: 1.4;
 }
 
 .theme-1 .results-filter__list-item__label {
@@ -280,13 +277,13 @@
 
 
 .results-main__heading {
+    @media @tablet-only { display: none; }
     margin-bottom: 0;
     .spacing(padding-bottom);
+    @media @desktop { padding-bottom: @block-spacing; }
     .spacing(padding-left);
     .spacing(padding-right);
     .spacing(padding-top);
-    @media @tablet { padding-bottom: @block-spacing; }
-    @media @desktop { padding-bottom: @block-spacing; }
 }
 
 .results-main__list {
@@ -403,7 +400,7 @@
 
 .results-secondary {
     display: none;
-    @media @tablet { display: block; }
+    @media @desktop { display: block; }
 }
 
 .results-secondary-block {
