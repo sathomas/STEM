@@ -1,10 +1,14 @@
-/* global describe */
+/* global Stem, describe, beforeEach, it */
 
-describe('DiscoveryAsContent View', function() {
+describe('View::DiscoveryAsContent', function() {
     'use strict';
 
     beforeEach(function() {
-        this.$base_scaffolding = $('<section id="#landing"></div>');
+        this.$base_scaffolding = $('<section id="landing">' +
+                                        '<article id="teachers_js" class="discovery">' +
+                                        '<article id="admins_js" class="discovery">' +
+                                        '<article id="partners_js" class="discovery">' +
+                                    '</section>');
         this.Discovery = new Stem.Models.Discovery();
         this.DiscoveryAsContent = new Stem.Views.DiscoveryAsContent({
             el: this.$base_scaffolding,
@@ -18,13 +22,8 @@ describe('DiscoveryAsContent View', function() {
         // });
     });
 
-
-    it('render method should return the view (for chaining)', function() {
+    it('Render method should return the view (for chaining).', function() {
         this.DiscoveryAsContent.render().should.equal(this.DiscoveryAsContent);
-    });
-
-    it('render method should fill in view if $el is not empty', function() {
-        //this.DiscoveryAsContent__existing.render().should.equal(something);
     });
 
 });
