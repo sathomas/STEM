@@ -45,7 +45,7 @@ describe('View::TeachersAsDiscovery', function() {
         $el.find('#teachers-search-groups').attr('href').should.equal('#search//groups');
     });
 
-    it('After render, a change to the query of the teacher model search query, should update the href of the view anchor elements.', function() {
+    it('After render, a change to the query of the teacher model search query, should update the href of the view anchor elements.', function(done) {
         this.TeachersAsDiscovery.remove();
         var functionSpy = sinon.spy(this.TeachersAsDiscovery, 'updateInvites');
         this.TeachersAsDiscovery.initialize();
@@ -60,6 +60,7 @@ describe('View::TeachersAsDiscovery', function() {
             $el.find('#teachers-search-groups').attr('href').should.equal('#search/Test/groups');
 
             functionSpy.restore();
+            done();
         }, 260); // 250ms debounce + 10ms delay.
     });
 
