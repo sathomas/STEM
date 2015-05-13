@@ -40,4 +40,51 @@ describe('View::AdminsAsDiscovery', function() {
         $el.find('#admins-certifications-map').hasClass('leaflet-container').should.be.true();
     });
 
+    it('After render, if the spotlight list is empty, it should be hidden.', function() {
+        var baseUrl = Stem.config.oae.protocol + '//' + Stem.config.oae.host + '/api/group/';
+        var subgroupUrl = new RegExp(baseUrl + '.+/members([?]limit=\d+)?');
+        var server = sinon.fakeServer.create();
+        server.respondImmediately = true;
+        server.respondWith("GET", subgroupUrl, [200, { 'Content-Type': 'application/json' }, '[]']);
+
+        /* Reset test fixtures */
+        this.Discovery = new Stem.Models.Discovery();
+        server.respond();
+        this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
+            el: this.$Scaffolding.empty(),
+            model: this.Discovery.get('admins')
+        });
+
+        var $el = this.AdminsAsDiscovery.render().$el;
+        $el.find('.spotlight-block').hasClass('util--hide').should.be.true();
+
+        server.restore();
+    });
+
+
+    it('After render, if the spotlight list is populated, it should be shown.', function() {
+        var baseUrl = Stem.config.oae.protocol + '//' + Stem.config.oae.host + '/api/group/';
+        var subgroupUrl = new RegExp(baseUrl + '.+/members([?]limit=\d+)?');
+        var server = sinon.fakeServer.create();
+        server.respondImmediately = true;
+        server.respondWith("GET", subgroupUrl, [
+            200,
+            { 'Content-Type': 'application/json' },
+            JSON.stringify([{"profile":{}, "role": "test"}, {"profile":{ "resourceType": "group" }, "role": "test"}])
+        ]);
+
+        /* Reset test fixtures */
+        this.Discovery = new Stem.Models.Discovery();
+        server.respond();
+        this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
+            el: this.$Scaffolding.empty(),
+            model: this.Discovery.get('admins')
+        });
+
+        var $el = this.AdminsAsDiscovery.render().$el;
+        $el.find('.spotlight-block').hasClass('util--hide').should.be.false();
+
+        server.restore();
+    });
+
 });
