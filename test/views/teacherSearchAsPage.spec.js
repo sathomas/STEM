@@ -66,7 +66,7 @@ describe('View::TeacherSearchAsPage', function() {
         var $el = this.TeacherSearchAsPage.render().$el;
         functionSpy.reset(); // arrangeResults called but not interested.
 
-        var $filters = $el.find('.results-filter__List > .results-filter__list-item > .results-filter__list-item__input');
+        var $filters = $el.find('.results-filter__list > .results-filter__list-item > .results-filter__list-item__input');
         var $courseSearchFilter = $($filters[1]);
         $courseSearchFilter.trigger('click').trigger('change');
 
