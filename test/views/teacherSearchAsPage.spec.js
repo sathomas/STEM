@@ -61,23 +61,26 @@ describe('View::TeacherSearchAsPage', function() {
         view.groupsSecondaryView.$el.attr('data-status').should.equal('compressed');
     });
 
-    it.skip('post-render: Changing the searchFilter should re-arrange results.', function() {
-        var view = this.TeacherSearchAsPage.render();
-        var $el = view.$el;
+    it('post-render: Changing the searchFilter should re-arrange results.', function(done) {
+        var functionSpy = sinon.spy(this.TeacherSearchAsPage, 'arrangeResults');
+        var $el = this.TeacherSearchAsPage.render().$el;
+        functionSpy.reset(); // arrangeResults called but not interested.
 
-        var filters = view.searchFiltersList.$el.find('.results-filter__list-item > .results-filter__list-item__input');
-        var courseSearchFilter = view.searchFiltersList.$el.find('.results-filter__list-item__label')[1];
-        courseSearchFilter.click('click');
+        var $filters = $el.find('.results-filter > .results-filter__list-item > .results-filter__list-item__input');
+        var $courseSearchFilter = $($filters[1]);
+        $courseSearchFilter.trigger('click').trigger('change');
 
-            var resultsMainHeading = $('body').html();
-            var innerHTML = resultsMainHeading.html();
-            innerHTML.should.equal('Professional Learning');
+        _.delay(function() {
+            functionSpy.callCount.should.equal(1);
 
-        // var $results_main = $el.find('.results-main');
-        // var $coursesMainView = view.coursesMainView.$el;
+            var $results_main = $el.find('.results-main');
+            var $coursesMainView = this.TeacherSearchAsPage.coursesMainView.$el;
 
-        // var assertion = $results_main.is($coursesMainView.parent());
-        // var parent = $coursesMainView.parent();
-        // assertion.should.be.true();
+            var assertion = $results_main.is($coursesMainView.parent());
+            assertion.should.be.true();
+
+            functionSpy.restore();
+            done();
+        }, 26); // 16ms debounce + 10ms delay.
     });
 });
