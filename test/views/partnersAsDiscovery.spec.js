@@ -103,15 +103,9 @@ describe('View::PartnersAsDiscovery', function() {
 
     it('After render, if the initially empty partnerships collection is populated, spotlights should be shown.', function() {
         var baseUrl = Stem.config.oae.protocol + '//' + Stem.config.oae.host + '/api/group/';
-        var groupUrl = new RegExp(baseUrl + '\d+$');
         var subgroupUrl = new RegExp(baseUrl + '.+/members([?]limit=\d+)?');
         var server = sinon.fakeServer.create();
         server.respondImmediately = true;
-        server.respondWith("GET", groupUrl, [
-            200,
-            { 'Content-Type': 'application/json' },
-            JSON.stringify({ 'resourceType': 'group' })
-        ]);
         server.respondWith("GET", subgroupUrl, [200, { 'Content-Type': 'application/json' }, '[]']);
 
         /* Reset test fixtures */
@@ -125,8 +119,15 @@ describe('View::PartnersAsDiscovery', function() {
         });
 
         var $el = this.PartnersAsDiscovery.render().$el;
-        this.Partners.get('partnerships').add(new Stem.Models.Group({ 'id': 1000 }));
-        server.respond();
+        this.Partners.get('partnerships').add(
+            new Stem.Models.Group({
+                picture: { medium: '' },
+                profilePath: '',
+                displayName: '',
+                description: ''
+            })
+        );
+
         $el.find('.spotlight-block').hasClass('util--hide').should.be.false();
 
         server.restore();
@@ -141,7 +142,8 @@ describe('View::PartnersAsDiscovery', function() {
         server.respondWith("GET", subgroupUrl, [
             200,
             { 'Content-Type': 'application/json' },
-            JSON.stringify([{"profile":{}, "role": "test"}, {"profile": { "resourceType": "group" }, "role": "test"}])
+            JSON.stringify([{'profile': { 'resourceType': 'group' }, 'role': 'test'},
+                            {'profile': { 'resourceType': 'group' }, 'role': 'test'}])
         ]);
 
         /* Reset test fixtures */
