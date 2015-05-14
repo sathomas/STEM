@@ -60,30 +60,6 @@ Stem.Views = Stem.Views || {};
                 title:  'I’m looking for'
             });
 
-            // Create the child views.
-
-            this.mapFilter = new Stem.Views.TagSetAsInlineCheckboxGroup({
-                el: $('#partners-organizations-filter'),
-                model: this.tagSet
-            });
-
-            this.organizationsMap = new Stem.Views.PoisAsMap({
-                el: $('#partners-organizations-map'),
-                collection: this.model.get('organizationPois'),
-                tintUrl: 'images/theme-3-background.png'
-            });
-
-            this.proposalsMap = new Stem.Views.PoisAsMap({
-                el: $('#partners-donorschoose-map'),
-                collection: this.model.get('proposalPois'),
-                tintUrl: 'images/theme-3-background.png'
-            });
-
-            this.partnershipsList = new Stem.Views.OaeAsSpotlightList({
-                el: $('#partners-spotlights'),
-                collection: this.model.get('partnerships')
-            });
-
         },
 
         render: function () {
@@ -113,25 +89,50 @@ Stem.Views = Stem.Views || {};
             this.$el.attr('aria-labelledby', headingId);
             this.$el.find('h3').attr('id', headingId);
 
-            // Render all the child views.
+            // Create and render the child views.
 
-            this.mapFilter.render();
-            this.proposalsMap.render();
-            this.organizationsMap.render();
-            this.partnershipsList.render();
+            new Stem.Views.TagSetAsInlineCheckboxGroup({
+                el: this.$el.find('#partners-organizations-filter'),
+                model: this.tagSet
+            }).render();
+
+            new Stem.Views.PoisAsMap({
+                el: this.$el.find('#partners-organizations-map'),
+                collection: this.model.get('organizationPois'),
+                tintUrl: 'images/theme-3-background.png'
+            }).render().show();
+
+            new Stem.Views.PoisAsMap({
+                el: this.$el.find('#partners-donorschoose-map'),
+                collection: this.model.get('proposalPois'),
+                tintUrl: 'images/theme-3-background.png'
+            }).render().show();
+
+            new Stem.Views.OaeAsSpotlightList({
+                el: this.$el.find('#partners-spotlights'),
+                collection: this.model.get('partnerships')
+            }).render();
+            
+            // If the spotlight list isn't empty, we'll
+            // want to show it.
+            
+            this.listenTo(this.model.get('partnerships'), 'add', this.showSpotlights);
+            if (this.model.get('partnerships').length) {
+                this.showSpotlights();
+            }
+            
+            // Respond to changes in the tag set.
 
             this.listenTo(this.tagSet.get('tags'), 'change', this.updateFilters);
 
-            // Go ahead and show the maps
-            // since they'll be visibile right
-            // from the start on tablet and
-            // smartphone viewports.
-
-            this.proposalsMap.show();
-            this.organizationsMap.show();
-
             return this; // for method chaining.
 
+        },
+        
+        showSpotlights: function () {
+            
+            this.$el.find('.spotlight-block').removeClass('util--hide');
+            
         },
 
         updateFilters: function () {
