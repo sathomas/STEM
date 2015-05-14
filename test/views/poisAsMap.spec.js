@@ -17,8 +17,13 @@ describe('View::PoisAsMap', function() {
     });
 
     describe('PoisAsMap View: Initialization', function() {
-        it('render method should return the view', function() {
+        it('render method should return the view (for chaining).', function() {
             this.PoisAsMap.render().should.equal(this.PoisAsMap);
+        });
+
+        it('After render, if the provided el was empty, should no longer be empty.', function() {
+            var $el = this.PoisAsMap.render().$el;
+            $el.is(':empty').should.be.false();
         });
 
         // Show method should check if rendering has occured??

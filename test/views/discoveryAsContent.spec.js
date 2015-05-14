@@ -17,8 +17,13 @@ describe('View::DiscoveryAsContent', function() {
         });
     });
 
-    it('Render method should return the view (for chaining)', function() {
+    it('Render method should return the view (for chaining).', function() {
         this.DiscoveryAsContent.render().should.equal(this.DiscoveryAsContent);
+    });
+
+    it('After render, if the provided el was empty, should no longer be empty.', function() {
+        var $el = this.DiscoveryAsContent.render().$el;
+        $el.is(':empty').should.be.false();
     });
 
     it('post render: if the element is empty, the template should be used to fill it in', function() {

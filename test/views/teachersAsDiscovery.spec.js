@@ -18,12 +18,40 @@ describe('View::TeachersAsDiscovery', function() {
         this.TeachersAsDiscovery.render().should.equal(this.TeachersAsDiscovery);
     });
 
-    it('Render method should render search form.', function() {
-        var functionSpy = sinon.spy(this.TeachersAsDiscovery, "renderSearch");
+    it('After render, if the provided el was empty, should no longer be empty.', function() {
+        var $el = this.TeachersAsDiscovery.render().$el;
+        $el.is(':empty').should.be.false();
+    });
+
+    it('After render, search form should be created and rendered, if it does not exist.', function() {
+        var functionSpy = sinon.spy(this.TeachersAsDiscovery, 'renderSearch');
+
         this.TeachersAsDiscovery.render();
+        var searchForm = this.TeachersAsDiscovery.searchForm || null;
+
         functionSpy.callCount.should.equal(1);
+        searchForm.should.be.an.instanceOf(Stem.Views.SearchAsForm);
 
         functionSpy.restore();
+    });
+
+    it('After render, search form should be removed and replaced, if it already exists.', function() {
+        var $FilledScaffolding = $('<article id="teachers" class="discovery"><div id="test-search-form"></div></article>');
+        var newTeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
+            el: $FilledScaffolding,
+            model: this.Teachers
+        });
+        var newSearchForm = new Stem.Views.SearchAsForm({
+            el: $FilledScaffolding.find('#test-search-form'),
+            model: newTeachersAsDiscovery.model.get('searchQuery'),
+            theme: 'theme-1-test',
+            testOption: 'the-test-option'
+        }).render();
+        newTeachersAsDiscovery.searchForm = newSearchForm;
+        newTeachersAsDiscovery.searchForm.options.testOption.should.equal('the-test-option');
+
+        newTeachersAsDiscovery.render();
+        should.not.exist(newTeachersAsDiscovery.searchForm.options.testOption);
     });
 
     it('After render, the root element of the view should have an ARIA label with a valid id value.', function() {
@@ -101,22 +129,4 @@ describe('View::TeachersAsDiscovery', function() {
         functionSpy.restore();
     });
 
-    it('should remove and replace search form if it already exists', function() {
-        var $FilledScaffolding = $('<article id="teachers" class="discovery"><div id="test-search-form"></div></article>');
-        var newTeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
-            el: $FilledScaffolding,
-            model: this.Teachers
-        });
-        var newSearchForm = new Stem.Views.SearchAsForm({
-            el: $FilledScaffolding.find('#test-search-form'),
-            model: newTeachersAsDiscovery.model.get('searchQuery'),
-            theme: 'theme-1-test',
-            testOption: 'the-test-option'
-        }).render();
-        newTeachersAsDiscovery.searchForm = newSearchForm;
-        newTeachersAsDiscovery.searchForm.options.testOption.should.equal('the-test-option');
-
-        newTeachersAsDiscovery.render();
-        should.not.exist(newTeachersAsDiscovery.searchForm.options.testOption);
-    });
 });

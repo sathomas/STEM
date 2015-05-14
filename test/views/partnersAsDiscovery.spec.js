@@ -18,6 +18,11 @@ describe('View::PartnersAsDiscovery', function() {
         this.PartnersAsDiscovery.render().should.equal(this.PartnersAsDiscovery);
     });
 
+    it('After render, if the provided el was empty, should no longer be empty.', function() {
+        var $el = this.PartnersAsDiscovery.render().$el;
+        $el.is(':empty').should.be.false();
+    });
+
     it('After render, the root element of the view should have an ARIA label with a valid id value.', function() {
         var $el = this.PartnersAsDiscovery.render().$el;
         $el.attr('aria-labelledby').should.match(/^[0-9]+$/);
@@ -92,6 +97,39 @@ describe('View::PartnersAsDiscovery', function() {
 
         var $el = this.PartnersAsDiscovery.render().$el;
         $el.find('.spotlight-block').hasClass('util--hide').should.be.true();
+
+        server.restore();
+    });
+
+    it.skip('After render, if the initially empty partnerships collection is populated, spotlights should be shown.', function() {
+        var baseUrl = Stem.config.oae.protocol + '//' + Stem.config.oae.host + '/api/group/';
+        var groupUrl = new RegExp(baseUrl + '\d+$');
+        var subgroupUrl = new RegExp(baseUrl + '.+/members([?]limit=\d+)?');
+        var server = sinon.fakeServer.create();
+        server.respondImmediately = true;
+        server.respondWith("GET", groupUrl, [
+            200,
+            { 'Content-Type': 'application/json' },
+            JSON.stringify({ 'resourceType': 'group', 
+                             'picture': {},
+                             'thumbnailUrl': location.protocol + '//' + location.host + '/images/group.png'
+                           })
+        ]);
+        server.respondWith("GET", subgroupUrl, [200, { 'Content-Type': 'application/json' }, '[]']);
+
+        /* Reset test fixtures */
+        this.Partners = new Stem.Models.Partners({
+            searchQuery: new Stem.Models.Search()
+        });
+        server.respond();
+        this.PartnersAsDiscovery = new Stem.Views.PartnersAsDiscovery({
+            el: this.$Scaffolding.empty(),
+            model: this.Partners
+        });
+
+        var $el = this.PartnersAsDiscovery.render().$el;
+        this.Partners.get('partnerships').add(new Stem.Models.Group({ 'id': 2 }));
+        $el.find('.spotlight-block').hasClass('util--hide').should.be.false();
 
         server.restore();
     });
