@@ -5,10 +5,12 @@ describe('View::TeachersAsDiscovery', function() {
 
     beforeEach(function() {
         this.$Scaffolding = $('<article id="teachers" class="discovery"></article>');
-        this.Discovery = new Stem.Models.Discovery();
+        this.Teachers = new Stem.Models.Teachers({
+            searchQuery: new Stem.Models.Search()
+        });
         this.TeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
             el: this.$Scaffolding,
-            model: this.Discovery.get('teachers')
+            model: this.Teachers
         });
     });
 
@@ -103,7 +105,7 @@ describe('View::TeachersAsDiscovery', function() {
         var $FilledScaffolding = $('<article id="teachers" class="discovery"><div id="test-search-form"></div></article>');
         var newTeachersAsDiscovery = new Stem.Views.TeachersAsDiscovery({
             el: $FilledScaffolding,
-            model: this.Discovery.get('teachers')
+            model: this.Teachers
         });
         var newSearchForm = new Stem.Views.SearchAsForm({
             el: $FilledScaffolding.find('#test-search-form'),

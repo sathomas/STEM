@@ -5,10 +5,12 @@ describe('View::AdminsAsDiscovery', function() {
 
     beforeEach(function() {
         this.$Scaffolding = $('<article id="admins" class="discovery theme-2"></article>');
-        this.Discovery = new Stem.Models.Discovery();
+        this.Admins = new Stem.Models.Admins({
+            searchQuery: new Stem.Models.Search()
+        });
         this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
             el: this.$Scaffolding,
-            model: this.Discovery.get('admins')
+            model: this.Admins
         });
     });
 
@@ -48,11 +50,13 @@ describe('View::AdminsAsDiscovery', function() {
         server.respondWith("GET", subgroupUrl, [200, { 'Content-Type': 'application/json' }, '[]']);
 
         /* Reset test fixtures */
-        this.Discovery = new Stem.Models.Discovery();
+        this.Admins = new Stem.Models.Admins({
+            searchQuery: new Stem.Models.Search()
+        });
         server.respond();
         this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
             el: this.$Scaffolding.empty(),
-            model: this.Discovery.get('admins')
+            model: this.Admins
         });
 
         var $el = this.AdminsAsDiscovery.render().$el;
@@ -74,11 +78,13 @@ describe('View::AdminsAsDiscovery', function() {
         ]);
 
         /* Reset test fixtures */
-        this.Discovery = new Stem.Models.Discovery();
+        this.Admins = new Stem.Models.Admins({
+            searchQuery: new Stem.Models.Search()
+        });
         server.respond();
         this.AdminsAsDiscovery = new Stem.Views.AdminsAsDiscovery({
             el: this.$Scaffolding.empty(),
-            model: this.Discovery.get('admins')
+            model: this.Admins
         });
 
         var $el = this.AdminsAsDiscovery.render().$el;
