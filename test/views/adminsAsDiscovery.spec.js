@@ -70,7 +70,7 @@ describe('View::AdminsAsDiscovery', function() {
         server.restore();
     });
 
-    it.skip('After render, if the initially empty spotlights collection is populated, spotlights should be shown.', function() {
+    it('After render, if the initially empty spotlights collection is populated, spotlights should be shown.', function() {
         var baseUrl = Stem.config.oae.protocol + '//' + Stem.config.oae.host + '/api/group/';
         var groupUrl = new RegExp(baseUrl + '\d+$');
         var subgroupUrl = new RegExp(baseUrl + '.+/members([?]limit=\d+)?');
@@ -79,10 +79,7 @@ describe('View::AdminsAsDiscovery', function() {
         server.respondWith("GET", groupUrl, [
             200,
             { 'Content-Type': 'application/json' },
-            JSON.stringify({ 'resourceType': 'group', 
-                             'picture': {},
-                             'thumbnailUrl': location.protocol + '//' + location.host + '/images/group.png'
-                           })
+            JSON.stringify({ 'resourceType': 'group' })
         ]);
         server.respondWith("GET", subgroupUrl, [200, { 'Content-Type': 'application/json' }, '[]']);
 
@@ -97,7 +94,8 @@ describe('View::AdminsAsDiscovery', function() {
         });
 
         var $el = this.AdminsAsDiscovery.render().$el;
-        this.Admins.get('spotlights').add(new Stem.Models.Group({ 'id': 2 }));
+        this.Admins.get('spotlights').add(new Stem.Models.Group({ 'id': 1000 }));
+        server.respond();
         $el.find('.spotlight-block').hasClass('util--hide').should.be.false();
 
         server.restore();
