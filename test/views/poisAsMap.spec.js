@@ -1,6 +1,6 @@
 /* global beforeEach, describe, it, Stem, L */
 
-describe('View::PoisAsMap', function() {
+describe('PoisAsMap View', function() {
     'use strict';
 
     beforeEach(function() {
