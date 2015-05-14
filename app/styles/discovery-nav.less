@@ -370,16 +370,16 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 
 .flexbox {
     .discovery-nav__label {
+        .one-sixth-column;
         align-items: flex-start;
         display: flex;
         flex-direction: column;
-        .one-sixth-column;
         transition: max-width 250ms ease, flex-basis 250ms ease;
     }
 
     @{selected} + .discovery-nav__label {
-        justify-content: flex-end;
         .two-thirds-column;
+        justify-content: flex-end;
     }
 }
 
@@ -467,9 +467,9 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 }
 
 .discovery-nav__label__more {
+    .btn;
     background-color: @color-theme-0-white;
     border-color: @color-theme-0-white;
-    .btn;
     color: @color-theme-0-black;
     display: inline-block;
     @{selected-label} & {
