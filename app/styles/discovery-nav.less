@@ -431,6 +431,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 
 .no-flexbox {
     .discovery-nav__label__content {
+        box-sizing: content-box; /* IE9 has problems with border-box when used with max-width */
         height: 30.9vw; // 41.2vw - 10.3vw
     }
 
