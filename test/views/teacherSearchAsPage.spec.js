@@ -69,6 +69,8 @@ describe('TeacherSearchAsPage View', function() {
             view.groupsSecondaryView.$el.attr('data-status').should.equal('compressed');
         });
 
+        // There seems to be a problem when attempting to programatically trigger
+        // radio buttons in tests.
         it.skip('changing the search filter should re-arrange results.', function(done) {
             var functionSpy = sinon.spy(this.TeacherSearchAsPage, 'arrangeResults');
             var $el = this.TeacherSearchAsPage.render().$el;
