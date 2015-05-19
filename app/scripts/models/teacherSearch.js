@@ -171,6 +171,8 @@ Stem.Models = Stem.Models || {};
                             title: 'Professional learning'
                         }),
                         results: new Stem.Models.SearchGroup({
+                            // switch to ContentsGroup on transition to content
+                            // collection: new Stem.Collections.ContentsGroup([], {
                             collection: new Stem.Collections.MemberGroups([], {
                                 limit: 16,
                                 parentId: Stem.config.oae.groups.courses
@@ -178,6 +180,8 @@ Stem.Models = Stem.Models || {};
                             heading: 'Professional Learning',
                             moreLink: Stem.config.oae.protocol + '//' +
                                       Stem.config.oae.host + '/group/si/m179WbZq/members'
+                            //        Stem.config.oae.host + '/group/si/m179WbZq/library'
+                            // switch to /library on transition to content
                         })
 
                     },

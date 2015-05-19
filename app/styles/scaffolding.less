@@ -45,3 +45,25 @@ section {
 .js section[data-hide="0"] {
     display: block;
 }
+
+/**
+ * ### `<a>`
+ * By default, links use inherited color and
+ * only show underlines on hover or focus.
+ *
+ *
+ *     @example:
+ *     <a href="http://gatech.edu">
+ *         Georgia Institute of Technology
+ *     </a>
+ */
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.no-touch a:hover,
+a:focus {
+    text-decoration: underline;
+}
