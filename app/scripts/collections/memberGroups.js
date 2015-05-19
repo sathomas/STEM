@@ -4,12 +4,12 @@
 // Open Academic Environment that are members of the
 // designated parent group.
 //
-// Unlike typical Backbone collections, the Groups collection
+// Unlike typical Backbone collections, the collection
 // supports a set of options that determine how the collections
 // accesses the OAE search API. Those options are passed, in
 // a JavaScript object, as the second parameter to the constructor
 //
-//     var content = new Stem.Collections.Groups([], options);
+//     var content = new Stem.Collections.MemberGroups([], options);
 //
 // The supported options are:
 //
