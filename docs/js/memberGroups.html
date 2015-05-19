@@ -24,6 +24,11 @@
               </a>
             
               
+              <a class="source" href="contentsGroup.html">
+                contentsGroup.js
+              </a>
+            
+              
               <a class="source" href="groups.html">
                 groups.js
               </a>
@@ -310,11 +315,11 @@
               <p>Backbone collection for a set of group objects from the
 Open Academic Environment that are members of the
 designated parent group.</p>
-<p>Unlike typical Backbone collections, the Groups collection
+<p>Unlike typical Backbone collections, the collection
 supports a set of options that determine how the collections
 accesses the OAE search API. Those options are passed, in
 a JavaScript object, as the second parameter to the constructor</p>
-<pre><code><span class="hljs-keyword">var</span> content = <span class="hljs-keyword">new</span> Stem.Collections.Groups([], options);
+<pre><code><span class="hljs-keyword">var</span> content = <span class="hljs-keyword">new</span> Stem.Collections.MemberGroups([], options);
 </code></pre><p>The supported options are:</p>
 <ul>
 <li><code>parentId</code>: [Required] id of the parent group</li>

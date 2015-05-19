@@ -2233,18 +2233,41 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
  */
 .invite {
   display: inline-block;
-  padding: 0 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 0;
   text-align: center;
   vertical-align: text-top;
 }
 @media only screen and (min-width: 500px) {
   .invite {
-    padding: 0 30px;
+    padding-bottom: 30px;
   }
 }
 @media only screen and (min-width: 1000px) {
   .invite {
-    padding: 0 30px;
+    padding-bottom: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .invite {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .invite {
+    padding-left: 30px;
+  }
+}
+@media only screen and (min-width: 500px) {
+  .invite {
+    padding-right: 30px;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .invite {
+    padding-right: 30px;
   }
 }
 .invite__icon {
@@ -2254,7 +2277,7 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
   padding-bottom: 10px;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 10px;
+  padding-top: 0;
 }
 @media only screen and (min-width: 500px) {
   .invite__icon {
@@ -2264,16 +2287,6 @@ nav.discovery-nav[data-discovery-nav="6"] ~ article.discovery:nth-of-type(6) {
 @media only screen and (min-width: 1000px) {
   .invite__icon {
     padding-bottom: 30px;
-  }
-}
-@media only screen and (min-width: 500px) {
-  .invite__icon {
-    padding-top: 30px;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  .invite__icon {
-    padding-top: 30px;
   }
 }
 .invite__text {
@@ -3284,6 +3297,25 @@ section {
 }
 .js section[data-hide="0"] {
   display: block;
+}
+/**
+ * ### `<a>`
+ * By default, links use inherited color and
+ * only show underlines on hover or focus.
+ *
+ *
+ *     @example:
+ *     <a href="http://gatech.edu">
+ *         Georgia Institute of Technology
+ *     </a>
+ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.no-touch a:hover,
+a:focus {
+  text-decoration: underline;
 }
 /**
  * ## Search

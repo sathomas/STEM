@@ -24,6 +24,11 @@
               </a>
             
               
+              <a class="source" href="contentsGroup.html">
+                contentsGroup.js
+              </a>
+            
+              
               <a class="source" href="groups.html">
                 groups.js
               </a>
@@ -600,15 +605,45 @@ in most cases we’ll set them up here.</p>
                             icon: <span class="hljs-string">'fa-certificate'</span>,
                             title: <span class="hljs-string">'Professional learning'</span>
                         }),
-                        results: <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({
-                            collection: <span class="hljs-keyword">new</span> Stem.Collections.MemberGroups([], {
+                        results: <span class="hljs-keyword">new</span> Stem.Models.SearchGroup({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>switch to ContentsGroup on transition to content
+collection: new Stem.Collections.ContentsGroup([], {</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                            collection: <span class="hljs-keyword">new</span> Stem.Collections.MemberGroups([], {
                                 limit: <span class="hljs-number">16</span>,
                                 parentId: Stem.config.oae.groups.courses
                             }),
                             heading: <span class="hljs-string">'Professional Learning'</span>,
                             moreLink: Stem.config.oae.protocol + <span class="hljs-string">'//'</span> +
-                                      Stem.config.oae.host + <span class="hljs-string">'/group/si/m179WbZq/members'</span>
-                        })
+                                      Stem.config.oae.host + <span class="hljs-string">'/group/si/m179WbZq/members'</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <pre><code>   Stem.config.oae.host + <span class="hljs-string">'/group/si/m179WbZq/library'</span>
+</code></pre><p>switch to /library on transition to content</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                        })
 
                     },
 
@@ -638,11 +673,11 @@ in most cases we’ll set them up here.</p>
         </li>
         
         
-        <li id="section-13">
+        <li id="section-15">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-13">&#182;</a>
+                <a class="pilcrow" href="#section-15">&#182;</a>
               </div>
               <p>Create a filters collection to hold all of the
 facet filters.</p>
@@ -657,11 +692,11 @@ facet filters.</p>
         </li>
         
         
-        <li id="section-14">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-14">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Add each filter to that collection. While we’re
 iterating thought the filters, pick out the
@@ -689,11 +724,11 @@ particular facet that is initially selected.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>Watch for any changes to the filters.</p>
 
@@ -705,11 +740,11 @@ particular facet that is initially selected.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Also watch for any parent object changing the facet.</p>
 
@@ -725,11 +760,11 @@ particular facet that is initially selected.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
               </div>
               <p>Set up the individual components of the
 model.</p>
@@ -744,11 +779,11 @@ model.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-20">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-20">&#182;</a>
               </div>
               <p>Now that everything is set up, perform
 the initial search query.</p>
@@ -765,11 +800,11 @@ the initial search query.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-21">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-21">&#182;</a>
               </div>
               <p>Somebody updated the search facet. Figure
 out which one they want by looking for a
@@ -783,11 +818,11 @@ match within our facets object.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-22">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-22">&#182;</a>
               </div>
               <p>If we find a match, set the filter to
 be selected.</p>
@@ -808,11 +843,11 @@ be selected.</p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-23">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-23">&#182;</a>
               </div>
               <p>Gather the keywords and terms for the search.
 Start with whatever the user has typed into
@@ -828,11 +863,11 @@ with tag-based additions.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-24">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-24">&#182;</a>
               </div>
               <p>Update the collections and trigger new
 fetches.</p>
@@ -845,11 +880,11 @@ fetches.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-25">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-25">&#182;</a>
               </div>
               <p>Make sure there’s a results model to
 update.</p>
@@ -862,11 +897,11 @@ update.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-26">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>If we do have a results model,
 change the options on it’s collection
@@ -894,11 +929,11 @@ new results.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <p>We also want to update the “More” links
 associated with each search results. First
@@ -917,11 +952,11 @@ figure out a URL to use.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Now update the model with the new URLs.</p>
 
@@ -934,11 +969,11 @@ figure out a URL to use.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>Update the hash in the browser’s address bar</p>
 
@@ -954,11 +989,11 @@ figure out a URL to use.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Most of the time, when one filter
 changes, all the others will as
@@ -973,11 +1008,11 @@ that’s now selected.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <p>Find the specific filter in our
 set so that we can update the
@@ -997,11 +1032,11 @@ facet attribute.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Update the browser’s address bar</p>
 
@@ -1018,11 +1053,11 @@ facet attribute.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Let folks upstream know when the URL hash
 can be changed.</p>
@@ -1032,11 +1067,11 @@ can be changed.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Start by extracting the query.</p>
 
@@ -1050,11 +1085,11 @@ can be changed.</p>
         </li>
         
         
-        <li id="section-33">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-33">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Add the appropriate facet.</p>
 
