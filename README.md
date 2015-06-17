@@ -1,6 +1,6 @@
 # STEM
 
-Prototype for [Georgia STEM Incubator](http://demo.stemincubator.org/).
+Prototype for [Georgia STEM Incubator](http://sathomas.github.io/STEM/).
 
 ## Status: [![Build Status](https://travis-ci.org/sathomas/test.png)](https://travis-ci.org/sathomas/STEM)
 
