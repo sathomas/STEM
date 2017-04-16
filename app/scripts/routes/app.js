@@ -16,7 +16,7 @@ Stem.Routers = Stem.Routers || {};
         // `index.html` file, so the only routes we
         // need are routes corresponding to the
         // various sections. We also define a
-        // parameterized search page a default
+        // parameterized search page and a default
         // page (which is the same as the primary
         // landing page).
 
@@ -256,7 +256,7 @@ Stem.Routers = Stem.Routers || {};
             // block, we want that partial search
             // query to show up in the teacher search
             // results if the user navigates to the
-            // search resuls page. To have both models
+            // search results page). To have both models
             // share search queries, we create a common
             // [search](search.html) model that both
             // of the main models can share.
@@ -266,7 +266,7 @@ Stem.Routers = Stem.Routers || {};
                 placeholder: 'Search the Incubator'
             });
 
-            // Now we can create the principle models
+            // Now we can create the principal models
             // that include this query.
 
             this.discovery = new Stem.Models.Discovery({
